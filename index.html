@@ -11,122 +11,34 @@
   body::before { content: ''; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-image: url('city.png'); background-size: cover; background-position: center; opacity: 0.3; z-index: -1; filter: blur(1px); }
   body::after { content: ''; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(5,10,20,0.6) 0%, rgba(5,10,20,0.95) 100%); z-index: -1; }
 
-  .trax-logo { width: 100%; height: 100%; position: relative; display: flex; align-items: center; justify-content: center; }
-  .trax-logo svg { width: 100%; height: 100%; display: block; }
-
   .header { display: flex; justify-content: space-between; align-items: center; padding: 12px 15px; background: rgba(5,10,20,0.9); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(0,150,255,0.15); position: sticky; top: 0; z-index: 50; }
   .header-left { display: flex; align-items: center; gap: 10px; }
   .menu-icon { font-size: 20px; color: #00d4ff; cursor: pointer; padding: 5px; }
   .header-logo { display: flex; align-items: center; gap: 10px; }
-  .header-logo-icon { width: 40px; height: 40px; position: relative; }
-  .header-logo-text h1 { font-size: 17px; font-weight: 900; letter-spacing: 0.5px; color: #ffffff; }
+  .header-logo-icon { width: 40px; height: 40px; }
+  .header-logo-text h1 { font-size: 17px; font-weight: 900; color: #ffffff; }
   .header-logo-text p { font-size: 8px; color: #00d4ff; letter-spacing: 2px; margin-top: 2px; font-weight: 700; }
   .header-right { display: flex; align-items: center; gap: 10px; }
   .level-badge { text-align: right; background: rgba(0,212,255,0.08); border: 1px solid rgba(0,212,255,0.3); border-radius: 12px; padding: 5px 10px; min-width: 75px; }
-  .level-badge .lv { font-size: 10px; font-weight: 900; color: #00d4ff; letter-spacing: 0.5px; }
+  .level-badge .lv { font-size: 10px; font-weight: 900; color: #00d4ff; }
   .level-badge .xp-bar { width: 55px; height: 3px; background: rgba(255,255,255,0.1); border-radius: 2px; margin-top: 4px; overflow: hidden; }
   .level-badge .xp-fill { height: 100%; background: linear-gradient(90deg, #00d4ff, #00ff88); border-radius: 2px; transition: width 0.3s; }
   .avatar { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, #00d4ff, #0066ff); display: flex; align-items: center; justify-content: center; font-size: 18px; border: 2px solid rgba(0,212,255,0.5); box-shadow: 0 0 15px rgba(0,212,255,0.4); cursor: pointer; background-size: cover; background-position: center; overflow: hidden; }
 
   .container { padding: 12px 15px; max-width: 500px; margin: 0 auto; }
 
-  .profile-card { background: linear-gradient(135deg, rgba(0,180,255,0.12), rgba(0,60,150,0.08)); border: 1.5px solid rgba(0,212,255,0.35); border-radius: 20px; padding: 18px; margin-bottom: 14px; position: relative; overflow: hidden; box-shadow: 0 0 30px rgba(0,150,255,0.2); }
-  .profile-card::before { content: ''; position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(0,212,255,0.12), transparent 60%); animation: rotate 20s linear infinite; pointer-events: none; }
-  @keyframes rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-  .profile-top { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; position: relative; z-index: 2; }
-  .profile-avatar-wrap { width: 80px; height: 80px; position: relative; flex-shrink: 0; }
-  .profile-avatar-ring { position: absolute; inset: -5px; border-radius: 50%; background: conic-gradient(from 0deg, #00d4ff, #00ff88, #9900ff, #ff0055, #00d4ff); animation: spinRing 4s linear infinite; opacity: 0.8; filter: blur(2px); }
-  @keyframes spinRing { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-  .profile-avatar { position: absolute; inset: 0; border-radius: 50%; background: linear-gradient(135deg, #0a1929, #061224); display: flex; align-items: center; justify-content: center; font-size: 36px; border: 2px solid rgba(0,212,255,0.5); background-size: cover; background-position: center; overflow: hidden; z-index: 2; }
-  .profile-info { flex: 1; }
-  .profile-name { font-size: 19px; font-weight: 900; color: white; display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
-  .verified-badge { width: 16px; height: 16px; background: linear-gradient(135deg, #00d4ff, #0066ff); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; color: white; }
-  .profile-tagline { font-size: 12px; color: #7a8ba5; font-weight: 500; }
-  .profile-level-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; position: relative; z-index: 2; }
-  .profile-level-label { font-size: 13px; font-weight: 900; color: #00d4ff; }
-  .profile-level-xp { font-size: 12px; color: #a0aec0; font-weight: 700; }
-  .profile-level-bar { width: 100%; height: 8px; background: rgba(0,0,0,0.4); border-radius: 4px; overflow: hidden; position: relative; z-index: 2; }
-  .profile-level-fill { height: 100%; background: linear-gradient(90deg, #00d4ff, #0090ff); border-radius: 4px; transition: width 0.5s; box-shadow: 0 0 15px rgba(0,212,255,0.7); }
-
-  .stats-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 14px; }
-  .stat-card { background: linear-gradient(135deg, rgba(0,80,180,0.15), rgba(0,40,100,0.1)); border: 1.5px solid rgba(0,180,255,0.3); border-radius: 14px; padding: 12px 6px; text-align: center; }
-  .stat-card-label { font-size: 10px; color: #00d4ff; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 6px; }
-  .stat-card-value { font-size: 17px; font-weight: 900; color: white; text-shadow: 0 0 10px rgba(0,212,255,0.5); }
-
-  .menu-list { background: rgba(10,25,45,0.7); border: 1px solid rgba(0,150,255,0.15); border-radius: 16px; overflow: hidden; }
-  .menu-item { display: flex; align-items: center; gap: 14px; padding: 16px 18px; cursor: pointer; transition: background 0.2s; border-bottom: 1px solid rgba(0,150,255,0.08); }
-  .menu-item:last-child { border-bottom: none; }
-  .menu-item:active { background: rgba(0,150,255,0.08); }
-  .menu-icon-box { width: 40px; height: 40px; border-radius: 10px; background: linear-gradient(135deg, rgba(0,180,255,0.15), rgba(0,80,180,0.08)); border: 1px solid rgba(0,180,255,0.25); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
-  .menu-item-info { flex: 1; }
-  .menu-item-info h4 { font-size: 14px; font-weight: 700; color: white; margin-bottom: 2px; }
-  .menu-item-info p { font-size: 11px; color: #7a8ba5; }
-  .menu-item-info p.green { color: #00d4ff; font-weight: 700; }
-  .menu-item-arrow { color: #00d4ff; font-size: 18px; opacity: 0.7; }
-
-  .page-title-bar { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; padding: 5px 0; }
-  .page-title-icon { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-size: 24px; }
-  .page-title-text { font-size: 26px; font-weight: 900; color: #00d4ff; letter-spacing: 0.5px; text-shadow: 0 0 20px rgba(0,212,255,0.5); }
-
-  .task-row { background: rgba(10,25,45,0.7); border: 1px solid rgba(0,150,255,0.2); border-radius: 16px; padding: 14px; margin-bottom: 10px; display: flex; align-items: center; gap: 12px; }
-  .task-row.done { border-color: rgba(0,255,136,0.3); }
-  .task-row.ready { border-color: rgba(0,150,255,0.4); }
-  .task-icon-wrap { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
-  .task-icon-wrap.telegram { background: linear-gradient(135deg, #0088cc, #0066aa); box-shadow: 0 0 20px rgba(0,136,204,0.4); }
-  .task-icon-wrap.twitter { background: linear-gradient(135deg, #1a1a1a, #000000); border: 1px solid rgba(255,255,255,0.2); }
-  .task-icon-wrap.youtube { background: linear-gradient(135deg, #ff0055, #990033); box-shadow: 0 0 20px rgba(255,0,85,0.4); }
-  .task-icon-wrap.invite { background: linear-gradient(135deg, #00aaff, #0066cc); box-shadow: 0 0 20px rgba(0,170,255,0.4); }
-  .task-content { flex: 1; min-width: 0; }
-  .task-title { font-size: 13px; font-weight: 900; color: white; margin-bottom: 4px; }
-  .task-reward-row { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #a0aec0; font-weight: 700; }
-  .task-reward-row .coin-emoji { font-size: 12px; }
-  .task-reward-row .reward-amount { color: #ffd700; font-weight: 900; }
-  .task-progress-bar { width: 100%; height: 4px; background: rgba(0,0,0,0.4); border-radius: 2px; margin-top: 6px; overflow: hidden; }
-  .task-progress-fill { height: 100%; background: linear-gradient(90deg, #00d4ff, #00ff88); border-radius: 2px; }
-  .task-btn { padding: 8px 16px; border-radius: 10px; font-size: 11px; font-weight: 900; cursor: pointer; letter-spacing: 0.5px; flex-shrink: 0; border: none; }
-  .task-btn.go { background: linear-gradient(135deg, #00b4ff, #0066ff); color: white; box-shadow: 0 4px 15px rgba(0,180,255,0.4); }
-  .task-btn.done { background: linear-gradient(135deg, #00aa55, #006633); color: white; }
-
-  .booster-card { background: rgba(10,25,45,0.7); border: 1px solid rgba(0,150,255,0.2); border-radius: 18px; padding: 16px; margin-bottom: 10px; }
-  .booster-header { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
-  .booster-header-icon { font-size: 22px; }
-  .booster-header-text { font-size: 16px; font-weight: 900; color: #00d4ff; }
-  .booster-header-desc { font-size: 11px; color: #7a8ba5; }
-  .booster-row { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(0,150,255,0.08); }
-  .booster-row:last-child { border-bottom: none; padding-bottom: 0; }
-  .booster-row:first-child { padding-top: 0; }
-  .booster-icon { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; flex-shrink: 0; position: relative; }
-  .booster-icon.auto-tap { background: radial-gradient(circle, #a040ff, #6020a0); box-shadow: 0 0 20px rgba(160,64,255,0.5); }
-  .booster-icon.energy { background: radial-gradient(circle, #00b4ff, #0050a0); box-shadow: 0 0 20px rgba(0,180,255,0.5); }
-  .booster-icon.double { background: radial-gradient(circle, #cc00ff, #6600a0); box-shadow: 0 0 20px rgba(204,0,255,0.5); }
-  .booster-icon.offline { background: radial-gradient(circle, #00ff88, #008844); box-shadow: 0 0 20px rgba(0,255,136,0.5); }
-  .booster-icon::after { content: ''; position: absolute; inset: 5px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, rgba(255,255,255,0.4), transparent 60%); }
-  .booster-info { flex: 1; min-width: 0; }
-  .booster-info h4 { font-size: 13px; font-weight: 900; color: white; margin-bottom: 3px; }
-  .booster-info p { font-size: 10px; color: #7a8ba5; }
-  .booster-timer { text-align: center; font-size: 11px; font-weight: 900; color: #a0aec0; padding: 0 8px; min-width: 55px; }
-  .booster-btn { padding: 9px 14px; border-radius: 10px; font-size: 11px; font-weight: 900; cursor: pointer; border: none; letter-spacing: 0.5px; flex-shrink: 0; }
-  .booster-btn.purple { background: linear-gradient(135deg, #a040ff, #6020a0); color: white; }
-  .booster-btn.blue { background: linear-gradient(135deg, #00b4ff, #0066ff); color: white; }
-  .booster-btn.magenta { background: linear-gradient(135deg, #cc00ff, #6600a0); color: white; }
-  .booster-btn.green { background: linear-gradient(135deg, #00ff88, #008844); color: white; }
-  .booster-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-
-  .balance-row { display: grid; grid-template-columns: 1.3fr 1fr; gap: 10px; margin-bottom: 12px; }
-  .balance-card { background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(0,80,180,0.1)); border: 1px solid rgba(0,212,255,0.3); border-radius: 18px; padding: 14px; position: relative; overflow: hidden; }
+  /* BALANCE */
+  .balance-card { background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(0,80,180,0.1)); border: 1px solid rgba(0,212,255,0.3); border-radius: 20px; padding: 18px; margin-bottom: 12px; position: relative; overflow: hidden; }
   .balance-card::before { content: ''; position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(0,212,255,0.15), transparent 60%); animation: rotate 15s linear infinite; }
-  .balance-label { font-size: 10px; color: #7a8ba5; letter-spacing: 1px; position: relative; z-index: 2; margin-bottom: 5px; }
-  .balance-value { font-size: 22px; font-weight: 900; color: white; text-shadow: 0 0 20px rgba(0,212,255,0.7); position: relative; z-index: 2; line-height: 1.1; }
-  .balance-value small { font-size: 11px; color: #00d4ff; }
-  .balance-sub { font-size: 9px; color: #ff9500; margin-top: 3px; position: relative; z-index: 2; font-weight: 900; letter-spacing: 0.5px; }
-  .diamond-card { background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(150,0,255,0.1)); border: 1px solid rgba(0,212,255,0.3); border-radius: 18px; padding: 14px; position: relative; overflow: hidden; }
-  .diamond-label { font-size: 10px; color: #7a8ba5; letter-spacing: 1px; margin-bottom: 5px; }
-  .diamond-value { font-size: 16px; font-weight: 900; color: #00d4ff; text-shadow: 0 0 15px rgba(0,212,255,0.7); }
-  .diamond-bar { width: 100%; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; margin-top: 8px; overflow: hidden; }
-  .diamond-fill { height: 100%; background: linear-gradient(90deg, #00d4ff, #00ff88); border-radius: 2px; transition: width 0.3s; }
-  .diamond-sub { font-size: 9px; color: #7a8ba5; margin-top: 3px; }
-  .tap-title { text-align: center; font-size: 16px; font-weight: 900; color: white; margin: 10px 0 5px; letter-spacing: 1px; }
-  .coin-area { display: flex; justify-content: center; align-items: center; margin: 20px 0 15px; position: relative; min-height: 340px; perspective: 1000px; }
+  @keyframes rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+  .balance-label { font-size: 11px; color: #7a8ba5; letter-spacing: 1.5px; position: relative; z-index: 2; margin-bottom: 6px; }
+  .balance-value { font-size: 30px; font-weight: 900; color: white; text-shadow: 0 0 25px rgba(0,212,255,0.7); position: relative; z-index: 2; line-height: 1.1; }
+  .balance-value small { font-size: 14px; color: #00d4ff; }
+  .balance-sub { font-size: 10px; color: #ff9500; margin-top: 4px; position: relative; z-index: 2; font-weight: 900; }
+
+  /* COIN */
+  .tap-title { text-align: center; font-size: 16px; font-weight: 900; color: white; margin: 12px 0 5px; letter-spacing: 1px; }
+  .coin-area { display: flex; justify-content: center; align-items: center; margin: 15px 0; position: relative; min-height: 320px; perspective: 1000px; }
   .coin-wrapper { position: relative; z-index: 2; }
   .coin-bg-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 340px; height: 340px; border-radius: 50%; background: radial-gradient(circle, var(--coin-glow, rgba(0,180,255,0.55)) 0%, rgba(0,100,200,0.1) 40%, transparent 70%); animation: glowPulse 3s infinite; transition: background 0.5s; }
   @keyframes glowPulse { 0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; } 50% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; } }
@@ -135,22 +47,18 @@
   .coin-3d-btn { width: 220px; height: 220px; position: relative; transform-style: preserve-3d; animation: coin3DFloat 5s ease-in-out infinite; cursor: pointer; background: none; border: none; padding: 0; --coin-c1: #5fc8ff; --coin-c2: #00a8ff; --coin-c3: #003d99; --coin-border: #00d4ff; --coin-glow: #00d4ff; }
   @keyframes coin3DFloat { 0%, 100% { transform: rotateY(-12deg) rotateX(4deg) translateY(0); } 50% { transform: rotateY(12deg) rotateX(-4deg) translateY(-8px); } }
   .coin-3d-btn:active { animation: coin3DShake 0.2s; }
-  @keyframes coin3DShake { 0% { transform: rotateY(-12deg) rotateX(4deg) scale(1); } 50% { transform: rotateY(-12deg) rotateX(4deg) scale(0.92); } 100% { transform: rotateY(-12deg) rotateX(4deg) scale(1); } }
+  @keyframes coin3DShake { 0%, 100% { transform: rotateY(-12deg) rotateX(4deg) scale(1); } 50% { transform: rotateY(-12deg) rotateX(4deg) scale(0.92); } }
   .coin-3d-svg { width: 100%; height: 100%; filter: drop-shadow(0 0 30px var(--coin-glow, #00d4ff)) drop-shadow(0 0 60px var(--coin-glow, #00d4ff)); transition: filter 0.5s; }
   .coin-3d-ring { position: absolute; inset: 0; border-radius: 50%; border: 4px solid var(--coin-border, #00d4ff); box-shadow: 0 0 40px var(--coin-border, #00d4ff), inset 0 0 40px var(--coin-glow, rgba(0,212,255,0.5)); animation: ringRotate 12s linear infinite; }
   @keyframes ringRotate { 0% { transform: rotateZ(0deg); } 100% { transform: rotateZ(360deg); } }
-  .coin-tier-badge { text-align: center; margin-top: 10px; padding: 6px 16px; background: rgba(0,0,0,0.4); border: 2px solid var(--coin-border, #00d4ff); border-radius: 20px; display: inline-block; font-size: 12px; font-weight: 900; letter-spacing: 2px; color: var(--coin-border, #00d4ff); text-shadow: 0 0 10px var(--coin-glow, #00d4ff); position: relative; z-index: 4; }
+  .coin-tier-badge { text-align: center; margin-top: 10px; padding: 6px 16px; background: rgba(0,0,0,0.4); border: 2px solid var(--coin-border, #00d4ff); border-radius: 20px; display: inline-block; font-size: 12px; font-weight: 900; letter-spacing: 2px; color: var(--coin-border, #00d4ff); position: relative; z-index: 4; }
   .coin-tier-badge-container { text-align: center; margin-top: 8px; }
   .coin-tier-progress { text-align: center; font-size: 9px; color: #7a8ba5; margin-top: 4px; }
   .coin-bottom-text { text-align: center; font-size: 11px; color: #00d4ff; letter-spacing: 3px; margin-top: 5px; font-weight: 900; position: relative; z-index: 4; }
-  .coin-per-tap { text-align: center; font-size: 11px; color: #a0aec0; margin-top: 3px; position: relative; z-index: 4; }
-  .coin-per-tap strong { color: #00d4ff; }
+  .coin-per-tap { text-align: center; font-size: 12px; color: #a0aec0; margin-top: 4px; }
+  .coin-per-tap strong { color: #00d4ff; font-size: 14px; }
 
-  .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 8px; margin: 15px 0; }
-  .grid-btn { background: linear-gradient(135deg, rgba(0,100,200,0.4), rgba(0,60,150,0.3)); border: 1px solid rgba(0,180,255,0.3); border-radius: 14px; padding: 12px 5px; text-align: center; cursor: pointer; }
-  .grid-btn:active { transform: scale(0.95); }
-  .grid-icon { font-size: 22px; margin-bottom: 4px; }
-  .grid-label { font-size: 9px; color: #a0aec0; font-weight: bold; }
+  /* ENERGY */
   .energy-card { background: linear-gradient(135deg, rgba(15,30,55,0.9), rgba(10,20,40,0.7)); border: 1px solid rgba(0,180,255,0.25); border-radius: 16px; padding: 14px; margin-bottom: 12px; }
   .energy-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
   .energy-label { font-size: 13px; font-weight: 900; color: #00d4ff; display: flex; align-items: center; gap: 6px; }
@@ -158,86 +66,117 @@
   .energy-count strong { color: #00d4ff; font-size: 14px; }
   .energy-bar { height: 10px; background: rgba(0,0,0,0.3); border-radius: 5px; overflow: hidden; }
   .energy-fill { height: 100%; background: linear-gradient(90deg, #00d4ff, #00ff88); border-radius: 5px; transition: width 0.3s; }
-  .energy-full-btn { background: rgba(0,212,255,0.15); border: 1px solid rgba(0,212,255,0.4); color: #00d4ff; padding: 8px 12px; border-radius: 8px; font-size: 11px; font-weight: 900; cursor: pointer; margin-top: 8px; width: 100%; }
-  .daily-card { background: linear-gradient(135deg, rgba(255,150,0,0.15), rgba(255,80,0,0.08)); border: 1px solid rgba(255,150,0,0.4); border-radius: 16px; padding: 14px; margin-bottom: 12px; display: flex; align-items: center; gap: 12px; }
-  .daily-icon { font-size: 28px; }
-  .daily-info { flex: 1; }
-  .daily-info h4 { font-size: 13px; font-weight: 900; color: #ff9500; }
-  .daily-info p { font-size: 10px; color: #7a8ba5; margin-top: 2px; }
-  .daily-btn { background: linear-gradient(135deg, #ff9500, #ff5500); border: none; border-radius: 12px; padding: 10px 18px; color: white; font-size: 12px; font-weight: 900; cursor: pointer; }
-  .daily-btn.claimed { background: rgba(255,255,255,0.1); color: #7a8ba5; }
-  .section-title { display: flex; justify-content: space-between; align-items: center; margin: 15px 0 10px; }
-  .section-title h3 { font-size: 12px; letter-spacing: 2px; color: #a0aec0; font-weight: 900; }
-  .section-title .view-all { font-size: 10px; color: #00d4ff; font-weight: bold; }
-  .mini-games { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 12px; }
-  .game-card { background: rgba(15,30,55,0.8); border: 1px solid rgba(0,180,255,0.2); border-radius: 14px; padding: 12px 8px; text-align: center; cursor: pointer; }
-  .game-icon { width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin: 0 auto 6px; }
-  .game-icon.purple { background: linear-gradient(135deg, #9900ff, #6600cc); }
-  .game-icon.green { background: linear-gradient(135deg, #00ff88, #00aa55); }
-  .game-icon.orange { background: linear-gradient(135deg, #ff9500, #ff5500); }
-  .game-name { font-size: 10px; font-weight: 900; color: white; margin-bottom: 3px; }
-  .game-desc { font-size: 8px; color: #7a8ba5; }
-  .task-item { background: rgba(15,30,55,0.7); border: 1px solid rgba(0,180,255,0.2); border-radius: 14px; padding: 12px; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
-  .task-icon { width: 38px; height: 38px; border-radius: 10px; background: rgba(0,180,255,0.15); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
-  .task-info { flex: 1; min-width: 0; }
-  .task-info h4 { font-size: 11px; font-weight: 900; margin-bottom: 2px; }
-  .task-info .reward { font-size: 10px; color: #00ff88; font-weight: 900; }
-  .side-item { background: rgba(15,30,55,0.7); border: 1px solid rgba(0,180,255,0.2); border-radius: 14px; padding: 12px; display: flex; align-items: center; gap: 10px; cursor: pointer; margin-bottom: 10px; }
-  .side-item:active { transform: scale(0.98); }
-  .side-item-icon { width: 38px; height: 38px; border-radius: 10px; background: rgba(0,180,255,0.15); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
-  .side-item-info { flex: 1; }
-  .side-item-info h4 { font-size: 12px; font-weight: 900; margin-bottom: 2px; }
-  .side-item-info p { font-size: 9px; color: #7a8ba5; }
-  .side-item-arrow { color: #00d4ff; font-size: 16px; }
-  .stats-bar { background: linear-gradient(135deg, rgba(0,100,200,0.2), rgba(0,60,150,0.1)); border: 1px solid rgba(0,180,255,0.3); border-radius: 16px; padding: 12px; margin: 15px 0; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
-  .stat-box { text-align: center; }
-  .stat-box-icon { font-size: 16px; margin-bottom: 2px; }
-  .stat-box-label { font-size: 8px; color: #7a8ba5; }
-  .stat-box-value { font-size: 12px; font-weight: 900; color: #00d4ff; margin-top: 2px; }
-  .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: linear-gradient(180deg, rgba(10,20,35,0.98), rgba(5,10,20,1)); border-top: 1px solid rgba(0,180,255,0.3); display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr; padding: 8px 0 12px; z-index: 100; }
-  .nav-item { display: flex; flex-direction: column; align-items: center; gap: 3px; color: #4a5568; font-size: 8px; cursor: pointer; padding: 5px 0; font-weight: bold; }
-  .nav-item.active { color: #00d4ff; }
-  .nav-item.active .nav-icon { transform: scale(1.15); }
-  .nav-item .nav-icon { font-size: 20px; transition: transform 0.2s; }
-  .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 15px; }
-  .modal.show { display: flex; }
-  .modal-content { background: linear-gradient(135deg, #0f2137, #061224); border: 1px solid rgba(0,212,255,0.5); border-radius: 22px; padding: 22px 18px; max-width: 380px; width: 100%; text-align: center; max-height: 92vh; overflow-y: auto; }
-  .modal-content h3 { color: #00d4ff; margin-bottom: 12px; font-size: 18px; font-weight: 900; }
-  .modal-content p { color: #a0aec0; font-size: 13px; margin-bottom: 20px; line-height: 1.6; white-space: pre-line; }
-  .modal-btn { background: linear-gradient(135deg, #00b4ff, #0066ff); border: none; border-radius: 12px; padding: 12px 30px; color: white; font-size: 14px; font-weight: 900; cursor: pointer; }
-  .input-field { background: rgba(0,0,0,0.4); border: 1px solid rgba(0,212,255,0.4); border-radius: 12px; padding: 12px 15px; color: white; font-size: 14px; width: 100%; outline: none; text-align: center; margin-bottom: 15px; font-weight: 900; }
-  .float-text { position: fixed; font-size: 26px; font-weight: 900; color: #00d4ff; pointer-events: none; animation: floatUp 1s ease-out forwards; z-index: 999; }
-  @keyframes floatUp { 0% { opacity: 1; transform: translateY(0) scale(1); } 100% { opacity: 0; transform: translateY(-130px) scale(1.4); } }
-  .sparkle { position: fixed; width: 8px; height: 8px; border-radius: 50%; pointer-events: none; animation: sparkleAnim 0.8s ease-out forwards; z-index: 998; }
-  @keyframes sparkleAnim { 0% { opacity: 1; transform: scale(1); } 100% { opacity: 0; transform: scale(0); } }
-  .tab-content { display: none; padding: 12px 15px; max-width: 500px; margin: 0 auto; }
-  .tab-content.active { display: block; }
-  .wheel-wrapper { position: relative; width: 260px; height: 260px; margin: 20px auto; display: flex; align-items: center; justify-content: center; }
-  .wheel-pointer { position: absolute; top: -25px; left: 50%; transform: translateX(-50%); font-size: 40px; color: #ff0055; z-index: 10; }
-  .wheel-outer { position: absolute; width: 100%; height: 100%; border-radius: 50%; border: 5px solid #00d4ff; z-index: 5; pointer-events: none; }
-  .wheel-container { width: 220px; height: 220px; border-radius: 50%; background: conic-gradient(#00d4ff 0deg 45deg, #0066ff 45deg 90deg, #00ff88 90deg 135deg, #ff9500 135deg 180deg, #ff0055 180deg 225deg, #9900ff 225deg 270deg, #ffaa00 270deg 315deg, #ff00aa 315deg 360deg); position: relative; transition: transform 5s cubic-bezier(0.15, 0.9, 0.2, 1); z-index: 2; }
-  .wheel-labels { width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
-  .wheel-label { position: absolute; top: 50%; left: 50%; width: 0; height: 0; font-size: 12px; font-weight: 900; color: white; pointer-events: none; z-index: 3; }
-  .wheel-label span { display: block; position: absolute; transform: translate(-50%, -50%); white-space: nowrap; }
-  .wheel-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 70px; height: 70px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; font-weight: 900; color: #0066ff; font-size: 13px; z-index: 6; border: 3px solid #00d4ff; cursor: pointer; }
-  .result-display { background: linear-gradient(135deg, rgba(0,212,255,0.2), rgba(0,100,200,0.1)); border: 2px solid #00d4ff; border-radius: 16px; padding: 15px; margin: 15px 0; text-align: center; display: none; }
-  .result-display.show { display: block; }
-  .result-display h4 { font-size: 11px; color: #a0aec0; margin-bottom: 8px; }
-  .result-display .reward-amount { font-size: 36px; font-weight: 900; color: #00ff88; }
-  .result-display .reward-unit { font-size: 13px; color: #00d4ff; font-weight: 900; }
-  .lucky-box { width: 140px; height: 140px; margin: 20px auto; background: linear-gradient(135deg, #ff9500, #ff5500); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 70px; cursor: pointer; }
-  .lucky-box:active { transform: scale(0.9); }
-  .ref-card { background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(0,80,180,0.1)); border: 1px solid rgba(0,212,255,0.3); border-radius: 18px; padding: 20px; margin-bottom: 12px; text-align: center; }
-  .ref-title { font-size: 16px; font-weight: 900; color: #00d4ff; margin-bottom: 8px; }
-  .ref-sub { font-size: 11px; color: #a0aec0; margin-bottom: 15px; }
-  .ref-link { background: rgba(0,0,0,0.4); padding: 12px; border-radius: 10px; font-size: 10px; color: #00d4ff; word-break: break-all; margin-bottom: 15px; }
-  .ref-share { background: linear-gradient(135deg, #00b4ff, #0066ff); border: none; border-radius: 12px; padding: 12px; color: white; font-size: 13px; font-weight: 900; cursor: pointer; width: 100%; }
-  .setting-row { display: flex; justify-content: space-between; align-items: center; background: rgba(15,30,55,0.7); border: 1px solid rgba(0,180,255,0.2); border-radius: 14px; padding: 14px; margin-bottom: 10px; }
-  .setting-row .label { font-size: 13px; font-weight: 900; color: white; }
-  .toggle { width: 50px; height: 28px; border-radius: 14px; background: #4a5568; position: relative; cursor: pointer; transition: background 0.3s; }
-  .toggle.on { background: linear-gradient(135deg, #00d4ff, #00ff88); }
-  .toggle::after { content: ''; position: absolute; top: 3px; left: 3px; width: 22px; height: 22px; border-radius: 50%; background: white; transition: transform 0.3s; }
-  .toggle.on::after { transform: translateX(22px); }
+
+  /* QUICK BUTTONS */
+  .quick-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
+  .quick-btn { background: linear-gradient(135deg, rgba(0,100,200,0.5), rgba(0,60,150,0.3)); border: 1.5px solid rgba(0,180,255,0.4); border-radius: 16px; padding: 16px 10px; text-align: center; cursor: pointer; transition: transform 0.1s; }
+  .quick-btn:active { transform: scale(0.96); }
+  .quick-icon { font-size: 28px; margin-bottom: 5px; }
+  .quick-label { font-size: 12px; color: #fff; font-weight: 900; letter-spacing: 0.5px; }
+
+  /* RANK BOARD */
+  .rank-board { background: linear-gradient(135deg, rgba(0,80,180,0.15), rgba(0,40,100,0.1)); border: 1.5px solid rgba(0,180,255,0.3); border-radius: 20px; padding: 16px; margin-bottom: 15px; }
+  .rank-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+  .rank-title { font-size: 15px; font-weight: 900; color: #00d4ff; display: flex; align-items: center; gap: 8px; letter-spacing: 0.5px; }
+  .live-dot { width: 8px; height: 8px; border-radius: 50%; background: #ff0055; box-shadow: 0 0 10px #ff0055; animation: livePulse 1.5s infinite; }
+  @keyframes livePulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.8); } }
+  .rank-refresh { font-size: 10px; color: #7a8ba5; }
+  .rank-row { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px; margin-bottom: 6px; background: rgba(10,25,45,0.5); transition: all 0.3s; }
+  .rank-row.mine { background: linear-gradient(135deg, rgba(0,212,255,0.2), rgba(0,100,200,0.1)); border: 1.5px solid #00d4ff; box-shadow: 0 0 20px rgba(0,212,255,0.3); }
+  .rank-row.top1 { background: linear-gradient(135deg, rgba(255,215,0,0.15), rgba(255,150,0,0.08)); border: 1px solid rgba(255,215,0,0.4); }
+  .rank-row.top2 { background: linear-gradient(135deg, rgba(192,192,192,0.15), rgba(150,150,150,0.08)); border: 1px solid rgba(192,192,192,0.4); }
+  .rank-row.top3 { background: linear-gradient(135deg, rgba(205,127,50,0.15), rgba(150,80,30,0.08)); border: 1px solid rgba(205,127,50,0.4); }
+  .rank-num { font-size: 14px; font-weight: 900; color: #00d4ff; min-width: 32px; text-align: center; }
+  .rank-avatar { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #00d4ff, #0066ff); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; background-size: cover; background-position: center; }
+  .rank-name { flex: 1; font-size: 12px; font-weight: 900; color: #fff; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .rank-value { font-size: 12px; color: #00ff88; font-weight: 900; }
+  .rank-value small { color: #7a8ba5; font-size: 9px; }
+
+  /* PAGE TITLE */
+  .page-title-bar { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; padding: 5px 0; }
+  .page-title-icon { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-size: 24px; }
+  .page-title-text { font-size: 26px; font-weight: 900; color: #00d4ff; letter-spacing: 0.5px; }
+
+  /* MORE PAGE CARDS */
+  .more-card { background: rgba(10,25,45,0.75); border: 1px solid rgba(0,150,255,0.2); border-radius: 16px; padding: 16px; margin-bottom: 10px; display: flex; align-items: center; gap: 14px; cursor: pointer; transition: transform 0.1s, border-color 0.2s; }
+  .more-card:active { transform: scale(0.98); }
+  .more-card:hover { border-color: rgba(0,212,255,0.5); }
+  .more-card-icon { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
+  .more-card-icon.boosters { background: linear-gradient(135deg, #a040ff, #6020a0); }
+  .more-card-icon.upgrades { background: linear-gradient(135deg, #00b4ff, #0066ff); }
+  .more-card-icon.sticker { background: linear-gradient(135deg, #ff9500, #ff5500); }
+  .more-card-icon.wallet { background: linear-gradient(135deg, #00ff88, #008844); }
+  .more-card-icon.referral { background: linear-gradient(135deg, #00aaff, #0066cc); }
+  .more-card-icon.lucky { background: linear-gradient(135deg, #ff0055, #990033); }
+  .more-card-icon.rank { background: linear-gradient(135deg, #ffd700, #aa7700); }
+  .more-card-icon.settings { background: linear-gradient(135deg, #666, #333); }
+  .more-card-info { flex: 1; }
+  .more-card-info h4 { font-size: 14px; font-weight: 900; color: white; margin-bottom: 3px; }
+  .more-card-info p { font-size: 11px; color: #7a8ba5; }
+  .more-card-arrow { color: #00d4ff; font-size: 18px; }
+
+  /* TASK ROW */
+  .task-row { background: rgba(10,25,45,0.7); border: 1px solid rgba(0,150,255,0.2); border-radius: 16px; padding: 14px; margin-bottom: 10px; display: flex; align-items: center; gap: 12px; }
+  .task-row.done { border-color: rgba(0,255,136,0.3); }
+  .task-icon-wrap { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
+  .task-icon-wrap.telegram { background: linear-gradient(135deg, #0088cc, #0066aa); }
+  .task-icon-wrap.twitter { background: linear-gradient(135deg, #1a1a1a, #000000); border: 1px solid rgba(255,255,255,0.2); }
+  .task-icon-wrap.youtube { background: linear-gradient(135deg, #ff0055, #990033); }
+  .task-icon-wrap.invite { background: linear-gradient(135deg, #00aaff, #0066cc); }
+  .task-content { flex: 1; min-width: 0; }
+  .task-title { font-size: 13px; font-weight: 900; color: white; margin-bottom: 4px; }
+  .task-reward-row { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #a0aec0; font-weight: 700; }
+  .task-reward-row .reward-amount { color: #ffd700; font-weight: 900; }
+  .task-progress-bar { width: 100%; height: 4px; background: rgba(0,0,0,0.4); border-radius: 2px; margin-top: 6px; overflow: hidden; }
+  .task-progress-fill { height: 100%; background: linear-gradient(90deg, #00d4ff, #00ff88); border-radius: 2px; }
+  .task-btn { padding: 8px 16px; border-radius: 10px; font-size: 11px; font-weight: 900; cursor: pointer; flex-shrink: 0; border: none; }
+  .task-btn.go { background: linear-gradient(135deg, #00b4ff, #0066ff); color: white; }
+  .task-btn.done { background: linear-gradient(135deg, #00aa55, #006633); color: white; }
+
+  /* BOOSTERS */
+  .booster-card { background: rgba(10,25,45,0.7); border: 1px solid rgba(0,150,255,0.2); border-radius: 18px; padding: 16px; margin-bottom: 10px; }
+  .booster-row { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(0,150,255,0.08); }
+  .booster-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .booster-row:first-child { padding-top: 0; }
+  .booster-icon { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; flex-shrink: 0; position: relative; }
+  .booster-icon.auto-tap { background: radial-gradient(circle, #a040ff, #6020a0); }
+  .booster-icon.energy { background: radial-gradient(circle, #00b4ff, #0050a0); }
+  .booster-icon.double { background: radial-gradient(circle, #cc00ff, #6600a0); }
+  .booster-icon.offline { background: radial-gradient(circle, #00ff88, #008844); }
+  .booster-icon::after { content: ''; position: absolute; inset: 5px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, rgba(255,255,255,0.4), transparent 60%); }
+  .booster-info { flex: 1; }
+  .booster-info h4 { font-size: 13px; font-weight: 900; color: white; margin-bottom: 3px; }
+  .booster-info p { font-size: 10px; color: #7a8ba5; }
+  .booster-timer { text-align: center; font-size: 11px; font-weight: 900; color: #a0aec0; padding: 0 8px; min-width: 55px; }
+  .booster-btn { padding: 9px 14px; border-radius: 10px; font-size: 11px; font-weight: 900; cursor: pointer; border: none; flex-shrink: 0; }
+  .booster-btn.purple { background: linear-gradient(135deg, #a040ff, #6020a0); color: white; }
+  .booster-btn.blue { background: linear-gradient(135deg, #00b4ff, #0066ff); color: white; }
+  .booster-btn.magenta { background: linear-gradient(135deg, #cc00ff, #6600a0); color: white; }
+  .booster-btn.green { background: linear-gradient(135deg, #00ff88, #008844); color: white; }
+  .booster-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  /* MINI GAMES */
+  .mini-games-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 15px; }
+  .mini-game-card { background: linear-gradient(135deg, rgba(0,100,200,0.3), rgba(0,40,100,0.2)); border: 1.5px solid rgba(0,180,255,0.3); border-radius: 18px; padding: 20px 14px; text-align: center; cursor: pointer; transition: transform 0.1s; }
+  .mini-game-card:active { transform: scale(0.96); }
+  .mini-game-icon { font-size: 42px; margin-bottom: 10px; }
+  .mini-game-name { font-size: 14px; font-weight: 900; color: white; margin-bottom: 4px; }
+  .mini-game-desc { font-size: 10px; color: #7a8ba5; }
+
+  /* UPGRADES */
+  .upgrade-item { background: rgba(10,25,45,0.7); border: 1px solid rgba(0,150,255,0.2); border-radius: 16px; padding: 14px; margin-bottom: 10px; display: flex; align-items: center; gap: 12px; }
+  .upgrade-icon-wrap { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
+  .upgrade-icon-wrap.tap { background: radial-gradient(circle, #00b4ff, #0050a0); }
+  .upgrade-icon-wrap.energy { background: radial-gradient(circle, #00ff88, #008844); }
+  .upgrade-icon-wrap.auto { background: radial-gradient(circle, #ffd700, #aa7700); }
+  .upgrade-icon-wrap.regen { background: radial-gradient(circle, #00d4ff, #0066aa); }
+  .upgrade-info { flex: 1; min-width: 0; }
+  .upgrade-info h4 { font-size: 13px; font-weight: 900; margin-bottom: 3px; color: white; }
+  .upgrade-info p { font-size: 10px; color: #7a8ba5; margin-bottom: 3px; }
+  .upgrade-info .lvl { font-size: 10px; color: #00d4ff; font-weight: 900; }
+  .upgrade-btn { background: linear-gradient(135deg, #00b4ff, #0066ff); border: none; border-radius: 10px; padding: 8px 14px; color: white; font-size: 11px; font-weight: 900; cursor: pointer; min-width: 70px; }
+
+  /* STICKER SHOP */
   .sticker-tier-title { font-size: 12px; font-weight: 900; letter-spacing: 2px; margin: 15px 0 10px; display: flex; align-items: center; gap: 8px; }
   .sticker-tier-title.common { color: #a0aec0; }
   .sticker-tier-title.rare { color: #00d4ff; }
@@ -264,6 +203,8 @@
   .sticker-price { font-size: 10px; color: #00d4ff; font-weight: 900; }
   .sticker-price.max { color: #ff9500; }
   .sticker-price.locked { color: #7a8ba5; }
+
+  /* CRASH */
   .crash-game { text-align: center; padding: 10px 0; }
   .crash-multiplier { font-size: 54px; font-weight: 900; color: #00ff88; margin: 15px 0; }
   .crash-multiplier.crashed { color: #ff0055; }
@@ -274,26 +215,94 @@
   .bet-option.selected { background: linear-gradient(135deg, #00d4ff, #0066ff); border-color: #00d4ff; }
   .crash-bet-btn { background: linear-gradient(135deg, #00ff88, #00aa55); border: none; border-radius: 12px; padding: 14px; color: white; font-size: 15px; font-weight: 900; cursor: pointer; width: 100%; }
   .crash-cash-btn { background: linear-gradient(135deg, #ff9500, #ff5500); border: none; border-radius: 12px; padding: 14px; color: white; font-size: 15px; font-weight: 900; cursor: pointer; width: 100%; margin-top: 10px; }
+
+  /* PUZZLE */
   .puzzle-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; margin: 15px auto; max-width: 100%; }
   .puzzle-tile { aspect-ratio: 1; background: linear-gradient(135deg, #00d4ff, #0066ff); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 900; color: white; cursor: pointer; }
   .puzzle-tile.empty { background: rgba(15,30,55,0.4); color: transparent; }
-  .upgrade-item { background: rgba(10,25,45,0.7); border: 1px solid rgba(0,150,255,0.2); border-radius: 16px; padding: 14px; margin-bottom: 10px; display: flex; align-items: center; gap: 12px; }
-  .upgrade-icon-wrap { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
-  .upgrade-icon-wrap.tap { background: radial-gradient(circle, #00b4ff, #0050a0); }
-  .upgrade-icon-wrap.energy { background: radial-gradient(circle, #00ff88, #008844); }
-  .upgrade-icon-wrap.auto { background: radial-gradient(circle, #ffd700, #aa7700); }
-  .upgrade-icon-wrap.regen { background: radial-gradient(circle, #00d4ff, #0066aa); }
-  .upgrade-info { flex: 1; min-width: 0; }
-  .upgrade-info h4 { font-size: 13px; font-weight: 900; margin-bottom: 3px; color: white; }
-  .upgrade-info p { font-size: 10px; color: #7a8ba5; margin-bottom: 3px; }
-  .upgrade-info .lvl { font-size: 10px; color: #00d4ff; font-weight: 900; }
-  .upgrade-btn { background: linear-gradient(135deg, #00b4ff, #0066ff); border: none; border-radius: 10px; padding: 8px 14px; color: white; font-size: 11px; font-weight: 900; cursor: pointer; min-width: 70px; }
+
+  /* SPIN WHEEL */
+  .wheel-wrapper { position: relative; width: 260px; height: 260px; margin: 20px auto; display: flex; align-items: center; justify-content: center; }
+  .wheel-pointer { position: absolute; top: -25px; left: 50%; transform: translateX(-50%); font-size: 40px; color: #ff0055; z-index: 10; }
+  .wheel-outer { position: absolute; width: 100%; height: 100%; border-radius: 50%; border: 5px solid #00d4ff; z-index: 5; pointer-events: none; }
+  .wheel-container { width: 220px; height: 220px; border-radius: 50%; background: conic-gradient(#00d4ff 0deg 45deg, #0066ff 45deg 90deg, #00ff88 90deg 135deg, #ff9500 135deg 180deg, #ff0055 180deg 225deg, #9900ff 225deg 270deg, #ffaa00 270deg 315deg, #ff00aa 315deg 360deg); position: relative; transition: transform 5s cubic-bezier(0.15, 0.9, 0.2, 1); z-index: 2; }
+  .wheel-labels { width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
+  .wheel-label { position: absolute; top: 50%; left: 50%; width: 0; height: 0; font-size: 12px; font-weight: 900; color: white; pointer-events: none; z-index: 3; }
+  .wheel-label span { display: block; position: absolute; transform: translate(-50%, -50%); white-space: nowrap; }
+  .wheel-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 70px; height: 70px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; font-weight: 900; color: #0066ff; font-size: 13px; z-index: 6; border: 3px solid #00d4ff; cursor: pointer; }
+  .result-display { background: linear-gradient(135deg, rgba(0,212,255,0.2), rgba(0,100,200,0.1)); border: 2px solid #00d4ff; border-radius: 16px; padding: 15px; margin: 15px 0; text-align: center; display: none; }
+  .result-display.show { display: block; }
+  .result-display h4 { font-size: 11px; color: #a0aec0; margin-bottom: 8px; }
+  .result-display .reward-amount { font-size: 36px; font-weight: 900; color: #00ff88; }
+  .result-display .reward-unit { font-size: 13px; color: #00d4ff; font-weight: 900; }
+
+  /* REFERRAL */
+  .ref-card { background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(0,80,180,0.1)); border: 1px solid rgba(0,212,255,0.3); border-radius: 18px; padding: 20px; margin-bottom: 12px; text-align: center; }
+  .ref-title { font-size: 16px; font-weight: 900; color: #00d4ff; margin-bottom: 8px; }
+  .ref-sub { font-size: 11px; color: #a0aec0; margin-bottom: 15px; }
+  .ref-link { background: rgba(0,0,0,0.4); padding: 12px; border-radius: 10px; font-size: 10px; color: #00d4ff; word-break: break-all; margin-bottom: 15px; }
+  .ref-share { background: linear-gradient(135deg, #00b4ff, #0066ff); border: none; border-radius: 12px; padding: 12px; color: white; font-size: 13px; font-weight: 900; cursor: pointer; width: 100%; }
+
+  /* SETTINGS */
+  .setting-row { display: flex; justify-content: space-between; align-items: center; background: rgba(15,30,55,0.7); border: 1px solid rgba(0,180,255,0.2); border-radius: 14px; padding: 14px; margin-bottom: 10px; }
+  .setting-row .label { font-size: 13px; font-weight: 900; color: white; }
+  .toggle { width: 50px; height: 28px; border-radius: 14px; background: #4a5568; position: relative; cursor: pointer; transition: background 0.3s; }
+  .toggle.on { background: linear-gradient(135deg, #00d4ff, #00ff88); }
+  .toggle::after { content: ''; position: absolute; top: 3px; left: 3px; width: 22px; height: 22px; border-radius: 50%; background: white; transition: transform 0.3s; }
+  .toggle.on::after { transform: translateX(22px); }
+
+  /* WITHDRAW */
   .withdraw-option { background: rgba(15,30,55,0.8); border: 1px solid rgba(0,180,255,0.3); border-radius: 14px; padding: 14px; margin-bottom: 10px; display: flex; align-items: center; gap: 12px; }
   .withdraw-option-icon { width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; background: rgba(0,180,255,0.15); flex-shrink: 0; }
   .withdraw-option-info { flex: 1; text-align: left; }
   .withdraw-option-info h4 { font-size: 13px; font-weight: 900; margin-bottom: 3px; }
   .withdraw-option-info p { font-size: 10px; color: #7a8ba5; }
   .coming-soon-badge { background: rgba(255,150,0,0.2); color: #ff9500; font-size: 9px; padding: 3px 8px; border-radius: 8px; font-weight: 900; }
+
+  /* PROFILE */
+  .profile-card { background: linear-gradient(135deg, rgba(0,180,255,0.12), rgba(0,60,150,0.08)); border: 1.5px solid rgba(0,212,255,0.35); border-radius: 20px; padding: 18px; margin-bottom: 14px; position: relative; overflow: hidden; }
+  .profile-avatar-wrap { width: 80px; height: 80px; position: relative; flex-shrink: 0; }
+  .profile-avatar-ring { position: absolute; inset: -5px; border-radius: 50%; background: conic-gradient(from 0deg, #00d4ff, #00ff88, #9900ff, #ff0055, #00d4ff); animation: spinRing 4s linear infinite; opacity: 0.8; filter: blur(2px); }
+  @keyframes spinRing { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+  .profile-avatar { position: absolute; inset: 0; border-radius: 50%; background: linear-gradient(135deg, #0a1929, #061224); display: flex; align-items: center; justify-content: center; font-size: 36px; border: 2px solid rgba(0,212,255,0.5); background-size: cover; background-position: center; overflow: hidden; z-index: 2; }
+  .profile-top { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; position: relative; z-index: 2; }
+  .profile-name { font-size: 19px; font-weight: 900; color: white; display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+  .verified-badge { width: 16px; height: 16px; background: linear-gradient(135deg, #00d4ff, #0066ff); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; color: white; }
+  .profile-tagline { font-size: 12px; color: #7a8ba5; }
+  .profile-level-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; position: relative; z-index: 2; }
+  .profile-level-label { font-size: 13px; font-weight: 900; color: #00d4ff; }
+  .profile-level-xp { font-size: 12px; color: #a0aec0; font-weight: 700; }
+  .profile-level-bar { width: 100%; height: 8px; background: rgba(0,0,0,0.4); border-radius: 4px; overflow: hidden; position: relative; z-index: 2; }
+  .profile-level-fill { height: 100%; background: linear-gradient(90deg, #00d4ff, #0090ff); border-radius: 4px; transition: width 0.5s; }
+
+  /* NAV */
+  .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: linear-gradient(180deg, rgba(10,20,35,0.98), rgba(5,10,20,1)); border-top: 1px solid rgba(0,180,255,0.3); display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr; padding: 8px 0 12px; z-index: 100; }
+  .nav-item { display: flex; flex-direction: column; align-items: center; gap: 3px; color: #4a5568; font-size: 8px; cursor: pointer; padding: 5px 0; font-weight: bold; }
+  .nav-item.active { color: #00d4ff; }
+  .nav-item.active .nav-icon { transform: scale(1.15); }
+  .nav-item .nav-icon { font-size: 20px; transition: transform 0.2s; }
+
+  /* MODAL */
+  .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 15px; }
+  .modal.show { display: flex; }
+  .modal-content { background: linear-gradient(135deg, #0f2137, #061224); border: 1px solid rgba(0,212,255,0.5); border-radius: 22px; padding: 22px 18px; max-width: 380px; width: 100%; text-align: center; max-height: 92vh; overflow-y: auto; }
+  .modal-content h3 { color: #00d4ff; margin-bottom: 12px; font-size: 18px; font-weight: 900; }
+  .modal-content p { color: #a0aec0; font-size: 13px; margin-bottom: 20px; line-height: 1.6; white-space: pre-line; }
+  .modal-btn { background: linear-gradient(135deg, #00b4ff, #0066ff); border: none; border-radius: 12px; padding: 12px 30px; color: white; font-size: 14px; font-weight: 900; cursor: pointer; }
+  .input-field { background: rgba(0,0,0,0.4); border: 1px solid rgba(0,212,255,0.4); border-radius: 12px; padding: 12px 15px; color: white; font-size: 14px; width: 100%; outline: none; text-align: center; margin-bottom: 15px; font-weight: 900; }
+
+  /* FLOATS */
+  .float-text { position: fixed; font-size: 26px; font-weight: 900; color: #00d4ff; pointer-events: none; animation: floatUp 1s ease-out forwards; z-index: 999; }
+  @keyframes floatUp { 0% { opacity: 1; transform: translateY(0) scale(1); } 100% { opacity: 0; transform: translateY(-130px) scale(1.4); } }
+  .sparkle { position: fixed; width: 8px; height: 8px; border-radius: 50%; pointer-events: none; animation: sparkleAnim 0.8s ease-out forwards; z-index: 998; }
+  @keyframes sparkleAnim { 0% { opacity: 1; transform: scale(1); } 100% { opacity: 0; transform: scale(0); } }
+
+  .tab-content { display: none; padding: 12px 15px; max-width: 500px; margin: 0 auto; }
+  .tab-content.active { display: block; }
+
+  .lucky-box { width: 140px; height: 140px; margin: 20px auto; background: linear-gradient(135deg, #ff9500, #ff5500); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 70px; cursor: pointer; }
+  .lucky-box:active { transform: scale(0.9); }
+
   .avatar-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 15px 0; }
   .avatar-option { aspect-ratio: 1; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; cursor: pointer; border: 3px solid rgba(0,180,255,0.3); background: linear-gradient(135deg, rgba(0,212,255,0.2), rgba(0,80,180,0.1)); }
   .avatar-option.selected { border-color: #00d4ff; transform: scale(1.05); }
@@ -303,7 +312,7 @@
 
 <div class="header">
   <div class="header-left">
-    <div class="menu-icon" onclick="navTo('settings')">☰</div>
+    <div class="menu-icon" onclick="navTo('more')">☰</div>
     <div class="header-logo">
       <div class="header-logo-icon" id="headerLogo"></div>
       <div class="header-logo-text"><h1>TraxOfficial</h1><p>TAP · EARN · GROW</p></div>
@@ -318,21 +327,15 @@
   </div>
 </div>
 
+<!-- HOME -->
 <div class="tab-content active" id="tab-home">
   <div class="container">
-    <div class="balance-row">
-      <div class="balance-card">
-        <div class="balance-label">◆ TOTAL BALANCE</div>
-        <div class="balance-value"><span id="balance">0</span> <small>TRAX</small></div>
-        <div class="balance-sub">⏳ NOT LAUNCHED YET</div>
-      </div>
-      <div class="diamond-card">
-        <div class="diamond-label">💎 DIAMOND</div>
-        <div class="diamond-value">Level <span id="diamondLevel">1</span></div>
-        <div class="diamond-bar"><div class="diamond-fill" id="diamondFill" style="width:0%"></div></div>
-        <div class="diamond-sub"><span id="diamondXp">0</span> / 50,000</div>
-      </div>
+    <div class="balance-card">
+      <div class="balance-label">◆ TOTAL BALANCE</div>
+      <div class="balance-value"><span id="balance">0</span> <small>TRAX</small></div>
+      <div class="balance-sub">⏳ NOT LAUNCHED YET</div>
     </div>
+
     <div class="tap-title">⚡ Tap to Earn</div>
     <div class="coin-area">
       <div class="coin-character"></div>
@@ -352,13 +355,10 @@
                 <stop offset="50%" class="coin-stop-2"/>
                 <stop offset="100%" class="coin-stop-3"/>
               </linearGradient>
-              <filter id="tShadow"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000" flood-opacity="0.5"/></filter>
             </defs>
             <circle cx="100" cy="100" r="90" fill="url(#coinBg)" stroke="var(--coin-border, #00d4ff)" stroke-width="3" class="coin-border-circle"/>
             <circle cx="100" cy="100" r="82" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
-            <g filter="url(#tShadow)">
-              <path d="M 55 65 L 145 65 L 145 82 L 115 82 L 115 145 L 85 145 L 85 82 L 55 82 Z" fill="url(#tGrad)" stroke="#ffffff" stroke-width="2" stroke-linejoin="round"/>
-            </g>
+            <path d="M 55 65 L 145 65 L 145 82 L 115 82 L 115 145 L 85 145 L 85 82 L 55 82 Z" fill="url(#tGrad)" stroke="#ffffff" stroke-width="2" stroke-linejoin="round"/>
             <text x="100" y="175" text-anchor="middle" font-family="Arial Black, sans-serif" font-size="22" font-weight="900" fill="#ffffff" letter-spacing="2">TRAX</text>
           </svg>
         </button>
@@ -370,43 +370,76 @@
     </div>
     <div class="coin-bottom-text">👆 TAP THE COIN</div>
     <div class="coin-per-tap">Per Tap: <strong>+<span id="tapPowerText">1</span> TRAX</strong></div>
-    <div class="grid-4">
-      <div class="grid-btn" onclick="navTo('boosters')"><div class="grid-icon">🚀</div><div class="grid-label">Boosters</div></div>
-      <div class="grid-btn" onclick="navTo('tasks')"><div class="grid-icon">📋</div><div class="grid-label">Tasks</div></div>
-      <div class="grid-btn" onclick="navTo('upgrades')"><div class="grid-icon">⬆️</div><div class="grid-label">Upgrades</div></div>
-      <div class="grid-btn" onclick="navTo('earn')"><div class="grid-icon">🎁</div><div class="grid-label">Earn More</div></div>
-    </div>
+
     <div class="energy-card">
       <div class="energy-header">
         <span class="energy-label">⚡ Energy</span>
         <span class="energy-count"><strong id="energyText">500</strong> / <span id="maxEnergyText">500</span></span>
       </div>
       <div class="energy-bar"><div class="energy-fill" id="energyBar" style="width:100%"></div></div>
-      <button class="energy-full-btn" onclick="refillEnergy()">⚡ FULL REFILL (5,000 TRAX)</button>
     </div>
-    <div class="daily-card">
-      <div class="daily-icon">🎁</div>
-      <div class="daily-info"><h4>Daily Reward</h4><p>Claim your daily bonus</p></div>
-      <button class="daily-btn" id="dailyBtn" onclick="claimDaily()">Claim</button>
+
+    <div class="quick-row">
+      <div class="quick-btn" onclick="navTo('boosters')"><div class="quick-icon">🚀</div><div class="quick-label">Boosters</div></div>
+      <div class="quick-btn" onclick="navTo('upgrades')"><div class="quick-icon">⬆️</div><div class="quick-label">Upgrades</div></div>
     </div>
-    <div class="section-title"><h3>◆ MINI GAMES</h3><span class="view-all">Play & Earn ›</span></div>
-    <div class="mini-games">
-      <div class="game-card" onclick="openSpin()"><div class="game-icon purple">🎰</div><div class="game-name">Lucky Spin</div><div class="game-desc">Win up to 10K</div></div>
-      <div class="game-card" onclick="openPuzzle()"><div class="game-icon green">🧩</div><div class="game-name">Puzzle 7x7</div><div class="game-desc">Win 50K</div></div>
-      <div class="game-card" onclick="openCrash()"><div class="game-icon orange">🚀</div><div class="game-name">Crash</div><div class="game-desc">Win big</div></div>
+
+    <div class="rank-board">
+      <div class="rank-header">
+        <div class="rank-title"><span class="live-dot"></span>🏆 LIVE LEADERBOARD</div>
+        <div class="rank-refresh" id="rankRefresh">Live</div>
+      </div>
+      <div id="homeRankList"></div>
     </div>
-    <div class="section-title"><h3>◆ TASKS</h3><span class="view-all" onclick="navTo('tasks')">View all ›</span></div>
-    <div id="homeTasks"></div>
-    <div class="section-title"><h3>◆ MORE</h3></div>
-    <div class="side-item" onclick="navTo('sticker')"><div class="side-item-icon">🎨</div><div class="side-item-info"><h4>Sticker Shop</h4><p>50 stickers — Chain unlock</p></div><div class="side-item-arrow">›</div></div>
-    <div class="side-item" onclick="navTo('wallet')"><div class="side-item-icon">💼</div><div class="side-item-info"><h4>My Wallet</h4><p>Withdraw & history</p></div><div class="side-item-arrow">›</div></div>
-    <div class="side-item" onclick="navTo('friends')"><div class="side-item-icon">👥</div><div class="side-item-info"><h4>Referral</h4><p>+500 TRAX per friend</p></div><div class="side-item-arrow">›</div></div>
-    <div class="side-item" onclick="navTo('lucky')"><div class="side-item-icon">📦</div><div class="side-item-info"><h4>Lucky Box</h4><p>Open for random rewards</p></div><div class="side-item-arrow">›</div></div>
-    <div class="side-item" onclick="navTo('settings')"><div class="side-item-icon">⚙️</div><div class="side-item-info"><h4>Settings</h4><p>Sound & vibration</p></div><div class="side-item-arrow">›</div></div>
-    <div style="text-align:center;font-size:8px;color:#4a5568;margin:20px 0;line-height:1.8;">TRAX OFFICIAL · SMALL TAPS BIG DREAMS<br>DEMO POINTS ONLY · NOT A REAL TOKEN</div>
   </div>
 </div>
 
+<!-- GAMES -->
+<div class="tab-content" id="tab-games">
+  <div class="page-title-bar">
+    <div class="page-title-icon">🎮</div>
+    <div class="page-title-text">Mini Games</div>
+  </div>
+  <div class="mini-games-grid">
+    <div class="mini-game-card" onclick="openSpin()">
+      <div class="mini-game-icon">🎰</div>
+      <div class="mini-game-name">Lucky Spin</div>
+      <div class="mini-game-desc">Win up to 10K</div>
+    </div>
+    <div class="mini-game-card" onclick="openPuzzle()">
+      <div class="mini-game-icon">🧩</div>
+      <div class="mini-game-name">Puzzle 7x7</div>
+      <div class="mini-game-desc">Win 50K</div>
+    </div>
+    <div class="mini-game-card" onclick="openCrash()">
+      <div class="mini-game-icon">🚀</div>
+      <div class="mini-game-name">Crash</div>
+      <div class="mini-game-desc">Win big</div>
+    </div>
+    <div class="mini-game-card" onclick="showModal('🐔 Chicken Road', 'Chicken Road game coming soon!\n\nYe next update mein aayega.')">
+      <div class="mini-game-icon">🐔</div>
+      <div class="mini-game-name">Chicken Road</div>
+      <div class="mini-game-desc">Coming Soon</div>
+    </div>
+  </div>
+</div>
+
+<!-- MINE -->
+<div class="tab-content" id="tab-mine">
+  <div class="page-title-bar">
+    <div class="page-title-icon">⛏️</div>
+    <div class="page-title-text">Mining</div>
+  </div>
+  <div class="energy-card" style="flex-direction:column;text-align:center;padding:20px">
+    <div style="font-size:60px;margin-bottom:10px">⛏️</div>
+    <h3 style="margin:10px 0;color:#00d4ff">Auto Mining</h3>
+    <p style="font-size:12px;color:#a0aec0;margin-bottom:10px">10 energy use karein, 60 sec tak auto-mine karein</p>
+    <div style="font-size:12px;color:#00ff88;font-weight:900;margin-bottom:15px">Current: +<span id="mineRateText">5</span> TRAX / sec</div>
+    <button class="modal-btn" onclick="startMining()" style="width:100%">START MINING (10 ⚡)</button>
+  </div>
+</div>
+
+<!-- TASKS -->
 <div class="tab-content" id="tab-tasks">
   <div class="page-title-bar">
     <div class="page-title-icon">📋</div>
@@ -415,74 +448,62 @@
   <div id="fullTasksListNew"></div>
 </div>
 
-<div class="tab-content" id="tab-mine">
+<!-- MORE -->
+<div class="tab-content" id="tab-more">
   <div class="page-title-bar">
-    <div class="page-title-icon">⛏️</div>
-    <div class="page-title-text">Mining</div>
+    <div class="page-title-icon">⚙️</div>
+    <div class="page-title-text">More</div>
   </div>
-  <div class="daily-card" style="flex-direction:column;text-align:center">
-    <div class="daily-icon" style="font-size:60px">⛏️</div>
-    <h3 style="margin:10px 0;color:#00d4ff">Auto Mining</h3>
-    <p style="font-size:12px;color:#a0aec0;margin-bottom:10px">10 energy use karein, 60 sec tak auto-mine karein</p>
-    <div style="font-size:11px;color:#00ff88;font-weight:900;margin-bottom:15px">Current: +<span id="mineRateText">5</span> TRAX / sec</div>
-    <button class="daily-btn" onclick="startMining()" style="width:100%">START MINING (10 ⚡)</button>
+
+  <div class="more-card" onclick="navTo('boosters')">
+    <div class="more-card-icon boosters">🚀</div>
+    <div class="more-card-info"><h4>Boosters</h4><p>Increase your earnings</p></div>
+    <div class="more-card-arrow">›</div>
+  </div>
+  <div class="more-card" onclick="navTo('upgrades')">
+    <div class="more-card-icon upgrades">⬆️</div>
+    <div class="more-card-info"><h4>Upgrades</h4><p>Upgrade tap power & energy</p></div>
+    <div class="more-card-arrow">›</div>
+  </div>
+  <div class="more-card" onclick="navTo('sticker')">
+    <div class="more-card-icon sticker">🎨</div>
+    <div class="more-card-info"><h4>Sticker Shop</h4><p>50 stickers — Chain unlock</p></div>
+    <div class="more-card-arrow">›</div>
+  </div>
+  <div class="more-card" onclick="navTo('wallet')">
+    <div class="more-card-icon wallet">💼</div>
+    <div class="more-card-info"><h4>My Wallet</h4><p>Withdraw & history</p></div>
+    <div class="more-card-arrow">›</div>
+  </div>
+  <div class="more-card" onclick="navTo('friends')">
+    <div class="more-card-icon referral">👥</div>
+    <div class="more-card-info"><h4>Referral</h4><p>+500 TRAX per friend</p></div>
+    <div class="more-card-arrow">›</div>
+  </div>
+  <div class="more-card" onclick="navTo('lucky')">
+    <div class="more-card-icon lucky">📦</div>
+    <div class="more-card-info"><h4>Lucky Box</h4><p>Random rewards</p></div>
+    <div class="more-card-arrow">›</div>
+  </div>
+  <div class="more-card" onclick="navTo('rank')">
+    <div class="more-card-icon rank">🏆</div>
+    <div class="more-card-info"><h4>Leaderboard</h4><p>Top players</p></div>
+    <div class="more-card-arrow">›</div>
+  </div>
+  <div class="more-card" onclick="navTo('settings')">
+    <div class="more-card-icon settings">⚙️</div>
+    <div class="more-card-info"><h4>Settings</h4><p>Sound & vibration</p></div>
+    <div class="more-card-arrow">›</div>
   </div>
 </div>
 
-<div class="tab-content" id="tab-friends">
-  <div class="page-title-bar">
-    <div class="page-title-icon">👥</div>
-    <div class="page-title-text">Referral</div>
-  </div>
-  <div class="ref-card">
-    <div class="ref-title">🎁 Invite & Earn</div>
-    <div class="ref-sub">Har dost ke liye +500 TRAX</div>
-    <div class="ref-link" id="refLink">https://t.me/TraxOfficial_bot?start=ref...</div>
-    <button class="ref-share" onclick="shareRef()">SHARE LINK</button>
-  </div>
-</div>
-
-<div class="tab-content" id="tab-wallet">
-  <div class="page-title-bar">
-    <div class="page-title-icon">💼</div>
-    <div class="page-title-text">Wallet</div>
-  </div>
-  <div class="balance-card" style="margin-bottom:15px">
-    <div class="balance-label">◆ TOTAL BALANCE</div>
-    <div class="balance-value"><span id="balance2">0</span> <small>TRAX</small></div>
-    <div class="balance-sub">⏳ NOT LAUNCHED YET</div>
-  </div>
-  <div style="background:rgba(255,150,0,0.15);border:1px solid rgba(255,150,0,0.4);border-radius:14px;padding:14px;margin-bottom:15px;text-align:center">
-    <div style="font-size:32px;margin-bottom:6px">🚀</div>
-    <div style="font-size:14px;font-weight:900;color:#ff9500;margin-bottom:4px">Coming Soon</div>
-    <div style="font-size:11px;color:#a0aec0">TRAX coin launch hone ke baad withdraw available hoga</div>
-  </div>
-  <div class="withdraw-option"><div class="withdraw-option-icon">💎</div><div class="withdraw-option-info"><h4>TON Wallet</h4><p>Tonkeeper, TON Space</p></div><span class="coming-soon-badge">SOON</span></div>
-  <div class="withdraw-option"><div class="withdraw-option-icon">🟡</div><div class="withdraw-option-info"><h4>Binance Wallet</h4><p>Direct to Binance account</p></div><span class="coming-soon-badge">SOON</span></div>
-  <div class="withdraw-option"><div class="withdraw-option-icon">✈️</div><div class="withdraw-option-info"><h4>Telegram Wallet</h4><p>@wallet in Telegram</p></div><span class="coming-soon-badge">SOON</span></div>
-</div>
-
-<div class="tab-content" id="tab-rank">
-  <div class="page-title-bar">
-    <div class="page-title-icon">🏆</div>
-    <div class="page-title-text">Leaderboard</div>
-  </div>
-  <div id="rankList"></div>
-</div>
-
+<!-- BOOSTERS -->
 <div class="tab-content" id="tab-boosters">
   <div class="page-title-bar">
     <div class="page-title-icon">🚀</div>
     <div class="page-title-text">Boosters</div>
   </div>
   <div class="booster-card">
-    <div class="booster-header">
-      <div class="booster-header-icon">👆</div>
-      <div>
-        <div class="booster-header-text">Boosters</div>
-        <div class="booster-header-desc">Increase your earnings</div>
-      </div>
-    </div>
     <div class="booster-row">
       <div class="booster-icon auto-tap">👆</div>
       <div class="booster-info"><h4>Auto Tap</h4><p>+50% per tap</p></div>
@@ -510,6 +531,7 @@
   </div>
 </div>
 
+<!-- UPGRADES -->
 <div class="tab-content" id="tab-upgrades">
   <div class="page-title-bar">
     <div class="page-title-icon">⬆️</div>
@@ -518,17 +540,7 @@
   <div id="upgradesList"></div>
 </div>
 
-<div class="tab-content" id="tab-earn">
-  <div class="page-title-bar">
-    <div class="page-title-icon">🎁</div>
-    <div class="page-title-text">Earn More</div>
-  </div>
-  <div class="side-item" onclick="navTo('friends')"><div class="side-item-icon">👥</div><div class="side-item-info"><h4>Invite Friends</h4><p>+500 TRAX per friend</p></div><div class="side-item-arrow">›</div></div>
-  <div class="side-item" onclick="openSpin()"><div class="side-item-icon">🎰</div><div class="side-item-info"><h4>Spin Wheel</h4><p>Win up to 1000 TRAX</p></div><div class="side-item-arrow">›</div></div>
-  <div class="side-item" onclick="navTo('lucky')"><div class="side-item-icon">📦</div><div class="side-item-info"><h4>Lucky Box</h4><p>Random rewards</p></div><div class="side-item-arrow">›</div></div>
-  <div class="side-item" onclick="navTo('sticker')"><div class="side-item-icon">🎨</div><div class="side-item-info"><h4>Sticker Shop</h4><p>50 stickers for bonuses</p></div><div class="side-item-arrow">›</div></div>
-</div>
-
+<!-- STICKER -->
 <div class="tab-content" id="tab-sticker">
   <div class="page-title-bar">
     <div class="page-title-icon">🎨</div>
@@ -538,6 +550,42 @@
   <div id="stickerShopContainer"></div>
 </div>
 
+<!-- WALLET -->
+<div class="tab-content" id="tab-wallet">
+  <div class="page-title-bar">
+    <div class="page-title-icon">💼</div>
+    <div class="page-title-text">Wallet</div>
+  </div>
+  <div class="balance-card" style="margin-bottom:15px">
+    <div class="balance-label">◆ TOTAL BALANCE</div>
+    <div class="balance-value"><span id="balance2">0</span> <small>TRAX</small></div>
+    <div class="balance-sub">⏳ NOT LAUNCHED YET</div>
+  </div>
+  <div style="background:rgba(255,150,0,0.15);border:1px solid rgba(255,150,0,0.4);border-radius:14px;padding:14px;margin-bottom:15px;text-align:center">
+    <div style="font-size:32px;margin-bottom:6px">🚀</div>
+    <div style="font-size:14px;font-weight:900;color:#ff9500;margin-bottom:4px">Coming Soon</div>
+    <div style="font-size:11px;color:#a0aec0">TRAX coin launch hone ke baad withdraw available hoga</div>
+  </div>
+  <div class="withdraw-option"><div class="withdraw-option-icon">💎</div><div class="withdraw-option-info"><h4>TON Wallet</h4><p>Tonkeeper, TON Space</p></div><span class="coming-soon-badge">SOON</span></div>
+  <div class="withdraw-option"><div class="withdraw-option-icon">🟡</div><div class="withdraw-option-info"><h4>Binance Wallet</h4><p>Direct to Binance account</p></div><span class="coming-soon-badge">SOON</span></div>
+  <div class="withdraw-option"><div class="withdraw-option-icon">✈️</div><div class="withdraw-option-info"><h4>Telegram Wallet</h4><p>@wallet in Telegram</p></div><span class="coming-soon-badge">SOON</span></div>
+</div>
+
+<!-- REFERRAL -->
+<div class="tab-content" id="tab-friends">
+  <div class="page-title-bar">
+    <div class="page-title-icon">👥</div>
+    <div class="page-title-text">Referral</div>
+  </div>
+  <div class="ref-card">
+    <div class="ref-title">🎁 Invite & Earn</div>
+    <div class="ref-sub">Har dost ke liye +500 TRAX</div>
+    <div class="ref-link" id="refLink">https://t.me/TraxOfficial_bot?start=ref...</div>
+    <button class="ref-share" onclick="shareRef()">SHARE LINK</button>
+  </div>
+</div>
+
+<!-- LUCKY -->
 <div class="tab-content" id="tab-lucky">
   <div class="page-title-bar">
     <div class="page-title-icon">📦</div>
@@ -548,19 +596,25 @@
   <p style="text-align:center;color:#7a8ba5;font-size:11px;margin-top:15px">Keys: <span id="luckyKeys">1</span></p>
 </div>
 
+<!-- RANK (FULL) -->
+<div class="tab-content" id="tab-rank">
+  <div class="page-title-bar">
+    <div class="page-title-icon">🏆</div>
+    <div class="page-title-text">Leaderboard</div>
+  </div>
+  <div id="rankList"></div>
+</div>
+
+<!-- PROFILE -->
 <div class="tab-content" id="tab-profile">
-  <div style="margin-bottom:15px"></div>
   <div class="profile-card">
     <div class="profile-top">
       <div class="profile-avatar-wrap">
         <div class="profile-avatar-ring"></div>
         <div class="profile-avatar" id="profileAvatarBig">👤</div>
       </div>
-      <div class="profile-info">
-        <div class="profile-name">
-          <span id="profileName">TraxOfficial</span>
-          <span class="verified-badge">✓</span>
-        </div>
+      <div class="profile-info" style="flex:1">
+        <div class="profile-name"><span id="profileName">TraxOfficial</span><span class="verified-badge">✓</span></div>
         <div class="profile-tagline">Tap. Earn. Grow.</div>
       </div>
     </div>
@@ -568,44 +622,17 @@
       <div class="profile-level-label">Level <span id="profLvlText">1</span></div>
       <div class="profile-level-xp"><span id="profXpText">0</span> / 3,000</div>
     </div>
-    <div class="profile-level-bar">
-      <div class="profile-level-fill" id="profLevelFill" style="width:0%"></div>
-    </div>
+    <div class="profile-level-bar"><div class="profile-level-fill" id="profLevelFill" style="width:0%"></div></div>
   </div>
-  <div class="stats-row">
-    <div class="stat-card">
-      <div class="stat-card-label">Total Taps</div>
-      <div class="stat-card-value" id="profTaps">0</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-card-label">Total Earned</div>
-      <div class="stat-card-value" id="profEarned">0</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-card-label">Rank</div>
-      <div class="stat-card-value">#<span id="profRank">---</span></div>
-    </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:15px">
+    <div class="balance-card" style="padding:12px;text-align:center"><div style="font-size:10px;color:#00d4ff;font-weight:700;margin-bottom:6px">TOTAL TAPS</div><div style="font-size:18px;font-weight:900" id="profTaps">0</div></div>
+    <div class="balance-card" style="padding:12px;text-align:center"><div style="font-size:10px;color:#00d4ff;font-weight:700;margin-bottom:6px">EARNED</div><div style="font-size:18px;font-weight:900" id="profEarned">0</div></div>
+    <div class="balance-card" style="padding:12px;text-align:center"><div style="font-size:10px;color:#00d4ff;font-weight:700;margin-bottom:6px">RANK</div><div style="font-size:18px;font-weight:900">#<span id="profRank">--</span></div></div>
   </div>
-  <div class="menu-list">
-    <div class="menu-item" onclick="navTo('wallet')">
-      <div class="menu-icon-box">💼</div>
-      <div class="menu-item-info"><h4>My Wallet</h4></div>
-      <div class="menu-item-arrow">›</div>
-    </div>
-    <div class="menu-item" onclick="navTo('friends')">
-      <div class="menu-icon-box">👥</div>
-      <div class="menu-item-info"><h4>Referral</h4><p class="green">+500 TRAX per friend</p></div>
-      <div class="menu-item-arrow">›</div>
-    </div>
-    <div class="menu-item" onclick="navTo('settings')">
-      <div class="menu-icon-box">⚙️</div>
-      <div class="menu-item-info"><h4>Settings</h4></div>
-      <div class="menu-item-arrow">›</div>
-    </div>
-  </div>
-  <button class="daily-btn" onclick="openEditProfile()" style="margin-top:15px;width:100%">✏️ Edit Name & Avatar</button>
+  <button class="modal-btn" onclick="openEditProfile()" style="width:100%">✏️ Edit Name & Avatar</button>
 </div>
 
+<!-- SETTINGS -->
 <div class="tab-content" id="tab-settings">
   <div class="page-title-bar">
     <div class="page-title-icon">⚙️</div>
@@ -613,10 +640,11 @@
   </div>
   <div class="setting-row"><div class="label">🔊 Sound Effects</div><div class="toggle" id="soundToggle" onclick="toggleSetting('sound')"></div></div>
   <div class="setting-row"><div class="label">📳 Vibration</div><div class="toggle" id="vibrationToggle" onclick="toggleSetting('vibration')"></div></div>
-  <div class="side-item" onclick="navTo('editname')"><div class="side-item-icon">✏️</div><div class="side-item-info"><h4>Edit Name & Avatar</h4><p>Change your profile</p></div></div>
-  <div class="side-item" onclick="resetData()"><div class="side-item-icon">🗑️</div><div class="side-item-info"><h4>Reset Data</h4><p>Clear all progress</p></div></div>
+  <div class="more-card" onclick="navTo('editname')"><div class="more-card-icon settings">✏️</div><div class="more-card-info"><h4>Edit Profile</h4><p>Change name & avatar</p></div><div class="more-card-arrow">›</div></div>
+  <div class="more-card" onclick="resetData()"><div class="more-card-icon settings">🗑️</div><div class="more-card-info"><h4>Reset Data</h4><p>Clear all progress</p></div><div class="more-card-arrow">›</div></div>
 </div>
 
+<!-- EDIT NAME -->
 <div class="tab-content" id="tab-editname">
   <div class="page-title-bar">
     <div class="page-title-icon">✏️</div>
@@ -629,28 +657,22 @@
     <h3 style="color:#00d4ff;margin-bottom:10px">Choose Avatar</h3>
     <div class="avatar-grid" id="avatarGrid"></div>
     <div style="margin-top:15px">
-      <label for="avatarUpload" class="daily-btn" style="display:block;text-align:center;cursor:pointer">📷 Upload Custom Avatar</label>
+      <label for="avatarUpload" class="modal-btn" style="display:block;text-align:center;cursor:pointer">📷 Upload Custom Avatar</label>
       <input type="file" id="avatarUpload" accept="image/*" style="display:none" onchange="uploadAvatar(event)">
     </div>
-    <button class="daily-btn" onclick="saveProfile()" style="margin-top:15px;width:100%;background:linear-gradient(135deg,#00ff88,#00aa55)">SAVE PROFILE</button>
+    <button class="modal-btn" onclick="saveProfile()" style="margin-top:15px;width:100%;background:linear-gradient(135deg,#00ff88,#00aa55)">SAVE PROFILE</button>
   </div>
 </div>
 
 <div class="bottom-nav">
   <div class="nav-item active" data-tab="home" onclick="navClick(this, 'home')"><div class="nav-icon">🏠</div><div>Home</div></div>
-  <div class="nav-item" data-tab="tasks" onclick="navClick(this, 'tasks')"><div class="nav-icon">📋</div><div>Tasks</div></div>
+  <div class="nav-item" data-tab="games" onclick="navClick(this, 'games')"><div class="nav-icon">🎮</div><div>Games</div></div>
   <div class="nav-item" data-tab="mine" onclick="navClick(this, 'mine')"><div class="nav-icon">⛏️</div><div>Mine</div></div>
-  <div class="nav-item" data-tab="friends" onclick="navClick(this, 'friends')"><div class="nav-icon">👥</div><div>Friends</div></div>
-  <div class="nav-item" data-tab="wallet" onclick="navClick(this, 'wallet')"><div class="nav-icon">💼</div><div>Wallet</div></div>
+  <div class="nav-item" data-tab="tasks" onclick="navClick(this, 'tasks')"><div class="nav-icon">📋</div><div>Tasks</div></div>
+  <div class="nav-item" data-tab="more" onclick="navClick(this, 'more')"><div class="nav-icon">⚙️</div><div>More</div></div>
 </div>
 
-<div class="modal" id="modal">
-  <div class="modal-content">
-    <h3 id="modalTitle">Notice</h3>
-    <p id="modalText">Message</p>
-    <button class="modal-btn" onclick="closeModal()">OK</button>
-  </div>
-</div>
+<div class="modal" id="modal"><div class="modal-content"><h3 id="modalTitle">Notice</h3><p id="modalText">Message</p><button class="modal-btn" onclick="closeModal()">OK</button></div></div>
 
 <div class="modal" id="spinModal">
   <div class="modal-content" style="max-width:380px">
@@ -672,7 +694,7 @@
   <div class="modal-content" style="max-width:380px">
     <h3 style="display:flex;justify-content:space-between;align-items:center">🚀 Crash Game <span onclick="showCrashInfo()" style="width:28px;height:28px;border-radius:50%;background:rgba(0,212,255,0.2);border:2px solid #00d4ff;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:#00d4ff;cursor:pointer">i</span></h3>
     <div class="crash-game">
-      <div style="font-size:11px;color:#a0aec0;margin-bottom:8px">Bet select karein ya custom likhein:</div>
+      <div style="font-size:11px;color:#a0aec0;margin-bottom:8px">Bet select karein:</div>
       <div class="bet-selector" id="betSelector"></div>
       <div style="margin:10px 0;display:flex;gap:8px;align-items:center">
         <input type="number" id="customBetInput" placeholder="Custom bet" min="100" style="flex:1;background:rgba(0,0,0,0.4);border:1px solid rgba(0,212,255,0.4);border-radius:10px;padding:12px;color:white;font-size:14px;font-weight:900;text-align:center;outline:none" oninput="onCustomBetChange()">
@@ -691,29 +713,20 @@
 
 <div class="modal" id="crashInfoModal">
   <div class="modal-content" style="max-width:400px;text-align:left">
-    <h3 style="text-align:center">🚀 How to Play Crash</h3>
+    <h3 style="text-align:center">🚀 Crash Guide</h3>
     <div style="color:#a0aec0;font-size:12px;line-height:1.8;margin-bottom:15px">
-      <p style="margin-bottom:12px"><b style="color:#00d4ff">📖 Kaise Khelein:</b></p>
-      <p style="margin-bottom:10px">1. <b style="color:white">Bet select karein</b></p>
-      <p style="margin-bottom:10px">2. <b style="color:white">START dabayein</b> — multiplier barhega</p>
-      <p style="margin-bottom:10px">3. <b style="color:white">CASH OUT dabayein</b> — jitna wait utna zyada</p>
-      <p style="margin-bottom:15px">4. <b style="color:#ff0055">⚠️ Crash hone se pehle cash out karein</b></p>
-      <p style="margin-bottom:10px"><b style="color:#00d4ff">🎰 Rarity:</b></p>
-      <div style="background:rgba(160,174,192,0.1);border-left:3px solid #a0aec0;padding:8px 12px;border-radius:6px;margin-bottom:8px">
-        <b style="color:#a0aec0">🔘 COMMON — 92%</b><br><span style="font-size:11px">1.5x se 4x</span>
-      </div>
-      <div style="background:rgba(0,212,255,0.1);border-left:3px solid #00d4ff;padding:8px 12px;border-radius:6px;margin-bottom:8px">
-        <b style="color:#00d4ff">💎 RARE — 6.5%</b><br><span style="font-size:11px">4x se 20x</span>
-      </div>
-      <div style="background:rgba(153,0,255,0.1);border-left:3px solid #9900ff;padding:8px 12px;border-radius:6px;margin-bottom:8px">
-        <b style="color:#9900ff">🔥 EPIC — 1.25%</b><br><span style="font-size:11px">20x se 50x</span>
-      </div>
-      <div style="background:rgba(255,150,0,0.1);border-left:3px solid #ff9500;padding:8px 12px;border-radius:6px;margin-bottom:15px">
-        <b style="color:#ff9500">⭐ LEGENDARY — 0.25%</b><br><span style="font-size:11px">50x se 100x</span>
-      </div>
-      <p><b style="color:#00d4ff">💡 Tips:</b></p>
+      <p><b style="color:#00d4ff">Kaise Khelein:</b></p>
+      <p>1. Bet select karein</p>
+      <p>2. START dabayein</p>
+      <p>3. CASH OUT dabayein (crash se pehle!)</p>
+      <p style="margin-top:10px"><b style="color:#00d4ff">Rarity Chances:</b></p>
+      <p>🔘 Common: 92% (1.5x - 4x)</p>
+      <p>💎 Rare: 6.5% (4x - 20x)</p>
+      <p>🔥 Epic: 1.25% (20x - 50x)</p>
+      <p>⭐ Legendary: 0.25% (50x - 100x)</p>
+      <p style="margin-top:10px"><b style="color:#00d4ff">Tips:</b></p>
       <p>✓ Chhoti bet se shuru karein</p>
-      <p>✓ 2x ya 3x par cash out safe hai</p>
+      <p>✓ 2x-3x par cash out safe</p>
       <p>✓ Lalach na karein</p>
     </div>
     <button class="modal-btn" onclick="closeCrashInfo()" style="display:block;width:100%">Samajh Gaya ✓</button>
@@ -736,27 +749,7 @@
   if (tg) { tg.ready(); tg.expand(); if (tg.setHeaderColor) tg.setHeaderColor('#050a14'); }
 
   function getTraxLogoSVG() {
-    return '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">' +
-      '<defs>' +
-      '<radialGradient id="ringGrad" cx="50%" cy="50%">' +
-      '<stop offset="0%" stop-color="#00d4ff"/>' +
-      '<stop offset="50%" stop-color="#0088ff"/>' +
-      '<stop offset="100%" stop-color="#9900ff"/>' +
-      '</radialGradient>' +
-      '<radialGradient id="innerBg" cx="40%" cy="35%">' +
-      '<stop offset="0%" stop-color="#0a2540"/>' +
-      '<stop offset="100%" stop-color="#030812"/>' +
-      '</radialGradient>' +
-      '<linearGradient id="tGrad" x1="0%" y1="0%" x2="100%" y2="100%">' +
-      '<stop offset="0%" stop-color="#ffffff"/>' +
-      '<stop offset="50%" stop-color="#a0e8ff"/>' +
-      '<stop offset="100%" stop-color="#00a8ff"/>' +
-      '</linearGradient>' +
-      '</defs>' +
-      '<circle cx="50" cy="50" r="48" fill="url(#ringGrad)"/>' +
-      '<circle cx="50" cy="50" r="42" fill="url(#innerBg)"/>' +
-      '<path d="M 28 38 L 72 38 L 72 46 L 58 46 L 58 72 L 42 72 L 42 46 L 28 46 Z" fill="url(#tGrad)"/>' +
-      '</svg>';
+    return '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="rg" cx="50%" cy="50%"><stop offset="0%" stop-color="#00d4ff"/><stop offset="50%" stop-color="#0088ff"/><stop offset="100%" stop-color="#9900ff"/></radialGradient><radialGradient id="bg" cx="40%" cy="35%"><stop offset="0%" stop-color="#0a2540"/><stop offset="100%" stop-color="#030812"/></radialGradient><linearGradient id="tg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ffffff"/><stop offset="50%" stop-color="#a0e8ff"/><stop offset="100%" stop-color="#00a8ff"/></linearGradient></defs><circle cx="50" cy="50" r="48" fill="url(#rg)"/><circle cx="50" cy="50" r="42" fill="url(#bg)"/><path d="M 28 38 L 72 38 L 72 46 L 58 46 L 58 72 L 42 72 L 42 46 L 28 46 Z" fill="url(#tg)"/></svg>';
   }
   document.getElementById('headerLogo').innerHTML = getTraxLogoSVG();
 
@@ -789,10 +782,7 @@
     }
   }
 
-  let settings = {
-    sound: localStorage.getItem('trax_sound') !== 'off',
-    vibration: localStorage.getItem('trax_vibration') !== 'off'
-  };
+  let settings = { sound: localStorage.getItem('trax_sound') !== 'off', vibration: localStorage.getItem('trax_vibration') !== 'off' };
   function toggleSetting(key) {
     settings[key] = !settings[key];
     localStorage.setItem('trax_' + key, settings[key] ? 'on' : 'off');
@@ -875,47 +865,43 @@
   const userId = tg && tg.initDataUnsafe && tg.initDataUnsafe.user ? tg.initDataUnsafe.user.id : Math.floor(Math.random() * 9000) + 1000;
 
   const COIN_TIERS = [
-    { minLevel: 0,    name: 'BASIC',      c1: '#5fc8ff', c2: '#00a8ff', c3: '#003d99', border: '#00d4ff', glow: '#00d4ff' },
-    { minLevel: 3,    name: 'STONE',      c1: '#d0d0d0', c2: '#808080', c3: '#303030', border: '#a0a0a0', glow: '#909090' },
-    { minLevel: 5,    name: 'BRONZE',     c1: '#e8a87c', c2: '#b87333', c3: '#4d2810', border: '#cd7f32', glow: '#cd7f32' },
-    { minLevel: 8,    name: 'COPPER',     c1: '#ffb896', c2: '#c17a52', c3: '#5c2e1e', border: '#e08050', glow: '#d07040' },
-    { minLevel: 12,   name: 'IRON',       c1: '#c8ccd0', c2: '#8890a0', c3: '#303840', border: '#a0a8b0', glow: '#9098a0' },
-    { minLevel: 15,   name: 'SILVER',     c1: '#ffffff', c2: '#c0c0c0', c3: '#606060', border: '#e0e0e0', glow: '#e8e8e8' },
-    { minLevel: 20,   name: 'STEEL',      c1: '#d8e0e8', c2: '#98a8b8', c3: '#404850', border: '#a8b8c8', glow: '#b0c0d0' },
-    { minLevel: 30,   name: 'GOLD',       c1: '#ffec8b', c2: '#ffd700', c3: '#8b6508', border: '#ffd700', glow: '#ffe040' },
-    { minLevel: 40,   name: 'PLATINUM',   c1: '#f8f8ff', c2: '#d8d8e8', c3: '#707080', border: '#e8e8f8', glow: '#f0f0ff' },
-    { minLevel: 50,   name: 'EMERALD',    c1: '#a0ffcc', c2: '#00d68f', c3: '#004d33', border: '#00ff88', glow: '#20ff90' },
-    { minLevel: 60,   name: 'SAPPHIRE',   c1: '#a0d0ff', c2: '#0066ff', c3: '#00275c', border: '#0090ff', glow: '#30a0ff' },
-    { minLevel: 75,   name: 'RUBY',       c1: '#ffb0b0', c2: '#ff0033', c3: '#5c0011', border: '#ff0044', glow: '#ff2050' },
-    { minLevel: 90,   name: 'AMETHYST',   c1: '#d9b0ff', c2: '#9900ff', c3: '#3d0066', border: '#b040ff', glow: '#b050ff' },
-    { minLevel: 110,  name: 'DIAMOND',    c1: '#f0fbff', c2: '#a0e0ff', c3: '#406080', border: '#d0f4ff', glow: '#d0f4ff' },
-    { minLevel: 130,  name: 'CRYSTAL',    c1: '#ffe8ff', c2: '#ff80d0', c3: '#602040', border: '#ff80d0', glow: '#ff80d0' },
-    { minLevel: 150,  name: 'OBSIDIAN',   c1: '#6060a0', c2: '#202040', c3: '#000008', border: '#8060c0', glow: '#8060c0' },
-    { minLevel: 175,  name: 'TITANIUM',   c1: '#e0e8f0', c2: '#8090a0', c3: '#303840', border: '#b0c0d0', glow: '#b0c0d0' },
-    { minLevel: 200,  name: 'MYTHRIL',    c1: '#b0ffe8', c2: '#00ffcc', c3: '#004040', border: '#00ffcc', glow: '#00ffcc' },
-    { minLevel: 230,  name: 'DRAGON',     c1: '#ffa080', c2: '#ff3300', c3: '#4d0000', border: '#ff5500', glow: '#ff6600' },
-    { minLevel: 260,  name: 'COSMIC',     c1: '#d0a0ff', c2: '#7030ff', c3: '#200060', border: '#a070ff', glow: '#a070ff' },
-    { minLevel: 300,  name: 'GALACTIC',   c1: '#a0a0ff', c2: '#3030ff', c3: '#000060', border: '#6060ff', glow: '#7070ff' },
-    { minLevel: 350,  name: 'NEBULA',     c1: '#ffa0ff', c2: '#ff30ff', c3: '#600060', border: '#ff30ff', glow: '#ff40ff' },
-    { minLevel: 400,  name: 'SUPERNOVA',  c1: '#ffffa0', c2: '#ffcc00', c3: '#804000', border: '#ffff00', glow: '#ffff40' },
-    { minLevel: 500,  name: 'BLACK HOLE', c1: '#503080', c2: '#100020', c3: '#000000', border: '#8040d0', glow: '#8040d0' },
-    { minLevel: 600,  name: 'QUANTUM',    c1: '#a0ffff', c2: '#00ddff', c3: '#004060', border: '#00ddff', glow: '#20eeff' },
-    { minLevel: 700,  name: 'VOID',       c1: '#2a2a4e', c2: '#0a0a1a', c3: '#000000', border: '#8800ff', glow: '#8800ff' },
-    { minLevel: 850,  name: 'DIVINE',     c1: '#fffff0', c2: '#ffff80', c3: '#b08000', border: '#ffff00', glow: '#ffff80' },
-    { minLevel: 1000, name: 'ETERNAL',    c1: '#ffffff', c2: '#e0e0ff', c3: '#505080', border: '#ffffff', glow: '#ffffff' },
-    { minLevel: 1200, name: 'INFINITY',   c1: '#ff00ff', c2: '#00ffff', c3: '#ff00ff', border: '#ff00ff', glow: '#ff00ff' },
-    { minLevel: 1500, name: 'GODLY',      c1: '#ff8080', c2: '#ffff00', c3: '#ff00ff', border: '#ffffff', glow: '#ffffff' }
+    { minLevel: 0, name: 'BASIC', c1: '#5fc8ff', c2: '#00a8ff', c3: '#003d99', border: '#00d4ff' },
+    { minLevel: 3, name: 'STONE', c1: '#d0d0d0', c2: '#808080', c3: '#303030', border: '#a0a0a0' },
+    { minLevel: 5, name: 'BRONZE', c1: '#e8a87c', c2: '#b87333', c3: '#4d2810', border: '#cd7f32' },
+    { minLevel: 8, name: 'COPPER', c1: '#ffb896', c2: '#c17a52', c3: '#5c2e1e', border: '#e08050' },
+    { minLevel: 12, name: 'IRON', c1: '#c8ccd0', c2: '#8890a0', c3: '#303840', border: '#a0a8b0' },
+    { minLevel: 15, name: 'SILVER', c1: '#ffffff', c2: '#c0c0c0', c3: '#606060', border: '#e0e0e0' },
+    { minLevel: 20, name: 'STEEL', c1: '#d8e0e8', c2: '#98a8b8', c3: '#404850', border: '#a8b8c8' },
+    { minLevel: 30, name: 'GOLD', c1: '#ffec8b', c2: '#ffd700', c3: '#8b6508', border: '#ffd700' },
+    { minLevel: 40, name: 'PLATINUM', c1: '#f8f8ff', c2: '#d8d8e8', c3: '#707080', border: '#e8e8f8' },
+    { minLevel: 50, name: 'EMERALD', c1: '#a0ffcc', c2: '#00d68f', c3: '#004d33', border: '#00ff88' },
+    { minLevel: 60, name: 'SAPPHIRE', c1: '#a0d0ff', c2: '#0066ff', c3: '#00275c', border: '#0090ff' },
+    { minLevel: 75, name: 'RUBY', c1: '#ffb0b0', c2: '#ff0033', c3: '#5c0011', border: '#ff0044' },
+    { minLevel: 90, name: 'AMETHYST', c1: '#d9b0ff', c2: '#9900ff', c3: '#3d0066', border: '#b040ff' },
+    { minLevel: 110, name: 'DIAMOND', c1: '#f0fbff', c2: '#a0e0ff', c3: '#406080', border: '#d0f4ff' },
+    { minLevel: 130, name: 'CRYSTAL', c1: '#ffe8ff', c2: '#ff80d0', c3: '#602040', border: '#ff80d0' },
+    { minLevel: 150, name: 'OBSIDIAN', c1: '#6060a0', c2: '#202040', c3: '#000008', border: '#8060c0' },
+    { minLevel: 175, name: 'TITANIUM', c1: '#e0e8f0', c2: '#8090a0', c3: '#303840', border: '#b0c0d0' },
+    { minLevel: 200, name: 'MYTHRIL', c1: '#b0ffe8', c2: '#00ffcc', c3: '#004040', border: '#00ffcc' },
+    { minLevel: 230, name: 'DRAGON', c1: '#ffa080', c2: '#ff3300', c3: '#4d0000', border: '#ff5500' },
+    { minLevel: 260, name: 'COSMIC', c1: '#d0a0ff', c2: '#7030ff', c3: '#200060', border: '#a070ff' },
+    { minLevel: 300, name: 'GALACTIC', c1: '#a0a0ff', c2: '#3030ff', c3: '#000060', border: '#6060ff' },
+    { minLevel: 350, name: 'NEBULA', c1: '#ffa0ff', c2: '#ff30ff', c3: '#600060', border: '#ff30ff' },
+    { minLevel: 400, name: 'SUPERNOVA', c1: '#ffffa0', c2: '#ffcc00', c3: '#804000', border: '#ffff00' },
+    { minLevel: 500, name: 'BLACK HOLE', c1: '#503080', c2: '#100020', c3: '#000000', border: '#8040d0' },
+    { minLevel: 600, name: 'QUANTUM', c1: '#a0ffff', c2: '#00ddff', c3: '#004060', border: '#00ddff' },
+    { minLevel: 700, name: 'VOID', c1: '#2a2a4e', c2: '#0a0a1a', c3: '#000000', border: '#8800ff' },
+    { minLevel: 850, name: 'DIVINE', c1: '#fffff0', c2: '#ffff80', c3: '#b08000', border: '#ffff00' },
+    { minLevel: 1000, name: 'ETERNAL', c1: '#ffffff', c2: '#e0e0ff', c3: '#505080', border: '#ffffff' },
+    { minLevel: 1200, name: 'INFINITY', c1: '#ff00ff', c2: '#00ffff', c3: '#ff00ff', border: '#ff00ff' },
+    { minLevel: 1500, name: 'GODLY', c1: '#ff8080', c2: '#ffff00', c3: '#ff00ff', border: '#ffffff' }
   ];
 
   function getTotalUpgradeLevels() {
-    return parseInt(localStorage.getItem('upg_tapPower') || '0') +
-           parseInt(localStorage.getItem('upg_maxEnergy') || '0') +
-           parseInt(localStorage.getItem('upg_autoEarn') || '0') +
-           parseInt(localStorage.getItem('upg_energyRegen') || '0');
+    return parseInt(localStorage.getItem('upg_tapPower') || '0') + parseInt(localStorage.getItem('upg_maxEnergy') || '0') + parseInt(localStorage.getItem('upg_autoEarn') || '0') + parseInt(localStorage.getItem('upg_energyRegen') || '0');
   }
   function getCurrentCoinTier() {
-    const lvl = getTotalUpgradeLevels();
-    let tier = COIN_TIERS[0];
+    const lvl = getTotalUpgradeLevels(); let tier = COIN_TIERS[0];
     for (let i = 0; i < COIN_TIERS.length; i++) { if (lvl >= COIN_TIERS[i].minLevel) tier = COIN_TIERS[i]; }
     return tier;
   }
@@ -926,32 +912,28 @@
   }
   function applyCoinTier() {
     const tier = getCurrentCoinTier();
-    const btn = document.getElementById('coinBtn');
-    if (!btn) return;
+    const btn = document.getElementById('coinBtn'); if (!btn) return;
     btn.style.setProperty('--coin-c1', tier.c1);
     btn.style.setProperty('--coin-c2', tier.c2);
     btn.style.setProperty('--coin-c3', tier.c3);
     btn.style.setProperty('--coin-border', tier.border);
-    btn.style.setProperty('--coin-glow', tier.glow);
+    btn.style.setProperty('--coin-glow', tier.border);
     document.querySelectorAll('.coin-stop-1').forEach(s => s.setAttribute('stop-color', tier.c1));
     document.querySelectorAll('.coin-stop-2').forEach(s => s.setAttribute('stop-color', tier.c2));
     document.querySelectorAll('.coin-stop-3').forEach(s => s.setAttribute('stop-color', tier.c3));
     document.querySelectorAll('.coin-border-circle').forEach(c => c.setAttribute('stroke', tier.border));
-    document.querySelector('.coin-bg-glow').style.background = 'radial-gradient(circle, ' + hexToRgba(tier.glow, 0.55) + ' 0%, ' + hexToRgba(tier.c2, 0.15) + ' 40%, transparent 70%)';
+    document.querySelector('.coin-bg-glow').style.background = 'radial-gradient(circle, ' + hexToRgba(tier.border, 0.55) + ' 0%, ' + hexToRgba(tier.c2, 0.15) + ' 40%, transparent 70%)';
     const badge = document.getElementById('coinTierBadge');
     badge.textContent = '◆ ' + tier.name;
     badge.style.color = tier.border;
     badge.style.borderColor = tier.border;
-    const next = getNextCoinTier();
-    const lvl = getTotalUpgradeLevels();
+    const next = getNextCoinTier(); const lvl = getTotalUpgradeLevels();
     const prog = document.getElementById('coinTierProgress');
     if (next) prog.textContent = 'Total Level: ' + lvl + ' / ' + next.minLevel + ' for ' + next.name;
     else prog.textContent = '⭐ MAX TIER REACHED!';
   }
   function hexToRgba(hex, alpha) {
-    const r = parseInt(hex.slice(1,3), 16);
-    const g = parseInt(hex.slice(3,5), 16);
-    const b = parseInt(hex.slice(5,7), 16);
+    const r = parseInt(hex.slice(1,3), 16); const g = parseInt(hex.slice(3,5), 16); const b = parseInt(hex.slice(5,7), 16);
     return 'rgba(' + r + ',' + g + ',' + b + ',' + alpha + ')';
   }
 
@@ -1015,8 +997,7 @@
     const idx = STICKERS.findIndex(s => s.id === stickerId);
     if (idx === 0) return true;
     const prevSticker = STICKERS[idx - 1];
-    const prevLevel = stickerLevels[prevSticker.id] || 0;
-    return prevLevel >= MAX_STICKER_LEVEL;
+    return (stickerLevels[prevSticker.id] || 0) >= MAX_STICKER_LEVEL;
   }
   function getStickerUnlockReq(stickerId) {
     const idx = STICKERS.findIndex(s => s.id === stickerId);
@@ -1027,48 +1008,13 @@
     return prev.name + ' (Lv ' + prevLvl + '/' + MAX_STICKER_LEVEL + ')';
   }
 
-  function getTapBonusFromStickers() {
-    let total = 0;
-    STICKERS.forEach(s => { const lvl = stickerLevels[s.id] || 0; if (!lvl) return;
-      const text = s.bonus(lvl);
-      if (text.includes('Tap') && !text.includes('Energy')) { const m = text.match(/(\d+)/); if (m) total += parseInt(m[1]); }
-    }); return total;
-  }
-  function getAutoBonusFromStickers() {
-    let total = 0;
-    STICKERS.forEach(s => { const lvl = stickerLevels[s.id] || 0; if (!lvl) return;
-      const text = s.bonus(lvl);
-      if (text.includes('Auto/hr')) { const m = text.match(/(\d+)/); if (m) total += parseInt(m[1]); }
-    }); return total;
-  }
-  function getEnergyRegenBonusFromStickers() {
-    let total = 0;
-    STICKERS.forEach(s => { const lvl = stickerLevels[s.id] || 0; if (!lvl) return;
-      const text = s.bonus(lvl);
-      if (text.includes('Energy Regen')) { const m = text.match(/(\d+)/); if (m) total += parseInt(m[1]); }
-    }); return total;
-  }
-  function getMaxEnergyBonusFromStickers() {
-    let total = 0;
-    STICKERS.forEach(s => { const lvl = stickerLevels[s.id] || 0; if (!lvl) return;
-      const text = s.bonus(lvl);
-      if (text.includes('Max Energy')) { const m = text.match(/(\d+)/); if (m) total += parseInt(m[1]); }
-    }); return total;
-  }
-  function getMiningBonusFromStickers() {
-    let total = 0;
-    STICKERS.forEach(s => { const lvl = stickerLevels[s.id] || 0; if (!lvl) return;
-      const text = s.bonus(lvl);
-      if (text.includes('Mining/sec')) { const m = text.match(/(\d+)/); if (m) total += parseInt(m[1]); }
-    }); return total;
-  }
+  function getTapBonusFromStickers() { let total = 0; STICKERS.forEach(s => { const lvl = stickerLevels[s.id] || 0; if (!lvl) return; const text = s.bonus(lvl); if (text.includes('Tap') && !text.includes('Energy')) { const m = text.match(/(\d+)/); if (m) total += parseInt(m[1]); } }); return total; }
+  function getAutoBonusFromStickers() { let total = 0; STICKERS.forEach(s => { const lvl = stickerLevels[s.id] || 0; if (!lvl) return; const text = s.bonus(lvl); if (text.includes('Auto/hr')) { const m = text.match(/(\d+)/); if (m) total += parseInt(m[1]); } }); return total; }
+  function getEnergyRegenBonusFromStickers() { let total = 0; STICKERS.forEach(s => { const lvl = stickerLevels[s.id] || 0; if (!lvl) return; const text = s.bonus(lvl); if (text.includes('Energy Regen')) { const m = text.match(/(\d+)/); if (m) total += parseInt(m[1]); } }); return total; }
+  function getMaxEnergyBonusFromStickers() { let total = 0; STICKERS.forEach(s => { const lvl = stickerLevels[s.id] || 0; if (!lvl) return; const text = s.bonus(lvl); if (text.includes('Max Energy')) { const m = text.match(/(\d+)/); if (m) total += parseInt(m[1]); } }); return total; }
+  function getMiningBonusFromStickers() { let total = 0; STICKERS.forEach(s => { const lvl = stickerLevels[s.id] || 0; if (!lvl) return; const text = s.bonus(lvl); if (text.includes('Mining/sec')) { const m = text.match(/(\d+)/); if (m) total += parseInt(m[1]); } }); return total; }
 
-  function getEffectiveTapPower() {
-    let base = tapPower + getTapBonusFromStickers();
-    if (boosters.autoTapActive) base = Math.floor(base * 1.5);
-    if (boosters.doubleActive) base = base * 2;
-    return base;
-  }
+  function getEffectiveTapPower() { let base = tapPower + getTapBonusFromStickers(); if (boosters.autoTapActive) base = Math.floor(base * 1.5); if (boosters.doubleActive) base = base * 2; return base; }
   function getEffectiveAutoEarn() { return autoEarn + getAutoBonusFromStickers(); }
   function getEnergyRegen() { return 1 + parseInt(localStorage.getItem('upg_energyRegen') || '0') + getEnergyRegenBonusFromStickers(); }
   function getMineRate() { return 5 + getMiningBonusFromStickers(); }
@@ -1103,21 +1049,10 @@
       showModal('⏰ Cooldown', 'Ye booster abhi cooldown par hai.\n\nAgla use: ' + mins + ' minute baad');
       return;
     }
-    if (id === 'autoTap') {
-      boosters.autoTapActive = true; boosters.autoTapLastUsed = now;
-      showModal('👆 Auto Tap Active!', 'Agle 10 minute tak har tap 50% zyada coins dega!');
-    } else if (id === 'energy') {
-      energy = Math.min(getEffectiveMaxEnergy(), energy + 20);
-      boosters.energyLastUsed = now;
-      updateUI();
-      showModal('⚡ Energy Refilled!', '+20 Energy mile!');
-    } else if (id === 'double') {
-      boosters.doubleActive = true; boosters.doubleLastUsed = now;
-      showModal('2️⃣ 2x Earnings Active!', 'Agle 30 minute tak saare rewards double milenge!');
-    } else if (id === 'offline') {
-      boosters.offlineActive = true; boosters.offlineLastUsed = now;
-      showModal('⏰ Offline Profit Active!', 'Agle 6 ghante tak aap offline bhi coins kamayenge!');
-    }
+    if (id === 'autoTap') { boosters.autoTapActive = true; boosters.autoTapLastUsed = now; showModal('👆 Auto Tap Active!', 'Agle 10 minute tak har tap 50% zyada!'); }
+    else if (id === 'energy') { energy = Math.min(getEffectiveMaxEnergy(), energy + 20); boosters.energyLastUsed = now; updateUI(); showModal('⚡ Energy Refilled!', '+20 Energy mile!'); }
+    else if (id === 'double') { boosters.doubleActive = true; boosters.doubleLastUsed = now; showModal('2️⃣ 2x Earnings Active!', 'Agle 30 minute tak rewards double!'); }
+    else if (id === 'offline') { boosters.offlineActive = true; boosters.offlineLastUsed = now; showModal('⏰ Offline Profit Active!', 'Agle 6 ghante tak offline coins!'); }
     saveBoosters(); playSound('win'); vibrate('success'); updateBoosterUI();
   }
 
@@ -1146,7 +1081,6 @@
       }
     });
   }
-
   function saveBoosters() { localStorage.setItem('trax_boosters', JSON.stringify(boosters)); }
   function checkBoosterExpiry() {
     const now = Date.now(); let changed = false;
@@ -1156,33 +1090,51 @@
     if (changed) saveBoosters();
   }
 
+  let fakeRankData = [];
+  function generateFakeRank() {
+    const names = ['Ali', 'Ahmed', 'Sara', 'Hassan', 'Fatima', 'Bilal', 'Ayesha', 'Usman', 'Zara', 'Khan', 'Ayesha', 'Omar', 'Hira', 'Raza', 'Nida'];
+    fakeRankData = [];
+    for (let i = 0; i < 9; i++) {
+      fakeRankData.push({ name: names[i] || ('Player' + (i+1)), value: Math.floor(Math.random() * 5000000) + 100000 });
+    }
+  }
+  function drawHomeRank() {
+    const box = document.getElementById('homeRankList');
+    if (!box) return;
+    if (fakeRankData.length === 0) generateFakeRank();
+    const myRank = { name: (userName || 'You') + ' (You)', value: balance, mine: true };
+    const all = [...fakeRankData, myRank].sort((a, b) => b.value - a.value);
+    box.innerHTML = '';
+    all.slice(0, 10).forEach((u, i) => {
+      const el = document.createElement('div');
+      el.className = 'rank-row' + (u.mine ? ' mine' : '') + (i === 0 ? ' top1' : i === 1 ? ' top2' : i === 2 ? ' top3' : '');
+      const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : '#' + (i + 1);
+      el.innerHTML = '<div class="rank-num">' + medal + '</div><div class="rank-avatar">' + (u.mine ? userAvatar : '👤') + '</div><div class="rank-name">' + u.name + '</div><div class="rank-value">' + Math.floor(u.value).toLocaleString() + ' <small>TRAX</small></div>';
+      box.appendChild(el);
+    });
+  }
+  function updateHomeRankLive() {
+    // Slowly shift fake values for live feel
+    fakeRankData.forEach((u, i) => {
+      u.value += Math.floor(Math.random() * 5000) - 1000;
+      if (u.value < 1000) u.value = 1000 + Math.random() * 100000;
+    });
+    drawHomeRank();
+  }
+
   function init() {
     document.getElementById('refLink').textContent = 'https://t.me/TraxOfficial_bot?start=ref' + userId;
     document.getElementById('profileName').textContent = userName || 'TraxOfficial';
     document.getElementById('usernameInput').value = userName;
     updateAvatarDisplays();
     buildAvatarGrid();
-    drawTasks(); drawTasksNew(); drawRank(); drawStickers(); drawUpgrades(); drawBetSelector(); updateSettingsUI(); updateUI();
+    drawTasksNew(); drawRank(); drawStickers(); drawUpgrades(); drawBetSelector(); updateSettingsUI(); updateUI();
     applyCoinTier(); updateBoosterUI();
+    generateFakeRank(); drawHomeRank();
     setInterval(updateBoosterUI, 1000);
     setInterval(checkBoosterExpiry, 5000);
+    setInterval(updateHomeRankLive, 5000);
     checkFirstTime();
-  }
-
-  function drawTasks() {
-    const tasks = [
-      { icon: '📢', name: 'Join Telegram Channel', reward: 1000, done: localStorage.getItem('task_tg') === 'done' },
-      { icon: '🐦', name: 'Follow on X (Twitter)', reward: 1000, done: localStorage.getItem('task_x') === 'done' },
-      { icon: '🎬', name: 'Watch Video', reward: 2000, done: localStorage.getItem('task_video') === 'done' },
-      { icon: '👥', name: 'Invite 5 Friends', reward: 5000, done: false }
-    ];
-    const homeBox = document.getElementById('homeTasks');
-    if (!homeBox) return;
-    homeBox.innerHTML = '';
-    tasks.forEach((t, i) => {
-      const html = '<div class="task-icon">' + t.icon + '</div><div class="task-info"><h4>' + t.name + '</h4><div class="reward">+' + t.reward + ' TRAX</div></div><button class="task-btn ' + (t.done ? 'done' : 'go') + '" onclick="doTask(' + i + ',' + t.reward + ')">' + (t.done ? '✓ DONE' : 'GO') + '</button>';
-      const e1 = document.createElement('div'); e1.className = 'task-item'; e1.innerHTML = html; homeBox.appendChild(e1);
-    });
   }
 
   function drawTasksNew() {
@@ -1197,14 +1149,11 @@
     ];
     tasks.forEach(t => {
       const el = document.createElement('div');
-      el.className = 'task-row' + (t.done ? ' done' : ' ready');
-      let actionHtml = '';
-      if (t.done) actionHtml = '<button class="task-btn done">✓ DONE</button>';
-      else if (t.id === 'invite') actionHtml = '<button class="task-btn go" onclick="navTo(\'friends\')">GO</button>';
-      else actionHtml = '<button class="task-btn go" onclick="doTaskNew(\'' + t.id + '\',' + t.reward + ')">GO</button>';
+      el.className = 'task-row' + (t.done ? ' done' : '');
+      let actionHtml = t.done ? '<button class="task-btn done">✓ DONE</button>' : '<button class="task-btn go" onclick="doTaskNew(\'' + t.id + '\',' + t.reward + ')">GO</button>';
       let progressHtml = '';
       if (t.id === 'invite' && t.progress !== undefined) progressHtml = '<div class="task-progress-bar"><div class="task-progress-fill" style="width:' + (t.progress/t.total*100) + '%"></div></div>';
-      el.innerHTML = '<div class="task-icon-wrap ' + t.iconClass + '">' + t.icon + '</div><div class="task-content"><div class="task-title">' + t.name + '</div><div class="task-reward-row"><span class="coin-emoji">🪙</span> <span class="reward-amount">+' + t.reward.toLocaleString() + '</span> TRAX</div>' + progressHtml + '</div>' + actionHtml;
+      el.innerHTML = '<div class="task-icon-wrap ' + t.iconClass + '">' + t.icon + '</div><div class="task-content"><div class="task-title">' + t.name + '</div><div class="task-reward-row">🪙 <span class="reward-amount">+' + t.reward.toLocaleString() + '</span> TRAX</div>' + progressHtml + '</div>' + actionHtml;
       box.appendChild(el);
     });
   }
@@ -1213,27 +1162,15 @@
     if (localStorage.getItem('task_' + id) === 'done') { showModal('✅ Done', 'Aap ye task pehle kar chuke hain.'); return; }
     localStorage.setItem('task_' + id, 'done');
     balance += reward; totalEarned += reward;
-    updateUI(); save();
+    updateUI(); save(); drawTasksNew();
     playSound('win'); vibrate('success');
     showModal('🎉 Task Complete!', '+' + reward + ' TRAX mile!');
-    drawTasks(); drawTasksNew();
-  }
-
-  function doTask(idx, reward) {
-    const keys = ['task_tg', 'task_x', 'task_video', 'task_invite'];
-    if (localStorage.getItem(keys[idx]) === 'done') { showModal('✅ Done', 'Aap ye task pehle kar chuke hain.'); return; }
-    localStorage.setItem(keys[idx], 'done');
-    balance += reward; totalEarned += reward;
-    updateUI(); save();
-    playSound('win'); vibrate('success');
-    showModal('🎉 Task Complete!', '+' + reward + ' TRAX mile!');
-    drawTasks(); drawTasksNew();
   }
 
   function drawRank() {
-    const fakeNames = ['Ali', 'Ahmed', 'Sara', 'Hassan', 'Fatima', 'Bilal', 'Ayesha', 'Usman', 'Zara'];
     const list = document.getElementById('rankList');
     if (!list) return;
+    const fakeNames = ['Ali', 'Ahmed', 'Sara', 'Hassan', 'Fatima', 'Bilal', 'Ayesha', 'Usman', 'Zara'];
     list.innerHTML = '';
     const myRank = { name: (userName || 'You') + ' (You)', value: balance };
     const others = [];
@@ -1243,7 +1180,7 @@
       const el = document.createElement('div');
       el.style.cssText = 'background:rgba(15,30,55,0.7);border:1px solid rgba(0,180,255,0.2);border-radius:12px;padding:12px;margin-bottom:8px;display:flex;align-items:center;gap:12px;';
       if (u.name.includes('(You)')) el.style.borderColor = '#00d4ff';
-      el.innerHTML = '<div style="font-size:16px;font-weight:900;color:#00d4ff;min-width:35px">' + (i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : '#' + (i + 1)) + '</div><div style="flex:1;font-size:12px;font-weight:900">' + u.name + '</div><div style="font-size:12px;color:#00d4ff;font-weight:900">' + u.value.toLocaleString() + '</div>';
+      el.innerHTML = '<div style="font-size:16px;font-weight:900;color:#00d4ff;min-width:35px">' + (i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : '#' + (i + 1)) + '</div><div style="flex:1;font-size:12px;font-weight:900">' + u.name + '</div><div style="font-size:12px;color:#00d4ff;font-weight:900">' + Math.floor(u.value).toLocaleString() + '</div>';
       list.appendChild(el);
     });
     const myIdx = all.findIndex(u => u.name.includes('(You)'));
@@ -1256,10 +1193,8 @@
     if (!container) return;
     container.innerHTML = '';
     const tiers = [
-      { id: 'common', label: '◆ COMMON' },
-      { id: 'rare', label: '◆ RARE' },
-      { id: 'epic', label: '◆ EPIC' },
-      { id: 'legendary', label: '◆ LEGENDARY' }
+      { id: 'common', label: '◆ COMMON' }, { id: 'rare', label: '◆ RARE' },
+      { id: 'epic', label: '◆ EPIC' }, { id: 'legendary', label: '◆ LEGENDARY' }
     ];
     tiers.forEach(tier => {
       const title = document.createElement('div');
@@ -1323,8 +1258,7 @@
     if (id === 'tapPower') tapPower += 1;
     if (id === 'maxEnergy') maxEnergy += 50;
     if (id === 'autoEarn') autoEarn += 5;
-    updateUI(); save(); drawUpgrades();
-    applyCoinTier();
+    updateUI(); save(); drawUpgrades(); applyCoinTier();
     playSound('win'); vibrate('success');
     const tier = getCurrentCoinTier();
     showModal('✅ Upgraded!', 'Level ' + level + ' ho gaya!\n\nCoin Tier: ' + tier.name);
@@ -1342,22 +1276,18 @@
     const mineRateEl = document.getElementById('mineRateText');
     if (mineRateEl) mineRateEl.textContent = getMineRate();
 
-    const LEVEL_XP = 3000;
+    const LEVEL_XP = 50000;
     const level = Math.floor(totalEarned / LEVEL_XP) + 1;
     const xpInLevel = totalEarned % LEVEL_XP;
     document.getElementById('levelNum').textContent = level;
-    document.getElementById('diamondLevel').textContent = level;
-    document.getElementById('diamondXp').textContent = Math.floor(xpInLevel).toLocaleString();
-    document.getElementById('diamondFill').style.width = (xpInLevel / LEVEL_XP * 100) + '%';
     document.getElementById('xpFill').style.width = (xpInLevel / LEVEL_XP * 100) + '%';
-
     const profLvlText = document.getElementById('profLvlText');
     const profXpText = document.getElementById('profXpText');
     const profLevelFill = document.getElementById('profLevelFill');
     const profTapsEl = document.getElementById('profTaps');
     const profEarnedEl = document.getElementById('profEarned');
     if (profLvlText) profLvlText.textContent = level;
-    if (profXpText) profXpText.textContent = Math.floor(xpInLevel).toLocaleString();
+    if (profXpText) profXpText.textContent = Math.floor(xpInLevel).toLocaleString() + ' / ' + LEVEL_XP.toLocaleString();
     if (profLevelFill) profLevelFill.style.width = (xpInLevel / LEVEL_XP * 100) + '%';
     if (profTapsEl) profTapsEl.textContent = totalTaps.toLocaleString();
     if (profEarnedEl) profEarnedEl.textContent = Math.floor(totalEarned).toLocaleString();
@@ -1395,22 +1325,18 @@
   }
 
   function showFloat(x, y, text) {
-    const el = document.createElement('div');
-    el.className = 'float-text'; el.textContent = text;
+    const el = document.createElement('div'); el.className = 'float-text'; el.textContent = text;
     el.style.left = (x - 20) + 'px'; el.style.top = (y - 40) + 'px';
-    document.body.appendChild(el);
-    setTimeout(() => el.remove(), 1000);
+    document.body.appendChild(el); setTimeout(() => el.remove(), 1000);
   }
   function createSparkles(x, y) {
     for (let i = 0; i < 4; i++) {
-      const s = document.createElement('div');
-      s.className = 'sparkle';
+      const s = document.createElement('div'); s.className = 'sparkle';
       s.style.left = (x + (Math.random() - 0.5) * 60) + 'px';
       s.style.top = (y + (Math.random() - 0.5) * 60) + 'px';
       s.style.background = ['#00d4ff', '#00ff88', '#ffffff', '#ff9500'][i];
       s.style.boxShadow = '0 0 15px ' + s.style.background;
-      document.body.appendChild(s);
-      setTimeout(() => s.remove(), 800);
+      document.body.appendChild(s); setTimeout(() => s.remove(), 800);
     }
   }
 
@@ -1423,15 +1349,6 @@
     updateUI(); save();
     playSound('win'); vibrate('success');
     showModal('🎁 Daily Reward!', '+' + reward + ' TRAX mile!');
-  }
-
-  function refillEnergy() {
-    if (balance < 5000) { playSound('error'); showModal('❌ Not Enough', 'Refill ke liye 5,000 TRAX chahiye.'); return; }
-    if (energy >= getEffectiveMaxEnergy()) { showModal('⚡ Already Full', 'Energy pehle se full hai!'); return; }
-    balance -= 5000; energy = getEffectiveMaxEnergy();
-    updateUI(); save();
-    playSound('win'); vibrate('success');
-    showModal('⚡ Energy Refilled!', 'Full energy restore ho gayi!');
   }
 
   function startMining() {
@@ -1451,9 +1368,8 @@
   function openLuckyBox() {
     if (luckyKeys <= 0) { playSound('error'); showModal('📦 No Keys', 'Aapke paas keys nahi hain.'); return; }
     const box = document.getElementById('luckyBox');
-    box.classList.add('shake');
     setTimeout(() => {
-      box.classList.remove('shake'); luckyKeys--;
+      luckyKeys--;
       const rewards = [100, 200, 500, 1000, 2000, 5000];
       const reward = rewards[Math.floor(Math.random() * rewards.length)];
       balance += reward; totalEarned += reward; updateUI(); save();
@@ -1486,13 +1402,14 @@
     if (tabEl) tabEl.classList.add('active');
     window.scrollTo(0, 0);
     if (tab === 'rank') drawRank();
-    if (tab === 'tasks') { drawTasks(); drawTasksNew(); }
+    if (tab === 'tasks') drawTasksNew();
     if (tab === 'sticker') drawStickers();
     if (tab === 'upgrades') drawUpgrades();
     if (tab === 'boosters') updateBoosterUI();
+    if (tab === 'home') drawHomeRank();
   }
   function navTo(tab) {
-    const navMap = { home: 'home', tasks: 'tasks', mine: 'mine', friends: 'friends', wallet: 'wallet' };
+    const navMap = { home: 'home', games: 'games', mine: 'mine', tasks: 'tasks', more: 'more' };
     if (navMap[tab]) navClick(document.querySelector('.nav-item[data-tab="' + tab + '"]'), tab);
     else {
       document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
@@ -1502,6 +1419,8 @@
       if (tab === 'sticker') drawStickers();
       if (tab === 'upgrades') drawUpgrades();
       if (tab === 'boosters') updateBoosterUI();
+      if (tab === 'rank') drawRank();
+      if (tab === 'friends') { /* ref link already set */ }
     }
   }
 
@@ -1581,7 +1500,7 @@
     }, 5200);
   }
 
-  // ===== CRASH (FIXED) =====
+  // CRASH
   const BET_OPTIONS = [500, 1000, 5000, 10000, 25000, 50000];
   let crashState = { running: false, multiplier: 1, crashed: false, bet: 1000 };
   let crashInterval = null;
@@ -1597,64 +1516,47 @@
       box.appendChild(el);
     });
   }
-
   function onCustomBetChange() {
     if (crashState.running) return;
     const val = parseInt(document.getElementById('customBetInput').value);
     const info = document.getElementById('betInfo');
     if (!val || val < 100) { info.textContent = '⚠️ Minimum bet: 100 TRAX'; info.style.color = '#ff9500'; }
     else if (val > balance) { info.textContent = '⚠️ Aapke paas sirf ' + Math.floor(balance).toLocaleString() + ' TRAX hain'; info.style.color = '#ff0055'; }
-    else { info.textContent = '✓ Custom bet: ' + val.toLocaleString() + ' TRAX (SET dabayein)'; info.style.color = '#00ff88'; }
+    else { info.textContent = '✓ Custom bet: ' + val.toLocaleString() + ' TRAX'; info.style.color = '#00ff88'; }
   }
-
   function applyCustomBet() {
     if (crashState.running) return;
     const val = parseInt(document.getElementById('customBetInput').value);
-    if (!val || val < 100) { showModal('⚠️ Invalid Bet', 'Minimum bet 100 TRAX hai.'); return; }
-    if (val > balance) { showModal('❌ Not Enough', 'Aapke paas sirf ' + Math.floor(balance).toLocaleString() + ' TRAX hain.'); return; }
+    if (!val || val < 100) { showModal('⚠️ Invalid Bet', 'Minimum bet 100 TRAX.'); return; }
+    if (val > balance) { showModal('❌ Not Enough', 'Sirf ' + Math.floor(balance).toLocaleString() + ' TRAX hain.'); return; }
     crashState.bet = val;
     document.querySelectorAll('.bet-option').forEach(el => el.classList.remove('selected'));
     updateCrashButton();
-    document.getElementById('betInfo').textContent = '✓ Custom bet set: ' + val.toLocaleString() + ' TRAX';
+    document.getElementById('betInfo').textContent = '✓ Custom bet: ' + val.toLocaleString() + ' TRAX';
     document.getElementById('betInfo').style.color = '#00ff88';
     playSound('win'); vibrate('light');
   }
-
-  function updateCrashButton() { 
-    const btn = document.getElementById('crashBetBtn');
-    if (btn) btn.textContent = 'START (' + crashState.bet.toLocaleString() + ' TRAX)'; 
-  }
+  function updateCrashButton() { const btn = document.getElementById('crashBetBtn'); if (btn) btn.textContent = 'START (' + crashState.bet.toLocaleString() + ' TRAX)'; }
 
   function openCrash() {
-    // Clear any stuck state
     if (crashInterval) { clearInterval(crashInterval); crashInterval = null; }
-    crashState.running = false;
-    crashState.crashed = false;
-    crashState.multiplier = 1;
+    crashState.running = false; crashState.crashed = false; crashState.multiplier = 1;
     document.getElementById('crashModal').classList.add('show');
     resetCrashUI(); drawBetSelector();
     document.getElementById('customBetInput').value = '';
     document.getElementById('betInfo').textContent = '';
   }
-  
-  function closeCrash() { 
-    // Force clear everything
+  function closeCrash() {
     if (crashInterval) { clearInterval(crashInterval); crashInterval = null; }
     const wasRunning = crashState.running;
-    crashState.running = false;
-    crashState.crashed = true;
+    crashState.running = false; crashState.crashed = true;
     document.getElementById('crashModal').classList.remove('show');
     resetCrashUI();
-    if (wasRunning) {
-      setTimeout(() => showModal('⚠️ Game Cancelled', 'Aapne game ke beech mein close kiya.\n\nBet amount wapas nahi hoga.'), 200);
-    }
+    if (wasRunning) setTimeout(() => showModal('⚠️ Game Cancelled', 'Aapne game ke beech mein close kiya.'), 200);
   }
-  
   function resetCrashUI() {
     if (crashInterval) { clearInterval(crashInterval); crashInterval = null; }
-    crashState.running = false;
-    crashState.crashed = false;
-    crashState.multiplier = 1;
+    crashState.running = false; crashState.crashed = false; crashState.multiplier = 1;
     document.getElementById('crashMultiplier').textContent = '1.00x';
     document.getElementById('crashMultiplier').classList.remove('crashed');
     document.getElementById('crashBar').style.width = '0%';
@@ -1663,7 +1565,6 @@
     document.getElementById('crashCashBtn').style.display = 'none';
     updateCrashButton();
   }
-  
   function startCrash() {
     if (crashState.running) return;
     if (balance < crashState.bet) { playSound('error'); vibrate('error'); showModal('❌ Not Enough', crashState.bet.toLocaleString() + ' TRAX chahiye.'); return; }
@@ -1693,7 +1594,6 @@
       }
     }, 350);
   }
-  
   function cashOutCrash() {
     if (!crashState.running) return;
     crashState.running = false;
@@ -1733,8 +1633,7 @@
     drawPuzzle();
   }
   function drawPuzzle() {
-    const grid = document.getElementById('puzzleGrid');
-    grid.innerHTML = '';
+    const grid = document.getElementById('puzzleGrid'); grid.innerHTML = '';
     puzzleState.tiles.forEach((t, i) => {
       const el = document.createElement('div');
       el.className = 'puzzle-tile' + (t === 0 ? ' empty' : '');
