@@ -281,6 +281,39 @@
   .puzzle-mode-desc { font-size: 9px; color: #7a8ba5; margin-bottom: 2px; }
   .puzzle-mode-time { font-size: 9px; color: #00d4ff; margin-bottom: 2px; }
   .puzzle-mode-price { font-size: 10px; color: #ffd700; font-weight: 900; }
+
+  /* ===== ATTENDANCE ===== */
+  .attendance-header { background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(0,80,180,0.08)); border: 1.5px solid rgba(0,212,255,0.4); border-radius: 16px; padding: 14px; margin-bottom: 12px; }
+  .attendance-title { font-size: 15px; font-weight: 900; color: #00d4ff; margin-bottom: 4px; }
+  .attendance-sub { font-size: 10px; color: #7a8ba5; margin-bottom: 12px; }
+  .attendance-status { display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; color: #a0aec0; }
+  .attendance-status b { color: #00ff88; font-size: 13px; }
+  .attendance-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+  .att-day-card { background: rgba(15,30,55,0.85); border: 2px solid rgba(0,180,255,0.2); border-radius: 14px; padding: 14px 8px; text-align: center; position: relative; transition: all 0.3s; }
+  .att-day-card.claimed { background: linear-gradient(135deg, rgba(0,170,85,0.25), rgba(0,80,40,0.15)); border-color: #00aa55; }
+  .att-day-card.claimed::after { content: '✓'; position: absolute; top: 4px; right: 6px; color: #00ff88; font-weight: 900; font-size: 14px; }
+  .att-day-card.today { background: linear-gradient(135deg, rgba(0,212,255,0.25), rgba(0,100,200,0.15)); border-color: #00d4ff; box-shadow: 0 0 20px rgba(0,212,255,0.5); animation: todayPulse 2s infinite; }
+  .att-day-card.locked { opacity: 0.5; }
+  @keyframes todayPulse { 0%, 100% { box-shadow: 0 0 15px rgba(0,212,255,0.4); } 50% { box-shadow: 0 0 25px rgba(0,212,255,0.8); } }
+  .att-day-label { font-size: 11px; font-weight: 900; color: #a0aec0; margin-bottom: 6px; }
+  .att-day-card.claimed .att-day-label { color: #00ff88; }
+  .att-day-card.today .att-day-label { color: #00d4ff; }
+  .att-day-icon { font-size: 28px; margin-bottom: 4px; }
+  .att-day-amount { font-size: 14px; font-weight: 900; color: #ffd700; }
+  .att-day-card.claimed .att-day-amount { color: #00ff88; }
+  .attendance-big-bonus { background: linear-gradient(135deg, rgba(255,215,0,0.2), rgba(255,150,0,0.1)); border: 2px solid rgba(255,215,0,0.5); border-radius: 16px; padding: 16px; margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; }
+  .att-big-info { text-align: left; }
+  .att-big-day { font-size: 11px; color: #ffd700; font-weight: 900; margin-bottom: 4px; letter-spacing: 1.5px; }
+  .att-big-amount { font-size: 24px; font-weight: 900; color: #ffffff; text-shadow: 0 0 20px rgba(255,215,0,0.7); }
+  .att-big-icon { font-size: 48px; filter: drop-shadow(0 0 15px rgba(255,215,0,0.8)); animation: giftShake 2s infinite; }
+  @keyframes giftShake { 0%, 100% { transform: rotate(0deg); } 25% { transform: rotate(-8deg); } 75% { transform: rotate(8deg); } }
+  .attendance-rules { background: rgba(15,30,55,0.6); border: 1px solid rgba(0,180,255,0.15); border-radius: 14px; padding: 14px; margin-bottom: 14px; }
+  .att-rules-title { font-size: 12px; font-weight: 900; color: #00d4ff; margin-bottom: 8px; }
+  .att-rule { font-size: 10px; color: #a0aec0; line-height: 1.6; margin-bottom: 6px; }
+  .att-rule:last-child { margin-bottom: 0; }
+  .attendance-claim-btn { background: linear-gradient(135deg, #00ff88, #00aa55); border: none; border-radius: 14px; padding: 16px; color: white; font-size: 15px; font-weight: 900; cursor: pointer; width: 100%; box-shadow: 0 4px 20px rgba(0,255,136,0.4); }
+  .attendance-claim-btn:disabled { background: linear-gradient(135deg, #666, #333); cursor: not-allowed; box-shadow: none; opacity: 0.6; }
+  .attendance-claim-btn.claimed { background: linear-gradient(135deg, #00aa55, #006633); }
 </style>
 </head>
 <body>
@@ -392,6 +425,37 @@
   </div>
 </div>
 
+<div class="tab-content" id="tab-attendance">
+  <div class="page-title-bar"><div class="page-title-icon">📅</div><div class="page-title-text">Attendance</div></div>
+
+  <div class="attendance-header">
+    <div class="attendance-title">Attendance Bonus</div>
+    <div class="attendance-sub">Get rewards based on consecutive login days</div>
+    <div class="attendance-status">
+      <div>Attended consecutively <b id="attCurrentDays">0</b> Day</div>
+      <div>Accumulated <b id="attAccumulated">0</b> TRAX</div>
+    </div>
+  </div>
+
+  <div class="attendance-grid" id="attendanceGrid"></div>
+
+  <div class="attendance-big-bonus">
+    <div class="att-big-info">
+      <div class="att-big-day">7 Day 🎁</div>
+      <div class="att-big-amount">+200,000</div>
+    </div>
+    <div class="att-big-icon">🎁</div>
+  </div>
+
+  <div class="attendance-rules">
+    <div class="att-rules-title">📋 Activity Rules:</div>
+    <div class="att-rule">1. Ye continuous sign-in event hai. Agar ek din miss hua, toh pehle din se reset ho jayega.</div>
+    <div class="att-rule">2. Har din ka bonus claim karne ke liye har roz app kholein.</div>
+  </div>
+
+  <button class="attendance-claim-btn" id="attClaimBtn" onclick="claimAttendance()">CLAIM TODAY'S REWARD</button>
+</div>
+
 <div class="tab-content" id="tab-mine">
   <div class="page-title-bar"><div class="page-title-icon">⛏️</div><div class="page-title-text">Mining</div></div>
   <div class="energy-card" style="text-align:center;padding:20px">
@@ -431,6 +495,7 @@
   <div class="more-card" onclick="navTo('boosters')"><div class="more-card-icon boosters">🚀</div><div class="more-card-info"><h4>Boosters</h4><p>Increase your earnings</p></div><div class="more-card-arrow">›</div></div>
   <div class="more-card" onclick="navTo('upgrades')"><div class="more-card-icon upgrades">⬆️</div><div class="more-card-info"><h4>Upgrades</h4><p>Upgrade tap power</p></div><div class="more-card-arrow">›</div></div>
   <div class="more-card" onclick="navTo('sticker')"><div class="more-card-icon sticker">🎨</div><div class="more-card-info"><h4>Sticker Shop</h4><p>50 stickers</p></div><div class="more-card-arrow">›</div></div>
+  <div class="more-card" onclick="navTo('attendance')"><div class="more-card-icon rank">📅</div><div class="more-card-info"><h4>Daily Attendance</h4><p>7-day login rewards</p></div><div class="more-card-arrow">›</div></div>
   <div class="more-card" onclick="navTo('wallet')"><div class="more-card-icon wallet">💼</div><div class="more-card-info"><h4>My Wallet</h4><p>Withdraw & history</p></div><div class="more-card-arrow">›</div></div>
   <div class="more-card" onclick="navTo('friends')"><div class="more-card-icon referral">👥</div><div class="more-card-info"><h4>Referral</h4><p>+500 TRAX per friend</p></div><div class="more-card-arrow">›</div></div>
   <div class="more-card" onclick="navTo('lucky')"><div class="more-card-icon lucky">📦</div><div class="more-card-info"><h4>Lucky Box</h4><p>Random rewards</p></div><div class="more-card-arrow">›</div></div>
@@ -573,7 +638,7 @@
 <div class="bottom-nav">
   <div class="nav-item active" data-tab="home" onclick="navClick(this, 'home')"><div class="nav-icon">🏠</div><div>Home</div></div>
   <div class="nav-item" data-tab="games" onclick="navClick(this, 'games')"><div class="nav-icon">🎮</div><div>Games</div></div>
-  <div class="nav-item" data-tab="mine" onclick="navClick(this, 'mine')"><div class="nav-icon">⛏️</div><div>Mine</div></div>
+  <div class="nav-item" data-tab="attendance" onclick="navClick(this, 'attendance')"><div class="nav-icon">📅</div><div>Daily</div></div>
   <div class="nav-item" data-tab="tasks" onclick="navClick(this, 'tasks')"><div class="nav-icon">📋</div><div>Tasks</div></div>
   <div class="nav-item" data-tab="more" onclick="navClick(this, 'more')"><div class="nav-icon">⚙️</div><div>More</div></div>
 </div>
@@ -804,7 +869,6 @@
 
   const userId = tg && tg.initDataUnsafe && tg.initDataUnsafe.user ? tg.initDataUnsafe.user.id : Math.floor(Math.random() * 9000) + 1000;
 
-  // ===== STICKERS =====
   const STICKERS = [
     { id: 'c1', tier: 'common', icon: '👆', name: 'Tap I', bonus: lvl => '+' + (1*lvl) + ' Tap', cost: 5000 },
     { id: 'c2', tier: 'common', icon: '✋', name: 'Tap II', bonus: lvl => '+' + (2*lvl) + ' Tap', cost: 8000 },
@@ -957,19 +1021,8 @@
     }
   }
 
-  // ===== BOOSTER SYSTEM WITH COOLDOWN =====
-  const BOOSTER_DURATIONS = {
-    autoTap: 10 * 60 * 1000,
-    energy: 0,
-    double: 30 * 60 * 1000,
-    offline: 0
-  };
-  const BOOSTER_COOLDOWNS = {
-    autoTap: 30 * 60 * 1000,
-    energy: 30 * 60 * 1000,
-    double: 60 * 60 * 1000,
-    offline: 12 * 60 * 60 * 1000
-  };
+  const BOOSTER_DURATIONS = { autoTap: 10 * 60 * 1000, energy: 0, double: 30 * 60 * 1000, offline: 0 };
+  const BOOSTER_COOLDOWNS = { autoTap: 30 * 60 * 1000, energy: 30 * 60 * 1000, double: 60 * 60 * 1000, offline: 12 * 60 * 60 * 1000 };
 
   function formatBoosterTime(ms) {
     if (ms <= 0) return '--:--';
@@ -988,21 +1041,9 @@
     const now = Date.now();
     const cooldown = BOOSTER_COOLDOWNS[id];
     const duration = BOOSTER_DURATIONS[id];
-
-    let isActive = false;
-    let isCooldown = false;
-    let timeRemaining = 0;
-
-    if (duration > 0 && activeUntil > now) {
-      isActive = true;
-      timeRemaining = activeUntil - now;
-    }
-
-    if (lastUsed > 0 && (now - lastUsed) < cooldown) {
-      isCooldown = true;
-      timeRemaining = cooldown - (now - lastUsed);
-    }
-
+    let isActive = false, isCooldown = false, timeRemaining = 0;
+    if (duration > 0 && activeUntil > now) { isActive = true; timeRemaining = activeUntil - now; }
+    if (lastUsed > 0 && (now - lastUsed) < cooldown) { isCooldown = true; timeRemaining = cooldown - (now - lastUsed); }
     return { isActive, isCooldown, timeRemaining, lastUsed };
   }
 
@@ -1011,9 +1052,7 @@
       const timerEl = document.getElementById(id + 'Timer');
       const btnEl = document.getElementById(id + 'Btn');
       if (!timerEl || !btnEl) return;
-
       const state = getBoosterState(id);
-
       if (state.isActive) {
         timerEl.textContent = '⏱ ' + formatBoosterTime(state.timeRemaining);
         timerEl.style.color = '#00ff88';
@@ -1038,21 +1077,14 @@
 
   function activateBooster(id) {
     const state = getBoosterState(id);
-
     if (state.isCooldown) {
       playSound('error'); vibrate('error');
       showModal('⏰ Cooldown', 'Ye booster abhi cooldown par hai.\n\nAgla use: ' + formatBoosterTime(state.timeRemaining) + ' baad');
       return;
     }
-
-    if (state.isActive) {
-      showModal('⚡ Already Active', 'Ye booster pehle se active hai.');
-      return;
-    }
-
+    if (state.isActive) { showModal('⚡ Already Active', 'Ye booster pehle se active hai.'); return; }
     const now = Date.now();
     localStorage.setItem('trax_booster_' + id + '_lastUsed', now);
-
     if (id === 'autoTap') {
       boosterAutoTapBonus = 1;
       localStorage.setItem('trax_booster_autoTap_bonus', '1');
@@ -1070,7 +1102,6 @@
       balance += 5000; totalEarned += 5000;
       showModal('⏰ Offline Profit!', '+5,000 TRAX mile!');
     }
-
     updateUI(); save();
     updateBoosterUI();
     playSound('win'); vibrate('success');
@@ -1079,7 +1110,6 @@
   function checkBoosterExpiry() {
     const now = Date.now();
     let changed = false;
-
     if (boosterAutoTapBonus > 0) {
       const activeUntil = parseInt(localStorage.getItem('trax_booster_autoTap_activeUntil') || '0');
       if (activeUntil <= now) {
@@ -1090,7 +1120,6 @@
         changed = true;
       }
     }
-
     if (boosterDoubleBonus > 0) {
       const activeUntil = parseInt(localStorage.getItem('trax_booster_double_activeUntil') || '0');
       if (activeUntil <= now) {
@@ -1101,7 +1130,6 @@
         changed = true;
       }
     }
-
     if (changed) { updateUI(); save(); }
   }
 
@@ -1259,9 +1287,10 @@
     if (tab === 'sticker') drawStickers();
     if (tab === 'upgrades') drawUpgrades();
     if (tab === 'rank') drawRank();
+    if (tab === 'attendance') renderAttendance();
   }
   function navTo(tab) {
-    const navMap = { home: 'home', games: 'games', mine: 'mine', tasks: 'tasks', more: 'more' };
+    const navMap = { home: 'home', games: 'games', mine: 'mine', tasks: 'tasks', more: 'more', attendance: 'attendance' };
     if (navMap[tab]) navClick(document.querySelector('.nav-item[data-tab="' + tab + '"]'), tab);
     else {
       document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
@@ -1271,6 +1300,7 @@
       if (tab === 'sticker') drawStickers();
       if (tab === 'upgrades') drawUpgrades();
       if (tab === 'rank') drawRank();
+      if (tab === 'attendance') renderAttendance();
     }
   }
 
@@ -1283,7 +1313,6 @@
   function showRarityList() { document.getElementById('rarityModal').classList.add('show'); }
   function closeRarityList() { document.getElementById('rarityModal').classList.remove('show'); }
 
-  // ===== SPIN WHEEL: Daily 1 FREE + Paid unlimited =====
   const SPIN_SLOTS = [
     { reward: 5000,   label: '5K',   weight: 35 },
     { reward: 10000,  label: '10K',  weight: 28 },
@@ -1292,7 +1321,6 @@
     { reward: 150000, label: '150K', weight: 5 },
     { reward: 500000, label: '500K', weight: 2 }
   ];
-
   const PAID_SPIN_COST = 10000;
   let spinCooldown = false;
 
@@ -1316,7 +1344,6 @@
     const info = document.getElementById('spinInfoText');
     const btn = document.getElementById('spinBtn');
     if (!bar || !info || !btn) return;
-
     if (state.freeLeft > 0) {
       bar.textContent = '🎁 1 FREE SPIN AVAILABLE TODAY';
       bar.style.background = 'rgba(0,255,136,0.15)';
@@ -1346,9 +1373,7 @@
     spinCooldown = false;
   }
 
-  function closeSpin() {
-    document.getElementById('spinModal').classList.remove('show');
-  }
+  function closeSpin() { document.getElementById('spinModal').classList.remove('show'); }
 
   function drawWheelLabels() {
     const box = document.getElementById('wheelLabels');
@@ -1381,10 +1406,8 @@
 
   function spinWheel() {
     if (spinCooldown) return;
-
     const state = getSpinState();
     let usedPaid = false;
-
     if (state.freeLeft > 0) {
       localStorage.setItem('trax_spin_dailyUsed', '1');
     } else {
@@ -1397,45 +1420,32 @@
       updateUI(); save();
       usedPaid = true;
     }
-
     spinCooldown = true;
     const wheel = document.getElementById('wheel');
     const btn = document.getElementById('spinBtn');
     const resultBox = document.getElementById('spinResultBox');
-
     resultBox.classList.remove('show');
     btn.textContent = 'SPINNING...';
-
     const idx = pickSpinSlot();
     const slot = SPIN_SLOTS[idx];
-
     const segmentCenter = idx * 60 + 30;
     const targetRotation = 360 - segmentCenter;
     const fullRotations = 8 * 360;
     const finalRotation = fullRotations + targetRotation;
-
     wheel.style.transform = 'rotate(' + finalRotation + 'deg)';
-
     setTimeout(() => {
       balance += slot.reward; totalEarned += slot.reward;
       updateUI(); save();
-
       document.getElementById('spinRewardAmount').textContent = '+' + slot.reward.toLocaleString();
       resultBox.classList.add('show');
-
       btn.textContent = 'SPIN AGAIN';
       spinCooldown = false;
-
       updateSpinStatus();
       playSound('win'); vibrate('success');
-
-      if (usedPaid) {
-        showToast('💰 Paid spin · ' + PAID_SPIN_COST.toLocaleString() + ' TRAX used');
-      }
+      if (usedPaid) showToast('💰 Paid spin · ' + PAID_SPIN_COST.toLocaleString() + ' TRAX used');
     }, 5200);
   }
 
-  // ===== CRASH =====
   const BET_OPTIONS = [500, 1000, 5000, 10000, 25000, 50000];
   let crashState = { running: false, multiplier: 1, crashed: false, bet: 1000 };
   let crashInterval = null;
@@ -1527,7 +1537,6 @@
     playSound('win'); vibrate('success');
   }
 
-  // ===== PUZZLE =====
   const PUZZLE_MODES = {
     hard: { size: 9, cost: 10000, time: 1200, label: 'Hard' },
     medium: { size: 7, cost: 30000, time: 600, label: 'Medium' },
@@ -1549,7 +1558,6 @@
     showModal('🧩 Puzzle', 'Puzzle ' + m.label + ' shuru!\n\nTime: ' + (m.time / 60) + ' min');
   }
 
-  // ===== COIN FLIP =====
   const FLIP_POOL = [
     { mult: 1.5, w: 40 }, { mult: 1.7, w: 25 }, { mult: 2, w: 15 },
     { mult: 3, w: 8 }, { mult: 5, w: 5 }, { mult: 10, w: 3 },
@@ -1626,12 +1634,10 @@
     const coin = document.getElementById('flipCoin');
     coin.classList.add('flipping');
     document.getElementById('flipStatus').textContent = '🪙 Flipping...';
-
     setTimeout(() => {
       coin.classList.remove('flipping');
       const result = Math.random() < 0.5 ? 'T' : 'R';
       coin.style.transform = result === 'T' ? 'rotateY(0deg)' : 'rotateY(180deg)';
-
       if (result === flipState.choice) {
         const mult = pickFlipMult();
         flipState.multipliers.push(mult);
@@ -1670,6 +1676,122 @@
     if (confirm('Reset all data?')) { localStorage.clear(); location.reload(); }
   }
 
+  // ===== ATTENDANCE SYSTEM =====
+  const ATTENDANCE_REWARDS = [1000, 2000, 3000, 5000, 8000, 15000, 200000];
+
+  function getAttendanceData() {
+    return {
+      currentDay: parseInt(localStorage.getItem('trax_att_currentDay') || '0'),
+      lastClaimDate: localStorage.getItem('trax_att_lastDate') || '',
+      accumulated: parseInt(localStorage.getItem('trax_att_accumulated') || '0')
+    };
+  }
+
+  function saveAttendanceData(data) {
+    localStorage.setItem('trax_att_currentDay', data.currentDay);
+    localStorage.setItem('trax_att_lastDate', data.lastClaimDate);
+    localStorage.setItem('trax_att_accumulated', data.accumulated);
+  }
+
+  function getTodayStr() {
+    const d = new Date();
+    return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
+  }
+
+  function getYesterdayStr() {
+    const d = new Date();
+    d.setDate(d.getDate() - 1);
+    return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
+  }
+
+  function checkAttendanceReset() {
+    const data = getAttendanceData();
+    if (!data.lastClaimDate) return data;
+    const today = getTodayStr();
+    const yesterday = getYesterdayStr();
+    if (data.lastClaimDate === today || data.lastClaimDate === yesterday) return data;
+    data.currentDay = 0;
+    data.accumulated = 0;
+    saveAttendanceData(data);
+    return data;
+  }
+
+  function canClaimToday() {
+    const data = checkAttendanceReset();
+    return data.lastClaimDate !== getTodayStr();
+  }
+
+  function renderAttendance() {
+    const data = checkAttendanceReset();
+    const grid = document.getElementById('attendanceGrid');
+    if (!grid) return;
+    grid.innerHTML = '';
+    ATTENDANCE_REWARDS.forEach((reward, i) => {
+      const dayNum = i + 1;
+      const card = document.createElement('div');
+      card.className = 'att-day-card';
+      let state = 'locked';
+      if (dayNum <= data.currentDay) state = 'claimed';
+      else if (dayNum === data.currentDay + 1 && canClaimToday()) state = 'today';
+      card.classList.add(state);
+      const isDay7 = dayNum === 7;
+      const icon = isDay7 ? '🎁' : '🪙';
+      card.innerHTML =
+        '<div class="att-day-label">' + dayNum + ' Day</div>' +
+        '<div class="att-day-icon">' + icon + '</div>' +
+        '<div class="att-day-amount">+' + reward.toLocaleString() + '</div>';
+      grid.appendChild(card);
+    });
+    document.getElementById('attCurrentDays').textContent = data.currentDay;
+    document.getElementById('attAccumulated').textContent = data.accumulated.toLocaleString();
+    const btn = document.getElementById('attClaimBtn');
+    if (!btn) return;
+    if (canClaimToday()) {
+      if (data.currentDay >= 7) {
+        btn.textContent = 'START NEW CYCLE (DAY 1)';
+        btn.disabled = false;
+        btn.classList.remove('claimed');
+      } else {
+        const nextReward = ATTENDANCE_REWARDS[data.currentDay];
+        btn.textContent = 'CLAIM DAY ' + (data.currentDay + 1) + ' · +' + nextReward.toLocaleString() + ' TRAX';
+        btn.disabled = false;
+        btn.classList.remove('claimed');
+      }
+    } else {
+      btn.textContent = '✓ CLAIMED TODAY · Kal aayein';
+      btn.disabled = true;
+      btn.classList.add('claimed');
+    }
+  }
+
+  function claimAttendance() {
+    const data = checkAttendanceReset();
+    if (!canClaimToday()) {
+      showModal('✅ Already Claimed', 'Aapne aaj ka bonus already claim kar liya.\nKal dobara aayein!');
+      return;
+    }
+    if (data.currentDay >= 7) {
+      data.currentDay = 0;
+      data.accumulated = 0;
+    }
+    const reward = ATTENDANCE_REWARDS[data.currentDay];
+    data.currentDay += 1;
+    data.lastClaimDate = getTodayStr();
+    data.accumulated += reward;
+    saveAttendanceData(data);
+    balance += reward;
+    totalEarned += reward;
+    updateUI(); save();
+    playSound('win'); vibrate('success');
+    if (data.currentDay === 7) {
+      showModal('🎉 7-Day Bonus!', 'Mubarak ho! Aapne 7 din complete kar liye.\n\n+' + reward.toLocaleString() + ' TRAX mile!\n\nKal se naya cycle shuru.');
+    } else {
+      showModal('🎁 Day ' + data.currentDay + ' Claimed!', '+' + reward.toLocaleString() + ' TRAX mile!\n\nKal phir aayein · Day ' + (data.currentDay + 1) + ' unlock hoga.');
+    }
+    renderAttendance();
+  }
+
+  // Init
   updateAvatarDisplays();
   buildAvatarGrid();
   updateSettingsUI();
@@ -1679,25 +1801,16 @@
   drawUpgrades();
   drawHomeRank();
   drawRank();
+  renderAttendance();
 
   (function() {
     const now = Date.now();
     const atUntil = parseInt(localStorage.getItem('trax_booster_autoTap_activeUntil') || '0');
-    if (atUntil > now) {
-      boosterAutoTapBonus = 1;
-    } else {
-      localStorage.removeItem('trax_booster_autoTap_bonus');
-      localStorage.removeItem('trax_booster_autoTap_activeUntil');
-      boosterAutoTapBonus = 0;
-    }
+    if (atUntil > now) { boosterAutoTapBonus = 1; }
+    else { localStorage.removeItem('trax_booster_autoTap_bonus'); localStorage.removeItem('trax_booster_autoTap_activeUntil'); boosterAutoTapBonus = 0; }
     const dbUntil = parseInt(localStorage.getItem('trax_booster_double_activeUntil') || '0');
-    if (dbUntil > now) {
-      boosterDoubleBonus = 2;
-    } else {
-      localStorage.removeItem('trax_booster_double_bonus');
-      localStorage.removeItem('trax_booster_double_activeUntil');
-      boosterDoubleBonus = 0;
-    }
+    if (dbUntil > now) { boosterDoubleBonus = 2; }
+    else { localStorage.removeItem('trax_booster_double_bonus'); localStorage.removeItem('trax_booster_double_activeUntil'); boosterDoubleBonus = 0; }
     updateUI();
     updateBoosterUI();
   })();
@@ -1713,13 +1826,14 @@
   setInterval(updateBoosterUI, 1000);
   setInterval(checkBoosterExpiry, 5000);
 
-  // Live spin status refresh
   setInterval(() => {
     const modal = document.getElementById('spinModal');
-    if (modal && modal.classList.contains('show')) {
-      updateSpinStatus();
-    }
+    if (modal && modal.classList.contains('show')) updateSpinStatus();
   }, 1000);
+
+  setInterval(() => {
+    renderAttendance();
+  }, 60 * 60 * 1000);
 </script>
 </body>
  </html>
