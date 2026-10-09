@@ -478,7 +478,7 @@
 
 <div class="modal" id="crashModal">
   <div class="modal-content" style="max-width:380px">
-    <h3>🚀 Crash Game</h3>
+    <h3 style="display:flex;justify-content:space-between;align-items:center">🚀 Crash Game <span onclick="showCrashInfo()" style="width:28px;height:28px;border-radius:50%;background:rgba(0,212,255,0.2);border:2px solid #00d4ff;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:#00d4ff;cursor:pointer">i</span></h3>
     <div class="crash-game">
       <div style="font-size:11px;color:#a0aec0;margin-bottom:8px">Bet select karein ya custom likhein:</div>
       <div class="bet-selector" id="betSelector"></div>
@@ -487,7 +487,6 @@
         <button onclick="applyCustomBet()" style="background:linear-gradient(135deg,#00b4ff,#0066ff);border:none;border-radius:10px;padding:12px 18px;color:white;font-size:12px;font-weight:900;cursor:pointer;letter-spacing:1px">SET</button>
       </div>
       <div id="betInfo" style="text-align:center;font-size:11px;color:#ff9500;font-weight:900;margin-top:5px;min-height:16px"></div>
-      <div id="crashRarity" style="text-align:center;font-size:11px;font-weight:900;letter-spacing:2px;margin:8px 0;min-height:16px"></div>
       <div class="crash-multiplier" id="crashMultiplier">1.00x</div>
       <div class="crash-bar"><div class="crash-bar-fill" id="crashBar" style="width:0%"></div></div>
       <div id="crashStatus" style="font-size:12px;color:#a0aec0;margin:10px 0">Bet lagayein aur cash out karein!</div>
@@ -495,6 +494,42 @@
       <button class="crash-cash-btn" onclick="cashOutCrash()" id="crashCashBtn" style="display:none">CASH OUT</button>
     </div>
     <button class="modal-btn" style="margin-top:10px;background:rgba(255,255,255,0.1);box-shadow:none;display:block;width:100%" onclick="closeCrash()">Close</button>
+  </div>
+</div>
+
+<div class="modal" id="crashInfoModal">
+  <div class="modal-content" style="max-width:400px;text-align:left">
+    <h3 style="text-align:center">🚀 How to Play Crash</h3>
+    <div style="color:#a0aec0;font-size:12px;line-height:1.8;margin-bottom:15px">
+      <p style="margin-bottom:12px"><b style="color:#00d4ff">📖 Kaise Khelein:</b></p>
+      <p style="margin-bottom:10px">1. <b style="color:white">Bet select karein</b> — preset buttons ya custom amount likhein</p>
+      <p style="margin-bottom:10px">2. <b style="color:white">START dabayein</b> — multiplier 1.00x se barhna shuru hoga</p>
+      <p style="margin-bottom:10px">3. <b style="color:white">CASH OUT dabayein</b> — jitni der rukenge utna zyada milega</p>
+      <p style="margin-bottom:15px">4. <b style="color:#ff0055">⚠️ CRASH hone se pehle cash out karein</b> — warna saara bet kho jayega!</p>
+      <p style="margin-bottom:10px"><b style="color:#00d4ff">🎰 Rarity Chances:</b></p>
+      <div style="background:rgba(160,174,192,0.1);border-left:3px solid #a0aec0;padding:8px 12px;border-radius:6px;margin-bottom:8px">
+        <b style="color:#a0aec0">🔘 COMMON — 92%</b><br>
+        <span style="font-size:11px">1.5x se 4x tak — zyada tar games yahi hoti hain</span>
+      </div>
+      <div style="background:rgba(0,212,255,0.1);border-left:3px solid #00d4ff;padding:8px 12px;border-radius:6px;margin-bottom:8px">
+        <b style="color:#00d4ff">💎 RARE — 6.5%</b><br>
+        <span style="font-size:11px">4x se 20x tak — 15 games mein 1 baar</span>
+      </div>
+      <div style="background:rgba(153,0,255,0.1);border-left:3px solid #9900ff;padding:8px 12px;border-radius:6px;margin-bottom:8px">
+        <b style="color:#9900ff">🔥 EPIC — 1.25%</b><br>
+        <span style="font-size:11px">20x se 50x tak — 80 games mein 1 baar</span>
+      </div>
+      <div style="background:rgba(255,150,0,0.1);border-left:3px solid #ff9500;padding:8px 12px;border-radius:6px;margin-bottom:15px">
+        <b style="color:#ff9500">⭐ LEGENDARY — 0.25%</b><br>
+        <span style="font-size:11px">50x se 100x tak — 400 games mein 1 baar</span>
+      </div>
+      <p style="margin-bottom:10px"><b style="color:#00d4ff">💡 Tips:</b></p>
+      <p style="margin-bottom:6px">✓ Chhoti bet se shuru karein</p>
+      <p style="margin-bottom:6px">✓ 2x ya 3x par cash out karna safe hai</p>
+      <p style="margin-bottom:6px">✓ Zyada lalach bura hai — crash ho sakta hai</p>
+      <p>✓ Kismat ka khel hai — soch samajh kar khelein</p>
+    </div>
+    <button class="modal-btn" onclick="closeCrashInfo()" style="display:block;width:100%">Samajh Gaya ✓</button>
   </div>
 </div>
 
@@ -822,24 +857,20 @@
   function getMineRate() { return 5 + getMiningBonusFromStickers(); }
   function getEffectiveMaxEnergy() { return maxEnergy + getMaxEnergyBonusFromStickers(); }
 
-  // 🎰 CRASH RARITY SYSTEM
   function getCrashPoint() {
     const rand = Math.random() * 100;
-    // COMMON (90%) - 1.5x to 4x
-    if (rand < 40) return 1.5 + Math.random() * 0.5;      // 40%
-    if (rand < 65) return 2.0 + Math.random() * 0.5;      // 25%
-    if (rand < 80) return 2.5 + Math.random() * 0.5;      // 15%
-    if (rand < 88) return 3.0 + Math.random() * 0.5;      // 8%
-    if (rand < 92) return 3.5 + Math.random() * 0.5;      // 4%
-    // RARE (7.5%) - 4x to 20x
-    if (rand < 95) return 4.0 + Math.random() * 1.0;      // 3%
-    if (rand < 97) return 5.0 + Math.random() * 5.0;      // 2%
-    if (rand < 98.5) return 10.0 + Math.random() * 5.0;   // 1.5%
-    if (rand < 99.5) return 15.0 + Math.random() * 5.0;   // 1%
-    // LEGENDARY (0.5%) - 20x to 100x
-    if (rand < 99.75) return 20.0 + Math.random() * 30.0; // 0.25%
-    if (rand < 99.95) return 50.0 + Math.random() * 50.0; // 0.2%
-    return 100.0;                                          // 0.05%
+    if (rand < 40) return 1.5 + Math.random() * 0.5;
+    if (rand < 65) return 2.0 + Math.random() * 0.5;
+    if (rand < 80) return 2.5 + Math.random() * 0.5;
+    if (rand < 88) return 3.0 + Math.random() * 0.5;
+    if (rand < 92) return 3.5 + Math.random() * 0.5;
+    if (rand < 95) return 4.0 + Math.random() * 1.0;
+    if (rand < 97) return 5.0 + Math.random() * 5.0;
+    if (rand < 98.5) return 10.0 + Math.random() * 5.0;
+    if (rand < 99.5) return 15.0 + Math.random() * 5.0;
+    if (rand < 99.75) return 20.0 + Math.random() * 30.0;
+    if (rand < 99.95) return 50.0 + Math.random() * 50.0;
+    return 100.0;
   }
 
   function init() {
@@ -1164,6 +1195,13 @@
   }
   function closeModal() { document.getElementById('modal').classList.remove('show'); }
 
+  function showCrashInfo() {
+    document.getElementById('crashInfoModal').classList.add('show');
+  }
+  function closeCrashInfo() {
+    document.getElementById('crashInfoModal').classList.remove('show');
+  }
+
   function openSpin() {
     document.getElementById('spinModal').classList.add('show');
     document.getElementById('resultDisplay').classList.remove('show');
@@ -1232,7 +1270,6 @@
     }, 5200);
   }
 
-  // ===== CRASH =====
   const BET_OPTIONS = [500, 1000, 5000, 10000, 25000, 50000];
   let crashState = { running: false, multiplier: 1, crashed: false, bet: 1000 };
 
@@ -1286,7 +1323,6 @@
   }
   function closeCrash() { if (crashState.running) { showModal('⚠️ Wait', 'Pehle cash out karein.'); return; } document.getElementById('crashModal').classList.remove('show'); resetCrashUI(); }
   function resetCrashUI() {
-    document.getElementById('crashRarity').textContent = '';
     document.getElementById('crashMultiplier').textContent = '1.00x';
     document.getElementById('crashMultiplier').classList.remove('crashed');
     document.getElementById('crashBar').style.width = '0%';
@@ -1305,15 +1341,6 @@
     document.getElementById('crashCashBtn').style.display = 'block';
     document.getElementById('crashStatus').textContent = 'Multiplier barh raha hai...';
     const crashPoint = getCrashPoint();
-    // Rarity hint
-    let rarity = 'COMMON';
-    let rarityColor = '#a0aec0';
-    if (crashPoint >= 50) { rarity = '⭐ LEGENDARY'; rarityColor = '#ff9500'; }
-    else if (crashPoint >= 15) { rarity = '🔥 EPIC'; rarityColor = '#9900ff'; }
-    else if (crashPoint >= 5) { rarity = '💎 RARE'; rarityColor = '#00d4ff'; }
-    document.getElementById('crashRarity').textContent = 'Target: ' + rarity;
-    document.getElementById('crashRarity').style.color = rarityColor;
-
     const interval = setInterval(() => {
       if (crashState.crashed) { clearInterval(interval); return; }
       crashState.multiplier += 0.025 + Math.random() * 0.025 + crashState.multiplier * 0.006;
@@ -1345,7 +1372,6 @@
     playSound('cash'); vibrate('success');
   }
 
-  // PUZZLE 7x7
   let puzzleState = { tiles: [], moves: 0, solved: false };
   const PUZZLE_SIZE = 7;
   const PUZZLE_REWARD = 50000;
@@ -1411,4 +1437,4 @@
   updateSettingsUI();
 </script>
 </body>
-</html>
+ </html>
