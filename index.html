@@ -111,6 +111,13 @@
   .task-icon-wrap.twitter { background: linear-gradient(135deg, #1a1a1a, #000000); border: 1px solid rgba(255,255,255,0.2); }
   .task-icon-wrap.youtube { background: linear-gradient(135deg, #ff0055, #990033); }
   .task-icon-wrap.invite { background: linear-gradient(135deg, #00aaff, #0066cc); }
+  .task-icon-wrap.pink { background: linear-gradient(135deg, #ff0088, #990055); }
+  .task-icon-wrap.green { background: linear-gradient(135deg, #00ff88, #008844); }
+  .task-icon-wrap.orange { background: linear-gradient(135deg, #ff9500, #cc5500); }
+  .task-icon-wrap.purple { background: linear-gradient(135deg, #a040ff, #6020a0); }
+  .task-icon-wrap.cyan { background: linear-gradient(135deg, #00d4ff, #0066cc); }
+  .task-icon-wrap.red { background: linear-gradient(135deg, #ff0044, #990022); }
+  .task-icon-wrap.yellow { background: linear-gradient(135deg, #ffd700, #aa7700); }
   .task-content { flex: 1; }
   .task-title { font-size: 13px; font-weight: 900; color: white; margin-bottom: 4px; }
   .task-reward-row { font-size: 11px; color: #a0aec0; font-weight: 700; }
@@ -163,14 +170,15 @@
   .sticker-tab.epic.active { background: linear-gradient(135deg, #9900ff, #6600aa); }
   .sticker-tab.legendary.active { background: linear-gradient(135deg, #ff9500, #cc7700); }
   .sticker-shop { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .sticker-card { background: rgba(15,30,55,0.8); border: 1px solid rgba(0,180,255,0.2); border-radius: 14px; padding: 12px 8px; text-align: center; cursor: pointer; }
-  .sticker-card.locked { opacity: 0.5; cursor: not-allowed; }
+  .sticker-card { background: rgba(15,30,55,0.8); border: 1px solid rgba(0,180,255,0.2); border-radius: 14px; padding: 12px 8px; text-align: center; cursor: pointer; position: relative; }
+  .sticker-card.locked { opacity: 0.6; cursor: not-allowed; }
   .sticker-card.owned { border-color: #00ff88; }
   .sticker-card.max { border-color: #ff9500; background: rgba(255,150,0,0.1); }
   .sticker-icon { font-size: 34px; margin-bottom: 4px; }
   .sticker-name { font-size: 11px; font-weight: 900; margin-bottom: 2px; }
   .sticker-lvl { font-size: 8px; color: #ff9500; font-weight: 900; margin-bottom: 3px; }
   .sticker-benefit { font-size: 9px; color: #00ff88; margin-bottom: 5px; min-height: 20px; }
+  .sticker-unlock-hint { font-size: 8px; color: #ff0055; font-weight: 900; margin-bottom: 4px; min-height: 20px; }
   .sticker-price { font-size: 10px; color: #00d4ff; font-weight: 900; }
   .sticker-price.max { color: #ff9500; }
   .sticker-price.locked { color: #7a8ba5; }
@@ -333,6 +341,7 @@
   .profile-info-row .val { font-size: 13px; color: white; font-weight: 900; }
   .profile-action-btn { background: linear-gradient(135deg, #00b4ff, #0066ff); border: none; border-radius: 14px; padding: 14px; color: white; font-size: 14px; font-weight: 900; cursor: pointer; width: 100%; margin-bottom: 10px; }
   .profile-action-btn.green { background: linear-gradient(135deg, #00ff88, #00aa55); }
+  .profile-action-btn.purple { background: linear-gradient(135deg, #a040ff, #6020a0); }
   .twist-payouts { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin: 10px 0; }
   .twist-payout-box { background: rgba(15,30,55,0.8); border-radius: 10px; padding: 6px; text-align: center; }
   .twist-payout-box .lbl { font-size: 8px; color: #7a8ba5; font-weight: 900; margin-bottom: 2px; }
@@ -389,6 +398,7 @@
   .transfer-box h3 { font-size: 15px; font-weight: 900; color: #00d4ff; margin-bottom: 12px; text-align: center; }
   .transfer-input { width: 100%; background: rgba(0,0,0,0.4); border: 1px solid rgba(0,212,255,0.4); border-radius: 12px; padding: 12px; color: white; font-weight: 900; text-align: center; outline: none; margin-bottom: 10px; font-size: 14px; }
   .transfer-btn { width: 100%; background: linear-gradient(135deg, #00ff88, #00aa55); border: none; border-radius: 12px; padding: 14px; color: white; font-weight: 900; cursor: pointer; font-size: 14px; }
+  .transfer-btn:disabled { background: linear-gradient(135deg, #444, #222); cursor: not-allowed; opacity: 0.6; }
 </style>
 </head>
 <body>
@@ -488,7 +498,7 @@
         </div>
         <div class="side-card" onclick="navTo('sticker')">
           <div class="side-card-icon">🎨</div>
-          <div class="side-card-name">Shop</div>
+          <div class="side-card-name">Trax NFT</div>
           <div class="side-card-sub">Stickers</div>
         </div>
         <div class="side-card" onclick="navTo('mine')">
@@ -526,7 +536,6 @@
     <div class="mini-game-card" onclick="openPuzzle()"><div class="mini-game-icon">🧩</div><div class="mini-game-name">Puzzle</div><div class="mini-game-desc">3 Modes</div></div>
     <div class="mini-game-card" onclick="openCrash()"><div class="mini-game-icon">🚀</div><div class="mini-game-name">Crash</div><div class="mini-game-desc">Win big</div></div>
     <div class="mini-game-card" onclick="openCoinFlip()"><div class="mini-game-icon">🪙</div><div class="mini-game-name">Coin Flip</div><div class="mini-game-desc">T or R</div></div>
-    <div class="mini-game-card" onclick="navTo('transfer')"><div class="mini-game-icon">💸</div><div class="mini-game-name">Transfer</div><div class="mini-game-desc">Send coins</div></div>
   </div>
 </div>
 
@@ -599,8 +608,7 @@
     <div class="profile-info-row"><div class="lbl">🔥 Daily Streak</div><div class="val" id="profileInfoStreak">0 Days</div></div>
   </div>
   <button class="profile-action-btn" onclick="navTo('editname')">✏️ Edit Name & Avatar</button>
-  <button class="profile-action-btn green" onclick="navTo('transfer')">💸 Transfer Coins</button>
-  <button class="profile-action-btn" onclick="shareMyProfile()" style="background:linear-gradient(135deg,#a040ff,#6020a0)">🔗 Share My Profile</button>
+  <button class="profile-action-btn purple" onclick="shareMyProfile()">🔗 Share My Profile</button>
 </div>
 
 <!-- MINE -->
@@ -635,34 +643,14 @@
   <div id="fullTasksListNew"></div>
 </div>
 
-<!-- TRANSFER -->
-<div class="tab-content" id="tab-transfer">
-  <div class="page-title-bar"><div class="page-title-icon">💸</div><div class="page-title-text">Transfer</div></div>
-  <div class="transfer-box">
-    <h3>💸 Send Coins to Another Player</h3>
-    <input type="text" class="transfer-input" id="transferIdInput" placeholder="Enter Player ID (without #)" maxlength="6">
-    <input type="number" class="transfer-input" id="transferAmountInput" placeholder="Amount (TRAX)" min="100">
-    <button class="transfer-btn" onclick="doTransfer()">SEND COINS</button>
-  </div>
-  <div style="background:rgba(0,180,255,0.1);border:1px solid rgba(0,180,255,0.3);border-radius:14px;padding:14px;margin-bottom:14px">
-    <div style="font-size:12px;color:#00d4ff;font-weight:900;margin-bottom:8px">📋 TRANSFER RULES</div>
-    <div style="font-size:10px;color:#a0aec0;line-height:1.8">
-      • Minimum transfer: 100 TRAX<br>
-      • Player ID enter karo (jaisa Profile mein hai, e.g., 0491)<br>
-      • Apne aap ko transfer nahi kar sakte<br>
-      • Coins turant transfer ho jayenge
-    </div>
-  </div>
-</div>
-
 <!-- WALLET -->
 <div class="tab-content" id="tab-wallet">
   <div class="page-title-bar"><div class="page-title-icon">💼</div><div class="page-title-text">Wallet</div></div>
-  <div class="big-profile-card" style="background:linear-gradient(135deg,rgba(0,180,255,0.15),rgba(150,0,255,0.08));border:2px solid rgba(0,212,255,0.5);border-radius:22px;padding:18px;margin-bottom:14px">
-    <div class="big-profile-top" style="display:flex;align-items:center;gap:14px;margin-bottom:14px">
+  <div style="background:linear-gradient(135deg,rgba(0,180,255,0.15),rgba(150,0,255,0.08));border:2px solid rgba(0,212,255,0.5);border-radius:22px;padding:18px;margin-bottom:14px">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px">
       <div style="width:72px;height:72px;position:relative;flex-shrink:0"><div style="position:absolute;inset:-4px;border-radius:50%;background:conic-gradient(from 0deg, #00d4ff, #00ff88, #9900ff, #ff0055, #00d4ff);animation:spinRing 4s linear infinite;opacity:0.85;filter:blur(2px)"></div><div class="big-profile-avatar" id="moreAvatarBig" style="position:absolute;inset:0;border-radius:50%;background:linear-gradient(135deg, #0a1929, #061224);display:flex;align-items:center;justify-content:center;font-size:32px;border:2px solid rgba(0,212,255,0.6);background-size:cover;background-position:center;z-index:2">👤</div></div>
       <div style="flex:1">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><span id="moreProfileName" style="font-size:17px;font-weight:900;color:white">Player</span><span class="big-profile-badge" id="moreBadge" style="background:linear-gradient(135deg, #ffd700, #ff9500);color:#000;font-size:9px;font-weight:900;padding:3px 8px;border-radius:8px">⭐ Lv 1</span></div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><span id="moreProfileName" style="font-size:17px;font-weight:900;color:white">Player</span><span id="moreBadge" style="background:linear-gradient(135deg, #ffd700, #ff9500);color:#000;font-size:9px;font-weight:900;padding:3px 8px;border-radius:8px">⭐ Lv 1</span></div>
         <div style="font-size:11px;color:#7a8ba5;font-weight:700" id="morePlayerId">ID: #000000</div>
       </div>
     </div>
@@ -672,7 +660,7 @@
       <div style="font-size:9px;color:#ff9500;font-weight:900;margin-top:3px">⏳ NOT LAUNCHED YET</div>
     </div>
   </div>
-  <div class="more-card" onclick="navTo('transfer')"><div class="more-card-icon referral">💸</div><div class="more-card-info"><h4>Transfer Coins</h4><p>Send to another player</p></div><div class="more-card-arrow">›</div></div>
+  <div class="more-card" style="opacity:0.6;cursor:not-allowed"><div class="more-card-icon referral">💸</div><div class="more-card-info"><h4>Transfer Coins</h4><p>Coming soon</p></div><span class="coming-soon-badge">SOON</span></div>
   <div style="background:rgba(255,150,0,0.15);border:1px solid rgba(255,150,0,0.4);border-radius:14px;padding:14px;margin-bottom:15px;text-align:center">
     <div style="font-size:32px;margin-bottom:6px">🚀</div>
     <div style="font-size:14px;font-weight:900;color:#ff9500;margin-bottom:4px">Coming Soon</div>
@@ -715,7 +703,7 @@
 </div>
 
 <div class="tab-content" id="tab-sticker">
-  <div class="page-title-bar"><div class="page-title-icon">🎨</div><div class="page-title-text">Sticker Shop</div></div>
+  <div class="page-title-bar"><div class="page-title-icon">🎨</div><div class="page-title-text">Trax NFT</div></div>
   <div class="sticker-tabs" id="stickerTabs"></div>
   <div class="sticker-shop" id="stickerShopContainer"></div>
 </div>
@@ -781,7 +769,7 @@
     <div class="crash-game">
       <div class="bet-selector" id="betSelector"></div>
       <div style="margin:10px 0;display:flex;gap:8px">
-        <input type="number" id="customBetInput" placeholder="Custom" min="100" style="flex:1;background:rgba(0,0,0,0.4);border:1px solid rgba(0,212,255,0.4);border-radius:10px;padding:12px;color:white;font-weight:900;text-align:center;outline:none">
+        <input type="number" id="customBetInput" placeholder="Custom" min="1000000" style="flex:1;background:rgba(0,0,0,0.4);border:1px solid rgba(0,212,255,0.4);border-radius:10px;padding:12px;color:white;font-weight:900;text-align:center;outline:none">
         <button onclick="applyCustomBet()" style="background:linear-gradient(135deg,#00b4ff,#0066ff);border:none;border-radius:10px;padding:12px 18px;color:white;font-weight:900;cursor:pointer">SET</button>
       </div>
       <div class="crash-multiplier" id="crashMultiplier">1.00x</div>
@@ -814,12 +802,12 @@
       <div style="background:rgba(0,0,0,0.4);border:1.5px solid rgba(0,212,255,0.4);border-radius:14px;padding:14px;margin:14px 0;text-align:left">
         <div style="font-size:11px;color:#a0aec0;margin-bottom:8px;font-weight:900">◆ YOUR BET</div>
         <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:10px">
-          <div class="bet-option" onclick="setFlipBet(1000)">1,000</div>
-          <div class="bet-option" onclick="setFlipBet(5000)">5,000</div>
-          <div class="bet-option" onclick="setFlipBet(10000)">10,000</div>
+          <div class="bet-option" onclick="setFlipBet(1000000)">1M</div>
+          <div class="bet-option" onclick="setFlipBet(5000000)">5M</div>
+          <div class="bet-option" onclick="setFlipBet(10000000)">10M</div>
         </div>
-        <input type="number" id="flipBetInput" class="input-field" placeholder="Custom bet" min="100" value="1000" oninput="updateFlipPreview()">
-        <div style="font-size:10px;color:#ff9500;text-align:center" id="flipBetInfo">Min bet: 100 TRAX</div>
+        <input type="number" id="flipBetInput" class="input-field" placeholder="Custom bet" min="1000000" value="1000000" oninput="updateFlipPreview()">
+        <div style="font-size:10px;color:#ff9500;text-align:center" id="flipBetInfo">Min bet: 1,000,000 TRAX</div>
       </div>
       <button class="crash-bet-btn" onclick="startFlipGame()" style="width:100%">🎮 START</button>
     </div>
@@ -871,12 +859,12 @@
       <button class="twist-bet-btn" id="twistBetDown" onclick="adjustTwistBet(-1)">−</button>
       <div class="twist-bet-display">
         <div class="lbl">BET AMOUNT</div>
-        <div class="val"><span id="twistBetValue">1,000</span> TRAX</div>
+        <div class="val"><span id="twistBetValue">1,000,000</span> TRAX</div>
       </div>
       <button class="twist-bet-btn" id="twistBetUp" onclick="adjustTwistBet(1)">+</button>
     </div>
     <div class="twist-custom-row">
-      <input type="number" class="twist-custom-input" id="twistCustomBet" placeholder="Custom bet" min="100">
+      <input type="number" class="twist-custom-input" id="twistCustomBet" placeholder="Custom bet" min="1000000">
       <button class="twist-set-btn" onclick="applyTwistCustomBet()">SET</button>
     </div>
     <button class="twist-spin-btn" id="twistSpinBtn" onclick="playTwist()">🌀 SPIN</button>
@@ -885,7 +873,6 @@
 </div>
 
 <script>
-  // ===== GLOBALS =====
   const tg = window.Telegram ? window.Telegram.WebApp : null;
   if (tg) { tg.ready(); tg.expand(); if (tg.setHeaderColor) tg.setHeaderColor('#050a14'); }
 
@@ -894,7 +881,6 @@
   }
   document.getElementById('headerLogo').innerHTML = getTraxLogoSVG();
 
-  // ===== AUDIO =====
   let audioCtx = null;
   function initAudio() { if (!audioCtx) { try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e) {} } }
   function playSound(type) {
@@ -919,12 +905,10 @@
     }
   }
 
-  // ===== SETTINGS =====
   let settings = { sound: localStorage.getItem('trax_sound') !== 'off', vibration: localStorage.getItem('trax_vibration') !== 'off' };
   function toggleSetting(key) { settings[key] = !settings[key]; localStorage.setItem('trax_' + key, settings[key] ? 'on' : 'off'); updateSettingsUI(); }
   function updateSettingsUI() { document.getElementById('soundToggle').classList.toggle('on', settings.sound); document.getElementById('vibrationToggle').classList.toggle('on', settings.vibration); }
 
-  // ===== USER =====
   let userName = localStorage.getItem('trax_username') || '';
   let userAvatar = localStorage.getItem('trax_avatar') || '👤';
   let avatarIsImage = localStorage.getItem('trax_avatar_isimg') === 'true';
@@ -956,16 +940,74 @@
     reader.onload = (e) => { userAvatar = e.target.result; avatarIsImage = true; buildAvatarGrid(); showModal('✅ Uploaded', 'Save dabayein.'); };
     reader.readAsDataURL(file);
   }
+
+  // ===== OWNER CHECK =====
+  const OWNER_NAME = 'Trex offical';
+  function isOwner() { return userName === OWNER_NAME; }
+
+  const NAME_COOLDOWN_MS = 15 * 24 * 60 * 60 * 1000; // 15 days
+  function getNameCooldownRemaining() {
+    const last = parseInt(localStorage.getItem('trax_nameChangedAt') || '0');
+    if (!last) return 0;
+    const elapsed = Date.now() - last;
+    return Math.max(0, NAME_COOLDOWN_MS - elapsed);
+  }
+  function formatNameCooldown(ms) {
+    const days = Math.floor(ms / (24*60*60*1000));
+    const hours = Math.floor((ms % (24*60*60*1000)) / (60*60*1000));
+    return days + 'd ' + hours + 'h';
+  }
+
   function saveProfile() {
     const newName = document.getElementById('usernameInput').value.trim();
     if (!newName && !userName) { showModal('⚠️ Name Required', 'Pehle apna naam likhein.'); return; }
     if (userName) {
+      // Name change attempt
+      if (newName && newName !== userName) {
+        if (isOwner()) {
+          // Owner bypass
+          userName = newName;
+          localStorage.setItem('trax_username', userName);
+          localStorage.setItem('trax_nameChangedAt', Date.now());
+          updateAvatarDisplays(); updateProfilePage();
+          showModal('👑 Owner Name Changed!', 'Welcome ' + userName + '!');
+          return;
+        }
+        const remaining = getNameCooldownRemaining();
+        const hasCard = stickerLevels['namecard'];
+        if (remaining > 0) {
+          if (hasCard) {
+            // Card owned but cooldown not done — still need to wait!
+            showModal('⏰ Cooldown Active', 'Name change card aapke paas hai, lekin\n15-din ka cooldown abhi khatam nahi hua.\n\nBaaki samay: ' + formatNameCooldown(remaining) + '\n\nCooldown khatam hone par card use hoga.');
+            return;
+          } else {
+            showModal('⏰ Cooldown Active', 'Agla naam change: ' + formatNameCooldown(remaining) + ' baad.');
+            return;
+          }
+        }
+        // Cooldown done — check if card exists (needed)
+        if (!hasCard) {
+          showModal('❌ Name Card Required', 'Name change karne ke liye Trax NFT section mein\n"Name Change Card" kharido (1,000,000 TRAX).\n\nCooldown: 15 din.');
+          return;
+        }
+        // Consume card
+        delete stickerLevels['namecard'];
+        localStorage.setItem('trax_stickers_v4', JSON.stringify(stickerLevels));
+        userName = newName;
+        localStorage.setItem('trax_username', userName);
+        localStorage.setItem('trax_nameChangedAt', Date.now());
+        updateAvatarDisplays(); updateProfilePage();
+        showModal('🎉 Name Changed!', 'Welcome ' + userName + '!');
+        return;
+      }
+      // Just avatar update
       localStorage.setItem('trax_avatar', userAvatar);
       localStorage.setItem('trax_avatar_isimg', avatarIsImage);
       updateAvatarDisplays(); updateProfilePage();
       showModal('✅ Saved', 'Avatar update ho gaya!');
       return;
     }
+    // First time name set
     if (newName.length < 3) { showModal('⚠️ Too Short', 'Naam kam se kam 3 characters.'); return; }
     userName = newName;
     localStorage.setItem('trax_username', userName);
@@ -994,13 +1036,11 @@
   let boosterDoubleBonus = parseInt(localStorage.getItem('trax_booster_double_bonus') || '0');
 
   const userId = tg && tg.initDataUnsafe && tg.initDataUnsafe.user ? tg.initDataUnsafe.user.id : Math.floor(Math.random() * 9000) + 1000;
-  // 6-digit unique ID
   let playerId = localStorage.getItem('trax_playerId') || String(userId).slice(-6).padStart(6, '0');
   localStorage.setItem('trax_playerId', playerId);
 
-  // ===== XP & LEVEL SYSTEM =====
+  // ===== XP & LEVEL =====
   function getXPForLevel(level) {
-    // Random-ish progression: 100, 250, 500, 900, 1500, 2300, 3400, 4800, 6500, 8500...
     const arr = [100, 250, 500, 900, 1500, 2300, 3400, 4800, 6500, 8500, 11000, 14000, 17500, 21500, 26000];
     if (level <= arr.length) return arr[level - 1];
     return 26000 + (level - arr.length) * 5000;
@@ -1019,12 +1059,10 @@
     localStorage.setItem('trax_level', currentLevel);
     updateUI();
   }
-  function getLevelFromXP() {
-    return { level: currentLevel, xp: currentXP, need: getXPForLevel(currentLevel) };
-  }
+  function getLevelFromXP() { return { level: currentLevel, xp: currentXP, need: getXPForLevel(currentLevel) }; }
 
+  // ===== STICKERS (Trax NFT) =====
   const STICKERS = [
-    // COMMON
     { id: 'c1', tier: 'common', icon: '👆', name: 'Tap I', bonus: lvl => '+' + (1*lvl) + ' Tap', cost: 5000 },
     { id: 'c2', tier: 'common', icon: '✋', name: 'Tap II', bonus: lvl => '+' + (2*lvl) + ' Tap', cost: 8000 },
     { id: 'c3', tier: 'common', icon: '🤚', name: 'Tap III', bonus: lvl => '+' + (3*lvl) + ' Tap', cost: 10000 },
@@ -1035,26 +1073,22 @@
     { id: 'c8', tier: 'common', icon: '💰', name: 'Coin', bonus: lvl => '+' + (5*lvl) + ' Auto', cost: 13000 },
     { id: 'c9', tier: 'common', icon: '⛏️', name: 'Pickaxe', bonus: lvl => '+' + (2*lvl) + ' Mining', cost: 14000 },
     { id: 'c10', tier: 'common', icon: '🌟', name: 'Star', bonus: lvl => '+' + (3*lvl) + ' Tap', cost: 12000 },
-    // RARE
     { id: 'r1', tier: 'rare', icon: '💎', name: 'Diamond', bonus: lvl => '+' + (10*lvl) + ' Tap', cost: 60000 },
     { id: 'r2', tier: 'rare', icon: '🔮', name: 'Orb', bonus: lvl => '+' + (5*lvl) + ' Energy', cost: 70000 },
     { id: 'r3', tier: 'rare', icon: '🚀', name: 'Rocket', bonus: lvl => '+' + (25*lvl) + ' Auto', cost: 80000 },
     { id: 'r4', tier: 'rare', icon: '⚙️', name: 'Gear', bonus: lvl => '+' + (50*lvl) + ' MaxEnergy', cost: 90000 },
     { id: 'r5', tier: 'rare', icon: '⛏️', name: 'Drill', bonus: lvl => '+' + (5*lvl) + ' Mining', cost: 100000 },
-    // EPIC
     { id: 'e1', tier: 'epic', icon: '👑', name: 'Crown', bonus: lvl => '+' + (100*lvl) + ' Auto', cost: 400000 },
     { id: 'e2', tier: 'epic', icon: '🦅', name: 'Eagle', bonus: lvl => '+' + (40*lvl) + ' Tap', cost: 450000 },
     { id: 'e3', tier: 'epic', icon: '🔥', name: 'Inferno', bonus: lvl => '+' + (15*lvl) + ' Energy', cost: 500000 },
-    // LEGENDARY
     { id: 'l1', tier: 'legendary', icon: '🐉', name: 'Dragon', bonus: lvl => '+' + (500*lvl) + ' Auto', cost: 2000000 },
     { id: 'l2', tier: 'legendary', icon: '🦄', name: 'Unicorn', bonus: lvl => '+' + (200*lvl) + ' Tap', cost: 2500000 },
-    // NAME CHANGE CARD
-    { id: 'namecard', tier: 'legendary', icon: '📝', name: 'Name Change Card', bonus: lvl => 'Change your name', cost: 1000000, isNameCard: true }
+    { id: 'namecard', tier: 'legendary', icon: '📝', name: 'Name Change Card', bonus: () => 'Change name after 15d cooldown', cost: 1000000, isNameCard: true }
   ];
-  const MAX_STICKER_LEVEL = 10; // 10 levels now
+  const MAX_STICKER_LEVEL = 10;
   const STICKER_MULT = 1.5;
-
   let currentStickerTab = 'common';
+
   function renderStickerTabs() {
     const tabs = document.getElementById('stickerTabs');
     if (!tabs) return;
@@ -1070,19 +1104,18 @@
   }
 
   function isStickerUnlocked(id) {
-    // Common tier always unlocked, others need previous tier maxed
     const s = STICKERS.find(x => x.id === id);
     if (!s) return false;
     if (s.tier === 'common') return true;
-    if (s.isNameCard) return true; // name card unlocked if legendary tier open
-    if (s.tier === 'rare') {
-      return STICKERS.filter(x => x.tier === 'common').every(x => (stickerLevels[x.id] || 0) >= MAX_STICKER_LEVEL);
-    }
-    if (s.tier === 'epic') {
-      return STICKERS.filter(x => x.tier === 'rare').every(x => (stickerLevels[x.id] || 0) >= MAX_STICKER_LEVEL);
-    }
-    if (s.tier === 'legendary') {
+    if (s.isNameCard) {
+      // Name card only unlocks if legendary tier accessed
       return STICKERS.filter(x => x.tier === 'epic').every(x => (stickerLevels[x.id] || 0) >= MAX_STICKER_LEVEL);
+    }
+    if (s.tier === 'rare') return STICKERS.filter(x => x.tier === 'common').every(x => (stickerLevels[x.id] || 0) >= MAX_STICKER_LEVEL);
+    if (s.tier === 'epic') return STICKERS.filter(x => x.tier === 'rare').every(x => (stickerLevels[x.id] || 0) >= MAX_STICKER_LEVEL);
+    if (s.tier === 'legendary') {
+      const prev = STICKERS.filter(x => x.tier === 'epic' && !x.isNameCard);
+      return prev.every(x => (stickerLevels[x.id] || 0) >= MAX_STICKER_LEVEL);
     }
     return false;
   }
@@ -1092,17 +1125,17 @@
     if (s.tier === 'rare') {
       const prev = STICKERS.filter(x => x.tier === 'common');
       const notMaxed = prev.find(x => (stickerLevels[x.id] || 0) < MAX_STICKER_LEVEL);
-      if (notMaxed) return 'Max out all Common stickers (e.g., ' + notMaxed.name + ')';
+      if (notMaxed) return 'Max out all Common stickers (e.g., ' + notMaxed.name + ' Lv ' + (stickerLevels[notMaxed.id] || 0) + '/' + MAX_STICKER_LEVEL + ')';
     }
     if (s.tier === 'epic') {
       const prev = STICKERS.filter(x => x.tier === 'rare');
       const notMaxed = prev.find(x => (stickerLevels[x.id] || 0) < MAX_STICKER_LEVEL);
-      if (notMaxed) return 'Max out all Rare stickers (e.g., ' + notMaxed.name + ')';
+      if (notMaxed) return 'Max out all Rare stickers (e.g., ' + notMaxed.name + ' Lv ' + (stickerLevels[notMaxed.id] || 0) + '/' + MAX_STICKER_LEVEL + ')';
     }
     if (s.tier === 'legendary') {
       const prev = STICKERS.filter(x => x.tier === 'epic');
       const notMaxed = prev.find(x => (stickerLevels[x.id] || 0) < MAX_STICKER_LEVEL);
-      if (notMaxed) return 'Max out all Epic stickers (e.g., ' + notMaxed.name + ')';
+      if (notMaxed) return 'Max out all Epic stickers (e.g., ' + notMaxed.name + ' Lv ' + (stickerLevels[notMaxed.id] || 0) + '/' + MAX_STICKER_LEVEL + ')';
     }
     return null;
   }
@@ -1120,7 +1153,7 @@
   function getEffectiveTapPower() { return baseTapPower + getStickerBonusFromAll('Tap') + boosterAutoTapBonus + boosterDoubleBonus; }
   function getEffectiveMaxEnergy() { return maxEnergy + getStickerBonusFromAll('MaxEnergy'); }
 
-  // ===== UI UPDATE =====
+  // ===== UI =====
   function updateUI() {
     document.getElementById('balance').textContent = Math.floor(balance).toLocaleString();
     document.getElementById('energyText').textContent = energy;
@@ -1130,7 +1163,6 @@
     document.getElementById('statTap').textContent = getEffectiveTapPower();
     document.getElementById('statAuto').textContent = autoEarn;
 
-    // Level & XP
     const levelInfo = getLevelFromXP();
     document.getElementById('levelNum').textContent = levelInfo.level;
     document.getElementById('xpFill').style.width = (levelInfo.xp / levelInfo.need * 100) + '%';
@@ -1145,9 +1177,18 @@
     document.getElementById('mineRateVal').textContent = '+' + getMiningRate();
     updateProfilePage();
     updateSideCards();
+    updateNameCooldownText();
   }
 
-  // ===== SIDE CARDS =====
+  function updateNameCooldownText() {
+    const el = document.getElementById('nameCooldownText');
+    if (!el) return;
+    if (isOwner()) { el.textContent = '👑 Owner — no restrictions'; el.style.color = '#ffd700'; return; }
+    const remaining = getNameCooldownRemaining();
+    if (remaining > 0) { el.textContent = '⏰ Agla naam change: ' + formatNameCooldown(remaining) + ' baad'; el.style.color = '#ff9500'; }
+    else { el.textContent = '✅ Name change kar sakte ho (card required)'; el.style.color = '#00ff88'; }
+  }
+
   function updateSideCards() {
     const rp = getRedPocketState();
     const rpTimer = document.getElementById('rpSideTimer');
@@ -1172,7 +1213,6 @@
     }
   }
 
-  // ===== PROFILE PAGE =====
   function updateProfilePage() {
     const levelInfo = getLevelFromXP();
     const attData = checkAttendanceReset();
@@ -1192,7 +1232,6 @@
     if (el('profileInfoStreak')) el('profileInfoStreak').textContent = attData.currentDay + ' Days';
   }
 
-  // ===== SAVE =====
   function save() {
     localStorage.setItem('trax_balance', Math.floor(balance));
     localStorage.setItem('trax_energy', energy);
@@ -1205,14 +1244,12 @@
   }
 
   // ===== TAP =====
-  const coinBtn = document.getElementById('coinBtn');
-  coinBtn.addEventListener('click', (e) => {
+  document.getElementById('coinBtn').addEventListener('click', (e) => {
     if (energy <= 0) { playSound('error'); vibrate('error'); showModal('⚡ Energy Empty', 'Energy khatam.'); return; }
     const gain = getEffectiveTapPower();
     balance += gain; energy--; totalTaps++; totalEarned += gain;
-    addXP(1); // +1 XP per tap
+    addXP(1);
     updateUI(); save();
-    // Show float text only, NO sparkles/colour dots
     showFloat(e.clientX, e.clientY, '+' + gain);
     playSound('tap'); vibrate('light');
   });
@@ -1222,18 +1259,15 @@
     el.style.left = (x - 20) + 'px'; el.style.top = (y - 40) + 'px';
     document.body.appendChild(el); setTimeout(() => el.remove(), 1000);
   }
-  // REMOVED createSparkles
 
   // ===== MINING =====
   const MINING_RATES = [5, 10, 20, 35, 50];
   let miningTimerInterval = null;
   let miningElapsed = 0;
-
   function getMiningRate() {
     const lvl = Math.min(parseInt(localStorage.getItem('upg_miningPower') || '0'), MINING_RATES.length - 1);
     return MINING_RATES[lvl];
   }
-
   function startMining() {
     if (miningActive) { showModal('⛏️ Mining', 'Already mining!'); return; }
     if (energy < 10) { showModal('⚡ Not Enough', '10 energy chahiye.'); return; }
@@ -1241,7 +1275,6 @@
     miningActive = true;
     miningElapsed = 0;
     updateUI(); save();
-
     const btn = document.getElementById('mineStartBtn');
     const timer = document.getElementById('mineTimer');
     const progress = document.getElementById('mineProgressFill');
@@ -1250,21 +1283,15 @@
     btn.textContent = '⛏️ MINING...';
     timer.textContent = '01:00';
     progress.style.width = '0%';
-
     miningTimerInterval = setInterval(() => {
       miningElapsed++;
       const rate = getMiningRate();
-      balance += rate;
-      totalEarned += rate;
-      miningTotalEarned += rate;
+      balance += rate; totalEarned += rate; miningTotalEarned += rate;
       addXP(1);
       const remaining = 60 - miningElapsed;
-      const mm = String(Math.floor(remaining / 60)).padStart(2, '0');
-      const ss = String(remaining % 60).padStart(2, '0');
-      timer.textContent = mm + ':' + ss;
+      timer.textContent = '00:' + String(remaining).padStart(2, '0');
       progress.style.width = (miningElapsed / 60 * 100) + '%';
       updateUI(); save();
-
       if (miningElapsed >= 60) {
         clearInterval(miningTimerInterval);
         miningTimerInterval = null;
@@ -1275,9 +1302,8 @@
         btn.textContent = 'START MINING (10 ⚡)';
         timer.textContent = 'READY';
         progress.style.width = '0%';
-        const total = rate * 60;
         playSound('win'); vibrate('success');
-        showModal('⛏️ Mining Complete!', 'Aapne 60 seconds mein\n+' + total.toLocaleString() + ' TRAX kamaye!');
+        showModal('⛏️ Mining Complete!', 'Aapne 60 seconds mein\n+' + (rate * 60).toLocaleString() + ' TRAX kamaye!');
         updateUI();
       }
     }, 1000);
@@ -1399,7 +1425,7 @@
     if (id === 'tapPower') baseTapPower += 1;
     if (id === 'maxEnergy') maxEnergy += 50;
     if (id === 'autoEarn') autoEarn += 5;
-    addXP(15); // XP reward for upgrade
+    addXP(15);
     updateUI(); save(); drawUpgrades();
     playSound('win'); vibrate('success');
     showModal('✅ Upgraded!', 'Level ' + level + ' ho gaya!');
@@ -1413,16 +1439,17 @@
     const filtered = STICKERS.filter(s => s.tier === currentStickerTab);
     filtered.forEach(s => {
       const lvl = stickerLevels[s.id] || 0;
-      const isMax = lvl >= MAX_STICKER_LEVEL;
-      const nextCost = isMax ? 0 : Math.floor(s.cost * Math.pow(STICKER_MULT, lvl));
-      const benefit = s.isNameCard ? (lvl > 0 ? '✓ Owned' : 'Change name') : (lvl > 0 ? s.bonus(lvl) : s.bonus(1) + ' (Lv1)');
+      const isMax = !s.isNameCard && lvl >= MAX_STICKER_LEVEL;
+      const nextCost = isMax ? 0 : (s.isNameCard ? (lvl > 0 ? 0 : s.cost) : Math.floor(s.cost * Math.pow(STICKER_MULT, lvl)));
+      const benefit = s.isNameCard ? (lvl > 0 ? '✓ Owned — use after cooldown' : 'Change name after 15d cooldown') : (lvl > 0 ? s.bonus(lvl) : s.bonus(1) + ' (Lv1)');
       const unlocked = isStickerUnlocked(s.id);
       const req = getStickerUnlockReq(s.id);
       const el = document.createElement('div');
       el.className = 'sticker-card ' + s.tier + (isMax ? ' max' : lvl > 0 ? ' owned' : '') + (!unlocked ? ' locked' : '');
-      el.innerHTML = '<div class="sticker-icon">' + s.icon + '</div><div class="sticker-name">' + s.name + '</div><div class="sticker-lvl">' + (s.isNameCard ? (lvl > 0 ? 'OWNED' : 'Not Owned') : (lvl > 0 ? 'Lv ' + lvl + '/' + MAX_STICKER_LEVEL : 'Not Owned')) + '</div><div class="sticker-benefit">' + (unlocked ? benefit : '🔒 Locked') + '</div><div class="sticker-price' + (isMax ? ' max' : !unlocked ? ' locked' : '') + '">' + (isMax ? '⭐ MAX' : !unlocked ? '🔒 LOCKED' : nextCost.toLocaleString() + ' TRAX') + '</div>';
-      if (!isMax && unlocked && !s.isNameCard) el.onclick = () => buySticker(s, nextCost);
-      else if (!isMax && unlocked && s.isNameCard) el.onclick = () => buySticker(s, nextCost);
+      let hint = '';
+      if (!unlocked && req) hint = '<div class="sticker-unlock-hint">🔒 ' + req + '</div>';
+      el.innerHTML = '<div class="sticker-icon">' + s.icon + '</div><div class="sticker-name">' + s.name + '</div><div class="sticker-lvl">' + (s.isNameCard ? (lvl > 0 ? 'OWNED' : 'Not Owned') : (lvl > 0 ? 'Lv ' + lvl + '/' + MAX_STICKER_LEVEL : 'Not Owned')) + '</div>' + hint + '<div class="sticker-benefit">' + (unlocked ? benefit : '🔒 Locked') + '</div><div class="sticker-price' + (isMax ? ' max' : !unlocked ? ' locked' : '') + '">' + (isMax ? '⭐ MAX' : !unlocked ? '🔒 LOCKED' : (s.isNameCard && lvl > 0 ? '✓ OWNED' : nextCost.toLocaleString() + ' TRAX')) + '</div>';
+      if (!isMax && unlocked && !(s.isNameCard && lvl > 0)) el.onclick = () => buySticker(s, nextCost);
       else if (!unlocked) el.onclick = () => showModal('🔒 Locked', req || 'Pehle pichle tier ko max karein.');
       container.appendChild(el);
     });
@@ -1437,7 +1464,7 @@
       addXP(100);
       updateUI(); save(); drawStickers();
       playSound('win'); vibrate('success');
-      showModal('📝 Name Change Card!', 'Aapke paas ab Name Change Card hai.\n\nAb aap Edit Profile se name change kar sakte ho (cooldown ke bina).');
+      showModal('📝 Name Change Card!', 'Card kharida!\n\n⚠️ Naam change karne ke liye 15-din ka cooldown bhi khatam hona zaroori hai.\n\nCooldown ke bina card use nahi hoga.');
       return;
     }
     balance -= cost;
@@ -1449,15 +1476,22 @@
     showModal('🎉 Upgraded!', s.name + ' Level ' + stickerLevels[s.id] + ' ho gaya!');
   }
 
-  // ===== TASKS =====
+  // ===== TASKS (10 tasks) =====
   function drawTasksNew() {
     const box = document.getElementById('fullTasksListNew');
     box.innerHTML = '';
     const tasks = [
       { id: 'tg', icon: '📢', iconClass: 'telegram', name: 'Join Telegram', reward: 1000, xp: 50, done: localStorage.getItem('task_tg') === 'done' },
       { id: 'x', icon: '𝕏', iconClass: 'twitter', name: 'Follow X', reward: 1000, xp: 50, done: localStorage.getItem('task_x') === 'done' },
-      { id: 'video', icon: '▶', iconClass: 'youtube', name: 'Watch Video', reward: 2000, xp: 75, done: localStorage.getItem('task_video') === 'done' },
-      { id: 'invite', icon: '👥', iconClass: 'invite', name: 'Invite Friends', reward: 5000, xp: 100, done: false }
+      { id: 'yt', icon: '▶', iconClass: 'youtube', name: 'Subscribe YouTube', reward: 2000, xp: 75, done: localStorage.getItem('task_yt') === 'done' },
+      { id: 'video', icon: '🎬', iconClass: 'pink', name: 'Watch Video', reward: 2000, xp: 75, done: localStorage.getItem('task_video') === 'done' },
+      { id: 'invite', icon: '👥', iconClass: 'invite', name: 'Invite 1 Friend', reward: 5000, xp: 100, done: localStorage.getItem('task_invite') === 'done' },
+      { id: 'invite5', icon: '👨‍👩‍👧', iconClass: 'green', name: 'Invite 5 Friends', reward: 25000, xp: 300, done: localStorage.getItem('task_invite5') === 'done' },
+      { id: 'share', icon: '📤', iconClass: 'orange', name: 'Share Profile', reward: 1500, xp: 60, done: localStorage.getItem('task_share') === 'done' },
+      { id: 'daily', icon: '📅', iconClass: 'purple', name: 'Claim Daily Reward', reward: 3000, xp: 100, done: localStorage.getItem('task_daily') === 'done' },
+      { id: 'mine', icon: '⛏️', iconClass: 'cyan', name: 'Mine Once', reward: 2500, xp: 80, done: localStorage.getItem('task_mine') === 'done' },
+      { id: 'game', icon: '🎮', iconClass: 'red', name: 'Play Any Game', reward: 2500, xp: 80, done: localStorage.getItem('task_game') === 'done' },
+      { id: 'upgrade', icon: '⬆️', iconClass: 'yellow', name: 'Upgrade Anything', reward: 3000, xp: 90, done: localStorage.getItem('task_upgrade') === 'done' }
     ];
     tasks.forEach(t => {
       const el = document.createElement('div');
@@ -1475,7 +1509,7 @@
     showModal('🎉 Task Complete!', '+' + reward.toLocaleString() + ' TRAX\n+' + xp + ' XP');
   }
 
-  // ===== LEADERBOARD (30-min reset) =====
+  // ===== LEADERBOARD =====
   const LEADERBOARD_RESET_MS = 30 * 60 * 1000;
   function getLeaderboardData() {
     const raw = localStorage.getItem('trax_leaderboard') || '{}';
@@ -1551,30 +1585,6 @@
     if (tg) tg.openTelegramLink('https://t.me/share/url?url=' + encodeURIComponent(link) + '&text=' + encodeURIComponent(text));
   }
 
-  // ===== TRANSFER =====
-  function doTransfer() {
-    const toId = (document.getElementById('transferIdInput').value || '').trim();
-    const amount = parseInt(document.getElementById('transferAmountInput').value || '0');
-    if (!/^\d{6}$/.test(toId)) { showModal('❌ Invalid ID', 'Player ID 6 digits ka hona chahiye (e.g., 049123).'); return; }
-    if (toId === playerId) { showModal('❌ Same ID', 'Apne aap ko transfer nahi kar sakte.'); return; }
-    if (!amount || amount < 100) { showModal('⚠️ Min 100', 'Minimum 100 TRAX transfer karo.'); return; }
-    if (amount > balance) { showModal('❌ Not Enough', 'Aapke paas: ' + Math.floor(balance).toLocaleString() + ' TRAX'); return; }
-    balance -= amount;
-    // Save transfer record locally
-    const transfers = JSON.parse(localStorage.getItem('trax_transfers') || '[]');
-    transfers.push({ from: playerId, to: toId, amount, at: Date.now() });
-    localStorage.setItem('trax_transfers', JSON.stringify(transfers));
-    // Check if recipient exists in leaderboard, add coins
-    const lb = getLeaderboardData();
-    if (lb[toId]) { lb[toId].coins += amount; localStorage.setItem('trax_leaderboard', JSON.stringify(lb)); }
-    addXP(10);
-    updateUI(); save();
-    showModal('✅ Sent!', amount.toLocaleString() + ' TRAX sent to #' + toId);
-    document.getElementById('transferIdInput').value = '';
-    document.getElementById('transferAmountInput').value = '';
-    playSound('win'); vibrate('success');
-  }
-
   // ===== NAVIGATION =====
   const BOTTOM_NAV = ['home', 'games', 'profile', 'tasks', 'wallet'];
   function navClick(el, tab) {
@@ -1630,35 +1640,45 @@
     modalStack = [];
   }
 
-  // ===== SPIN =====
+  // ===== SPIN (1 free + 3 paid daily) =====
   const SPIN_SLOTS = [
     { reward: 5000, label: '5K', weight: 35 }, { reward: 10000, label: '10K', weight: 28 },
     { reward: 50000, label: '50K', weight: 20 }, { reward: 100, label: '100', weight: 10 },
     { reward: 150000, label: '150K', weight: 5 }, { reward: 500000, label: '500K', weight: 2 }
   ];
   const PAID_SPIN_COST = 10000;
+  const MAX_PAID_SPINS_PER_DAY = 3;
   let spinCooldown = false;
   function getToday() { return new Date().toDateString(); }
   function getSpinState() {
     const dailyDate = localStorage.getItem('trax_spin_dailyDate') || '';
     const today = getToday();
-    if (dailyDate !== today) { localStorage.setItem('trax_spin_dailyDate', today); localStorage.setItem('trax_spin_dailyUsed', '0'); }
+    if (dailyDate !== today) { localStorage.setItem('trax_spin_dailyDate', today); localStorage.setItem('trax_spin_dailyUsed', '0'); localStorage.setItem('trax_spin_paidUsed', '0'); }
     const dailyUsed = parseInt(localStorage.getItem('trax_spin_dailyUsed') || '0');
-    return { freeLeft: dailyUsed === 0 ? 1 : 0 };
+    const paidUsed = parseInt(localStorage.getItem('trax_spin_paidUsed') || '0');
+    return { freeLeft: dailyUsed === 0 ? 1 : 0, paidLeft: MAX_PAID_SPINS_PER_DAY - paidUsed, paidUsed };
   }
   function updateSpinStatus() {
     const state = getSpinState();
     const bar = document.getElementById('spinStatusBar');
     const info = document.getElementById('spinInfoText');
+    const btn = document.getElementById('spinBtn');
     if (!bar) return;
     if (state.freeLeft > 0) {
       bar.textContent = '🎁 1 FREE SPIN AVAILABLE TODAY';
       bar.style.background = 'rgba(0,255,136,0.15)'; bar.style.borderColor = 'rgba(0,255,136,0.4)'; bar.style.color = '#00ff88';
-      info.textContent = 'Free use karein · Baad mein ' + PAID_SPIN_COST.toLocaleString() + ' TRAX/spin';
-    } else {
-      bar.textContent = '💰 PAID SPINS · ' + PAID_SPIN_COST.toLocaleString() + ' TRAX each';
+      info.textContent = 'Free use karein · Baad mein ' + state.paidLeft + '/3 paid spins (' + PAID_SPIN_COST.toLocaleString() + ' TRAX each)';
+      btn.disabled = false; btn.style.opacity = '1';
+    } else if (state.paidLeft > 0) {
+      bar.textContent = '💰 PAID SPINS · ' + state.paidLeft + '/' + MAX_PAID_SPINS_PER_DAY + ' left today';
       bar.style.background = 'rgba(255,150,0,0.15)'; bar.style.borderColor = 'rgba(255,150,0,0.4)'; bar.style.color = '#ff9500';
-      info.textContent = 'Kal phir 1 free spin milega';
+      info.textContent = 'Entry: ' + PAID_SPIN_COST.toLocaleString() + ' TRAX per spin';
+      btn.disabled = false; btn.style.opacity = '1';
+    } else {
+      bar.textContent = '❌ AAJ KE SPINS KHATAM';
+      bar.style.background = 'rgba(255,0,85,0.15)'; bar.style.borderColor = 'rgba(255,0,85,0.4)'; bar.style.color = '#ff0055';
+      info.textContent = 'Kal phir 1 free + 3 paid spins';
+      btn.disabled = true; btn.style.opacity = '0.5';
     }
   }
   function openSpin() {
@@ -1695,10 +1715,11 @@
     const state = getSpinState();
     let usedPaid = false;
     if (state.freeLeft > 0) localStorage.setItem('trax_spin_dailyUsed', '1');
-    else {
-      if (balance < PAID_SPIN_COST) { playSound('error'); vibrate('error'); showModal('❌ Not Enough TRAX', 'Entry: ' + PAID_SPIN_COST.toLocaleString() + ' TRAX\n\nAapke paas: ' + Math.floor(balance).toLocaleString() + ' TRAX'); return; }
+    else if (state.paidLeft > 0) {
+      if (balance < PAID_SPIN_COST) { playSound('error'); vibrate('error'); showModal('❌ Not Enough TRAX', 'Entry: ' + PAID_SPIN_COST.toLocaleString() + ' TRAX'); return; }
       balance -= PAID_SPIN_COST; updateUI(); save(); usedPaid = true;
-    }
+      localStorage.setItem('trax_spin_paidUsed', (state.paidUsed + 1));
+    } else { showModal('❌ No Spins Left', 'Kal phir aayein.'); return; }
     spinCooldown = true;
     const wheel = document.getElementById('wheel');
     const btn = document.getElementById('spinBtn');
@@ -1723,16 +1744,16 @@
     }, 5200);
   }
 
-  // ===== CRASH =====
-  const BET_OPTIONS = [500, 1000, 5000, 10000, 25000, 50000];
-  let crashState = { running: false, multiplier: 1, crashed: false, bet: 1000 };
+  // ===== CRASH (min 1M, high loss rate) =====
+  const BET_OPTIONS = [1000000, 5000000, 10000000, 50000000, 100000000, 500000000];
+  let crashState = { running: false, multiplier: 1, crashed: false, bet: 1000000 };
   let crashInterval = null;
   function drawBetSelector() {
     const box = document.getElementById('betSelector'); box.innerHTML = '';
     BET_OPTIONS.forEach(amt => {
       const el = document.createElement('div');
       el.className = 'bet-option' + (amt === crashState.bet ? ' selected' : '');
-      el.textContent = amt.toLocaleString();
+      el.textContent = amt >= 1000000 ? (amt/1000000) + 'M' : amt.toLocaleString();
       el.onclick = () => { if (crashState.running) return; crashState.bet = amt; drawBetSelector(); updateCrashButton(); };
       box.appendChild(el);
     });
@@ -1752,21 +1773,22 @@
   function closeCrash() { if (crashInterval) clearInterval(crashInterval); crashState.running = false; document.getElementById('crashModal').classList.remove('show'); }
   function applyCustomBet() {
     const v = parseInt(document.getElementById('customBetInput').value);
-    if (!v || v < 100) { showModal('⚠️ Minimum 100 TRAX', ''); return; }
+    if (!v || v < 1000000) { showModal('⚠️ Minimum 1M TRAX', ''); return; }
     if (v > balance) { showModal('❌ Not Enough TRAX', 'Aapke paas: ' + Math.floor(balance).toLocaleString()); return; }
     crashState.bet = v;
     document.querySelectorAll('.bet-option').forEach(el => el.classList.remove('selected'));
     updateCrashButton();
   }
+  // HIGH LOSS RATE: 75% crash under 2x, only 5% reach 10x+
   function getCrashPoint() {
     const r = Math.random() * 100;
-    if (r < 40) return 1.5 + Math.random() * 0.5;
-    if (r < 65) return 2.0 + Math.random() * 0.5;
-    if (r < 80) return 2.5 + Math.random() * 0.5;
-    if (r < 90) return 3.0 + Math.random() * 1.0;
-    if (r < 95) return 4.0 + Math.random() * 2.0;
-    if (r < 98) return 6.0 + Math.random() * 5.0;
-    return 15.0 + Math.random() * 10.0;
+    if (r < 50) return 1.1 + Math.random() * 0.3;  // 50% instant crash 1.1-1.4
+    if (r < 75) return 1.5 + Math.random() * 0.4;  // 25% crash 1.5-1.9
+    if (r < 88) return 2.0 + Math.random() * 0.5;  // 13% crash 2.0-2.5
+    if (r < 95) return 2.5 + Math.random() * 1.0;  // 7% crash 2.5-3.5
+    if (r < 98) return 4.0 + Math.random() * 2.0;  // 3% crash 4-6
+    if (r < 99.5) return 8.0 + Math.random() * 4.0; // 1.5% crash 8-12
+    return 15.0 + Math.random() * 20.0;            // 0.5% big win
   }
   function startCrash() {
     if (crashState.running) return;
@@ -1780,7 +1802,7 @@
     const crashPoint = getCrashPoint();
     crashInterval = setInterval(() => {
       if (crashState.crashed || !crashState.running) { clearInterval(crashInterval); return; }
-      crashState.multiplier += 0.02 + Math.random() * 0.02 + crashState.multiplier * 0.005;
+      crashState.multiplier += 0.05 + Math.random() * 0.05 + crashState.multiplier * 0.01;
       document.getElementById('crashMultiplier').textContent = crashState.multiplier.toFixed(2) + 'x';
       document.getElementById('crashBar').style.width = Math.min(100, ((crashState.multiplier - 1) / 3) * 100) + '%';
       if (crashState.multiplier >= crashPoint) {
@@ -1811,7 +1833,7 @@
   }
 
   // ===== PUZZLE =====
-  const PUZZLE_MODES = { hard: { cost: 10000, label: 'Hard' }, medium: { cost: 30000, label: 'Medium' }, easy: { cost: 50000, label: 'Easy' } };
+  const PUZZLE_MODES = { hard: { cost: 1000000, label: 'Hard' }, medium: { cost: 3000000, label: 'Medium' }, easy: { cost: 5000000, label: 'Easy' } };
   let selectedPuzzleMode = 'hard';
   function openPuzzle() { document.getElementById('puzzleModal').classList.add('show'); }
   function closePuzzle() { document.getElementById('puzzleModal').classList.remove('show'); }
@@ -1823,8 +1845,9 @@
     showModal('🧩 Puzzle', 'Puzzle ' + m.label + ' shuru!');
   }
 
-  // ===== COIN FLIP =====
-  const FLIP_POOL = [{ mult: 1.5, w: 40 }, { mult: 1.7, w: 25 }, { mult: 2, w: 15 }, { mult: 3, w: 8 }, { mult: 5, w: 5 }, { mult: 10, w: 3 }, { mult: 15, w: 2 }, { mult: 25, w: 1 }];
+  // ===== COIN FLIP (min 1M, high loss) =====
+  // HIGH LOSS: 80% lose chance
+  const FLIP_POOL = [{ mult: 1.5, w: 15 }, { mult: 1.7, w: 5 }, { mult: 2, w: 3 }, { mult: 3, w: 2 }, { mult: 5, w: 1 }];
   function pickFlipMult() {
     const total = FLIP_POOL.reduce((s, x) => s + x.w, 0);
     let r = Math.random() * total;
@@ -1836,7 +1859,7 @@
   function updateFlipPreview() {
     const bet = parseInt(document.getElementById('flipBetInput').value) || 0;
     const info = document.getElementById('flipBetInfo');
-    if (bet < 100) { info.textContent = '⚠️ Min 100 TRAX'; info.style.color = '#ff0055'; }
+    if (bet < 1000000) { info.textContent = '⚠️ Min 1,000,000 TRAX'; info.style.color = '#ff0055'; }
     else if (bet > balance) { info.textContent = '⚠️ Not enough'; info.style.color = '#ff0055'; }
     else { info.textContent = '✓ Bet: ' + bet.toLocaleString() + ' TRAX'; info.style.color = '#00ff88'; }
   }
@@ -1844,7 +1867,7 @@
     document.getElementById('flipSetup').style.display = flipState.active ? 'none' : 'block';
     document.getElementById('flipGame').style.display = flipState.active ? 'block' : 'none';
     document.getElementById('coinFlipModal').classList.add('show');
-    if (!flipState.active) { document.getElementById('flipBetInput').value = 1000; updateFlipPreview(); }
+    if (!flipState.active) { document.getElementById('flipBetInput').value = 1000000; updateFlipPreview(); }
   }
   function closeCoinFlip() {
     if (flipState.active) { if (!confirm('Game active. Close karne par ' + flipState.bet.toLocaleString() + ' TRAX gaya.')) return; flipState.active = false; }
@@ -1852,7 +1875,7 @@
   }
   function startFlipGame() {
     const bet = parseInt(document.getElementById('flipBetInput').value) || 0;
-    if (bet < 100) { showModal('⚠️ Min 100 TRAX', ''); return; }
+    if (bet < 1000000) { showModal('⚠️ Min 1M TRAX', ''); return; }
     if (bet > balance) { showModal('❌ Not Enough TRAX', ''); return; }
     balance -= bet; flipState = { active: true, bet, totalMult: 1, winnings: 0, choice: null, playing: false };
     updateUI(); save();
@@ -1885,9 +1908,11 @@
     document.getElementById('flipStatus').textContent = '🪙 Flipping...';
     setTimeout(() => {
       coin.classList.remove('flipping');
+      // 80% lose chance
+      const winChance = Math.random() < 0.2;
       const result = Math.random() < 0.5 ? 'T' : 'R';
       coin.style.transform = result === 'T' ? 'rotateY(0deg)' : 'rotateY(180deg)';
-      if (result === flipState.choice) {
+      if (winChance && result === flipState.choice) {
         const mult = pickFlipMult();
         flipState.totalMult *= mult;
         flipState.winnings = flipState.bet * flipState.totalMult;
@@ -1916,18 +1941,18 @@
     setTimeout(closeCoinFlip, 300);
   }
 
-  // ===== TWIST (with LOSS chance) =====
-  const TWIST_BETS = [500, 1000, 2500, 5000, 10000, 25000, 50000, 100000];
-  let twistBetIndex = parseInt(localStorage.getItem('trax_twistBetIndex') || '1');
+  // ===== TWIST (25% win, 75% loss, min 1M) =====
+  const TWIST_BETS = [1000000, 5000000, 10000000, 25000000, 50000000, 100000000];
+  let twistBetIndex = parseInt(localStorage.getItem('trax_twistBetIndex') || '0');
   let twistSpinning = false;
-  // 70% win, 30% lose
+  // 75% LOSE, 25% WIN
   const TWIST_RINGS = {
-    lose:   { min: 0,   max: 0,   weight: 30 }, // lose
-    inner:  { min: 2,   max: 5,   weight: 40 },
-    middle: { min: 7,   max: 20,  weight: 20 },
-    outer:  { min: 28,  max: 200, weight: 10 }
+    lose:   { min: 0,   max: 0,   weight: 75 },
+    inner:  { min: 2,   max: 5,   weight: 15 },
+    middle: { min: 7,   max: 20,  weight: 7 },
+    outer:  { min: 28,  max: 200, weight: 3 }
   };
-  function getTwistBet() { return TWIST_BETS[twistBetIndex]; }
+  function getTwistBet() { return TWIST_BETS[Math.min(twistBetIndex, TWIST_BETS.length - 1)]; }
   function updateTwistBetUI() {
     const el = document.getElementById('twistBetValue');
     if (el) el.textContent = getTwistBet().toLocaleString();
@@ -1947,9 +1972,8 @@
   function applyTwistCustomBet() {
     if (twistSpinning) return;
     const v = parseInt(document.getElementById('twistCustomBet').value);
-    if (!v || v < 100) { showModal('⚠️ Min 100', 'Minimum 100 TRAX.'); return; }
+    if (!v || v < 1000000) { showModal('⚠️ Min 1M', 'Minimum 1,000,000 TRAX.'); return; }
     if (v > balance) { showModal('❌ Not Enough', 'Aapke paas: ' + Math.floor(balance).toLocaleString() + ' TRAX'); return; }
-    // Add custom value to TWIST_BETS temporarily
     TWIST_BETS.push(v);
     twistBetIndex = TWIST_BETS.length - 1;
     updateTwistBetUI();
@@ -2016,35 +2040,24 @@
   function playTwist() {
     if (twistSpinning) return;
     const bet = getTwistBet();
-    if (balance < bet) {
-      playSound('error'); vibrate('error');
-      showModal('❌ Not Enough TRAX', 'Bet: ' + bet.toLocaleString() + ' TRAX\n\nAapke paas: ' + Math.floor(balance).toLocaleString() + ' TRAX');
-      return;
-    }
-    balance -= bet;
-    updateUI(); save();
-
+    if (balance < bet) { playSound('error'); vibrate('error'); showModal('❌ Not Enough TRAX', 'Bet: ' + bet.toLocaleString() + ' TRAX\n\nAapke paas: ' + Math.floor(balance).toLocaleString() + ' TRAX'); return; }
+    balance -= bet; updateUI(); save();
     twistSpinning = true;
     updateTwistBetUI();
     const pointer = document.getElementById('twistPointer');
     const resultBox = document.getElementById('twistResultBox');
     const spinBtn = document.getElementById('twistSpinBtn');
     resultBox.classList.remove('show', 'lose');
-
     const ring = pickTwistRing();
     const mult = pickTwistMult(ring);
-
     const spins = 5 + Math.floor(Math.random() * 3);
     const finalAngle = spins * 360 + Math.floor(Math.random() * 360);
     pointer.style.transition = 'transform 3.5s cubic-bezier(0.15, 0.9, 0.2, 1)';
     pointer.style.transform = 'rotate(' + finalAngle + 'deg)';
-
     spinBtn.disabled = true;
     spinBtn.textContent = '🌀 SPINNING...';
-
     setTimeout(() => {
       if (ring === 'lose') {
-        // LOSE
         document.getElementById('twistResultLabel').textContent = '❌ YOU LOST';
         document.getElementById('twistResultMult').textContent = '0x';
         document.getElementById('twistResultAmount').textContent = '-' + bet.toLocaleString() + ' TRAX';
@@ -2052,8 +2065,7 @@
         playSound('error'); vibrate('error');
       } else {
         const winAmount = Math.floor(bet * mult);
-        balance += winAmount;
-        totalEarned += winAmount;
+        balance += winAmount; totalEarned += winAmount;
         addXP(15);
         updateUI(); save();
         document.getElementById('twistResultLabel').textContent = '🎉 YOU WON';
@@ -2069,7 +2081,6 @@
     }, 3600);
   }
 
-  // ===== RESET =====
   function resetData() { if (confirm('Reset all data?')) { localStorage.clear(); location.reload(); } }
 
   // ===== ATTENDANCE =====
@@ -2241,7 +2252,6 @@
     updateUI(); updateBoosterUI();
   })();
 
-  // Record leaderboard every 30 sec
   setInterval(() => { recordLeaderboard(balance); renderLeaderboard(); updateRankResetTimer(); }, 30000);
   recordLeaderboard(balance);
   renderLeaderboard();
@@ -2253,12 +2263,7 @@
   setInterval(checkBoosterExpiry, 5000);
   setInterval(updateRedPocketUI, 1000);
   setInterval(() => { const modal = document.getElementById('spinModal'); if (modal && modal.classList.contains('show')) updateSpinStatus(); }, 1000);
-  setInterval(() => {
-    if (document.getElementById('tab-attendance').classList.contains('active') || 
-        document.getElementById('tab-home').classList.contains('active')) {
-      renderAttendance();
-    }
-  }, 60 * 1000);
+  setInterval(() => { if (document.getElementById('tab-attendance').classList.contains('active') || document.getElementById('tab-home').classList.contains('active')) renderAttendance(); }, 60 * 1000);
   setInterval(updateSideCards, 5000);
   setInterval(updateRankResetTimer, 1000);
   setInterval(drawRank, 60000);
