@@ -10,7 +10,6 @@
   body { background: #050a14; color: white; min-height: 100vh; overflow-x: hidden; user-select: none; -webkit-user-select: none; padding-bottom: 100px; position: relative; }
   body::before { content: ''; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-image: url('city.png'); background-size: cover; background-position: center; opacity: 0.3; z-index: -1; filter: blur(1px); }
   body::after { content: ''; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(5,10,20,0.6) 0%, rgba(5,10,20,0.95) 100%); z-index: -1; }
-
   .header { display: flex; justify-content: space-between; align-items: center; padding: 12px 15px; background: rgba(5,10,20,0.9); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(0,150,255,0.15); position: sticky; top: 0; z-index: 50; }
   .header-left { display: flex; align-items: center; gap: 10px; }
   .menu-icon { font-size: 20px; color: #00d4ff; cursor: pointer; padding: 5px; }
@@ -24,9 +23,7 @@
   .level-badge .xp-bar { width: 55px; height: 3px; background: rgba(255,255,255,0.1); border-radius: 2px; margin-top: 4px; overflow: hidden; }
   .level-badge .xp-fill { height: 100%; background: linear-gradient(90deg, #00d4ff, #00ff88); border-radius: 2px; transition: width 0.3s; }
   .avatar { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, #00d4ff, #0066ff); display: flex; align-items: center; justify-content: center; font-size: 18px; border: 2px solid rgba(0,212,255,0.5); box-shadow: 0 0 15px rgba(0,212,255,0.4); cursor: pointer; background-size: cover; background-position: center; overflow: hidden; }
-
   .container { padding: 12px 15px; max-width: 500px; margin: 0 auto; }
-
   .balance-card { background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(0,80,180,0.1)); border: 1px solid rgba(0,212,255,0.3); border-radius: 20px; padding: 16px; margin-bottom: 12px; position: relative; overflow: hidden; }
   .balance-card::before { content: ''; position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(0,212,255,0.15), transparent 60%); animation: rotate 15s linear infinite; }
   @keyframes rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
@@ -36,7 +33,6 @@
   .balance-sub { font-size: 10px; color: #ff9500; margin-top: 4px; position: relative; z-index: 2; font-weight: 900; }
   .wallet-connect-btn { background: linear-gradient(135deg, #00d4ff, #0066ff); border: none; border-radius: 14px; padding: 10px 12px; color: white; font-weight: 900; cursor: pointer; box-shadow: 0 4px 18px rgba(0,212,255,0.5); display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 66px; position: relative; z-index: 3; }
   .wallet-connect-btn:active { transform: scale(0.94); }
-
   .rank-badge-card { background: linear-gradient(135deg, rgba(0,180,255,0.12), rgba(150,0,255,0.08)); border: 1.5px solid rgba(0,212,255,0.4); border-radius: 18px; padding: 14px 16px; margin-bottom: 12px; display: flex; align-items: center; gap: 14px; position: relative; overflow: hidden; }
   .rank-badge-card::before { content: ''; position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255,215,0,0.1), transparent 60%); animation: rotate 20s linear infinite; pointer-events: none; }
   .rank-badge-icon { width: 52px; height: 52px; border-radius: 14px; background: linear-gradient(135deg, #ffd700, #ff9500); display: flex; align-items: center; justify-content: center; font-size: 26px; flex-shrink: 0; box-shadow: 0 0 20px rgba(255,215,0,0.5); position: relative; z-index: 2; }
@@ -46,7 +42,6 @@
   .rank-badge-status { text-align: right; font-size: 10px; color: #00d4ff; font-weight: 900; position: relative; z-index: 2; max-width: 90px; line-height: 1.3; }
   .rarity-show-btn { background: linear-gradient(135deg, #ff9500, #ff5500); border: none; border-radius: 10px; padding: 6px 12px; color: white; font-size: 9px; font-weight: 900; cursor: pointer; letter-spacing: 0.5px; box-shadow: 0 3px 12px rgba(255,150,0,0.5); position: relative; z-index: 3; }
   .rarity-show-btn:active { transform: scale(0.95); }
-
   .rarity-item { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 12px; margin-bottom: 8px; border-left: 4px solid; }
   .rarity-item.brown { background: rgba(205,127,50,0.12); border-left-color: #cd7f32; }
   .rarity-item.silver { background: rgba(192,192,192,0.12); border-left-color: #c0c0c0; }
@@ -59,7 +54,6 @@
   .rarity-item-info h4 { font-size: 13px; font-weight: 900; margin-bottom: 2px; }
   .rarity-item-info p { font-size: 10px; color: #a0aec0; }
   .rarity-item-info .range { font-size: 11px; font-weight: 900; margin-top: 2px; }
-
   .tap-title { text-align: center; font-size: 16px; font-weight: 900; color: white; margin: 12px 0 5px; letter-spacing: 1px; }
   .coin-area { display: flex; justify-content: center; align-items: center; margin: 15px 0; position: relative; min-height: 320px; perspective: 1000px; }
   .coin-wrapper { position: relative; z-index: 2; }
@@ -80,7 +74,6 @@
   .coin-bottom-text { text-align: center; font-size: 11px; color: #00d4ff; letter-spacing: 3px; margin-top: 5px; font-weight: 900; position: relative; z-index: 4; }
   .coin-per-tap { text-align: center; font-size: 12px; color: #a0aec0; margin-top: 4px; }
   .coin-per-tap strong { color: #00d4ff; font-size: 14px; }
-
   .energy-card { background: linear-gradient(135deg, rgba(15,30,55,0.9), rgba(10,20,40,0.7)); border: 1px solid rgba(0,180,255,0.25); border-radius: 16px; padding: 14px; margin-bottom: 12px; }
   .energy-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
   .energy-label { font-size: 13px; font-weight: 900; color: #00d4ff; display: flex; align-items: center; gap: 6px; }
@@ -88,13 +81,11 @@
   .energy-count strong { color: #00d4ff; font-size: 14px; }
   .energy-bar { height: 10px; background: rgba(0,0,0,0.3); border-radius: 5px; overflow: hidden; }
   .energy-fill { height: 100%; background: linear-gradient(90deg, #00d4ff, #00ff88); border-radius: 5px; transition: width 0.3s; }
-
   .quick-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
   .quick-btn { background: linear-gradient(135deg, rgba(0,100,200,0.5), rgba(0,60,150,0.3)); border: 1.5px solid rgba(0,180,255,0.4); border-radius: 16px; padding: 16px 10px; text-align: center; cursor: pointer; transition: transform 0.1s; }
   .quick-btn:active { transform: scale(0.96); }
   .quick-icon { font-size: 28px; margin-bottom: 5px; }
   .quick-label { font-size: 12px; color: #fff; font-weight: 900; letter-spacing: 0.5px; }
-
   .rank-board { background: linear-gradient(135deg, rgba(0,80,180,0.15), rgba(0,40,100,0.1)); border: 1.5px solid rgba(0,180,255,0.3); border-radius: 20px; padding: 16px; margin-bottom: 15px; }
   .rank-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
   .rank-title { font-size: 15px; font-weight: 900; color: #00d4ff; display: flex; align-items: center; gap: 8px; letter-spacing: 0.5px; }
@@ -111,11 +102,9 @@
   .rank-name { flex: 1; font-size: 12px; font-weight: 900; color: #fff; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .rank-value { font-size: 12px; color: #00ff88; font-weight: 900; }
   .rank-value small { color: #7a8ba5; font-size: 9px; }
-
   .page-title-bar { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; padding: 5px 0; }
   .page-title-icon { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-size: 24px; }
   .page-title-text { font-size: 26px; font-weight: 900; color: #00d4ff; letter-spacing: 0.5px; }
-
   .more-card { background: rgba(10,25,45,0.75); border: 1px solid rgba(0,150,255,0.2); border-radius: 16px; padding: 16px; margin-bottom: 10px; display: flex; align-items: center; gap: 14px; cursor: pointer; transition: transform 0.1s, border-color 0.2s; }
   .more-card:active { transform: scale(0.98); }
   .more-card:hover { border-color: rgba(0,212,255,0.5); }
@@ -132,7 +121,6 @@
   .more-card-info h4 { font-size: 14px; font-weight: 900; color: white; margin-bottom: 3px; }
   .more-card-info p { font-size: 11px; color: #7a8ba5; }
   .more-card-arrow { color: #00d4ff; font-size: 18px; }
-
   .task-row { background: rgba(10,25,45,0.7); border: 1px solid rgba(0,150,255,0.2); border-radius: 16px; padding: 14px; margin-bottom: 10px; display: flex; align-items: center; gap: 12px; }
   .task-row.done { border-color: rgba(0,255,136,0.3); }
   .task-icon-wrap { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
@@ -149,7 +137,6 @@
   .task-btn { padding: 8px 16px; border-radius: 10px; font-size: 11px; font-weight: 900; cursor: pointer; flex-shrink: 0; border: none; }
   .task-btn.go { background: linear-gradient(135deg, #00b4ff, #0066ff); color: white; }
   .task-btn.done { background: linear-gradient(135deg, #00aa55, #006633); color: white; }
-
   .booster-card { background: rgba(10,25,45,0.7); border: 1px solid rgba(0,150,255,0.2); border-radius: 18px; padding: 16px; margin-bottom: 10px; }
   .booster-row { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(0,150,255,0.08); }
   .booster-row:last-child { border-bottom: none; padding-bottom: 0; }
@@ -170,14 +157,12 @@
   .booster-btn.magenta { background: linear-gradient(135deg, #cc00ff, #6600a0); color: white; }
   .booster-btn.green { background: linear-gradient(135deg, #00ff88, #008844); color: white; }
   .booster-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-
   .mini-games-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 15px; }
   .mini-game-card { background: linear-gradient(135deg, rgba(0,100,200,0.3), rgba(0,40,100,0.2)); border: 1.5px solid rgba(0,180,255,0.3); border-radius: 18px; padding: 20px 14px; text-align: center; cursor: pointer; transition: transform 0.1s; }
   .mini-game-card:active { transform: scale(0.96); }
   .mini-game-icon { font-size: 42px; margin-bottom: 10px; }
   .mini-game-name { font-size: 14px; font-weight: 900; color: white; margin-bottom: 4px; }
   .mini-game-desc { font-size: 10px; color: #7a8ba5; }
-
   .upgrade-item { background: rgba(10,25,45,0.7); border: 1px solid rgba(0,150,255,0.2); border-radius: 16px; padding: 14px; margin-bottom: 10px; display: flex; align-items: center; gap: 12px; }
   .upgrade-icon-wrap { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
   .upgrade-icon-wrap.tap { background: radial-gradient(circle, #00b4ff, #0050a0); }
@@ -189,7 +174,6 @@
   .upgrade-info p { font-size: 10px; color: #7a8ba5; margin-bottom: 3px; }
   .upgrade-info .lvl { font-size: 10px; color: #00d4ff; font-weight: 900; }
   .upgrade-btn { background: linear-gradient(135deg, #00b4ff, #0066ff); border: none; border-radius: 10px; padding: 8px 14px; color: white; font-size: 11px; font-weight: 900; cursor: pointer; min-width: 70px; }
-
   .sticker-tier-title { font-size: 12px; font-weight: 900; letter-spacing: 2px; margin: 15px 0 10px; display: flex; align-items: center; gap: 8px; }
   .sticker-tier-title.common { color: #a0aec0; }
   .sticker-tier-title.rare { color: #00d4ff; }
@@ -216,7 +200,6 @@
   .sticker-price { font-size: 10px; color: #00d4ff; font-weight: 900; }
   .sticker-price.max { color: #ff9500; }
   .sticker-price.locked { color: #7a8ba5; }
-
   .crash-game { text-align: center; padding: 10px 0; }
   .crash-multiplier { font-size: 54px; font-weight: 900; color: #00ff88; margin: 15px 0; }
   .crash-multiplier.crashed { color: #ff0055; }
@@ -227,11 +210,21 @@
   .bet-option.selected { background: linear-gradient(135deg, #00d4ff, #0066ff); border-color: #00d4ff; }
   .crash-bet-btn { background: linear-gradient(135deg, #00ff88, #00aa55); border: none; border-radius: 12px; padding: 14px; color: white; font-size: 15px; font-weight: 900; cursor: pointer; width: 100%; }
   .crash-cash-btn { background: linear-gradient(135deg, #ff9500, #ff5500); border: none; border-radius: 12px; padding: 14px; color: white; font-size: 15px; font-weight: 900; cursor: pointer; width: 100%; margin-top: 10px; }
-
-  .puzzle-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; margin: 15px auto; max-width: 100%; }
-  .puzzle-tile { aspect-ratio: 1; background: linear-gradient(135deg, #00d4ff, #0066ff); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 900; color: white; cursor: pointer; }
+  .puzzle-grid { display: grid; gap: 3px; margin: 15px auto; max-width: 100%; }
+  .puzzle-tile { aspect-ratio: 1; background: linear-gradient(135deg, #00d4ff, #0066ff); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: 900; color: white; cursor: pointer; user-select: none; }
   .puzzle-tile.empty { background: rgba(15,30,55,0.4); color: transparent; }
-
+  .puzzle-mode-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+  .puzzle-mode-card { background: rgba(15,30,55,0.8); border: 2px solid rgba(0,180,255,0.3); border-radius: 12px; padding: 10px 5px; text-align: center; cursor: pointer; transition: all 0.2s; }
+  .puzzle-mode-card.selected { border-color: #00d4ff; background: linear-gradient(135deg, rgba(0,212,255,0.2), rgba(0,100,200,0.1)); box-shadow: 0 0 20px rgba(0,212,255,0.5); }
+  .puzzle-mode-card:active { transform: scale(0.96); }
+  .puzzle-mode-icon { font-size: 22px; margin-bottom: 4px; }
+  .puzzle-mode-name { font-size: 11px; font-weight: 900; margin-bottom: 2px; }
+  .puzzle-mode-desc { font-size: 8px; color: #7a8ba5; }
+  .puzzle-mode-time { font-size: 9px; color: #ff9500; font-weight: 900; margin-top: 3px; }
+  .puzzle-timer-display { background: rgba(0,0,0,0.5); border-radius: 10px; padding: 8px; display: flex; justify-content: space-around; margin-bottom: 10px; border: 1px solid rgba(0,212,255,0.3); }
+  .puzzle-timer-display div { font-size: 11px; font-weight: 900; }
+  .puzzle-timer-warn { color: #ff0055 !important; animation: pulseWarn 0.5s infinite; }
+  @keyframes pulseWarn { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
   .wheel-wrapper { position: relative; width: 260px; height: 260px; margin: 20px auto; display: flex; align-items: center; justify-content: center; }
   .wheel-pointer { position: absolute; top: -25px; left: 50%; transform: translateX(-50%); font-size: 40px; color: #ff0055; z-index: 10; }
   .wheel-outer { position: absolute; width: 100%; height: 100%; border-radius: 50%; border: 5px solid #00d4ff; z-index: 5; pointer-events: none; }
@@ -245,27 +238,23 @@
   .result-display h4 { font-size: 11px; color: #a0aec0; margin-bottom: 8px; }
   .result-display .reward-amount { font-size: 36px; font-weight: 900; color: #00ff88; }
   .result-display .reward-unit { font-size: 13px; color: #00d4ff; font-weight: 900; }
-
   .ref-card { background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(0,80,180,0.1)); border: 1px solid rgba(0,212,255,0.3); border-radius: 18px; padding: 20px; margin-bottom: 12px; text-align: center; }
   .ref-title { font-size: 16px; font-weight: 900; color: #00d4ff; margin-bottom: 8px; }
   .ref-sub { font-size: 11px; color: #a0aec0; margin-bottom: 15px; }
   .ref-link { background: rgba(0,0,0,0.4); padding: 12px; border-radius: 10px; font-size: 10px; color: #00d4ff; word-break: break-all; margin-bottom: 15px; }
   .ref-share { background: linear-gradient(135deg, #00b4ff, #0066ff); border: none; border-radius: 12px; padding: 12px; color: white; font-size: 13px; font-weight: 900; cursor: pointer; width: 100%; }
-
   .setting-row { display: flex; justify-content: space-between; align-items: center; background: rgba(15,30,55,0.7); border: 1px solid rgba(0,180,255,0.2); border-radius: 14px; padding: 14px; margin-bottom: 10px; }
   .setting-row .label { font-size: 13px; font-weight: 900; color: white; }
   .toggle { width: 50px; height: 28px; border-radius: 14px; background: #4a5568; position: relative; cursor: pointer; transition: background 0.3s; }
   .toggle.on { background: linear-gradient(135deg, #00d4ff, #00ff88); }
   .toggle::after { content: ''; position: absolute; top: 3px; left: 3px; width: 22px; height: 22px; border-radius: 50%; background: white; transition: transform 0.3s; }
   .toggle.on::after { transform: translateX(22px); }
-
   .withdraw-option { background: rgba(15,30,55,0.8); border: 1px solid rgba(0,180,255,0.3); border-radius: 14px; padding: 14px; margin-bottom: 10px; display: flex; align-items: center; gap: 12px; }
   .withdraw-option-icon { width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; background: rgba(0,180,255,0.15); flex-shrink: 0; }
   .withdraw-option-info { flex: 1; text-align: left; }
   .withdraw-option-info h4 { font-size: 13px; font-weight: 900; margin-bottom: 3px; }
   .withdraw-option-info p { font-size: 10px; color: #7a8ba5; }
   .coming-soon-badge { background: rgba(255,150,0,0.2); color: #ff9500; font-size: 9px; padding: 3px 8px; border-radius: 8px; font-weight: 900; }
-
   .profile-card { background: linear-gradient(135deg, rgba(0,180,255,0.12), rgba(0,60,150,0.08)); border: 1.5px solid rgba(0,212,255,0.35); border-radius: 20px; padding: 18px; margin-bottom: 14px; position: relative; overflow: hidden; }
   .profile-avatar-wrap { width: 80px; height: 80px; position: relative; flex-shrink: 0; }
   .profile-avatar-ring { position: absolute; inset: -5px; border-radius: 50%; background: conic-gradient(from 0deg, #00d4ff, #00ff88, #9900ff, #ff0055, #00d4ff); animation: spinRing 4s linear infinite; opacity: 0.8; filter: blur(2px); }
@@ -280,13 +269,11 @@
   .profile-level-xp { font-size: 12px; color: #a0aec0; font-weight: 700; }
   .profile-level-bar { width: 100%; height: 8px; background: rgba(0,0,0,0.4); border-radius: 4px; overflow: hidden; position: relative; z-index: 2; }
   .profile-level-fill { height: 100%; background: linear-gradient(90deg, #00d4ff, #0090ff); border-radius: 4px; transition: width 0.5s; }
-
   .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: linear-gradient(180deg, rgba(10,20,35,0.98), rgba(5,10,20,1)); border-top: 1px solid rgba(0,180,255,0.3); display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr; padding: 8px 0 12px; z-index: 100; }
   .nav-item { display: flex; flex-direction: column; align-items: center; gap: 3px; color: #4a5568; font-size: 8px; cursor: pointer; padding: 5px 0; font-weight: bold; }
   .nav-item.active { color: #00d4ff; }
   .nav-item.active .nav-icon { transform: scale(1.15); }
   .nav-item .nav-icon { font-size: 20px; transition: transform 0.2s; }
-
   .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 15px; }
   .modal.show { display: flex; }
   .modal-content { background: linear-gradient(135deg, #0f2137, #061224); border: 1px solid rgba(0,212,255,0.5); border-radius: 22px; padding: 22px 18px; max-width: 380px; width: 100%; text-align: center; max-height: 92vh; overflow-y: auto; }
@@ -294,18 +281,14 @@
   .modal-content p { color: #a0aec0; font-size: 13px; margin-bottom: 20px; line-height: 1.6; white-space: pre-line; }
   .modal-btn { background: linear-gradient(135deg, #00b4ff, #0066ff); border: none; border-radius: 12px; padding: 12px 30px; color: white; font-size: 14px; font-weight: 900; cursor: pointer; }
   .input-field { background: rgba(0,0,0,0.4); border: 1px solid rgba(0,212,255,0.4); border-radius: 12px; padding: 12px 15px; color: white; font-size: 14px; width: 100%; outline: none; text-align: center; margin-bottom: 15px; font-weight: 900; }
-
   .float-text { position: fixed; font-size: 26px; font-weight: 900; color: #00d4ff; pointer-events: none; animation: floatUp 1s ease-out forwards; z-index: 999; }
   @keyframes floatUp { 0% { opacity: 1; transform: translateY(0) scale(1); } 100% { opacity: 0; transform: translateY(-130px) scale(1.4); } }
   .sparkle { position: fixed; width: 8px; height: 8px; border-radius: 50%; pointer-events: none; animation: sparkleAnim 0.8s ease-out forwards; z-index: 998; }
   @keyframes sparkleAnim { 0% { opacity: 1; transform: scale(1); } 100% { opacity: 0; transform: scale(0); } }
-
   .tab-content { display: none; padding: 12px 15px; max-width: 500px; margin: 0 auto; }
   .tab-content.active { display: block; }
-
   .lucky-box { width: 140px; height: 140px; margin: 20px auto; background: linear-gradient(135deg, #ff9500, #ff5500); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 70px; cursor: pointer; }
   .lucky-box:active { transform: scale(0.9); }
-
   .avatar-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 15px 0; }
   .avatar-option { aspect-ratio: 1; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; cursor: pointer; border: 3px solid rgba(0,180,255,0.3); background: linear-gradient(135deg, rgba(0,212,255,0.2), rgba(0,80,180,0.1)); }
   .avatar-option.selected { border-color: #00d4ff; transform: scale(1.05); }
@@ -345,7 +328,6 @@
         </button>
       </div>
     </div>
-
     <div class="rank-badge-card">
       <div class="rank-badge-icon">🏆</div>
       <div class="rank-badge-info">
@@ -357,7 +339,6 @@
         <button class="rarity-show-btn" onclick="showRarityList()">⭐ RARITY</button>
       </div>
     </div>
-
     <div class="tap-title">⚡ Tap to Earn</div>
     <div class="coin-area">
       <div class="coin-character"></div>
@@ -392,7 +373,6 @@
     </div>
     <div class="coin-bottom-text">👆 TAP THE COIN</div>
     <div class="coin-per-tap">Per Tap: <strong>+<span id="tapPowerText">1</span> TRAX</strong></div>
-
     <div class="energy-card">
       <div class="energy-header">
         <span class="energy-label">⚡ Energy</span>
@@ -400,12 +380,10 @@
       </div>
       <div class="energy-bar"><div class="energy-fill" id="energyBar" style="width:100%"></div></div>
     </div>
-
     <div class="quick-row">
       <div class="quick-btn" onclick="navTo('boosters')"><div class="quick-icon">🚀</div><div class="quick-label">Boosters</div></div>
       <div class="quick-btn" onclick="navTo('upgrades')"><div class="quick-icon">⬆️</div><div class="quick-label">Upgrades</div></div>
     </div>
-
     <div class="rank-board">
       <div class="rank-header">
         <div class="rank-title"><span class="live-dot"></span>🏆 LIVE LEADERBOARD</div>
@@ -420,9 +398,9 @@
   <div class="page-title-bar"><div class="page-title-icon">🎮</div><div class="page-title-text">Mini Games</div></div>
   <div class="mini-games-grid">
     <div class="mini-game-card" onclick="openSpin()"><div class="mini-game-icon">🎰</div><div class="mini-game-name">Lucky Spin</div><div class="mini-game-desc">Win up to 10K</div></div>
-    <div class="mini-game-card" onclick="openPuzzle()"><div class="mini-game-icon">🧩</div><div class="mini-game-name">Puzzle 7x7</div><div class="mini-game-desc">Win 50K</div></div>
+    <div class="mini-game-card" onclick="openPuzzle()"><div class="mini-game-icon">🧩</div><div class="mini-game-name">Puzzle</div><div class="mini-game-desc">3 Modes</div></div>
     <div class="mini-game-card" onclick="openCrash()"><div class="mini-game-icon">🚀</div><div class="mini-game-name">Crash</div><div class="mini-game-desc">Win big</div></div>
-    <div class="mini-game-card" onclick="showModal('🐔 Chicken Road', 'Chicken Road game coming soon!\n\nYe next update mein aayega.')"><div class="mini-game-icon">🐔</div><div class="mini-game-name">Chicken Road</div><div class="mini-game-desc">Coming Soon</div></div>
+    <div class="mini-game-card" onclick="showModal('🐔 Chicken Road', 'Coming soon!')"><div class="mini-game-icon">🐔</div><div class="mini-game-name">Chicken Road</div><div class="mini-game-desc">Coming Soon</div></div>
   </div>
 </div>
 
@@ -574,62 +552,13 @@
 <div class="modal" id="rarityModal">
   <div class="modal-content" style="max-width:420px;text-align:left">
     <h3 style="text-align:center;margin-bottom:18px">🏆 Rarity Tiers</h3>
-    <div class="rarity-item brown">
-      <div class="rarity-item-icon">🟤</div>
-      <div class="rarity-item-info">
-        <h4 style="color:#cd7f32">BROWN — Common</h4>
-        <p>Beginner tier — sab yahan se shuru</p>
-        <div class="range" style="color:#cd7f32">Level 1 - 10</div>
-      </div>
-    </div>
-    <div class="rarity-item silver">
-      <div class="rarity-item-icon">⚪</div>
-      <div class="rarity-item-info">
-        <h4 style="color:#c0c0c0">SILVER — Uncommon</h4>
-        <p>Active players ka tier</p>
-        <div class="range" style="color:#c0c0c0">Level 10 - 25</div>
-      </div>
-    </div>
-    <div class="rarity-item gold">
-      <div class="rarity-item-icon">🟡</div>
-      <div class="rarity-item-info">
-        <h4 style="color:#ffd700">GOLD — Rare</h4>
-        <p>Serious players ka tier</p>
-        <div class="range" style="color:#ffd700">Level 25 - 50</div>
-      </div>
-    </div>
-    <div class="rarity-item diamond">
-      <div class="rarity-item-icon">💎</div>
-      <div class="rarity-item-info">
-        <h4 style="color:#a0e0ff">DIAMOND — Epic</h4>
-        <p>Top 10% players</p>
-        <div class="range" style="color:#a0e0ff">Level 50 - 100</div>
-      </div>
-    </div>
-    <div class="rarity-item epic">
-      <div class="rarity-item-icon">🟣</div>
-      <div class="rarity-item-info">
-        <h4 style="color:#9900ff">EPIC — Very Rare</h4>
-        <p>Elite players only</p>
-        <div class="range" style="color:#9900ff">Level 100 - 250</div>
-      </div>
-    </div>
-    <div class="rarity-item legendary">
-      <div class="rarity-item-icon">🟠</div>
-      <div class="rarity-item-info">
-        <h4 style="color:#ff9500">LEGENDARY — Mythic</h4>
-        <p>Top 1% players</p>
-        <div class="range" style="color:#ff9500">Level 250 - 500</div>
-      </div>
-    </div>
-    <div class="rarity-item mythic">
-      <div class="rarity-item-icon">🔴</div>
-      <div class="rarity-item-info">
-        <h4 style="color:#ff0055">MYTHIC — Godly</h4>
-        <p>Best of the best players</p>
-        <div class="range" style="color:#ff0055">Level 500+</div>
-      </div>
-    </div>
+    <div class="rarity-item brown"><div class="rarity-item-icon">🟤</div><div class="rarity-item-info"><h4 style="color:#cd7f32">BROWN — Common</h4><p>Beginner tier</p><div class="range" style="color:#cd7f32">Level 1 - 10</div></div></div>
+    <div class="rarity-item silver"><div class="rarity-item-icon">⚪</div><div class="rarity-item-info"><h4 style="color:#c0c0c0">SILVER — Uncommon</h4><p>Active players</p><div class="range" style="color:#c0c0c0">Level 10 - 25</div></div></div>
+    <div class="rarity-item gold"><div class="rarity-item-icon">🟡</div><div class="rarity-item-info"><h4 style="color:#ffd700">GOLD — Rare</h4><p>Serious players</p><div class="range" style="color:#ffd700">Level 25 - 50</div></div></div>
+    <div class="rarity-item diamond"><div class="rarity-item-icon">💎</div><div class="rarity-item-info"><h4 style="color:#a0e0ff">DIAMOND — Epic</h4><p>Top 10% players</p><div class="range" style="color:#a0e0ff">Level 50 - 100</div></div></div>
+    <div class="rarity-item epic"><div class="rarity-item-icon">🟣</div><div class="rarity-item-info"><h4 style="color:#9900ff">EPIC — Very Rare</h4><p>Elite players only</p><div class="range" style="color:#9900ff">Level 100 - 250</div></div></div>
+    <div class="rarity-item legendary"><div class="rarity-item-icon">🟠</div><div class="rarity-item-info"><h4 style="color:#ff9500">LEGENDARY — Mythic</h4><p>Top 1% players</p><div class="range" style="color:#ff9500">Level 250 - 500</div></div></div>
+    <div class="rarity-item mythic"><div class="rarity-item-icon">🔴</div><div class="rarity-item-info"><h4 style="color:#ff0055">MYTHIC — Godly</h4><p>Best of the best</p><div class="range" style="color:#ff0055">Level 500+</div></div></div>
     <button class="modal-btn" onclick="closeRarityList()" style="display:block;width:100%;margin-top:10px">Samajh Gaya ✓</button>
   </div>
 </div>
@@ -678,25 +607,67 @@
       <p><b style="color:#00d4ff">Kaise Khelein:</b></p>
       <p>1. Bet select karein</p>
       <p>2. START dabayein</p>
-      <p>3. CASH OUT dabayein (crash se pehle!)</p>
-      <p style="margin-top:10px"><b style="color:#00d4ff">Rarity Chances:</b></p>
-      <p>🔘 Common: 92% (1.5x - 4x)</p>
-      <p>💎 Rare: 6.5% (4x - 20x)</p>
-      <p>🔥 Epic: 1.25% (20x - 50x)</p>
-      <p>⭐ Legendary: 0.25% (50x - 100x)</p>
+      <p>3. CASH OUT (crash se pehle!)</p>
+      <p style="margin-top:10px"><b style="color:#00d4ff">Rarity:</b></p>
+      <p>🔘 Common: 92% (1.5x-4x)</p>
+      <p>💎 Rare: 6.5% (4x-20x)</p>
+      <p>🔥 Epic: 1.25% (20x-50x)</p>
+      <p>⭐ Legendary: 0.25% (50x-100x)</p>
     </div>
     <button class="modal-btn" onclick="closeCrashInfo()" style="display:block;width:100%">Samajh Gaya ✓</button>
   </div>
 </div>
 
+<!-- NEW PUZZLE MODAL -->
 <div class="modal" id="puzzleModal">
-  <div class="modal-content" style="max-width:400px">
-    <h3>🧩 Puzzle 7x7</h3>
-    <p style="font-size:11px;color:#a0aec0;margin-bottom:8px">1 se 48 tiles sahi order mein lagayein!</p>
-    <div class="puzzle-grid" id="puzzleGrid"></div>
-    <div style="font-size:11px;color:#00d4ff;text-align:center;margin:8px 0">Moves: <span id="puzzleMoves">0</span></div>
-    <div style="font-size:11px;color:#00ff88;text-align:center;margin-bottom:12px">Reward: +50,000 TRAX</div>
-    <button class="modal-btn" style="background:rgba(255,255,255,0.1);display:block;width:100%" onclick="closePuzzle()">Close</button>
+  <div class="modal-content" style="max-width:420px">
+    <h3 style="text-align:center">🧩 Puzzle Challenge</h3>
+    <div id="puzzleSetup">
+      <div style="margin-bottom:14px">
+        <div style="font-size:12px;color:#a0aec0;margin-bottom:8px;text-align:left;font-weight:900">◆ SELECT DIFFICULTY</div>
+        <div class="puzzle-mode-grid" id="puzzleModeGrid">
+          <div class="puzzle-mode-card" data-mode="easy" onclick="selectPuzzleMode('easy')">
+            <div class="puzzle-mode-icon">🟢</div>
+            <div class="puzzle-mode-name">Easy</div>
+            <div class="puzzle-mode-desc">5x5</div>
+            <div class="puzzle-mode-time">⏱ 5 min</div>
+          </div>
+          <div class="puzzle-mode-card" data-mode="medium" onclick="selectPuzzleMode('medium')">
+            <div class="puzzle-mode-icon">🟡</div>
+            <div class="puzzle-mode-name">Medium</div>
+            <div class="puzzle-mode-desc">7x7</div>
+            <div class="puzzle-mode-time">⏱ 10 min</div>
+          </div>
+          <div class="puzzle-mode-card" data-mode="hard" onclick="selectPuzzleMode('hard')">
+            <div class="puzzle-mode-icon">🔴</div>
+            <div class="puzzle-mode-name">Hard</div>
+            <div class="puzzle-mode-desc">9x9</div>
+            <div class="puzzle-mode-time">⏱ 20 min</div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-bottom:12px;text-align:left">
+        <div style="font-size:12px;color:#a0aec0;margin-bottom:8px;font-weight:900">◆ YOUR BET (Min: <span id="puzzleMinBet">100</span> TRAX)</div>
+        <input type="number" id="puzzleBetInput" class="input-field" placeholder="Enter bet amount" min="100" value="1000" oninput="updatePuzzlePreview()">
+      </div>
+      <div id="puzzlePreview" style="background:linear-gradient(135deg,rgba(0,212,255,0.15),rgba(150,0,255,0.1));border:1.5px solid rgba(0,212,255,0.4);border-radius:14px;padding:14px;margin-bottom:14px;text-align:center">
+        <div style="font-size:11px;color:#7a8ba5;margin-bottom:6px">POTENTIAL REWARD</div>
+        <div style="font-size:28px;font-weight:900;color:#00ff88;text-shadow:0 0 20px rgba(0,255,136,0.6)" id="puzzleRewardPreview">+2,000 TRAX</div>
+        <div style="font-size:10px;color:#00d4ff;margin-top:4px" id="puzzleModePreview">Easy · 5x5 · 5 min</div>
+      </div>
+      <button class="crash-bet-btn" onclick="startPuzzleGame()" style="width:100%">🎮 START PUZZLE</button>
+      <button class="modal-btn" style="margin-top:8px;background:rgba(255,255,255,0.1);display:block;width:100%" onclick="closePuzzle()">Close</button>
+    </div>
+
+    <div id="puzzleGame" style="display:none">
+      <div class="puzzle-timer-display">
+        <div>⏱ <span id="puzzleTimer" style="color:#00d4ff">05:00</span></div>
+        <div>🎯 <span id="puzzleBetDisplay" style="color:#ffd700">0</span> TRAX</div>
+        <div>🔄 <span id="puzzleMoves" style="color:#00ff88">0</span></div>
+      </div>
+      <div class="puzzle-grid" id="puzzleGrid"></div>
+      <button class="modal-btn" style="margin-top:10px;background:linear-gradient(135deg,#ff0055,#990033);display:block;width:100%" onclick="forfeitPuzzle()">⚠️ FORFEIT (Lose Bet)</button>
+    </div>
   </div>
 </div>
 
@@ -966,7 +937,6 @@
     if (prevLvl >= MAX_STICKER_LEVEL) return null;
     return prev.name + ' (Lv ' + prevLvl + '/' + MAX_STICKER_LEVEL + ')';
   }
-
   function getTapBonusFromStickers() { let total = 0; STICKERS.forEach(s => { const lvl = stickerLevels[s.id] || 0; if (!lvl) return; const text = s.bonus(lvl); if (text.includes('Tap') && !text.includes('Energy')) { const m = text.match(/(\d+)/); if (m) total += parseInt(m[1]); } }); return total; }
   function getAutoBonusFromStickers() { let total = 0; STICKERS.forEach(s => { const lvl = stickerLevels[s.id] || 0; if (!lvl) return; const text = s.bonus(lvl); if (text.includes('Auto/hr')) { const m = text.match(/(\d+)/); if (m) total += parseInt(m[1]); } }); return total; }
   function getEnergyRegenBonusFromStickers() { let total = 0; STICKERS.forEach(s => { const lvl = stickerLevels[s.id] || 0; if (!lvl) return; const text = s.bonus(lvl); if (text.includes('Energy Regen')) { const m = text.match(/(\d+)/); if (m) total += parseInt(m[1]); } }); return total; }
@@ -1054,27 +1024,17 @@
     players = players.filter(p => p.value >= RANK_MIN_COINS);
     const myEntry = players.find(p => p.id === userId);
     if (balance >= RANK_MIN_COINS) {
-      if (myEntry) {
-        myEntry.name = userName || 'You';
-        myEntry.value = balance;
-        myEntry.avatar = userAvatar;
-      } else {
-        players.push({ id: userId, name: userName || 'You', value: balance, avatar: userAvatar });
-      }
-    } else if (myEntry) {
-      players = players.filter(p => p.id !== userId);
-    }
+      if (myEntry) { myEntry.name = userName || 'You'; myEntry.value = balance; myEntry.avatar = userAvatar; }
+      else { players.push({ id: userId, name: userName || 'You', value: balance, avatar: userAvatar }); }
+    } else if (myEntry) { players = players.filter(p => p.id !== userId); }
     players.sort((a, b) => b.value - a.value);
     localStorage.setItem('trax_leaderboard', JSON.stringify(players));
     return players;
   }
 
   function drawHomeRank() {
-    const box = document.getElementById('homeRankList');
-    if (!box) return;
-    const players = getAllPlayers();
-    box.innerHTML = '';
-
+    const box = document.getElementById('homeRankList'); if (!box) return;
+    const players = getAllPlayers(); box.innerHTML = '';
     const myRankBadge = document.getElementById('myRankBadge');
     const rankStatus = document.getElementById('rankStatus');
     if (balance >= RANK_MIN_COINS) {
@@ -1086,34 +1046,21 @@
       const needed = RANK_MIN_COINS - Math.floor(balance);
       if (rankStatus) rankStatus.textContent = needed.toLocaleString() + ' more';
     }
-
     if (players.length === 0) {
-      box.innerHTML = '<div style="text-align:center;padding:20px;color:#7a8ba5;font-size:12px">' +
-        '<div style="font-size:32px;margin-bottom:8px">🏆</div>' +
-        '<div style="font-weight:900;color:#00d4ff;margin-bottom:4px">No players yet</div>' +
-        '<div>1,00,000+ TRAX jama karein aur rank board mein aayein!</div>' +
-        '</div>';
+      box.innerHTML = '<div style="text-align:center;padding:20px;color:#7a8ba5;font-size:12px"><div style="font-size:32px;margin-bottom:8px">🏆</div><div style="font-weight:900;color:#00d4ff;margin-bottom:4px">No players yet</div><div>1,00,000+ TRAX jama karein aur rank board mein aayein!</div></div>';
       return;
     }
-
     players.slice(0, 10).forEach((u, i) => {
       const el = document.createElement('div');
       const isMine = u.id === userId;
       el.className = 'rank-row' + (isMine ? ' mine' : '') + (i === 0 ? ' top1' : i === 1 ? ' top2' : i === 2 ? ' top3' : '');
       const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : '#' + (i + 1);
-      const avatarHtml = (u.avatar && u.avatar.startsWith('data:')) ? 
-        '<div class="rank-avatar" style="background-image:url(' + u.avatar + ');background-size:cover"></div>' :
-        '<div class="rank-avatar">' + (u.avatar || '👤') + '</div>';
-      el.innerHTML = '<div class="rank-num">' + medal + '</div>' +
-        avatarHtml +
-        '<div class="rank-name">' + u.name + (isMine ? ' <span style="color:#00d4ff;font-size:9px">(You)</span>' : '') + '</div>' +
-        '<div class="rank-value">' + Math.floor(u.value).toLocaleString() + ' <small>TRAX</small></div>';
+      const avatarHtml = (u.avatar && u.avatar.startsWith('data:')) ? '<div class="rank-avatar" style="background-image:url(' + u.avatar + ');background-size:cover"></div>' : '<div class="rank-avatar">' + (u.avatar || '👤') + '</div>';
+      el.innerHTML = '<div class="rank-num">' + medal + '</div>' + avatarHtml + '<div class="rank-name">' + u.name + (isMine ? ' <span style="color:#00d4ff;font-size:9px">(You)</span>' : '') + '</div><div class="rank-value">' + Math.floor(u.value).toLocaleString() + ' <small>TRAX</small></div>';
       box.appendChild(el);
     });
   }
-
   function updateHomeRankLive() { drawHomeRank(); }
-
   function scheduleLeaderboardReset() {
     setInterval(() => {
       const players = JSON.parse(localStorage.getItem('trax_leaderboard') || '[]');
@@ -1124,7 +1071,6 @@
       showToast('🏆 Leaderboard refreshed');
     }, RANK_RESET_MS);
   }
-
   function showToast(msg) {
     const toast = document.createElement('div');
     toast.textContent = msg;
@@ -1132,13 +1078,8 @@
     document.body.appendChild(toast);
     setTimeout(() => toast.remove(), 2500);
   }
-
-  function showRarityList() {
-    document.getElementById('rarityModal').classList.add('show');
-  }
-  function closeRarityList() {
-    document.getElementById('rarityModal').classList.remove('show');
-  }
+  function showRarityList() { document.getElementById('rarityModal').classList.add('show'); }
+  function closeRarityList() { document.getElementById('rarityModal').classList.remove('show'); }
 
   function init() {
     document.getElementById('refLink').textContent = 'https://t.me/TraxOfficial_bot?start=ref' + userId;
@@ -1148,8 +1089,7 @@
     buildAvatarGrid();
     drawTasksNew(); drawRank(); drawStickers(); drawUpgrades(); drawBetSelector(); updateSettingsUI(); updateUI();
     applyCoinTier(); updateBoosterUI();
-    drawHomeRank();
-    scheduleLeaderboardReset();
+    drawHomeRank(); scheduleLeaderboardReset();
     setInterval(updateBoosterUI, 1000);
     setInterval(checkBoosterExpiry, 5000);
     setInterval(updateHomeRankLive, 10000);
@@ -1157,8 +1097,7 @@
   }
 
   function drawTasksNew() {
-    const box = document.getElementById('fullTasksListNew');
-    if (!box) return;
+    const box = document.getElementById('fullTasksListNew'); if (!box) return;
     box.innerHTML = '';
     const tasks = [
       { id: 'tg', icon: '📢', iconClass: 'telegram', name: 'Join Telegram Channel', reward: 1000, done: localStorage.getItem('task_tg') === 'done' },
@@ -1187,16 +1126,11 @@
   }
 
   function drawRank() {
-    const list = document.getElementById('rankList');
-    if (!list) return;
+    const list = document.getElementById('rankList'); if (!list) return;
     list.innerHTML = '';
     const players = getAllPlayers();
     if (players.length === 0) {
-      list.innerHTML = '<div style="text-align:center;padding:30px;color:#7a8ba5;font-size:13px">' +
-        '<div style="font-size:44px;margin-bottom:10px">🏆</div>' +
-        '<div style="font-weight:900;color:#00d4ff;margin-bottom:6px">No players yet</div>' +
-        '<div>1,00,000+ TRAX jama karein aur rank board mein aayein!</div>' +
-        '</div>';
+      list.innerHTML = '<div style="text-align:center;padding:30px;color:#7a8ba5;font-size:13px"><div style="font-size:44px;margin-bottom:10px">🏆</div><div style="font-weight:900;color:#00d4ff;margin-bottom:6px">No players yet</div><div>1,00,000+ TRAX jama karein aur rank board mein aayein!</div></div>';
       return;
     }
     players.forEach((u, i) => {
@@ -1210,8 +1144,7 @@
   }
 
   function drawStickers() {
-    const container = document.getElementById('stickerShopContainer');
-    if (!container) return;
+    const container = document.getElementById('stickerShopContainer'); if (!container) return;
     container.innerHTML = '';
     const tiers = [
       { id: 'common', label: '◆ COMMON' }, { id: 'rare', label: '◆ RARE' },
@@ -1259,8 +1192,7 @@
       { id: 'autoEarn', icon: '💰', iconClass: 'auto', name: 'Auto Earning', desc: '+5 TRAX/hr', baseCost: 15000, multiplier: 1.6, level: parseInt(localStorage.getItem('upg_autoEarn') || '0') },
       { id: 'energyRegen', icon: '⚡', iconClass: 'regen', name: 'Energy Regen', desc: '+1 per 2 sec', baseCost: 20000, multiplier: 1.7, level: parseInt(localStorage.getItem('upg_energyRegen') || '0') }
     ];
-    const box = document.getElementById('upgradesList');
-    if (!box) return;
+    const box = document.getElementById('upgradesList'); if (!box) return;
     box.innerHTML = '';
     upgrades.forEach(u => {
       const cost = Math.floor(u.baseCost * Math.pow(u.multiplier, u.level));
@@ -1394,7 +1326,6 @@
 
   function openLuckyBox() {
     if (luckyKeys <= 0) { playSound('error'); showModal('📦 No Keys', 'Aapke paas keys nahi hain.'); return; }
-    const box = document.getElementById('luckyBox');
     setTimeout(() => {
       luckyKeys--;
       const rewards = [100, 200, 500, 1000, 2000, 5000];
@@ -1633,60 +1564,167 @@
     playSound('win'); vibrate('success');
   }
 
-  let puzzleState = { tiles: [], moves: 0, solved: false };
-  const PUZZLE_SIZE = 7;
-  const PUZZLE_REWARD = 50000;
-  function openPuzzle() { document.getElementById('puzzleModal').classList.add('show'); initPuzzle(); }
-  function closePuzzle() { document.getElementById('puzzleModal').classList.remove('show'); }
+  // ===== NEW PUZZLE GAME =====
+  const PUZZLE_MODES = {
+    easy:   { size: 5, time: 300,  multiplier: 2,  minBet: 100,  label: 'Easy',   tiles: '5x5', timeLabel: '5 min' },
+    medium: { size: 7, time: 600,  multiplier: 5,  minBet: 500,  label: 'Medium', tiles: '7x7', timeLabel: '10 min' },
+    hard:   { size: 9, time: 1200, multiplier: 15, minBet: 1000, label: 'Hard',   tiles: '9x9', timeLabel: '20 min' }
+  };
+  let selectedPuzzleMode = 'easy';
+  let puzzleState = { tiles: [], moves: 0, solved: false, mode: 'easy', bet: 0, timeLeft: 0, timer: null, size: 0 };
+
+  function selectPuzzleMode(mode) {
+    selectedPuzzleMode = mode;
+    document.querySelectorAll('.puzzle-mode-card').forEach(c => c.classList.remove('selected'));
+    const card = document.querySelector('.puzzle-mode-card[data-mode="' + mode + '"]');
+    if (card) card.classList.add('selected');
+    document.getElementById('puzzleMinBet').textContent = PUZZLE_MODES[mode].minBet.toLocaleString();
+    const betInput = document.getElementById('puzzleBetInput');
+    if (parseInt(betInput.value) < PUZZLE_MODES[mode].minBet) betInput.value = PUZZLE_MODES[mode].minBet;
+    updatePuzzlePreview();
+  }
+
+  function updatePuzzlePreview() {
+    const mode = PUZZLE_MODES[selectedPuzzleMode];
+    const bet = parseInt(document.getElementById('puzzleBetInput').value) || mode.minBet;
+    const reward = Math.floor(bet * mode.multiplier);
+    document.getElementById('puzzleRewardPreview').textContent = '+' + reward.toLocaleString() + ' TRAX';
+    document.getElementById('puzzleModePreview').textContent = mode.label + ' · ' + mode.tiles + ' · ' + mode.timeLabel;
+  }
+
+  function openPuzzle() {
+    document.getElementById('puzzleSetup').style.display = 'block';
+    document.getElementById('puzzleGame').style.display = 'none';
+    document.getElementById('puzzleModal').classList.add('show');
+    selectPuzzleMode('easy');
+  }
+
+  function closePuzzle() {
+    if (puzzleState.timer) { clearInterval(puzzleState.timer); puzzleState.timer = null; }
+    document.getElementById('puzzleModal').classList.remove('show');
+  }
+
+  function startPuzzleGame() {
+    const mode = PUZZLE_MODES[selectedPuzzleMode];
+    const bet = parseInt(document.getElementById('puzzleBetInput').value) || 0;
+    if (bet < mode.minBet) { showModal('⚠️ Bet Too Low', mode.label + ' ke liye minimum ' + mode.minBet.toLocaleString() + ' TRAX chahiye.'); return; }
+    if (bet > balance) { showModal('❌ Not Enough', 'Aapke paas ' + Math.floor(balance).toLocaleString() + ' TRAX hain.'); return; }
+    balance -= bet;
+    puzzleState.mode = selectedPuzzleMode;
+    puzzleState.bet = bet;
+    puzzleState.timeLeft = mode.time;
+    puzzleState.size = mode.size;
+    puzzleState.moves = 0;
+    puzzleState.solved = false;
+    updateUI(); save();
+
+    document.getElementById('puzzleSetup').style.display = 'none';
+    document.getElementById('puzzleGame').style.display = 'block';
+    document.getElementById('puzzleBetDisplay').textContent = bet.toLocaleString();
+    document.getElementById('puzzleMoves').textContent = '0';
+
+    initPuzzle();
+    updatePuzzleTimerDisplay();
+    if (puzzleState.timer) clearInterval(puzzleState.timer);
+    puzzleState.timer = setInterval(() => {
+      puzzleState.timeLeft--;
+      updatePuzzleTimerDisplay();
+      if (puzzleState.timeLeft <= 0) {
+        clearInterval(puzzleState.timer); puzzleState.timer = null;
+        // Time up
+        playSound('error'); vibrate('error');
+        showModal('⏰ Time Up!', 'Aapne ' + puzzleState.bet.toLocaleString() + ' TRAX kho diye.');
+        closePuzzle();
+      }
+    }, 1000);
+    playSound('tap'); vibrate('light');
+  }
+
+  function updatePuzzleTimerDisplay() {
+    const t = puzzleState.timeLeft;
+    const m = Math.floor(t / 60);
+    const s = t % 60;
+    const el = document.getElementById('puzzleTimer');
+    el.textContent = String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+    if (t <= 30) el.classList.add('puzzle-timer-warn');
+    else el.classList.remove('puzzle-timer-warn');
+  }
+
   function initPuzzle() {
+    const size = puzzleState.size;
+    const total = size * size;
     puzzleState.tiles = [];
-    for (let i = 1; i < PUZZLE_SIZE * PUZZLE_SIZE; i++) puzzleState.tiles.push(i);
+    for (let i = 1; i < total; i++) puzzleState.tiles.push(i);
     puzzleState.tiles.push(0);
-    for (let i = 0; i < 500; i++) {
+    // Shuffle
+    for (let i = 0; i < size * size * 20; i++) {
       const emptyIdx = puzzleState.tiles.indexOf(0);
       const neighbors = [];
-      const r = Math.floor(emptyIdx / PUZZLE_SIZE), c = emptyIdx % PUZZLE_SIZE;
-      if (r > 0) neighbors.push(emptyIdx - PUZZLE_SIZE);
-      if (r < PUZZLE_SIZE - 1) neighbors.push(emptyIdx + PUZZLE_SIZE);
+      const r = Math.floor(emptyIdx / size), c = emptyIdx % size;
+      if (r > 0) neighbors.push(emptyIdx - size);
+      if (r < size - 1) neighbors.push(emptyIdx + size);
       if (c > 0) neighbors.push(emptyIdx - 1);
-      if (c < PUZZLE_SIZE - 1) neighbors.push(emptyIdx + 1);
+      if (c < size - 1) neighbors.push(emptyIdx + 1);
       const rand = neighbors[Math.floor(Math.random() * neighbors.length)];
       [puzzleState.tiles[emptyIdx], puzzleState.tiles[rand]] = [puzzleState.tiles[rand], puzzleState.tiles[emptyIdx]];
     }
-    puzzleState.moves = 0; puzzleState.solved = false;
-    drawPuzzle();
+    drawPuzzleGrid();
   }
-  function drawPuzzle() {
-    const grid = document.getElementById('puzzleGrid'); grid.innerHTML = '';
+
+  function drawPuzzleGrid() {
+    const grid = document.getElementById('puzzleGrid');
+    const size = puzzleState.size;
+    grid.style.gridTemplateColumns = 'repeat(' + size + ', 1fr)';
+    grid.innerHTML = '';
+    const tileFont = size === 5 ? '14px' : size === 7 ? '11px' : '9px';
     puzzleState.tiles.forEach((t, i) => {
       const el = document.createElement('div');
       el.className = 'puzzle-tile' + (t === 0 ? ' empty' : '');
+      el.style.fontSize = tileFont;
       el.textContent = t === 0 ? '' : t;
       el.onclick = () => movePuzzleTile(i);
       grid.appendChild(el);
     });
-    document.getElementById('puzzleMoves').textContent = puzzleState.moves;
   }
+
   function movePuzzleTile(idx) {
     if (puzzleState.solved) return;
+    const size = puzzleState.size;
     const emptyIdx = puzzleState.tiles.indexOf(0);
-    const r1 = Math.floor(idx / PUZZLE_SIZE), c1 = idx % PUZZLE_SIZE;
-    const r2 = Math.floor(emptyIdx / PUZZLE_SIZE), c2 = emptyIdx % PUZZLE_SIZE;
+    const r1 = Math.floor(idx / size), c1 = idx % size;
+    const r2 = Math.floor(emptyIdx / size), c2 = emptyIdx % size;
     if (Math.abs(r1 - r2) + Math.abs(c1 - c2) !== 1) return;
     [puzzleState.tiles[idx], puzzleState.tiles[emptyIdx]] = [puzzleState.tiles[emptyIdx], puzzleState.tiles[idx]];
     puzzleState.moves++;
+    document.getElementById('puzzleMoves').textContent = puzzleState.moves;
     playSound('tap'); vibrate('light');
-    drawPuzzle();
+    drawPuzzleGrid();
     if (isPuzzleSolved()) {
       puzzleState.solved = true;
-      balance += PUZZLE_REWARD; totalEarned += PUZZLE_REWARD; updateUI(); save();
+      if (puzzleState.timer) { clearInterval(puzzleState.timer); puzzleState.timer = null; }
+      const reward = Math.floor(puzzleState.bet * PUZZLE_MODES[puzzleState.mode].multiplier);
+      balance += reward; totalEarned += reward;
+      updateUI(); save();
       playSound('win'); vibrate('success');
-      setTimeout(() => showModal('🎉 Puzzle Solved!', '+' + PUZZLE_REWARD.toLocaleString() + ' TRAX!'), 300);
+      setTimeout(() => {
+        showModal('🎉 Puzzle Solved!', '+' + reward.toLocaleString() + ' TRAX!\n\nMoves: ' + puzzleState.moves + '\nTime left: ' + Math.floor(puzzleState.timeLeft/60) + 'm ' + (puzzleState.timeLeft%60) + 's');
+        closePuzzle();
+      }, 300);
     }
   }
+
   function isPuzzleSolved() {
-    for (let i = 0; i < PUZZLE_SIZE * PUZZLE_SIZE - 1; i++) if (puzzleState.tiles[i] !== i + 1) return false;
-    return puzzleState.tiles[PUZZLE_SIZE * PUZZLE_SIZE - 1] === 0;
+    const total = puzzleState.size * puzzleState.size;
+    for (let i = 0; i < total - 1; i++) if (puzzleState.tiles[i] !== i + 1) return false;
+    return puzzleState.tiles[total - 1] === 0;
+  }
+
+  function forfeitPuzzle() {
+    if (!confirm('Kya aap forit karna chahte hain? Aapka ' + puzzleState.bet.toLocaleString() + ' TRAX wapas nahi hoga.')) return;
+    if (puzzleState.timer) { clearInterval(puzzleState.timer); puzzleState.timer = null; }
+    playSound('error'); vibrate('error');
+    showModal('❌ Forfeited', 'Aapne ' + puzzleState.bet.toLocaleString() + ' TRAX kho diye.');
+    closePuzzle();
   }
 
   function resetData() {
@@ -1697,4 +1735,4 @@
   updateSettingsUI();
 </script>
 </body>
- </html>
+       </html>
