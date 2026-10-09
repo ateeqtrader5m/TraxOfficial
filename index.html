@@ -31,7 +31,7 @@
   .balance-value { font-size: 30px; font-weight: 900; color: white; text-shadow: 0 0 25px rgba(0,212,255,0.7); position: relative; z-index: 2; line-height: 1.1; }
   .balance-value small { font-size: 14px; color: #00d4ff; }
   .balance-sub { font-size: 10px; color: #ff9500; margin-top: 4px; position: relative; z-index: 2; font-weight: 900; }
-  .wallet-connect-btn { background: linear-gradient(135deg, #00d4ff, #0066ff); border: none; border-radius: 14px; padding: 10px 12px; color: white; font-weight: 900; cursor: pointer; box-shadow: 0 4px 18px rgba(0,212,255,0.5); display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 66px; position: relative; z-index: 3; }
+  .wallet-connect-btn { background: linear-gradient(135deg, #00ff88, #00aa55); border: none; border-radius: 14px; padding: 10px 12px; color: white; font-weight: 900; cursor: pointer; box-shadow: 0 4px 18px rgba(0,255,136,0.5); display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 70px; position: relative; z-index: 3; }
   .wallet-connect-btn:active { transform: scale(0.94); }
   .rank-badge-card { background: linear-gradient(135deg, rgba(0,180,255,0.12), rgba(150,0,255,0.08)); border: 1.5px solid rgba(0,212,255,0.4); border-radius: 18px; padding: 14px 16px; margin-bottom: 12px; display: flex; align-items: center; gap: 14px; position: relative; overflow: hidden; }
   .rank-badge-card::before { content: ''; position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255,215,0,0.1), transparent 60%); animation: rotate 20s linear infinite; pointer-events: none; }
@@ -105,6 +105,164 @@
   .page-title-bar { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; padding: 5px 0; }
   .page-title-icon { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-size: 24px; }
   .page-title-text { font-size: 26px; font-weight: 900; color: #00d4ff; letter-spacing: 0.5px; }
+
+  /* BIG PROFILE CARD - MORE TAB */
+  .big-profile-card {
+    background: linear-gradient(135deg, rgba(0,180,255,0.15), rgba(150,0,255,0.08));
+    border: 2px solid rgba(0,212,255,0.5);
+    border-radius: 22px;
+    padding: 18px;
+    margin-bottom: 14px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 40px rgba(0,180,255,0.3);
+  }
+  .big-profile-card::before {
+    content: '';
+    position: absolute;
+    top: -50%; right: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(0,212,255,0.15), transparent 60%);
+    animation: rotate 20s linear infinite;
+    pointer-events: none;
+  }
+  .big-profile-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 14px;
+    position: relative;
+    z-index: 2;
+  }
+  .big-profile-avatar-wrap {
+    width: 72px; height: 72px;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .big-profile-ring {
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, #00d4ff, #00ff88, #9900ff, #ff0055, #00d4ff);
+    animation: spinRing 4s linear infinite;
+    opacity: 0.85;
+    filter: blur(2px);
+  }
+  .big-profile-avatar {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #0a1929, #061224);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    border: 2px solid rgba(0,212,255,0.6);
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    z-index: 2;
+  }
+  .big-profile-info { flex: 1; min-width: 0; }
+  .big-profile-name-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+  .big-profile-name-row span:first-child {
+    font-size: 17px;
+    font-weight: 900;
+    color: white;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .big-profile-badge {
+    background: linear-gradient(135deg, #ffd700, #ff9500);
+    color: #000;
+    font-size: 9px;
+    font-weight: 900;
+    padding: 3px 8px;
+    border-radius: 8px;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+  }
+  .big-profile-id {
+    font-size: 11px;
+    color: #7a8ba5;
+    font-weight: 700;
+    margin-bottom: 3px;
+  }
+  .big-profile-rank {
+    font-size: 12px;
+    color: #00d4ff;
+    font-weight: 900;
+  }
+  .big-profile-balance {
+    background: rgba(0,0,0,0.35);
+    border: 1px solid rgba(0,212,255,0.3);
+    border-radius: 14px;
+    padding: 12px;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+  }
+  .big-profile-balance-label {
+    font-size: 10px;
+    color: #7a8ba5;
+    letter-spacing: 1.5px;
+    margin-bottom: 4px;
+    font-weight: 700;
+  }
+  .big-profile-balance-value {
+    font-size: 26px;
+    font-weight: 900;
+    color: white;
+    text-shadow: 0 0 20px rgba(0,212,255,0.7);
+    line-height: 1.1;
+  }
+  .big-profile-balance-value small {
+    font-size: 12px;
+    color: #00d4ff;
+  }
+  .big-profile-balance-sub {
+    font-size: 9px;
+    color: #ff9500;
+    font-weight: 900;
+    margin-top: 3px;
+    letter-spacing: 0.5px;
+  }
+  .big-profile-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    position: relative;
+    z-index: 2;
+  }
+  .big-profile-btn {
+    border: none;
+    border-radius: 14px;
+    padding: 12px 10px;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.1s;
+  }
+  .big-profile-btn:active { transform: scale(0.95); }
+  .big-profile-btn.wallet {
+    background: linear-gradient(135deg, #00d4ff, #0066ff);
+    box-shadow: 0 4px 18px rgba(0,212,255,0.5);
+  }
+  .big-profile-btn.withdraw {
+    background: linear-gradient(135deg, #00ff88, #00aa55);
+    box-shadow: 0 4px 18px rgba(0,255,136,0.5);
+  }
+
   .more-card { background: rgba(10,25,45,0.75); border: 1px solid rgba(0,150,255,0.2); border-radius: 16px; padding: 16px; margin-bottom: 10px; display: flex; align-items: center; gap: 14px; cursor: pointer; transition: transform 0.1s, border-color 0.2s; }
   .more-card:active { transform: scale(0.98); }
   .more-card:hover { border-color: rgba(0,212,255,0.5); }
@@ -121,6 +279,7 @@
   .more-card-info h4 { font-size: 14px; font-weight: 900; color: white; margin-bottom: 3px; }
   .more-card-info p { font-size: 11px; color: #7a8ba5; }
   .more-card-arrow { color: #00d4ff; font-size: 18px; }
+
   .task-row { background: rgba(10,25,45,0.7); border: 1px solid rgba(0,150,255,0.2); border-radius: 16px; padding: 14px; margin-bottom: 10px; display: flex; align-items: center; gap: 12px; }
   .task-row.done { border-color: rgba(0,255,136,0.3); }
   .task-icon-wrap { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
@@ -263,7 +422,6 @@
   .profile-card { background: linear-gradient(135deg, rgba(0,180,255,0.12), rgba(0,60,150,0.08)); border: 1.5px solid rgba(0,212,255,0.35); border-radius: 20px; padding: 18px; margin-bottom: 14px; position: relative; overflow: hidden; }
   .profile-avatar-wrap { width: 80px; height: 80px; position: relative; flex-shrink: 0; }
   .profile-avatar-ring { position: absolute; inset: -5px; border-radius: 50%; background: conic-gradient(from 0deg, #00d4ff, #00ff88, #9900ff, #ff0055, #00d4ff); animation: spinRing 4s linear infinite; opacity: 0.8; filter: blur(2px); }
-  @keyframes spinRing { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
   .profile-avatar { position: absolute; inset: 0; border-radius: 50%; background: linear-gradient(135deg, #0a1929, #061224); display: flex; align-items: center; justify-content: center; font-size: 36px; border: 2px solid rgba(0,212,255,0.5); background-size: cover; background-position: center; overflow: hidden; z-index: 2; }
   .profile-top { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; position: relative; z-index: 2; }
   .profile-name { font-size: 19px; font-weight: 900; color: white; display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
@@ -323,13 +481,13 @@
     <div class="balance-card">
       <div style="display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2">
         <div style="flex:1">
-          <div class="balance-label">◆ TOTAL BALANCE</div>
+          <div class="balance-label">◆ TOTAL COIN</div>
           <div class="balance-value"><span id="balance">0</span> <small>TRAX</small></div>
           <div class="balance-sub">⏳ NOT LAUNCHED YET</div>
         </div>
         <button class="wallet-connect-btn" onclick="navTo('wallet')">
-          <div style="font-size:24px;margin-bottom:2px">💼</div>
-          <div style="font-size:8px;letter-spacing:1px">WALLET</div>
+          <div style="font-size:24px;margin-bottom:2px">💸</div>
+          <div style="font-size:8px;letter-spacing:1px">WITHDRAW</div>
         </button>
       </div>
     </div>
@@ -427,14 +585,81 @@
 
 <div class="tab-content" id="tab-more">
   <div class="page-title-bar"><div class="page-title-icon">⚙️</div><div class="page-title-text">More</div></div>
-  <div class="more-card" onclick="navTo('boosters')"><div class="more-card-icon boosters">🚀</div><div class="more-card-info"><h4>Boosters</h4><p>Increase your earnings</p></div><div class="more-card-arrow">›</div></div>
-  <div class="more-card" onclick="navTo('upgrades')"><div class="more-card-icon upgrades">⬆️</div><div class="more-card-info"><h4>Upgrades</h4><p>Upgrade tap power & energy</p></div><div class="more-card-arrow">›</div></div>
-  <div class="more-card" onclick="navTo('sticker')"><div class="more-card-icon sticker">🎨</div><div class="more-card-info"><h4>Sticker Shop</h4><p>50 stickers — Chain unlock</p></div><div class="more-card-arrow">›</div></div>
-  <div class="more-card" onclick="navTo('wallet')"><div class="more-card-icon wallet">💼</div><div class="more-card-info"><h4>My Wallet</h4><p>Withdraw & history</p></div><div class="more-card-arrow">›</div></div>
-  <div class="more-card" onclick="navTo('friends')"><div class="more-card-icon referral">👥</div><div class="more-card-info"><h4>Referral</h4><p>+500 TRAX per friend</p></div><div class="more-card-arrow">›</div></div>
-  <div class="more-card" onclick="navTo('lucky')"><div class="more-card-icon lucky">📦</div><div class="more-card-info"><h4>Lucky Box</h4><p>Random rewards</p></div><div class="more-card-arrow">›</div></div>
-  <div class="more-card" onclick="navTo('rank')"><div class="more-card-icon rank">🏆</div><div class="more-card-info"><h4>Leaderboard</h4><p>Top players</p></div><div class="more-card-arrow">›</div></div>
-  <div class="more-card" onclick="navTo('settings')"><div class="more-card-icon settings">⚙️</div><div class="more-card-info"><h4>Settings</h4><p>Sound & vibration</p></div><div class="more-card-arrow">›</div></div>
+  
+  <div class="big-profile-card">
+    <div class="big-profile-top">
+      <div class="big-profile-avatar-wrap">
+        <div class="big-profile-ring"></div>
+        <div class="big-profile-avatar" id="moreAvatarBig">👤</div>
+      </div>
+      <div class="big-profile-info">
+        <div class="big-profile-name-row">
+          <span id="moreProfileName">TraxOfficial</span>
+          <span class="big-profile-badge" id="moreBadge">👑 Lv 1</span>
+        </div>
+        <div class="big-profile-id">ID: #<span id="morePlayerId">0000</span></div>
+        <div class="big-profile-rank">🏆 Rank: #<span id="moreRank">---</span></div>
+      </div>
+    </div>
+    
+    <div class="big-profile-balance">
+      <div class="big-profile-balance-label">◆ TOTAL COIN</div>
+      <div class="big-profile-balance-value"><span id="moreBalance">0</span> <small>TRAX</small></div>
+      <div class="big-profile-balance-sub">⏳ NOT LAUNCHED YET</div>
+    </div>
+
+    <div class="big-profile-actions">
+      <button class="big-profile-btn wallet" onclick="navTo('wallet')">
+        <div style="font-size:22px;margin-bottom:2px">💼</div>
+        <div style="font-size:10px;font-weight:900;letter-spacing:1px">WALLET</div>
+      </button>
+      <button class="big-profile-btn withdraw" onclick="navTo('wallet')">
+        <div style="font-size:22px;margin-bottom:2px">💸</div>
+        <div style="font-size:10px;font-weight:900;letter-spacing:1px">WITHDRAW</div>
+      </button>
+    </div>
+  </div>
+
+  <div class="more-card" onclick="navTo('boosters')">
+    <div class="more-card-icon boosters">🚀</div>
+    <div class="more-card-info"><h4>Boosters</h4><p>Increase your earnings</p></div>
+    <div class="more-card-arrow">›</div>
+  </div>
+  <div class="more-card" onclick="navTo('upgrades')">
+    <div class="more-card-icon upgrades">⬆️</div>
+    <div class="more-card-info"><h4>Upgrades</h4><p>Upgrade tap power & energy</p></div>
+    <div class="more-card-arrow">›</div>
+  </div>
+  <div class="more-card" onclick="navTo('sticker')">
+    <div class="more-card-icon sticker">🎨</div>
+    <div class="more-card-info"><h4>Sticker Shop</h4><p>50 stickers — Chain unlock</p></div>
+    <div class="more-card-arrow">›</div>
+  </div>
+  <div class="more-card" onclick="navTo('wallet')">
+    <div class="more-card-icon wallet">💼</div>
+    <div class="more-card-info"><h4>My Wallet</h4><p>Withdraw & history</p></div>
+    <div class="more-card-arrow">›</div>
+  </div>
+  <div class="more-card" onclick="navTo('friends')">
+    <div class="more-card-icon referral">👥</div>
+    <div class="more-card-info"><h4>Referral</h4><p>+500 TRAX per friend</p></div>
+    <div class="more-card-arrow">›</div>
+  </div>
+  <div class="more-card" onclick="navTo('lucky')">
+    <div class="more-card-icon lucky">📦</div>
+    <div class="more-card-info"><h4>Lucky Box</h4><p>Random rewards</p></div>
+    <div class="more-card-arrow">›</div>
+  </div>
+  <div class="more-card" onclick="navTo('rank')">
+    <div class="more-card-icon rank">🏆</div>
+    <div class="more-card-info"><h4>Leaderboard</h4><p>Top players</p></div>
+    <div class="more-card-arrow">›</div>
+  </div>
+  <div class="more-card" onclick="navTo('settings')">
+    <div class="more-card-icon settings">⚙️</div>
+    <div class="more-card-info"><h4>Settings</h4><p>Sound & vibration</p></div>
+    <div class="more-card-arrow">›</div>
+  </div>
 </div>
 
 <div class="tab-content" id="tab-boosters">
@@ -461,7 +686,7 @@
 <div class="tab-content" id="tab-wallet">
   <div class="page-title-bar"><div class="page-title-icon">💼</div><div class="page-title-text">Wallet</div></div>
   <div class="balance-card" style="margin-bottom:15px">
-    <div class="balance-label">◆ TOTAL BALANCE</div>
+    <div class="balance-label">◆ TOTAL COIN</div>
     <div class="balance-value"><span id="balance2">0</span> <small>TRAX</small></div>
     <div class="balance-sub">⏳ NOT LAUNCHED YET</div>
   </div>
@@ -618,7 +843,6 @@
   </div>
 </div>
 
-<!-- PUZZLE MODAL -->
 <div class="modal" id="puzzleModal">
   <div class="modal-content" style="max-width:420px">
     <h3 style="text-align:center">🧩 Puzzle Challenge</h3>
@@ -670,7 +894,6 @@
   </div>
 </div>
 
-<!-- REWARD WHEEL MODAL -->
 <div class="modal" id="rewardWheelModal">
   <div class="modal-content" style="max-width:420px">
     <h3>🎡 Bonus Spin!</h3>
@@ -694,7 +917,6 @@
   </div>
 </div>
 
-<!-- SLOT MULTIPLIER MODAL -->
 <div class="modal" id="slotModal">
   <div class="modal-content" style="max-width:420px">
     <h3>🎰 Slot Multiplier!</h3>
@@ -782,6 +1004,7 @@
   function updateAvatarDisplays() {
     applyAvatar(document.getElementById('headerAvatar'), userAvatar, avatarIsImage);
     applyAvatar(document.getElementById('profileAvatarBig'), userAvatar, avatarIsImage);
+    applyAvatar(document.getElementById('moreAvatarBig'), userAvatar, avatarIsImage);
   }
   function buildAvatarGrid() {
     const grid = document.getElementById('avatarGrid'); grid.innerHTML = '';
@@ -1310,6 +1533,28 @@
     if (profLevelFill) profLevelFill.style.width = (xpInLevel / LEVEL_XP * 100) + '%';
     if (profTapsEl) profTapsEl.textContent = totalTaps.toLocaleString();
     if (profEarnedEl) profEarnedEl.textContent = Math.floor(totalEarned).toLocaleString();
+
+    // More page profile card update
+    const moreProfileName = document.getElementById('moreProfileName');
+    const moreBadge = document.getElementById('moreBadge');
+    const morePlayerId = document.getElementById('morePlayerId');
+    const moreRank = document.getElementById('moreRank');
+    const moreBalance = document.getElementById('moreBalance');
+    
+    if (moreProfileName) moreProfileName.textContent = userName || 'TraxOfficial';
+    if (moreBadge) moreBadge.textContent = '👑 Lv ' + level;
+    if (morePlayerId) morePlayerId.textContent = String(userId).slice(-4).padStart(4, '0');
+    if (moreBalance) moreBalance.textContent = Math.floor(balance).toLocaleString();
+    if (moreRank) {
+      if (balance >= RANK_MIN_COINS) {
+        const players = JSON.parse(localStorage.getItem('trax_leaderboard') || '[]');
+        const sorted = players.filter(p => p.value >= RANK_MIN_COINS).sort((a, b) => b.value - a.value);
+        const myIdx = sorted.findIndex(p => p.id === userId);
+        moreRank.textContent = myIdx !== -1 ? (myIdx + 1) : '--';
+      } else {
+        moreRank.textContent = '--';
+      }
+    }
   }
 
   function save() {
@@ -1606,7 +1851,6 @@
     playSound('win'); vibrate('success');
   }
 
-  // ===== NEW PUZZLE + SPIN WHEEL + SLOT =====
   const PUZZLE_MODES = {
     hard:   { size: 9, time: 1200, cost: 10000, label: 'Hard',   tiles: '9x9', timeLabel: '20 min' },
     medium: { size: 7, time: 600,  cost: 30000, label: 'Medium', tiles: '7x7', timeLabel: '10 min' },
@@ -1614,13 +1858,9 @@
   };
   let selectedPuzzleMode = 'hard';
   let puzzleState = { tiles: [], moves: 0, solved: false, mode: 'hard', cost: 0, timeLeft: 0, timer: null, size: 0 };
-
-  // Reward Wheel data
   const REWARD_PRIZES = [10000, 30000, 150000, 10000, 30000, 150000];
   let rewardWheelSpinning = false;
   let rewardPrize = 0;
-
-  // Slot Multipliers
   const SLOT_MULTIPLIERS = [2, 3, 5, 10];
   const SLOT_ICONS = ['2️⃣', '3️⃣', '5️⃣', '🔟'];
   let slotSpinning = false;
@@ -1642,12 +1882,10 @@
     document.getElementById('puzzleModal').classList.add('show');
     selectPuzzleMode('hard');
   }
-
   function closePuzzle() {
     if (puzzleState.timer) { clearInterval(puzzleState.timer); puzzleState.timer = null; }
     document.getElementById('puzzleModal').classList.remove('show');
   }
-
   function startPuzzleGame() {
     const m = PUZZLE_MODES[selectedPuzzleMode];
     if (balance < m.cost) { showModal('❌ Not Enough', 'Puzzle ke liye ' + m.cost.toLocaleString() + ' TRAX chahiye.\nAapke paas ' + Math.floor(balance).toLocaleString() + ' TRAX hain.'); return; }
@@ -1659,12 +1897,10 @@
     puzzleState.moves = 0;
     puzzleState.solved = false;
     updateUI(); save();
-
     document.getElementById('puzzleSetup').style.display = 'none';
     document.getElementById('puzzleGame').style.display = 'block';
     document.getElementById('puzzleCostDisplay2').textContent = m.cost.toLocaleString();
     document.getElementById('puzzleMoves').textContent = '0';
-
     initPuzzle();
     updatePuzzleTimerDisplay();
     if (puzzleState.timer) clearInterval(puzzleState.timer);
@@ -1680,20 +1916,15 @@
     }, 1000);
     playSound('tap'); vibrate('light');
   }
-
   function updatePuzzleTimerDisplay() {
     const t = puzzleState.timeLeft;
-    const m = Math.floor(t / 60);
-    const s = t % 60;
+    const m = Math.floor(t / 60); const s = t % 60;
     const el = document.getElementById('puzzleTimer');
     el.textContent = String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
-    if (t <= 30) el.classList.add('puzzle-timer-warn');
-    else el.classList.remove('puzzle-timer-warn');
+    if (t <= 30) el.classList.add('puzzle-timer-warn'); else el.classList.remove('puzzle-timer-warn');
   }
-
   function initPuzzle() {
-    const size = puzzleState.size;
-    const total = size * size;
+    const size = puzzleState.size; const total = size * size;
     puzzleState.tiles = [];
     for (let i = 1; i < total; i++) puzzleState.tiles.push(i);
     puzzleState.tiles.push(0);
@@ -1710,7 +1941,6 @@
     }
     drawPuzzleGrid();
   }
-
   function drawPuzzleGrid() {
     const grid = document.getElementById('puzzleGrid');
     const size = puzzleState.size;
@@ -1726,7 +1956,6 @@
       grid.appendChild(el);
     });
   }
-
   function movePuzzleTile(idx) {
     if (puzzleState.solved) return;
     const size = puzzleState.size;
@@ -1743,18 +1972,15 @@
       puzzleState.solved = true;
       if (puzzleState.timer) { clearInterval(puzzleState.timer); puzzleState.timer = null; }
       playSound('win'); vibrate('success');
-      // Puzzle solve → Open reward wheel
       closePuzzle();
       setTimeout(() => openRewardWheel(), 300);
     }
   }
-
   function isPuzzleSolved() {
     const total = puzzleState.size * puzzleState.size;
     for (let i = 0; i < total - 1; i++) if (puzzleState.tiles[i] !== i + 1) return false;
     return puzzleState.tiles[total - 1] === 0;
   }
-
   function forfeitPuzzle() {
     if (!confirm('Kya aap forit karna chahte hain? Aapka ' + puzzleState.cost.toLocaleString() + ' TRAX wapas nahi hoga.')) return;
     if (puzzleState.timer) { clearInterval(puzzleState.timer); puzzleState.timer = null; }
@@ -1762,8 +1988,6 @@
     showModal('❌ Forfeited', 'Aapne ' + puzzleState.cost.toLocaleString() + ' TRAX kho diye.');
     closePuzzle();
   }
-
-  // ===== REWARD WHEEL =====
   function openRewardWheel() {
     document.getElementById('rewardWheelModal').classList.add('show');
     document.getElementById('rewardResultDisplay').style.display = 'none';
@@ -1773,7 +1997,6 @@
     document.getElementById('rewardWheelCenter').classList.remove('disabled');
     drawRewardWheelLabels();
   }
-
   function drawRewardWheelLabels() {
     const labelsBox = document.getElementById('rewardWheelLabels');
     labelsBox.innerHTML = '';
@@ -1782,24 +2005,19 @@
     labels.forEach((label, i) => {
       const angle = i * 60 + 30;
       const rad = (angle - 90) * Math.PI / 180;
-      const x = Math.cos(rad) * radius;
-      const y = Math.sin(rad) * radius;
+      const x = Math.cos(rad) * radius; const y = Math.sin(rad) * radius;
       const el = document.createElement('div');
       el.className = 'wheel-label';
       el.innerHTML = '<span style="transform: translate(-50%, -50%) rotate(' + angle + 'deg); left: ' + x + 'px; top: ' + y + 'px;">' + label + '</span>';
       labelsBox.appendChild(el);
     });
   }
-
   function spinRewardWheel() {
     if (rewardWheelSpinning) return;
     rewardWheelSpinning = true;
     const wheel = document.getElementById('rewardWheel');
     const center = document.getElementById('rewardWheelCenter');
-    center.textContent = '...';
-    center.classList.add('disabled');
-
-    // Random prize index
+    center.textContent = '...'; center.classList.add('disabled');
     const idx = Math.floor(Math.random() * REWARD_PRIZES.length);
     rewardPrize = REWARD_PRIZES[idx];
     const segmentCenter = idx * 60 + 30;
@@ -1808,7 +2026,6 @@
     const finalRotation = fullRotations + targetRotation + 360;
     wheel.style.transform = 'rotate(' + finalRotation + 'deg)';
     vibrate('medium');
-
     setTimeout(() => {
       center.textContent = '🎉';
       document.getElementById('rewardResultDisplay').style.display = 'block';
@@ -1818,13 +2035,10 @@
       playSound('win'); vibrate('success');
     }, 5200);
   }
-
   function continueToSlot() {
     document.getElementById('rewardWheelModal').classList.remove('show');
     setTimeout(() => openSlot(rewardPrize), 300);
   }
-
-  // ===== SLOT MULTIPLIER =====
   function openSlot(prize) {
     document.getElementById('slotModal').classList.add('show');
     document.getElementById('slotPrizeDisplay').textContent = prize.toLocaleString() + ' TRAX';
@@ -1841,7 +2055,6 @@
     document.getElementById('reel3').classList.remove('spinning');
     slotMultiplier = 1;
   }
-
   function spinSlot() {
     if (slotSpinning) return;
     slotSpinning = true;
@@ -1851,16 +2064,11 @@
     const btn = document.getElementById('spinSlotBtn');
     btn.disabled = true; btn.textContent = 'SPINNING...';
     r1.classList.add('spinning'); r2.classList.add('spinning'); r3.classList.add('spinning');
-
-    // Random multiplier
     const idx = Math.floor(Math.random() * SLOT_MULTIPLIERS.length);
     const idx2 = Math.floor(Math.random() * SLOT_MULTIPLIERS.length);
     const idx3 = Math.floor(Math.random() * SLOT_MULTIPLIERS.length);
     slotMultiplier = SLOT_MULTIPLIERS[idx];
-    vibrate('medium');
-    playSound('tap');
-
-    // Spin animation
+    vibrate('medium'); playSound('tap');
     let counter = 0;
     const spinInterval = setInterval(() => {
       r1.textContent = SLOT_ICONS[Math.floor(Math.random() * 4)];
@@ -1880,7 +2088,6 @@
       }
     }, 100);
   }
-
   function finalizeReward() {
     const finalAmount = rewardPrize * slotMultiplier;
     document.getElementById('finalRewardBox').style.display = 'block';
@@ -1890,7 +2097,6 @@
     document.getElementById('spinSlotBtn').style.display = 'none';
     playSound('win'); vibrate('success');
   }
-
   function collectFinalReward() {
     const finalAmount = rewardPrize * slotMultiplier;
     balance += finalAmount; totalEarned += finalAmount;
@@ -1899,7 +2105,6 @@
     showModal('🎉 Reward Collected!', '+' + finalAmount.toLocaleString() + ' TRAX aapke account mein add ho gaye!');
     playSound('win'); vibrate('success');
   }
-
   function resetData() {
     if (confirm('Kya aap sach mein saara data reset karna chahte hain?')) { localStorage.clear(); location.reload(); }
   }
