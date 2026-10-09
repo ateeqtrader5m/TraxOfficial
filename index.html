@@ -21,26 +21,23 @@
   .level-badge { text-align: right; background: rgba(0,212,255,0.08); border: 1px solid rgba(0,212,255,0.3); border-radius: 12px; padding: 5px 10px; min-width: 75px; }
   .level-badge .lv { font-size: 10px; font-weight: 900; color: #00d4ff; }
   .level-badge .xp-bar { width: 55px; height: 3px; background: rgba(255,255,255,0.1); border-radius: 2px; margin-top: 4px; overflow: hidden; }
-  .level-badge .xp-fill { height: 100%; background: linear-gradient(90deg, #00d4ff, #00ff88); border-radius: 2px; transition: width 0.3s; }
+  .level-badge .xp-fill { height: 100%; background: linear-gradient(90deg, #00d4ff, #00ff88); border-radius: 2px; }
   .avatar { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, #00d4ff, #0066ff); display: flex; align-items: center; justify-content: center; font-size: 18px; border: 2px solid rgba(0,212,255,0.5); box-shadow: 0 0 15px rgba(0,212,255,0.4); cursor: pointer; background-size: cover; background-position: center; overflow: hidden; }
   .container { padding: 12px 15px; max-width: 500px; margin: 0 auto; }
   .balance-card { background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(0,80,180,0.1)); border: 1px solid rgba(0,212,255,0.3); border-radius: 20px; padding: 16px; margin-bottom: 12px; position: relative; overflow: hidden; }
-  .balance-card::before { content: ''; position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(0,212,255,0.15), transparent 60%); animation: rotate 15s linear infinite; }
-  @keyframes rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
   .balance-label { font-size: 11px; color: #7a8ba5; letter-spacing: 1.5px; position: relative; z-index: 2; margin-bottom: 6px; }
   .balance-value { font-size: 30px; font-weight: 900; color: white; text-shadow: 0 0 25px rgba(0,212,255,0.7); position: relative; z-index: 2; line-height: 1.1; }
   .balance-value small { font-size: 14px; color: #00d4ff; }
   .balance-sub { font-size: 10px; color: #ff9500; margin-top: 4px; position: relative; z-index: 2; font-weight: 900; }
   .wallet-connect-btn { background: linear-gradient(135deg, #00ff88, #00aa55); border: none; border-radius: 14px; padding: 10px 12px; color: white; font-weight: 900; cursor: pointer; box-shadow: 0 4px 18px rgba(0,255,136,0.5); display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 70px; position: relative; z-index: 3; }
   .wallet-connect-btn:active { transform: scale(0.94); }
-  .rank-badge-card { background: linear-gradient(135deg, rgba(0,180,255,0.12), rgba(150,0,255,0.08)); border: 1.5px solid rgba(0,212,255,0.4); border-radius: 18px; padding: 14px 16px; margin-bottom: 12px; display: flex; align-items: center; gap: 14px; position: relative; overflow: hidden; }
-  .rank-badge-card::before { content: ''; position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255,215,0,0.1), transparent 60%); animation: rotate 20s linear infinite; pointer-events: none; }
-  .rank-badge-icon { width: 52px; height: 52px; border-radius: 14px; background: linear-gradient(135deg, #ffd700, #ff9500); display: flex; align-items: center; justify-content: center; font-size: 26px; flex-shrink: 0; box-shadow: 0 0 20px rgba(255,215,0,0.5); position: relative; z-index: 2; }
-  .rank-badge-info { flex: 1; position: relative; z-index: 2; }
+  .rank-badge-card { background: linear-gradient(135deg, rgba(0,180,255,0.12), rgba(150,0,255,0.08)); border: 1.5px solid rgba(0,212,255,0.4); border-radius: 18px; padding: 14px 16px; margin-bottom: 12px; display: flex; align-items: center; gap: 14px; }
+  .rank-badge-icon { width: 52px; height: 52px; border-radius: 14px; background: linear-gradient(135deg, #ffd700, #ff9500); display: flex; align-items: center; justify-content: center; font-size: 26px; flex-shrink: 0; box-shadow: 0 0 20px rgba(255,215,0,0.5); }
+  .rank-badge-info { flex: 1; }
   .rank-badge-label { font-size: 10px; color: #ffd700; letter-spacing: 1.5px; font-weight: 900; margin-bottom: 4px; }
-  .rank-badge-value { font-size: 26px; font-weight: 900; color: white; text-shadow: 0 0 20px rgba(255,215,0,0.6); line-height: 1; }
-  .rank-badge-status { text-align: right; font-size: 10px; color: #00d4ff; font-weight: 900; position: relative; z-index: 2; max-width: 90px; line-height: 1.3; }
-  .rarity-show-btn { background: linear-gradient(135deg, #ff9500, #ff5500); border: none; border-radius: 10px; padding: 6px 12px; color: white; font-size: 9px; font-weight: 900; cursor: pointer; letter-spacing: 0.5px; box-shadow: 0 3px 12px rgba(255,150,0,0.5); position: relative; z-index: 3; }
+  .rank-badge-value { font-size: 26px; font-weight: 900; color: white; line-height: 1; }
+  .rank-badge-status { text-align: right; font-size: 10px; color: #00d4ff; font-weight: 900; max-width: 90px; line-height: 1.3; }
+  .rarity-show-btn { background: linear-gradient(135deg, #ff9500, #ff5500); border: none; border-radius: 10px; padding: 6px 12px; color: white; font-size: 9px; font-weight: 900; cursor: pointer; box-shadow: 0 3px 12px rgba(255,150,0,0.5); }
   .rarity-item { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 12px; margin-bottom: 8px; border-left: 4px solid; }
   .rarity-item.brown { background: rgba(205,127,50,0.12); border-left-color: #cd7f32; }
   .rarity-item.silver { background: rgba(192,192,192,0.12); border-left-color: #c0c0c0; }
@@ -49,86 +46,72 @@
   .rarity-item.epic { background: rgba(153,0,255,0.12); border-left-color: #9900ff; }
   .rarity-item.legendary { background: rgba(255,150,0,0.12); border-left-color: #ff9500; }
   .rarity-item.mythic { background: rgba(255,0,85,0.12); border-left-color: #ff0055; }
-  .rarity-item-icon { width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; background: rgba(0,0,0,0.3); }
+  .rarity-item-icon { width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; background: rgba(0,0,0,0.3); }
   .rarity-item-info h4 { font-size: 13px; font-weight: 900; margin-bottom: 2px; }
   .rarity-item-info p { font-size: 10px; color: #a0aec0; }
   .rarity-item-info .range { font-size: 11px; font-weight: 900; margin-top: 2px; }
-  .tap-title { text-align: center; font-size: 16px; font-weight: 900; color: white; margin: 12px 0 5px; letter-spacing: 1px; }
+  .tap-title { text-align: center; font-size: 16px; font-weight: 900; margin: 12px 0 5px; letter-spacing: 1px; }
   .coin-area { display: flex; justify-content: center; align-items: center; margin: 15px 0; position: relative; min-height: 320px; perspective: 1000px; }
   .coin-wrapper { position: relative; z-index: 2; }
-  .coin-bg-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 340px; height: 340px; border-radius: 50%; background: radial-gradient(circle, var(--coin-glow, rgba(0,180,255,0.55)) 0%, rgba(0,100,200,0.1) 40%, transparent 70%); animation: glowPulse 3s infinite; transition: background 0.5s; }
+  .coin-bg-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 340px; height: 340px; border-radius: 50%; background: radial-gradient(circle, rgba(0,180,255,0.55) 0%, rgba(0,100,200,0.1) 40%, transparent 70%); animation: glowPulse 3s infinite; }
   @keyframes glowPulse { 0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; } 50% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; } }
   .coin-character { position: absolute; left: -10px; bottom: -5px; width: 110px; height: 170px; background-image: url('character.png'); background-size: contain; background-position: bottom center; background-repeat: no-repeat; z-index: 1; filter: drop-shadow(0 0 25px rgba(0,212,255,0.7)); animation: charFloat 4s ease-in-out infinite; opacity: 0.9; mix-blend-mode: screen; }
   @keyframes charFloat { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-8px) scale(1.03); } }
-  .coin-3d-btn { width: 220px; height: 220px; position: relative; transform-style: preserve-3d; animation: coin3DFloat 5s ease-in-out infinite; cursor: pointer; background: none; border: none; padding: 0; --coin-c1: #5fc8ff; --coin-c2: #00a8ff; --coin-c3: #003d99; --coin-border: #00d4ff; --coin-glow: #00d4ff; }
+  .coin-3d-btn { width: 220px; height: 220px; position: relative; transform-style: preserve-3d; animation: coin3DFloat 5s ease-in-out infinite; cursor: pointer; background: none; border: none; padding: 0; }
   @keyframes coin3DFloat { 0%, 100% { transform: rotateY(-12deg) rotateX(4deg) translateY(0); } 50% { transform: rotateY(12deg) rotateX(-4deg) translateY(-8px); } }
   .coin-3d-btn:active { animation: coin3DShake 0.2s; }
   @keyframes coin3DShake { 0%, 100% { transform: rotateY(-12deg) rotateX(4deg) scale(1); } 50% { transform: rotateY(-12deg) rotateX(4deg) scale(0.92); } }
-  .coin-3d-svg { width: 100%; height: 100%; filter: drop-shadow(0 0 30px var(--coin-glow, #00d4ff)) drop-shadow(0 0 60px var(--coin-glow, #00d4ff)); transition: filter 0.5s; }
-  .coin-3d-ring { position: absolute; inset: 0; border-radius: 50%; border: 4px solid var(--coin-border, #00d4ff); box-shadow: 0 0 40px var(--coin-border, #00d4ff), inset 0 0 40px var(--coin-glow, rgba(0,212,255,0.5)); animation: ringRotate 12s linear infinite; }
+  .coin-3d-svg { width: 100%; height: 100%; filter: drop-shadow(0 0 30px #00d4ff) drop-shadow(0 0 60px #00d4ff); }
+  .coin-3d-ring { position: absolute; inset: 0; border-radius: 50%; border: 4px solid #00d4ff; box-shadow: 0 0 40px #00d4ff, inset 0 0 40px rgba(0,212,255,0.5); animation: ringRotate 12s linear infinite; }
   @keyframes ringRotate { 0% { transform: rotateZ(0deg); } 100% { transform: rotateZ(360deg); } }
-  .coin-tier-badge { text-align: center; margin-top: 10px; padding: 6px 16px; background: rgba(0,0,0,0.4); border: 2px solid var(--coin-border, #00d4ff); border-radius: 20px; display: inline-block; font-size: 12px; font-weight: 900; letter-spacing: 2px; color: var(--coin-border, #00d4ff); position: relative; z-index: 4; }
+  .coin-tier-badge { text-align: center; margin-top: 10px; padding: 6px 16px; background: rgba(0,0,0,0.4); border: 2px solid #00d4ff; border-radius: 20px; display: inline-block; font-size: 12px; font-weight: 900; letter-spacing: 2px; color: #00d4ff; }
   .coin-tier-badge-container { text-align: center; margin-top: 8px; }
   .coin-tier-progress { text-align: center; font-size: 9px; color: #7a8ba5; margin-top: 4px; }
-  .coin-bottom-text { text-align: center; font-size: 11px; color: #00d4ff; letter-spacing: 3px; margin-top: 5px; font-weight: 900; position: relative; z-index: 4; }
+  .coin-bottom-text { text-align: center; font-size: 11px; color: #00d4ff; letter-spacing: 3px; margin-top: 5px; font-weight: 900; }
   .coin-per-tap { text-align: center; font-size: 12px; color: #a0aec0; margin-top: 4px; }
   .coin-per-tap strong { color: #00d4ff; font-size: 14px; }
   .energy-card { background: linear-gradient(135deg, rgba(15,30,55,0.9), rgba(10,20,40,0.7)); border: 1px solid rgba(0,180,255,0.25); border-radius: 16px; padding: 14px; margin-bottom: 12px; }
   .energy-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-  .energy-label { font-size: 13px; font-weight: 900; color: #00d4ff; display: flex; align-items: center; gap: 6px; }
+  .energy-label { font-size: 13px; font-weight: 900; color: #00d4ff; }
   .energy-count { font-size: 12px; color: #a0aec0; }
   .energy-count strong { color: #00d4ff; font-size: 14px; }
   .energy-bar { height: 10px; background: rgba(0,0,0,0.3); border-radius: 5px; overflow: hidden; }
-  .energy-fill { height: 100%; background: linear-gradient(90deg, #00d4ff, #00ff88); border-radius: 5px; transition: width 0.3s; }
+  .energy-fill { height: 100%; background: linear-gradient(90deg, #00d4ff, #00ff88); border-radius: 5px; }
   .quick-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
-  .quick-btn { background: linear-gradient(135deg, rgba(0,100,200,0.5), rgba(0,60,150,0.3)); border: 1.5px solid rgba(0,180,255,0.4); border-radius: 16px; padding: 16px 10px; text-align: center; cursor: pointer; transition: transform 0.1s; }
+  .quick-btn { background: linear-gradient(135deg, rgba(0,100,200,0.5), rgba(0,60,150,0.3)); border: 1.5px solid rgba(0,180,255,0.4); border-radius: 16px; padding: 16px 10px; text-align: center; cursor: pointer; }
   .quick-btn:active { transform: scale(0.96); }
   .quick-icon { font-size: 28px; margin-bottom: 5px; }
-  .quick-label { font-size: 12px; color: #fff; font-weight: 900; letter-spacing: 0.5px; }
-  .rank-board { background: linear-gradient(135deg, rgba(0,80,180,0.15), rgba(0,40,100,0.1)); border: 1.5px solid rgba(0,180,255,0.3); border-radius: 20px; padding: 16px; margin-bottom: 15px; }
-  .rank-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-  .rank-title { font-size: 15px; font-weight: 900; color: #00d4ff; display: flex; align-items: center; gap: 8px; letter-spacing: 0.5px; }
+  .quick-label { font-size: 12px; color: #fff; font-weight: 900; }
+  .rank-board { background: linear-gradient(135deg, rgba(0,80,180,0.15), rgba(0,40,100,0.1)); border: 1.5px solid rgba(0,180,255,0.3); border-radius: 20px; padding: 16px; }
+  .rank-header { display: flex; justify-content: space-between; margin-bottom: 12px; }
+  .rank-title { font-size: 15px; font-weight: 900; color: #00d4ff; display: flex; align-items: center; gap: 8px; }
   .live-dot { width: 8px; height: 8px; border-radius: 50%; background: #ff0055; box-shadow: 0 0 10px #ff0055; animation: livePulse 1.5s infinite; }
-  @keyframes livePulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.8); } }
-  .rank-refresh { font-size: 10px; color: #7a8ba5; }
-  .rank-row { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px; margin-bottom: 6px; background: rgba(10,25,45,0.5); }
-  .rank-row.mine { background: linear-gradient(135deg, rgba(0,212,255,0.2), rgba(0,100,200,0.1)); border: 1.5px solid #00d4ff; }
-  .rank-row.top1 { background: linear-gradient(135deg, rgba(255,215,0,0.15), rgba(255,150,0,0.08)); border: 1px solid rgba(255,215,0,0.4); }
-  .rank-row.top2 { background: linear-gradient(135deg, rgba(192,192,192,0.15), rgba(150,150,150,0.08)); border: 1px solid rgba(192,192,192,0.4); }
-  .rank-row.top3 { background: linear-gradient(135deg, rgba(205,127,50,0.15), rgba(150,80,30,0.08)); border: 1px solid rgba(205,127,50,0.4); }
-  .rank-num { font-size: 14px; font-weight: 900; color: #00d4ff; min-width: 32px; text-align: center; }
-  .rank-avatar { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #00d4ff, #0066ff); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; background-size: cover; background-position: center; }
-  .rank-name { flex: 1; font-size: 12px; font-weight: 900; color: #fff; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .rank-value { font-size: 12px; color: #00ff88; font-weight: 900; }
-  .rank-value small { color: #7a8ba5; font-size: 9px; }
+  @keyframes livePulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
   .page-title-bar { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; padding: 5px 0; }
   .page-title-icon { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-size: 24px; }
-  .page-title-text { font-size: 26px; font-weight: 900; color: #00d4ff; letter-spacing: 0.5px; }
+  .page-title-text { font-size: 26px; font-weight: 900; color: #00d4ff; }
   .big-profile-card { background: linear-gradient(135deg, rgba(0,180,255,0.15), rgba(150,0,255,0.08)); border: 2px solid rgba(0,212,255,0.5); border-radius: 22px; padding: 18px; margin-bottom: 14px; position: relative; overflow: hidden; }
-  .big-profile-card::before { content: ''; position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(0,212,255,0.15), transparent 60%); animation: rotate 20s linear infinite; pointer-events: none; }
   .big-profile-top { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; position: relative; z-index: 2; }
   .big-profile-avatar-wrap { width: 72px; height: 72px; position: relative; flex-shrink: 0; }
   .big-profile-ring { position: absolute; inset: -4px; border-radius: 50%; background: conic-gradient(from 0deg, #00d4ff, #00ff88, #9900ff, #ff0055, #00d4ff); animation: spinRing 4s linear infinite; opacity: 0.85; filter: blur(2px); }
   @keyframes spinRing { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-  .big-profile-avatar { position: absolute; inset: 0; border-radius: 50%; background: linear-gradient(135deg, #0a1929, #061224); display: flex; align-items: center; justify-content: center; font-size: 32px; border: 2px solid rgba(0,212,255,0.6); background-size: cover; background-position: center; overflow: hidden; z-index: 2; }
-  .big-profile-info { flex: 1; min-width: 0; }
+  .big-profile-avatar { position: absolute; inset: 0; border-radius: 50%; background: linear-gradient(135deg, #0a1929, #061224); display: flex; align-items: center; justify-content: center; font-size: 32px; border: 2px solid rgba(0,212,255,0.6); background-size: cover; background-position: center; z-index: 2; }
+  .big-profile-info { flex: 1; }
   .big-profile-name-row { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
-  .big-profile-name-row span:first-child { font-size: 17px; font-weight: 900; color: white; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .big-profile-badge { background: linear-gradient(135deg, #ffd700, #ff9500); color: #000; font-size: 9px; font-weight: 900; padding: 3px 8px; border-radius: 8px; letter-spacing: 0.5px; flex-shrink: 0; }
+  .big-profile-name-row span:first-child { font-size: 17px; font-weight: 900; color: white; }
+  .big-profile-badge { background: linear-gradient(135deg, #ffd700, #ff9500); color: #000; font-size: 9px; font-weight: 900; padding: 3px 8px; border-radius: 8px; }
   .big-profile-id { font-size: 11px; color: #7a8ba5; font-weight: 700; margin-bottom: 3px; }
   .big-profile-rank { font-size: 12px; color: #00d4ff; font-weight: 900; }
-  .big-profile-balance { background: rgba(0,0,0,0.35); border: 1px solid rgba(0,212,255,0.3); border-radius: 14px; padding: 12px; margin-bottom: 12px; position: relative; z-index: 2; text-align: center; }
+  .big-profile-balance { background: rgba(0,0,0,0.35); border: 1px solid rgba(0,212,255,0.3); border-radius: 14px; padding: 12px; margin-bottom: 12px; text-align: center; }
   .big-profile-balance-label { font-size: 10px; color: #7a8ba5; letter-spacing: 1.5px; margin-bottom: 4px; font-weight: 700; }
-  .big-profile-balance-value { font-size: 26px; font-weight: 900; color: white; text-shadow: 0 0 20px rgba(0,212,255,0.7); line-height: 1.1; }
+  .big-profile-balance-value { font-size: 26px; font-weight: 900; color: white; line-height: 1.1; }
   .big-profile-balance-value small { font-size: 12px; color: #00d4ff; }
   .big-profile-balance-sub { font-size: 9px; color: #ff9500; font-weight: 900; margin-top: 3px; }
-  .big-profile-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; position: relative; z-index: 2; }
-  .big-profile-btn { border: none; border-radius: 14px; padding: 12px 10px; color: white; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-  .big-profile-btn:active { transform: scale(0.95); }
-  .big-profile-btn.wallet { background: linear-gradient(135deg, #00d4ff, #0066ff); box-shadow: 0 4px 18px rgba(0,212,255,0.5); }
-  .big-profile-btn.withdraw { background: linear-gradient(135deg, #00ff88, #00aa55); box-shadow: 0 4px 18px rgba(0,255,136,0.5); }
+  .big-profile-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .big-profile-btn { border: none; border-radius: 14px; padding: 12px 10px; color: white; cursor: pointer; display: flex; flex-direction: column; align-items: center; }
+  .big-profile-btn.wallet { background: linear-gradient(135deg, #00d4ff, #0066ff); }
+  .big-profile-btn.withdraw { background: linear-gradient(135deg, #00ff88, #00aa55); }
   .more-card { background: rgba(10,25,45,0.75); border: 1px solid rgba(0,150,255,0.2); border-radius: 16px; padding: 16px; margin-bottom: 10px; display: flex; align-items: center; gap: 14px; cursor: pointer; }
-  .more-card:active { transform: scale(0.98); }
   .more-card-icon { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
   .more-card-icon.boosters { background: linear-gradient(135deg, #a040ff, #6020a0); }
   .more-card-icon.upgrades { background: linear-gradient(135deg, #00b4ff, #0066ff); }
@@ -155,7 +138,7 @@
   .task-btn { padding: 8px 16px; border-radius: 10px; font-size: 11px; font-weight: 900; cursor: pointer; border: none; }
   .task-btn.go { background: linear-gradient(135deg, #00b4ff, #0066ff); color: white; }
   .task-btn.done { background: linear-gradient(135deg, #00aa55, #006633); color: white; }
-  .booster-card { background: rgba(10,25,45,0.7); border: 1px solid rgba(0,150,255,0.2); border-radius: 18px; padding: 16px; margin-bottom: 10px; }
+  .booster-card { background: rgba(10,25,45,0.7); border: 1px solid rgba(0,150,255,0.2); border-radius: 18px; padding: 16px; }
   .booster-row { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(0,150,255,0.08); }
   .booster-row:last-child { border-bottom: none; padding-bottom: 0; }
   .booster-row:first-child { padding-top: 0; }
@@ -167,7 +150,6 @@
   .booster-info { flex: 1; }
   .booster-info h4 { font-size: 13px; font-weight: 900; color: white; margin-bottom: 3px; }
   .booster-info p { font-size: 10px; color: #7a8ba5; }
-  .booster-timer { text-align: center; font-size: 11px; font-weight: 900; color: #a0aec0; padding: 0 8px; min-width: 55px; }
   .booster-btn { padding: 9px 14px; border-radius: 10px; font-size: 11px; font-weight: 900; cursor: pointer; border: none; }
   .booster-btn.purple { background: linear-gradient(135deg, #a040ff, #6020a0); color: white; }
   .booster-btn.blue { background: linear-gradient(135deg, #00b4ff, #0066ff); color: white; }
@@ -200,6 +182,10 @@
   .sticker-card.locked { opacity: 0.5; cursor: not-allowed; }
   .sticker-card.owned { border-color: #00ff88; }
   .sticker-card.max { border-color: #ff9500; background: rgba(255,150,0,0.1); }
+  .sticker-card.common { border-color: rgba(160,174,192,0.4); }
+  .sticker-card.rare { border-color: rgba(0,212,255,0.5); }
+  .sticker-card.epic { border-color: rgba(153,0,255,0.5); }
+  .sticker-card.legendary { border-color: rgba(255,150,0,0.5); }
   .sticker-icon { font-size: 34px; margin-bottom: 4px; }
   .sticker-name { font-size: 11px; font-weight: 900; margin-bottom: 2px; }
   .sticker-lvl { font-size: 8px; color: #ff9500; font-weight: 900; margin-bottom: 3px; }
@@ -220,11 +206,21 @@
   .puzzle-mode-price { font-size: 10px; color: #ffd700; font-weight: 900; margin-top: 3px; }
   .puzzle-timer-display { background: rgba(0,0,0,0.5); border-radius: 10px; padding: 8px; display: flex; justify-content: space-around; margin-bottom: 10px; border: 1px solid rgba(0,212,255,0.3); }
   .puzzle-timer-display div { font-size: 11px; font-weight: 900; }
+  .crash-game { text-align: center; padding: 10px 0; }
+  .crash-multiplier { font-size: 54px; font-weight: 900; color: #00ff88; margin: 15px 0; }
+  .crash-multiplier.crashed { color: #ff0055; }
+  .crash-bar { height: 12px; background: rgba(0,0,0,0.3); border-radius: 6px; overflow: hidden; margin: 15px 0; }
+  .crash-bar-fill { height: 100%; background: linear-gradient(90deg, #00d4ff, #00ff88); border-radius: 6px; }
+  .bet-selector { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin: 15px 0 10px; }
+  .bet-option { background: rgba(15,30,55,0.8); border: 1px solid rgba(0,180,255,0.3); border-radius: 10px; padding: 10px 5px; cursor: pointer; font-size: 11px; font-weight: 900; color: white; text-align: center; }
+  .bet-option.selected { background: linear-gradient(135deg, #00d4ff, #0066ff); border-color: #00d4ff; }
+  .crash-bet-btn { background: linear-gradient(135deg, #00ff88, #00aa55); border: none; border-radius: 12px; padding: 14px; color: white; font-size: 15px; font-weight: 900; cursor: pointer; width: 100%; }
+  .crash-cash-btn { background: linear-gradient(135deg, #ff9500, #ff5500); border: none; border-radius: 12px; padding: 14px; color: white; font-size: 15px; font-weight: 900; cursor: pointer; width: 100%; margin-top: 10px; }
   .wheel-wrapper { position: relative; width: 280px; height: 280px; margin: 20px auto; display: flex; align-items: center; justify-content: center; }
   .wheel-pointer { position: absolute; top: -22px; left: 50%; transform: translateX(-50%); font-size: 36px; color: #ff0055; z-index: 10; }
   .wheel-outer { position: absolute; width: 100%; height: 100%; border-radius: 50%; border: 5px solid #ffd700; z-index: 5; pointer-events: none; }
   .wheel-container { width: 240px; height: 240px; border-radius: 50%; background: conic-gradient(#ff0055 0deg 60deg, #00d4ff 60deg 120deg, #00ff88 120deg 180deg, #ffd700 180deg 240deg, #9900ff 240deg 300deg, #ff9500 300deg 360deg); position: relative; transition: transform 5s cubic-bezier(0.15, 0.9, 0.2, 1); z-index: 2; }
-  .wheel-labels { width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
+  .wheel-labels { width: 100%; height: 100%; position: absolute; }
   .wheel-label { position: absolute; top: 50%; left: 50%; width: 0; height: 0; font-size: 13px; font-weight: 900; color: white; z-index: 3; text-shadow: 0 0 5px #000; }
   .wheel-label span { display: block; position: absolute; transform: translate(-50%, -50%); white-space: nowrap; }
   .wheel-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 60px; height: 60px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; font-weight: 900; color: #ff0055; font-size: 12px; z-index: 6; border: 3px solid #ffd700; cursor: pointer; }
@@ -235,7 +231,7 @@
   .result-display .reward-unit { font-size: 13px; color: #00d4ff; font-weight: 900; }
   .slot-machine { display: flex; justify-content: center; gap: 10px; margin: 20px 0; }
   .slot-reel { width: 70px; height: 90px; background: linear-gradient(135deg, #0a1929, #061224); border: 2px solid #ffd700; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 32px; font-weight: 900; color: #ffd700; }
-  .ref-card { background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(0,80,180,0.1)); border: 1px solid rgba(0,212,255,0.3); border-radius: 18px; padding: 20px; margin-bottom: 12px; text-align: center; }
+  .ref-card { background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(0,80,180,0.1)); border: 1px solid rgba(0,212,255,0.3); border-radius: 18px; padding: 20px; text-align: center; }
   .ref-title { font-size: 16px; font-weight: 900; color: #00d4ff; margin-bottom: 8px; }
   .ref-sub { font-size: 11px; color: #a0aec0; margin-bottom: 15px; }
   .ref-link { background: rgba(0,0,0,0.4); padding: 12px; border-radius: 10px; font-size: 10px; color: #00d4ff; word-break: break-all; margin-bottom: 15px; }
@@ -247,15 +243,15 @@
   .toggle::after { content: ''; position: absolute; top: 3px; left: 3px; width: 22px; height: 22px; border-radius: 50%; background: white; transition: transform 0.3s; }
   .toggle.on::after { transform: translateX(22px); }
   .withdraw-option { background: rgba(15,30,55,0.8); border: 1px solid rgba(0,180,255,0.3); border-radius: 14px; padding: 14px; margin-bottom: 10px; display: flex; align-items: center; gap: 12px; }
-  .withdraw-option-icon { width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; background: rgba(0,180,255,0.15); flex-shrink: 0; }
+  .withdraw-option-icon { width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; background: rgba(0,180,255,0.15); }
   .withdraw-option-info { flex: 1; text-align: left; }
   .withdraw-option-info h4 { font-size: 13px; font-weight: 900; margin-bottom: 3px; }
   .withdraw-option-info p { font-size: 10px; color: #7a8ba5; }
   .coming-soon-badge { background: rgba(255,150,0,0.2); color: #ff9500; font-size: 9px; padding: 3px 8px; border-radius: 8px; font-weight: 900; }
   .profile-card { background: linear-gradient(135deg, rgba(0,180,255,0.12), rgba(0,60,150,0.08)); border: 1.5px solid rgba(0,212,255,0.35); border-radius: 20px; padding: 18px; margin-bottom: 14px; }
   .profile-avatar-wrap { width: 80px; height: 80px; position: relative; flex-shrink: 0; }
-  .profile-avatar-ring { position: absolute; inset: -5px; border-radius: 50%; background: conic-gradient(from 0deg, #00d4ff, #00ff88, #9900ff, #ff0055, #00d4ff); animation: spinRing 4s linear infinite; opacity: 0.8; filter: blur(2px); }
-  .profile-avatar { position: absolute; inset: 0; border-radius: 50%; background: linear-gradient(135deg, #0a1929, #061224); display: flex; align-items: center; justify-content: center; font-size: 36px; border: 2px solid rgba(0,212,255,0.5); background-size: cover; background-position: center; overflow: hidden; z-index: 2; }
+  .profile-avatar-ring { position: absolute; inset: -5px; border-radius: 50%; background: conic-gradient(from 0deg, #00d4ff, #00ff88, #9900ff, #ff0055, #00d4ff); animation: spinRing 4s linear infinite; }
+  .profile-avatar { position: absolute; inset: 0; border-radius: 50%; background: linear-gradient(135deg, #0a1929, #061224); display: flex; align-items: center; justify-content: center; font-size: 36px; border: 2px solid rgba(0,212,255,0.5); background-size: cover; background-position: center; z-index: 2; }
   .profile-top { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
   .profile-name { font-size: 19px; font-weight: 900; color: white; display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
   .verified-badge { width: 16px; height: 16px; background: linear-gradient(135deg, #00d4ff, #0066ff); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; color: white; }
@@ -269,7 +265,7 @@
   .modal.show { display: flex; }
   .modal-content { background: linear-gradient(135deg, #0f2137, #061224); border: 1px solid rgba(0,212,255,0.5); border-radius: 22px; padding: 22px 18px; max-width: 380px; width: 100%; text-align: center; max-height: 92vh; overflow-y: auto; }
   .modal-content h3 { color: #00d4ff; margin-bottom: 12px; font-size: 18px; font-weight: 900; }
-  .modal-content p { color: #a0aec0; font-size: 13px; margin-bottom: 20px; line-height: 1.6; }
+  .modal-content p { color: #a0aec0; font-size: 13px; margin-bottom: 20px; line-height: 1.6; white-space: pre-line; }
   .modal-btn { background: linear-gradient(135deg, #00b4ff, #0066ff); border: none; border-radius: 12px; padding: 12px 30px; color: white; font-size: 14px; font-weight: 900; cursor: pointer; }
   .input-field { background: rgba(0,0,0,0.4); border: 1px solid rgba(0,212,255,0.4); border-radius: 12px; padding: 12px 15px; color: white; font-size: 14px; width: 100%; outline: none; text-align: center; margin-bottom: 15px; font-weight: 900; }
   .float-text { position: fixed; font-size: 26px; font-weight: 900; color: #00d4ff; pointer-events: none; animation: floatUp 1s ease-out forwards; z-index: 999; }
@@ -280,22 +276,15 @@
   .avatar-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 15px 0; }
   .avatar-option { aspect-ratio: 1; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; cursor: pointer; border: 3px solid rgba(0,180,255,0.3); background: linear-gradient(135deg, rgba(0,212,255,0.2), rgba(0,80,180,0.1)); }
   .avatar-option.selected { border-color: #00d4ff; transform: scale(1.05); }
-
-  /* COIN FLIP */
   .flip-coin-area { display: flex; justify-content: center; align-items: center; margin: 20px 0; position: relative; min-height: 200px; perspective: 1000px; }
   .flip-coin { width: 160px; height: 160px; position: relative; transform-style: preserve-3d; }
   .flip-coin.flipping { animation: flipAnimation 1.8s ease-in-out; }
-  @keyframes flipAnimation {
-    0% { transform: rotateY(0deg); }
-    50% { transform: rotateY(900deg); }
-    100% { transform: rotateY(1800deg); }
-  }
-  .flip-coin-face { position: absolute; width: 100%; height: 100%; border-radius: 50%; backface-visibility: hidden; display: flex; align-items: center; justify-content: center; font-size: 70px; font-weight: 900; box-shadow: 0 0 50px rgba(255,215,0,0.8), inset 0 0 30px rgba(255,255,255,0.3); }
+  @keyframes flipAnimation { 0% { transform: rotateY(0deg); } 50% { transform: rotateY(900deg); } 100% { transform: rotateY(1800deg); } }
+  .flip-coin-face { position: absolute; width: 100%; height: 100%; border-radius: 50%; backface-visibility: hidden; display: flex; align-items: center; justify-content: center; font-size: 80px; font-weight: 900; box-shadow: 0 0 50px rgba(255,215,0,0.8), inset 0 0 30px rgba(255,255,255,0.3); }
   .flip-coin-front { background: radial-gradient(circle at 35% 30%, #ffe066, #ffd700 45%, #b8860b); border: 4px solid #fff3b0; color: #fff; text-shadow: 0 0 15px #000; }
   .flip-coin-back { background: radial-gradient(circle at 35% 30%, #ffe066, #ffd700 45%, #b8860b); border: 4px solid #fff3b0; transform: rotateY(180deg); color: #fff; text-shadow: 0 0 15px #000; }
   .flip-choice-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 15px 0; }
-  .flip-choice-btn { background: linear-gradient(135deg, rgba(0,100,200,0.5), rgba(0,60,150,0.3)); border: 2px solid rgba(0,180,255,0.4); border-radius: 16px; padding: 16px; text-align: center; cursor: pointer; transition: all 0.2s; }
-  .flip-choice-btn:active { transform: scale(0.96); }
+  .flip-choice-btn { background: linear-gradient(135deg, rgba(0,100,200,0.5), rgba(0,60,150,0.3)); border: 2px solid rgba(0,180,255,0.4); border-radius: 16px; padding: 16px; text-align: center; cursor: pointer; }
   .flip-choice-btn.selected { background: linear-gradient(135deg, #ffd700, #ff9500); border-color: #ffd700; box-shadow: 0 0 25px rgba(255,215,0,0.6); }
   .flip-choice-icon { font-size: 44px; margin-bottom: 6px; font-weight: 900; }
   .flip-choice-label { font-size: 14px; font-weight: 900; letter-spacing: 2px; }
@@ -304,13 +293,6 @@
   .flip-status.lose { background: rgba(255,0,85,0.15); color: #ff0055; border: 1px solid rgba(255,0,85,0.4); }
   .flip-status.info { background: rgba(0,212,255,0.15); color: #00d4ff; border: 1px solid rgba(0,212,255,0.4); }
   .flip-big-multiplier { text-align: center; font-size: 48px; font-weight: 900; color: #ffd700; text-shadow: 0 0 30px rgba(255,215,0,0.9); margin: 10px 0; }
-  .flip-multiplier-chain { display: flex; justify-content: center; gap: 6px; margin: 12px 0; flex-wrap: wrap; }
-  .flip-mult-badge { padding: 6px 12px; border-radius: 8px; font-size: 11px; font-weight: 900; background: rgba(15,30,55,0.8); border: 1px solid rgba(0,180,255,0.3); color: #7a8ba5; }
-  .flip-mult-badge.hit { background: linear-gradient(135deg, #00ff88, #00aa55); border-color: #00ff88; color: #000; box-shadow: 0 0 15px rgba(0,255,136,0.7); }
-  .crash-bet-btn { background: linear-gradient(135deg, #00ff88, #00aa55); border: none; border-radius: 12px; padding: 14px; color: white; font-size: 15px; font-weight: 900; cursor: pointer; width: 100%; }
-  .crash-cash-btn { background: linear-gradient(135deg, #ff9500, #ff5500); border: none; border-radius: 12px; padding: 14px; color: white; font-size: 15px; font-weight: 900; cursor: pointer; width: 100%; margin-top: 10px; }
-  .bet-option { background: rgba(15,30,55,0.8); border: 1px solid rgba(0,180,255,0.3); border-radius: 10px; padding: 10px 5px; cursor: pointer; font-size: 11px; font-weight: 900; color: white; text-align: center; }
-  .bet-option.selected { background: linear-gradient(135deg, #00d4ff, #0066ff); border-color: #00d4ff; }
 </style>
 </head>
 <body>
@@ -335,7 +317,7 @@
 <div class="tab-content active" id="tab-home">
   <div class="container">
     <div class="balance-card">
-      <div style="display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2">
+      <div style="display:flex;justify-content:space-between;align-items:center">
         <div style="flex:1">
           <div class="balance-label">◆ TOTAL COIN</div>
           <div class="balance-value"><span id="balance">0</span> <small>TRAX</small></div>
@@ -353,7 +335,7 @@
         <div class="rank-badge-label">◆ YOUR RANK</div>
         <div class="rank-badge-value" id="myRankBadge">#---</div>
       </div>
-      <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end;position:relative;z-index:2">
+      <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">
         <div class="rank-badge-status" id="rankStatus">Keep tapping</div>
         <button class="rarity-show-btn" onclick="showRarityList()">⭐ RARITY</button>
       </div>
@@ -387,8 +369,8 @@
       </div>
     </div>
     <div class="coin-tier-badge-container">
-      <div class="coin-tier-badge" id="coinTierBadge">◆ BASIC</div>
-      <div class="coin-tier-progress" id="coinTierProgress">Total Level: 0 / 3</div>
+      <div class="coin-tier-badge">◆ BASIC</div>
+      <div class="coin-tier-progress">Total Level: 0 / 3</div>
     </div>
     <div class="coin-bottom-text">👆 TAP THE COIN</div>
     <div class="coin-per-tap">Per Tap: <strong>+<span id="tapPowerText">1</span> TRAX</strong></div>
@@ -406,7 +388,6 @@
     <div class="rank-board">
       <div class="rank-header">
         <div class="rank-title"><span class="live-dot"></span>🏆 LIVE LEADERBOARD</div>
-        <div class="rank-refresh">Live</div>
       </div>
       <div id="homeRankList"></div>
     </div>
@@ -440,18 +421,11 @@
 
 <div class="tab-content" id="tab-more">
   <div class="page-title-bar"><div class="page-title-icon">⚙️</div><div class="page-title-text">More</div></div>
-  
   <div class="big-profile-card">
     <div class="big-profile-top">
-      <div class="big-profile-avatar-wrap">
-        <div class="big-profile-ring"></div>
-        <div class="big-profile-avatar" id="moreAvatarBig">👤</div>
-      </div>
+      <div class="big-profile-avatar-wrap"><div class="big-profile-ring"></div><div class="big-profile-avatar" id="moreAvatarBig">👤</div></div>
       <div class="big-profile-info">
-        <div class="big-profile-name-row">
-          <span id="moreProfileName">TraxOfficial</span>
-          <span class="big-profile-badge" id="moreBadge">👑 Lv 1</span>
-        </div>
+        <div class="big-profile-name-row"><span id="moreProfileName">TraxOfficial</span><span class="big-profile-badge" id="moreBadge">👑 Lv 1</span></div>
         <div class="big-profile-id">ID: #<span id="morePlayerId">0000</span></div>
         <div class="big-profile-rank">🏆 Rank: #<span id="moreRank">---</span></div>
       </div>
@@ -462,17 +436,10 @@
       <div class="big-profile-balance-sub">⏳ NOT LAUNCHED YET</div>
     </div>
     <div class="big-profile-actions">
-      <button class="big-profile-btn wallet" onclick="navTo('wallet')">
-        <div style="font-size:22px;margin-bottom:2px">💼</div>
-        <div style="font-size:10px;font-weight:900">WALLET</div>
-      </button>
-      <button class="big-profile-btn withdraw" onclick="navTo('wallet')">
-        <div style="font-size:22px;margin-bottom:2px">💸</div>
-        <div style="font-size:10px;font-weight:900">WITHDRAW</div>
-      </button>
+      <button class="big-profile-btn wallet" onclick="navTo('wallet')"><div style="font-size:22px">💼</div><div style="font-size:10px;font-weight:900">WALLET</div></button>
+      <button class="big-profile-btn withdraw" onclick="navTo('wallet')"><div style="font-size:22px">💸</div><div style="font-size:10px;font-weight:900">WITHDRAW</div></button>
     </div>
   </div>
-
   <div class="more-card" onclick="navTo('boosters')"><div class="more-card-icon boosters">🚀</div><div class="more-card-info"><h4>Boosters</h4><p>Increase your earnings</p></div><div class="more-card-arrow">›</div></div>
   <div class="more-card" onclick="navTo('upgrades')"><div class="more-card-icon upgrades">⬆️</div><div class="more-card-info"><h4>Upgrades</h4><p>Upgrade tap power</p></div><div class="more-card-arrow">›</div></div>
   <div class="more-card" onclick="navTo('sticker')"><div class="more-card-icon sticker">🎨</div><div class="more-card-info"><h4>Sticker Shop</h4><p>50 stickers</p></div><div class="more-card-arrow">›</div></div>
@@ -500,6 +467,7 @@
 
 <div class="tab-content" id="tab-sticker">
   <div class="page-title-bar"><div class="page-title-icon">🎨</div><div class="page-title-text">Sticker Shop</div></div>
+  <p style="font-size:10px;color:#a0aec0;margin-bottom:10px;text-align:center">Har sticker ko max (Lv 5) karein — tab agla unlock hoga!</p>
   <div id="stickerShopContainer"></div>
 </div>
 
@@ -532,7 +500,7 @@
 
 <div class="tab-content" id="tab-lucky">
   <div class="page-title-bar"><div class="page-title-icon">📦</div><div class="page-title-text">Lucky Box</div></div>
-  <div class="lucky-box" id="luckyBox" onclick="openLuckyBox()">📦</div>
+  <div class="lucky-box" onclick="openLuckyBox()">📦</div>
   <p style="text-align:center;color:#7a8ba5;font-size:11px;margin-top:15px">Keys: <span id="luckyKeys">1</span></p>
 </div>
 
@@ -613,15 +581,56 @@
   </div>
 </div>
 
-<div class="modal" id="spinModal"><div class="modal-content"><h3>🎰 Spin to Win!</h3><button class="modal-btn" onclick="closeSpin()">Close</button></div></div>
-<div class="modal" id="crashModal"><div class="modal-content"><h3>🚀 Crash</h3><button class="modal-btn" onclick="closeCrash()">Close</button></div></div>
-<div class="modal" id="puzzleModal"><div class="modal-content"><h3>🧩 Puzzle</h3><button class="modal-btn" onclick="closePuzzle()">Close</button></div></div>
+<div class="modal" id="spinModal">
+  <div class="modal-content" style="max-width:380px">
+    <h3>🎰 Spin to Win!</h3>
+    <div class="wheel-wrapper">
+      <div class="wheel-pointer">▼</div>
+      <div class="wheel-outer"></div>
+      <div class="wheel-container" id="wheel"><div class="wheel-labels" id="wheelLabels"></div></div>
+      <div class="wheel-center" onclick="spinWheel()">SPIN</div>
+    </div>
+    <div class="result-display" id="resultDisplay"><h4>🎉 YOU WON</h4><div class="reward-amount" id="rewardAmount">+0</div><div class="reward-unit">TRAX</div></div>
+    <button class="modal-btn" style="margin-top:10px;display:block;width:100%" onclick="spinWheel()">SPIN</button>
+    <button class="modal-btn" style="margin-top:8px;background:rgba(255,255,255,0.1);display:block;width:100%" onclick="closeSpin()">Close</button>
+  </div>
+</div>
 
-<!-- COIN FLIP MODAL - UPDATED -->
+<div class="modal" id="crashModal">
+  <div class="modal-content" style="max-width:380px">
+    <h3>🚀 Crash</h3>
+    <div class="crash-game">
+      <div class="bet-selector" id="betSelector"></div>
+      <div style="margin:10px 0;display:flex;gap:8px">
+        <input type="number" id="customBetInput" placeholder="Custom" min="100" style="flex:1;background:rgba(0,0,0,0.4);border:1px solid rgba(0,212,255,0.4);border-radius:10px;padding:12px;color:white;font-weight:900;text-align:center;outline:none">
+        <button onclick="applyCustomBet()" style="background:linear-gradient(135deg,#00b4ff,#0066ff);border:none;border-radius:10px;padding:12px 18px;color:white;font-weight:900;cursor:pointer">SET</button>
+      </div>
+      <div class="crash-multiplier" id="crashMultiplier">1.00x</div>
+      <div class="crash-bar"><div class="crash-bar-fill" id="crashBar" style="width:0%"></div></div>
+      <div id="crashStatus" style="font-size:12px;color:#a0aec0;margin:10px 0">Bet lagayein!</div>
+      <button class="crash-bet-btn" onclick="startCrash()" id="crashBetBtn">START</button>
+      <button class="crash-cash-btn" onclick="cashOutCrash()" id="crashCashBtn" style="display:none">CASH OUT</button>
+    </div>
+    <button class="modal-btn" style="margin-top:10px;background:rgba(255,255,255,0.1);display:block;width:100%" onclick="closeCrash()">Close</button>
+  </div>
+</div>
+
+<div class="modal" id="puzzleModal">
+  <div class="modal-content" style="max-width:420px">
+    <h3>🧩 Puzzle</h3>
+    <div class="puzzle-mode-grid">
+      <div class="puzzle-mode-card" onclick="selectPuzzleMode('hard', this)"><div class="puzzle-mode-icon">🔴</div><div class="puzzle-mode-name">Hard</div><div class="puzzle-mode-desc">9x9</div><div class="puzzle-mode-time">20 min</div><div class="puzzle-mode-price">10,000</div></div>
+      <div class="puzzle-mode-card" onclick="selectPuzzleMode('medium', this)"><div class="puzzle-mode-icon">🟡</div><div class="puzzle-mode-name">Medium</div><div class="puzzle-mode-desc">7x7</div><div class="puzzle-mode-time">10 min</div><div class="puzzle-mode-price">30,000</div></div>
+      <div class="puzzle-mode-card" onclick="selectPuzzleMode('easy', this)"><div class="puzzle-mode-icon">🟢</div><div class="puzzle-mode-name">Easy</div><div class="puzzle-mode-desc">5x5</div><div class="puzzle-mode-time">5 min</div><div class="puzzle-mode-price">50,000</div></div>
+    </div>
+    <button class="crash-bet-btn" onclick="startPuzzleGame()" style="width:100%">🎮 START</button>
+    <button class="modal-btn" style="margin-top:8px;background:rgba(255,255,255,0.1);display:block;width:100%" onclick="closePuzzle()">Close</button>
+  </div>
+</div>
+
 <div class="modal" id="coinFlipModal">
   <div class="modal-content" style="max-width:420px">
     <h3 style="text-align:center">🪙 Coin Flip</h3>
-    
     <div id="flipSetup">
       <div style="background:rgba(0,0,0,0.4);border:1.5px solid rgba(0,212,255,0.4);border-radius:14px;padding:14px;margin:14px 0;text-align:left">
         <div style="font-size:11px;color:#a0aec0;margin-bottom:8px;font-weight:900">◆ YOUR BET</div>
@@ -633,20 +642,16 @@
         <input type="number" id="flipBetInput" class="input-field" placeholder="Custom bet" min="100" value="1000" oninput="updateFlipPreview()">
         <div style="font-size:10px;color:#ff9500;text-align:center" id="flipBetInfo">Min bet: 100 TRAX</div>
       </div>
-      
       <div style="background:rgba(0,0,0,0.3);border:1px solid rgba(0,212,255,0.2);border-radius:12px;padding:10px;margin-bottom:14px;font-size:11px;color:#a0aec0;line-height:1.6">
         <b style="color:#00d4ff">🎯 Kaise Khelein:</b><br>
         • <b>T</b> ya <b>R</b> select karein<br>
         • Coin flip karein<br>
-        • Jeetne par multiplier barhta hai<br>
-        • Jab marzi <b>CASHOUT</b> karein<br>
-        • Har win par naya multiplier aata hai
+        • Jeetne par random multiplier<br>
+        • Jab marzi <b>CASHOUT</b> karein
       </div>
-      
-      <button class="crash-bet-btn" onclick="startFlipGame()" style="width:100%">🎮 START COIN FLIP</button>
+      <button class="crash-bet-btn" onclick="startFlipGame()" style="width:100%">🎮 START</button>
       <button class="modal-btn" style="margin-top:8px;background:rgba(255,255,255,0.1);display:block;width:100%" onclick="closeCoinFlip()">Close</button>
     </div>
-
     <div id="flipGame" style="display:none">
       <div class="flip-coin-area">
         <div class="flip-coin" id="flipCoin">
@@ -654,27 +659,16 @@
           <div class="flip-coin-face flip-coin-back">R</div>
         </div>
       </div>
-
       <div class="flip-big-multiplier" id="flipCurrentMult">1.0x</div>
-
       <div style="background:rgba(0,0,0,0.4);border:1px solid rgba(0,212,255,0.3);border-radius:12px;padding:10px;margin:10px 0;font-size:11px;text-align:center">
-        <span style="color:#7a8ba5">Total Winnings:</span>
+        <span style="color:#7a8ba5">Winnings:</span>
         <b style="color:#ffd700;font-size:16px" id="flipWinnings">0 TRAX</b>
       </div>
-
       <div class="flip-choice-row">
-        <div class="flip-choice-btn" data-choice="T" onclick="selectFlipChoice('T')">
-          <div class="flip-choice-icon">T</div>
-          <div class="flip-choice-label">T</div>
-        </div>
-        <div class="flip-choice-btn" data-choice="R" onclick="selectFlipChoice('R')">
-          <div class="flip-choice-icon">R</div>
-          <div class="flip-choice-label">R</div>
-        </div>
+        <div class="flip-choice-btn" data-choice="T" onclick="selectFlipChoice('T')"><div class="flip-choice-icon">T</div><div class="flip-choice-label">T</div></div>
+        <div class="flip-choice-btn" data-choice="R" onclick="selectFlipChoice('R')"><div class="flip-choice-icon">R</div><div class="flip-choice-label">R</div></div>
       </div>
-
-      <div class="flip-status info" id="flipStatus">Apna choice select karein (T ya R)</div>
-
+      <div class="flip-status info" id="flipStatus">T ya R select karein</div>
       <button class="crash-bet-btn" onclick="doFlip()" id="flipPlayBtn" style="width:100%">🪙 FLIP COIN</button>
       <button class="crash-cash-btn" onclick="cashOutFlip()" id="flipCashBtn" style="display:none">💸 CASHOUT</button>
     </div>
@@ -711,11 +705,6 @@
       else if (style === 'medium') tg.HapticFeedback.impactOccurred('medium');
       else if (style === 'success') tg.HapticFeedback.notificationOccurred('success');
       else if (style === 'error') tg.HapticFeedback.notificationOccurred('error');
-    } else if (navigator.vibrate) {
-      if (style === 'light') navigator.vibrate(10);
-      else if (style === 'medium') navigator.vibrate(30);
-      else if (style === 'success') navigator.vibrate([30, 50, 30]);
-      else if (style === 'error') navigator.vibrate([50, 30, 50]);
     }
   }
 
@@ -724,8 +713,6 @@
     settings[key] = !settings[key];
     localStorage.setItem('trax_' + key, settings[key] ? 'on' : 'off');
     updateSettingsUI();
-    if (key === 'sound' && settings.sound) playSound('tap');
-    if (key === 'vibration' && settings.vibration) vibrate('light');
   }
   function updateSettingsUI() {
     document.getElementById('soundToggle').classList.toggle('on', settings.sound);
@@ -782,7 +769,6 @@
     updateAvatarDisplays();
     showModal('🎉 Name Set!', 'Welcome ' + userName + '!');
   }
-  function checkFirstTime() { if (!userName) setTimeout(() => navTo('editname'), 300); }
 
   let balance = parseInt(localStorage.getItem('trax_balance') || '0');
   let energy = parseInt(localStorage.getItem('trax_energy') || '500');
@@ -791,41 +777,126 @@
   let maxEnergy = parseInt(localStorage.getItem('trax_maxEnergy') || '500');
   let autoEarn = parseInt(localStorage.getItem('trax_autoEarn') || '0');
   let luckyKeys = parseInt(localStorage.getItem('trax_luckyKeys') || '1');
-  let miningActive = false;
   let stickerLevels = JSON.parse(localStorage.getItem('trax_stickers_v4') || '{}');
-  let boosters = JSON.parse(localStorage.getItem('trax_boosters') || '{}');
   let totalEarned = parseInt(localStorage.getItem('trax_totalEarned') || '0');
+  let miningActive = false;
 
   const userId = tg && tg.initDataUnsafe && tg.initDataUnsafe.user ? tg.initDataUnsafe.user.id : Math.floor(Math.random() * 9000) + 1000;
-  const RANK_MIN_COINS = 100000;
 
-  function getEffectiveTapPower() { return tapPower; }
-  function getEffectiveMaxEnergy() { return maxEnergy; }
+  // ===== STICKERS =====
+  const STICKERS = [
+    { id: 'c1', tier: 'common', icon: '👆', name: 'Tap I', bonus: lvl => '+' + (1*lvl) + ' Tap', cost: 5000 },
+    { id: 'c2', tier: 'common', icon: '✋', name: 'Tap II', bonus: lvl => '+' + (2*lvl) + ' Tap', cost: 8000 },
+    { id: 'c3', tier: 'common', icon: '🤚', name: 'Tap III', bonus: lvl => '+' + (3*lvl) + ' Tap', cost: 10000 },
+    { id: 'c4', tier: 'common', icon: '💪', name: 'Power', bonus: lvl => '+' + (4*lvl) + ' Tap', cost: 12000 },
+    { id: 'c5', tier: 'common', icon: '🔥', name: 'Flame', bonus: lvl => '+' + (5*lvl) + ' Tap', cost: 15000 },
+    { id: 'c6', tier: 'common', icon: '⚡', name: 'Spark', bonus: lvl => '+' + (2*lvl) + ' Energy', cost: 9000 },
+    { id: 'c7', tier: 'common', icon: '🔋', name: 'Battery', bonus: lvl => '+' + (25*lvl) + ' MaxEnergy', cost: 11000 },
+    { id: 'c8', tier: 'common', icon: '💰', name: 'Coin', bonus: lvl => '+' + (5*lvl) + ' Auto', cost: 13000 },
+    { id: 'c9', tier: 'common', icon: '⛏️', name: 'Pickaxe', bonus: lvl => '+' + (2*lvl) + ' Mining', cost: 14000 },
+    { id: 'c10', tier: 'common', icon: '🌟', name: 'Star', bonus: lvl => '+' + (3*lvl) + ' Tap', cost: 12000 },
+    { id: 'c11', tier: 'common', icon: '💫', name: 'Glow', bonus: lvl => '+' + (4*lvl) + ' Auto', cost: 16000 },
+    { id: 'c12', tier: 'common', icon: '🎯', name: 'Target', bonus: lvl => '+' + (5*lvl) + ' Tap', cost: 18000 },
+    { id: 'c13', tier: 'common', icon: '🍀', name: 'Clover', bonus: lvl => '+' + (3*lvl) + ' Energy', cost: 17000 },
+    { id: 'c14', tier: 'common', icon: '⭐', name: 'MiniStar', bonus: lvl => '+' + (6*lvl) + ' Tap', cost: 20000 },
+    { id: 'c15', tier: 'common', icon: '🪙', name: 'Token', bonus: lvl => '+' + (8*lvl) + ' Auto', cost: 25000 },
+    { id: 'r1', tier: 'rare', icon: '💎', name: 'Diamond', bonus: lvl => '+' + (10*lvl) + ' Tap', cost: 60000 },
+    { id: 'r2', tier: 'rare', icon: '🔮', name: 'Orb', bonus: lvl => '+' + (5*lvl) + ' Energy', cost: 70000 },
+    { id: 'r3', tier: 'rare', icon: '🚀', name: 'Rocket', bonus: lvl => '+' + (25*lvl) + ' Auto', cost: 80000 },
+    { id: 'r4', tier: 'rare', icon: '⚙️', name: 'Gear', bonus: lvl => '+' + (50*lvl) + ' MaxEnergy', cost: 90000 },
+    { id: 'r5', tier: 'rare', icon: '⛏️', name: 'Drill', bonus: lvl => '+' + (5*lvl) + ' Mining', cost: 100000 },
+    { id: 'r6', tier: 'rare', icon: '🌟', name: 'BigStar', bonus: lvl => '+' + (15*lvl) + ' Tap', cost: 95000 },
+    { id: 'r7', tier: 'rare', icon: '💠', name: 'Gem', bonus: lvl => '+' + (12*lvl) + ' Tap', cost: 105000 },
+    { id: 'r8', tier: 'rare', icon: '🎪', name: 'Turbo', bonus: lvl => '+' + (20*lvl) + ' Auto', cost: 110000 },
+    { id: 'r9', tier: 'rare', icon: '🔱', name: 'Trident', bonus: lvl => '+' + (8*lvl) + ' Mining', cost: 120000 },
+    { id: 'r10', tier: 'rare', icon: '🎨', name: 'Art', bonus: lvl => '+' + (18*lvl) + ' Tap', cost: 115000 },
+    { id: 'r11', tier: 'rare', icon: '🎭', name: 'Mask', bonus: lvl => '+' + (6*lvl) + ' Energy', cost: 130000 },
+    { id: 'r12', tier: 'rare', icon: '💈', name: 'Barber', bonus: lvl => '+' + (30*lvl) + ' Auto', cost: 140000 },
+    { id: 'r13', tier: 'rare', icon: '🏅', name: 'Medal', bonus: lvl => '+' + (25*lvl) + ' Tap', cost: 150000 },
+    { id: 'r14', tier: 'rare', icon: '🎺', name: 'Trumpet', bonus: lvl => '+' + (10*lvl) + ' Mining', cost: 170000 },
+    { id: 'r15', tier: 'rare', icon: '🎸', name: 'Guitar', bonus: lvl => '+' + (35*lvl) + ' Auto', cost: 200000 },
+    { id: 'e1', tier: 'epic', icon: '👑', name: 'Crown', bonus: lvl => '+' + (100*lvl) + ' Auto', cost: 400000 },
+    { id: 'e2', tier: 'epic', icon: '🦅', name: 'Eagle', bonus: lvl => '+' + (40*lvl) + ' Tap', cost: 450000 },
+    { id: 'e3', tier: 'epic', icon: '🔥', name: 'Inferno', bonus: lvl => '+' + (15*lvl) + ' Energy', cost: 500000 },
+    { id: 'e4', tier: 'epic', icon: '⚡', name: 'Thunder', bonus: lvl => '+' + (20*lvl) + ' Mining', cost: 550000 },
+    { id: 'e5', tier: 'epic', icon: '🌊', name: 'Wave', bonus: lvl => '+' + (200*lvl) + ' MaxEnergy', cost: 600000 },
+    { id: 'e6', tier: 'epic', icon: '🌋', name: 'Volcano', bonus: lvl => '+' + (60*lvl) + ' Tap', cost: 650000 },
+    { id: 'e7', tier: 'epic', icon: '⚔️', name: 'Sword', bonus: lvl => '+' + (30*lvl) + ' Mining', cost: 700000 },
+    { id: 'e8', tier: 'epic', icon: '🛡️', name: 'Shield', bonus: lvl => '+' + (300*lvl) + ' Auto', cost: 750000 },
+    { id: 'e9', tier: 'epic', icon: '🏆', name: 'Trophy', bonus: lvl => '+' + (80*lvl) + ' Tap', cost: 800000 },
+    { id: 'e10', tier: 'epic', icon: '💍', name: 'Ring', bonus: lvl => '+' + (400*lvl) + ' Auto', cost: 850000 },
+    { id: 'e11', tier: 'epic', icon: '🎆', name: 'Firework', bonus: lvl => '+' + (25*lvl) + ' Energy', cost: 900000 },
+    { id: 'e12', tier: 'epic', icon: '🌌', name: 'Galaxy', bonus: lvl => '+' + (50*lvl) + ' Mining', cost: 1000000 },
+    { id: 'l1', tier: 'legendary', icon: '🐉', name: 'Dragon', bonus: lvl => '+' + (500*lvl) + ' Auto', cost: 2000000 },
+    { id: 'l2', tier: 'legendary', icon: '🦄', name: 'Unicorn', bonus: lvl => '+' + (200*lvl) + ' Tap', cost: 2500000 },
+    { id: 'l3', tier: 'legendary', icon: '👾', name: 'Alien', bonus: lvl => '+' + (100*lvl) + ' Mining', cost: 3000000 },
+    { id: 'l4', tier: 'legendary', icon: '🎇', name: 'Supernova', bonus: lvl => '+' + (1000*lvl) + ' Auto', cost: 3500000 },
+    { id: 'l5', tier: 'legendary', icon: '🧿', name: 'Cosmic', bonus: lvl => '+' + (100*lvl) + ' Energy', cost: 4000000 },
+    { id: 'l6', tier: 'legendary', icon: '💫', name: 'Comet', bonus: lvl => '+' + (400*lvl) + ' Tap', cost: 5000000 },
+    { id: 'l7', tier: 'legendary', icon: '⚡', name: 'Zeus', bonus: lvl => '+' + (2000*lvl) + ' Auto', cost: 6000000 },
+    { id: 'l8', tier: 'legendary', icon: '👑', name: 'King', bonus: lvl => '+' + (200*lvl) + ' Mining', cost: 10000000 }
+  ];
+  const MAX_STICKER_LEVEL = 5;
+  const STICKER_MULT = 1.5;
 
+  function isStickerUnlocked(id) {
+    const idx = STICKERS.findIndex(s => s.id === id);
+    if (idx === 0) return true;
+    return (stickerLevels[STICKERS[idx - 1].id] || 0) >= MAX_STICKER_LEVEL;
+  }
+  function getStickerUnlockReq(id) {
+    const idx = STICKERS.findIndex(s => s.id === id);
+    if (idx === 0) return null;
+    const prev = STICKERS[idx - 1];
+    const lvl = stickerLevels[prev.id] || 0;
+    if (lvl >= MAX_STICKER_LEVEL) return null;
+    return prev.name + ' (Lv ' + lvl + '/' + MAX_STICKER_LEVEL + ')';
+  }
+  function getStickerBonusFromAll(keyword) {
+    let total = 0;
+    STICKERS.forEach(s => {
+      const lvl = stickerLevels[s.id] || 0;
+      if (!lvl) return;
+      const text = s.bonus(lvl);
+      if (text.includes(keyword)) { const m = text.match(/(\d+)/); if (m) total += parseInt(m[1]); }
+    });
+    return total;
+  }
+
+  function getEffectiveTapPower() {
+    let base = tapPower + getStickerBonusFromAll('Tap');
+    return base;
+  }
+  function getEffectiveMaxEnergy() {
+    return maxEnergy + getStickerBonusFromAll('MaxEnergy');
+  }
+
+  // ===== UPDATE UI =====
   function updateUI() {
-    const balEl = document.getElementById('balance'); if (balEl) balEl.textContent = Math.floor(balance).toLocaleString();
-    const bal2El = document.getElementById('balance2'); if (bal2El) bal2El.textContent = Math.floor(balance).toLocaleString();
-    const engEl = document.getElementById('energyText'); if (engEl) engEl.textContent = energy;
-    const maxEl = document.getElementById('maxEnergyText'); if (maxEl) maxEl.textContent = getEffectiveMaxEnergy();
-    const engBar = document.getElementById('energyBar'); if (engBar) engBar.style.width = (energy / getEffectiveMaxEnergy() * 100) + '%';
-    const tpEl = document.getElementById('tapPowerText'); if (tpEl) tpEl.textContent = tapPower;
-    const lkEl = document.getElementById('luckyKeys'); if (lkEl) lkEl.textContent = luckyKeys;
+    document.getElementById('balance').textContent = Math.floor(balance).toLocaleString();
+    document.getElementById('balance2').textContent = Math.floor(balance).toLocaleString();
+    document.getElementById('energyText').textContent = energy;
+    document.getElementById('maxEnergyText').textContent = getEffectiveMaxEnergy();
+    document.getElementById('energyBar').style.width = (energy / getEffectiveMaxEnergy() * 100) + '%';
+    document.getElementById('tapPowerText').textContent = getEffectiveTapPower();
+    document.getElementById('luckyKeys').textContent = luckyKeys;
 
     const LEVEL_XP = 50000;
     const level = Math.floor(totalEarned / LEVEL_XP) + 1;
     const xpInLevel = totalEarned % LEVEL_XP;
-    const lvEl = document.getElementById('levelNum'); if (lvEl) lvEl.textContent = level;
-    const xpEl = document.getElementById('xpFill'); if (xpEl) xpEl.style.width = (xpInLevel / LEVEL_XP * 100) + '%';
-    const plEl = document.getElementById('profLvlText'); if (plEl) plEl.textContent = level;
-    const pxEl = document.getElementById('profXpText'); if (pxEl) pxEl.textContent = Math.floor(xpInLevel).toLocaleString();
-    const pfEl = document.getElementById('profLevelFill'); if (pfEl) pfEl.style.width = (xpInLevel / LEVEL_XP * 100) + '%';
-    const ptEl = document.getElementById('profTaps'); if (ptEl) ptEl.textContent = totalTaps.toLocaleString();
-    const peEl = document.getElementById('profEarned'); if (peEl) peEl.textContent = Math.floor(totalEarned).toLocaleString();
+    document.getElementById('levelNum').textContent = level;
+    document.getElementById('xpFill').style.width = (xpInLevel / LEVEL_XP * 100) + '%';
+    document.getElementById('profLvlText').textContent = level;
+    document.getElementById('profXpText').textContent = Math.floor(xpInLevel).toLocaleString();
+    document.getElementById('profLevelFill').style.width = (xpInLevel / LEVEL_XP * 100) + '%';
+    document.getElementById('profTaps').textContent = totalTaps.toLocaleString();
+    document.getElementById('profEarned').textContent = Math.floor(totalEarned).toLocaleString();
 
-    const mpn = document.getElementById('moreProfileName'); if (mpn) mpn.textContent = userName || 'TraxOfficial';
-    const mb = document.getElementById('moreBadge'); if (mb) mb.textContent = '👑 Lv ' + level;
-    const mpi = document.getElementById('morePlayerId'); if (mpi) mpi.textContent = String(userId).slice(-4).padStart(4, '0');
-    const mbal = document.getElementById('moreBalance'); if (mbal) mbal.textContent = Math.floor(balance).toLocaleString();
+    document.getElementById('moreProfileName').textContent = userName || 'TraxOfficial';
+    document.getElementById('moreBadge').textContent = '👑 Lv ' + level;
+    document.getElementById('morePlayerId').textContent = String(userId).slice(-4).padStart(4, '0');
+    document.getElementById('moreBalance').textContent = Math.floor(balance).toLocaleString();
+    document.getElementById('moreRank').textContent = '--';
   }
 
   function save() {
@@ -839,18 +910,17 @@
     localStorage.setItem('trax_totalEarned', Math.floor(totalEarned));
   }
 
+  // ===== TAP =====
   const coinBtn = document.getElementById('coinBtn');
-  if (coinBtn) {
-    coinBtn.addEventListener('click', (e) => {
-      if (energy <= 0) { playSound('error'); vibrate('error'); showModal('⚡ Energy Empty', 'Aapki energy khatam ho gayi.'); return; }
-      const gain = tapPower;
-      balance += gain; energy--; totalTaps++; totalEarned += gain;
-      updateUI(); save();
-      createSparkles(e.clientX, e.clientY);
-      showFloat(e.clientX, e.clientY, '+' + gain);
-      playSound('tap'); vibrate('light');
-    });
-  }
+  coinBtn.addEventListener('click', (e) => {
+    if (energy <= 0) { playSound('error'); vibrate('error'); showModal('⚡ Energy Empty', 'Energy khatam.'); return; }
+    const gain = getEffectiveTapPower();
+    balance += gain; energy--; totalTaps++; totalEarned += gain;
+    updateUI(); save();
+    createSparkles(e.clientX, e.clientY);
+    showFloat(e.clientX, e.clientY, '+' + gain);
+    playSound('tap'); vibrate('light');
+  });
 
   function showFloat(x, y, text) {
     const el = document.createElement('div'); el.className = 'float-text'; el.textContent = text;
@@ -859,49 +929,173 @@
   }
   function createSparkles(x, y) {
     for (let i = 0; i < 4; i++) {
-      const s = document.createElement('div'); s.className = 'sparkle';
+      const s = document.createElement('div');
+      s.style.position = 'fixed';
+      s.style.width = '8px'; s.style.height = '8px';
+      s.style.borderRadius = '50%'; s.style.pointerEvents = 'none';
       s.style.left = (x + (Math.random() - 0.5) * 60) + 'px';
       s.style.top = (y + (Math.random() - 0.5) * 60) + 'px';
       s.style.background = ['#00d4ff', '#00ff88', '#ffffff', '#ff9500'][i];
       s.style.boxShadow = '0 0 15px ' + s.style.background;
-      s.style.position = 'fixed';
-      s.style.width = '8px'; s.style.height = '8px';
-      s.style.borderRadius = '50%'; s.style.pointerEvents = 'none';
       s.style.zIndex = '998';
       document.body.appendChild(s); setTimeout(() => s.remove(), 800);
     }
   }
 
+  // ===== BOOSTERS =====
+  function activateBooster(id) {
+    if (id === 'autoTap') { tapPower += 1; showModal('👆 Auto Tap', '+1 Tap Power!'); }
+    else if (id === 'energy') { energy = Math.min(getEffectiveMaxEnergy(), energy + 20); showModal('⚡ Refilled', '+20 Energy!'); }
+    else if (id === 'double') { tapPower += 2; showModal('2️⃣ 2x', '+2 Tap Power!'); }
+    else if (id === 'offline') { balance += 1000; totalEarned += 1000; showModal('⏰ Offline', '+1,000 TRAX!'); }
+    updateUI(); save();
+    playSound('win'); vibrate('success');
+  }
+
+  // ===== UPGRADES =====
+  function drawUpgrades() {
+    const upgrades = [
+      { id: 'tapPower', icon: '⚡', iconClass: 'tap', name: 'Tap Power', desc: '+1 per tap', baseCost: 5000, multiplier: 1.5, level: parseInt(localStorage.getItem('upg_tapPower') || '0') },
+      { id: 'maxEnergy', icon: '🔋', iconClass: 'energy', name: 'Max Energy', desc: '+50 energy', baseCost: 3000, multiplier: 1.4, level: parseInt(localStorage.getItem('upg_maxEnergy') || '0') },
+      { id: 'autoEarn', icon: '💰', iconClass: 'auto', name: 'Auto Earning', desc: '+5/hr', baseCost: 15000, multiplier: 1.6, level: parseInt(localStorage.getItem('upg_autoEarn') || '0') },
+      { id: 'energyRegen', icon: '⚡', iconClass: 'regen', name: 'Energy Regen', desc: '+1 per 2sec', baseCost: 20000, multiplier: 1.7, level: parseInt(localStorage.getItem('upg_energyRegen') || '0') }
+    ];
+    const box = document.getElementById('upgradesList');
+    box.innerHTML = '';
+    upgrades.forEach(u => {
+      const cost = Math.floor(u.baseCost * Math.pow(u.multiplier, u.level));
+      const el = document.createElement('div');
+      el.className = 'upgrade-item';
+      el.innerHTML = '<div class="upgrade-icon-wrap ' + u.iconClass + '">' + u.icon + '</div><div class="upgrade-info"><h4>' + u.name + '</h4><p>' + u.desc + '</p><div class="lvl">Level: ' + u.level + '</div></div><button class="upgrade-btn" onclick="buyUpgrade(\'' + u.id + '\',' + cost + ')">' + cost.toLocaleString() + '</button>';
+      box.appendChild(el);
+    });
+  }
+  function buyUpgrade(id, cost) {
+    if (balance < cost) { showModal('❌ Not Enough', 'Cost: ' + cost.toLocaleString() + ' TRAX'); return; }
+    balance -= cost;
+    let level = parseInt(localStorage.getItem('upg_' + id) || '0') + 1;
+    localStorage.setItem('upg_' + id, level);
+    if (id === 'tapPower') tapPower += 1;
+    if (id === 'maxEnergy') maxEnergy += 50;
+    if (id === 'autoEarn') autoEarn += 5;
+    updateUI(); save(); drawUpgrades();
+    playSound('win'); vibrate('success');
+    showModal('✅ Upgraded!', 'Level ' + level + ' ho gaya!');
+  }
+
+  // ===== STICKERS =====
+  function drawStickers() {
+    const container = document.getElementById('stickerShopContainer');
+    container.innerHTML = '';
+    const tiers = [
+      { id: 'common', label: '◆ COMMON' }, { id: 'rare', label: '◆ RARE' },
+      { id: 'epic', label: '◆ EPIC' }, { id: 'legendary', label: '◆ LEGENDARY' }
+    ];
+    tiers.forEach(tier => {
+      const title = document.createElement('div');
+      title.className = 'sticker-tier-title ' + tier.id;
+      title.textContent = tier.label;
+      container.appendChild(title);
+      const grid = document.createElement('div');
+      grid.className = 'sticker-shop';
+      STICKERS.filter(s => s.tier === tier.id).forEach(s => {
+        const lvl = stickerLevels[s.id] || 0;
+        const isMax = lvl >= MAX_STICKER_LEVEL;
+        const nextCost = isMax ? 0 : Math.floor(s.cost * Math.pow(STICKER_MULT, lvl));
+        const benefit = lvl > 0 ? s.bonus(lvl) : s.bonus(1) + ' (Lv1)';
+        const unlocked = isStickerUnlocked(s.id);
+        const req = getStickerUnlockReq(s.id);
+        const el = document.createElement('div');
+        el.className = 'sticker-card ' + s.tier + (isMax ? ' max' : lvl > 0 ? ' owned' : '') + (!unlocked ? ' locked' : '');
+        el.innerHTML = '<div class="sticker-icon">' + s.icon + '</div><div class="sticker-name">' + s.name + '</div><div class="sticker-lvl">' + (lvl > 0 ? 'Lv ' + lvl + '/' + MAX_STICKER_LEVEL : 'Not Owned') + '</div><div class="sticker-benefit">' + (unlocked ? benefit : '🔒 Locked') + '</div><div class="sticker-price' + (isMax ? ' max' : !unlocked ? ' locked' : '') + '">' + (isMax ? '⭐ MAX' : !unlocked ? '🔒 LOCKED' : nextCost.toLocaleString() + ' TRAX') + '</div>';
+        if (!isMax && unlocked) el.onclick = () => buySticker(s, nextCost);
+        else if (!unlocked) el.onclick = () => showModal('🔒 Locked', 'Pehle max karein:\n\n' + req);
+        grid.appendChild(el);
+      });
+      container.appendChild(grid);
+    });
+  }
+  function buySticker(s, cost) {
+    if (balance < cost) { showModal('❌ Not Enough', 'Cost: ' + cost.toLocaleString() + ' TRAX'); return; }
+    balance -= cost;
+    stickerLevels[s.id] = (stickerLevels[s.id] || 0) + 1;
+    localStorage.setItem('trax_stickers_v4', JSON.stringify(stickerLevels));
+    updateUI(); save(); drawStickers();
+    playSound('win'); vibrate('success');
+    showModal('🎉 Upgraded!', s.name + ' Level ' + stickerLevels[s.id] + ' ho gaya!');
+  }
+
+  // ===== TASKS =====
+  function drawTasksNew() {
+    const box = document.getElementById('fullTasksListNew');
+    box.innerHTML = '';
+    const tasks = [
+      { id: 'tg', icon: '📢', iconClass: 'telegram', name: 'Join Telegram', reward: 1000, done: localStorage.getItem('task_tg') === 'done' },
+      { id: 'x', icon: '𝕏', iconClass: 'twitter', name: 'Follow X', reward: 1000, done: localStorage.getItem('task_x') === 'done' },
+      { id: 'video', icon: '▶', iconClass: 'youtube', name: 'Watch Video', reward: 2000, done: localStorage.getItem('task_video') === 'done' },
+      { id: 'invite', icon: '👥', iconClass: 'invite', name: 'Invite Friends', reward: 5000, done: false }
+    ];
+    tasks.forEach(t => {
+      const el = document.createElement('div');
+      el.className = 'task-row';
+      el.innerHTML = '<div class="task-icon-wrap ' + t.iconClass + '">' + t.icon + '</div><div class="task-content"><div class="task-title">' + t.name + '</div><div class="task-reward-row">+' + t.reward.toLocaleString() + ' TRAX</div></div><button class="task-btn ' + (t.done ? 'done' : 'go') + '" onclick="doTaskNew(\'' + t.id + '\',' + t.reward + ')">' + (t.done ? '✓ DONE' : 'GO') + '</button>';
+      box.appendChild(el);
+    });
+  }
+  function doTaskNew(id, reward) {
+    if (localStorage.getItem('task_' + id) === 'done') { showModal('✅ Done', 'Ye task pehle kar chuke hain.'); return; }
+    localStorage.setItem('task_' + id, 'done');
+    balance += reward; totalEarned += reward;
+    updateUI(); save(); drawTasksNew();
+    showModal('🎉 Task Complete!', '+' + reward.toLocaleString() + ' TRAX!');
+  }
+
+  // ===== LEADERBOARD =====
+  function drawHomeRank() {
+    const box = document.getElementById('homeRankList');
+    box.innerHTML = '<div style="text-align:center;padding:20px;color:#7a8ba5;font-size:12px"><div style="font-size:32px;margin-bottom:8px">🏆</div><div style="font-weight:900;color:#00d4ff">No players yet</div><div>1,00,000+ TRAX jama karein</div></div>';
+    document.getElementById('myRankBadge').textContent = '#---';
+    document.getElementById('rankStatus').textContent = 'Keep tapping';
+  }
+  function drawRank() {
+    const list = document.getElementById('rankList');
+    list.innerHTML = '<div style="text-align:center;padding:30px;color:#7a8ba5"><div style="font-size:44px">🏆</div><div style="font-weight:900;color:#00d4ff;margin-top:10px">No players yet</div></div>';
+  }
+
+  // ===== MINING =====
   function startMining() {
-    if (energy < 10) { playSound('error'); showModal('⚡ Not Enough', 'Mining ke liye 10 energy chahiye.'); return; }
-    if (miningActive) { showModal('⛏️ Already Mining', 'Mining pehle se chal rahi hai.'); return; }
+    if (energy < 10) { showModal('⚡ Not Enough', '10 energy chahiye.'); return; }
+    if (miningActive) { showModal('⛏️ Mining', 'Already mining!'); return; }
     energy -= 10; miningActive = true;
     updateUI(); save();
-    showModal('⛏️ Mining Started!', 'Agle 60 seconds tak har second +5 TRAX milega.');
+    showModal('⛏️ Mining Started!', '60 seconds tak har second +5 TRAX milega.');
     let sec = 0;
     const timer = setInterval(() => {
       sec++; balance += 5; totalEarned += 5; updateUI(); save();
-      if (sec >= 60) { clearInterval(timer); miningActive = false; showModal('⛏️ Mining Complete!', '+300 TRAX mile!'); }
+      if (sec >= 60) { clearInterval(timer); miningActive = false; showModal('⛏️ Complete!', '+300 TRAX mile!'); }
     }, 1000);
   }
 
+  // ===== LUCKY BOX =====
   function openLuckyBox() {
-    if (luckyKeys <= 0) { playSound('error'); showModal('📦 No Keys', 'Aapke paas keys nahi hain.'); return; }
-    setTimeout(() => {
-      luckyKeys--;
-      const rewards = [100, 200, 500, 1000, 2000, 5000];
-      const reward = rewards[Math.floor(Math.random() * rewards.length)];
-      balance += reward; totalEarned += reward; updateUI(); save();
-      showModal('🎉 Lucky Box!', '+' + reward + ' TRAX mile!');
-    }, 500);
+    if (luckyKeys <= 0) { showModal('📦 No Keys', 'Keys nahi hain.'); return; }
+    luckyKeys--;
+    const rewards = [100, 200, 500, 1000, 2000, 5000];
+    const reward = rewards[Math.floor(Math.random() * rewards.length)];
+    balance += reward; totalEarned += reward; updateUI(); save();
+    playSound('win'); vibrate('success');
+    showModal('🎉 Lucky Box!', '+' + reward.toLocaleString() + ' TRAX!');
   }
 
+  // ===== REFERRAL =====
   function shareRef() {
     const link = 'https://t.me/TraxOfficial_bot?start=ref' + userId;
     const text = 'Trax Coin khelo aur free TRAX kamayein! 🎉';
     if (tg) tg.openTelegramLink('https://t.me/share/url?url=' + encodeURIComponent(link) + '&text=' + encodeURIComponent(text));
+    else showModal('📤 Share', 'Link: ' + link);
   }
 
+  // ===== NAV =====
   function navClick(el, tab) {
     document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
     if (el) el.classList.add('active');
@@ -909,6 +1103,10 @@
     const tabEl = document.getElementById('tab-' + tab);
     if (tabEl) tabEl.classList.add('active');
     window.scrollTo(0, 0);
+    if (tab === 'tasks') drawTasksNew();
+    if (tab === 'sticker') drawStickers();
+    if (tab === 'upgrades') drawUpgrades();
+    if (tab === 'rank') drawRank();
   }
   function navTo(tab) {
     const navMap = { home: 'home', games: 'games', mine: 'mine', tasks: 'tasks', more: 'more' };
@@ -918,9 +1116,13 @@
       const tabEl = document.getElementById('tab-' + tab);
       if (tabEl) tabEl.classList.add('active');
       window.scrollTo(0, 0);
+      if (tab === 'sticker') drawStickers();
+      if (tab === 'upgrades') drawUpgrades();
+      if (tab === 'rank') drawRank();
     }
   }
 
+  // ===== MODALS =====
   function showModal(title, text) {
     document.getElementById('modalTitle').textContent = title;
     document.getElementById('modalText').innerText = text;
@@ -930,52 +1132,188 @@
   function showRarityList() { document.getElementById('rarityModal').classList.add('show'); }
   function closeRarityList() { document.getElementById('rarityModal').classList.remove('show'); }
 
-  function openSpin() { document.getElementById('spinModal').classList.add('show'); }
+  // ===== SPIN WHEEL =====
+  function openSpin() {
+    document.getElementById('spinModal').classList.add('show');
+    document.getElementById('resultDisplay').classList.remove('show');
+    document.getElementById('wheel').style.transform = 'rotate(0deg)';
+    drawWheelLabels();
+  }
   function closeSpin() { document.getElementById('spinModal').classList.remove('show'); }
-  function openCrash() { document.getElementById('crashModal').classList.add('show'); }
-  function closeCrash() { document.getElementById('crashModal').classList.remove('show'); }
-  function openPuzzle() { document.getElementById('puzzleModal').classList.add('show'); }
-  function closePuzzle() { document.getElementById('puzzleModal').classList.remove('show'); }
-  function activateBooster(id) { showModal('✅ Activated', 'Booster activate ho gaya!'); }
-
-  function resetData() {
-    if (confirm('Kya aap sach mein saara data reset karna chahte hain?')) { localStorage.clear(); location.reload(); }
+  function drawWheelLabels() {
+    const lb = document.getElementById('wheelLabels'); lb.innerHTML = '';
+    const labels = ['50', '100', '50', '200', '500', '100', '1000', '100'];
+    const radius = 82;
+    labels.forEach((label, i) => {
+      const angle = i * 45 + 22.5;
+      const rad = (angle - 90) * Math.PI / 180;
+      const x = 120 + Math.cos(rad) * radius;
+      const y = 120 + Math.sin(rad) * radius;
+      const el = document.createElement('div');
+      el.className = 'wheel-label';
+      el.innerHTML = '<span style="transform: translate(-50%, -50%); left: ' + x + 'px; top: ' + y + 'px;">' + label + '</span>';
+      lb.appendChild(el);
+    });
+  }
+  let spinCooldown = false;
+  function spinWheel() {
+    if (spinCooldown) return;
+    spinCooldown = true;
+    const wheel = document.getElementById('wheel');
+    const rewards = [50, 100, 50, 200, 500, 100, 1000, 100];
+    const idx = Math.floor(Math.random() * rewards.length);
+    const reward = rewards[idx];
+    const segmentCenter = idx * 45 + 22.5;
+    const targetRotation = 360 - segmentCenter;
+    const finalRotation = (8 * 360) + targetRotation + 360;
+    wheel.style.transform = 'rotate(' + finalRotation + 'deg)';
+    setTimeout(() => {
+      balance += reward; totalEarned += reward; updateUI(); save();
+      document.getElementById('resultDisplay').classList.add('show');
+      document.getElementById('rewardAmount').textContent = '+' + reward;
+      playSound('win'); vibrate('success');
+      spinCooldown = false;
+    }, 5200);
   }
 
-  // ===== COIN FLIP GAME - NEW VERSION =====
-  // Multiplier pool - chhote se bade, random milega
-  const FLIP_MULT_POOL = [
-    { mult: 1.5, chance: 40 },   // 40% - common
-    { mult: 1.7, chance: 25 },   // 25%
-    { mult: 2, chance: 15 },     // 15%
-    { mult: 3, chance: 8 },      // 8%
-    { mult: 5, chance: 5 },      // 5%
-    { mult: 10, chance: 3 },     // 3%
-    { mult: 15, chance: 2 },     // 2%
-    { mult: 25, chance: 1 },     // 1%
-    { mult: 50, chance: 0.5 },   // 0.5%
-    { mult: 100, chance: 0.5 }   // 0.5% - legendary
-  ];
+  // ===== CRASH =====
+  const BET_OPTIONS = [500, 1000, 5000, 10000, 25000, 50000];
+  let crashState = { running: false, multiplier: 1, crashed: false, bet: 1000 };
+  let crashInterval = null;
+  function drawBetSelector() {
+    const box = document.getElementById('betSelector'); box.innerHTML = '';
+    BET_OPTIONS.forEach(amt => {
+      const el = document.createElement('div');
+      el.className = 'bet-option' + (amt === crashState.bet ? ' selected' : '');
+      el.textContent = amt.toLocaleString();
+      el.onclick = () => { if (crashState.running) return; crashState.bet = amt; drawBetSelector(); updateCrashButton(); };
+      box.appendChild(el);
+    });
+  }
+  function updateCrashButton() { document.getElementById('crashBetBtn').textContent = 'START (' + crashState.bet.toLocaleString() + ' TRAX)'; }
+  function openCrash() {
+    document.getElementById('crashModal').classList.add('show');
+    if (crashInterval) { clearInterval(crashInterval); crashInterval = null; }
+    crashState.running = false; crashState.crashed = false; crashState.multiplier = 1;
+    document.getElementById('crashMultiplier').textContent = '1.00x';
+    document.getElementById('crashMultiplier').classList.remove('crashed');
+    document.getElementById('crashBar').style.width = '0%';
+    document.getElementById('crashBetBtn').style.display = 'block';
+    document.getElementById('crashCashBtn').style.display = 'none';
+    drawBetSelector();
+    updateCrashButton();
+  }
+  function closeCrash() {
+    if (crashInterval) { clearInterval(crashInterval); crashInterval = null; }
+    crashState.running = false;
+    document.getElementById('crashModal').classList.remove('show');
+  }
+  function applyCustomBet() {
+    const v = parseInt(document.getElementById('customBetInput').value);
+    if (!v || v < 100) { showModal('⚠️', 'Minimum 100 TRAX'); return; }
+    if (v > balance) { showModal('❌', 'Not enough TRAX'); return; }
+    crashState.bet = v;
+    document.querySelectorAll('.bet-option').forEach(el => el.classList.remove('selected'));
+    updateCrashButton();
+  }
+  function getCrashPoint() {
+    const r = Math.random() * 100;
+    if (r < 40) return 1.5 + Math.random() * 0.5;
+    if (r < 65) return 2.0 + Math.random() * 0.5;
+    if (r < 80) return 2.5 + Math.random() * 0.5;
+    if (r < 90) return 3.0 + Math.random() * 1.0;
+    if (r < 95) return 4.0 + Math.random() * 2.0;
+    if (r < 98) return 6.0 + Math.random() * 5.0;
+    if (r < 99.5) return 15.0 + Math.random() * 10.0;
+    return 30.0 + Math.random() * 30.0;
+  }
+  function startCrash() {
+    if (crashState.running) return;
+    if (balance < crashState.bet) { showModal('❌', 'Not enough TRAX'); return; }
+    balance -= crashState.bet;
+    crashState.running = true; crashState.multiplier = 1; crashState.crashed = false;
+    updateUI(); save();
+    document.getElementById('crashBetBtn').style.display = 'none';
+    document.getElementById('crashCashBtn').style.display = 'block';
+    document.getElementById('crashStatus').textContent = 'Multiplier barh raha hai...';
+    const crashPoint = getCrashPoint();
+    crashInterval = setInterval(() => {
+      if (crashState.crashed || !crashState.running) { clearInterval(crashInterval); return; }
+      crashState.multiplier += 0.02 + Math.random() * 0.02 + crashState.multiplier * 0.005;
+      document.getElementById('crashMultiplier').textContent = crashState.multiplier.toFixed(2) + 'x';
+      document.getElementById('crashBar').style.width = Math.min(100, ((crashState.multiplier - 1) / 3) * 100) + '%';
+      if (crashState.multiplier >= crashPoint) {
+        crashState.crashed = true; crashState.running = false;
+        clearInterval(crashInterval);
+        document.getElementById('crashMultiplier').classList.add('crashed');
+        document.getElementById('crashMultiplier').textContent = 'CRASHED @ ' + crashState.multiplier.toFixed(2) + 'x';
+        document.getElementById('crashStatus').textContent = 'Lost ' + crashState.bet.toLocaleString() + ' TRAX';
+        document.getElementById('crashCashBtn').style.display = 'none';
+        document.getElementById('crashBetBtn').style.display = 'block';
+        document.getElementById('crashBetBtn').textContent = 'PLAY AGAIN';
+        playSound('error'); vibrate('error');
+      }
+    }, 300);
+  }
+  function cashOutCrash() {
+    if (!crashState.running) return;
+    crashState.running = false;
+    if (crashInterval) { clearInterval(crashInterval); crashInterval = null; }
+    const w = Math.floor(crashState.bet * crashState.multiplier);
+    balance += w; totalEarned += w; updateUI(); save();
+    document.getElementById('crashStatus').textContent = 'Won ' + w.toLocaleString() + ' TRAX!';
+    document.getElementById('crashCashBtn').style.display = 'none';
+    document.getElementById('crashBetBtn').style.display = 'block';
+    document.getElementById('crashBetBtn').textContent = 'PLAY AGAIN';
+    playSound('win'); vibrate('success');
+  }
 
-  function pickRandomMultiplier() {
-    const total = FLIP_MULT_POOL.reduce((s, m) => s + m.chance, 0);
-    let rand = Math.random() * total;
-    for (const m of FLIP_MULT_POOL) {
-      rand -= m.chance;
-      if (rand <= 0) return m.mult;
-    }
+  // ===== PUZZLE =====
+  const PUZZLE_MODES = {
+    hard: { size: 9, cost: 10000, time: 1200, label: 'Hard' },
+    medium: { size: 7, cost: 30000, time: 600, label: 'Medium' },
+    easy: { size: 5, cost: 50000, time: 300, label: 'Easy' }
+  };
+  let selectedPuzzleMode = 'hard';
+  let puzzleState = { tiles: [], moves: 0, solved: false, size: 5, timeLeft: 0, timer: null };
+
+  function openPuzzle() {
+    document.getElementById('puzzleModal').classList.add('show');
+  }
+  function closePuzzle() {
+    if (puzzleState.timer) { clearInterval(puzzleState.timer); puzzleState.timer = null; }
+    document.getElementById('puzzleModal').classList.remove('show');
+  }
+  function selectPuzzleMode(mode, el) {
+    selectedPuzzleMode = mode;
+    document.querySelectorAll('.puzzle-mode-card').forEach(c => c.classList.remove('selected'));
+    if (el) el.classList.add('selected');
+  }
+  function startPuzzleGame() {
+    const m = PUZZLE_MODES[selectedPuzzleMode];
+    if (balance < m.cost) { showModal('❌', 'Cost: ' + m.cost.toLocaleString() + ' TRAX'); return; }
+    balance -= m.cost;
+    puzzleState.size = m.size;
+    puzzleState.timeLeft = m.time;
+    puzzleState.moves = 0;
+    puzzleState.solved = false;
+    updateUI(); save();
+    showModal('🧩 Puzzle', 'Puzzle ' + m.label + ' shuru!\n\nTime: ' + (m.time / 60) + ' min');
+  }
+
+  // ===== COIN FLIP =====
+  const FLIP_POOL = [
+    { mult: 1.5, w: 40 }, { mult: 1.7, w: 25 }, { mult: 2, w: 15 },
+    { mult: 3, w: 8 }, { mult: 5, w: 5 }, { mult: 10, w: 3 },
+    { mult: 15, w: 2 }, { mult: 25, w: 1 }, { mult: 50, w: 0.5 }, { mult: 100, w: 0.5 }
+  ];
+  function pickFlipMult() {
+    const total = FLIP_POOL.reduce((s, x) => s + x.w, 0);
+    let r = Math.random() * total;
+    for (const m of FLIP_POOL) { r -= m.w; if (r <= 0) return m.mult; }
     return 1.5;
   }
-
-  let flipState = {
-    active: false,
-    bet: 0,
-    totalMult: 1,      // accumulated multiplier
-    winnings: 0,       // current winnings (bet * totalMult)
-    choice: null,
-    playing: false,
-    multipliers: []    // track what multipliers we've gotten
-  };
+  let flipState = { active: false, bet: 0, totalMult: 1, winnings: 0, choice: null, playing: false, multipliers: [] };
 
   function setFlipBet(amount) {
     document.getElementById('flipBetInput').value = amount;
@@ -984,71 +1322,46 @@
   function updateFlipPreview() {
     const bet = parseInt(document.getElementById('flipBetInput').value) || 0;
     const info = document.getElementById('flipBetInfo');
-    if (bet < 100) { info.textContent = '⚠️ Minimum bet: 100 TRAX'; info.style.color = '#ff0055'; }
-    else if (bet > balance) { info.textContent = '⚠️ Aapke paas sirf ' + Math.floor(balance).toLocaleString() + ' TRAX hain'; info.style.color = '#ff0055'; }
+    if (bet < 100) { info.textContent = '⚠️ Min 100 TRAX'; info.style.color = '#ff0055'; }
+    else if (bet > balance) { info.textContent = '⚠️ Not enough'; info.style.color = '#ff0055'; }
     else { info.textContent = '✓ Bet: ' + bet.toLocaleString() + ' TRAX'; info.style.color = '#00ff88'; }
   }
-
   function openCoinFlip() {
-    if (flipState.active) {
-      document.getElementById('flipSetup').style.display = 'none';
-      document.getElementById('flipGame').style.display = 'block';
-    } else {
-      document.getElementById('flipSetup').style.display = 'block';
-      document.getElementById('flipGame').style.display = 'none';
-      document.getElementById('flipBetInput').value = 1000;
-      updateFlipPreview();
-    }
+    document.getElementById('flipSetup').style.display = flipState.active ? 'none' : 'block';
+    document.getElementById('flipGame').style.display = flipState.active ? 'block' : 'none';
     document.getElementById('coinFlipModal').classList.add('show');
+    if (!flipState.active) { document.getElementById('flipBetInput').value = 1000; updateFlipPreview(); }
   }
   function closeCoinFlip() {
     if (flipState.active) {
-      if (!confirm('Game active hai. Close karne par aapka ' + flipState.bet.toLocaleString() + ' TRAX gaya.')) return;
-      flipState.active = false;
-      flipState.bet = 0;
-      flipState.totalMult = 1;
-      flipState.winnings = 0;
-      flipState.choice = null;
-      flipState.multipliers = [];
+      if (!confirm('Game active. Close karne par ' + flipState.bet.toLocaleString() + ' TRAX gaya.')) return;
+      flipState.active = false; flipState.bet = 0; flipState.totalMult = 1; flipState.winnings = 0; flipState.multipliers = [];
     }
     document.getElementById('coinFlipModal').classList.remove('show');
   }
-
   function startFlipGame() {
     const bet = parseInt(document.getElementById('flipBetInput').value) || 0;
-    if (bet < 100) { showModal('⚠️ Invalid Bet', 'Minimum bet 100 TRAX.'); return; }
-    if (bet > balance) { showModal('❌ Not Enough', 'Aapke paas ' + Math.floor(balance).toLocaleString() + ' TRAX hain.'); return; }
+    if (bet < 100) { showModal('⚠️', 'Min 100 TRAX'); return; }
+    if (bet > balance) { showModal('❌', 'Not enough'); return; }
     balance -= bet;
-    flipState.active = true;
-    flipState.bet = bet;
-    flipState.totalMult = 1;
-    flipState.winnings = 0;
-    flipState.choice = null;
-    flipState.multipliers = [];
+    flipState = { active: true, bet, totalMult: 1, winnings: 0, choice: null, playing: false, multipliers: [] };
     updateUI(); save();
     document.getElementById('flipSetup').style.display = 'none';
     document.getElementById('flipGame').style.display = 'block';
     updateFlipUI();
-    document.getElementById('flipStatus').textContent = 'Apna choice select karein (T ya R)';
+    document.getElementById('flipStatus').textContent = 'T ya R select karein';
     document.getElementById('flipStatus').className = 'flip-status info';
-    playSound('tap'); vibrate('light');
   }
-
   function selectFlipChoice(c) {
     if (!flipState.active || flipState.playing) return;
     flipState.choice = c;
     document.querySelectorAll('.flip-choice-btn').forEach(b => b.classList.remove('selected'));
-    const btn = document.querySelector('.flip-choice-btn[data-choice="' + c + '"]');
-    if (btn) btn.classList.add('selected');
-    document.getElementById('flipStatus').textContent = 'Choice: ' + c + ' — Ab FLIP dabayein!';
-    document.getElementById('flipStatus').className = 'flip-status info';
-    playSound('tap'); vibrate('light');
+    document.querySelector('.flip-choice-btn[data-choice="' + c + '"]').classList.add('selected');
+    document.getElementById('flipStatus').textContent = 'Choice: ' + c + ' — Flip dabayein';
   }
-
   function updateFlipUI() {
     document.getElementById('flipCurrentMult').textContent = flipState.totalMult.toFixed(1) + 'x';
     document.getElementById('flipWinnings').textContent = Math.floor(flipState.winnings).toLocaleString() + ' TRAX';
-    
     if (flipState.totalMult > 1) {
       document.getElementById('flipCashBtn').style.display = 'block';
       document.getElementById('flipCashBtn').textContent = '💸 CASHOUT ' + Math.floor(flipState.winnings).toLocaleString() + ' TRAX';
@@ -1056,17 +1369,15 @@
       document.getElementById('flipCashBtn').style.display = 'none';
     }
   }
-
   function doFlip() {
-    if (!flipState.active) return;
-    if (!flipState.choice) { showModal('⚠️ Choose', 'Pehle T ya R select karein.'); return; }
-    if (flipState.playing) return;
+    if (!flipState.active || !flipState.choice || flipState.playing) {
+      if (!flipState.choice) showModal('⚠️', 'Pehle T ya R select karein');
+      return;
+    }
     flipState.playing = true;
     const coin = document.getElementById('flipCoin');
     coin.classList.add('flipping');
-    playSound('tap'); vibrate('medium');
     document.getElementById('flipStatus').textContent = '🪙 Flipping...';
-    document.getElementById('flipStatus').className = 'flip-status info';
 
     setTimeout(() => {
       coin.classList.remove('flipping');
@@ -1074,68 +1385,62 @@
       coin.style.transform = result === 'T' ? 'rotateY(0deg)' : 'rotateY(180deg)';
 
       if (result === flipState.choice) {
-        // WIN
-        const mult = pickRandomMultiplier();
+        const mult = pickFlipMult();
         flipState.multipliers.push(mult);
-        flipState.totalMult = flipState.totalMult * mult;
+        flipState.totalMult *= mult;
         flipState.winnings = flipState.bet * flipState.totalMult;
-        
         updateFlipUI();
-        document.getElementById('flipStatus').textContent = '🎉 WIN! Result: ' + result + ' — +' + mult + 'x';
+        document.getElementById('flipStatus').textContent = '🎉 WIN! +' + mult + 'x';
         document.getElementById('flipStatus').className = 'flip-status win';
         playSound('win'); vibrate('success');
+        flipState.playing = false;
+        flipState.choice = null;
+        document.querySelectorAll('.flip-choice-btn').forEach(b => b.classList.remove('selected'));
       } else {
-        // LOSE
-        document.getElementById('flipStatus').textContent = '❌ LOSE! Result: ' + result + ' — Aapka ' + flipState.bet.toLocaleString() + ' TRAX gaya.';
+        document.getElementById('flipStatus').textContent = '❌ LOSE! Aapka ' + flipState.bet.toLocaleString() + ' TRAX gaya.';
         document.getElementById('flipStatus').className = 'flip-status lose';
         playSound('error'); vibrate('error');
-        const lostBet = flipState.bet;
-        flipState.active = false;
-        flipState.bet = 0;
-        flipState.totalMult = 1;
-        flipState.winnings = 0;
-        flipState.choice = null;
-        flipState.multipliers = [];
-        flipState.playing = false;
         setTimeout(() => {
-          showModal('❌ You Lost', 'Aap haare. ' + lostBet.toLocaleString() + ' TRAX gaya.');
+          flipState.active = false;
+          showModal('❌ Lost', 'Aap haare.');
           closeCoinFlip();
         }, 800);
-        return;
       }
-      flipState.playing = false;
-      flipState.choice = null;
-      document.querySelectorAll('.flip-choice-btn').forEach(b => b.classList.remove('selected'));
     }, 1800);
   }
-
   function cashOutFlip() {
     if (!flipState.active || flipState.totalMult <= 1) return;
     const amount = Math.floor(flipState.winnings);
     balance += amount; totalEarned += amount;
     updateUI(); save();
-    playSound('win'); vibrate('success');
-    showModal('🎉 Cashout!', '+' + amount.toLocaleString() + ' TRAX mile!\n\nMultipliers: ' + flipState.multipliers.join(' × ') + ' = ' + flipState.totalMult.toFixed(2) + 'x');
+    showModal('🎉 Cashout!', '+' + amount.toLocaleString() + ' TRAX!');
     flipState.active = false;
-    flipState.bet = 0;
-    flipState.totalMult = 1;
-    flipState.winnings = 0;
-    flipState.choice = null;
-    flipState.multipliers = [];
     setTimeout(closeCoinFlip, 300);
   }
 
-  // ===== SIMPLE STUBS =====
-  function drawTasksNew() {}
-  function drawStickers() {}
-  function drawUpgrades() {}
-  function drawRank() {}
-  function drawHomeRank() {}
+  // ===== MISC =====
+  function resetData() {
+    if (confirm('Reset all data?')) { localStorage.clear(); location.reload(); }
+  }
 
+  // ===== INIT =====
   updateAvatarDisplays();
   buildAvatarGrid();
   updateSettingsUI();
   updateUI();
+  drawTasksNew();
+  drawStickers();
+  drawUpgrades();
+  drawHomeRank();
+  drawRank();
+
+  // Auto earn + energy regen
+  setInterval(() => {
+    if (autoEarn > 0) { balance += autoEarn / 3600; totalEarned += autoEarn / 3600; updateUI(); save(); }
+  }, 1000);
+  setInterval(() => {
+    if (energy < getEffectiveMaxEnergy()) { energy++; updateUI(); save(); }
+  }, 2000);
 </script>
 </body>
-</html>
+ </html>
