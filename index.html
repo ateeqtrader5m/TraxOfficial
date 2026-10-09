@@ -8,194 +8,466 @@
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; -webkit-tap-highlight-color: transparent; }
   body {
-    background: linear-gradient(180deg, #061224 0%, #0a1a2f 50%, #061224 100%);
+    background: #050a14;
     color: white;
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
     overflow-x: hidden;
     user-select: none;
     -webkit-user-select: none;
-    padding-bottom: 90px;
+    padding-bottom: 100px;
+    background-image: 
+      radial-gradient(circle at 20% 10%, rgba(0,150,255,0.15) 0%, transparent 40%),
+      radial-gradient(circle at 80% 90%, rgba(0,100,255,0.1) 0%, transparent 40%);
   }
-  .container { padding: 15px; max-width: 500px; margin: 0 auto; width: 100%; }
 
   /* HEADER */
-  .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; padding: 8px 0; }
-  .logo-area { display: flex; align-items: center; gap: 10px; }
-  .logo-icon {
-    width: 46px; height: 46px;
-    background: linear-gradient(135deg, #2196f3, #00d4ff);
-    border-radius: 14px;
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    background: rgba(10,20,35,0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0,150,255,0.15);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  .header-left { display: flex; align-items: center; gap: 10px; }
+  .menu-icon { font-size: 22px; color: #00d4ff; }
+  .header-logo { display: flex; align-items: center; gap: 8px; }
+  .header-logo-icon {
+    width: 36px; height: 36px;
+    background: linear-gradient(135deg, #00d4ff, #0066ff);
+    border-radius: 10px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 24px; font-weight: 900; color: white;
-    box-shadow: 0 4px 20px rgba(33,150,243,0.6);
-    position: relative;
+    font-size: 20px; font-weight: 900;
+    box-shadow: 0 0 20px rgba(0,212,255,0.6);
   }
-  .logo-icon::after {
-    content: ''; position: absolute; inset: -3px;
-    border-radius: 16px;
-    background: linear-gradient(135deg, #00d4ff, transparent);
-    z-index: -1; opacity: 0.5;
+  .header-logo-text h1 {
+    font-size: 16px; font-weight: 900; letter-spacing: 0.5px;
+    background: linear-gradient(90deg, #00d4ff, #ffffff);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   }
-  .logo-text h1 { font-size: 20px; font-weight: 900; letter-spacing: 1px; }
-  .logo-text p { font-size: 8px; color: #00d4ff; letter-spacing: 2px; margin-top: 2px; }
-  .system-status { text-align: right; }
-  .status-badge { font-size: 8px; color: #00ff88; letter-spacing: 1px; display: flex; align-items: center; gap: 5px; justify-content: flex-end; }
-  .status-dot { width: 6px; height: 6px; background: #00ff88; border-radius: 50%; box-shadow: 0 0 10px #00ff88; animation: pulse 2s infinite; }
-  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-  .player-id { font-size: 10px; color: #7a8ba5; margin-top: 3px; }
-
-  /* STATS ROW */
-  .stats-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 18px; }
-  .stat-card {
-    background: linear-gradient(135deg, rgba(20,40,70,0.8), rgba(15,30,55,0.6));
-    border: 1px solid rgba(33,150,243,0.25);
-    border-radius: 14px; padding: 12px 8px; text-align: center;
-    position: relative; overflow: hidden;
-  }
-  .stat-card::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    background: linear-gradient(90deg, transparent, #00d4ff, transparent);
-  }
-  .stat-label { font-size: 7px; color: #7a8ba5; letter-spacing: 1px; margin-bottom: 6px; }
-  .stat-value { font-size: 17px; font-weight: 900; color: #00d4ff; text-shadow: 0 0 10px rgba(0,212,255,0.5); }
-  .stat-value small { font-size: 8px; color: #7a8ba5; font-weight: normal; }
-
-  /* CLUB BADGE */
-  .club-badge { text-align: center; margin-bottom: 12px; }
-  .club-badge span {
-    display: inline-block; padding: 6px 16px;
-    background: rgba(33,150,243,0.08);
-    border: 1px solid rgba(0,212,255,0.3);
-    border-radius: 20px; font-size: 8px; color: #00d4ff; letter-spacing: 2px;
-  }
-
-  /* HERO */
-  .hero { text-align: center; margin-bottom: 15px; }
-  .hero h2 { font-size: 28px; font-weight: 900; line-height: 1.15; margin-bottom: 6px; letter-spacing: 0.5px; }
-  .hero h2 .highlight { color: #00d4ff; text-shadow: 0 0 25px rgba(0,212,255,0.7); }
-  .hero p { font-size: 11px; color: #7a8ba5; }
-
-  /* COIN */
-  .coin-area { display: flex; justify-content: center; align-items: center; margin: 20px 0; position: relative; }
-  .coin-glow {
-    position: absolute; width: 260px; height: 260px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(0,212,255,0.3) 0%, transparent 70%);
-    animation: glowPulse 3s infinite;
-  }
-  @keyframes glowPulse { 0%, 100% { transform: scale(1); opacity: 0.6; } 50% { transform: scale(1.15); opacity: 1; } }
-  .coin-btn {
-    width: 210px; height: 210px; border-radius: 50%;
-    background: radial-gradient(circle at 35% 30%, #7ddcff 0%, #2196f3 40%, #0d47a1 100%);
-    border: none; cursor: pointer; position: relative;
-    box-shadow: 0 0 40px rgba(33,150,243,0.7), 0 0 80px rgba(33,150,243,0.4), inset 0 -8px 25px rgba(0,0,0,0.4), inset 0 8px 25px rgba(255,255,255,0.3);
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    transition: transform 0.08s; z-index: 2;
-  }
-  .coin-btn:active { transform: scale(0.94); }
-  .coin-letter {
-    font-size: 85px; font-weight: 900; color: white;
-    text-shadow: 0 0 30px rgba(255,255,255,0.9), 0 0 60px rgba(0,212,255,0.7);
-    line-height: 1;
-  }
-  .coin-subtext { font-size: 13px; color: rgba(255,255,255,0.9); font-weight: 900; letter-spacing: 2px; margin-top: 4px; }
-  .coin-tap-label { font-size: 9px; color: rgba(255,255,255,0.6); letter-spacing: 3px; margin-top: 2px; }
-  .tap-hint { text-align: center; font-size: 10px; color: #00d4ff; letter-spacing: 3px; margin-top: 8px; font-weight: bold; }
-
-  /* REACTOR */
-  .reactor-card {
-    background: linear-gradient(135deg, rgba(20,40,70,0.7), rgba(15,30,55,0.5));
-    border: 1px solid rgba(33,150,243,0.25);
-    border-radius: 16px; padding: 15px; margin: 20px 0 15px;
-  }
-  .reactor-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-  .reactor-header span:first-child { font-size: 11px; color: #a0aec0; letter-spacing: 1px; font-weight: bold; }
-  .reactor-percent { font-size: 14px; color: #00ff88; font-weight: 900; }
-  .progress-bar { height: 10px; background: rgba(255,255,255,0.05); border-radius: 5px; overflow: hidden; margin: 10px 0; }
-  .progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, #2196f3, #00d4ff, #00ff88);
-    border-radius: 5px; transition: width 0.3s;
-    box-shadow: 0 0 15px rgba(0,212,255,0.8);
-  }
-  .reactor-footer { display: flex; justify-content: space-between; font-size: 10px; color: #7a8ba5; }
-  .daily-mission-tag { color: #00d4ff; font-weight: bold; }
-
-  /* BOOSTS */
-  .boost-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 22px; }
-  .boost-btn {
-    background: linear-gradient(135deg, #1565c0, #2196f3);
-    border: none; border-radius: 16px; padding: 16px;
-    color: white; cursor: pointer; text-align: left;
-    display: flex; flex-direction: column; gap: 4px;
-    box-shadow: 0 6px 20px rgba(33,150,243,0.4);
-    transition: transform 0.1s; position: relative; overflow: hidden;
-  }
-  .boost-btn::after {
-    content: ''; position: absolute; top: -50%; right: -50%; width: 200%; height: 200%;
-    background: radial-gradient(circle, rgba(255,255,255,0.15), transparent 60%);
-    pointer-events: none;
-  }
-  .boost-btn:active { transform: scale(0.96); }
-  .boost-btn.gold { background: linear-gradient(135deg, #b8860b, #f0b90b); box-shadow: 0 6px 20px rgba(240,185,11,0.4); }
-  .boost-icon { font-size: 22px; margin-bottom: 3px; }
-  .boost-title { font-size: 11px; font-weight: 900; letter-spacing: 1px; }
-  .boost-desc { font-size: 9px; color: rgba(255,255,255,0.75); }
-
-  /* SECTION */
-  .section-title { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-  .section-title h3 { font-size: 12px; letter-spacing: 2px; color: #a0aec0; font-weight: 900; }
-  .view-all { font-size: 10px; color: #00d4ff; letter-spacing: 1px; font-weight: bold; }
-
-  /* MISSIONS */
-  .mission-item {
-    background: linear-gradient(135deg, rgba(20,40,70,0.6), rgba(15,30,55,0.4));
-    border: 1px solid rgba(33,150,243,0.18);
-    border-radius: 14px; padding: 13px; margin-bottom: 9px;
-    display: flex; align-items: center; gap: 12px;
-    transition: border-color 0.3s;
-  }
-  .mission-item.done { border-color: rgba(0,255,136,0.5); }
-  .mission-icon {
-    width: 42px; height: 42px;
-    background: rgba(33,150,243,0.15);
+  .header-logo-text p { font-size: 7px; color: #00d4ff; letter-spacing: 2px; }
+  .header-right { display: flex; align-items: center; gap: 10px; }
+  .level-badge {
+    text-align: right;
+    background: rgba(0,212,255,0.08);
     border: 1px solid rgba(0,212,255,0.3);
     border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 20px; flex-shrink: 0;
+    padding: 5px 10px;
   }
-  .mission-info { flex: 1; }
-  .mission-name { font-size: 12px; font-weight: 900; margin-bottom: 3px; }
-  .mission-desc { font-size: 9px; color: #7a8ba5; }
-  .mission-progress { font-size: 13px; font-weight: 900; color: #00d4ff; }
-  .mission-progress.done { color: #00ff88; }
+  .level-badge .lv { font-size: 11px; font-weight: 900; color: #00d4ff; }
+  .level-badge .xp-bar {
+    width: 60px; height: 3px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+    margin-top: 3px;
+    overflow: hidden;
+  }
+  .level-badge .xp-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #00d4ff, #00ff88);
+    border-radius: 2px;
+  }
+  .avatar {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #00d4ff, #0066ff);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    border: 2px solid rgba(0,212,255,0.5);
+    box-shadow: 0 0 15px rgba(0,212,255,0.4);
+  }
 
-  /* FOOTER */
-  .footer-note { text-align: center; font-size: 8px; color: #4a5568; letter-spacing: 1px; margin: 20px 0; line-height: 1.8; }
+  /* CONTAINER */
+  .container { padding: 12px 15px; max-width: 500px; margin: 0 auto; }
+
+  /* BALANCE CARD */
+  .balance-card {
+    background: linear-gradient(135deg, rgba(0,212,255,0.12), rgba(0,80,180,0.08));
+    border: 1px solid rgba(0,212,255,0.3);
+    border-radius: 20px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+  .balance-card::before {
+    content: ''; position: absolute; top: -50%; right: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(0,212,255,0.15), transparent 60%);
+    animation: rotate 15s linear infinite;
+  }
+  @keyframes rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+  .balance-coin {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #7ddcff, #00d4ff 45%, #0044aa);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px; font-weight: 900;
+    box-shadow: 0 0 25px rgba(0,212,255,0.8), inset 0 0 20px rgba(255,255,255,0.3);
+    position: relative;
+    z-index: 2;
+    flex-shrink: 0;
+  }
+  .balance-info { position: relative; z-index: 2; }
+  .balance-label { font-size: 11px; color: #7a8ba5; }
+  .balance-value {
+    font-size: 28px; font-weight: 900;
+    color: white;
+    text-shadow: 0 0 20px rgba(0,212,255,0.6);
+    line-height: 1.1;
+  }
+  .balance-value small { font-size: 13px; color: #00d4ff; }
+  .balance-usd { font-size: 10px; color: #7a8ba5; margin-top: 2px; }
+  .balance-arrow {
+    position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
+    color: #00d4ff; font-size: 20px; z-index: 2;
+  }
+
+  /* STREAK */
+  .streak-card {
+    background: rgba(15,30,55,0.7);
+    border: 1px solid rgba(255,150,0,0.25);
+    border-radius: 16px;
+    padding: 12px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .streak-fire { font-size: 24px; }
+  .streak-info { flex: 1; }
+  .streak-info h4 { font-size: 11px; color: #7a8ba5; }
+  .streak-info p { font-size: 15px; font-weight: 900; color: #ff9500; }
+  .streak-days { display: flex; gap: 3px; margin-top: 5px; }
+  .streak-day {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.15);
+    font-size: 9px;
+    display: flex; align-items: center; justify-content: center;
+    color: #7a8ba5;
+  }
+  .streak-day.done {
+    background: linear-gradient(135deg, #00d4ff, #0066ff);
+    border-color: #00d4ff;
+    color: white;
+    box-shadow: 0 0 10px rgba(0,212,255,0.6);
+  }
+  .streak-day.today {
+    background: linear-gradient(135deg, #ff9500, #ff5500);
+    border-color: #ff9500;
+    color: white;
+  }
+  .streak-reward {
+    text-align: right;
+    padding-left: 10px;
+    border-left: 1px solid rgba(255,150,0,0.2);
+  }
+  .streak-reward p { font-size: 10px; color: #7a8ba5; }
+  .streak-reward strong { font-size: 13px; color: #ff9500; }
+
+  /* COIN AREA */
+  .coin-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    position: relative;
+    min-height: 280px;
+  }
+  .coin-bg-glow {
+    position: absolute;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,180,255,0.35) 0%, rgba(0,100,200,0.1) 40%, transparent 70%);
+    animation: glowPulse 3s infinite;
+  }
+  @keyframes glowPulse {
+    0%, 100% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.15); opacity: 1; }
+  }
+  .coin-ring {
+    position: absolute;
+    width: 250px; height: 250px;
+    border-radius: 50%;
+    border: 2px dashed rgba(0,212,255,0.4);
+    animation: spin 25s linear infinite;
+  }
+  @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+  .coin-btn {
+    width: 210px; height: 210px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #90e0ff 0%, #00b4ff 40%, #0044aa 100%);
+    border: none;
+    cursor: pointer;
+    position: relative;
+    box-shadow:
+      0 0 40px rgba(0,180,255,0.9),
+      0 0 80px rgba(0,150,255,0.5),
+      0 0 120px rgba(0,100,255,0.3),
+      inset 0 -10px 30px rgba(0,0,0,0.4),
+      inset 0 10px 30px rgba(255,255,255,0.4);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    transition: transform 0.08s;
+    z-index: 2;
+  }
+  .coin-btn:active { transform: scale(0.93); }
+  .coin-letter {
+    font-size: 100px; font-weight: 900;
+    color: white;
+    text-shadow:
+      0 0 30px rgba(255,255,255,1),
+      0 0 60px rgba(0,212,255,1),
+      0 0 90px rgba(0,150,255,0.8);
+    line-height: 1;
+  }
+  .coin-plus {
+    font-size: 12px; font-weight: 900;
+    color: rgba(255,255,255,0.95);
+    letter-spacing: 2px;
+    margin-top: 5px;
+  }
+  .coin-tap-label {
+    font-size: 9px; color: rgba(255,255,255,0.7);
+    letter-spacing: 3px; margin-top: 3px;
+  }
+  .tap-hint {
+    text-align: center;
+    font-size: 11px;
+    color: #00d4ff;
+    letter-spacing: 3px;
+    margin-top: 8px;
+    font-weight: 900;
+    text-shadow: 0 0 15px rgba(0,212,255,0.8);
+  }
+
+  /* QUICK ACTIONS */
+  .quick-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 8px;
+    margin: 20px 0;
+  }
+  .action-btn {
+    background: linear-gradient(135deg, rgba(0,100,200,0.4), rgba(0,60,150,0.3));
+    border: 1px solid rgba(0,180,255,0.3);
+    border-radius: 14px;
+    padding: 12px 5px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.1s;
+  }
+  .action-btn:active { transform: scale(0.95); }
+  .action-icon { font-size: 22px; margin-bottom: 4px; }
+  .action-label { font-size: 9px; color: #a0aec0; font-weight: bold; letter-spacing: 0.5px; }
+
+  /* ENERGY */
+  .energy-card {
+    background: linear-gradient(135deg, rgba(15,30,55,0.9), rgba(10,20,40,0.7));
+    border: 1px solid rgba(0,180,255,0.25);
+    border-radius: 16px;
+    padding: 14px;
+    margin-bottom: 12px;
+  }
+  .energy-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  .energy-header span:first-child {
+    font-size: 13px; font-weight: 900;
+    color: #00d4ff;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .energy-count { font-size: 12px; color: #a0aec0; }
+  .energy-count strong { color: #00d4ff; font-size: 14px; }
+  .energy-bar {
+    height: 10px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+  }
+  .energy-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #00d4ff, #00ff88);
+    border-radius: 5px;
+    transition: width 0.3s;
+    box-shadow: 0 0 15px rgba(0,212,255,0.8);
+  }
+
+  /* DAILY REWARD */
+  .daily-card {
+    background: linear-gradient(135deg, rgba(255,150,0,0.15), rgba(255,80,0,0.08));
+    border: 1px solid rgba(255,150,0,0.4);
+    border-radius: 16px;
+    padding: 14px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .daily-icon { font-size: 28px; }
+  .daily-info { flex: 1; }
+  .daily-info h4 { font-size: 13px; font-weight: 900; color: #ff9500; }
+  .daily-info p { font-size: 10px; color: #7a8ba5; margin-top: 2px; }
+  .daily-btn {
+    background: linear-gradient(135deg, #ff9500, #ff5500);
+    border: none;
+    border-radius: 12px;
+    padding: 10px 18px;
+    color: white;
+    font-size: 12px;
+    font-weight: 900;
+    cursor: pointer;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(255,150,0,0.5);
+  }
+  .daily-btn:active { transform: scale(0.95); }
+  .daily-btn.claimed {
+    background: rgba(255,255,255,0.1);
+    box-shadow: none;
+    color: #7a8ba5;
+  }
+
+  /* SIDE MENU ITEMS */
+  .side-menu {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .side-item {
+    background: rgba(15,30,55,0.7);
+    border: 1px solid rgba(0,180,255,0.2);
+    border-radius: 14px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: transform 0.1s;
+  }
+  .side-item:active { transform: scale(0.96); }
+  .side-item-icon {
+    width: 38px; height: 38px;
+    border-radius: 10px;
+    background: rgba(0,180,255,0.15);
+    border: 1px solid rgba(0,212,255,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .side-item-info { flex: 1; min-width: 0; }
+  .side-item-info h4 { font-size: 11px; font-weight: 900; }
+  .side-item-info p { font-size: 9px; color: #7a8ba5; }
+  .side-item-arrow { color: #00d4ff; font-size: 14px; }
+
+  /* STATS BAR */
+  .stats-bar {
+    background: linear-gradient(135deg, rgba(0,100,200,0.2), rgba(0,60,150,0.1));
+    border: 1px solid rgba(0,180,255,0.3);
+    border-radius: 16px;
+    padding: 12px;
+    margin: 15px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+  }
+  .stat-box { text-align: center; }
+  .stat-box-icon { font-size: 16px; margin-bottom: 2px; }
+  .stat-box-label { font-size: 8px; color: #7a8ba5; letter-spacing: 0.5px; }
+  .stat-box-value { font-size: 13px; font-weight: 900; color: #00d4ff; margin-top: 2px; }
 
   /* BOTTOM NAV */
   .bottom-nav {
-    position: fixed; bottom: 0; left: 0; right: 0;
-    background: linear-gradient(180deg, #0a1929, #061224);
-    border-top: 1px solid rgba(33,150,243,0.25);
-    display: grid; grid-template-columns: 1fr 1fr 1fr 1fr;
-    padding: 10px 0 15px; z-index: 100;
-    box-shadow: 0 -5px 20px rgba(0,0,0,0.5);
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(180deg, #0a1425, #050a14);
+    border-top: 1px solid rgba(0,180,255,0.3);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    padding: 8px 0 12px;
+    z-index: 100;
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.7);
   }
   .nav-item {
-    display: flex; flex-direction: column; align-items: center; gap: 4px;
-    color: #4a5568; font-size: 9px; letter-spacing: 1px; cursor: pointer;
-    padding: 5px; transition: color 0.2s; font-weight: bold;
+    display: flex; flex-direction: column; align-items: center; gap: 3px;
+    color: #4a5568; font-size: 8px; letter-spacing: 0.5px;
+    cursor: pointer; padding: 5px 0;
+    transition: color 0.2s;
+    font-weight: bold;
   }
   .nav-item.active { color: #00d4ff; }
-  .nav-item.active .nav-icon { filter: drop-shadow(0 0 8px #00d4ff); }
-  .nav-item .nav-icon { font-size: 20px; }
+  .nav-item.active .nav-icon {
+    filter: drop-shadow(0 0 10px #00d4ff);
+    transform: scale(1.15);
+  }
+  .nav-item .nav-icon { font-size: 20px; transition: transform 0.2s; }
+
+  /* MODAL */
+  .modal {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.9);
+    display: none;
+    align-items: center; justify-content: center;
+    z-index: 1000; padding: 20px;
+    backdrop-filter: blur(8px);
+  }
+  .modal.show { display: flex; }
+  .modal-content {
+    background: linear-gradient(135deg, #0f2137, #061224);
+    border: 1px solid rgba(0,212,255,0.5);
+    border-radius: 22px;
+    padding: 28px 24px;
+    max-width: 340px; width: 100%;
+    text-align: center;
+    box-shadow: 0 20px 70px rgba(0,212,255,0.5);
+  }
+  .modal-content h3 {
+    color: #00d4ff;
+    margin-bottom: 12px;
+    font-size: 19px;
+    font-weight: 900;
+  }
+  .modal-content p {
+    color: #a0aec0;
+    font-size: 13px;
+    margin-bottom: 22px;
+    line-height: 1.6;
+    white-space: pre-line;
+  }
+  .modal-btn {
+    background: linear-gradient(135deg, #00b4ff, #0066ff);
+    border: none;
+    border-radius: 12px;
+    padding: 13px 35px;
+    color: white;
+    font-size: 14px;
+    font-weight: 900;
+    cursor: pointer;
+    letter-spacing: 1px;
+    box-shadow: 0 6px 20px rgba(0,180,255,0.5);
+  }
 
   /* FLOAT */
   .float-text {
-    position: fixed; font-size: 26px; font-weight: 900; color: #00d4ff;
-    pointer-events: none; animation: floatUp 1s ease-out forwards; z-index: 999;
+    position: fixed;
+    font-size: 26px;
+    font-weight: 900;
+    color: #00d4ff;
+    pointer-events: none;
+    animation: floatUp 1s ease-out forwards;
+    z-index: 999;
     text-shadow: 0 0 20px rgba(0,212,255,1);
   }
   @keyframes floatUp {
@@ -203,173 +475,270 @@
     100% { opacity: 0; transform: translateY(-130px) scale(1.4); }
   }
 
-  /* MODAL */
-  .modal {
-    position: fixed; inset: 0; background: rgba(0,0,0,0.85);
-    display: none; align-items: center; justify-content: center;
-    z-index: 1000; padding: 20px; backdrop-filter: blur(5px);
+  /* SPIN WHEEL MODAL */
+  .wheel-container {
+    width: 200px; height: 200px;
+    margin: 20px auto;
+    border-radius: 50%;
+    background: conic-gradient(
+      #00d4ff 0deg 45deg,
+      #0066ff 45deg 90deg,
+      #00ff88 90deg 135deg,
+      #ff9500 135deg 180deg,
+      #ff0055 180deg 225deg,
+      #9900ff 225deg 270deg,
+      #00d4ff 270deg 315deg,
+      #0066ff 315deg 360deg
+    );
+    position: relative;
+    box-shadow: 0 0 40px rgba(0,212,255,0.6);
+    transition: transform 3s cubic-bezier(0.2, 0.8, 0.3, 1);
   }
-  .modal.show { display: flex; }
-  .modal-content {
-    background: linear-gradient(135deg, #0f2137, #0a1929);
-    border: 1px solid rgba(0,212,255,0.4);
-    border-radius: 22px; padding: 28px 24px;
-    max-width: 340px; width: 100%; text-align: center;
-    box-shadow: 0 20px 60px rgba(0,212,255,0.4);
+  .wheel-pointer {
+    position: absolute; top: -10px; left: 50%;
+    transform: translateX(-50%);
+    font-size: 30px;
+    z-index: 2;
+    filter: drop-shadow(0 0 5px white);
   }
-  .modal-content h3 { color: #00d4ff; margin-bottom: 12px; font-size: 19px; font-weight: 900; }
-  .modal-content p { color: #a0aec0; font-size: 13px; margin-bottom: 22px; line-height: 1.6; }
-  .modal-btn {
-    background: linear-gradient(135deg, #2196f3, #00d4ff);
-    border: none; border-radius: 12px; padding: 13px 35px;
-    color: white; font-size: 14px; font-weight: 900; cursor: pointer;
-    letter-spacing: 1px; box-shadow: 0 6px 20px rgba(0,212,255,0.5);
+  .wheel-center {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    background: white;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900; color: #0066ff;
+    z-index: 2;
+    box-shadow: 0 0 20px rgba(255,255,255,0.8);
   }
 
-  /* SHAKE */
-  .shake { animation: shake 0.3s; }
-  @keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-5px); }
-    75% { transform: translateX(5px); }
+  /* SPARKLE */
+  .sparkle {
+    position: fixed;
+    width: 8px; height: 8px;
+    background: #00d4ff;
+    border-radius: 50%;
+    pointer-events: none;
+    box-shadow: 0 0 15px #00d4ff, 0 0 30px #00d4ff;
+    animation: sparkleAnim 0.8s ease-out forwards;
+    z-index: 998;
+  }
+  @keyframes sparkleAnim {
+    0% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0); }
   }
 </style>
 </head>
 <body>
 
-<div class="container">
-
-  <!-- HEADER -->
-  <div class="header">
-    <div class="logo-area">
-      <div class="logo-icon">T</div>
-      <div class="logo-text">
-        <h1>TRAX</h1>
-        <p>COIN REACTOR · WEB3</p>
+<!-- HEADER -->
+<div class="header">
+  <div class="header-left">
+    <div class="menu-icon">☰</div>
+    <div class="header-logo">
+      <div class="header-logo-icon">T</div>
+      <div class="header-logo-text">
+        <h1>TraxOfficial</h1>
+        <p>TAP · EARN · GROW</p>
       </div>
     </div>
-    <div class="system-status">
-      <div class="status-badge"><span class="status-dot"></span> SYSTEM ONLINE</div>
-      <div class="player-id" id="playerId">PLAYER #0000</div>
+  </div>
+  <div class="header-right">
+    <div class="level-badge">
+      <div class="lv">Lv. <span id="levelNum">1</span> 👑</div>
+      <div class="xp-bar"><div class="xp-fill" id="xpFill" style="width:20%"></div></div>
     </div>
+    <div class="avatar">👤</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- BALANCE CARD -->
+  <div class="balance-card">
+    <div class="balance-coin">T</div>
+    <div class="balance-info">
+      <div class="balance-label">Your Balance</div>
+      <div class="balance-value"><span id="balance">0</span> <small>TRAX</small></div>
+      <div class="balance-usd">≈ <span id="usdValue">0.00</span> USDT</div>
+    </div>
+    <div class="balance-arrow">›</div>
   </div>
 
-  <!-- STATS -->
-  <div class="stats-row">
-    <div class="stat-card">
-      <div class="stat-label">◆ COIN BALANCE</div>
-      <div class="stat-value" id="balanceTop">0 <small>TRAX</small></div>
+  <!-- STREAK -->
+  <div class="streak-card">
+    <div class="streak-fire">🔥</div>
+    <div class="streak-info">
+      <h4>Daily Streak</h4>
+      <p id="streakDays">3 Days</p>
+      <div class="streak-days">
+        <div class="streak-day done">1</div>
+        <div class="streak-day done">2</div>
+        <div class="streak-day done">3</div>
+        <div class="streak-day today">4</div>
+        <div class="streak-day">5</div>
+        <div class="streak-day">6</div>
+        <div class="streak-day">7</div>
+      </div>
     </div>
-    <div class="stat-card">
-      <div class="stat-label">⚡ ENERGY</div>
-      <div class="stat-value" id="energyTop">500</div>
+    <div class="streak-reward">
+      <p>Reward</p>
+      <strong>+5000</strong>
+      <p style="font-size:9px">TRAX</p>
     </div>
-    <div class="stat-card">
-      <div class="stat-label">✦ YOUR LEVEL</div>
-      <div class="stat-value" id="levelTop">01</div>
-    </div>
-  </div>
-
-  <!-- CLUB BADGE -->
-  <div class="club-badge"><span>◆ THE NEXT-GEN COIN CLUB</span></div>
-
-  <!-- HERO -->
-  <div class="hero">
-    <h2>MAKE EVERY <span class="highlight">COIN</span> COUNT.</h2>
-    <p>Collect points. Level up. Build your TRAX legacy.</p>
   </div>
 
   <!-- COIN -->
   <div class="coin-area">
-    <div class="coin-glow"></div>
+    <div class="coin-bg-glow"></div>
+    <div class="coin-ring"></div>
     <button class="coin-btn" id="coinBtn">
       <div class="coin-letter">T</div>
-      <div class="coin-subtext">+1 TRAX</div>
-      <div class="coin-tap-label">TRAX · 01</div>
+      <div class="coin-plus">+1 TRAX per tap</div>
+      <div class="coin-tap-label">TAP TO EARN</div>
     </button>
   </div>
-  <div class="tap-hint">TAP THE COIN TO COLLECT</div>
+  <div class="tap-hint">⚡ TAP THE COIN ⚡</div>
 
-  <!-- REACTOR -->
-  <div class="reactor-card">
-    <div class="reactor-header">
-      <span>◆ REACTOR CHARGE</span>
-      <span class="reactor-percent" id="reactorPercent">0%</span>
+  <!-- QUICK ACTIONS -->
+  <div class="quick-actions">
+    <div class="action-btn" onclick="showModal('🚀 Boosters', 'Boosters: Coming soon!\n\nYahan aap auto-tap, 2x earnings, aur energy refill laga sakte hain.')">
+      <div class="action-icon">🚀</div>
+      <div class="action-label">BOOSTERS</div>
     </div>
-    <div style="font-size:9px;color:#7a8ba5;">Daily collection progress</div>
-    <div class="progress-bar"><div class="progress-fill" id="reactorBar" style="width:0%"></div></div>
-    <div class="reactor-footer">
-      <span id="reactorCount">0 / 100 coins</span>
-      <span class="daily-mission-tag">DAILY MISSION</span>
+    <div class="action-btn" onclick="showModal('📋 Tasks', 'Tasks: Coming soon!\n\nYahan aap daily tasks complete kar ke coins kama sakte hain.')">
+      <div class="action-icon">📋</div>
+      <div class="action-label">TASKS</div>
+    </div>
+    <div class="action-btn" onclick="showModal('⬆️ Upgrades', 'Upgrades: Coming soon!\n\nYahan aap tap power upgrade kar sakte hain.')">
+      <div class="action-icon">⬆️</div>
+      <div class="action-label">UPGRADES</div>
+    </div>
+    <div class="action-btn" onclick="showModal('🎁 Earn More', 'Earn More: Coming soon!\n\nYahan aap doston ko invite kar ke coins kama sakte hain.')">
+      <div class="action-icon">🎁</div>
+      <div class="action-label">EARN MORE</div>
     </div>
   </div>
 
-  <!-- BOOSTS -->
-  <div class="boost-row">
-    <button class="boost-btn" id="energyBoost">
-      <div class="boost-icon">⚡</div>
-      <div class="boost-title">ENERGY BOOST</div>
-      <div class="boost-desc">Restore 50 energy</div>
-    </button>
-    <button class="boost-btn gold" id="coinBurst">
-      <div class="boost-icon">✦</div>
-      <div class="boost-title">COIN BURST</div>
-      <div class="boost-desc">25 energy → +25 coins</div>
-    </button>
-  </div>
-
-  <!-- MISSIONS -->
-  <div class="section-title">
-    <h3>YOUR MISSIONS</h3>
-    <span class="view-all">VIEW ALL ›</span>
-  </div>
-
-  <div class="mission-item" id="mission1">
-    <div class="mission-icon">🎯</div>
-    <div class="mission-info">
-      <div class="mission-name">First 25 Coins</div>
-      <div class="mission-desc">Collect your first 25 TRAX points</div>
+  <!-- ENERGY -->
+  <div class="energy-card">
+    <div class="energy-header">
+      <span>⚡ Energy</span>
+      <span class="energy-count"><strong id="energyText">500</strong> / 500</span>
     </div>
-    <div class="mission-progress" id="m1">0 / 25</div>
-  </div>
-
-  <div class="mission-item" id="mission2">
-    <div class="mission-icon">⚡</div>
-    <div class="mission-info">
-      <div class="mission-name">Power Collector</div>
-      <div class="mission-desc">Make 100 coin collections</div>
+    <div class="energy-bar">
+      <div class="energy-fill" id="energyBar" style="width:100%"></div>
     </div>
-    <div class="mission-progress" id="m2">0 / 100</div>
   </div>
 
-  <div class="mission-item" id="mission3">
-    <div class="mission-icon">✦</div>
-    <div class="mission-info">
-      <div class="mission-name">Daily Reactor</div>
-      <div class="mission-desc">Fill your daily progress bar</div>
+  <!-- DAILY REWARD -->
+  <div class="daily-card">
+    <div class="daily-icon">🎁</div>
+    <div class="daily-info">
+      <h4>Daily Reward</h4>
+      <p>Claim your daily bonus</p>
     </div>
-    <div class="mission-progress" id="m3">0%</div>
+    <button class="daily-btn" id="dailyBtn" onclick="claimDaily()">Claim</button>
   </div>
 
-  <div class="footer-note">
+  <!-- SIDE MENU (2x2) -->
+  <div class="side-menu">
+    <div class="side-item" onclick="openSpin()">
+      <div class="side-item-icon">🎰</div>
+      <div class="side-item-info">
+        <h4>Spin Wheel</h4>
+        <p>Spin & Win</p>
+      </div>
+      <div class="side-item-arrow">›</div>
+    </div>
+    <div class="side-item" onclick="showModal('📋 Tasks', 'Tasks: Coming soon!\n\nDaily tasks yahan honge.')">
+      <div class="side-item-icon">📋</div>
+      <div class="side-item-info">
+        <h4>Tasks</h4>
+        <p>Complete & Earn</p>
+      </div>
+      <div class="side-item-arrow">›</div>
+    </div>
+    <div class="side-item" onclick="showModal('👥 Invite Friends', 'Referral link:\n\nhttps://t.me/TraxOfficial_bot?start=ref' + playerId + '\n\nAapki link copy karne ke liye Telegram share button use karein.')">
+      <div class="side-item-icon">👥</div>
+      <div class="side-item-info">
+        <h4>Invite Friends</h4>
+        <p>+ Bonus</p>
+      </div>
+      <div class="side-item-arrow">›</div>
+    </div>
+    <div class="side-item" onclick="showModal('📦 Lucky Box', 'Lucky Box: Coming soon!\n\nYahan aap random rewards kama sakte hain.')">
+      <div class="side-item-icon">📦</div>
+      <div class="side-item-info">
+        <h4>Lucky Box</h4>
+        <p>Open Now</p>
+      </div>
+      <div class="side-item-arrow">›</div>
+    </div>
+  </div>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stat-box">
+      <div class="stat-box-icon">⚡</div>
+      <div class="stat-box-label">TAP PER CLICK</div>
+      <div class="stat-box-value">+1 TRAX</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-box-icon">🪙</div>
+      <div class="stat-box-label">AUTO EARNING</div>
+      <div class="stat-box-value">+0 /hr</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-box-icon">⭐</div>
+      <div class="stat-box-label">YOUR RANK</div>
+      <div class="stat-box-value">#---</div>
+    </div>
+  </div>
+
+  <!-- WALLET BUTTON -->
+  <div class="side-item" style="margin-top:12px" onclick="showModal('💰 My Wallet', 'Balance: ' + balance + ' TRAX\n\nWallet: Coming soon!\n\nReal TON wallet connect karne ke liye backend chahiye.')">
+    <div class="side-item-icon">💰</div>
+    <div class="side-item-info">
+      <h4>My Wallet</h4>
+      <p>View your earnings</p>
+    </div>
+    <div class="side-item-arrow">›</div>
+  </div>
+
+  <div class="side-item" style="margin-top:10px" onclick="showModal('⚙️ Settings', 'Settings: Coming soon!\n\nYahan aap sound, vibration, aur notification settings change kar sakte hain.')">
+    <div class="side-item-icon">⚙️</div>
+    <div class="side-item-info">
+      <h4>Settings</h4>
+      <p>App preferences</p>
+    </div>
+    <div class="side-item-arrow">›</div>
+  </div>
+
+  <div style="text-align:center;font-size:8px;color:#4a5568;margin:25px 0;line-height:1.8;letter-spacing:1px">
     TRAX COIN · ORIGINAL CONCEPT DESIGN<br>
     DEMO POINTS ONLY · NOT A REAL TOKEN
   </div>
+
 </div>
 
 <!-- BOTTOM NAV -->
 <div class="bottom-nav">
-  <div class="nav-item active" data-tab="reactor">
-    <div class="nav-icon">⚛</div><div>REACTOR</div>
+  <div class="nav-item active" data-tab="home" onclick="navClick(this, 'home')">
+    <div class="nav-icon">🏠</div><div>Home</div>
   </div>
-  <div class="nav-item" data-tab="missions">
-    <div class="nav-icon">🎯</div><div>MISSIONS</div>
+  <div class="nav-item" data-tab="tasks" onclick="navClick(this, 'tasks')">
+    <div class="nav-icon">📋</div><div>Tasks</div>
   </div>
-  <div class="nav-item" data-tab="rank">
-    <div class="nav-icon">🏆</div><div>RANK</div>
+  <div class="nav-item" data-tab="mine" onclick="navClick(this, 'mine')">
+    <div class="nav-icon">⛏️</div><div>Mine</div>
   </div>
-  <div class="nav-item" data-tab="profile">
-    <div class="nav-icon">👤</div><div>PROFILE</div>
+  <div class="nav-item" data-tab="friends" onclick="navClick(this, 'friends')">
+    <div class="nav-icon">👥</div><div>Friends</div>
+  </div>
+  <div class="nav-item" data-tab="wallet" onclick="navClick(this, 'wallet')">
+    <div class="nav-icon">💼</div><div>Wallet</div>
   </div>
 </div>
 
@@ -382,64 +751,76 @@
   </div>
 </div>
 
+<!-- SPIN MODAL -->
+<div class="modal" id="spinModal">
+  <div class="modal-content">
+    <h3>🎰 Spin to Win!</h3>
+    <div class="wheel-pointer">▼</div>
+    <div class="wheel-container" id="wheel"></div>
+    <div class="wheel-center">SPIN</div>
+    <button class="modal-btn" style="margin-top:15px" onclick="spinWheel()" id="spinBtn">SPIN NOW</button>
+    <button class="modal-btn" style="margin-top:8px;background:rgba(255,255,255,0.1);box-shadow:none" onclick="closeSpin()">Close</button>
+  </div>
+</div>
+
 <script>
   const tg = window.Telegram ? window.Telegram.WebApp : null;
-  if (tg) { tg.ready(); tg.expand(); if (tg.setHeaderColor) tg.setHeaderColor('#061224'); }
+  if (tg) { tg.ready(); tg.expand(); if (tg.setHeaderColor) tg.setHeaderColor('#050a14'); }
 
   let balance = parseInt(localStorage.getItem('trax_balance') || '0');
   let energy = parseInt(localStorage.getItem('trax_energy') || '500');
   let totalTaps = parseInt(localStorage.getItem('trax_taps') || '0');
-  let dailyProgress = parseInt(localStorage.getItem('trax_daily') || '0');
+  let lastDaily = localStorage.getItem('trax_lastDaily') || '';
   const MAX_ENERGY = 500;
-  const DAILY_GOAL = 100;
 
-  const userId = tg && tg.initDataUnsafe && tg.initDataUnsafe.user
+  const playerId = tg && tg.initDataUnsafe && tg.initDataUnsafe.user
     ? tg.initDataUnsafe.user.id
     : Math.floor(Math.random() * 9000) + 1000;
-  document.getElementById('playerId').textContent = 'PLAYER #' + String(userId).slice(-4).padStart(4, '0');
 
   function updateUI() {
-    document.getElementById('balanceTop').innerHTML = balance + ' <small>TRAX</small>';
-    document.getElementById('energyTop').textContent = energy;
-    const level = Math.floor(balance / 100) + 1;
-    document.getElementById('levelTop').textContent = String(level).padStart(2, '0');
+    document.getElementById('balance').textContent = balance.toLocaleString();
+    document.getElementById('usdValue').textContent = (balance * 0.000001).toFixed(6);
+    document.getElementById('energyText').textContent = energy;
+    document.getElementById('energyBar').style.width = (energy / MAX_ENERGY * 100) + '%';
 
-    const pct = Math.min(100, Math.floor((dailyProgress / DAILY_GOAL) * 100));
-    document.getElementById('reactorBar').style.width = pct + '%';
-    document.getElementById('reactorPercent').textContent = pct + '%';
-    document.getElementById('reactorCount').textContent = dailyProgress + ' / ' + DAILY_GOAL + ' coins';
+    const level = Math.floor(balance / 1000) + 1;
+    document.getElementById('levelNum').textContent = level;
+    const xpInLevel = balance % 1000;
+    document.getElementById('xpFill').style.width = (xpInLevel / 1000 * 100) + '%';
 
-    document.getElementById('m1').textContent = Math.min(balance, 25) + ' / 25';
-    document.getElementById('m2').textContent = Math.min(totalTaps, 100) + ' / 100';
-    document.getElementById('m3').textContent = pct + '%';
-
-    if (balance >= 25) { document.getElementById('m1').classList.add('done'); document.getElementById('mission1').classList.add('done'); }
-    if (totalTaps >= 100) { document.getElementById('m2').classList.add('done'); document.getElementById('mission2').classList.add('done'); }
-    if (pct >= 100) { document.getElementById('m3').classList.add('done'); document.getElementById('mission3').classList.add('done'); }
+    const today = new Date().toDateString();
+    const dailyBtn = document.getElementById('dailyBtn');
+    if (lastDaily === today) {
+      dailyBtn.textContent = 'Claimed';
+      dailyBtn.classList.add('claimed');
+    } else {
+      dailyBtn.textContent = 'Claim';
+      dailyBtn.classList.remove('claimed');
+    }
   }
 
   function save() {
     localStorage.setItem('trax_balance', balance);
     localStorage.setItem('trax_energy', energy);
     localStorage.setItem('trax_taps', totalTaps);
-    localStorage.setItem('trax_daily', dailyProgress);
   }
 
   const coinBtn = document.getElementById('coinBtn');
   coinBtn.addEventListener('click', (e) => {
     if (energy <= 0) {
-      coinBtn.classList.add('shake');
-      setTimeout(() => coinBtn.classList.remove('shake'), 300);
       if (tg && tg.HapticFeedback) tg.HapticFeedback.notificationOccurred('error');
-      showModal('⚡ Energy Empty', 'Aapki energy khatam ho gayi. Energy Boost dabayein ya intezar karein.');
+      showModal('⚡ Energy Empty', 'Aapki energy khatam ho gayi.\n\nIntezar karein ya energy boost karein.');
       return;
     }
-    balance++; energy++; totalTaps++;
-    energy--; // net effect: energy stays if regen, but let's keep consistent
-    energy = Math.max(0, energy - 1);
-    dailyProgress = Math.min(DAILY_GOAL, dailyProgress + 1);
-    updateUI(); save();
+    balance++;
+    energy--;
+    totalTaps++;
+    updateUI();
+    save();
+
+    createSparkles(e.clientX, e.clientY);
     showFloat(e.clientX, e.clientY, '+1');
+
     if (tg && tg.HapticFeedback) tg.HapticFeedback.impactOccurred('light');
   });
 
@@ -453,43 +834,89 @@
     setTimeout(() => el.remove(), 1000);
   }
 
-  document.getElementById('energyBoost').addEventListener('click', () => {
-    if (energy >= MAX_ENERGY) { showModal('⚡ Full Energy', 'Aapki energy pehle se full hai!'); return; }
-    energy = Math.min(MAX_ENERGY, energy + 50);
-    updateUI(); save();
-    if (tg && tg.HapticFeedback) tg.HapticFeedback.notificationOccurred('success');
-    showModal('⚡ Energy Boosted', '+50 energy added! Ab aur tap karein.');
-  });
+  function createSparkles(x, y) {
+    for (let i = 0; i < 4; i++) {
+      const s = document.createElement('div');
+      s.className = 'sparkle';
+      s.style.left = (x + (Math.random() - 0.5) * 60) + 'px';
+      s.style.top = (y + (Math.random() - 0.5) * 60) + 'px';
+      s.style.background = ['#00d4ff', '#00ff88', '#ffffff', '#ff9500'][i];
+      s.style.boxShadow = '0 0 15px ' + s.style.background;
+      document.body.appendChild(s);
+      setTimeout(() => s.remove(), 800);
+    }
+  }
 
-  document.getElementById('coinBurst').addEventListener('click', () => {
-    if (energy < 25) { showModal('⚡ Not Enough', 'Coin Burst ke liye 25 energy chahiye. Abhi: ' + energy); return; }
-    energy -= 25; balance += 25;
-    dailyProgress = Math.min(DAILY_GOAL, dailyProgress + 25);
-    updateUI(); save();
+  function claimDaily() {
+    const today = new Date().toDateString();
+    if (lastDaily === today) {
+      showModal('✅ Already Claimed', 'Aap aaj ka reward le chuke hain.\n\nKal dobara aayen!');
+      return;
+    }
+    balance += 100;
+    lastDaily = today;
+    localStorage.setItem('trax_lastDaily', lastDaily);
+    updateUI();
+    save();
     if (tg && tg.HapticFeedback) tg.HapticFeedback.notificationOccurred('success');
-    showModal('✦ Coin Burst!', '25 energy spend, 25 TRAX mile!');
-  });
+    showModal('🎁 Daily Reward!', '+100 TRAX mile!\n\nKal aur aayen.');
+  }
 
-  document.querySelectorAll('.nav-item').forEach(item => {
-    item.addEventListener('click', () => {
-      document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
-      item.classList.add('active');
-      const tab = item.dataset.tab;
-      if (tab === 'missions') showModal('🎯 Missions', 'Yahan aapke saare tasks honge.');
-      if (tab === 'rank') showModal('🏆 Leaderboard', 'Top players ki list. Real ranking ke liye backend chahiye — next step.');
-      if (tab === 'profile') showModal('👤 Profile', 'Balance: ' + balance + ' TRAX\nEnergy: ' + energy + '\nTotal Taps: ' + totalTaps + '\nLevel: ' + (Math.floor(balance/100)+1));
-    });
-  });
+  function navClick(el, tab) {
+    document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+    el.classList.add('active');
+    if (tab === 'tasks') showModal('📋 Tasks', 'Tasks: Coming soon!\n\nDaily tasks yahan honge.');
+    if (tab === 'mine') showModal('⛏️ Mine', 'Mining: Coming soon!\n\nAuto-mining feature yahan aayega.');
+    if (tab === 'friends') showModal('👥 Friends', 'Referral:\n\nhttps://t.me/TraxOfficial_bot?start=ref' + playerId + '\n\nDoston ko invite karein.');
+    if (tab === 'wallet') showModal('💼 Wallet', 'Balance: ' + balance + ' TRAX\n\nWallet: Coming soon!');
+  }
 
   function showModal(title, text) {
     document.getElementById('modalTitle').textContent = title;
     document.getElementById('modalText').innerText = text;
     document.getElementById('modal').classList.add('show');
   }
-  function closeModal() { document.getElementById('modal').classList.remove('show'); }
+  function closeModal() {
+    document.getElementById('modal').classList.remove('show');
+  }
+
+  function openSpin() {
+    document.getElementById('spinModal').classList.add('show');
+  }
+  function closeSpin() {
+    document.getElementById('spinModal').classList.remove('show');
+    document.getElementById('wheel').style.transform = 'rotate(0deg)';
+  }
+  let spinning = false;
+  function spinWheel() {
+    if (spinning) return;
+    spinning = true;
+    const wheel = document.getElementById('wheel');
+    const btn = document.getElementById('spinBtn');
+    btn.textContent = 'SPINNING...';
+    const rotations = 5 + Math.random() * 3;
+    const degrees = Math.floor(Math.random() * 360);
+    wheel.style.transform = 'rotate(' + (rotations * 360 + degrees) + 'deg)';
+    setTimeout(() => {
+      const rewards = [50, 100, 200, 500, 1000, 50, 100, 250];
+      const idx = Math.floor(degrees / 45);
+      const reward = rewards[idx];
+      balance += reward;
+      updateUI();
+      save();
+      spinning = false;
+      btn.textContent = 'SPIN NOW';
+      if (tg && tg.HapticFeedback) tg.HapticFeedback.notificationOccurred('success');
+      showModal('🎉 You Won!', '+' + reward + ' TRAX!\n\nMubarak ho!');
+    }, 3200);
+  }
 
   setInterval(() => {
-    if (energy < MAX_ENERGY) { energy++; updateUI(); save(); }
+    if (energy < MAX_ENERGY) {
+      energy++;
+      updateUI();
+      save();
+    }
   }, 2000);
 
   updateUI();
