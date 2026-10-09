@@ -30,14 +30,13 @@
   .balance-value small { font-size: 14px; color: #00d4ff; }
   .balance-sub { font-size: 10px; color: #ff9500; margin-top: 4px; position: relative; z-index: 2; font-weight: 900; }
   .wallet-connect-btn { background: linear-gradient(135deg, #00ff88, #00aa55); border: none; border-radius: 14px; padding: 10px 12px; color: white; font-weight: 900; cursor: pointer; box-shadow: 0 4px 18px rgba(0,255,136,0.5); display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 70px; position: relative; z-index: 3; }
-  .wallet-connect-btn:active { transform: scale(0.94); }
   .rank-badge-card { background: linear-gradient(135deg, rgba(0,180,255,0.12), rgba(150,0,255,0.08)); border: 1.5px solid rgba(0,212,255,0.4); border-radius: 18px; padding: 14px 16px; margin-bottom: 12px; display: flex; align-items: center; gap: 14px; }
-  .rank-badge-icon { width: 52px; height: 52px; border-radius: 14px; background: linear-gradient(135deg, #ffd700, #ff9500); display: flex; align-items: center; justify-content: center; font-size: 26px; flex-shrink: 0; box-shadow: 0 0 20px rgba(255,215,0,0.5); }
+  .rank-badge-icon { width: 52px; height: 52px; border-radius: 14px; background: linear-gradient(135deg, #ffd700, #ff9500); display: flex; align-items: center; justify-content: center; font-size: 26px; flex-shrink: 0; }
   .rank-badge-info { flex: 1; }
   .rank-badge-label { font-size: 10px; color: #ffd700; letter-spacing: 1.5px; font-weight: 900; margin-bottom: 4px; }
   .rank-badge-value { font-size: 26px; font-weight: 900; color: white; line-height: 1; }
   .rank-badge-status { text-align: right; font-size: 10px; color: #00d4ff; font-weight: 900; max-width: 90px; line-height: 1.3; }
-  .rarity-show-btn { background: linear-gradient(135deg, #ff9500, #ff5500); border: none; border-radius: 10px; padding: 6px 12px; color: white; font-size: 9px; font-weight: 900; cursor: pointer; box-shadow: 0 3px 12px rgba(255,150,0,0.5); }
+  .rarity-show-btn { background: linear-gradient(135deg, #ff9500, #ff5500); border: none; border-radius: 10px; padding: 6px 12px; color: white; font-size: 9px; font-weight: 900; cursor: pointer; }
   .rarity-item { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 12px; margin-bottom: 8px; border-left: 4px solid; }
   .rarity-item.brown { background: rgba(205,127,50,0.12); border-left-color: #cd7f32; }
   .rarity-item.silver { background: rgba(192,192,192,0.12); border-left-color: #c0c0c0; }
@@ -91,7 +90,7 @@
   .page-title-icon { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-size: 24px; }
   .page-title-text { font-size: 26px; font-weight: 900; color: #00d4ff; }
   .big-profile-card { background: linear-gradient(135deg, rgba(0,180,255,0.15), rgba(150,0,255,0.08)); border: 2px solid rgba(0,212,255,0.5); border-radius: 22px; padding: 18px; margin-bottom: 14px; position: relative; overflow: hidden; }
-  .big-profile-top { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; position: relative; z-index: 2; }
+  .big-profile-top { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
   .big-profile-avatar-wrap { width: 72px; height: 72px; position: relative; flex-shrink: 0; }
   .big-profile-ring { position: absolute; inset: -4px; border-radius: 50%; background: conic-gradient(from 0deg, #00d4ff, #00ff88, #9900ff, #ff0055, #00d4ff); animation: spinRing 4s linear infinite; opacity: 0.85; filter: blur(2px); }
   @keyframes spinRing { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
@@ -134,7 +133,6 @@
   .task-content { flex: 1; }
   .task-title { font-size: 13px; font-weight: 900; color: white; margin-bottom: 4px; }
   .task-reward-row { font-size: 11px; color: #a0aec0; font-weight: 700; }
-  .task-reward-row .reward-amount { color: #ffd700; font-weight: 900; }
   .task-btn { padding: 8px 16px; border-radius: 10px; font-size: 11px; font-weight: 900; cursor: pointer; border: none; }
   .task-btn.go { background: linear-gradient(135deg, #00b4ff, #0066ff); color: white; }
   .task-btn.done { background: linear-gradient(135deg, #00aa55, #006633); color: white; }
@@ -150,11 +148,13 @@
   .booster-info { flex: 1; }
   .booster-info h4 { font-size: 13px; font-weight: 900; color: white; margin-bottom: 3px; }
   .booster-info p { font-size: 10px; color: #7a8ba5; }
-  .booster-btn { padding: 9px 14px; border-radius: 10px; font-size: 11px; font-weight: 900; cursor: pointer; border: none; }
-  .booster-btn.purple { background: linear-gradient(135deg, #a040ff, #6020a0); color: white; }
-  .booster-btn.blue { background: linear-gradient(135deg, #00b4ff, #0066ff); color: white; }
-  .booster-btn.magenta { background: linear-gradient(135deg, #cc00ff, #6600a0); color: white; }
-  .booster-btn.green { background: linear-gradient(135deg, #00ff88, #008844); color: white; }
+  .booster-timer { font-size: 11px; font-weight: 900; color: #00d4ff; min-width: 55px; text-align: center; }
+  .booster-btn { padding: 9px 12px; border-radius: 10px; font-size: 11px; font-weight: 900; cursor: pointer; border: none; min-width: 75px; color: white; }
+  .booster-btn.purple { background: linear-gradient(135deg, #a040ff, #6020a0); }
+  .booster-btn.blue { background: linear-gradient(135deg, #00b4ff, #0066ff); }
+  .booster-btn.magenta { background: linear-gradient(135deg, #cc00ff, #6600a0); }
+  .booster-btn.green { background: linear-gradient(135deg, #00ff88, #008844); }
+  .booster-btn:disabled { cursor: not-allowed; }
   .mini-games-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 15px; }
   .mini-game-card { background: linear-gradient(135deg, rgba(0,100,200,0.3), rgba(0,40,100,0.2)); border: 1.5px solid rgba(0,180,255,0.3); border-radius: 18px; padding: 20px 14px; text-align: center; cursor: pointer; }
   .mini-game-card:active { transform: scale(0.96); }
@@ -193,19 +193,6 @@
   .sticker-price { font-size: 10px; color: #00d4ff; font-weight: 900; }
   .sticker-price.max { color: #ff9500; }
   .sticker-price.locked { color: #7a8ba5; }
-  .puzzle-grid { display: grid; gap: 3px; margin: 15px auto; max-width: 100%; }
-  .puzzle-tile { aspect-ratio: 1; background: linear-gradient(135deg, #00d4ff, #0066ff); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: 900; color: white; cursor: pointer; }
-  .puzzle-tile.empty { background: rgba(15,30,55,0.4); color: transparent; }
-  .puzzle-mode-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 12px; }
-  .puzzle-mode-card { background: rgba(15,30,55,0.8); border: 2px solid rgba(0,180,255,0.3); border-radius: 12px; padding: 10px 5px; text-align: center; cursor: pointer; }
-  .puzzle-mode-card.selected { border-color: #00d4ff; background: linear-gradient(135deg, rgba(0,212,255,0.2), rgba(0,100,200,0.1)); }
-  .puzzle-mode-icon { font-size: 22px; margin-bottom: 4px; }
-  .puzzle-mode-name { font-size: 11px; font-weight: 900; margin-bottom: 2px; }
-  .puzzle-mode-desc { font-size: 8px; color: #7a8ba5; }
-  .puzzle-mode-time { font-size: 9px; color: #ff9500; font-weight: 900; margin-top: 3px; }
-  .puzzle-mode-price { font-size: 10px; color: #ffd700; font-weight: 900; margin-top: 3px; }
-  .puzzle-timer-display { background: rgba(0,0,0,0.5); border-radius: 10px; padding: 8px; display: flex; justify-content: space-around; margin-bottom: 10px; border: 1px solid rgba(0,212,255,0.3); }
-  .puzzle-timer-display div { font-size: 11px; font-weight: 900; }
   .crash-game { text-align: center; padding: 10px 0; }
   .crash-multiplier { font-size: 54px; font-weight: 900; color: #00ff88; margin: 15px 0; }
   .crash-multiplier.crashed { color: #ff0055; }
@@ -220,17 +207,14 @@
   .wheel-pointer { position: absolute; top: -22px; left: 50%; transform: translateX(-50%); font-size: 36px; color: #ff0055; z-index: 10; }
   .wheel-outer { position: absolute; width: 100%; height: 100%; border-radius: 50%; border: 5px solid #ffd700; z-index: 5; pointer-events: none; }
   .wheel-container { width: 240px; height: 240px; border-radius: 50%; background: conic-gradient(#ff0055 0deg 60deg, #00d4ff 60deg 120deg, #00ff88 120deg 180deg, #ffd700 180deg 240deg, #9900ff 240deg 300deg, #ff9500 300deg 360deg); position: relative; transition: transform 5s cubic-bezier(0.15, 0.9, 0.2, 1); z-index: 2; }
-  .wheel-labels { width: 100%; height: 100%; position: absolute; }
-  .wheel-label { position: absolute; top: 50%; left: 50%; width: 0; height: 0; font-size: 13px; font-weight: 900; color: white; z-index: 3; text-shadow: 0 0 5px #000; }
-  .wheel-label span { display: block; position: absolute; transform: translate(-50%, -50%); white-space: nowrap; }
+  .wheel-labels { width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
+  .wheel-label { position: absolute; font-size: 11px; font-weight: 900; color: white; text-shadow: 0 0 5px #000, 0 0 10px #000; pointer-events: none; z-index: 3; transform: translate(-50%, -50%); }
   .wheel-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 60px; height: 60px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; font-weight: 900; color: #ff0055; font-size: 12px; z-index: 6; border: 3px solid #ffd700; cursor: pointer; }
-  .result-display { background: linear-gradient(135deg, rgba(0,212,255,0.2), rgba(0,100,200,0.1)); border: 2px solid #00d4ff; border-radius: 16px; padding: 15px; margin: 15px 0; text-align: center; display: none; }
-  .result-display.show { display: block; }
-  .result-display h4 { font-size: 11px; color: #a0aec0; margin-bottom: 8px; }
-  .result-display .reward-amount { font-size: 36px; font-weight: 900; color: #00ff88; }
-  .result-display .reward-unit { font-size: 13px; color: #00d4ff; font-weight: 900; }
-  .slot-machine { display: flex; justify-content: center; gap: 10px; margin: 20px 0; }
-  .slot-reel { width: 70px; height: 90px; background: linear-gradient(135deg, #0a1929, #061224); border: 2px solid #ffd700; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 32px; font-weight: 900; color: #ffd700; }
+  .spin-result-box { background: linear-gradient(135deg, rgba(0,255,136,0.15), rgba(0,212,255,0.1)); border: 2px solid #00ff88; border-radius: 16px; padding: 16px; margin: 20px 0; text-align: center; display: none; }
+  .spin-result-box.show { display: block; }
+  .spin-result-box .label { font-size: 12px; color: #a0aec0; margin-bottom: 8px; letter-spacing: 2px; }
+  .spin-result-box .amount { font-size: 40px; font-weight: 900; color: #00ff88; text-shadow: 0 0 25px rgba(0,255,136,0.9); line-height: 1; }
+  .spin-result-box .unit { font-size: 14px; color: #00d4ff; font-weight: 900; margin-top: 4px; }
   .ref-card { background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(0,80,180,0.1)); border: 1px solid rgba(0,212,255,0.3); border-radius: 18px; padding: 20px; text-align: center; }
   .ref-title { font-size: 16px; font-weight: 900; color: #00d4ff; margin-bottom: 8px; }
   .ref-sub { font-size: 11px; color: #a0aec0; margin-bottom: 15px; }
@@ -293,6 +277,14 @@
   .flip-status.lose { background: rgba(255,0,85,0.15); color: #ff0055; border: 1px solid rgba(255,0,85,0.4); }
   .flip-status.info { background: rgba(0,212,255,0.15); color: #00d4ff; border: 1px solid rgba(0,212,255,0.4); }
   .flip-big-multiplier { text-align: center; font-size: 48px; font-weight: 900; color: #ffd700; text-shadow: 0 0 30px rgba(255,215,0,0.9); margin: 10px 0; }
+  .puzzle-mode-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 15px; }
+  .puzzle-mode-card { background: rgba(15,30,55,0.8); border: 1.5px solid rgba(0,180,255,0.3); border-radius: 14px; padding: 12px 6px; text-align: center; cursor: pointer; }
+  .puzzle-mode-card.selected { border-color: #00d4ff; background: rgba(0,212,255,0.15); }
+  .puzzle-mode-icon { font-size: 28px; margin-bottom: 4px; }
+  .puzzle-mode-name { font-size: 11px; font-weight: 900; margin-bottom: 2px; }
+  .puzzle-mode-desc { font-size: 9px; color: #7a8ba5; margin-bottom: 2px; }
+  .puzzle-mode-time { font-size: 9px; color: #00d4ff; margin-bottom: 2px; }
+  .puzzle-mode-price { font-size: 10px; color: #ffd700; font-weight: 900; }
 </style>
 </head>
 <body>
@@ -453,10 +445,35 @@
 <div class="tab-content" id="tab-boosters">
   <div class="page-title-bar"><div class="page-title-icon">🚀</div><div class="page-title-text">Boosters</div></div>
   <div class="booster-card">
-    <div class="booster-row"><div class="booster-icon auto-tap">👆</div><div class="booster-info"><h4>Auto Tap</h4><p>+50% per tap</p></div><button class="booster-btn purple" onclick="activateBooster('autoTap')">Activate</button></div>
-    <div class="booster-row"><div class="booster-icon energy">⚡</div><div class="booster-info"><h4>Energy Refill</h4><p>+20 Energy</p></div><button class="booster-btn blue" onclick="activateBooster('energy')">Activate</button></div>
-    <div class="booster-row"><div class="booster-icon double">2x</div><div class="booster-info"><h4>2x Earnings</h4><p>Double rewards</p></div><button class="booster-btn magenta" onclick="activateBooster('double')">Activate</button></div>
-    <div class="booster-row"><div class="booster-icon offline">⏰</div><div class="booster-info"><h4>Offline Profit</h4><p>Earn while away</p></div><button class="booster-btn green" onclick="activateBooster('offline')">Activate</button></div>
+    <div class="booster-row">
+      <div class="booster-icon auto-tap">👆</div>
+      <div class="booster-info"><h4>Auto Tap</h4><p>+1 Tap Power (10 min)</p></div>
+      <div class="booster-timer" id="autoTapTimer">Ready</div>
+      <button class="booster-btn purple" id="autoTapBtn" onclick="activateBooster('autoTap')">Activate</button>
+    </div>
+    <div class="booster-row">
+      <div class="booster-icon energy">⚡</div>
+      <div class="booster-info"><h4>Energy Refill</h4><p>+50 Energy (instant)</p></div>
+      <div class="booster-timer" id="energyTimer">Ready</div>
+      <button class="booster-btn blue" id="energyBtn" onclick="activateBooster('energy')">Activate</button>
+    </div>
+    <div class="booster-row">
+      <div class="booster-icon double">2x</div>
+      <div class="booster-info"><h4>2x Earnings</h4><p>+2 Tap Power (30 min)</p></div>
+      <div class="booster-timer" id="doubleTimer">Ready</div>
+      <button class="booster-btn magenta" id="doubleBtn" onclick="activateBooster('double')">Activate</button>
+    </div>
+    <div class="booster-row">
+      <div class="booster-icon offline">⏰</div>
+      <div class="booster-info"><h4>Offline Profit</h4><p>+5000 TRAX (instant)</p></div>
+      <div class="booster-timer" id="offlineTimer">Ready</div>
+      <button class="booster-btn green" id="offlineBtn" onclick="activateBooster('offline')">Activate</button>
+    </div>
+  </div>
+  <div style="text-align:center;font-size:10px;color:#7a8ba5;margin-top:15px;line-height:1.8">
+    ⚡ <b style="color:#00d4ff">Cooldowns:</b><br>
+    Auto Tap: 30 min · Energy: 30 min<br>
+    2x Earnings: 1 hr · Offline: 12 hrs
   </div>
 </div>
 
@@ -587,11 +604,17 @@
     <div class="wheel-wrapper">
       <div class="wheel-pointer">▼</div>
       <div class="wheel-outer"></div>
-      <div class="wheel-container" id="wheel"><div class="wheel-labels" id="wheelLabels"></div></div>
+      <div class="wheel-container" id="wheel">
+        <div class="wheel-labels" id="wheelLabels"></div>
+      </div>
       <div class="wheel-center" onclick="spinWheel()">SPIN</div>
     </div>
-    <div class="result-display" id="resultDisplay"><h4>🎉 YOU WON</h4><div class="reward-amount" id="rewardAmount">+0</div><div class="reward-unit">TRAX</div></div>
-    <button class="modal-btn" style="margin-top:10px;display:block;width:100%" onclick="spinWheel()">SPIN</button>
+    <div class="spin-result-box" id="spinResultBox">
+      <div class="label">🎉 YOU WON</div>
+      <div class="amount" id="spinRewardAmount">+0</div>
+      <div class="unit">TRAX</div>
+    </div>
+    <button class="modal-btn" style="margin-top:10px;display:block;width:100%" onclick="spinWheel()" id="spinBtn">SPIN NOW</button>
     <button class="modal-btn" style="margin-top:8px;background:rgba(255,255,255,0.1);display:block;width:100%" onclick="closeSpin()">Close</button>
   </div>
 </div>
@@ -641,13 +664,6 @@
         </div>
         <input type="number" id="flipBetInput" class="input-field" placeholder="Custom bet" min="100" value="1000" oninput="updateFlipPreview()">
         <div style="font-size:10px;color:#ff9500;text-align:center" id="flipBetInfo">Min bet: 100 TRAX</div>
-      </div>
-      <div style="background:rgba(0,0,0,0.3);border:1px solid rgba(0,212,255,0.2);border-radius:12px;padding:10px;margin-bottom:14px;font-size:11px;color:#a0aec0;line-height:1.6">
-        <b style="color:#00d4ff">🎯 Kaise Khelein:</b><br>
-        • <b>T</b> ya <b>R</b> select karein<br>
-        • Coin flip karein<br>
-        • Jeetne par random multiplier<br>
-        • Jab marzi <b>CASHOUT</b> karein
       </div>
       <button class="crash-bet-btn" onclick="startFlipGame()" style="width:100%">🎮 START</button>
       <button class="modal-btn" style="margin-top:8px;background:rgba(255,255,255,0.1);display:block;width:100%" onclick="closeCoinFlip()">Close</button>
@@ -773,13 +789,17 @@
   let balance = parseInt(localStorage.getItem('trax_balance') || '0');
   let energy = parseInt(localStorage.getItem('trax_energy') || '500');
   let totalTaps = parseInt(localStorage.getItem('trax_taps') || '0');
-  let tapPower = parseInt(localStorage.getItem('trax_tapPower') || '1');
+  let baseTapPower = parseInt(localStorage.getItem('trax_tapPower') || '1');
   let maxEnergy = parseInt(localStorage.getItem('trax_maxEnergy') || '500');
   let autoEarn = parseInt(localStorage.getItem('trax_autoEarn') || '0');
   let luckyKeys = parseInt(localStorage.getItem('trax_luckyKeys') || '1');
   let stickerLevels = JSON.parse(localStorage.getItem('trax_stickers_v4') || '{}');
   let totalEarned = parseInt(localStorage.getItem('trax_totalEarned') || '0');
   let miningActive = false;
+
+  // Booster bonuses (separate from base)
+  let boosterAutoTapBonus = parseInt(localStorage.getItem('trax_booster_autoTap_bonus') || '0');
+  let boosterDoubleBonus = parseInt(localStorage.getItem('trax_booster_double_bonus') || '0');
 
   const userId = tg && tg.initDataUnsafe && tg.initDataUnsafe.user ? tg.initDataUnsafe.user.id : Math.floor(Math.random() * 9000) + 1000;
 
@@ -862,16 +882,11 @@
     });
     return total;
   }
-
   function getEffectiveTapPower() {
-    let base = tapPower + getStickerBonusFromAll('Tap');
-    return base;
+    return baseTapPower + getStickerBonusFromAll('Tap') + boosterAutoTapBonus + boosterDoubleBonus;
   }
-  function getEffectiveMaxEnergy() {
-    return maxEnergy + getStickerBonusFromAll('MaxEnergy');
-  }
+  function getEffectiveMaxEnergy() { return maxEnergy + getStickerBonusFromAll('MaxEnergy'); }
 
-  // ===== UPDATE UI =====
   function updateUI() {
     document.getElementById('balance').textContent = Math.floor(balance).toLocaleString();
     document.getElementById('balance2').textContent = Math.floor(balance).toLocaleString();
@@ -903,7 +918,7 @@
     localStorage.setItem('trax_balance', Math.floor(balance));
     localStorage.setItem('trax_energy', energy);
     localStorage.setItem('trax_taps', totalTaps);
-    localStorage.setItem('trax_tapPower', tapPower);
+    localStorage.setItem('trax_tapPower', baseTapPower);
     localStorage.setItem('trax_maxEnergy', maxEnergy);
     localStorage.setItem('trax_autoEarn', autoEarn);
     localStorage.setItem('trax_luckyKeys', luckyKeys);
@@ -942,14 +957,160 @@
     }
   }
 
-  // ===== BOOSTERS =====
+  // ===== BOOSTER SYSTEM WITH COOLDOWN =====
+  const BOOSTER_DURATIONS = {
+    autoTap: 10 * 60 * 1000,
+    energy: 0,
+    double: 30 * 60 * 1000,
+    offline: 0
+  };
+  const BOOSTER_COOLDOWNS = {
+    autoTap: 30 * 60 * 1000,
+    energy: 30 * 60 * 1000,
+    double: 60 * 60 * 1000,
+    offline: 12 * 60 * 60 * 1000
+  };
+
+  function formatBoosterTime(ms) {
+    if (ms <= 0) return '--:--';
+    const totalSec = Math.floor(ms / 1000);
+    const h = Math.floor(totalSec / 3600);
+    const m = Math.floor((totalSec % 3600) / 60);
+    const s = totalSec % 60;
+    if (h > 0) return h + 'h ' + String(m).padStart(2, '0') + 'm';
+    if (m > 0) return String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+    return '00:' + String(s).padStart(2, '0');
+  }
+
+  function getBoosterState(id) {
+    const lastUsed = parseInt(localStorage.getItem('trax_booster_' + id + '_lastUsed') || '0');
+    const activeUntil = parseInt(localStorage.getItem('trax_booster_' + id + '_activeUntil') || '0');
+    const now = Date.now();
+    const cooldown = BOOSTER_COOLDOWNS[id];
+    const duration = BOOSTER_DURATIONS[id];
+
+    let isActive = false;
+    let isCooldown = false;
+    let timeRemaining = 0;
+
+    if (duration > 0 && activeUntil > now) {
+      isActive = true;
+      timeRemaining = activeUntil - now;
+    }
+
+    if (lastUsed > 0 && (now - lastUsed) < cooldown) {
+      isCooldown = true;
+      timeRemaining = cooldown - (now - lastUsed);
+    }
+
+    return { isActive, isCooldown, timeRemaining, lastUsed };
+  }
+
+  function updateBoosterUI() {
+    ['autoTap', 'energy', 'double', 'offline'].forEach(id => {
+      const timerEl = document.getElementById(id + 'Timer');
+      const btnEl = document.getElementById(id + 'Btn');
+      if (!timerEl || !btnEl) return;
+
+      const state = getBoosterState(id);
+
+      if (state.isActive) {
+        timerEl.textContent = '⏱ ' + formatBoosterTime(state.timeRemaining);
+        timerEl.style.color = '#00ff88';
+        btnEl.disabled = true;
+        btnEl.textContent = 'Active';
+        btnEl.style.opacity = '0.5';
+      } else if (state.isCooldown) {
+        timerEl.textContent = '⏳ ' + formatBoosterTime(state.timeRemaining);
+        timerEl.style.color = '#ff9500';
+        btnEl.disabled = true;
+        btnEl.textContent = 'Wait';
+        btnEl.style.opacity = '0.5';
+      } else {
+        timerEl.textContent = 'Ready';
+        timerEl.style.color = '#00d4ff';
+        btnEl.disabled = false;
+        btnEl.textContent = 'Activate';
+        btnEl.style.opacity = '1';
+      }
+    });
+  }
+
   function activateBooster(id) {
-    if (id === 'autoTap') { tapPower += 1; showModal('👆 Auto Tap', '+1 Tap Power!'); }
-    else if (id === 'energy') { energy = Math.min(getEffectiveMaxEnergy(), energy + 20); showModal('⚡ Refilled', '+20 Energy!'); }
-    else if (id === 'double') { tapPower += 2; showModal('2️⃣ 2x', '+2 Tap Power!'); }
-    else if (id === 'offline') { balance += 1000; totalEarned += 1000; showModal('⏰ Offline', '+1,000 TRAX!'); }
+    const state = getBoosterState(id);
+
+    if (state.isCooldown) {
+      playSound('error'); vibrate('error');
+      showModal('⏰ Cooldown', 'Ye booster abhi cooldown par hai.\n\nAgla use: ' + formatBoosterTime(state.timeRemaining) + ' baad');
+      return;
+    }
+
+    if (state.isActive) {
+      showModal('⚡ Already Active', 'Ye booster pehle se active hai.');
+      return;
+    }
+
+    const now = Date.now();
+    localStorage.setItem('trax_booster_' + id + '_lastUsed', now);
+
+    if (id === 'autoTap') {
+      boosterAutoTapBonus = 1;
+      localStorage.setItem('trax_booster_autoTap_bonus', '1');
+      localStorage.setItem('trax_booster_autoTap_activeUntil', now + BOOSTER_DURATIONS.autoTap);
+      showModal('👆 Auto Tap Active!', '+1 Tap Power for 10 minutes!');
+    } else if (id === 'energy') {
+      energy = Math.min(getEffectiveMaxEnergy(), energy + 50);
+      showModal('⚡ Energy Refilled!', '+50 Energy mile!');
+    } else if (id === 'double') {
+      boosterDoubleBonus = 2;
+      localStorage.setItem('trax_booster_double_bonus', '2');
+      localStorage.setItem('trax_booster_double_activeUntil', now + BOOSTER_DURATIONS.double);
+      showModal('2️⃣ 2x Earnings Active!', '+2 Tap Power for 30 minutes!');
+    } else if (id === 'offline') {
+      balance += 5000; totalEarned += 5000;
+      showModal('⏰ Offline Profit!', '+5,000 TRAX mile!');
+    }
+
     updateUI(); save();
+    updateBoosterUI();
     playSound('win'); vibrate('success');
+  }
+
+  function checkBoosterExpiry() {
+    const now = Date.now();
+    let changed = false;
+
+    if (boosterAutoTapBonus > 0) {
+      const activeUntil = parseInt(localStorage.getItem('trax_booster_autoTap_activeUntil') || '0');
+      if (activeUntil <= now) {
+        boosterAutoTapBonus = 0;
+        localStorage.removeItem('trax_booster_autoTap_bonus');
+        localStorage.removeItem('trax_booster_autoTap_activeUntil');
+        showToast('⏰ Auto Tap expired!');
+        changed = true;
+      }
+    }
+
+    if (boosterDoubleBonus > 0) {
+      const activeUntil = parseInt(localStorage.getItem('trax_booster_double_activeUntil') || '0');
+      if (activeUntil <= now) {
+        boosterDoubleBonus = 0;
+        localStorage.removeItem('trax_booster_double_bonus');
+        localStorage.removeItem('trax_booster_double_activeUntil');
+        showToast('⏰ 2x Earnings expired!');
+        changed = true;
+      }
+    }
+
+    if (changed) { updateUI(); save(); }
+  }
+
+  function showToast(msg) {
+    const t = document.createElement('div');
+    t.textContent = msg;
+    t.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#ff9500,#ff5500);color:white;padding:10px 20px;border-radius:20px;font-weight:900;font-size:12px;z-index:9999;box-shadow:0 5px 20px rgba(255,150,0,0.5)';
+    document.body.appendChild(t);
+    setTimeout(() => t.remove(), 3000);
   }
 
   // ===== UPGRADES =====
@@ -975,7 +1136,7 @@
     balance -= cost;
     let level = parseInt(localStorage.getItem('upg_' + id) || '0') + 1;
     localStorage.setItem('upg_' + id, level);
-    if (id === 'tapPower') tapPower += 1;
+    if (id === 'tapPower') baseTapPower += 1;
     if (id === 'maxEnergy') maxEnergy += 50;
     if (id === 'autoEarn') autoEarn += 5;
     updateUI(); save(); drawUpgrades();
@@ -1076,7 +1237,6 @@
     }, 1000);
   }
 
-  // ===== LUCKY BOX =====
   function openLuckyBox() {
     if (luckyKeys <= 0) { showModal('📦 No Keys', 'Keys nahi hain.'); return; }
     luckyKeys--;
@@ -1087,15 +1247,12 @@
     showModal('🎉 Lucky Box!', '+' + reward.toLocaleString() + ' TRAX!');
   }
 
-  // ===== REFERRAL =====
   function shareRef() {
     const link = 'https://t.me/TraxOfficial_bot?start=ref' + userId;
     const text = 'Trax Coin khelo aur free TRAX kamayein! 🎉';
     if (tg) tg.openTelegramLink('https://t.me/share/url?url=' + encodeURIComponent(link) + '&text=' + encodeURIComponent(text));
-    else showModal('📤 Share', 'Link: ' + link);
   }
 
-  // ===== NAV =====
   function navClick(el, tab) {
     document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
     if (el) el.classList.add('active');
@@ -1122,7 +1279,6 @@
     }
   }
 
-  // ===== MODALS =====
   function showModal(title, text) {
     document.getElementById('modalTitle').textContent = title;
     document.getElementById('modalText').innerText = text;
@@ -1133,46 +1289,70 @@
   function closeRarityList() { document.getElementById('rarityModal').classList.remove('show'); }
 
   // ===== SPIN WHEEL =====
+  const SPIN_REWARDS = [50, 100, 50, 200, 500, 100, 1000, 100];
+  let spinCooldown = false;
+
   function openSpin() {
     document.getElementById('spinModal').classList.add('show');
-    document.getElementById('resultDisplay').classList.remove('show');
+    document.getElementById('spinResultBox').classList.remove('show');
     document.getElementById('wheel').style.transform = 'rotate(0deg)';
+    document.getElementById('spinBtn').textContent = 'SPIN NOW';
     drawWheelLabels();
+    spinCooldown = false;
   }
-  function closeSpin() { document.getElementById('spinModal').classList.remove('show'); }
+  function closeSpin() {
+    document.getElementById('spinModal').classList.remove('show');
+  }
+
   function drawWheelLabels() {
-    const lb = document.getElementById('wheelLabels'); lb.innerHTML = '';
-    const labels = ['50', '100', '50', '200', '500', '100', '1000', '100'];
+    const box = document.getElementById('wheelLabels');
+    box.innerHTML = '';
     const radius = 82;
-    labels.forEach((label, i) => {
+    SPIN_REWARDS.forEach((reward, i) => {
       const angle = i * 45 + 22.5;
       const rad = (angle - 90) * Math.PI / 180;
       const x = 120 + Math.cos(rad) * radius;
       const y = 120 + Math.sin(rad) * radius;
       const el = document.createElement('div');
       el.className = 'wheel-label';
-      el.innerHTML = '<span style="transform: translate(-50%, -50%); left: ' + x + 'px; top: ' + y + 'px;">' + label + '</span>';
-      lb.appendChild(el);
+      el.style.left = x + 'px';
+      el.style.top = y + 'px';
+      el.textContent = reward >= 1000 ? '1K' : reward;
+      box.appendChild(el);
     });
   }
-  let spinCooldown = false;
+
   function spinWheel() {
     if (spinCooldown) return;
     spinCooldown = true;
     const wheel = document.getElementById('wheel');
-    const rewards = [50, 100, 50, 200, 500, 100, 1000, 100];
-    const idx = Math.floor(Math.random() * rewards.length);
-    const reward = rewards[idx];
+    const btn = document.getElementById('spinBtn');
+    const resultBox = document.getElementById('spinResultBox');
+
+    resultBox.classList.remove('show');
+    btn.textContent = 'SPINNING...';
+
+    const idx = Math.floor(Math.random() * SPIN_REWARDS.length);
+    const reward = SPIN_REWARDS[idx];
+
     const segmentCenter = idx * 45 + 22.5;
     const targetRotation = 360 - segmentCenter;
-    const finalRotation = (8 * 360) + targetRotation + 360;
+    const fullRotations = 8 * 360;
+    const finalRotation = fullRotations + targetRotation;
+
     wheel.style.transform = 'rotate(' + finalRotation + 'deg)';
+
     setTimeout(() => {
-      balance += reward; totalEarned += reward; updateUI(); save();
-      document.getElementById('resultDisplay').classList.add('show');
-      document.getElementById('rewardAmount').textContent = '+' + reward;
-      playSound('win'); vibrate('success');
+      balance += reward; totalEarned += reward;
+      updateUI(); save();
+
+      document.getElementById('spinRewardAmount').textContent = '+' + reward;
+      resultBox.classList.add('show');
+
+      btn.textContent = 'SPIN AGAIN';
       spinCooldown = false;
+
+      playSound('win'); vibrate('success');
     }, 5200);
   }
 
@@ -1275,15 +1455,8 @@
     easy: { size: 5, cost: 50000, time: 300, label: 'Easy' }
   };
   let selectedPuzzleMode = 'hard';
-  let puzzleState = { tiles: [], moves: 0, solved: false, size: 5, timeLeft: 0, timer: null };
-
-  function openPuzzle() {
-    document.getElementById('puzzleModal').classList.add('show');
-  }
-  function closePuzzle() {
-    if (puzzleState.timer) { clearInterval(puzzleState.timer); puzzleState.timer = null; }
-    document.getElementById('puzzleModal').classList.remove('show');
-  }
+  function openPuzzle() { document.getElementById('puzzleModal').classList.add('show'); }
+  function closePuzzle() { document.getElementById('puzzleModal').classList.remove('show'); }
   function selectPuzzleMode(mode, el) {
     selectedPuzzleMode = mode;
     document.querySelectorAll('.puzzle-mode-card').forEach(c => c.classList.remove('selected'));
@@ -1293,10 +1466,6 @@
     const m = PUZZLE_MODES[selectedPuzzleMode];
     if (balance < m.cost) { showModal('❌', 'Cost: ' + m.cost.toLocaleString() + ' TRAX'); return; }
     balance -= m.cost;
-    puzzleState.size = m.size;
-    puzzleState.timeLeft = m.time;
-    puzzleState.moves = 0;
-    puzzleState.solved = false;
     updateUI(); save();
     showModal('🧩 Puzzle', 'Puzzle ' + m.label + ' shuru!\n\nTime: ' + (m.time / 60) + ' min');
   }
@@ -1418,12 +1587,11 @@
     setTimeout(closeCoinFlip, 300);
   }
 
-  // ===== MISC =====
   function resetData() {
     if (confirm('Reset all data?')) { localStorage.clear(); location.reload(); }
   }
 
-  // ===== INIT =====
+  // Init
   updateAvatarDisplays();
   buildAvatarGrid();
   updateSettingsUI();
@@ -1434,13 +1602,43 @@
   drawHomeRank();
   drawRank();
 
-  // Auto earn + energy regen
+  // Restore booster bonus from localStorage on page load
+  (function() {
+    const now = Date.now();
+    const atUntil = parseInt(localStorage.getItem('trax_booster_autoTap_activeUntil') || '0');
+    if (atUntil > now) {
+      boosterAutoTapBonus = 1;
+    } else {
+      localStorage.removeItem('trax_booster_autoTap_bonus');
+      localStorage.removeItem('trax_booster_autoTap_activeUntil');
+      boosterAutoTapBonus = 0;
+    }
+    const dbUntil = parseInt(localStorage.getItem('trax_booster_double_activeUntil') || '0');
+    if (dbUntil > now) {
+      boosterDoubleBonus = 2;
+    } else {
+      localStorage.removeItem('trax_booster_double_bonus');
+      localStorage.removeItem('trax_booster_double_activeUntil');
+      boosterDoubleBonus = 0;
+    }
+    updateUI();
+    updateBoosterUI();
+  })();
+
+  // Auto-earn & energy regen
   setInterval(() => {
     if (autoEarn > 0) { balance += autoEarn / 3600; totalEarned += autoEarn / 3600; updateUI(); save(); }
   }, 1000);
+
   setInterval(() => {
     if (energy < getEffectiveMaxEnergy()) { energy++; updateUI(); save(); }
   }, 2000);
+
+  // Booster UI refresh every second (live countdown)
+  setInterval(updateBoosterUI, 1000);
+
+  // Booster expiry check every 5 sec
+  setInterval(checkBoosterExpiry, 5000);
 </script>
 </body>
  </html>
