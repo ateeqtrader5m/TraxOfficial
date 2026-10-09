@@ -18,10 +18,11 @@
   .header-logo-text h1 { font-size: 17px; font-weight: 900; color: #ffffff; }
   .header-logo-text p { font-size: 8px; color: #00d4ff; letter-spacing: 2px; margin-top: 2px; font-weight: 700; }
   .header-right { display: flex; align-items: center; gap: 10px; }
-  .level-badge { text-align: right; background: rgba(0,212,255,0.08); border: 1px solid rgba(0,212,255,0.3); border-radius: 12px; padding: 5px 10px; min-width: 75px; }
+  .level-badge { text-align: right; background: rgba(0,212,255,0.08); border: 1px solid rgba(0,212,255,0.3); border-radius: 12px; padding: 5px 10px; min-width: 90px; }
   .level-badge .lv { font-size: 10px; font-weight: 900; color: #00d4ff; }
-  .level-badge .xp-bar { width: 55px; height: 3px; background: rgba(255,255,255,0.1); border-radius: 2px; margin-top: 4px; overflow: hidden; }
-  .level-badge .xp-fill { height: 100%; background: linear-gradient(90deg, #00d4ff, #00ff88); border-radius: 2px; }
+  .level-badge .xp-bar { width: 70px; height: 3px; background: rgba(255,255,255,0.1); border-radius: 2px; margin-top: 4px; overflow: hidden; }
+  .level-badge .xp-fill { height: 100%; background: linear-gradient(90deg, #00d4ff, #00ff88); border-radius: 2px; transition: width 0.3s; }
+  .level-badge .xp-text { font-size: 8px; color: #a0aec0; margin-top: 2px; font-weight: 700; }
   .avatar { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, #00d4ff, #0066ff); display: flex; align-items: center; justify-content: center; font-size: 18px; border: 2px solid rgba(0,212,255,0.5); box-shadow: 0 0 15px rgba(0,212,255,0.4); cursor: pointer; background-size: cover; background-position: center; overflow: hidden; }
   .container { padding: 12px 15px; max-width: 500px; margin: 0 auto; }
   .balance-card { background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(0,80,180,0.1)); border: 1px solid rgba(0,212,255,0.3); border-radius: 20px; padding: 16px; margin-bottom: 12px; position: relative; overflow: hidden; }
@@ -30,26 +31,6 @@
   .balance-value small { font-size: 14px; color: #00d4ff; }
   .balance-sub { font-size: 10px; color: #ff9500; margin-top: 4px; position: relative; z-index: 2; font-weight: 900; }
   .wallet-connect-btn { background: linear-gradient(135deg, #00ff88, #00aa55); border: none; border-radius: 14px; padding: 10px 12px; color: white; font-weight: 900; cursor: pointer; box-shadow: 0 4px 18px rgba(0,255,136,0.5); display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 70px; position: relative; z-index: 3; }
-  .big-profile-card { background: linear-gradient(135deg, rgba(0,180,255,0.15), rgba(150,0,255,0.08)); border: 2px solid rgba(0,212,255,0.5); border-radius: 22px; padding: 18px; margin-bottom: 14px; position: relative; overflow: hidden; }
-  .big-profile-top { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
-  .big-profile-avatar-wrap { width: 72px; height: 72px; position: relative; flex-shrink: 0; }
-  .big-profile-ring { position: absolute; inset: -4px; border-radius: 50%; background: conic-gradient(from 0deg, #00d4ff, #00ff88, #9900ff, #ff0055, #00d4ff); animation: spinRing 4s linear infinite; opacity: 0.85; filter: blur(2px); }
-  @keyframes spinRing { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-  .big-profile-avatar { position: absolute; inset: 0; border-radius: 50%; background: linear-gradient(135deg, #0a1929, #061224); display: flex; align-items: center; justify-content: center; font-size: 32px; border: 2px solid rgba(0,212,255,0.6); background-size: cover; background-position: center; z-index: 2; }
-  .big-profile-info { flex: 1; }
-  .big-profile-name-row { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
-  .big-profile-name-row span:first-child { font-size: 17px; font-weight: 900; color: white; }
-  .big-profile-badge { background: linear-gradient(135deg, #ffd700, #ff9500); color: #000; font-size: 9px; font-weight: 900; padding: 3px 8px; border-radius: 8px; }
-  .big-profile-id { font-size: 11px; color: #7a8ba5; font-weight: 700; margin-bottom: 3px; }
-  .big-profile-balance { background: rgba(0,0,0,0.35); border: 1px solid rgba(0,212,255,0.3); border-radius: 14px; padding: 12px; margin-bottom: 12px; text-align: center; }
-  .big-profile-balance-label { font-size: 10px; color: #7a8ba5; letter-spacing: 1.5px; margin-bottom: 4px; font-weight: 700; }
-  .big-profile-balance-value { font-size: 26px; font-weight: 900; color: white; line-height: 1.1; }
-  .big-profile-balance-value small { font-size: 12px; color: #00d4ff; }
-  .big-profile-balance-sub { font-size: 9px; color: #ff9500; font-weight: 900; margin-top: 3px; }
-  .big-profile-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .big-profile-btn { border: none; border-radius: 14px; padding: 12px 10px; color: white; cursor: pointer; display: flex; flex-direction: column; align-items: center; }
-  .big-profile-btn.wallet { background: linear-gradient(135deg, #00d4ff, #0066ff); }
-  .big-profile-btn.withdraw { background: linear-gradient(135deg, #00ff88, #00aa55); }
   .home-layout { display: flex; gap: 10px; margin-bottom: 12px; }
   .home-main { flex: 1; min-width: 0; }
   .home-side { width: 120px; flex-shrink: 0; display: flex; flex-direction: column; gap: 8px; }
@@ -174,11 +155,13 @@
   .upgrade-info .lvl { font-size: 10px; color: #00d4ff; font-weight: 900; }
   .upgrade-btn { background: linear-gradient(135deg, #00b4ff, #0066ff); border: none; border-radius: 10px; padding: 8px 14px; color: white; font-size: 11px; font-weight: 900; cursor: pointer; min-width: 70px; }
   .upgrade-btn.max { background: linear-gradient(135deg, #666, #333); cursor: not-allowed; }
-  .sticker-tier-title { font-size: 12px; font-weight: 900; letter-spacing: 2px; margin: 15px 0 10px; }
-  .sticker-tier-title.common { color: #a0aec0; }
-  .sticker-tier-title.rare { color: #00d4ff; }
-  .sticker-tier-title.epic { color: #9900ff; }
-  .sticker-tier-title.legendary { color: #ff9500; }
+  .sticker-tabs { display: flex; gap: 6px; margin-bottom: 14px; overflow-x: auto; padding-bottom: 4px; }
+  .sticker-tab { padding: 8px 14px; border-radius: 12px; font-size: 11px; font-weight: 900; cursor: pointer; white-space: nowrap; background: rgba(15,30,55,0.8); border: 1.5px solid rgba(0,180,255,0.25); color: #a0aec0; }
+  .sticker-tab.active { background: linear-gradient(135deg, #00d4ff, #0066ff); color: white; border-color: #00d4ff; }
+  .sticker-tab.common.active { background: linear-gradient(135deg, #a0aec0, #6b7280); }
+  .sticker-tab.rare.active { background: linear-gradient(135deg, #00d4ff, #0066ff); }
+  .sticker-tab.epic.active { background: linear-gradient(135deg, #9900ff, #6600aa); }
+  .sticker-tab.legendary.active { background: linear-gradient(135deg, #ff9500, #cc7700); }
   .sticker-shop { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .sticker-card { background: rgba(15,30,55,0.8); border: 1px solid rgba(0,180,255,0.2); border-radius: 14px; padding: 12px 8px; text-align: center; cursor: pointer; }
   .sticker-card.locked { opacity: 0.5; cursor: not-allowed; }
@@ -367,15 +350,21 @@
   .twist-arrow-marker { position: absolute; top: -25px; left: 50%; transform: translateX(-50%); color: #ff0055; font-size: 26px; z-index: 12; }
   .twist-result-box { background: linear-gradient(135deg, rgba(0,255,136,0.15), rgba(0,212,255,0.1)); border: 2px solid #00ff88; border-radius: 16px; padding: 14px; margin: 12px 0 10px; text-align: center; display: none; }
   .twist-result-box.show { display: block; }
+  .twist-result-box.lose { border-color: #ff0055; background: linear-gradient(135deg, rgba(255,0,85,0.15), rgba(150,0,50,0.1)); }
   .twist-result-box .label { font-size: 11px; color: #a0aec0; letter-spacing: 2px; margin-bottom: 6px; }
   .twist-result-box .mult { font-size: 34px; font-weight: 900; color: #00ff88; text-shadow: 0 0 25px rgba(0,255,136,0.9); line-height: 1; }
+  .twist-result-box.lose .mult { color: #ff5555; text-shadow: 0 0 25px rgba(255,0,85,0.9); }
   .twist-result-box .amount { font-size: 13px; color: #00d4ff; font-weight: 900; margin-top: 4px; }
+  .twist-result-box.lose .amount { color: #ff9500; }
   .twist-bet-row { display: flex; gap: 8px; margin: 12px 0; align-items: center; }
   .twist-bet-display { flex: 1; background: rgba(0,0,0,0.4); border: 1px solid rgba(0,212,255,0.4); border-radius: 12px; padding: 10px; text-align: center; }
   .twist-bet-display .lbl { font-size: 9px; color: #7a8ba5; font-weight: 900; letter-spacing: 1px; margin-bottom: 2px; }
   .twist-bet-display .val { font-size: 16px; font-weight: 900; color: #00d4ff; }
   .twist-bet-btn { width: 44px; height: 44px; border-radius: 10px; background: rgba(0,180,255,0.2); border: 1px solid rgba(0,180,255,0.4); color: white; font-size: 20px; font-weight: 900; cursor: pointer; }
   .twist-bet-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  .twist-custom-row { display: flex; gap: 8px; margin: 8px 0; }
+  .twist-custom-input { flex: 1; background: rgba(0,0,0,0.4); border: 1px solid rgba(0,212,255,0.4); border-radius: 10px; padding: 10px; color: white; font-weight: 900; text-align: center; outline: none; font-size: 13px; }
+  .twist-set-btn { background: linear-gradient(135deg, #00b4ff, #0066ff); border: none; border-radius: 10px; padding: 10px 16px; color: white; font-weight: 900; cursor: pointer; font-size: 12px; }
   .twist-spin-btn { background: linear-gradient(135deg, #ff0055, #cc0044); border: none; border-radius: 14px; padding: 16px; color: white; font-size: 16px; font-weight: 900; cursor: pointer; width: 100%; box-shadow: 0 4px 20px rgba(255,0,85,0.5); margin-top: 8px; letter-spacing: 2px; }
   .twist-spin-btn:disabled { background: linear-gradient(135deg, #444, #222); box-shadow: none; opacity: 0.6; cursor: not-allowed; }
   .twist-info { font-size: 10px; color: #7a8ba5; text-align: center; margin-top: 10px; line-height: 1.6; }
@@ -396,6 +385,10 @@
   .mine-stat { background: rgba(15,30,55,0.8); border: 1px solid rgba(255,149,0,0.3); border-radius: 14px; padding: 12px; text-align: center; }
   .mine-stat .lbl { font-size: 9px; color: #7a8ba5; font-weight: 900; margin-bottom: 3px; }
   .mine-stat .val { font-size: 16px; font-weight: 900; color: #ff9500; }
+  .transfer-box { background: rgba(15,30,55,0.8); border: 1px solid rgba(0,180,255,0.3); border-radius: 16px; padding: 18px; margin-bottom: 14px; }
+  .transfer-box h3 { font-size: 15px; font-weight: 900; color: #00d4ff; margin-bottom: 12px; text-align: center; }
+  .transfer-input { width: 100%; background: rgba(0,0,0,0.4); border: 1px solid rgba(0,212,255,0.4); border-radius: 12px; padding: 12px; color: white; font-weight: 900; text-align: center; outline: none; margin-bottom: 10px; font-size: 14px; }
+  .transfer-btn { width: 100%; background: linear-gradient(135deg, #00ff88, #00aa55); border: none; border-radius: 12px; padding: 14px; color: white; font-weight: 900; cursor: pointer; font-size: 14px; }
 </style>
 </head>
 <body>
@@ -410,13 +403,15 @@
   </div>
   <div class="header-right">
     <div class="level-badge">
-      <div class="lv">Diamond Lv. <span id="levelNum">1</span></div>
+      <div class="lv">⭐ Level <span id="levelNum">1</span></div>
       <div class="xp-bar"><div class="xp-fill" id="xpFill" style="width:0%"></div></div>
+      <div class="xp-text"><span id="xpCurrent">0</span> / <span id="xpNeed">100</span> XP</div>
     </div>
     <div class="avatar" id="headerAvatar" onclick="navClick(null, 'profile')">👤</div>
   </div>
 </div>
 
+<!-- HOME -->
 <div class="tab-content active" id="tab-home">
   <div class="container">
     <div class="balance-card">
@@ -516,12 +511,13 @@
       <div class="stat-box"><div class="lbl">RANK</div><div class="val">#---</div></div>
     </div>
     <div class="rank-board">
-      <div class="rank-header"><div class="rank-title"><span class="live-dot"></span>🏆 LIVE LEADERBOARD</div></div>
+      <div class="rank-header"><div class="rank-title"><span class="live-dot"></span>🏆 LIVE LEADERBOARD</div><div style="font-size:10px;color:#a0aec0;font-weight:900" id="rankResetTimer">30m</div></div>
       <div id="homeRankList"></div>
     </div>
   </div>
 </div>
 
+<!-- GAMES -->
 <div class="tab-content" id="tab-games">
   <div class="page-title-bar"><div class="page-title-icon">🎮</div><div class="page-title-text">Mini Games</div></div>
   <div class="mini-games-grid">
@@ -530,32 +526,35 @@
     <div class="mini-game-card" onclick="openPuzzle()"><div class="mini-game-icon">🧩</div><div class="mini-game-name">Puzzle</div><div class="mini-game-desc">3 Modes</div></div>
     <div class="mini-game-card" onclick="openCrash()"><div class="mini-game-icon">🚀</div><div class="mini-game-name">Crash</div><div class="mini-game-desc">Win big</div></div>
     <div class="mini-game-card" onclick="openCoinFlip()"><div class="mini-game-icon">🪙</div><div class="mini-game-name">Coin Flip</div><div class="mini-game-desc">T or R</div></div>
+    <div class="mini-game-card" onclick="navTo('transfer')"><div class="mini-game-icon">💸</div><div class="mini-game-name">Transfer</div><div class="mini-game-desc">Send coins</div></div>
   </div>
 </div>
 
+<!-- ATTENDANCE -->
 <div class="tab-content" id="tab-attendance">
   <div class="page-title-bar"><div class="page-title-icon">📅</div><div class="page-title-text">Attendance</div></div>
   <div class="attendance-header">
     <div class="attendance-title">Attendance Bonus</div>
     <div class="attendance-sub">Get rewards based on consecutive login days</div>
     <div class="attendance-status">
-      <div>Attended consecutively <b id="attCurrentDays">0</b> Day</div>
-      <div>Accumulated <b id="attAccumulated">0</b> TRAX</div>
+      <div>Attended <b id="attCurrentDays">0</b> Day</div>
+      <div>Earned <b id="attAccumulated">0</b> XP</div>
     </div>
   </div>
   <div class="attendance-grid" id="attendanceGrid"></div>
   <div class="attendance-big-bonus">
-    <div class="att-big-info"><div class="att-big-day">7 Day 🎁</div><div class="att-big-amount">+200,000</div></div>
+    <div class="att-big-info"><div class="att-big-day">7 Day 🎁</div><div class="att-big-amount">+200,000 TRAX + 500 XP</div></div>
     <div class="att-big-icon">🎁</div>
   </div>
   <div class="attendance-rules">
-    <div class="att-rules-title">📋 Activity Rules:</div>
-    <div class="att-rule">1. Ye continuous sign-in event hai. Agar ek din miss hua, toh pehle din se reset ho jayega.</div>
+    <div class="att-rules-title">📋 Rules:</div>
+    <div class="att-rule">1. Continuous sign-in event hai. Ek din miss = reset to Day 1.</div>
     <div class="att-rule">2. Har din ka bonus claim karne ke liye har roz app kholein.</div>
   </div>
   <button class="attendance-claim-btn" id="attClaimBtn" onclick="claimAttendance()">CLAIM TODAY'S REWARD</button>
 </div>
 
+<!-- RED POCKET -->
 <div class="tab-content" id="tab-redpocket">
   <div class="page-title-bar"><div class="page-title-icon">🧧</div><div class="page-title-text">Red Pocket</div></div>
   <div class="redpocket-page">
@@ -568,41 +567,43 @@
     <div class="redpocket-info">
       <h4>🧧 RED POCKET RULES</h4>
       <ul>
-        <li>⏰ Har <b>15 minute</b> mein ek Red Pocket ready hota hai</li>
-        <li>💰 Random reward milta hai</li>
-        <li>🎁 Common: <b>50, 100, 250, 500</b></li>
-        <li>⭐ Rare: <b>1000</b></li>
+        <li>⏰ Har <b>15 minute</b> mein ek Red Pocket ready</li>
+        <li>💰 Random reward: 50, 100, 250, 500 (common) · 1000 (rare)</li>
+        <li>⭐ Har pocket se XP bhi milti hai</li>
       </ul>
     </div>
   </div>
 </div>
 
+<!-- PROFILE -->
 <div class="tab-content" id="tab-profile">
   <div class="page-title-bar"><div class="page-title-icon">👤</div><div class="page-title-text">My Profile</div></div>
   <div class="profile-hero">
     <div class="profile-hero-avatar-wrap"><div class="profile-hero-ring"></div><div class="profile-hero-avatar" id="profileHeroAvatar">👤</div></div>
-    <div class="profile-hero-name" id="profileHeroName">TraxOfficial</div>
-    <div class="profile-hero-id">ID: #<span id="profileHeroId">0000</span></div>
-    <div class="profile-hero-badge" id="profileHeroBadge">👑 Level 1</div>
+    <div class="profile-hero-name" id="profileHeroName">Player</div>
+    <div class="profile-hero-id">ID: #<span id="profileHeroId">000000</span></div>
+    <div class="profile-hero-badge" id="profileHeroBadge">⭐ Level 1</div>
   </div>
   <div class="profile-stats">
     <div class="profile-stat-box"><div class="icon">💰</div><div class="lbl">BALANCE</div><div class="val" id="profileStatBalance">0</div></div>
     <div class="profile-stat-box"><div class="icon">📈</div><div class="lbl">EARNED</div><div class="val" id="profileStatEarned">0</div></div>
-    <div class="profile-stat-box"><div class="icon">👆</div><div class="lbl">TOTAL TAPS</div><div class="val" id="profileStatTaps">0</div></div>
+    <div class="profile-stat-box"><div class="icon">👆</div><div class="lbl">TAPS</div><div class="val" id="profileStatTaps">0</div></div>
     <div class="profile-stat-box"><div class="icon">🏆</div><div class="lbl">RANK</div><div class="val" id="profileStatRank">#---</div></div>
   </div>
   <div class="profile-info-card">
-    <div class="profile-info-row"><div class="lbl">📛 Username</div><div class="val" id="profileInfoName">TraxOfficial</div></div>
-    <div class="profile-info-row"><div class="lbl">🆔 Player ID</div><div class="val" id="profileInfoId">#0000</div></div>
+    <div class="profile-info-row"><div class="lbl">📛 Username</div><div class="val" id="profileInfoName">Player</div></div>
+    <div class="profile-info-row"><div class="lbl">🆔 Player ID</div><div class="val" id="profileInfoId">#000000</div></div>
+    <div class="profile-info-row"><div class="lbl">⭐ Level</div><div class="val" id="profileInfoLevel">1</div></div>
     <div class="profile-info-row"><div class="lbl">🎯 Tap Power</div><div class="val" id="profileInfoTapPower">+1</div></div>
     <div class="profile-info-row"><div class="lbl">⚡ Max Energy</div><div class="val" id="profileInfoEnergy">500</div></div>
     <div class="profile-info-row"><div class="lbl">🔥 Daily Streak</div><div class="val" id="profileInfoStreak">0 Days</div></div>
-    <div class="profile-info-row"><div class="lbl">⭐ Level</div><div class="val" id="profileInfoLevel">1</div></div>
   </div>
   <button class="profile-action-btn" onclick="navTo('editname')">✏️ Edit Name & Avatar</button>
-  <button class="profile-action-btn green" onclick="shareMyProfile()">🔗 Share My Profile</button>
+  <button class="profile-action-btn green" onclick="navTo('transfer')">💸 Transfer Coins</button>
+  <button class="profile-action-btn" onclick="shareMyProfile()" style="background:linear-gradient(135deg,#a040ff,#6020a0)">🔗 Share My Profile</button>
 </div>
 
+<!-- MINE -->
 <div class="tab-content" id="tab-mine">
   <div class="page-title-bar"><div class="page-title-icon">⛏️</div><div class="page-title-text">Mining</div></div>
   <div class="mine-page">
@@ -618,40 +619,60 @@
       <div class="mine-stat"><div class="lbl">PER SECOND</div><div class="val" id="mineRateVal">+5</div></div>
       <div class="mine-stat"><div class="lbl">TOTAL MINED</div><div class="val" id="mineTotalVal">+0</div></div>
     </div>
-    <div style="background:rgba(255,149,0,0.1);border:1px solid rgba(255,149,0,0.3);border-radius:14px;padding:14px;text-align:left">
+    <div style="background:rgba(255,149,0,0.1);border:1px solid rgba(255,149,0,0.3);border-radius:14px;padding:14px;text-align:left;margin-bottom:14px">
       <div style="font-size:12px;color:#ff9500;font-weight:900;margin-bottom:8px">⛏️ MINING LEVELS</div>
       <div style="font-size:10px;color:#a0aec0;line-height:1.8">
-        Level 1: +5/sec · Level 2: +10/sec · Level 3: +20/sec · Level 4: +35/sec · Level 5: +50/sec
+        Lv 1: +5/sec · Lv 2: +10/sec · Lv 3: +20/sec · Lv 4: +35/sec · Lv 5: +50/sec
       </div>
     </div>
+    <button class="profile-action-btn" onclick="navTo('upgrades')">⬆️ UPGRADE MINING POWER</button>
   </div>
 </div>
 
+<!-- TASKS -->
 <div class="tab-content" id="tab-tasks">
   <div class="page-title-bar"><div class="page-title-icon">📋</div><div class="page-title-text">Tasks</div></div>
   <div id="fullTasksListNew"></div>
 </div>
 
-<div class="tab-content" id="tab-wallet">
-  <div class="page-title-bar"><div class="page-title-icon">💼</div><div class="page-title-text">Wallet</div></div>
-  <div class="big-profile-card">
-    <div class="big-profile-top">
-      <div class="big-profile-avatar-wrap"><div class="big-profile-ring"></div><div class="big-profile-avatar" id="moreAvatarBig">👤</div></div>
-      <div class="big-profile-info">
-        <div class="big-profile-name-row"><span id="moreProfileName">TraxOfficial</span><span class="big-profile-badge" id="moreBadge">👑 Lv 1</span></div>
-        <div class="big-profile-id">ID: #<span id="morePlayerId">0000</span></div>
-      </div>
-    </div>
-    <div class="big-profile-balance">
-      <div class="big-profile-balance-label">◆ TOTAL COIN</div>
-      <div class="big-profile-balance-value"><span id="moreBalance">0</span> <small>TRAX</small></div>
-      <div class="big-profile-balance-sub">⏳ NOT LAUNCHED YET</div>
-    </div>
-    <div class="big-profile-actions">
-      <button class="big-profile-btn wallet" onclick="shareRef()"><div style="font-size:22px">👥</div><div style="font-size:10px;font-weight:900">INVITE</div></button>
-      <button class="big-profile-btn withdraw" onclick="shareMyProfile()"><div style="font-size:22px">📤</div><div style="font-size:10px;font-weight:900">SHARE</div></button>
+<!-- TRANSFER -->
+<div class="tab-content" id="tab-transfer">
+  <div class="page-title-bar"><div class="page-title-icon">💸</div><div class="page-title-text">Transfer</div></div>
+  <div class="transfer-box">
+    <h3>💸 Send Coins to Another Player</h3>
+    <input type="text" class="transfer-input" id="transferIdInput" placeholder="Enter Player ID (without #)" maxlength="6">
+    <input type="number" class="transfer-input" id="transferAmountInput" placeholder="Amount (TRAX)" min="100">
+    <button class="transfer-btn" onclick="doTransfer()">SEND COINS</button>
+  </div>
+  <div style="background:rgba(0,180,255,0.1);border:1px solid rgba(0,180,255,0.3);border-radius:14px;padding:14px;margin-bottom:14px">
+    <div style="font-size:12px;color:#00d4ff;font-weight:900;margin-bottom:8px">📋 TRANSFER RULES</div>
+    <div style="font-size:10px;color:#a0aec0;line-height:1.8">
+      • Minimum transfer: 100 TRAX<br>
+      • Player ID enter karo (jaisa Profile mein hai, e.g., 0491)<br>
+      • Apne aap ko transfer nahi kar sakte<br>
+      • Coins turant transfer ho jayenge
     </div>
   </div>
+</div>
+
+<!-- WALLET -->
+<div class="tab-content" id="tab-wallet">
+  <div class="page-title-bar"><div class="page-title-icon">💼</div><div class="page-title-text">Wallet</div></div>
+  <div class="big-profile-card" style="background:linear-gradient(135deg,rgba(0,180,255,0.15),rgba(150,0,255,0.08));border:2px solid rgba(0,212,255,0.5);border-radius:22px;padding:18px;margin-bottom:14px">
+    <div class="big-profile-top" style="display:flex;align-items:center;gap:14px;margin-bottom:14px">
+      <div style="width:72px;height:72px;position:relative;flex-shrink:0"><div style="position:absolute;inset:-4px;border-radius:50%;background:conic-gradient(from 0deg, #00d4ff, #00ff88, #9900ff, #ff0055, #00d4ff);animation:spinRing 4s linear infinite;opacity:0.85;filter:blur(2px)"></div><div class="big-profile-avatar" id="moreAvatarBig" style="position:absolute;inset:0;border-radius:50%;background:linear-gradient(135deg, #0a1929, #061224);display:flex;align-items:center;justify-content:center;font-size:32px;border:2px solid rgba(0,212,255,0.6);background-size:cover;background-position:center;z-index:2">👤</div></div>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><span id="moreProfileName" style="font-size:17px;font-weight:900;color:white">Player</span><span class="big-profile-badge" id="moreBadge" style="background:linear-gradient(135deg, #ffd700, #ff9500);color:#000;font-size:9px;font-weight:900;padding:3px 8px;border-radius:8px">⭐ Lv 1</span></div>
+        <div style="font-size:11px;color:#7a8ba5;font-weight:700" id="morePlayerId">ID: #000000</div>
+      </div>
+    </div>
+    <div style="background:rgba(0,0,0,0.35);border:1px solid rgba(0,212,255,0.3);border-radius:14px;padding:12px;margin-bottom:12px;text-align:center">
+      <div style="font-size:10px;color:#7a8ba5;letter-spacing:1.5px;margin-bottom:4px;font-weight:700">◆ TOTAL COIN</div>
+      <div style="font-size:26px;font-weight:900;color:white;line-height:1.1"><span id="moreBalance">0</span> <small style="font-size:12px;color:#00d4ff">TRAX</small></div>
+      <div style="font-size:9px;color:#ff9500;font-weight:900;margin-top:3px">⏳ NOT LAUNCHED YET</div>
+    </div>
+  </div>
+  <div class="more-card" onclick="navTo('transfer')"><div class="more-card-icon referral">💸</div><div class="more-card-info"><h4>Transfer Coins</h4><p>Send to another player</p></div><div class="more-card-arrow">›</div></div>
   <div style="background:rgba(255,150,0,0.15);border:1px solid rgba(255,150,0,0.4);border-radius:14px;padding:14px;margin-bottom:15px;text-align:center">
     <div style="font-size:32px;margin-bottom:6px">🚀</div>
     <div style="font-size:14px;font-weight:900;color:#ff9500;margin-bottom:4px">Coming Soon</div>
@@ -659,7 +680,6 @@
   </div>
   <div class="withdraw-option"><div class="withdraw-option-icon">💎</div><div class="withdraw-option-info"><h4>TON Wallet</h4><p>Tonkeeper, TON Space</p></div><span class="coming-soon-badge">SOON</span></div>
   <div class="withdraw-option"><div class="withdraw-option-icon">🟡</div><div class="withdraw-option-info"><h4>Binance Wallet</h4><p>Direct to Binance</p></div><span class="coming-soon-badge">SOON</span></div>
-  <div class="withdraw-option"><div class="withdraw-option-icon">✈️</div><div class="withdraw-option-info"><h4>Telegram Wallet</h4><p>@wallet in Telegram</p></div><span class="coming-soon-badge">SOON</span></div>
   <div class="more-card" onclick="navTo('friends')" style="margin-top:15px"><div class="more-card-icon referral">👥</div><div class="more-card-info"><h4>Referral Program</h4><p>+500 TRAX per friend</p></div><div class="more-card-arrow">›</div></div>
   <div class="more-card" onclick="navTo('settings')"><div class="more-card-icon settings">⚙️</div><div class="more-card-info"><h4>Settings</h4><p>Sound & vibration</p></div><div class="more-card-arrow">›</div></div>
 </div>
@@ -696,8 +716,8 @@
 
 <div class="tab-content" id="tab-sticker">
   <div class="page-title-bar"><div class="page-title-icon">🎨</div><div class="page-title-text">Sticker Shop</div></div>
-  <p style="font-size:10px;color:#a0aec0;margin-bottom:10px;text-align:center">Har sticker ko max (Lv 5) karein — tab agla unlock hoga!</p>
-  <div id="stickerShopContainer"></div>
+  <div class="sticker-tabs" id="stickerTabs"></div>
+  <div class="sticker-shop" id="stickerShopContainer"></div>
 </div>
 
 <div class="tab-content" id="tab-settings">
@@ -711,8 +731,8 @@
   <div class="page-title-bar"><div class="page-title-icon">✏️</div><div class="page-title-text">Edit Profile</div></div>
   <div class="ref-card">
     <h3 style="color:#00d4ff;margin-bottom:15px">Your Name</h3>
-    <input type="text" class="input-field" id="usernameInput" placeholder="Enter unique name" maxlength="20">
-    <p style="font-size:10px;color:#ff9500;margin-bottom:15px">⚠️ Name ek baar set ho jaye to change nahi hoga</p>
+    <input type="text" class="input-field" id="usernameInput" placeholder="Enter unique name" maxlength="15">
+    <p style="font-size:10px;color:#ff9500;margin-bottom:15px" id="nameCooldownText">⚠️ Name ek baar set = 15 din change nahi ho sakta</p>
     <h3 style="color:#00d4ff;margin-bottom:10px">Choose Avatar</h3>
     <div class="avatar-grid" id="avatarGrid"></div>
     <div style="margin-top:15px">
@@ -843,7 +863,7 @@
       <div class="twist-arrow-marker">▼</div>
     </div>
     <div class="twist-result-box" id="twistResultBox">
-      <div class="label">🎉 YOU WON</div>
+      <div class="label" id="twistResultLabel">🎉 YOU WON</div>
       <div class="mult" id="twistResultMult">2x</div>
       <div class="amount" id="twistResultAmount">+0 TRAX</div>
     </div>
@@ -855,8 +875,12 @@
       </div>
       <button class="twist-bet-btn" id="twistBetUp" onclick="adjustTwistBet(1)">+</button>
     </div>
+    <div class="twist-custom-row">
+      <input type="number" class="twist-custom-input" id="twistCustomBet" placeholder="Custom bet" min="100">
+      <button class="twist-set-btn" onclick="applyTwistCustomBet()">SET</button>
+    </div>
     <button class="twist-spin-btn" id="twistSpinBtn" onclick="playTwist()">🌀 SPIN</button>
-    <div class="twist-info">Pointer ghume ga · Jis ring pe rukega, woh multiplier milega</div>
+    <div class="twist-info">Pointer ghume ga · Jis ring pe rukega, woh multiplier milega<br>Win ya Lose dono possible</div>
   </div>
 </div>
 
@@ -947,6 +971,7 @@
     localStorage.setItem('trax_username', userName);
     localStorage.setItem('trax_avatar', userAvatar);
     localStorage.setItem('trax_avatar_isimg', avatarIsImage);
+    localStorage.setItem('trax_nameChangedAt', Date.now());
     updateAvatarDisplays(); updateProfilePage();
     showModal('🎉 Name Set!', 'Welcome ' + userName + '!');
   }
@@ -962,14 +987,44 @@
   let totalEarned = parseInt(localStorage.getItem('trax_totalEarned') || '0');
   let miningActive = false;
   let miningTotalEarned = parseInt(localStorage.getItem('trax_miningTotal') || '0');
+  let currentXP = parseInt(localStorage.getItem('trax_xp') || '0');
+  let currentLevel = parseInt(localStorage.getItem('trax_level') || '1');
 
   let boosterAutoTapBonus = parseInt(localStorage.getItem('trax_booster_autoTap_bonus') || '0');
   let boosterDoubleBonus = parseInt(localStorage.getItem('trax_booster_double_bonus') || '0');
 
   const userId = tg && tg.initDataUnsafe && tg.initDataUnsafe.user ? tg.initDataUnsafe.user.id : Math.floor(Math.random() * 9000) + 1000;
+  // 6-digit unique ID
+  let playerId = localStorage.getItem('trax_playerId') || String(userId).slice(-6).padStart(6, '0');
+  localStorage.setItem('trax_playerId', playerId);
 
-  // ===== STICKERS =====
+  // ===== XP & LEVEL SYSTEM =====
+  function getXPForLevel(level) {
+    // Random-ish progression: 100, 250, 500, 900, 1500, 2300, 3400, 4800, 6500, 8500...
+    const arr = [100, 250, 500, 900, 1500, 2300, 3400, 4800, 6500, 8500, 11000, 14000, 17500, 21500, 26000];
+    if (level <= arr.length) return arr[level - 1];
+    return 26000 + (level - arr.length) * 5000;
+  }
+  function addXP(amount) {
+    currentXP += amount;
+    let needed = getXPForLevel(currentLevel);
+    while (currentXP >= needed) {
+      currentXP -= needed;
+      currentLevel++;
+      showToast('⭐ LEVEL UP! Level ' + currentLevel);
+      playSound('win'); vibrate('success');
+      needed = getXPForLevel(currentLevel);
+    }
+    localStorage.setItem('trax_xp', currentXP);
+    localStorage.setItem('trax_level', currentLevel);
+    updateUI();
+  }
+  function getLevelFromXP() {
+    return { level: currentLevel, xp: currentXP, need: getXPForLevel(currentLevel) };
+  }
+
   const STICKERS = [
+    // COMMON
     { id: 'c1', tier: 'common', icon: '👆', name: 'Tap I', bonus: lvl => '+' + (1*lvl) + ' Tap', cost: 5000 },
     { id: 'c2', tier: 'common', icon: '✋', name: 'Tap II', bonus: lvl => '+' + (2*lvl) + ' Tap', cost: 8000 },
     { id: 'c3', tier: 'common', icon: '🤚', name: 'Tap III', bonus: lvl => '+' + (3*lvl) + ' Tap', cost: 10000 },
@@ -980,32 +1035,81 @@
     { id: 'c8', tier: 'common', icon: '💰', name: 'Coin', bonus: lvl => '+' + (5*lvl) + ' Auto', cost: 13000 },
     { id: 'c9', tier: 'common', icon: '⛏️', name: 'Pickaxe', bonus: lvl => '+' + (2*lvl) + ' Mining', cost: 14000 },
     { id: 'c10', tier: 'common', icon: '🌟', name: 'Star', bonus: lvl => '+' + (3*lvl) + ' Tap', cost: 12000 },
+    // RARE
     { id: 'r1', tier: 'rare', icon: '💎', name: 'Diamond', bonus: lvl => '+' + (10*lvl) + ' Tap', cost: 60000 },
     { id: 'r2', tier: 'rare', icon: '🔮', name: 'Orb', bonus: lvl => '+' + (5*lvl) + ' Energy', cost: 70000 },
     { id: 'r3', tier: 'rare', icon: '🚀', name: 'Rocket', bonus: lvl => '+' + (25*lvl) + ' Auto', cost: 80000 },
+    { id: 'r4', tier: 'rare', icon: '⚙️', name: 'Gear', bonus: lvl => '+' + (50*lvl) + ' MaxEnergy', cost: 90000 },
+    { id: 'r5', tier: 'rare', icon: '⛏️', name: 'Drill', bonus: lvl => '+' + (5*lvl) + ' Mining', cost: 100000 },
+    // EPIC
     { id: 'e1', tier: 'epic', icon: '👑', name: 'Crown', bonus: lvl => '+' + (100*lvl) + ' Auto', cost: 400000 },
     { id: 'e2', tier: 'epic', icon: '🦅', name: 'Eagle', bonus: lvl => '+' + (40*lvl) + ' Tap', cost: 450000 },
-    { id: 'l1', tier: 'legendary', icon: '🐉', name: 'Dragon', bonus: lvl => '+' + (500*lvl) + ' Auto', cost: 2000000 }
+    { id: 'e3', tier: 'epic', icon: '🔥', name: 'Inferno', bonus: lvl => '+' + (15*lvl) + ' Energy', cost: 500000 },
+    // LEGENDARY
+    { id: 'l1', tier: 'legendary', icon: '🐉', name: 'Dragon', bonus: lvl => '+' + (500*lvl) + ' Auto', cost: 2000000 },
+    { id: 'l2', tier: 'legendary', icon: '🦄', name: 'Unicorn', bonus: lvl => '+' + (200*lvl) + ' Tap', cost: 2500000 },
+    // NAME CHANGE CARD
+    { id: 'namecard', tier: 'legendary', icon: '📝', name: 'Name Change Card', bonus: lvl => 'Change your name', cost: 1000000, isNameCard: true }
   ];
-  const MAX_STICKER_LEVEL = 5;
+  const MAX_STICKER_LEVEL = 10; // 10 levels now
   const STICKER_MULT = 1.5;
 
+  let currentStickerTab = 'common';
+  function renderStickerTabs() {
+    const tabs = document.getElementById('stickerTabs');
+    if (!tabs) return;
+    tabs.innerHTML = '';
+    ['common', 'rare', 'epic', 'legendary'].forEach(tier => {
+      const t = document.createElement('div');
+      t.className = 'sticker-tab ' + tier + (currentStickerTab === tier ? ' active' : '');
+      const icons = { common: '⚪', rare: '🔵', epic: '🟣', legendary: '🟠' };
+      t.textContent = icons[tier] + ' ' + tier.charAt(0).toUpperCase() + tier.slice(1);
+      t.onclick = () => { currentStickerTab = tier; renderStickerTabs(); drawStickers(); };
+      tabs.appendChild(t);
+    });
+  }
+
   function isStickerUnlocked(id) {
-    const idx = STICKERS.findIndex(s => s.id === id);
-    if (idx === 0) return true;
-    return (stickerLevels[STICKERS[idx - 1].id] || 0) >= MAX_STICKER_LEVEL;
+    // Common tier always unlocked, others need previous tier maxed
+    const s = STICKERS.find(x => x.id === id);
+    if (!s) return false;
+    if (s.tier === 'common') return true;
+    if (s.isNameCard) return true; // name card unlocked if legendary tier open
+    if (s.tier === 'rare') {
+      return STICKERS.filter(x => x.tier === 'common').every(x => (stickerLevels[x.id] || 0) >= MAX_STICKER_LEVEL);
+    }
+    if (s.tier === 'epic') {
+      return STICKERS.filter(x => x.tier === 'rare').every(x => (stickerLevels[x.id] || 0) >= MAX_STICKER_LEVEL);
+    }
+    if (s.tier === 'legendary') {
+      return STICKERS.filter(x => x.tier === 'epic').every(x => (stickerLevels[x.id] || 0) >= MAX_STICKER_LEVEL);
+    }
+    return false;
   }
   function getStickerUnlockReq(id) {
-    const idx = STICKERS.findIndex(s => s.id === id);
-    if (idx === 0) return null;
-    const prev = STICKERS[idx - 1];
-    const lvl = stickerLevels[prev.id] || 0;
-    if (lvl >= MAX_STICKER_LEVEL) return null;
-    return prev.name + ' (Lv ' + lvl + '/' + MAX_STICKER_LEVEL + ')';
+    const s = STICKERS.find(x => x.id === id);
+    if (!s) return null;
+    if (s.tier === 'rare') {
+      const prev = STICKERS.filter(x => x.tier === 'common');
+      const notMaxed = prev.find(x => (stickerLevels[x.id] || 0) < MAX_STICKER_LEVEL);
+      if (notMaxed) return 'Max out all Common stickers (e.g., ' + notMaxed.name + ')';
+    }
+    if (s.tier === 'epic') {
+      const prev = STICKERS.filter(x => x.tier === 'rare');
+      const notMaxed = prev.find(x => (stickerLevels[x.id] || 0) < MAX_STICKER_LEVEL);
+      if (notMaxed) return 'Max out all Rare stickers (e.g., ' + notMaxed.name + ')';
+    }
+    if (s.tier === 'legendary') {
+      const prev = STICKERS.filter(x => x.tier === 'epic');
+      const notMaxed = prev.find(x => (stickerLevels[x.id] || 0) < MAX_STICKER_LEVEL);
+      if (notMaxed) return 'Max out all Epic stickers (e.g., ' + notMaxed.name + ')';
+    }
+    return null;
   }
   function getStickerBonusFromAll(keyword) {
     let total = 0;
     STICKERS.forEach(s => {
+      if (s.isNameCard) return;
       const lvl = stickerLevels[s.id] || 0;
       if (!lvl) return;
       const text = s.bonus(lvl);
@@ -1026,14 +1130,16 @@
     document.getElementById('statTap').textContent = getEffectiveTapPower();
     document.getElementById('statAuto').textContent = autoEarn;
 
-    const LEVEL_XP = 50000;
-    const level = Math.floor(totalEarned / LEVEL_XP) + 1;
-    const xpInLevel = totalEarned % LEVEL_XP;
-    document.getElementById('levelNum').textContent = level;
-    document.getElementById('xpFill').style.width = (xpInLevel / LEVEL_XP * 100) + '%';
-    document.getElementById('moreProfileName').textContent = userName || 'TraxOfficial';
-    document.getElementById('moreBadge').textContent = '👑 Lv ' + level;
-    document.getElementById('morePlayerId').textContent = String(userId).slice(-4).padStart(4, '0');
+    // Level & XP
+    const levelInfo = getLevelFromXP();
+    document.getElementById('levelNum').textContent = levelInfo.level;
+    document.getElementById('xpFill').style.width = (levelInfo.xp / levelInfo.need * 100) + '%';
+    document.getElementById('xpCurrent').textContent = levelInfo.xp;
+    document.getElementById('xpNeed').textContent = levelInfo.need;
+
+    document.getElementById('moreProfileName').textContent = userName || 'Player';
+    document.getElementById('moreBadge').textContent = '⭐ Lv ' + levelInfo.level;
+    document.getElementById('morePlayerId').textContent = 'ID: #' + playerId;
     document.getElementById('moreBalance').textContent = Math.floor(balance).toLocaleString();
     document.getElementById('mineTotalVal').textContent = '+' + miningTotalEarned.toLocaleString();
     document.getElementById('mineRateVal').textContent = '+' + getMiningRate();
@@ -1043,7 +1149,6 @@
 
   // ===== SIDE CARDS =====
   function updateSideCards() {
-    // Red Pocket
     const rp = getRedPocketState();
     const rpTimer = document.getElementById('rpSideTimer');
     const rpCard = document.getElementById('sideRedPocket');
@@ -1052,7 +1157,6 @@
       if (rp.ready) { rpTimer.textContent = 'READY'; rpTimer.style.color = '#00ff88'; rpCard.classList.add('ready'); rpDot.style.display = 'block'; }
       else { rpTimer.textContent = formatRPTime(rp.remaining); rpTimer.style.color = '#ff5555'; rpCard.classList.remove('ready'); rpDot.style.display = 'none'; }
     }
-    // Attendance
     const attData = checkAttendanceReset();
     const attDay = document.getElementById('attSideDay');
     const attDot = document.getElementById('attDot');
@@ -1060,7 +1164,6 @@
       if (canClaimToday()) { attDay.textContent = 'Claim Day ' + (attData.currentDay + 1); attDay.style.color = '#00ff88'; attDot.style.display = 'block'; }
       else { attDay.textContent = 'Day ' + attData.currentDay + ' done'; attDay.style.color = '#7a8ba5'; attDot.style.display = 'none'; }
     }
-    // Mining
     const mineStatus = document.getElementById('mineSideStatus');
     if (mineStatus) {
       if (miningActive) { mineStatus.textContent = 'Mining...'; mineStatus.style.color = '#ff9500'; }
@@ -1071,24 +1174,22 @@
 
   // ===== PROFILE PAGE =====
   function updateProfilePage() {
-    const LEVEL_XP = 50000;
-    const level = Math.floor(totalEarned / LEVEL_XP) + 1;
-    const pid = String(userId).slice(-4).padStart(4, '0');
+    const levelInfo = getLevelFromXP();
     const attData = checkAttendanceReset();
     const el = (id) => document.getElementById(id);
-    if (el('profileHeroName')) el('profileHeroName').textContent = userName || 'TraxOfficial';
-    if (el('profileHeroId')) el('profileHeroId').textContent = pid;
-    if (el('profileHeroBadge')) el('profileHeroBadge').textContent = '👑 Level ' + level;
+    if (el('profileHeroName')) el('profileHeroName').textContent = userName || 'Player';
+    if (el('profileHeroId')) el('profileHeroId').textContent = playerId;
+    if (el('profileHeroBadge')) el('profileHeroBadge').textContent = '⭐ Level ' + levelInfo.level;
     if (el('profileStatBalance')) el('profileStatBalance').textContent = Math.floor(balance).toLocaleString();
     if (el('profileStatEarned')) el('profileStatEarned').textContent = Math.floor(totalEarned).toLocaleString();
     if (el('profileStatTaps')) el('profileStatTaps').textContent = totalTaps.toLocaleString();
     if (el('profileStatRank')) el('profileStatRank').textContent = '#---';
-    if (el('profileInfoName')) el('profileInfoName').textContent = userName || 'TraxOfficial';
-    if (el('profileInfoId')) el('profileInfoId').textContent = '#' + pid;
+    if (el('profileInfoName')) el('profileInfoName').textContent = userName || 'Player';
+    if (el('profileInfoId')) el('profileInfoId').textContent = '#' + playerId;
+    if (el('profileInfoLevel')) el('profileInfoLevel').textContent = levelInfo.level;
     if (el('profileInfoTapPower')) el('profileInfoTapPower').textContent = '+' + getEffectiveTapPower();
     if (el('profileInfoEnergy')) el('profileInfoEnergy').textContent = getEffectiveMaxEnergy();
     if (el('profileInfoStreak')) el('profileInfoStreak').textContent = attData.currentDay + ' Days';
-    if (el('profileInfoLevel')) el('profileInfoLevel').textContent = level;
   }
 
   // ===== SAVE =====
@@ -1109,8 +1210,9 @@
     if (energy <= 0) { playSound('error'); vibrate('error'); showModal('⚡ Energy Empty', 'Energy khatam.'); return; }
     const gain = getEffectiveTapPower();
     balance += gain; energy--; totalTaps++; totalEarned += gain;
+    addXP(1); // +1 XP per tap
     updateUI(); save();
-    createSparkles(e.clientX, e.clientY);
+    // Show float text only, NO sparkles/colour dots
     showFloat(e.clientX, e.clientY, '+' + gain);
     playSound('tap'); vibrate('light');
   });
@@ -1120,18 +1222,7 @@
     el.style.left = (x - 20) + 'px'; el.style.top = (y - 40) + 'px';
     document.body.appendChild(el); setTimeout(() => el.remove(), 1000);
   }
-  function createSparkles(x, y) {
-    for (let i = 0; i < 4; i++) {
-      const s = document.createElement('div');
-      s.style.position = 'fixed'; s.style.width = '8px'; s.style.height = '8px';
-      s.style.borderRadius = '50%'; s.style.pointerEvents = 'none';
-      s.style.left = (x + (Math.random() - 0.5) * 60) + 'px';
-      s.style.top = (y + (Math.random() - 0.5) * 60) + 'px';
-      s.style.background = ['#00d4ff', '#00ff88', '#ffffff', '#ff9500'][i];
-      s.style.boxShadow = '0 0 15px ' + s.style.background; s.style.zIndex = '998';
-      document.body.appendChild(s); setTimeout(() => s.remove(), 800);
-    }
-  }
+  // REMOVED createSparkles
 
   // ===== MINING =====
   const MINING_RATES = [5, 10, 20, 35, 50];
@@ -1166,6 +1257,7 @@
       balance += rate;
       totalEarned += rate;
       miningTotalEarned += rate;
+      addXP(1);
       const remaining = 60 - miningElapsed;
       const mm = String(Math.floor(remaining / 60)).padStart(2, '0');
       const ss = String(remaining % 60).padStart(2, '0');
@@ -1255,6 +1347,7 @@
       balance += 5000; totalEarned += 5000;
       showModal('⏰ Offline Profit!', '+5,000 TRAX mile!');
     }
+    addXP(10);
     updateUI(); save(); updateBoosterUI();
     playSound('win'); vibrate('success');
   }
@@ -1306,6 +1399,7 @@
     if (id === 'tapPower') baseTapPower += 1;
     if (id === 'maxEnergy') maxEnergy += 50;
     if (id === 'autoEarn') autoEarn += 5;
+    addXP(15); // XP reward for upgrade
     updateUI(); save(); drawUpgrades();
     playSound('win'); vibrate('success');
     showModal('✅ Upgraded!', 'Level ' + level + ' ho gaya!');
@@ -1315,39 +1409,41 @@
   function drawStickers() {
     const container = document.getElementById('stickerShopContainer');
     container.innerHTML = '';
-    const tiers = [
-      { id: 'common', label: '◆ COMMON' }, { id: 'rare', label: '◆ RARE' },
-      { id: 'epic', label: '◆ EPIC' }, { id: 'legendary', label: '◆ LEGENDARY' }
-    ];
-    tiers.forEach(tier => {
-      const title = document.createElement('div');
-      title.className = 'sticker-tier-title ' + tier.id;
-      title.textContent = tier.label;
-      container.appendChild(title);
-      const grid = document.createElement('div');
-      grid.className = 'sticker-shop';
-      STICKERS.filter(s => s.tier === tier.id).forEach(s => {
-        const lvl = stickerLevels[s.id] || 0;
-        const isMax = lvl >= MAX_STICKER_LEVEL;
-        const nextCost = isMax ? 0 : Math.floor(s.cost * Math.pow(STICKER_MULT, lvl));
-        const benefit = lvl > 0 ? s.bonus(lvl) : s.bonus(1) + ' (Lv1)';
-        const unlocked = isStickerUnlocked(s.id);
-        const req = getStickerUnlockReq(s.id);
-        const el = document.createElement('div');
-        el.className = 'sticker-card ' + s.tier + (isMax ? ' max' : lvl > 0 ? ' owned' : '') + (!unlocked ? ' locked' : '');
-        el.innerHTML = '<div class="sticker-icon">' + s.icon + '</div><div class="sticker-name">' + s.name + '</div><div class="sticker-lvl">' + (lvl > 0 ? 'Lv ' + lvl + '/' + MAX_STICKER_LEVEL : 'Not Owned') + '</div><div class="sticker-benefit">' + (unlocked ? benefit : '🔒 Locked') + '</div><div class="sticker-price' + (isMax ? ' max' : !unlocked ? ' locked' : '') + '">' + (isMax ? '⭐ MAX' : !unlocked ? '🔒 LOCKED' : nextCost.toLocaleString() + ' TRAX') + '</div>';
-        if (!isMax && unlocked) el.onclick = () => buySticker(s, nextCost);
-        else if (!unlocked) el.onclick = () => showModal('🔒 Locked', 'Pehle max karein:\n\n' + req);
-        grid.appendChild(el);
-      });
-      container.appendChild(grid);
+    renderStickerTabs();
+    const filtered = STICKERS.filter(s => s.tier === currentStickerTab);
+    filtered.forEach(s => {
+      const lvl = stickerLevels[s.id] || 0;
+      const isMax = lvl >= MAX_STICKER_LEVEL;
+      const nextCost = isMax ? 0 : Math.floor(s.cost * Math.pow(STICKER_MULT, lvl));
+      const benefit = s.isNameCard ? (lvl > 0 ? '✓ Owned' : 'Change name') : (lvl > 0 ? s.bonus(lvl) : s.bonus(1) + ' (Lv1)');
+      const unlocked = isStickerUnlocked(s.id);
+      const req = getStickerUnlockReq(s.id);
+      const el = document.createElement('div');
+      el.className = 'sticker-card ' + s.tier + (isMax ? ' max' : lvl > 0 ? ' owned' : '') + (!unlocked ? ' locked' : '');
+      el.innerHTML = '<div class="sticker-icon">' + s.icon + '</div><div class="sticker-name">' + s.name + '</div><div class="sticker-lvl">' + (s.isNameCard ? (lvl > 0 ? 'OWNED' : 'Not Owned') : (lvl > 0 ? 'Lv ' + lvl + '/' + MAX_STICKER_LEVEL : 'Not Owned')) + '</div><div class="sticker-benefit">' + (unlocked ? benefit : '🔒 Locked') + '</div><div class="sticker-price' + (isMax ? ' max' : !unlocked ? ' locked' : '') + '">' + (isMax ? '⭐ MAX' : !unlocked ? '🔒 LOCKED' : nextCost.toLocaleString() + ' TRAX') + '</div>';
+      if (!isMax && unlocked && !s.isNameCard) el.onclick = () => buySticker(s, nextCost);
+      else if (!isMax && unlocked && s.isNameCard) el.onclick = () => buySticker(s, nextCost);
+      else if (!unlocked) el.onclick = () => showModal('🔒 Locked', req || 'Pehle pichle tier ko max karein.');
+      container.appendChild(el);
     });
   }
   function buySticker(s, cost) {
     if (balance < cost) { showModal('❌ Not Enough', 'Cost: ' + cost.toLocaleString() + ' TRAX'); return; }
+    if (s.isNameCard) {
+      if (stickerLevels[s.id]) { showModal('✓ Already Owned', 'Aapke paas name change card already hai.'); return; }
+      balance -= cost;
+      stickerLevels[s.id] = 1;
+      localStorage.setItem('trax_stickers_v4', JSON.stringify(stickerLevels));
+      addXP(100);
+      updateUI(); save(); drawStickers();
+      playSound('win'); vibrate('success');
+      showModal('📝 Name Change Card!', 'Aapke paas ab Name Change Card hai.\n\nAb aap Edit Profile se name change kar sakte ho (cooldown ke bina).');
+      return;
+    }
     balance -= cost;
     stickerLevels[s.id] = (stickerLevels[s.id] || 0) + 1;
     localStorage.setItem('trax_stickers_v4', JSON.stringify(stickerLevels));
+    addXP(20);
     updateUI(); save(); drawStickers();
     playSound('win'); vibrate('success');
     showModal('🎉 Upgraded!', s.name + ' Level ' + stickerLevels[s.id] + ' ho gaya!');
@@ -1358,34 +1454,89 @@
     const box = document.getElementById('fullTasksListNew');
     box.innerHTML = '';
     const tasks = [
-      { id: 'tg', icon: '📢', iconClass: 'telegram', name: 'Join Telegram', reward: 1000, done: localStorage.getItem('task_tg') === 'done' },
-      { id: 'x', icon: '𝕏', iconClass: 'twitter', name: 'Follow X', reward: 1000, done: localStorage.getItem('task_x') === 'done' },
-      { id: 'video', icon: '▶', iconClass: 'youtube', name: 'Watch Video', reward: 2000, done: localStorage.getItem('task_video') === 'done' },
-      { id: 'invite', icon: '👥', iconClass: 'invite', name: 'Invite Friends', reward: 5000, done: false }
+      { id: 'tg', icon: '📢', iconClass: 'telegram', name: 'Join Telegram', reward: 1000, xp: 50, done: localStorage.getItem('task_tg') === 'done' },
+      { id: 'x', icon: '𝕏', iconClass: 'twitter', name: 'Follow X', reward: 1000, xp: 50, done: localStorage.getItem('task_x') === 'done' },
+      { id: 'video', icon: '▶', iconClass: 'youtube', name: 'Watch Video', reward: 2000, xp: 75, done: localStorage.getItem('task_video') === 'done' },
+      { id: 'invite', icon: '👥', iconClass: 'invite', name: 'Invite Friends', reward: 5000, xp: 100, done: false }
     ];
     tasks.forEach(t => {
       const el = document.createElement('div');
       el.className = 'task-row';
-      el.innerHTML = '<div class="task-icon-wrap ' + t.iconClass + '">' + t.icon + '</div><div class="task-content"><div class="task-title">' + t.name + '</div><div class="task-reward-row">+' + t.reward.toLocaleString() + ' TRAX</div></div><button class="task-btn ' + (t.done ? 'done' : 'go') + '" onclick="doTaskNew(\'' + t.id + '\',' + t.reward + ')">' + (t.done ? '✓ DONE' : 'GO') + '</button>';
+      el.innerHTML = '<div class="task-icon-wrap ' + t.iconClass + '">' + t.icon + '</div><div class="task-content"><div class="task-title">' + t.name + '</div><div class="task-reward-row">+' + t.reward.toLocaleString() + ' TRAX · +' + t.xp + ' XP</div></div><button class="task-btn ' + (t.done ? 'done' : 'go') + '" onclick="doTaskNew(\'' + t.id + '\',' + t.reward + ',' + t.xp + ')">' + (t.done ? '✓ DONE' : 'GO') + '</button>';
       box.appendChild(el);
     });
   }
-  function doTaskNew(id, reward) {
+  function doTaskNew(id, reward, xp) {
     if (localStorage.getItem('task_' + id) === 'done') { showModal('✅ Done', 'Ye task pehle kar chuke hain.'); return; }
     localStorage.setItem('task_' + id, 'done');
     balance += reward; totalEarned += reward;
+    addXP(xp);
     updateUI(); save(); drawTasksNew();
-    showModal('🎉 Task Complete!', '+' + reward.toLocaleString() + ' TRAX!');
+    showModal('🎉 Task Complete!', '+' + reward.toLocaleString() + ' TRAX\n+' + xp + ' XP');
   }
 
-  // ===== LEADERBOARD =====
-  function drawHomeRank() {
+  // ===== LEADERBOARD (30-min reset) =====
+  const LEADERBOARD_RESET_MS = 30 * 60 * 1000;
+  function getLeaderboardData() {
+    const raw = localStorage.getItem('trax_leaderboard') || '{}';
+    const lastReset = parseInt(localStorage.getItem('trax_leaderboard_reset') || '0');
+    const now = Date.now();
+    if (now - lastReset >= LEADERBOARD_RESET_MS) {
+      localStorage.setItem('trax_leaderboard', '{}');
+      localStorage.setItem('trax_leaderboard_reset', now);
+      return {};
+    }
+    try { return JSON.parse(raw); } catch(e) { return {}; }
+  }
+  function recordLeaderboard(coins) {
+    const data = getLeaderboardData();
+    data[playerId] = { id: playerId, name: userName || 'Player', coins: Math.floor(coins) };
+    localStorage.setItem('trax_leaderboard', JSON.stringify(data));
+  }
+  function renderLeaderboard() {
+    const data = getLeaderboardData();
+    const entries = Object.values(data).sort((a, b) => b.coins - a.coins).slice(0, 10);
     const box = document.getElementById('homeRankList');
-    box.innerHTML = '<div style="text-align:center;padding:20px;color:#7a8ba5;font-size:12px"><div style="font-size:32px;margin-bottom:8px">🏆</div><div style="font-weight:900;color:#00d4ff">No players yet</div><div>1,00,000+ TRAX jama karein</div></div>';
+    if (!box) return;
+    if (entries.length === 0) {
+      box.innerHTML = '<div style="text-align:center;padding:20px;color:#7a8ba5;font-size:12px"><div style="font-size:32px;margin-bottom:8px">🏆</div><div style="font-weight:900;color:#00d4ff">No players yet</div><div>1,00,000+ TRAX jama karein</div></div>';
+      return;
+    }
+    box.innerHTML = '';
+    entries.forEach((e, i) => {
+      const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : '#' + (i + 1);
+      const row = document.createElement('div');
+      row.style.cssText = 'display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:rgba(0,0,0,0.3);border-radius:10px;margin-bottom:6px';
+      row.innerHTML = '<div style="display:flex;align-items:center;gap:8px"><span style="font-size:16px">' + medal + '</span><span style="font-size:12px;font-weight:900;color:white">' + e.name + '</span><span style="font-size:9px;color:#7a8ba5">#' + e.id + '</span></div><span style="font-size:12px;font-weight:900;color:#00d4ff">' + e.coins.toLocaleString() + '</span>';
+      box.appendChild(row);
+    });
+  }
+  function updateRankResetTimer() {
+    const el = document.getElementById('rankResetTimer');
+    if (!el) return;
+    const lastReset = parseInt(localStorage.getItem('trax_leaderboard_reset') || '0');
+    const remaining = Math.max(0, LEADERBOARD_RESET_MS - (Date.now() - lastReset));
+    const m = Math.floor(remaining / 60000);
+    const s = Math.floor((remaining % 60000) / 1000);
+    el.textContent = m + 'm ' + String(s).padStart(2, '0') + 's';
   }
   function drawRank() {
+    const data = getLeaderboardData();
+    const entries = Object.values(data).sort((a, b) => b.coins - a.coins).slice(0, 20);
     const list = document.getElementById('rankList');
-    list.innerHTML = '<div style="text-align:center;padding:30px;color:#7a8ba5"><div style="font-size:44px">🏆</div><div style="font-weight:900;color:#00d4ff;margin-top:10px">No players yet</div></div>';
+    if (!list) return;
+    if (entries.length === 0) {
+      list.innerHTML = '<div style="text-align:center;padding:30px;color:#7a8ba5"><div style="font-size:44px">🏆</div><div style="font-weight:900;color:#00d4ff;margin-top:10px">No players yet</div></div>';
+      return;
+    }
+    list.innerHTML = '';
+    entries.forEach((e, i) => {
+      const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : '#' + (i + 1);
+      const row = document.createElement('div');
+      row.style.cssText = 'display:flex;justify-content:space-between;align-items:center;padding:12px;background:rgba(0,0,0,0.3);border-radius:12px;margin-bottom:8px';
+      row.innerHTML = '<div style="display:flex;align-items:center;gap:10px"><span style="font-size:20px">' + medal + '</span><div><div style="font-size:13px;font-weight:900;color:white">' + e.name + '</div><div style="font-size:9px;color:#7a8ba5">#' + e.id + '</div></div></div><span style="font-size:14px;font-weight:900;color:#00d4ff">' + e.coins.toLocaleString() + '</span>';
+      list.appendChild(row);
+    });
   }
 
   // ===== SHARE =====
@@ -1396,8 +1547,32 @@
   }
   function shareMyProfile() {
     const link = 'https://t.me/TraxOfficial_bot?start=ref' + userId;
-    const text = 'Mera TraxOfficial profile dekho! Level ' + (Math.floor(totalEarned / 50000) + 1) + ' · ' + Math.floor(balance).toLocaleString() + ' TRAX 🎉';
+    const text = 'Mera TraxOfficial profile dekho! ID: #' + playerId + ' · Level ' + currentLevel + ' · ' + Math.floor(balance).toLocaleString() + ' TRAX 🎉';
     if (tg) tg.openTelegramLink('https://t.me/share/url?url=' + encodeURIComponent(link) + '&text=' + encodeURIComponent(text));
+  }
+
+  // ===== TRANSFER =====
+  function doTransfer() {
+    const toId = (document.getElementById('transferIdInput').value || '').trim();
+    const amount = parseInt(document.getElementById('transferAmountInput').value || '0');
+    if (!/^\d{6}$/.test(toId)) { showModal('❌ Invalid ID', 'Player ID 6 digits ka hona chahiye (e.g., 049123).'); return; }
+    if (toId === playerId) { showModal('❌ Same ID', 'Apne aap ko transfer nahi kar sakte.'); return; }
+    if (!amount || amount < 100) { showModal('⚠️ Min 100', 'Minimum 100 TRAX transfer karo.'); return; }
+    if (amount > balance) { showModal('❌ Not Enough', 'Aapke paas: ' + Math.floor(balance).toLocaleString() + ' TRAX'); return; }
+    balance -= amount;
+    // Save transfer record locally
+    const transfers = JSON.parse(localStorage.getItem('trax_transfers') || '[]');
+    transfers.push({ from: playerId, to: toId, amount, at: Date.now() });
+    localStorage.setItem('trax_transfers', JSON.stringify(transfers));
+    // Check if recipient exists in leaderboard, add coins
+    const lb = getLeaderboardData();
+    if (lb[toId]) { lb[toId].coins += amount; localStorage.setItem('trax_leaderboard', JSON.stringify(lb)); }
+    addXP(10);
+    updateUI(); save();
+    showModal('✅ Sent!', amount.toLocaleString() + ' TRAX sent to #' + toId);
+    document.getElementById('transferIdInput').value = '';
+    document.getElementById('transferAmountInput').value = '';
+    playSound('win'); vibrate('success');
   }
 
   // ===== NAVIGATION =====
@@ -1411,7 +1586,7 @@
     if (tabEl) tabEl.classList.add('active');
     window.scrollTo(0, 0);
     if (tab === 'tasks') drawTasksNew();
-    if (tab === 'sticker') drawStickers();
+    if (tab === 'sticker') { renderStickerTabs(); drawStickers(); }
     if (tab === 'upgrades') drawUpgrades();
     if (tab === 'rank') drawRank();
     if (tab === 'attendance') renderAttendance();
@@ -1425,7 +1600,7 @@
       const tabEl = document.getElementById('tab-' + tab);
       if (tabEl) tabEl.classList.add('active');
       window.scrollTo(0, 0);
-      if (tab === 'sticker') drawStickers();
+      if (tab === 'sticker') { renderStickerTabs(); drawStickers(); }
       if (tab === 'upgrades') drawUpgrades();
       if (tab === 'rank') drawRank();
       if (tab === 'attendance') renderAttendance();
@@ -1437,7 +1612,6 @@
   // ===== MODAL =====
   let modalStack = [];
   function showModal(title, text) {
-    // Save current open modals
     document.querySelectorAll('.modal.show').forEach(m => {
       if (m.id !== 'modal' && !modalStack.includes(m.id)) modalStack.push(m.id);
       m.classList.remove('show');
@@ -1449,7 +1623,6 @@
   }
   function closeModal() {
     document.getElementById('modal').classList.remove('show');
-    // Restore previous modals
     modalStack.forEach(id => {
       const m = document.getElementById(id);
       if (m) m.classList.add('show');
@@ -1539,6 +1712,7 @@
     wheel.style.transform = 'rotate(' + finalRotation + 'deg)';
     setTimeout(() => {
       balance += slot.reward; totalEarned += slot.reward;
+      addXP(30);
       updateUI(); save();
       document.getElementById('spinRewardAmount').textContent = '+' + slot.reward.toLocaleString();
       resultBox.classList.add('show');
@@ -1626,7 +1800,9 @@
     crashState.running = false;
     if (crashInterval) clearInterval(crashInterval);
     const w = Math.floor(crashState.bet * crashState.multiplier);
-    balance += w; totalEarned += w; updateUI(); save();
+    balance += w; totalEarned += w;
+    addXP(20);
+    updateUI(); save();
     document.getElementById('crashStatus').textContent = 'Won ' + w.toLocaleString() + ' TRAX!';
     document.getElementById('crashCashBtn').style.display = 'none';
     document.getElementById('crashBetBtn').style.display = 'block';
@@ -1733,20 +1909,23 @@
     if (!flipState.active || flipState.totalMult <= 1) return;
     const amount = Math.floor(flipState.winnings);
     balance += amount; totalEarned += amount;
+    addXP(20);
     updateUI(); save();
     showModal('🎉 Cashout!', '+' + amount.toLocaleString() + ' TRAX!');
     flipState.active = false;
     setTimeout(closeCoinFlip, 300);
   }
 
-  // ===== TWIST =====
+  // ===== TWIST (with LOSS chance) =====
   const TWIST_BETS = [500, 1000, 2500, 5000, 10000, 25000, 50000, 100000];
   let twistBetIndex = parseInt(localStorage.getItem('trax_twistBetIndex') || '1');
   let twistSpinning = false;
+  // 70% win, 30% lose
   const TWIST_RINGS = {
-    inner:  { min: 2,   max: 5,   weight: 55 },
-    middle: { min: 7,   max: 20,  weight: 30 },
-    outer:  { min: 28,  max: 200, weight: 15 }
+    lose:   { min: 0,   max: 0,   weight: 30 }, // lose
+    inner:  { min: 2,   max: 5,   weight: 40 },
+    middle: { min: 7,   max: 20,  weight: 20 },
+    outer:  { min: 28,  max: 200, weight: 10 }
   };
   function getTwistBet() { return TWIST_BETS[twistBetIndex]; }
   function updateTwistBetUI() {
@@ -1764,6 +1943,17 @@
     if (twistBetIndex >= TWIST_BETS.length) twistBetIndex = TWIST_BETS.length - 1;
     localStorage.setItem('trax_twistBetIndex', twistBetIndex);
     updateTwistBetUI();
+  }
+  function applyTwistCustomBet() {
+    if (twistSpinning) return;
+    const v = parseInt(document.getElementById('twistCustomBet').value);
+    if (!v || v < 100) { showModal('⚠️ Min 100', 'Minimum 100 TRAX.'); return; }
+    if (v > balance) { showModal('❌ Not Enough', 'Aapke paas: ' + Math.floor(balance).toLocaleString() + ' TRAX'); return; }
+    // Add custom value to TWIST_BETS temporarily
+    TWIST_BETS.push(v);
+    twistBetIndex = TWIST_BETS.length - 1;
+    updateTwistBetUI();
+    document.getElementById('twistCustomBet').value = '';
   }
   function openTwist() {
     document.getElementById('twistModal').classList.add('show');
@@ -1793,7 +1983,6 @@
       oLabel.style.transform = 'translate(-50%, -50%) rotate(' + (oAngle + 90) + 'deg)';
       oLabel.textContent = outerMults[i] + 'x';
       wrap.appendChild(oLabel);
-
       const mAngle = (i * 30 + 15) - 90;
       const mRad = mAngle * Math.PI / 180;
       const mLabel = document.createElement('div');
@@ -1806,13 +1995,17 @@
     }
   }
   function pickTwistRing() {
-    const total = TWIST_RINGS.inner.weight + TWIST_RINGS.middle.weight + TWIST_RINGS.outer.weight;
+    const total = TWIST_RINGS.lose.weight + TWIST_RINGS.inner.weight + TWIST_RINGS.middle.weight + TWIST_RINGS.outer.weight;
     let r = Math.random() * total;
+    if (r < TWIST_RINGS.lose.weight) return 'lose';
+    r -= TWIST_RINGS.lose.weight;
     if (r < TWIST_RINGS.inner.weight) return 'inner';
-    if (r < TWIST_RINGS.inner.weight + TWIST_RINGS.middle.weight) return 'middle';
+    r -= TWIST_RINGS.inner.weight;
+    if (r < TWIST_RINGS.middle.weight) return 'middle';
     return 'outer';
   }
   function pickTwistMult(ring) {
+    if (ring === 'lose') return 0;
     const cfg = TWIST_RINGS[ring];
     const r = Math.pow(Math.random(), 1.5);
     const mult = cfg.min + r * (cfg.max - cfg.min);
@@ -1836,7 +2029,7 @@
     const pointer = document.getElementById('twistPointer');
     const resultBox = document.getElementById('twistResultBox');
     const spinBtn = document.getElementById('twistSpinBtn');
-    resultBox.classList.remove('show');
+    resultBox.classList.remove('show', 'lose');
 
     const ring = pickTwistRing();
     const mult = pickTwistMult(ring);
@@ -1850,16 +2043,25 @@
     spinBtn.textContent = '🌀 SPINNING...';
 
     setTimeout(() => {
-      const winAmount = Math.floor(bet * mult);
-      balance += winAmount;
-      totalEarned += winAmount;
-      updateUI(); save();
-
-      document.getElementById('twistResultMult').textContent = mult + 'x';
-      document.getElementById('twistResultAmount').textContent = '+' + winAmount.toLocaleString() + ' TRAX';
-      resultBox.classList.add('show');
-
-      playSound('win'); vibrate('success');
+      if (ring === 'lose') {
+        // LOSE
+        document.getElementById('twistResultLabel').textContent = '❌ YOU LOST';
+        document.getElementById('twistResultMult').textContent = '0x';
+        document.getElementById('twistResultAmount').textContent = '-' + bet.toLocaleString() + ' TRAX';
+        resultBox.classList.add('show', 'lose');
+        playSound('error'); vibrate('error');
+      } else {
+        const winAmount = Math.floor(bet * mult);
+        balance += winAmount;
+        totalEarned += winAmount;
+        addXP(15);
+        updateUI(); save();
+        document.getElementById('twistResultLabel').textContent = '🎉 YOU WON';
+        document.getElementById('twistResultMult').textContent = mult + 'x';
+        document.getElementById('twistResultAmount').textContent = '+' + winAmount.toLocaleString() + ' TRAX';
+        resultBox.classList.add('show');
+        playSound('win'); vibrate('success');
+      }
       spinBtn.disabled = false;
       spinBtn.textContent = '🌀 SPIN AGAIN';
       twistSpinning = false;
@@ -1871,7 +2073,11 @@
   function resetData() { if (confirm('Reset all data?')) { localStorage.clear(); location.reload(); } }
 
   // ===== ATTENDANCE =====
-  const ATTENDANCE_REWARDS = [1000, 2000, 3000, 5000, 8000, 15000, 200000];
+  const ATTENDANCE_REWARDS = [
+    { coins: 1000, xp: 50 }, { coins: 2000, xp: 75 }, { coins: 3000, xp: 100 },
+    { coins: 5000, xp: 150 }, { coins: 8000, xp: 200 }, { coins: 15000, xp: 300 },
+    { coins: 200000, xp: 500 }
+  ];
   function getAttendanceData() {
     return {
       currentDay: parseInt(localStorage.getItem('trax_att_currentDay') || '0'),
@@ -1899,7 +2105,7 @@
     const grid = document.getElementById('attendanceGrid');
     if (!grid) return;
     grid.innerHTML = '';
-    ATTENDANCE_REWARDS.forEach((reward, i) => {
+    ATTENDANCE_REWARDS.forEach((rew, i) => {
       const dayNum = i + 1;
       const card = document.createElement('div');
       card.className = 'att-day-card';
@@ -1908,7 +2114,7 @@
       else if (dayNum === data.currentDay + 1 && canClaimToday()) state = 'today';
       card.classList.add(state);
       const isDay7 = dayNum === 7;
-      card.innerHTML = '<div class="att-day-label">' + dayNum + ' Day</div><div class="att-day-icon">' + (isDay7 ? '🎁' : '🪙') + '</div><div class="att-day-amount">+' + reward.toLocaleString() + '</div>';
+      card.innerHTML = '<div class="att-day-label">' + dayNum + ' Day</div><div class="att-day-icon">' + (isDay7 ? '🎁' : '🪙') + '</div><div class="att-day-amount">+' + rew.coins.toLocaleString() + '</div>';
       grid.appendChild(card);
     });
     document.getElementById('attCurrentDays').textContent = data.currentDay;
@@ -1916,7 +2122,7 @@
     const btn = document.getElementById('attClaimBtn');
     if (canClaimToday()) {
       if (data.currentDay >= 7) { btn.textContent = 'START NEW CYCLE (DAY 1)'; btn.disabled = false; btn.classList.remove('claimed'); }
-      else { btn.textContent = 'CLAIM DAY ' + (data.currentDay + 1) + ' · +' + ATTENDANCE_REWARDS[data.currentDay].toLocaleString() + ' TRAX'; btn.disabled = false; btn.classList.remove('claimed'); }
+      else { btn.textContent = 'CLAIM DAY ' + (data.currentDay + 1) + ' · +' + ATTENDANCE_REWARDS[data.currentDay].coins.toLocaleString() + ' TRAX'; btn.disabled = false; btn.classList.remove('claimed'); }
     } else { btn.textContent = '✓ CLAIMED TODAY · Kal aayein'; btn.disabled = true; btn.classList.add('claimed'); }
     renderStreakBar();
     updateSideCards();
@@ -1925,12 +2131,14 @@
     const data = checkAttendanceReset();
     if (!canClaimToday()) { showModal('✅ Already Claimed', 'Kal dobara aayein!'); return; }
     if (data.currentDay >= 7) { data.currentDay = 0; data.accumulated = 0; }
-    const reward = ATTENDANCE_REWARDS[data.currentDay];
-    data.currentDay += 1; data.lastClaimDate = getTodayStr(); data.accumulated += reward;
+    const rew = ATTENDANCE_REWARDS[data.currentDay];
+    data.currentDay += 1; data.lastClaimDate = getTodayStr(); data.accumulated += rew.coins;
     saveAttendanceData(data);
-    balance += reward; totalEarned += reward; updateUI(); save();
+    balance += rew.coins; totalEarned += rew.coins;
+    addXP(rew.xp);
+    updateUI(); save();
     playSound('win'); vibrate('success');
-    showModal('🎁 Day ' + data.currentDay + ' Claimed!', '+' + reward.toLocaleString() + ' TRAX mile!');
+    showModal('🎁 Day ' + data.currentDay + ' Claimed!', '+' + rew.coins.toLocaleString() + ' TRAX\n+' + rew.xp + ' XP');
     renderAttendance();
   }
   function renderStreakBar() {
@@ -1999,6 +2207,7 @@
     const reward = pickRedPocketReward();
     balance += reward; totalEarned += reward;
     localStorage.setItem('trax_rp_lastOpen', Date.now());
+    addXP(10);
     updateUI(); save(); playSound('win'); vibrate('success');
     updateRedPocketUI();
     const isRare = reward >= 1000;
@@ -2011,9 +2220,10 @@
   updateSettingsUI();
   updateUI();
   drawTasksNew();
+  renderStickerTabs();
   drawStickers();
   drawUpgrades();
-  drawHomeRank();
+  renderLeaderboard();
   drawRank();
   renderAttendance();
   updateRedPocketUI();
@@ -2031,22 +2241,27 @@
     updateUI(); updateBoosterUI();
   })();
 
-  // ===== INTERVALS =====
+  // Record leaderboard every 30 sec
+  setInterval(() => { recordLeaderboard(balance); renderLeaderboard(); updateRankResetTimer(); }, 30000);
+  recordLeaderboard(balance);
+  renderLeaderboard();
+  updateRankResetTimer();
+
   setInterval(() => { if (autoEarn > 0) { balance += autoEarn / 3600; totalEarned += autoEarn / 3600; updateUI(); save(); } }, 1000);
   setInterval(() => { if (energy < getEffectiveMaxEnergy()) { energy++; updateUI(); save(); } }, 2000);
   setInterval(updateBoosterUI, 1000);
   setInterval(checkBoosterExpiry, 5000);
   setInterval(updateRedPocketUI, 1000);
   setInterval(() => { const modal = document.getElementById('spinModal'); if (modal && modal.classList.contains('show')) updateSpinStatus(); }, 1000);
-  // Attendance check every minute (for midnight reset)
   setInterval(() => {
     if (document.getElementById('tab-attendance').classList.contains('active') || 
         document.getElementById('tab-home').classList.contains('active')) {
       renderAttendance();
     }
   }, 60 * 1000);
-  // Side cards every 5 seconds (not 1)
   setInterval(updateSideCards, 5000);
+  setInterval(updateRankResetTimer, 1000);
+  setInterval(drawRank, 60000);
 </script>
 </body>
  </html>
