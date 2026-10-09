@@ -11,18 +11,9 @@
   body::before { content: ''; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-image: url('city.png'); background-size: cover; background-position: center; opacity: 0.3; z-index: -1; filter: blur(1px); }
   body::after { content: ''; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(5,10,20,0.6) 0%, rgba(5,10,20,0.95) 100%); z-index: -1; }
 
-  /* ===== TRAX LOGO (SVG 3D) ===== */
-  .trax-logo {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+  .trax-logo { width: 100%; height: 100%; position: relative; display: flex; align-items: center; justify-content: center; }
   .trax-logo svg { width: 100%; height: 100%; display: block; }
 
-  /* ===== HEADER ===== */
   .header { display: flex; justify-content: space-between; align-items: center; padding: 12px 15px; background: rgba(5,10,20,0.9); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(0,150,255,0.15); position: sticky; top: 0; z-index: 50; }
   .header-left { display: flex; align-items: center; gap: 10px; }
   .menu-icon { font-size: 20px; color: #00d4ff; cursor: pointer; padding: 5px; }
@@ -39,7 +30,6 @@
 
   .container { padding: 12px 15px; max-width: 500px; margin: 0 auto; }
 
-  /* ===== PROFILE CARD (Screenshot 1) ===== */
   .profile-card { background: linear-gradient(135deg, rgba(0,180,255,0.12), rgba(0,60,150,0.08)); border: 1.5px solid rgba(0,212,255,0.35); border-radius: 20px; padding: 18px; margin-bottom: 14px; position: relative; overflow: hidden; box-shadow: 0 0 30px rgba(0,150,255,0.2); }
   .profile-card::before { content: ''; position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(0,212,255,0.12), transparent 60%); animation: rotate 20s linear infinite; pointer-events: none; }
   @keyframes rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
@@ -58,40 +48,32 @@
   .profile-level-bar { width: 100%; height: 8px; background: rgba(0,0,0,0.4); border-radius: 4px; overflow: hidden; position: relative; z-index: 2; }
   .profile-level-fill { height: 100%; background: linear-gradient(90deg, #00d4ff, #0090ff); border-radius: 4px; transition: width 0.5s; box-shadow: 0 0 15px rgba(0,212,255,0.7); }
 
-  /* ===== STATS ROW ===== */
   .stats-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 14px; }
-  .stat-card { background: linear-gradient(135deg, rgba(0,80,180,0.15), rgba(0,40,100,0.1)); border: 1.5px solid rgba(0,180,255,0.3); border-radius: 14px; padding: 12px 6px; text-align: center; position: relative; overflow: hidden; }
+  .stat-card { background: linear-gradient(135deg, rgba(0,80,180,0.15), rgba(0,40,100,0.1)); border: 1.5px solid rgba(0,180,255,0.3); border-radius: 14px; padding: 12px 6px; text-align: center; }
   .stat-card-label { font-size: 10px; color: #00d4ff; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 6px; }
   .stat-card-value { font-size: 17px; font-weight: 900; color: white; text-shadow: 0 0 10px rgba(0,212,255,0.5); }
-  .stat-card-value small { font-size: 10px; color: #7a8ba5; font-weight: 500; }
 
-  /* ===== MENU ITEMS (Screenshot 1) ===== */
   .menu-list { background: rgba(10,25,45,0.7); border: 1px solid rgba(0,150,255,0.15); border-radius: 16px; overflow: hidden; }
   .menu-item { display: flex; align-items: center; gap: 14px; padding: 16px 18px; cursor: pointer; transition: background 0.2s; border-bottom: 1px solid rgba(0,150,255,0.08); }
   .menu-item:last-child { border-bottom: none; }
   .menu-item:active { background: rgba(0,150,255,0.08); }
   .menu-icon-box { width: 40px; height: 40px; border-radius: 10px; background: linear-gradient(135deg, rgba(0,180,255,0.15), rgba(0,80,180,0.08)); border: 1px solid rgba(0,180,255,0.25); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
-  .menu-icon-box.wallet-icon { color: #00d4ff; }
-  .menu-icon-box.referral-icon { color: #00d4ff; }
-  .menu-icon-box.settings-icon { color: #00d4ff; }
   .menu-item-info { flex: 1; }
   .menu-item-info h4 { font-size: 14px; font-weight: 700; color: white; margin-bottom: 2px; }
   .menu-item-info p { font-size: 11px; color: #7a8ba5; }
   .menu-item-info p.green { color: #00d4ff; font-weight: 700; }
   .menu-item-arrow { color: #00d4ff; font-size: 18px; opacity: 0.7; }
 
-  /* ===== PAGE TITLE ===== */
   .page-title-bar { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; padding: 5px 0; }
   .page-title-icon { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-size: 24px; }
   .page-title-text { font-size: 26px; font-weight: 900; color: #00d4ff; letter-spacing: 0.5px; text-shadow: 0 0 20px rgba(0,212,255,0.5); }
 
-  /* ===== TASKS (Screenshot 3) ===== */
-  .task-row { background: rgba(10,25,45,0.7); border: 1px solid rgba(0,150,255,0.2); border-radius: 16px; padding: 14px; margin-bottom: 10px; display: flex; align-items: center; gap: 12px; position: relative; overflow: hidden; }
+  .task-row { background: rgba(10,25,45,0.7); border: 1px solid rgba(0,150,255,0.2); border-radius: 16px; padding: 14px; margin-bottom: 10px; display: flex; align-items: center; gap: 12px; }
   .task-row.done { border-color: rgba(0,255,136,0.3); }
   .task-row.ready { border-color: rgba(0,150,255,0.4); }
-  .task-icon-wrap { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; position: relative; }
+  .task-icon-wrap { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
   .task-icon-wrap.telegram { background: linear-gradient(135deg, #0088cc, #0066aa); box-shadow: 0 0 20px rgba(0,136,204,0.4); }
-  .task-icon-wrap.twitter { background: linear-gradient(135deg, #1a1a1a, #000000); border: 1px solid rgba(255,255,255,0.2); box-shadow: 0 0 20px rgba(255,255,255,0.1); }
+  .task-icon-wrap.twitter { background: linear-gradient(135deg, #1a1a1a, #000000); border: 1px solid rgba(255,255,255,0.2); }
   .task-icon-wrap.youtube { background: linear-gradient(135deg, #ff0055, #990033); box-shadow: 0 0 20px rgba(255,0,85,0.4); }
   .task-icon-wrap.invite { background: linear-gradient(135deg, #00aaff, #0066cc); box-shadow: 0 0 20px rgba(0,170,255,0.4); }
   .task-content { flex: 1; min-width: 0; }
@@ -103,9 +85,8 @@
   .task-progress-fill { height: 100%; background: linear-gradient(90deg, #00d4ff, #00ff88); border-radius: 2px; }
   .task-btn { padding: 8px 16px; border-radius: 10px; font-size: 11px; font-weight: 900; cursor: pointer; letter-spacing: 0.5px; flex-shrink: 0; border: none; }
   .task-btn.go { background: linear-gradient(135deg, #00b4ff, #0066ff); color: white; box-shadow: 0 4px 15px rgba(0,180,255,0.4); }
-  .task-btn.done { background: linear-gradient(135deg, #00aa55, #006633); color: white; box-shadow: 0 4px 15px rgba(0,170,85,0.4); }
+  .task-btn.done { background: linear-gradient(135deg, #00aa55, #006633); color: white; }
 
-  /* ===== BOOSTERS (Screenshot 2) ===== */
   .booster-card { background: rgba(10,25,45,0.7); border: 1px solid rgba(0,150,255,0.2); border-radius: 18px; padding: 16px; margin-bottom: 10px; }
   .booster-header { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
   .booster-header-icon { font-size: 22px; }
@@ -115,24 +96,22 @@
   .booster-row:last-child { border-bottom: none; padding-bottom: 0; }
   .booster-row:first-child { padding-top: 0; }
   .booster-icon { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; flex-shrink: 0; position: relative; }
-  .booster-icon.auto-tap { background: radial-gradient(circle, #a040ff, #6020a0); box-shadow: 0 0 20px rgba(160,64,255,0.5), inset 0 0 15px rgba(255,255,255,0.2); }
-  .booster-icon.energy { background: radial-gradient(circle, #00b4ff, #0050a0); box-shadow: 0 0 20px rgba(0,180,255,0.5), inset 0 0 15px rgba(255,255,255,0.2); }
-  .booster-icon.double { background: radial-gradient(circle, #cc00ff, #6600a0); box-shadow: 0 0 20px rgba(204,0,255,0.5), inset 0 0 15px rgba(255,255,255,0.2); }
-  .booster-icon.offline { background: radial-gradient(circle, #00ff88, #008844); box-shadow: 0 0 20px rgba(0,255,136,0.5), inset 0 0 15px rgba(255,255,255,0.2); }
+  .booster-icon.auto-tap { background: radial-gradient(circle, #a040ff, #6020a0); box-shadow: 0 0 20px rgba(160,64,255,0.5); }
+  .booster-icon.energy { background: radial-gradient(circle, #00b4ff, #0050a0); box-shadow: 0 0 20px rgba(0,180,255,0.5); }
+  .booster-icon.double { background: radial-gradient(circle, #cc00ff, #6600a0); box-shadow: 0 0 20px rgba(204,0,255,0.5); }
+  .booster-icon.offline { background: radial-gradient(circle, #00ff88, #008844); box-shadow: 0 0 20px rgba(0,255,136,0.5); }
   .booster-icon::after { content: ''; position: absolute; inset: 5px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, rgba(255,255,255,0.4), transparent 60%); }
   .booster-info { flex: 1; min-width: 0; }
   .booster-info h4 { font-size: 13px; font-weight: 900; color: white; margin-bottom: 3px; }
   .booster-info p { font-size: 10px; color: #7a8ba5; }
-  .booster-info p.highlight { color: #00d4ff; font-weight: 700; }
   .booster-timer { text-align: center; font-size: 11px; font-weight: 900; color: #a0aec0; padding: 0 8px; min-width: 55px; }
   .booster-btn { padding: 9px 14px; border-radius: 10px; font-size: 11px; font-weight: 900; cursor: pointer; border: none; letter-spacing: 0.5px; flex-shrink: 0; }
-  .booster-btn.purple { background: linear-gradient(135deg, #a040ff, #6020a0); color: white; box-shadow: 0 4px 15px rgba(160,64,255,0.4); }
-  .booster-btn.blue { background: linear-gradient(135deg, #00b4ff, #0066ff); color: white; box-shadow: 0 4px 15px rgba(0,180,255,0.4); }
-  .booster-btn.magenta { background: linear-gradient(135deg, #cc00ff, #6600a0); color: white; box-shadow: 0 4px 15px rgba(204,0,255,0.4); }
-  .booster-btn.green { background: linear-gradient(135deg, #00ff88, #008844); color: white; box-shadow: 0 4px 15px rgba(0,255,136,0.4); }
-  .booster-btn:disabled { opacity: 0.5; cursor: not-allowed; box-shadow: none; }
+  .booster-btn.purple { background: linear-gradient(135deg, #a040ff, #6020a0); color: white; }
+  .booster-btn.blue { background: linear-gradient(135deg, #00b4ff, #0066ff); color: white; }
+  .booster-btn.magenta { background: linear-gradient(135deg, #cc00ff, #6600a0); color: white; }
+  .booster-btn.green { background: linear-gradient(135deg, #00ff88, #008844); color: white; }
+  .booster-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
-  /* ===== HOME COIN ===== */
   .balance-row { display: grid; grid-template-columns: 1.3fr 1fr; gap: 10px; margin-bottom: 12px; }
   .balance-card { background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(0,80,180,0.1)); border: 1px solid rgba(0,212,255,0.3); border-radius: 18px; padding: 14px; position: relative; overflow: hidden; }
   .balance-card::before { content: ''; position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(0,212,255,0.15), transparent 60%); animation: rotate 15s linear infinite; }
@@ -146,7 +125,7 @@
   .diamond-bar { width: 100%; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; margin-top: 8px; overflow: hidden; }
   .diamond-fill { height: 100%; background: linear-gradient(90deg, #00d4ff, #00ff88); border-radius: 2px; transition: width 0.3s; }
   .diamond-sub { font-size: 9px; color: #7a8ba5; margin-top: 3px; }
-  .tap-title { text-align: center; font-size: 16px; font-weight: 900; color: white; margin: 10px 0 5px; letter-spacing: 1px; text-shadow: 0 0 15px rgba(0,212,255,0.5); }
+  .tap-title { text-align: center; font-size: 16px; font-weight: 900; color: white; margin: 10px 0 5px; letter-spacing: 1px; }
   .coin-area { display: flex; justify-content: center; align-items: center; margin: 20px 0 15px; position: relative; min-height: 340px; perspective: 1000px; }
   .coin-wrapper { position: relative; z-index: 2; }
   .coin-bg-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 340px; height: 340px; border-radius: 50%; background: radial-gradient(circle, var(--coin-glow, rgba(0,180,255,0.55)) 0%, rgba(0,100,200,0.1) 40%, transparent 70%); animation: glowPulse 3s infinite; transition: background 0.5s; }
@@ -158,105 +137,101 @@
   .coin-3d-btn:active { animation: coin3DShake 0.2s; }
   @keyframes coin3DShake { 0% { transform: rotateY(-12deg) rotateX(4deg) scale(1); } 50% { transform: rotateY(-12deg) rotateX(4deg) scale(0.92); } 100% { transform: rotateY(-12deg) rotateX(4deg) scale(1); } }
   .coin-3d-svg { width: 100%; height: 100%; filter: drop-shadow(0 0 30px var(--coin-glow, #00d4ff)) drop-shadow(0 0 60px var(--coin-glow, #00d4ff)); transition: filter 0.5s; }
-  .coin-3d-ring { position: absolute; inset: 0; border-radius: 50%; border: 4px solid var(--coin-border, #00d4ff); box-shadow: 0 0 40px var(--coin-border, #00d4ff), inset 0 0 40px var(--coin-glow, rgba(0,212,255,0.5)); animation: ringRotate 12s linear infinite; transition: border-color 0.5s, box-shadow 0.5s; }
+  .coin-3d-ring { position: absolute; inset: 0; border-radius: 50%; border: 4px solid var(--coin-border, #00d4ff); box-shadow: 0 0 40px var(--coin-border, #00d4ff), inset 0 0 40px var(--coin-glow, rgba(0,212,255,0.5)); animation: ringRotate 12s linear infinite; }
   @keyframes ringRotate { 0% { transform: rotateZ(0deg); } 100% { transform: rotateZ(360deg); } }
-  .coin-tier-badge { text-align: center; margin-top: 10px; padding: 6px 16px; background: rgba(0,0,0,0.4); border: 2px solid var(--coin-border, #00d4ff); border-radius: 20px; display: inline-block; font-size: 12px; font-weight: 900; letter-spacing: 2px; color: var(--coin-border, #00d4ff); text-shadow: 0 0 10px var(--coin-glow, #00d4ff); position: relative; z-index: 4; transition: all 0.5s; }
+  .coin-tier-badge { text-align: center; margin-top: 10px; padding: 6px 16px; background: rgba(0,0,0,0.4); border: 2px solid var(--coin-border, #00d4ff); border-radius: 20px; display: inline-block; font-size: 12px; font-weight: 900; letter-spacing: 2px; color: var(--coin-border, #00d4ff); text-shadow: 0 0 10px var(--coin-glow, #00d4ff); position: relative; z-index: 4; }
   .coin-tier-badge-container { text-align: center; margin-top: 8px; }
   .coin-tier-progress { text-align: center; font-size: 9px; color: #7a8ba5; margin-top: 4px; }
-  .coin-bottom-text { text-align: center; font-size: 11px; color: #00d4ff; letter-spacing: 3px; margin-top: 5px; font-weight: 900; text-shadow: 0 0 15px rgba(0,212,255,0.8); position: relative; z-index: 4; }
+  .coin-bottom-text { text-align: center; font-size: 11px; color: #00d4ff; letter-spacing: 3px; margin-top: 5px; font-weight: 900; position: relative; z-index: 4; }
   .coin-per-tap { text-align: center; font-size: 11px; color: #a0aec0; margin-top: 3px; position: relative; z-index: 4; }
   .coin-per-tap strong { color: #00d4ff; }
 
   .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 8px; margin: 15px 0; }
-  .grid-btn { background: linear-gradient(135deg, rgba(0,100,200,0.4), rgba(0,60,150,0.3)); border: 1px solid rgba(0,180,255,0.3); border-radius: 14px; padding: 12px 5px; text-align: center; cursor: pointer; transition: transform 0.1s; }
+  .grid-btn { background: linear-gradient(135deg, rgba(0,100,200,0.4), rgba(0,60,150,0.3)); border: 1px solid rgba(0,180,255,0.3); border-radius: 14px; padding: 12px 5px; text-align: center; cursor: pointer; }
   .grid-btn:active { transform: scale(0.95); }
   .grid-icon { font-size: 22px; margin-bottom: 4px; }
-  .grid-label { font-size: 9px; color: #a0aec0; font-weight: bold; letter-spacing: 0.5px; }
+  .grid-label { font-size: 9px; color: #a0aec0; font-weight: bold; }
   .energy-card { background: linear-gradient(135deg, rgba(15,30,55,0.9), rgba(10,20,40,0.7)); border: 1px solid rgba(0,180,255,0.25); border-radius: 16px; padding: 14px; margin-bottom: 12px; }
   .energy-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
   .energy-label { font-size: 13px; font-weight: 900; color: #00d4ff; display: flex; align-items: center; gap: 6px; }
   .energy-count { font-size: 12px; color: #a0aec0; }
   .energy-count strong { color: #00d4ff; font-size: 14px; }
   .energy-bar { height: 10px; background: rgba(0,0,0,0.3); border-radius: 5px; overflow: hidden; }
-  .energy-fill { height: 100%; background: linear-gradient(90deg, #00d4ff, #00ff88); border-radius: 5px; transition: width 0.3s; box-shadow: 0 0 15px rgba(0,212,255,0.8); }
-  .energy-full-btn { background: rgba(0,212,255,0.15); border: 1px solid rgba(0,212,255,0.4); color: #00d4ff; padding: 8px 12px; border-radius: 8px; font-size: 11px; font-weight: 900; cursor: pointer; letter-spacing: 1px; margin-top: 8px; width: 100%; }
+  .energy-fill { height: 100%; background: linear-gradient(90deg, #00d4ff, #00ff88); border-radius: 5px; transition: width 0.3s; }
+  .energy-full-btn { background: rgba(0,212,255,0.15); border: 1px solid rgba(0,212,255,0.4); color: #00d4ff; padding: 8px 12px; border-radius: 8px; font-size: 11px; font-weight: 900; cursor: pointer; margin-top: 8px; width: 100%; }
   .daily-card { background: linear-gradient(135deg, rgba(255,150,0,0.15), rgba(255,80,0,0.08)); border: 1px solid rgba(255,150,0,0.4); border-radius: 16px; padding: 14px; margin-bottom: 12px; display: flex; align-items: center; gap: 12px; }
   .daily-icon { font-size: 28px; }
   .daily-info { flex: 1; }
   .daily-info h4 { font-size: 13px; font-weight: 900; color: #ff9500; }
   .daily-info p { font-size: 10px; color: #7a8ba5; margin-top: 2px; }
-  .daily-btn { background: linear-gradient(135deg, #ff9500, #ff5500); border: none; border-radius: 12px; padding: 10px 18px; color: white; font-size: 12px; font-weight: 900; cursor: pointer; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(255,150,0,0.5); }
-  .daily-btn.claimed { background: rgba(255,255,255,0.1); box-shadow: none; color: #7a8ba5; }
+  .daily-btn { background: linear-gradient(135deg, #ff9500, #ff5500); border: none; border-radius: 12px; padding: 10px 18px; color: white; font-size: 12px; font-weight: 900; cursor: pointer; }
+  .daily-btn.claimed { background: rgba(255,255,255,0.1); color: #7a8ba5; }
   .section-title { display: flex; justify-content: space-between; align-items: center; margin: 15px 0 10px; }
   .section-title h3 { font-size: 12px; letter-spacing: 2px; color: #a0aec0; font-weight: 900; }
   .section-title .view-all { font-size: 10px; color: #00d4ff; font-weight: bold; }
   .mini-games { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 12px; }
-  .game-card { background: rgba(15,30,55,0.8); border: 1px solid rgba(0,180,255,0.2); border-radius: 14px; padding: 12px 8px; text-align: center; cursor: pointer; transition: transform 0.1s; }
-  .game-card:active { transform: scale(0.96); }
+  .game-card { background: rgba(15,30,55,0.8); border: 1px solid rgba(0,180,255,0.2); border-radius: 14px; padding: 12px 8px; text-align: center; cursor: pointer; }
   .game-icon { width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin: 0 auto 6px; }
-  .game-icon.purple { background: linear-gradient(135deg, #9900ff, #6600cc); box-shadow: 0 0 15px rgba(153,0,255,0.5); }
-  .game-icon.green { background: linear-gradient(135deg, #00ff88, #00aa55); box-shadow: 0 0 15px rgba(0,255,136,0.5); }
-  .game-icon.orange { background: linear-gradient(135deg, #ff9500, #ff5500); box-shadow: 0 0 15px rgba(255,150,0,0.5); }
+  .game-icon.purple { background: linear-gradient(135deg, #9900ff, #6600cc); }
+  .game-icon.green { background: linear-gradient(135deg, #00ff88, #00aa55); }
+  .game-icon.orange { background: linear-gradient(135deg, #ff9500, #ff5500); }
   .game-name { font-size: 10px; font-weight: 900; color: white; margin-bottom: 3px; }
   .game-desc { font-size: 8px; color: #7a8ba5; }
   .task-item { background: rgba(15,30,55,0.7); border: 1px solid rgba(0,180,255,0.2); border-radius: 14px; padding: 12px; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
-  .task-icon { width: 38px; height: 38px; border-radius: 10px; background: rgba(0,180,255,0.15); border: 1px solid rgba(0,212,255,0.3); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+  .task-icon { width: 38px; height: 38px; border-radius: 10px; background: rgba(0,180,255,0.15); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
   .task-info { flex: 1; min-width: 0; }
   .task-info h4 { font-size: 11px; font-weight: 900; margin-bottom: 2px; }
   .task-info .reward { font-size: 10px; color: #00ff88; font-weight: 900; }
-  .task-btn { background: linear-gradient(135deg, #00b4ff, #0066ff); border: none; border-radius: 10px; padding: 8px 14px; color: white; font-size: 11px; font-weight: 900; cursor: pointer; letter-spacing: 1px; }
-  .task-btn.done { background: rgba(0,255,136,0.2); color: #00ff88; }
-  .side-item { background: rgba(15,30,55,0.7); border: 1px solid rgba(0,180,255,0.2); border-radius: 14px; padding: 12px; display: flex; align-items: center; gap: 10px; cursor: pointer; transition: transform 0.1s; margin-bottom: 10px; }
+  .side-item { background: rgba(15,30,55,0.7); border: 1px solid rgba(0,180,255,0.2); border-radius: 14px; padding: 12px; display: flex; align-items: center; gap: 10px; cursor: pointer; margin-bottom: 10px; }
   .side-item:active { transform: scale(0.98); }
-  .side-item-icon { width: 38px; height: 38px; border-radius: 10px; background: rgba(0,180,255,0.15); border: 1px solid rgba(0,212,255,0.3); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+  .side-item-icon { width: 38px; height: 38px; border-radius: 10px; background: rgba(0,180,255,0.15); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
   .side-item-info { flex: 1; }
   .side-item-info h4 { font-size: 12px; font-weight: 900; margin-bottom: 2px; }
   .side-item-info p { font-size: 9px; color: #7a8ba5; }
   .side-item-arrow { color: #00d4ff; font-size: 16px; }
-  .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: linear-gradient(180deg, rgba(10,20,35,0.98), rgba(5,10,20,1)); border-top: 1px solid rgba(0,180,255,0.3); display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr; padding: 8px 0 12px; z-index: 100; box-shadow: 0 -10px 30px rgba(0,0,0,0.7); backdrop-filter: blur(15px); }
-  .nav-item { display: flex; flex-direction: column; align-items: center; gap: 3px; color: #4a5568; font-size: 8px; letter-spacing: 0.5px; cursor: pointer; padding: 5px 0; transition: color 0.2s; font-weight: bold; }
+  .stats-bar { background: linear-gradient(135deg, rgba(0,100,200,0.2), rgba(0,60,150,0.1)); border: 1px solid rgba(0,180,255,0.3); border-radius: 16px; padding: 12px; margin: 15px 0; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+  .stat-box { text-align: center; }
+  .stat-box-icon { font-size: 16px; margin-bottom: 2px; }
+  .stat-box-label { font-size: 8px; color: #7a8ba5; }
+  .stat-box-value { font-size: 12px; font-weight: 900; color: #00d4ff; margin-top: 2px; }
+  .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: linear-gradient(180deg, rgba(10,20,35,0.98), rgba(5,10,20,1)); border-top: 1px solid rgba(0,180,255,0.3); display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr; padding: 8px 0 12px; z-index: 100; }
+  .nav-item { display: flex; flex-direction: column; align-items: center; gap: 3px; color: #4a5568; font-size: 8px; cursor: pointer; padding: 5px 0; font-weight: bold; }
   .nav-item.active { color: #00d4ff; }
-  .nav-item.active .nav-icon { filter: drop-shadow(0 0 10px #00d4ff); transform: scale(1.15); }
+  .nav-item.active .nav-icon { transform: scale(1.15); }
   .nav-item .nav-icon { font-size: 20px; transition: transform 0.2s; }
-  .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 15px; backdrop-filter: blur(8px); }
+  .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 15px; }
   .modal.show { display: flex; }
-  .modal-content { background: linear-gradient(135deg, #0f2137, #061224); border: 1px solid rgba(0,212,255,0.5); border-radius: 22px; padding: 22px 18px; max-width: 380px; width: 100%; text-align: center; box-shadow: 0 20px 70px rgba(0,212,255,0.5); max-height: 92vh; overflow-y: auto; }
+  .modal-content { background: linear-gradient(135deg, #0f2137, #061224); border: 1px solid rgba(0,212,255,0.5); border-radius: 22px; padding: 22px 18px; max-width: 380px; width: 100%; text-align: center; max-height: 92vh; overflow-y: auto; }
   .modal-content h3 { color: #00d4ff; margin-bottom: 12px; font-size: 18px; font-weight: 900; }
   .modal-content p { color: #a0aec0; font-size: 13px; margin-bottom: 20px; line-height: 1.6; white-space: pre-line; }
-  .modal-btn { background: linear-gradient(135deg, #00b4ff, #0066ff); border: none; border-radius: 12px; padding: 12px 30px; color: white; font-size: 14px; font-weight: 900; cursor: pointer; letter-spacing: 1px; box-shadow: 0 6px 20px rgba(0,180,255,0.5); }
+  .modal-btn { background: linear-gradient(135deg, #00b4ff, #0066ff); border: none; border-radius: 12px; padding: 12px 30px; color: white; font-size: 14px; font-weight: 900; cursor: pointer; }
   .input-field { background: rgba(0,0,0,0.4); border: 1px solid rgba(0,212,255,0.4); border-radius: 12px; padding: 12px 15px; color: white; font-size: 14px; width: 100%; outline: none; text-align: center; margin-bottom: 15px; font-weight: 900; }
-  .float-text { position: fixed; font-size: 26px; font-weight: 900; color: #00d4ff; pointer-events: none; animation: floatUp 1s ease-out forwards; z-index: 999; text-shadow: 0 0 20px rgba(0,212,255,1); }
+  .float-text { position: fixed; font-size: 26px; font-weight: 900; color: #00d4ff; pointer-events: none; animation: floatUp 1s ease-out forwards; z-index: 999; }
   @keyframes floatUp { 0% { opacity: 1; transform: translateY(0) scale(1); } 100% { opacity: 0; transform: translateY(-130px) scale(1.4); } }
   .sparkle { position: fixed; width: 8px; height: 8px; border-radius: 50%; pointer-events: none; animation: sparkleAnim 0.8s ease-out forwards; z-index: 998; }
   @keyframes sparkleAnim { 0% { opacity: 1; transform: scale(1); } 100% { opacity: 0; transform: scale(0); } }
   .tab-content { display: none; padding: 12px 15px; max-width: 500px; margin: 0 auto; }
   .tab-content.active { display: block; }
-  .page-title { font-size: 22px; font-weight: 900; margin-bottom: 15px; background: linear-gradient(90deg, #00d4ff, #ffffff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
   .wheel-wrapper { position: relative; width: 260px; height: 260px; margin: 20px auto; display: flex; align-items: center; justify-content: center; }
-  .wheel-pointer { position: absolute; top: -25px; left: 50%; transform: translateX(-50%); font-size: 40px; color: #ff0055; z-index: 10; filter: drop-shadow(0 0 15px #ff0055); animation: pointerPulse 1.2s infinite; }
-  @keyframes pointerPulse { 0%, 100% { transform: translateX(-50%) scale(1); } 50% { transform: translateX(-50%) scale(1.15); } }
-  .wheel-outer { position: absolute; width: 100%; height: 100%; border-radius: 50%; border: 5px solid #00d4ff; box-shadow: 0 0 30px rgba(0,212,255,0.8), inset 0 0 30px rgba(0,212,255,0.4); z-index: 5; pointer-events: none; }
-  .wheel-container { width: 220px; height: 220px; border-radius: 50%; background: conic-gradient(#00d4ff 0deg 45deg, #0066ff 45deg 90deg, #00ff88 90deg 135deg, #ff9500 135deg 180deg, #ff0055 180deg 225deg, #9900ff 225deg 270deg, #ffaa00 270deg 315deg, #ff00aa 315deg 360deg); position: relative; transition: transform 5s cubic-bezier(0.15, 0.9, 0.2, 1); box-shadow: inset 0 0 40px rgba(0,0,0,0.6); z-index: 2; }
+  .wheel-pointer { position: absolute; top: -25px; left: 50%; transform: translateX(-50%); font-size: 40px; color: #ff0055; z-index: 10; }
+  .wheel-outer { position: absolute; width: 100%; height: 100%; border-radius: 50%; border: 5px solid #00d4ff; z-index: 5; pointer-events: none; }
+  .wheel-container { width: 220px; height: 220px; border-radius: 50%; background: conic-gradient(#00d4ff 0deg 45deg, #0066ff 45deg 90deg, #00ff88 90deg 135deg, #ff9500 135deg 180deg, #ff0055 180deg 225deg, #9900ff 225deg 270deg, #ffaa00 270deg 315deg, #ff00aa 315deg 360deg); position: relative; transition: transform 5s cubic-bezier(0.15, 0.9, 0.2, 1); z-index: 2; }
   .wheel-labels { width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
-  .wheel-label { position: absolute; top: 50%; left: 50%; width: 0; height: 0; font-size: 12px; font-weight: 900; color: white; text-shadow: 0 0 6px rgba(0,0,0,1); pointer-events: none; z-index: 3; }
+  .wheel-label { position: absolute; top: 50%; left: 50%; width: 0; height: 0; font-size: 12px; font-weight: 900; color: white; pointer-events: none; z-index: 3; }
   .wheel-label span { display: block; position: absolute; transform: translate(-50%, -50%); white-space: nowrap; }
-  .wheel-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 70px; height: 70px; border-radius: 50%; background: linear-gradient(135deg, #ffffff, #e0e0e0); display: flex; align-items: center; justify-content: center; font-weight: 900; color: #0066ff; font-size: 13px; z-index: 6; box-shadow: 0 0 25px rgba(255,255,255,1), 0 0 50px rgba(0,212,255,0.8); border: 3px solid #00d4ff; cursor: pointer; }
-  .wheel-center.disabled { background: linear-gradient(135deg, #666, #444); color: #aaa; border-color: #666; cursor: not-allowed; box-shadow: none; }
-  .result-display { background: linear-gradient(135deg, rgba(0,212,255,0.2), rgba(0,100,200,0.1)); border: 2px solid #00d4ff; border-radius: 16px; padding: 15px; margin: 15px 0; text-align: center; display: none; animation: resultPop 0.5s; }
-  @keyframes resultPop { 0% { transform: scale(0.5); opacity: 0; } 70% { transform: scale(1.1); } 100% { transform: scale(1); opacity: 1; } }
+  .wheel-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 70px; height: 70px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; font-weight: 900; color: #0066ff; font-size: 13px; z-index: 6; border: 3px solid #00d4ff; cursor: pointer; }
+  .result-display { background: linear-gradient(135deg, rgba(0,212,255,0.2), rgba(0,100,200,0.1)); border: 2px solid #00d4ff; border-radius: 16px; padding: 15px; margin: 15px 0; text-align: center; display: none; }
   .result-display.show { display: block; }
-  .result-display h4 { font-size: 11px; color: #a0aec0; letter-spacing: 2px; margin-bottom: 8px; }
-  .result-display .reward-amount { font-size: 36px; font-weight: 900; color: #00ff88; text-shadow: 0 0 25px rgba(0,255,136,0.9); }
-  .result-display .reward-unit { font-size: 13px; color: #00d4ff; font-weight: 900; letter-spacing: 2px; }
-  .lucky-box { width: 140px; height: 140px; margin: 20px auto; background: linear-gradient(135deg, #ff9500, #ff5500); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 70px; box-shadow: 0 0 40px rgba(255,150,0,0.7); cursor: pointer; transition: transform 0.2s; }
+  .result-display h4 { font-size: 11px; color: #a0aec0; margin-bottom: 8px; }
+  .result-display .reward-amount { font-size: 36px; font-weight: 900; color: #00ff88; }
+  .result-display .reward-unit { font-size: 13px; color: #00d4ff; font-weight: 900; }
+  .lucky-box { width: 140px; height: 140px; margin: 20px auto; background: linear-gradient(135deg, #ff9500, #ff5500); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 70px; cursor: pointer; }
   .lucky-box:active { transform: scale(0.9); }
-  .lucky-box.shake { animation: boxShake 0.5s; }
-  @keyframes boxShake { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-10deg) scale(1.05); } 75% { transform: rotate(10deg) scale(1.05); } }
   .ref-card { background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(0,80,180,0.1)); border: 1px solid rgba(0,212,255,0.3); border-radius: 18px; padding: 20px; margin-bottom: 12px; text-align: center; }
   .ref-title { font-size: 16px; font-weight: 900; color: #00d4ff; margin-bottom: 8px; }
   .ref-sub { font-size: 11px; color: #a0aec0; margin-bottom: 15px; }
   .ref-link { background: rgba(0,0,0,0.4); padding: 12px; border-radius: 10px; font-size: 10px; color: #00d4ff; word-break: break-all; margin-bottom: 15px; }
-  .ref-share { background: linear-gradient(135deg, #00b4ff, #0066ff); border: none; border-radius: 12px; padding: 12px; color: white; font-size: 13px; font-weight: 900; cursor: pointer; width: 100%; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(0,180,255,0.5); }
+  .ref-share { background: linear-gradient(135deg, #00b4ff, #0066ff); border: none; border-radius: 12px; padding: 12px; color: white; font-size: 13px; font-weight: 900; cursor: pointer; width: 100%; }
   .setting-row { display: flex; justify-content: space-between; align-items: center; background: rgba(15,30,55,0.7); border: 1px solid rgba(0,180,255,0.2); border-radius: 14px; padding: 14px; margin-bottom: 10px; }
   .setting-row .label { font-size: 13px; font-weight: 900; color: white; }
   .toggle { width: 50px; height: 28px; border-radius: 14px; background: #4a5568; position: relative; cursor: pointer; transition: background 0.3s; }
@@ -269,13 +244,12 @@
   .sticker-tier-title.epic { color: #9900ff; }
   .sticker-tier-title.legendary { color: #ff9500; }
   .tier-dot { width: 10px; height: 10px; border-radius: 50%; }
-  .tier-dot.common { background: #a0aec0; box-shadow: 0 0 10px #a0aec0; }
-  .tier-dot.rare { background: #00d4ff; box-shadow: 0 0 10px #00d4ff; }
-  .tier-dot.epic { background: #9900ff; box-shadow: 0 0 10px #9900ff; }
-  .tier-dot.legendary { background: #ff9500; box-shadow: 0 0 10px #ff9500; }
+  .tier-dot.common { background: #a0aec0; }
+  .tier-dot.rare { background: #00d4ff; }
+  .tier-dot.epic { background: #9900ff; }
+  .tier-dot.legendary { background: #ff9500; }
   .sticker-shop { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .sticker-card { background: rgba(15,30,55,0.8); border: 1px solid rgba(0,180,255,0.2); border-radius: 14px; padding: 12px 8px; text-align: center; cursor: pointer; transition: transform 0.1s; position: relative; }
-  .sticker-card:active { transform: scale(0.96); }
+  .sticker-card { background: rgba(15,30,55,0.8); border: 1px solid rgba(0,180,255,0.2); border-radius: 14px; padding: 12px 8px; text-align: center; cursor: pointer; }
   .sticker-card.locked { opacity: 0.5; cursor: not-allowed; }
   .sticker-card.owned { border-color: #00ff88; }
   .sticker-card.max { border-color: #ff9500; background: rgba(255,150,0,0.1); }
@@ -285,51 +259,48 @@
   .sticker-card.legendary { border-color: rgba(255,150,0,0.5); }
   .sticker-icon { font-size: 34px; margin-bottom: 4px; }
   .sticker-name { font-size: 11px; font-weight: 900; margin-bottom: 2px; }
-  .sticker-lvl { font-size: 8px; color: #ff9500; font-weight: 900; margin-bottom: 3px; letter-spacing: 1px; }
+  .sticker-lvl { font-size: 8px; color: #ff9500; font-weight: 900; margin-bottom: 3px; }
   .sticker-benefit { font-size: 9px; color: #00ff88; margin-bottom: 5px; min-height: 20px; }
   .sticker-price { font-size: 10px; color: #00d4ff; font-weight: 900; }
   .sticker-price.max { color: #ff9500; }
   .sticker-price.locked { color: #7a8ba5; }
   .crash-game { text-align: center; padding: 10px 0; }
-  .crash-multiplier { font-size: 54px; font-weight: 900; color: #00ff88; text-shadow: 0 0 30px rgba(0,255,136,0.8); transition: color 0.3s; margin: 15px 0; }
-  .crash-multiplier.crashed { color: #ff0055; text-shadow: 0 0 30px rgba(255,0,85,0.8); }
+  .crash-multiplier { font-size: 54px; font-weight: 900; color: #00ff88; margin: 15px 0; }
+  .crash-multiplier.crashed { color: #ff0055; }
   .crash-bar { height: 12px; background: rgba(0,0,0,0.3); border-radius: 6px; overflow: hidden; margin: 15px 0; }
   .crash-bar-fill { height: 100%; background: linear-gradient(90deg, #00d4ff, #00ff88); border-radius: 6px; transition: width 0.1s; }
   .bet-selector { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin: 15px 0 10px; }
-  .bet-option { background: rgba(15,30,55,0.8); border: 1px solid rgba(0,180,255,0.3); border-radius: 10px; padding: 10px 5px; cursor: pointer; transition: all 0.2s; font-size: 11px; font-weight: 900; color: white; }
-  .bet-option.selected { background: linear-gradient(135deg, #00d4ff, #0066ff); border-color: #00d4ff; box-shadow: 0 0 15px rgba(0,212,255,0.6); }
-  .crash-bet-btn { background: linear-gradient(135deg, #00ff88, #00aa55); border: none; border-radius: 12px; padding: 14px; color: white; font-size: 15px; font-weight: 900; cursor: pointer; width: 100%; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(0,255,136,0.5); }
-  .crash-cash-btn { background: linear-gradient(135deg, #ff9500, #ff5500); border: none; border-radius: 12px; padding: 14px; color: white; font-size: 15px; font-weight: 900; cursor: pointer; width: 100%; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(255,150,0,0.5); margin-top: 10px; }
+  .bet-option { background: rgba(15,30,55,0.8); border: 1px solid rgba(0,180,255,0.3); border-radius: 10px; padding: 10px 5px; cursor: pointer; font-size: 11px; font-weight: 900; color: white; }
+  .bet-option.selected { background: linear-gradient(135deg, #00d4ff, #0066ff); border-color: #00d4ff; }
+  .crash-bet-btn { background: linear-gradient(135deg, #00ff88, #00aa55); border: none; border-radius: 12px; padding: 14px; color: white; font-size: 15px; font-weight: 900; cursor: pointer; width: 100%; }
+  .crash-cash-btn { background: linear-gradient(135deg, #ff9500, #ff5500); border: none; border-radius: 12px; padding: 14px; color: white; font-size: 15px; font-weight: 900; cursor: pointer; width: 100%; margin-top: 10px; }
   .puzzle-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; margin: 15px auto; max-width: 100%; }
-  .puzzle-tile { aspect-ratio: 1; background: linear-gradient(135deg, #00d4ff, #0066ff); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 900; color: white; cursor: pointer; box-shadow: 0 0 8px rgba(0,212,255,0.4); transition: transform 0.1s; }
-  .puzzle-tile.empty { background: rgba(15,30,55,0.4); box-shadow: none; color: transparent; }
-  .puzzle-tile:active { transform: scale(0.9); }
+  .puzzle-tile { aspect-ratio: 1; background: linear-gradient(135deg, #00d4ff, #0066ff); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 900; color: white; cursor: pointer; }
+  .puzzle-tile.empty { background: rgba(15,30,55,0.4); color: transparent; }
   .upgrade-item { background: rgba(10,25,45,0.7); border: 1px solid rgba(0,150,255,0.2); border-radius: 16px; padding: 14px; margin-bottom: 10px; display: flex; align-items: center; gap: 12px; }
-  .upgrade-icon-wrap { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; position: relative; }
-  .upgrade-icon-wrap.tap { background: radial-gradient(circle, #00b4ff, #0050a0); box-shadow: 0 0 20px rgba(0,180,255,0.5); }
-  .upgrade-icon-wrap.energy { background: radial-gradient(circle, #00ff88, #008844); box-shadow: 0 0 20px rgba(0,255,136,0.5); }
-  .upgrade-icon-wrap.auto { background: radial-gradient(circle, #ffd700, #aa7700); box-shadow: 0 0 20px rgba(255,215,0,0.5); }
-  .upgrade-icon-wrap.regen { background: radial-gradient(circle, #00d4ff, #0066aa); box-shadow: 0 0 20px rgba(0,212,255,0.5); }
+  .upgrade-icon-wrap { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
+  .upgrade-icon-wrap.tap { background: radial-gradient(circle, #00b4ff, #0050a0); }
+  .upgrade-icon-wrap.energy { background: radial-gradient(circle, #00ff88, #008844); }
+  .upgrade-icon-wrap.auto { background: radial-gradient(circle, #ffd700, #aa7700); }
+  .upgrade-icon-wrap.regen { background: radial-gradient(circle, #00d4ff, #0066aa); }
   .upgrade-info { flex: 1; min-width: 0; }
   .upgrade-info h4 { font-size: 13px; font-weight: 900; margin-bottom: 3px; color: white; }
   .upgrade-info p { font-size: 10px; color: #7a8ba5; margin-bottom: 3px; }
   .upgrade-info .lvl { font-size: 10px; color: #00d4ff; font-weight: 900; }
-  .upgrade-btn { background: linear-gradient(135deg, #00b4ff, #0066ff); border: none; border-radius: 10px; padding: 8px 14px; color: white; font-size: 11px; font-weight: 900; cursor: pointer; letter-spacing: 0.5px; min-width: 70px; }
-  .withdraw-option { background: rgba(15,30,55,0.8); border: 1px solid rgba(0,180,255,0.3); border-radius: 14px; padding: 14px; margin-bottom: 10px; display: flex; align-items: center; gap: 12px; cursor: pointer; transition: transform 0.1s; }
-  .withdraw-option:active { transform: scale(0.98); }
+  .upgrade-btn { background: linear-gradient(135deg, #00b4ff, #0066ff); border: none; border-radius: 10px; padding: 8px 14px; color: white; font-size: 11px; font-weight: 900; cursor: pointer; min-width: 70px; }
+  .withdraw-option { background: rgba(15,30,55,0.8); border: 1px solid rgba(0,180,255,0.3); border-radius: 14px; padding: 14px; margin-bottom: 10px; display: flex; align-items: center; gap: 12px; }
   .withdraw-option-icon { width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; background: rgba(0,180,255,0.15); flex-shrink: 0; }
   .withdraw-option-info { flex: 1; text-align: left; }
   .withdraw-option-info h4 { font-size: 13px; font-weight: 900; margin-bottom: 3px; }
   .withdraw-option-info p { font-size: 10px; color: #7a8ba5; }
-  .coming-soon-badge { background: rgba(255,150,0,0.2); color: #ff9500; font-size: 9px; padding: 3px 8px; border-radius: 8px; font-weight: 900; letter-spacing: 1px; }
+  .coming-soon-badge { background: rgba(255,150,0,0.2); color: #ff9500; font-size: 9px; padding: 3px 8px; border-radius: 8px; font-weight: 900; }
   .avatar-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 15px 0; }
-  .avatar-option { aspect-ratio: 1; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; cursor: pointer; border: 3px solid rgba(0,180,255,0.3); background: linear-gradient(135deg, rgba(0,212,255,0.2), rgba(0,80,180,0.1)); transition: all 0.2s; }
-  .avatar-option.selected { border-color: #00d4ff; box-shadow: 0 0 20px rgba(0,212,255,0.8); transform: scale(1.05); }
+  .avatar-option { aspect-ratio: 1; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; cursor: pointer; border: 3px solid rgba(0,180,255,0.3); background: linear-gradient(135deg, rgba(0,212,255,0.2), rgba(0,80,180,0.1)); }
+  .avatar-option.selected { border-color: #00d4ff; transform: scale(1.05); }
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <div class="header">
   <div class="header-left">
     <div class="menu-icon" onclick="navTo('settings')">☰</div>
@@ -347,7 +318,6 @@
   </div>
 </div>
 
-<!-- HOME -->
 <div class="tab-content active" id="tab-home">
   <div class="container">
     <div class="balance-row">
@@ -433,11 +403,10 @@
     <div class="side-item" onclick="navTo('friends')"><div class="side-item-icon">👥</div><div class="side-item-info"><h4>Referral</h4><p>+500 TRAX per friend</p></div><div class="side-item-arrow">›</div></div>
     <div class="side-item" onclick="navTo('lucky')"><div class="side-item-icon">📦</div><div class="side-item-info"><h4>Lucky Box</h4><p>Open for random rewards</p></div><div class="side-item-arrow">›</div></div>
     <div class="side-item" onclick="navTo('settings')"><div class="side-item-icon">⚙️</div><div class="side-item-info"><h4>Settings</h4><p>Sound & vibration</p></div><div class="side-item-arrow">›</div></div>
-    <div style="text-align:center;font-size:8px;color:#4a5568;margin:20px 0;line-height:1.8;letter-spacing:1px">TRAX OFFICIAL · SMALL TAPS BIG DREAMS<br>DEMO POINTS ONLY · NOT A REAL TOKEN</div>
+    <div style="text-align:center;font-size:8px;color:#4a5568;margin:20px 0;line-height:1.8;">TRAX OFFICIAL · SMALL TAPS BIG DREAMS<br>DEMO POINTS ONLY · NOT A REAL TOKEN</div>
   </div>
 </div>
 
-<!-- TASKS -->
 <div class="tab-content" id="tab-tasks">
   <div class="page-title-bar">
     <div class="page-title-icon">📋</div>
@@ -446,7 +415,6 @@
   <div id="fullTasksListNew"></div>
 </div>
 
-<!-- MINE -->
 <div class="tab-content" id="tab-mine">
   <div class="page-title-bar">
     <div class="page-title-icon">⛏️</div>
@@ -461,7 +429,6 @@
   </div>
 </div>
 
-<!-- FRIENDS -->
 <div class="tab-content" id="tab-friends">
   <div class="page-title-bar">
     <div class="page-title-icon">👥</div>
@@ -475,7 +442,6 @@
   </div>
 </div>
 
-<!-- WALLET -->
 <div class="tab-content" id="tab-wallet">
   <div class="page-title-bar">
     <div class="page-title-icon">💼</div>
@@ -496,7 +462,6 @@
   <div class="withdraw-option"><div class="withdraw-option-icon">✈️</div><div class="withdraw-option-info"><h4>Telegram Wallet</h4><p>@wallet in Telegram</p></div><span class="coming-soon-badge">SOON</span></div>
 </div>
 
-<!-- RANK -->
 <div class="tab-content" id="tab-rank">
   <div class="page-title-bar">
     <div class="page-title-icon">🏆</div>
@@ -505,13 +470,11 @@
   <div id="rankList"></div>
 </div>
 
-<!-- BOOSTERS (NEW) -->
 <div class="tab-content" id="tab-boosters">
   <div class="page-title-bar">
     <div class="page-title-icon">🚀</div>
     <div class="page-title-text">Boosters</div>
   </div>
-
   <div class="booster-card">
     <div class="booster-header">
       <div class="booster-header-icon">👆</div>
@@ -520,50 +483,33 @@
         <div class="booster-header-desc">Increase your earnings</div>
       </div>
     </div>
-
     <div class="booster-row">
       <div class="booster-icon auto-tap">👆</div>
-      <div class="booster-info">
-        <h4>Auto Tap</h4>
-        <p>+50% per tap</p>
-      </div>
+      <div class="booster-info"><h4>Auto Tap</h4><p>+50% per tap</p></div>
       <div class="booster-timer" id="autoTapTimer">10:00</div>
       <button class="booster-btn purple" id="autoTapBtn" onclick="activateBooster('autoTap')">Activate</button>
     </div>
-
     <div class="booster-row">
       <div class="booster-icon energy">⚡</div>
-      <div class="booster-info">
-        <h4>Energy Refill</h4>
-        <p>+20 Energy</p>
-      </div>
+      <div class="booster-info"><h4>Energy Refill</h4><p>+20 Energy</p></div>
       <div class="booster-timer" id="energyTimer">10:00</div>
       <button class="booster-btn blue" id="energyBtn" onclick="activateBooster('energy')">Activate</button>
     </div>
-
     <div class="booster-row">
       <div class="booster-icon double">2x</div>
-      <div class="booster-info">
-        <h4>2x Earnings</h4>
-        <p>Double your rewards</p>
-      </div>
+      <div class="booster-info"><h4>2x Earnings</h4><p>Double your rewards</p></div>
       <div class="booster-timer" id="doubleTimer">30:00</div>
       <button class="booster-btn magenta" id="doubleBtn" onclick="activateBooster('double')">Activate</button>
     </div>
-
     <div class="booster-row">
       <div class="booster-icon offline">⏰</div>
-      <div class="booster-info">
-        <h4>Offline Profit</h4>
-        <p>Earn while you're away</p>
-      </div>
+      <div class="booster-info"><h4>Offline Profit</h4><p>Earn while you're away</p></div>
       <div class="booster-timer" id="offlineTimer">6:00:00</div>
       <button class="booster-btn green" id="offlineBtn" onclick="activateBooster('offline')">Activate</button>
     </div>
   </div>
 </div>
 
-<!-- UPGRADES (NEW) -->
 <div class="tab-content" id="tab-upgrades">
   <div class="page-title-bar">
     <div class="page-title-icon">⬆️</div>
@@ -572,7 +518,6 @@
   <div id="upgradesList"></div>
 </div>
 
-<!-- EARN -->
 <div class="tab-content" id="tab-earn">
   <div class="page-title-bar">
     <div class="page-title-icon">🎁</div>
@@ -584,7 +529,6 @@
   <div class="side-item" onclick="navTo('sticker')"><div class="side-item-icon">🎨</div><div class="side-item-info"><h4>Sticker Shop</h4><p>50 stickers for bonuses</p></div><div class="side-item-arrow">›</div></div>
 </div>
 
-<!-- STICKER -->
 <div class="tab-content" id="tab-sticker">
   <div class="page-title-bar">
     <div class="page-title-icon">🎨</div>
@@ -594,7 +538,6 @@
   <div id="stickerShopContainer"></div>
 </div>
 
-<!-- LUCKY -->
 <div class="tab-content" id="tab-lucky">
   <div class="page-title-bar">
     <div class="page-title-icon">📦</div>
@@ -605,11 +548,8 @@
   <p style="text-align:center;color:#7a8ba5;font-size:11px;margin-top:15px">Keys: <span id="luckyKeys">1</span></p>
 </div>
 
-<!-- PROFILE (NEW - Screenshot 1) -->
 <div class="tab-content" id="tab-profile">
   <div style="margin-bottom:15px"></div>
-  
-  <!-- Profile Card -->
   <div class="profile-card">
     <div class="profile-top">
       <div class="profile-avatar-wrap">
@@ -632,8 +572,6 @@
       <div class="profile-level-fill" id="profLevelFill" style="width:0%"></div>
     </div>
   </div>
-
-  <!-- Stats Row -->
   <div class="stats-row">
     <div class="stat-card">
       <div class="stat-card-label">Total Taps</div>
@@ -648,37 +586,26 @@
       <div class="stat-card-value">#<span id="profRank">---</span></div>
     </div>
   </div>
-
-  <!-- Menu List -->
   <div class="menu-list">
     <div class="menu-item" onclick="navTo('wallet')">
-      <div class="menu-icon-box wallet-icon">💼</div>
-      <div class="menu-item-info">
-        <h4>My Wallet</h4>
-      </div>
+      <div class="menu-icon-box">💼</div>
+      <div class="menu-item-info"><h4>My Wallet</h4></div>
       <div class="menu-item-arrow">›</div>
     </div>
     <div class="menu-item" onclick="navTo('friends')">
-      <div class="menu-icon-box referral-icon">👥</div>
-      <div class="menu-item-info">
-        <h4>Referral</h4>
-        <p class="green">+500 TRAX per friend</p>
-      </div>
+      <div class="menu-icon-box">👥</div>
+      <div class="menu-item-info"><h4>Referral</h4><p class="green">+500 TRAX per friend</p></div>
       <div class="menu-item-arrow">›</div>
     </div>
     <div class="menu-item" onclick="navTo('settings')">
-      <div class="menu-icon-box settings-icon">⚙️</div>
-      <div class="menu-item-info">
-        <h4>Settings</h4>
-      </div>
+      <div class="menu-icon-box">⚙️</div>
+      <div class="menu-item-info"><h4>Settings</h4></div>
       <div class="menu-item-arrow">›</div>
     </div>
   </div>
-
   <button class="daily-btn" onclick="openEditProfile()" style="margin-top:15px;width:100%">✏️ Edit Name & Avatar</button>
 </div>
 
-<!-- SETTINGS -->
 <div class="tab-content" id="tab-settings">
   <div class="page-title-bar">
     <div class="page-title-icon">⚙️</div>
@@ -690,7 +617,6 @@
   <div class="side-item" onclick="resetData()"><div class="side-item-icon">🗑️</div><div class="side-item-info"><h4>Reset Data</h4><p>Clear all progress</p></div></div>
 </div>
 
-<!-- EDIT NAME -->
 <div class="tab-content" id="tab-editname">
   <div class="page-title-bar">
     <div class="page-title-icon">✏️</div>
@@ -710,7 +636,6 @@
   </div>
 </div>
 
-<!-- BOTTOM NAV -->
 <div class="bottom-nav">
   <div class="nav-item active" data-tab="home" onclick="navClick(this, 'home')"><div class="nav-icon">🏠</div><div>Home</div></div>
   <div class="nav-item" data-tab="tasks" onclick="navClick(this, 'tasks')"><div class="nav-icon">📋</div><div>Tasks</div></div>
@@ -719,7 +644,6 @@
   <div class="nav-item" data-tab="wallet" onclick="navClick(this, 'wallet')"><div class="nav-icon">💼</div><div>Wallet</div></div>
 </div>
 
-<!-- MODAL -->
 <div class="modal" id="modal">
   <div class="modal-content">
     <h3 id="modalTitle">Notice</h3>
@@ -728,7 +652,6 @@
   </div>
 </div>
 
-<!-- SPIN MODAL -->
 <div class="modal" id="spinModal">
   <div class="modal-content" style="max-width:380px">
     <h3>🎰 Spin to Win!</h3>
@@ -741,11 +664,10 @@
     <div class="result-display" id="resultDisplay"><h4>🎉 YOU WON</h4><div class="reward-amount" id="rewardAmount">+0</div><div class="reward-unit">TRAX</div></div>
     <div id="spinInfo" style="font-size:11px;color:#7a8ba5;text-align:center;margin:10px 0"></div>
     <button class="modal-btn" style="margin-top:10px;display:block;width:100%" onclick="spinWheel()" id="spinBtn">SPIN NOW</button>
-    <button class="modal-btn" style="margin-top:8px;background:rgba(255,255,255,0.1);box-shadow:none;display:block;width:100%" onclick="closeSpin()">Close</button>
+    <button class="modal-btn" style="margin-top:8px;background:rgba(255,255,255,0.1);display:block;width:100%" onclick="closeSpin()">Close</button>
   </div>
 </div>
 
-<!-- CRASH MODAL -->
 <div class="modal" id="crashModal">
   <div class="modal-content" style="max-width:380px">
     <h3 style="display:flex;justify-content:space-between;align-items:center">🚀 Crash Game <span onclick="showCrashInfo()" style="width:28px;height:28px;border-radius:50%;background:rgba(0,212,255,0.2);border:2px solid #00d4ff;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:#00d4ff;cursor:pointer">i</span></h3>
@@ -754,7 +676,7 @@
       <div class="bet-selector" id="betSelector"></div>
       <div style="margin:10px 0;display:flex;gap:8px;align-items:center">
         <input type="number" id="customBetInput" placeholder="Custom bet" min="100" style="flex:1;background:rgba(0,0,0,0.4);border:1px solid rgba(0,212,255,0.4);border-radius:10px;padding:12px;color:white;font-size:14px;font-weight:900;text-align:center;outline:none" oninput="onCustomBetChange()">
-        <button onclick="applyCustomBet()" style="background:linear-gradient(135deg,#00b4ff,#0066ff);border:none;border-radius:10px;padding:12px 18px;color:white;font-size:12px;font-weight:900;cursor:pointer;letter-spacing:1px">SET</button>
+        <button onclick="applyCustomBet()" style="background:linear-gradient(135deg,#00b4ff,#0066ff);border:none;border-radius:10px;padding:12px 18px;color:white;font-size:12px;font-weight:900;cursor:pointer">SET</button>
       </div>
       <div id="betInfo" style="text-align:center;font-size:11px;color:#ff9500;font-weight:900;margin-top:5px;min-height:16px"></div>
       <div class="crash-multiplier" id="crashMultiplier">1.00x</div>
@@ -763,48 +685,41 @@
       <button class="crash-bet-btn" onclick="startCrash()" id="crashBetBtn">START</button>
       <button class="crash-cash-btn" onclick="cashOutCrash()" id="crashCashBtn" style="display:none">CASH OUT</button>
     </div>
-    <button class="modal-btn" style="margin-top:10px;background:rgba(255,255,255,0.1);box-shadow:none;display:block;width:100%" onclick="closeCrash()">Close</button>
+    <button class="modal-btn" style="margin-top:10px;background:rgba(255,255,255,0.1);display:block;width:100%" onclick="closeCrash()">Close</button>
   </div>
 </div>
 
-<!-- CRASH INFO -->
 <div class="modal" id="crashInfoModal">
   <div class="modal-content" style="max-width:400px;text-align:left">
     <h3 style="text-align:center">🚀 How to Play Crash</h3>
     <div style="color:#a0aec0;font-size:12px;line-height:1.8;margin-bottom:15px">
       <p style="margin-bottom:12px"><b style="color:#00d4ff">📖 Kaise Khelein:</b></p>
-      <p style="margin-bottom:10px">1. <b style="color:white">Bet select karein</b> — preset buttons ya custom amount likhein</p>
-      <p style="margin-bottom:10px">2. <b style="color:white">START dabayein</b> — multiplier 1.00x se barhna shuru hoga</p>
-      <p style="margin-bottom:10px">3. <b style="color:white">CASH OUT dabayein</b> — jitni der rukenge utna zyada milega</p>
-      <p style="margin-bottom:15px">4. <b style="color:#ff0055">⚠️ CRASH hone se pehle cash out karein</b> — warna saara bet kho jayega!</p>
-      <p style="margin-bottom:10px"><b style="color:#00d4ff">🎰 Rarity Chances:</b></p>
+      <p style="margin-bottom:10px">1. <b style="color:white">Bet select karein</b></p>
+      <p style="margin-bottom:10px">2. <b style="color:white">START dabayein</b> — multiplier barhega</p>
+      <p style="margin-bottom:10px">3. <b style="color:white">CASH OUT dabayein</b> — jitna wait utna zyada</p>
+      <p style="margin-bottom:15px">4. <b style="color:#ff0055">⚠️ Crash hone se pehle cash out karein</b></p>
+      <p style="margin-bottom:10px"><b style="color:#00d4ff">🎰 Rarity:</b></p>
       <div style="background:rgba(160,174,192,0.1);border-left:3px solid #a0aec0;padding:8px 12px;border-radius:6px;margin-bottom:8px">
-        <b style="color:#a0aec0">🔘 COMMON — 92%</b><br>
-        <span style="font-size:11px">1.5x se 4x tak</span>
+        <b style="color:#a0aec0">🔘 COMMON — 92%</b><br><span style="font-size:11px">1.5x se 4x</span>
       </div>
       <div style="background:rgba(0,212,255,0.1);border-left:3px solid #00d4ff;padding:8px 12px;border-radius:6px;margin-bottom:8px">
-        <b style="color:#00d4ff">💎 RARE — 6.5%</b><br>
-        <span style="font-size:11px">4x se 20x tak</span>
+        <b style="color:#00d4ff">💎 RARE — 6.5%</b><br><span style="font-size:11px">4x se 20x</span>
       </div>
       <div style="background:rgba(153,0,255,0.1);border-left:3px solid #9900ff;padding:8px 12px;border-radius:6px;margin-bottom:8px">
-        <b style="color:#9900ff">🔥 EPIC — 1.25%</b><br>
-        <span style="font-size:11px">20x se 50x tak</span>
+        <b style="color:#9900ff">🔥 EPIC — 1.25%</b><br><span style="font-size:11px">20x se 50x</span>
       </div>
       <div style="background:rgba(255,150,0,0.1);border-left:3px solid #ff9500;padding:8px 12px;border-radius:6px;margin-bottom:15px">
-        <b style="color:#ff9500">⭐ LEGENDARY — 0.25%</b><br>
-        <span style="font-size:11px">50x se 100x tak</span>
+        <b style="color:#ff9500">⭐ LEGENDARY — 0.25%</b><br><span style="font-size:11px">50x se 100x</span>
       </div>
-      <p style="margin-bottom:10px"><b style="color:#00d4ff">💡 Tips:</b></p>
-      <p style="margin-bottom:6px">✓ Chhoti bet se shuru karein</p>
-      <p style="margin-bottom:6px">✓ 2x ya 3x par cash out karna safe hai</p>
-      <p style="margin-bottom:6px">✓ Zyada lalach bura hai</p>
-      <p>✓ Kismat ka khel hai — soch samajh kar khelein</p>
+      <p><b style="color:#00d4ff">💡 Tips:</b></p>
+      <p>✓ Chhoti bet se shuru karein</p>
+      <p>✓ 2x ya 3x par cash out safe hai</p>
+      <p>✓ Lalach na karein</p>
     </div>
     <button class="modal-btn" onclick="closeCrashInfo()" style="display:block;width:100%">Samajh Gaya ✓</button>
   </div>
 </div>
 
-<!-- PUZZLE MODAL -->
 <div class="modal" id="puzzleModal">
   <div class="modal-content" style="max-width:400px">
     <h3>🧩 Puzzle 7x7</h3>
@@ -812,7 +727,7 @@
     <div class="puzzle-grid" id="puzzleGrid"></div>
     <div style="font-size:11px;color:#00d4ff;text-align:center;margin:8px 0">Moves: <span id="puzzleMoves">0</span></div>
     <div style="font-size:11px;color:#00ff88;text-align:center;margin-bottom:12px">Reward: +50,000 TRAX</div>
-    <button class="modal-btn" style="background:rgba(255,255,255,0.1);box-shadow:none;display:block;width:100%" onclick="closePuzzle()">Close</button>
+    <button class="modal-btn" style="background:rgba(255,255,255,0.1);display:block;width:100%" onclick="closePuzzle()">Close</button>
   </div>
 </div>
 
@@ -820,8 +735,7 @@
   const tg = window.Telegram ? window.Telegram.WebApp : null;
   if (tg) { tg.ready(); tg.expand(); if (tg.setHeaderColor) tg.setHeaderColor('#050a14'); }
 
-  // ===== TRAX LOGO SVG =====
-  function getTraxLogoSVG(size) {
+  function getTraxLogoSVG() {
     return '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">' +
       '<defs>' +
       '<radialGradient id="ringGrad" cx="50%" cy="50%">' +
@@ -838,19 +752,14 @@
       '<stop offset="50%" stop-color="#a0e8ff"/>' +
       '<stop offset="100%" stop-color="#00a8ff"/>' +
       '</linearGradient>' +
-      '<filter id="glow"><feGaussianBlur stdDeviation="2" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>' +
       '</defs>' +
-      '<circle cx="50" cy="50" r="48" fill="url(#ringGrad)" filter="url(#glow)"/>' +
-      '<circle cx="50" cy="50" r="42" fill="url(#innerBg)" stroke="rgba(0,212,255,0.5)" stroke-width="0.5"/>' +
-      '<path d="M 28 38 L 72 38 L 72 46 L 58 46 L 58 72 L 42 72 L 42 46 L 28 46 Z" fill="url(#tGrad)" stroke="rgba(255,255,255,0.6)" stroke-width="0.5" stroke-linejoin="round"/>' +
-      '<path d="M 58 46 L 72 46 L 72 38 L 58 38 Z" fill="#00d4ff" opacity="0.6"/>' +
+      '<circle cx="50" cy="50" r="48" fill="url(#ringGrad)"/>' +
+      '<circle cx="50" cy="50" r="42" fill="url(#innerBg)"/>' +
+      '<path d="M 28 38 L 72 38 L 72 46 L 58 46 L 58 72 L 42 72 L 42 46 L 28 46 Z" fill="url(#tGrad)"/>' +
       '</svg>';
   }
+  document.getElementById('headerLogo').innerHTML = getTraxLogoSVG();
 
-  // Apply logo to header
-  document.getElementById('headerLogo').innerHTML = getTraxLogoSVG(40);
-
-  // ===== AUDIO =====
   let audioCtx = null;
   function initAudio() { if (!audioCtx) { try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e) {} } }
   function playSound(type) {
@@ -863,7 +772,6 @@
       if (type === 'tap') { osc.frequency.value = 800; gain.gain.setValueAtTime(0.1, now); gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08); osc.start(now); osc.stop(now + 0.08); }
       else if (type === 'win') { osc.frequency.setValueAtTime(600, now); osc.frequency.linearRampToValueAtTime(1200, now + 0.3); gain.gain.setValueAtTime(0.15, now); gain.gain.exponentialRampToValueAtTime(0.001, now + 0.4); osc.start(now); osc.stop(now + 0.4); }
       else if (type === 'error') { osc.frequency.value = 200; gain.gain.setValueAtTime(0.15, now); gain.gain.exponentialRampToValueAtTime(0.001, now + 0.2); osc.start(now); osc.stop(now + 0.2); }
-      else if (type === 'cash') { osc.frequency.setValueAtTime(400, now); osc.frequency.linearRampToValueAtTime(900, now + 0.15); gain.gain.setValueAtTime(0.15, now); gain.gain.exponentialRampToValueAtTime(0.001, now + 0.2); osc.start(now); osc.stop(now + 0.2); }
     } catch(e) {}
   }
   function vibrate(style) {
@@ -923,7 +831,7 @@
     const file = event.target.files[0]; if (!file) return;
     if (file.size > 500000) { showModal('⚠️ Too Big', 'Image 500KB se choti honi chahiye.'); return; }
     const reader = new FileReader();
-    reader.onload = (e) => { userAvatar = e.target.result; avatarIsImage = true; buildAvatarGrid(); showModal('✅ Uploaded', 'Custom avatar set ho gaya! Save dabayein.'); };
+    reader.onload = (e) => { userAvatar = e.target.result; avatarIsImage = true; buildAvatarGrid(); showModal('✅ Uploaded', 'Save dabayein.'); };
     reader.readAsDataURL(file);
   }
   function openEditProfile() { navTo('editname'); }
@@ -937,7 +845,7 @@
       showModal('✅ Saved', 'Avatar update ho gaya!');
       return;
     }
-    if (newName.length < 3) { showModal('⚠️ Too Short', 'Naam kam se kam 3 characters ka ho.'); return; }
+    if (newName.length < 3) { showModal('⚠️ Too Short', 'Naam kam se kam 3 characters.'); return; }
     const takenNames = ['ali', 'ahmed', 'sara', 'hassan', 'fatima', 'bilal', 'ayesha', 'usman', 'zara', 'trax', 'admin', 'player'];
     if (takenNames.includes(newName.toLowerCase())) { showModal('❌ Name Taken', 'Ye naam pehle se use ho raha hai.'); return; }
     userName = newName;
@@ -1034,12 +942,11 @@
     badge.textContent = '◆ ' + tier.name;
     badge.style.color = tier.border;
     badge.style.borderColor = tier.border;
-    badge.style.textShadow = '0 0 10px ' + tier.glow;
     const next = getNextCoinTier();
     const lvl = getTotalUpgradeLevels();
     const prog = document.getElementById('coinTierProgress');
-    if (next) { prog.textContent = 'Total Level: ' + lvl + ' / ' + next.minLevel + ' for ' + next.name; }
-    else { prog.textContent = '⭐ MAX TIER REACHED!'; }
+    if (next) prog.textContent = 'Total Level: ' + lvl + ' / ' + next.minLevel + ' for ' + next.name;
+    else prog.textContent = '⭐ MAX TIER REACHED!';
   }
   function hexToRgba(hex, alpha) {
     const r = parseInt(hex.slice(1,3), 16);
@@ -1183,19 +1090,8 @@
     return 100.0;
   }
 
-  // ===== BOOSTER SYSTEM =====
-  const BOOSTER_DURATIONS = {
-    autoTap: 10 * 60 * 1000,
-    energy: 10 * 60 * 1000,
-    double: 30 * 60 * 1000,
-    offline: 6 * 60 * 60 * 1000
-  };
-  const BOOSTER_COOLDOWNS = {
-    autoTap: 30 * 60 * 1000,
-    energy: 30 * 60 * 1000,
-    double: 60 * 60 * 1000,
-    offline: 12 * 60 * 60 * 1000
-  };
+  const BOOSTER_DURATIONS = { autoTap: 10 * 60 * 1000, energy: 10 * 60 * 1000, double: 30 * 60 * 1000, offline: 6 * 60 * 60 * 1000 };
+  const BOOSTER_COOLDOWNS = { autoTap: 30 * 60 * 1000, energy: 30 * 60 * 1000, double: 60 * 60 * 1000, offline: 12 * 60 * 60 * 1000 };
 
   function activateBooster(id) {
     const now = Date.now();
@@ -1208,8 +1104,7 @@
       return;
     }
     if (id === 'autoTap') {
-      boosters.autoTapActive = true;
-      boosters.autoTapLastUsed = now;
+      boosters.autoTapActive = true; boosters.autoTapLastUsed = now;
       showModal('👆 Auto Tap Active!', 'Agle 10 minute tak har tap 50% zyada coins dega!');
     } else if (id === 'energy') {
       energy = Math.min(getEffectiveMaxEnergy(), energy + 20);
@@ -1217,17 +1112,13 @@
       updateUI();
       showModal('⚡ Energy Refilled!', '+20 Energy mile!');
     } else if (id === 'double') {
-      boosters.doubleActive = true;
-      boosters.doubleLastUsed = now;
+      boosters.doubleActive = true; boosters.doubleLastUsed = now;
       showModal('2️⃣ 2x Earnings Active!', 'Agle 30 minute tak saare rewards double milenge!');
     } else if (id === 'offline') {
-      boosters.offlineActive = true;
-      boosters.offlineLastUsed = now;
+      boosters.offlineActive = true; boosters.offlineLastUsed = now;
       showModal('⏰ Offline Profit Active!', 'Agle 6 ghante tak aap offline bhi coins kamayenge!');
     }
-    saveBoosters();
-    playSound('win'); vibrate('success');
-    updateBoosterUI();
+    saveBoosters(); playSound('win'); vibrate('success'); updateBoosterUI();
   }
 
   function updateBoosterUI() {
@@ -1246,33 +1137,22 @@
         const secs = Math.floor((remaining % 60000) / 1000);
         if (hrs > 0) timerEl.textContent = hrs + ':' + String(mins).padStart(2, '0') + ':' + String(secs).padStart(2, '0');
         else timerEl.textContent = mins + ':' + String(secs).padStart(2, '0');
-        btnEl.disabled = true;
-        btnEl.textContent = 'Cooldown';
+        btnEl.disabled = true; btnEl.textContent = 'Cooldown';
       } else {
-        if (id === 'autoTap') timerEl.textContent = '10:00';
-        if (id === 'energy') timerEl.textContent = '10:00';
+        if (id === 'autoTap' || id === 'energy') timerEl.textContent = '10:00';
         if (id === 'double') timerEl.textContent = '30:00';
         if (id === 'offline') timerEl.textContent = '6:00:00';
-        btnEl.disabled = false;
-        btnEl.textContent = 'Activate';
+        btnEl.disabled = false; btnEl.textContent = 'Activate';
       }
     });
   }
 
   function saveBoosters() { localStorage.setItem('trax_boosters', JSON.stringify(boosters)); }
-
   function checkBoosterExpiry() {
-    const now = Date.now();
-    let changed = false;
-    if (boosters.autoTapActive && now - boosters.autoTapLastUsed > BOOSTER_DURATIONS.autoTap) {
-      boosters.autoTapActive = false; changed = true;
-    }
-    if (boosters.doubleActive && now - boosters.doubleLastUsed > BOOSTER_DURATIONS.double) {
-      boosters.doubleActive = false; changed = true;
-    }
-    if (boosters.offlineActive && now - boosters.offlineLastUsed > BOOSTER_DURATIONS.offline) {
-      boosters.offlineActive = false; changed = true;
-    }
+    const now = Date.now(); let changed = false;
+    if (boosters.autoTapActive && now - boosters.autoTapLastUsed > BOOSTER_DURATIONS.autoTap) { boosters.autoTapActive = false; changed = true; }
+    if (boosters.doubleActive && now - boosters.doubleLastUsed > BOOSTER_DURATIONS.double) { boosters.doubleActive = false; changed = true; }
+    if (boosters.offlineActive && now - boosters.offlineLastUsed > BOOSTER_DURATIONS.offline) { boosters.offlineActive = false; changed = true; }
     if (changed) saveBoosters();
   }
 
@@ -1283,8 +1163,7 @@
     updateAvatarDisplays();
     buildAvatarGrid();
     drawTasks(); drawTasksNew(); drawRank(); drawStickers(); drawUpgrades(); drawBetSelector(); updateSettingsUI(); updateUI();
-    applyCoinTier();
-    updateBoosterUI();
+    applyCoinTier(); updateBoosterUI();
     setInterval(updateBoosterUI, 1000);
     setInterval(checkBoosterExpiry, 5000);
     checkFirstTime();
@@ -1301,12 +1180,11 @@
     if (!homeBox) return;
     homeBox.innerHTML = '';
     tasks.forEach((t, i) => {
-      const html = '<div class="task-icon">' + t.icon + '</div><div class="task-info"><h4>' + t.name + '</h4><div class="reward">+' + t.reward + ' TRAX</div></div><button class="task-btn ' + (t.done ? 'done' : '') + '" onclick="doTask(' + i + ',' + t.reward + ')">' + (t.done ? '✓ DONE' : 'GO') + '</button>';
+      const html = '<div class="task-icon">' + t.icon + '</div><div class="task-info"><h4>' + t.name + '</h4><div class="reward">+' + t.reward + ' TRAX</div></div><button class="task-btn ' + (t.done ? 'done' : 'go') + '" onclick="doTask(' + i + ',' + t.reward + ')">' + (t.done ? '✓ DONE' : 'GO') + '</button>';
       const e1 = document.createElement('div'); e1.className = 'task-item'; e1.innerHTML = html; homeBox.appendChild(e1);
     });
   }
 
-  // ===== NEW TASKS PAGE (Screenshot 3) =====
   function drawTasksNew() {
     const box = document.getElementById('fullTasksListNew');
     if (!box) return;
@@ -1321,25 +1199,12 @@
       const el = document.createElement('div');
       el.className = 'task-row' + (t.done ? ' done' : ' ready');
       let actionHtml = '';
-      if (t.done) {
-        actionHtml = '<button class="task-btn done">✓ DONE</button>';
-      } else if (t.id === 'invite') {
-        actionHtml = '<button class="task-btn go" onclick="navTo(\'friends\')">GO</button>';
-      } else {
-        actionHtml = '<button class="task-btn go" onclick="doTaskNew(\'' + t.id + '\',' + t.reward + ')">GO</button>';
-      }
+      if (t.done) actionHtml = '<button class="task-btn done">✓ DONE</button>';
+      else if (t.id === 'invite') actionHtml = '<button class="task-btn go" onclick="navTo(\'friends\')">GO</button>';
+      else actionHtml = '<button class="task-btn go" onclick="doTaskNew(\'' + t.id + '\',' + t.reward + ')">GO</button>';
       let progressHtml = '';
-      if (t.id === 'invite' && t.progress !== undefined) {
-        progressHtml = '<div class="task-progress-bar"><div class="task-progress-fill" style="width:' + (t.progress/t.total*100) + '%"></div></div>';
-      }
-      el.innerHTML = 
-        '<div class="task-icon-wrap ' + t.iconClass + '">' + t.icon + '</div>' +
-        '<div class="task-content">' +
-          '<div class="task-title">' + t.name + '</div>' +
-          '<div class="task-reward-row"><span class="coin-emoji">🪙</span> <span class="reward-amount">+' + t.reward.toLocaleString() + '</span> TRAX</div>' +
-          progressHtml +
-        '</div>' +
-        actionHtml;
+      if (t.id === 'invite' && t.progress !== undefined) progressHtml = '<div class="task-progress-bar"><div class="task-progress-fill" style="width:' + (t.progress/t.total*100) + '%"></div></div>';
+      el.innerHTML = '<div class="task-icon-wrap ' + t.iconClass + '">' + t.icon + '</div><div class="task-content"><div class="task-title">' + t.name + '</div><div class="task-reward-row"><span class="coin-emoji">🪙</span> <span class="reward-amount">+' + t.reward.toLocaleString() + '</span> TRAX</div>' + progressHtml + '</div>' + actionHtml;
       box.appendChild(el);
     });
   }
@@ -1347,8 +1212,7 @@
   function doTaskNew(id, reward) {
     if (localStorage.getItem('task_' + id) === 'done') { showModal('✅ Done', 'Aap ye task pehle kar chuke hain.'); return; }
     localStorage.setItem('task_' + id, 'done');
-    balance += reward;
-    totalEarned += reward;
+    balance += reward; totalEarned += reward;
     updateUI(); save();
     playSound('win'); vibrate('success');
     showModal('🎉 Task Complete!', '+' + reward + ' TRAX mile!');
@@ -1359,8 +1223,7 @@
     const keys = ['task_tg', 'task_x', 'task_video', 'task_invite'];
     if (localStorage.getItem(keys[idx]) === 'done') { showModal('✅ Done', 'Aap ye task pehle kar chuke hain.'); return; }
     localStorage.setItem(keys[idx], 'done');
-    balance += reward;
-    totalEarned += reward;
+    balance += reward; totalEarned += reward;
     updateUI(); save();
     playSound('win'); vibrate('success');
     showModal('🎉 Task Complete!', '+' + reward + ' TRAX mile!');
@@ -1370,6 +1233,7 @@
   function drawRank() {
     const fakeNames = ['Ali', 'Ahmed', 'Sara', 'Hassan', 'Fatima', 'Bilal', 'Ayesha', 'Usman', 'Zara'];
     const list = document.getElementById('rankList');
+    if (!list) return;
     list.innerHTML = '';
     const myRank = { name: (userName || 'You') + ' (You)', value: balance };
     const others = [];
@@ -1383,8 +1247,6 @@
       list.appendChild(el);
     });
     const myIdx = all.findIndex(u => u.name.includes('(You)'));
-    const rankNum = document.getElementById('rankNum');
-    if (rankNum) rankNum.textContent = myIdx + 1;
     const profRank = document.getElementById('profRank');
     if (profRank) profRank.textContent = myIdx + 1;
   }
@@ -1415,13 +1277,9 @@
         const unlockReq = getStickerUnlockReq(s.id);
         const el = document.createElement('div');
         el.className = 'sticker-card ' + s.tier + (isMax ? ' max' : lvl > 0 ? ' owned' : '') + (!isUnlocked ? ' locked' : '');
-        el.innerHTML = '<div class="sticker-icon">' + s.icon + '</div>' +
-          '<div class="sticker-name">' + s.name + '</div>' +
-          '<div class="sticker-lvl">' + (lvl > 0 ? 'Lv ' + lvl + '/' + MAX_STICKER_LEVEL : 'Not Owned') + '</div>' +
-          '<div class="sticker-benefit">' + (isUnlocked ? currentBenefit : '🔒 Locked') + '</div>' +
-          '<div class="sticker-price' + (isMax ? ' max' : !isUnlocked ? ' locked' : '') + '">' + (isMax ? '⭐ MAX' : !isUnlocked ? '🔒 LOCKED' : nextCost.toLocaleString() + ' TRAX') + '</div>';
+        el.innerHTML = '<div class="sticker-icon">' + s.icon + '</div><div class="sticker-name">' + s.name + '</div><div class="sticker-lvl">' + (lvl > 0 ? 'Lv ' + lvl + '/' + MAX_STICKER_LEVEL : 'Not Owned') + '</div><div class="sticker-benefit">' + (isUnlocked ? currentBenefit : '🔒 Locked') + '</div><div class="sticker-price' + (isMax ? ' max' : !isUnlocked ? ' locked' : '') + '">' + (isMax ? '⭐ MAX' : !isUnlocked ? '🔒 LOCKED' : nextCost.toLocaleString() + ' TRAX') + '</div>';
         if (!isMax && isUnlocked) el.onclick = () => buySticker(s, nextCost);
-        else if (!isUnlocked) el.onclick = () => showModal('🔒 Locked', 'Pehle max karein:\n\n' + unlockReq + '\n\nHar sticker max hone par agla unlock hota hai!');
+        else if (!isUnlocked) el.onclick = () => showModal('🔒 Locked', 'Pehle max karein:\n\n' + unlockReq);
         grid.appendChild(el);
       });
       container.appendChild(grid);
@@ -1435,7 +1293,7 @@
     localStorage.setItem('trax_stickers_v4', JSON.stringify(stickerLevels));
     updateUI(); save(); drawStickers();
     playSound('win'); vibrate('success');
-    showModal('🎉 Upgraded!', s.name + ' ab Level ' + stickerLevels[s.id] + ' hai!\n\n' + s.bonus(stickerLevels[s.id]));
+    showModal('🎉 Upgraded!', s.name + ' ab Level ' + stickerLevels[s.id] + ' hai!');
   }
 
   function drawUpgrades() {
@@ -1452,14 +1310,7 @@
       const cost = Math.floor(u.baseCost * Math.pow(u.multiplier, u.level));
       const el = document.createElement('div');
       el.className = 'upgrade-item';
-      el.innerHTML = 
-        '<div class="upgrade-icon-wrap ' + u.iconClass + '">' + u.icon + '</div>' +
-        '<div class="upgrade-info">' +
-          '<h4>' + u.name + '</h4>' +
-          '<p>' + u.desc + '</p>' +
-          '<div class="lvl">Level: ' + u.level + '</div>' +
-        '</div>' +
-        '<button class="upgrade-btn" onclick="buyUpgrade(\'' + u.id + '\',' + cost + ')">' + cost.toLocaleString() + '</button>';
+      el.innerHTML = '<div class="upgrade-icon-wrap ' + u.iconClass + '">' + u.icon + '</div><div class="upgrade-info"><h4>' + u.name + '</h4><p>' + u.desc + '</p><div class="lvl">Level: ' + u.level + '</div></div><button class="upgrade-btn" onclick="buyUpgrade(\'' + u.id + '\',' + cost + ')">' + cost.toLocaleString() + '</button>';
       box.appendChild(el);
     });
   }
@@ -1486,14 +1337,11 @@
     document.getElementById('maxEnergyText').textContent = getEffectiveMaxEnergy();
     document.getElementById('energyBar').style.width = (energy / getEffectiveMaxEnergy() * 100) + '%';
     const tp = getEffectiveTapPower();
-    document.getElementById('tapPower').textContent = tp;
     document.getElementById('tapPowerText').textContent = tp;
-    document.getElementById('autoEarn').textContent = getEffectiveAutoEarn();
     document.getElementById('luckyKeys').textContent = luckyKeys;
     const mineRateEl = document.getElementById('mineRateText');
     if (mineRateEl) mineRateEl.textContent = getMineRate();
 
-    // Header level
     const LEVEL_XP = 3000;
     const level = Math.floor(totalEarned / LEVEL_XP) + 1;
     const xpInLevel = totalEarned % LEVEL_XP;
@@ -1501,8 +1349,8 @@
     document.getElementById('diamondLevel').textContent = level;
     document.getElementById('diamondXp').textContent = Math.floor(xpInLevel).toLocaleString();
     document.getElementById('diamondFill').style.width = (xpInLevel / LEVEL_XP * 100) + '%';
+    document.getElementById('xpFill').style.width = (xpInLevel / LEVEL_XP * 100) + '%';
 
-    // Profile page
     const profLvlText = document.getElementById('profLvlText');
     const profXpText = document.getElementById('profXpText');
     const profLevelFill = document.getElementById('profLevelFill');
@@ -1729,16 +1577,18 @@
       document.getElementById('rewardAmount').textContent = '+' + reward;
       spinning = false;
       playSound('win'); vibrate('success');
-      createSparkles(window.innerWidth / 2, window.innerHeight / 2);
       updateSpinState();
     }, 5200);
   }
 
+  // ===== CRASH (FIXED) =====
   const BET_OPTIONS = [500, 1000, 5000, 10000, 25000, 50000];
   let crashState = { running: false, multiplier: 1, crashed: false, bet: 1000 };
+  let crashInterval = null;
 
   function drawBetSelector() {
-    const box = document.getElementById('betSelector'); box.innerHTML = '';
+    const box = document.getElementById('betSelector'); if (!box) return;
+    box.innerHTML = '';
     BET_OPTIONS.forEach(amt => {
       const el = document.createElement('div');
       el.className = 'bet-option' + (amt === crashState.bet ? ' selected' : '');
@@ -1770,16 +1620,41 @@
     playSound('win'); vibrate('light');
   }
 
-  function updateCrashButton() { document.getElementById('crashBetBtn').textContent = 'START (' + crashState.bet.toLocaleString() + ' TRAX)'; }
+  function updateCrashButton() { 
+    const btn = document.getElementById('crashBetBtn');
+    if (btn) btn.textContent = 'START (' + crashState.bet.toLocaleString() + ' TRAX)'; 
+  }
 
   function openCrash() {
+    // Clear any stuck state
+    if (crashInterval) { clearInterval(crashInterval); crashInterval = null; }
+    crashState.running = false;
+    crashState.crashed = false;
+    crashState.multiplier = 1;
     document.getElementById('crashModal').classList.add('show');
     resetCrashUI(); drawBetSelector();
     document.getElementById('customBetInput').value = '';
     document.getElementById('betInfo').textContent = '';
   }
-  function closeCrash() { if (crashState.running) { showModal('⚠️ Wait', 'Pehle cash out karein.'); return; } document.getElementById('crashModal').classList.remove('show'); resetCrashUI(); }
+  
+  function closeCrash() { 
+    // Force clear everything
+    if (crashInterval) { clearInterval(crashInterval); crashInterval = null; }
+    const wasRunning = crashState.running;
+    crashState.running = false;
+    crashState.crashed = true;
+    document.getElementById('crashModal').classList.remove('show');
+    resetCrashUI();
+    if (wasRunning) {
+      setTimeout(() => showModal('⚠️ Game Cancelled', 'Aapne game ke beech mein close kiya.\n\nBet amount wapas nahi hoga.'), 200);
+    }
+  }
+  
   function resetCrashUI() {
+    if (crashInterval) { clearInterval(crashInterval); crashInterval = null; }
+    crashState.running = false;
+    crashState.crashed = false;
+    crashState.multiplier = 1;
     document.getElementById('crashMultiplier').textContent = '1.00x';
     document.getElementById('crashMultiplier').classList.remove('crashed');
     document.getElementById('crashBar').style.width = '0%';
@@ -1788,7 +1663,9 @@
     document.getElementById('crashCashBtn').style.display = 'none';
     updateCrashButton();
   }
+  
   function startCrash() {
+    if (crashState.running) return;
     if (balance < crashState.bet) { playSound('error'); vibrate('error'); showModal('❌ Not Enough', crashState.bet.toLocaleString() + ' TRAX chahiye.'); return; }
     balance -= crashState.bet;
     crashState.running = true; crashState.multiplier = 1; crashState.crashed = false;
@@ -1798,14 +1675,14 @@
     document.getElementById('crashCashBtn').style.display = 'block';
     document.getElementById('crashStatus').textContent = 'Multiplier barh raha hai...';
     const crashPoint = getCrashPoint();
-    const interval = setInterval(() => {
-      if (crashState.crashed) { clearInterval(interval); return; }
-      crashState.multiplier += 0.025 + Math.random() * 0.025 + crashState.multiplier * 0.006;
+    crashInterval = setInterval(() => {
+      if (crashState.crashed || !crashState.running) { clearInterval(crashInterval); crashInterval = null; return; }
+      crashState.multiplier += 0.015 + Math.random() * 0.015 + crashState.multiplier * 0.004;
       document.getElementById('crashMultiplier').textContent = crashState.multiplier.toFixed(2) + 'x';
       document.getElementById('crashBar').style.width = Math.min(100, ((crashState.multiplier - 1) / 3) * 100) + '%';
       if (crashState.multiplier >= crashPoint) {
         crashState.crashed = true; crashState.running = false;
-        clearInterval(interval);
+        clearInterval(crashInterval); crashInterval = null;
         document.getElementById('crashMultiplier').classList.add('crashed');
         document.getElementById('crashMultiplier').textContent = 'CRASHED @ ' + crashState.multiplier.toFixed(2) + 'x';
         document.getElementById('crashStatus').textContent = 'Aapne ' + crashState.bet.toLocaleString() + ' TRAX haar gaye. 😢';
@@ -1814,11 +1691,13 @@
         document.getElementById('crashBetBtn').textContent = 'PLAY AGAIN';
         playSound('error'); vibrate('error');
       }
-    }, 250);
+    }, 350);
   }
+  
   function cashOutCrash() {
     if (!crashState.running) return;
     crashState.running = false;
+    if (crashInterval) { clearInterval(crashInterval); crashInterval = null; }
     const winnings = Math.floor(crashState.bet * crashState.multiplier);
     balance += winnings; totalEarned += winnings; updateUI(); save();
     document.getElementById('crashStatus').textContent = 'Aapne ' + winnings.toLocaleString() + ' TRAX kamaye! 🎉';
@@ -1826,9 +1705,10 @@
     document.getElementById('crashCashBtn').style.display = 'none';
     document.getElementById('crashBetBtn').style.display = 'block';
     document.getElementById('crashBetBtn').textContent = 'PLAY AGAIN';
-    playSound('cash'); vibrate('success');
+    playSound('win'); vibrate('success');
   }
 
+  // PUZZLE
   let puzzleState = { tiles: [], moves: 0, solved: false };
   const PUZZLE_SIZE = 7;
   const PUZZLE_REWARD = 50000;
@@ -1878,7 +1758,7 @@
       puzzleState.solved = true;
       balance += PUZZLE_REWARD; totalEarned += PUZZLE_REWARD; updateUI(); save();
       playSound('win'); vibrate('success');
-      setTimeout(() => showModal('🎉 Puzzle Solved!', '+' + PUZZLE_REWARD.toLocaleString() + ' TRAX!\n\nMoves: ' + puzzleState.moves), 300);
+      setTimeout(() => showModal('🎉 Puzzle Solved!', '+' + PUZZLE_REWARD.toLocaleString() + ' TRAX!'), 300);
     }
   }
   function isPuzzleSolved() {
