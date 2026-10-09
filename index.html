@@ -37,54 +37,18 @@
   .rank-badge-value { font-size: 26px; font-weight: 900; color: white; line-height: 1; }
   .rank-badge-status { text-align: right; font-size: 10px; color: #00d4ff; font-weight: 900; max-width: 90px; line-height: 1.3; }
   .rarity-show-btn { background: linear-gradient(135deg, #ff9500, #ff5500); border: none; border-radius: 10px; padding: 6px 12px; color: white; font-size: 9px; font-weight: 900; cursor: pointer; }
-
-  /* ===== HOME LAYOUT WITH SIDE PANEL ===== */
-  .home-layout { display: flex; gap: 10px; }
-  .home-main { flex: 1; min-width: 0; }
-  .home-side { width: 130px; flex-shrink: 0; display: flex; flex-direction: column; gap: 8px; }
-  .side-card { background: rgba(10,25,45,0.8); border: 1px solid rgba(0,150,255,0.25); border-radius: 14px; padding: 10px 8px; text-align: center; cursor: pointer; transition: transform 0.15s; position: relative; }
-  .side-card:active { transform: scale(0.95); }
-  .side-card-icon { font-size: 26px; margin-bottom: 4px; }
-  .side-card-name { font-size: 10px; font-weight: 900; color: #ffffff; margin-bottom: 2px; }
-  .side-card-sub { font-size: 8px; color: #7a8ba5; font-weight: 700; }
-  .side-card.highlight { background: linear-gradient(135deg, rgba(255,0,85,0.2), rgba(150,0,50,0.1)); border-color: rgba(255,0,85,0.5); }
-  .side-card.highlight .side-card-name { color: #ff5555; }
-  .side-card.ready { animation: sidePulse 1.5s infinite; }
-  @keyframes sidePulse { 0%, 100% { box-shadow: 0 0 0 rgba(0,255,136,0); } 50% { box-shadow: 0 0 20px rgba(0,255,136,0.6); } }
-  .side-card .badge-dot { position: absolute; top: 6px; right: 6px; width: 8px; height: 8px; border-radius: 50%; background: #ff0055; box-shadow: 0 0 8px #ff0055; }
-  .side-card .badge-dot.green { background: #00ff88; box-shadow: 0 0 8px #00ff88; }
-
-  /* ===== DAILY STREAK BAR ===== */
-  .streak-bar { background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(0,80,180,0.05)); border: 1.5px solid rgba(0,212,255,0.3); border-radius: 16px; padding: 12px; margin-bottom: 12px; }
-  .streak-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-  .streak-title { font-size: 12px; font-weight: 900; color: #ff9500; display: flex; align-items: center; gap: 5px; }
-  .streak-days { font-size: 10px; color: #00ff88; font-weight: 900; }
-  .streak-row { display: flex; gap: 4px; align-items: center; justify-content: space-between; }
-  .streak-day { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 900; color: #7a8ba5; border: 2px solid rgba(0,212,255,0.2); background: rgba(0,0,0,0.3); }
-  .streak-day.done { background: linear-gradient(135deg, #00ff88, #00aa55); color: white; border-color: #00ff88; box-shadow: 0 0 10px rgba(0,255,136,0.5); }
-  .streak-day.today { background: linear-gradient(135deg, #00d4ff, #0066ff); color: white; border-color: #00d4ff; box-shadow: 0 0 15px rgba(0,212,255,0.8); animation: todayPulse 1.5s infinite; }
-  .streak-day.gift { background: linear-gradient(135deg, #ff0055, #cc0044); color: white; border-color: #ff0055; }
-  @keyframes todayPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.12); } }
-
-  /* ===== RED POCKET BAR ===== */
-  .redpocket-bar { background: linear-gradient(135deg, rgba(255,0,85,0.15), rgba(150,0,50,0.08)); border: 1.5px solid rgba(255,0,85,0.4); border-radius: 16px; padding: 12px; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; cursor: pointer; position: relative; }
-  .redpocket-bar:active { transform: scale(0.98); }
-  .redpocket-bar.ready { animation: redpulse 1.5s infinite; }
-  @keyframes redpulse { 0%, 100% { box-shadow: 0 0 0 rgba(255,0,85,0); } 50% { box-shadow: 0 0 25px rgba(255,0,85,0.8); } }
-  .redpocket-bar-icon { font-size: 32px; filter: drop-shadow(0 0 10px rgba(255,0,85,0.7)); }
-  .redpocket-bar-info { flex: 1; text-align: left; }
-  .redpocket-bar-title { font-size: 12px; font-weight: 900; color: #ff5555; margin-bottom: 2px; }
-  .redpocket-bar-timer { font-size: 16px; font-weight: 900; color: #ffffff; letter-spacing: 1px; }
-  .redpocket-bar-timer.ready { color: #00ff88; text-shadow: 0 0 15px rgba(0,255,136,0.8); }
-  .redpocket-bar-btn { background: linear-gradient(135deg, #ff0055, #cc0044); border: none; border-radius: 10px; padding: 8px 14px; color: white; font-size: 11px; font-weight: 900; cursor: pointer; }
-  .redpocket-bar-btn:disabled { background: #333; opacity: 0.5; cursor: not-allowed; }
-
-  /* ===== QUICK STATS ROW ===== */
-  .quick-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-bottom: 12px; }
-  .stat-box { background: rgba(10,25,45,0.7); border: 1px solid rgba(0,150,255,0.2); border-radius: 12px; padding: 8px 6px; text-align: center; }
-  .stat-box .lbl { font-size: 8px; color: #7a8ba5; font-weight: 900; margin-bottom: 3px; letter-spacing: 0.5px; }
-  .stat-box .val { font-size: 12px; font-weight: 900; color: #00d4ff; }
-
+  .rarity-item { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 12px; margin-bottom: 8px; border-left: 4px solid; }
+  .rarity-item.brown { background: rgba(205,127,50,0.12); border-left-color: #cd7f32; }
+  .rarity-item.silver { background: rgba(192,192,192,0.12); border-left-color: #c0c0c0; }
+  .rarity-item.gold { background: rgba(255,215,0,0.12); border-left-color: #ffd700; }
+  .rarity-item.diamond { background: rgba(160,224,255,0.12); border-left-color: #a0e0ff; }
+  .rarity-item.epic { background: rgba(153,0,255,0.12); border-left-color: #9900ff; }
+  .rarity-item.legendary { background: rgba(255,150,0,0.12); border-left-color: #ff9500; }
+  .rarity-item.mythic { background: rgba(255,0,85,0.12); border-left-color: #ff0055; }
+  .rarity-item-icon { width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; background: rgba(0,0,0,0.3); }
+  .rarity-item-info h4 { font-size: 13px; font-weight: 900; margin-bottom: 2px; }
+  .rarity-item-info p { font-size: 10px; color: #a0aec0; }
+  .rarity-item-info .range { font-size: 11px; font-weight: 900; margin-top: 2px; }
   .tap-title { text-align: center; font-size: 16px; font-weight: 900; margin: 12px 0 5px; letter-spacing: 1px; }
   .coin-area { display: flex; justify-content: center; align-items: center; margin: 15px 0; position: relative; min-height: 260px; perspective: 1000px; }
   .coin-wrapper { position: relative; z-index: 2; }
@@ -198,6 +162,7 @@
   .upgrade-icon-wrap.energy { background: radial-gradient(circle, #00ff88, #008844); }
   .upgrade-icon-wrap.auto { background: radial-gradient(circle, #ffd700, #aa7700); }
   .upgrade-icon-wrap.regen { background: radial-gradient(circle, #00d4ff, #0066aa); }
+  .upgrade-icon-wrap.mine { background: radial-gradient(circle, #ff9500, #aa5500); }
   .upgrade-info { flex: 1; }
   .upgrade-info h4 { font-size: 13px; font-weight: 900; margin-bottom: 3px; color: white; }
   .upgrade-info p { font-size: 10px; color: #7a8ba5; margin-bottom: 3px; }
@@ -315,7 +280,7 @@
   .puzzle-mode-time { font-size: 9px; color: #00d4ff; margin-bottom: 2px; }
   .puzzle-mode-price { font-size: 10px; color: #ffd700; font-weight: 900; }
 
-  /* ===== ATTENDANCE ===== */
+  /* ATTENDANCE */
   .attendance-header { background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(0,80,180,0.08)); border: 1.5px solid rgba(0,212,255,0.4); border-radius: 16px; padding: 14px; margin-bottom: 12px; }
   .attendance-title { font-size: 15px; font-weight: 900; color: #00d4ff; margin-bottom: 4px; }
   .attendance-sub { font-size: 10px; color: #7a8ba5; margin-bottom: 12px; }
@@ -327,6 +292,7 @@
   .att-day-card.claimed::after { content: '✓'; position: absolute; top: 4px; right: 6px; color: #00ff88; font-weight: 900; font-size: 14px; }
   .att-day-card.today { background: linear-gradient(135deg, rgba(0,212,255,0.25), rgba(0,100,200,0.15)); border-color: #00d4ff; box-shadow: 0 0 20px rgba(0,212,255,0.5); animation: todayPulse 2s infinite; }
   .att-day-card.locked { opacity: 0.5; }
+  @keyframes todayPulse { 0%, 100% { box-shadow: 0 0 15px rgba(0,212,255,0.4); } 50% { box-shadow: 0 0 25px rgba(0,212,255,0.8); } }
   .att-day-label { font-size: 11px; font-weight: 900; color: #a0aec0; margin-bottom: 6px; }
   .att-day-card.claimed .att-day-label { color: #00ff88; }
   .att-day-card.today .att-day-label { color: #00d4ff; }
@@ -347,7 +313,7 @@
   .attendance-claim-btn:disabled { background: linear-gradient(135deg, #666, #333); cursor: not-allowed; box-shadow: none; opacity: 0.6; }
   .attendance-claim-btn.claimed { background: linear-gradient(135deg, #00aa55, #006633); }
 
-  /* ===== RED POCKET PAGE ===== */
+  /* RED POCKET PAGE */
   .redpocket-page { text-align: center; padding: 20px 0; }
   .redpocket-box { width: 200px; height: 200px; margin: 20px auto; position: relative; cursor: pointer; transition: transform 0.2s; }
   .redpocket-box:active { transform: scale(0.95); }
@@ -368,6 +334,31 @@
   .redpocket-info ul { list-style: none; padding-left: 0; }
   .redpocket-info li { font-size: 10px; color: #a0aec0; margin-bottom: 4px; }
   .redpocket-info li b { color: #ffd700; }
+
+  /* PROFILE PAGE */
+  .profile-hero { background: linear-gradient(135deg, rgba(0,180,255,0.2), rgba(150,0,255,0.1)); border: 2px solid rgba(0,212,255,0.5); border-radius: 24px; padding: 24px 18px; margin-bottom: 14px; text-align: center; position: relative; overflow: hidden; }
+  .profile-hero::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(0,212,255,0.15), transparent, rgba(255,0,85,0.15), transparent); animation: spinRing 8s linear infinite; pointer-events: none; }
+  .profile-hero-avatar-wrap { width: 100px; height: 100px; margin: 0 auto 14px; position: relative; }
+  .profile-hero-ring { position: absolute; inset: -6px; border-radius: 50%; background: conic-gradient(from 0deg, #00d4ff, #00ff88, #9900ff, #ff0055, #00d4ff); animation: spinRing 4s linear infinite; filter: blur(3px); opacity: 0.85; }
+  .profile-hero-avatar { position: absolute; inset: 0; border-radius: 50%; background: linear-gradient(135deg, #0a1929, #061224); display: flex; align-items: center; justify-content: center; font-size: 52px; border: 3px solid rgba(0,212,255,0.8); background-size: cover; background-position: center; z-index: 2; }
+  .profile-hero-name { font-size: 22px; font-weight: 900; color: white; margin-bottom: 6px; position: relative; z-index: 2; }
+  .profile-hero-id { font-size: 12px; color: #00d4ff; font-weight: 900; letter-spacing: 2px; margin-bottom: 10px; position: relative; z-index: 2; }
+  .profile-hero-badge { display: inline-block; background: linear-gradient(135deg, #ffd700, #ff9500); color: #000; font-size: 10px; font-weight: 900; padding: 4px 12px; border-radius: 10px; position: relative; z-index: 2; }
+
+  .profile-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+  .profile-stat-box { background: rgba(15,30,55,0.85); border: 1.5px solid rgba(0,180,255,0.3); border-radius: 16px; padding: 14px; text-align: center; }
+  .profile-stat-box .icon { font-size: 24px; margin-bottom: 4px; }
+  .profile-stat-box .lbl { font-size: 9px; color: #7a8ba5; font-weight: 900; letter-spacing: 1px; margin-bottom: 4px; }
+  .profile-stat-box .val { font-size: 18px; font-weight: 900; color: #00d4ff; }
+
+  .profile-info-card { background: rgba(15,30,55,0.7); border: 1px solid rgba(0,180,255,0.25); border-radius: 16px; padding: 14px; margin-bottom: 10px; }
+  .profile-info-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(0,180,255,0.1); }
+  .profile-info-row:last-child { border-bottom: none; }
+  .profile-info-row .lbl { font-size: 12px; color: #a0aec0; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+  .profile-info-row .val { font-size: 13px; color: white; font-weight: 900; }
+
+  .profile-action-btn { background: linear-gradient(135deg, #00b4ff, #0066ff); border: none; border-radius: 14px; padding: 14px; color: white; font-size: 14px; font-weight: 900; cursor: pointer; width: 100%; margin-bottom: 10px; }
+  .profile-action-btn.green { background: linear-gradient(135deg, #00ff88, #00aa55); }
 </style>
 </head>
 <body>
@@ -385,14 +376,12 @@
       <div class="lv">Diamond Lv. <span id="levelNum">1</span></div>
       <div class="xp-bar"><div class="xp-fill" id="xpFill" style="width:0%"></div></div>
     </div>
-    <div class="avatar" id="headerAvatar" onclick="navTo('profile')">👤</div>
+    <div class="avatar" id="headerAvatar" onclick="navClick(null, 'profile')">👤</div>
   </div>
 </div>
 
 <div class="tab-content active" id="tab-home">
   <div class="container">
-
-    <!-- TOP: Balance -->
     <div class="balance-card">
       <div style="display:flex;justify-content:space-between;align-items:center">
         <div style="flex:1">
@@ -407,88 +396,35 @@
       </div>
     </div>
 
-    <!-- STREAK BAR -->
-    <div class="streak-bar">
-      <div class="streak-top">
-        <div class="streak-title">🔥 Daily Streak</div>
-        <div class="streak-days"><span id="streakCount">0</span> Day</div>
-      </div>
-      <div class="streak-row" id="streakRow"></div>
-    </div>
-
-    <!-- HOME LAYOUT: Main + Side -->
-    <div class="home-layout">
-      <!-- MAIN (Tap Coin) -->
-      <div class="home-main">
-        <div class="tap-title">⚡ Tap to Earn</div>
-        <div class="coin-area">
-          <div class="coin-wrapper">
-            <div class="coin-bg-glow"></div>
-            <button class="coin-3d-btn" id="coinBtn">
-              <div class="coin-3d-ring"></div>
-              <svg class="coin-3d-svg" viewBox="0 0 200 200">
-                <defs>
-                  <radialGradient id="coinBg" cx="35%" cy="30%">
-                    <stop offset="0%" stop-color="#5fc8ff"/>
-                    <stop offset="45%" stop-color="#00a8ff"/>
-                    <stop offset="100%" stop-color="#003d99"/>
-                  </radialGradient>
-                  <linearGradient id="tGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#ffffff"/>
-                    <stop offset="50%" stop-color="#d0f0ff"/>
-                    <stop offset="100%" stop-color="#7ddcff"/>
-                  </linearGradient>
-                </defs>
-                <circle cx="100" cy="100" r="90" fill="url(#coinBg)" stroke="#00d4ff" stroke-width="3"/>
-                <circle cx="100" cy="100" r="82" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
-                <path d="M 55 65 L 145 65 L 145 82 L 115 82 L 115 145 L 85 145 L 85 82 L 55 82 Z" fill="url(#tGrad)" stroke="#ffffff" stroke-width="2" stroke-linejoin="round"/>
-                <text x="100" y="175" text-anchor="middle" font-family="Arial Black, sans-serif" font-size="22" font-weight="900" fill="#ffffff" letter-spacing="2">TRAX</text>
-              </svg>
-            </button>
-          </div>
-        </div>
-        <div class="coin-bottom-text">👆 TAP THE COIN</div>
-        <div class="coin-per-tap">Per Tap: <strong>+<span id="tapPowerText">1</span> TRAX</strong></div>
-      </div>
-
-      <!-- SIDE PANEL -->
-      <div class="home-side">
-        <div class="side-card highlight" id="sideRedPocket" onclick="navTo('redpocket')">
-          <div class="badge-dot" id="rpDot"></div>
-          <div class="side-card-icon">🧧</div>
-          <div class="side-card-name">Pocket</div>
-          <div class="side-card-sub" id="rpSideTimer">15:00</div>
-        </div>
-        <div class="side-card" id="sideAttendance" onclick="navTo('attendance')">
-          <div class="badge-dot green" id="attDot"></div>
-          <div class="side-card-icon">📅</div>
-          <div class="side-card-name">Daily</div>
-          <div class="side-card-sub" id="attSideDay">Day 1</div>
-        </div>
-        <div class="side-card" onclick="navTo('boosters')">
-          <div class="side-card-icon">🚀</div>
-          <div class="side-card-name">Boosters</div>
-          <div class="side-card-sub">+Power</div>
-        </div>
-        <div class="side-card" onclick="navTo('upgrades')">
-          <div class="side-card-icon">⬆️</div>
-          <div class="side-card-name">Upgrades</div>
-          <div class="side-card-sub">Tap power</div>
-        </div>
-        <div class="side-card" onclick="navTo('sticker')">
-          <div class="side-card-icon">🎨</div>
-          <div class="side-card-name">Shop</div>
-          <div class="side-card-sub">Stickers</div>
-        </div>
-        <div class="side-card" onclick="navTo('mine')">
-          <div class="side-card-icon">⛏️</div>
-          <div class="side-card-name">Mine</div>
-          <div class="side-card-sub">Auto mine</div>
-        </div>
+    <div class="tap-title">⚡ Tap to Earn</div>
+    <div class="coin-area">
+      <div class="coin-wrapper">
+        <div class="coin-bg-glow"></div>
+        <button class="coin-3d-btn" id="coinBtn">
+          <div class="coin-3d-ring"></div>
+          <svg class="coin-3d-svg" viewBox="0 0 200 200">
+            <defs>
+              <radialGradient id="coinBg" cx="35%" cy="30%">
+                <stop offset="0%" stop-color="#5fc8ff"/>
+                <stop offset="45%" stop-color="#00a8ff"/>
+                <stop offset="100%" stop-color="#003d99"/>
+              </radialGradient>
+              <linearGradient id="tGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#ffffff"/>
+                <stop offset="50%" stop-color="#d0f0ff"/>
+                <stop offset="100%" stop-color="#7ddcff"/>
+              </linearGradient>
+            </defs>
+            <circle cx="100" cy="100" r="90" fill="url(#coinBg)" stroke="#00d4ff" stroke-width="3"/>
+            <circle cx="100" cy="100" r="82" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+            <path d="M 55 65 L 145 65 L 145 82 L 115 82 L 115 145 L 85 145 L 85 82 L 55 82 Z" fill="url(#tGrad)" stroke="#ffffff" stroke-width="2" stroke-linejoin="round"/>
+            <text x="100" y="175" text-anchor="middle" font-family="Arial Black, sans-serif" font-size="22" font-weight="900" fill="#ffffff" letter-spacing="2">TRAX</text>
+          </svg>
+        </button>
       </div>
     </div>
-
-    <!-- ENERGY -->
+    <div class="coin-bottom-text">👆 TAP THE COIN</div>
+    <div class="coin-per-tap">Per Tap: <strong>+<span id="tapPowerText">1</span> TRAX</strong></div>
     <div class="energy-card">
       <div class="energy-header">
         <span class="energy-label">⚡ Energy</span>
@@ -496,22 +432,16 @@
       </div>
       <div class="energy-bar"><div class="energy-fill" id="energyBar" style="width:100%"></div></div>
     </div>
-
-    <!-- QUICK STATS -->
-    <div class="quick-stats">
-      <div class="stat-box"><div class="lbl">TAP/CLICK</div><div class="val">+<span id="statTap">1</span></div></div>
-      <div class="stat-box"><div class="lbl">AUTO/HOUR</div><div class="val">+<span id="statAuto">0</span></div></div>
-      <div class="stat-box"><div class="lbl">RANK</div><div class="val">#---</div></div>
+    <div class="quick-row">
+      <div class="quick-btn" onclick="navTo('boosters')"><div class="quick-icon">🚀</div><div class="quick-label">Boosters</div></div>
+      <div class="quick-btn" onclick="navTo('upgrades')"><div class="quick-icon">⬆️</div><div class="quick-label">Upgrades</div></div>
     </div>
-
-    <!-- LEADERBOARD -->
     <div class="rank-board">
       <div class="rank-header">
         <div class="rank-title"><span class="live-dot"></span>🏆 LIVE LEADERBOARD</div>
       </div>
       <div id="homeRankList"></div>
     </div>
-
   </div>
 </div>
 
@@ -527,7 +457,6 @@
 
 <div class="tab-content" id="tab-attendance">
   <div class="page-title-bar"><div class="page-title-icon">📅</div><div class="page-title-text">Attendance</div></div>
-
   <div class="attendance-header">
     <div class="attendance-title">Attendance Bonus</div>
     <div class="attendance-sub">Get rewards based on consecutive login days</div>
@@ -536,9 +465,7 @@
       <div>Accumulated <b id="attAccumulated">0</b> TRAX</div>
     </div>
   </div>
-
   <div class="attendance-grid" id="attendanceGrid"></div>
-
   <div class="attendance-big-bonus">
     <div class="att-big-info">
       <div class="att-big-day">7 Day 🎁</div>
@@ -546,13 +473,11 @@
     </div>
     <div class="att-big-icon">🎁</div>
   </div>
-
   <div class="attendance-rules">
     <div class="att-rules-title">📋 Activity Rules:</div>
     <div class="att-rule">1. Ye continuous sign-in event hai. Agar ek din miss hua, toh pehle din se reset ho jayega.</div>
     <div class="att-rule">2. Har din ka bonus claim karne ke liye har roz app kholein.</div>
   </div>
-
   <button class="attendance-claim-btn" id="attClaimBtn" onclick="claimAttendance()">CLAIM TODAY'S REWARD</button>
 </div>
 
@@ -565,7 +490,6 @@
     <div class="redpocket-timer" id="redpocketTimer">15:00</div>
     <div class="redpocket-label" id="redpocketLabel">NEXT POCKET IN</div>
     <button class="redpocket-claim-btn" id="redpocketClaimBtn" onclick="openRedPocket()" disabled>WAIT...</button>
-
     <div class="redpocket-info">
       <h4>🧧 RED POCKET RULES</h4>
       <ul>
@@ -573,10 +497,77 @@
         <li>💰 Random reward milta hai</li>
         <li>🎁 Common: <b>50, 100, 250, 500</b></li>
         <li>⭐ Rare: <b>1000</b></li>
-        <li>🚫 Ek waqt mein sirf 1 pocket khol sakte ho</li>
       </ul>
     </div>
   </div>
+</div>
+
+<!-- ===== PROFILE TAB ===== -->
+<div class="tab-content" id="tab-profile">
+  <div class="page-title-bar"><div class="page-title-icon">👤</div><div class="page-title-text">My Profile</div></div>
+
+  <div class="profile-hero">
+    <div class="profile-hero-avatar-wrap">
+      <div class="profile-hero-ring"></div>
+      <div class="profile-hero-avatar" id="profileHeroAvatar">👤</div>
+    </div>
+    <div class="profile-hero-name" id="profileHeroName">TraxOfficial</div>
+    <div class="profile-hero-id">ID: #<span id="profileHeroId">0000</span></div>
+    <div class="profile-hero-badge" id="profileHeroBadge">👑 Level 1</div>
+  </div>
+
+  <div class="profile-stats">
+    <div class="profile-stat-box">
+      <div class="icon">💰</div>
+      <div class="lbl">BALANCE</div>
+      <div class="val" id="profileStatBalance">0</div>
+    </div>
+    <div class="profile-stat-box">
+      <div class="icon">📈</div>
+      <div class="lbl">EARNED</div>
+      <div class="val" id="profileStatEarned">0</div>
+    </div>
+    <div class="profile-stat-box">
+      <div class="icon">👆</div>
+      <div class="lbl">TOTAL TAPS</div>
+      <div class="val" id="profileStatTaps">0</div>
+    </div>
+    <div class="profile-stat-box">
+      <div class="icon">🏆</div>
+      <div class="lbl">RANK</div>
+      <div class="val" id="profileStatRank">#---</div>
+    </div>
+  </div>
+
+  <div class="profile-info-card">
+    <div class="profile-info-row">
+      <div class="lbl">📛 Username</div>
+      <div class="val" id="profileInfoName">TraxOfficial</div>
+    </div>
+    <div class="profile-info-row">
+      <div class="lbl">🆔 Player ID</div>
+      <div class="val" id="profileInfoId">#0000</div>
+    </div>
+    <div class="profile-info-row">
+      <div class="lbl">🎯 Tap Power</div>
+      <div class="val" id="profileInfoTapPower">+1</div>
+    </div>
+    <div class="profile-info-row">
+      <div class="lbl">⚡ Max Energy</div>
+      <div class="val" id="profileInfoEnergy">500</div>
+    </div>
+    <div class="profile-info-row">
+      <div class="lbl">🔥 Daily Streak</div>
+      <div class="val" id="profileInfoStreak">0 Days</div>
+    </div>
+    <div class="profile-info-row">
+      <div class="lbl">⭐ Level</div>
+      <div class="val" id="profileInfoLevel">1</div>
+    </div>
+  </div>
+
+  <button class="profile-action-btn" onclick="navTo('editname')">✏️ Edit Name & Avatar</button>
+  <button class="profile-action-btn green" onclick="shareMyProfile()">🔗 Share My Profile</button>
 </div>
 
 <div class="tab-content" id="tab-mine">
@@ -629,35 +620,10 @@
 <div class="tab-content" id="tab-boosters">
   <div class="page-title-bar"><div class="page-title-icon">🚀</div><div class="page-title-text">Boosters</div></div>
   <div class="booster-card">
-    <div class="booster-row">
-      <div class="booster-icon auto-tap">👆</div>
-      <div class="booster-info"><h4>Auto Tap</h4><p>+1 Tap Power (10 min)</p></div>
-      <div class="booster-timer" id="autoTapTimer">Ready</div>
-      <button class="booster-btn purple" id="autoTapBtn" onclick="activateBooster('autoTap')">Activate</button>
-    </div>
-    <div class="booster-row">
-      <div class="booster-icon energy">⚡</div>
-      <div class="booster-info"><h4>Energy Refill</h4><p>+50 Energy (instant)</p></div>
-      <div class="booster-timer" id="energyTimer">Ready</div>
-      <button class="booster-btn blue" id="energyBtn" onclick="activateBooster('energy')">Activate</button>
-    </div>
-    <div class="booster-row">
-      <div class="booster-icon double">2x</div>
-      <div class="booster-info"><h4>2x Earnings</h4><p>+2 Tap Power (30 min)</p></div>
-      <div class="booster-timer" id="doubleTimer">Ready</div>
-      <button class="booster-btn magenta" id="doubleBtn" onclick="activateBooster('double')">Activate</button>
-    </div>
-    <div class="booster-row">
-      <div class="booster-icon offline">⏰</div>
-      <div class="booster-info"><h4>Offline Profit</h4><p>+5000 TRAX (instant)</p></div>
-      <div class="booster-timer" id="offlineTimer">Ready</div>
-      <button class="booster-btn green" id="offlineBtn" onclick="activateBooster('offline')">Activate</button>
-    </div>
-  </div>
-  <div style="text-align:center;font-size:10px;color:#7a8ba5;margin-top:15px;line-height:1.8">
-    ⚡ <b style="color:#00d4ff">Cooldowns:</b><br>
-    Auto Tap: 30 min · Energy: 30 min<br>
-    2x Earnings: 1 hr · Offline: 12 hrs
+    <div class="booster-row"><div class="booster-icon auto-tap">👆</div><div class="booster-info"><h4>Auto Tap</h4><p>+1 Tap Power (10 min)</p></div><div class="booster-timer" id="autoTapTimer">Ready</div><button class="booster-btn purple" id="autoTapBtn" onclick="activateBooster('autoTap')">Activate</button></div>
+    <div class="booster-row"><div class="booster-icon energy">⚡</div><div class="booster-info"><h4>Energy Refill</h4><p>+50 Energy (instant)</p></div><div class="booster-timer" id="energyTimer">Ready</div><button class="booster-btn blue" id="energyBtn" onclick="activateBooster('energy')">Activate</button></div>
+    <div class="booster-row"><div class="booster-icon double">2x</div><div class="booster-info"><h4>2x Earnings</h4><p>+2 Tap Power (30 min)</p></div><div class="booster-timer" id="doubleTimer">Ready</div><button class="booster-btn magenta" id="doubleBtn" onclick="activateBooster('double')">Activate</button></div>
+    <div class="booster-row"><div class="booster-icon offline">⏰</div><div class="booster-info"><h4>Offline Profit</h4><p>+5000 TRAX (instant)</p></div><div class="booster-timer" id="offlineTimer">Ready</div><button class="booster-btn green" id="offlineBtn" onclick="activateBooster('offline')">Activate</button></div>
   </div>
 </div>
 
@@ -704,31 +670,6 @@
   <div id="rankList"></div>
 </div>
 
-<div class="tab-content" id="tab-profile">
-  <div class="profile-card">
-    <div class="profile-top">
-      <div class="profile-avatar-wrap"><div class="profile-avatar-ring"></div><div class="profile-avatar" id="profileAvatarBig">👤</div></div>
-      <div style="flex:1">
-        <div class="profile-name"><span id="profileName">TraxOfficial</span><span class="verified-badge">✓</span></div>
-        <div class="profile-tagline">Tap. Earn. Grow.</div>
-      </div>
-    </div>
-    <div style="display:flex;justify-content:space-between;margin-bottom:6px">
-      <div style="font-size:13px;font-weight:900;color:#00d4ff">Level <span id="profLvlText">1</span></div>
-      <div style="font-size:12px;color:#a0aec0;font-weight:700"><span id="profXpText">0</span> / 50,000</div>
-    </div>
-    <div style="width:100%;height:8px;background:rgba(0,0,0,0.4);border-radius:4px;overflow:hidden">
-      <div style="height:100%;background:linear-gradient(90deg,#00d4ff,#0090ff);border-radius:4px;width:0%" id="profLevelFill"></div>
-    </div>
-  </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:15px">
-    <div class="balance-card" style="padding:12px;text-align:center"><div style="font-size:10px;color:#00d4ff;font-weight:700;margin-bottom:6px">TOTAL TAPS</div><div style="font-size:18px;font-weight:900" id="profTaps">0</div></div>
-    <div class="balance-card" style="padding:12px;text-align:center"><div style="font-size:10px;color:#00d4ff;font-weight:700;margin-bottom:6px">EARNED</div><div style="font-size:18px;font-weight:900" id="profEarned">0</div></div>
-    <div class="balance-card" style="padding:12px;text-align:center"><div style="font-size:10px;color:#00d4ff;font-weight:700;margin-bottom:6px">RANK</div><div style="font-size:18px;font-weight:900">#<span id="profRank">--</span></div></div>
-  </div>
-  <button class="modal-btn" onclick="navTo('editname')" style="width:100%">✏️ Edit Name & Avatar</button>
-</div>
-
 <div class="tab-content" id="tab-settings">
   <div class="page-title-bar"><div class="page-title-icon">⚙️</div><div class="page-title-text">Settings</div></div>
   <div class="setting-row"><div class="label">🔊 Sound Effects</div><div class="toggle" id="soundToggle" onclick="toggleSetting('sound')"></div></div>
@@ -752,10 +693,11 @@
   </div>
 </div>
 
+<!-- ===== BOTTOM NAV — POCKET → PROFILE ===== -->
 <div class="bottom-nav">
   <div class="nav-item active" data-tab="home" onclick="navClick(this, 'home')"><div class="nav-icon">🏠</div><div>Home</div></div>
   <div class="nav-item" data-tab="games" onclick="navClick(this, 'games')"><div class="nav-icon">🎮</div><div>Games</div></div>
-  <div class="nav-item" data-tab="redpocket" onclick="navClick(this, 'redpocket')"><div class="nav-icon">🧧</div><div>Pocket</div></div>
+  <div class="nav-item" data-tab="profile" onclick="navClick(this, 'profile')"><div class="nav-icon">👤</div><div>Profile</div></div>
   <div class="nav-item" data-tab="tasks" onclick="navClick(this, 'tasks')"><div class="nav-icon">📋</div><div>Tasks</div></div>
   <div class="nav-item" data-tab="more" onclick="navClick(this, 'more')"><div class="nav-icon">⚙️</div><div>More</div></div>
 </div>
@@ -779,15 +721,11 @@
 <div class="modal" id="spinModal">
   <div class="modal-content" style="max-width:380px">
     <h3>🎰 Spin to Win!</h3>
-    <div id="spinStatusBar" style="background:rgba(0,212,255,0.15);border:1px solid rgba(0,212,255,0.4);border-radius:10px;padding:8px;margin-bottom:10px;text-align:center;font-size:11px;font-weight:900;color:#00d4ff">
-      🎁 Loading...
-    </div>
+    <div id="spinStatusBar" style="background:rgba(0,212,255,0.15);border:1px solid rgba(0,212,255,0.4);border-radius:10px;padding:8px;margin-bottom:10px;text-align:center;font-size:11px;font-weight:900;color:#00d4ff">🎁 Loading...</div>
     <div class="wheel-wrapper">
       <div class="wheel-pointer">▼</div>
       <div class="wheel-outer"></div>
-      <div class="wheel-container" id="wheel">
-        <div class="wheel-labels" id="wheelLabels"></div>
-      </div>
+      <div class="wheel-container" id="wheel"><div class="wheel-labels" id="wheelLabels"></div></div>
       <div class="wheel-center" onclick="spinWheel()">SPIN</div>
     </div>
     <div class="spin-result-box" id="spinResultBox">
@@ -796,9 +734,7 @@
       <div class="unit">TRAX</div>
     </div>
     <button class="modal-btn" style="margin-top:10px;display:block;width:100%" onclick="spinWheel()" id="spinBtn">SPIN NOW</button>
-    <div style="font-size:10px;color:#a0aec0;margin-top:8px;text-align:center" id="spinInfoText">
-      Entry: FREE
-    </div>
+    <div style="font-size:10px;color:#a0aec0;margin-top:8px;text-align:center" id="spinInfoText">Entry: FREE</div>
     <button class="modal-btn" style="margin-top:8px;background:rgba(255,255,255,0.1);display:block;width:100%" onclick="closeSpin()">Close</button>
   </div>
 </div>
@@ -930,8 +866,8 @@
   }
   function updateAvatarDisplays() {
     applyAvatar(document.getElementById('headerAvatar'), userAvatar, avatarIsImage);
-    applyAvatar(document.getElementById('profileAvatarBig'), userAvatar, avatarIsImage);
     applyAvatar(document.getElementById('moreAvatarBig'), userAvatar, avatarIsImage);
+    applyAvatar(document.getElementById('profileHeroAvatar'), userAvatar, avatarIsImage);
   }
   function buildAvatarGrid() {
     const grid = document.getElementById('avatarGrid'); grid.innerHTML = '';
@@ -957,6 +893,7 @@
       localStorage.setItem('trax_avatar', userAvatar);
       localStorage.setItem('trax_avatar_isimg', avatarIsImage);
       updateAvatarDisplays();
+      updateProfilePage();
       showModal('✅ Saved', 'Avatar update ho gaya!');
       return;
     }
@@ -965,8 +902,8 @@
     localStorage.setItem('trax_username', userName);
     localStorage.setItem('trax_avatar', userAvatar);
     localStorage.setItem('trax_avatar_isimg', avatarIsImage);
-    document.getElementById('profileName').textContent = userName;
     updateAvatarDisplays();
+    updateProfilePage();
     showModal('🎉 Name Set!', 'Welcome ' + userName + '!');
   }
 
@@ -996,46 +933,16 @@
     { id: 'c8', tier: 'common', icon: '💰', name: 'Coin', bonus: lvl => '+' + (5*lvl) + ' Auto', cost: 13000 },
     { id: 'c9', tier: 'common', icon: '⛏️', name: 'Pickaxe', bonus: lvl => '+' + (2*lvl) + ' Mining', cost: 14000 },
     { id: 'c10', tier: 'common', icon: '🌟', name: 'Star', bonus: lvl => '+' + (3*lvl) + ' Tap', cost: 12000 },
-    { id: 'c11', tier: 'common', icon: '💫', name: 'Glow', bonus: lvl => '+' + (4*lvl) + ' Auto', cost: 16000 },
-    { id: 'c12', tier: 'common', icon: '🎯', name: 'Target', bonus: lvl => '+' + (5*lvl) + ' Tap', cost: 18000 },
-    { id: 'c13', tier: 'common', icon: '🍀', name: 'Clover', bonus: lvl => '+' + (3*lvl) + ' Energy', cost: 17000 },
-    { id: 'c14', tier: 'common', icon: '⭐', name: 'MiniStar', bonus: lvl => '+' + (6*lvl) + ' Tap', cost: 20000 },
-    { id: 'c15', tier: 'common', icon: '🪙', name: 'Token', bonus: lvl => '+' + (8*lvl) + ' Auto', cost: 25000 },
     { id: 'r1', tier: 'rare', icon: '💎', name: 'Diamond', bonus: lvl => '+' + (10*lvl) + ' Tap', cost: 60000 },
     { id: 'r2', tier: 'rare', icon: '🔮', name: 'Orb', bonus: lvl => '+' + (5*lvl) + ' Energy', cost: 70000 },
     { id: 'r3', tier: 'rare', icon: '🚀', name: 'Rocket', bonus: lvl => '+' + (25*lvl) + ' Auto', cost: 80000 },
     { id: 'r4', tier: 'rare', icon: '⚙️', name: 'Gear', bonus: lvl => '+' + (50*lvl) + ' MaxEnergy', cost: 90000 },
     { id: 'r5', tier: 'rare', icon: '⛏️', name: 'Drill', bonus: lvl => '+' + (5*lvl) + ' Mining', cost: 100000 },
-    { id: 'r6', tier: 'rare', icon: '🌟', name: 'BigStar', bonus: lvl => '+' + (15*lvl) + ' Tap', cost: 95000 },
-    { id: 'r7', tier: 'rare', icon: '💠', name: 'Gem', bonus: lvl => '+' + (12*lvl) + ' Tap', cost: 105000 },
-    { id: 'r8', tier: 'rare', icon: '🎪', name: 'Turbo', bonus: lvl => '+' + (20*lvl) + ' Auto', cost: 110000 },
-    { id: 'r9', tier: 'rare', icon: '🔱', name: 'Trident', bonus: lvl => '+' + (8*lvl) + ' Mining', cost: 120000 },
-    { id: 'r10', tier: 'rare', icon: '🎨', name: 'Art', bonus: lvl => '+' + (18*lvl) + ' Tap', cost: 115000 },
-    { id: 'r11', tier: 'rare', icon: '🎭', name: 'Mask', bonus: lvl => '+' + (6*lvl) + ' Energy', cost: 130000 },
-    { id: 'r12', tier: 'rare', icon: '💈', name: 'Barber', bonus: lvl => '+' + (30*lvl) + ' Auto', cost: 140000 },
-    { id: 'r13', tier: 'rare', icon: '🏅', name: 'Medal', bonus: lvl => '+' + (25*lvl) + ' Tap', cost: 150000 },
-    { id: 'r14', tier: 'rare', icon: '🎺', name: 'Trumpet', bonus: lvl => '+' + (10*lvl) + ' Mining', cost: 170000 },
-    { id: 'r15', tier: 'rare', icon: '🎸', name: 'Guitar', bonus: lvl => '+' + (35*lvl) + ' Auto', cost: 200000 },
     { id: 'e1', tier: 'epic', icon: '👑', name: 'Crown', bonus: lvl => '+' + (100*lvl) + ' Auto', cost: 400000 },
     { id: 'e2', tier: 'epic', icon: '🦅', name: 'Eagle', bonus: lvl => '+' + (40*lvl) + ' Tap', cost: 450000 },
     { id: 'e3', tier: 'epic', icon: '🔥', name: 'Inferno', bonus: lvl => '+' + (15*lvl) + ' Energy', cost: 500000 },
-    { id: 'e4', tier: 'epic', icon: '⚡', name: 'Thunder', bonus: lvl => '+' + (20*lvl) + ' Mining', cost: 550000 },
-    { id: 'e5', tier: 'epic', icon: '🌊', name: 'Wave', bonus: lvl => '+' + (200*lvl) + ' MaxEnergy', cost: 600000 },
-    { id: 'e6', tier: 'epic', icon: '🌋', name: 'Volcano', bonus: lvl => '+' + (60*lvl) + ' Tap', cost: 650000 },
-    { id: 'e7', tier: 'epic', icon: '⚔️', name: 'Sword', bonus: lvl => '+' + (30*lvl) + ' Mining', cost: 700000 },
-    { id: 'e8', tier: 'epic', icon: '🛡️', name: 'Shield', bonus: lvl => '+' + (300*lvl) + ' Auto', cost: 750000 },
-    { id: 'e9', tier: 'epic', icon: '🏆', name: 'Trophy', bonus: lvl => '+' + (80*lvl) + ' Tap', cost: 800000 },
-    { id: 'e10', tier: 'epic', icon: '💍', name: 'Ring', bonus: lvl => '+' + (400*lvl) + ' Auto', cost: 850000 },
-    { id: 'e11', tier: 'epic', icon: '🎆', name: 'Firework', bonus: lvl => '+' + (25*lvl) + ' Energy', cost: 900000 },
-    { id: 'e12', tier: 'epic', icon: '🌌', name: 'Galaxy', bonus: lvl => '+' + (50*lvl) + ' Mining', cost: 1000000 },
     { id: 'l1', tier: 'legendary', icon: '🐉', name: 'Dragon', bonus: lvl => '+' + (500*lvl) + ' Auto', cost: 2000000 },
-    { id: 'l2', tier: 'legendary', icon: '🦄', name: 'Unicorn', bonus: lvl => '+' + (200*lvl) + ' Tap', cost: 2500000 },
-    { id: 'l3', tier: 'legendary', icon: '👾', name: 'Alien', bonus: lvl => '+' + (100*lvl) + ' Mining', cost: 3000000 },
-    { id: 'l4', tier: 'legendary', icon: '🎇', name: 'Supernova', bonus: lvl => '+' + (1000*lvl) + ' Auto', cost: 3500000 },
-    { id: 'l5', tier: 'legendary', icon: '🧿', name: 'Cosmic', bonus: lvl => '+' + (100*lvl) + ' Energy', cost: 4000000 },
-    { id: 'l6', tier: 'legendary', icon: '💫', name: 'Comet', bonus: lvl => '+' + (400*lvl) + ' Tap', cost: 5000000 },
-    { id: 'l7', tier: 'legendary', icon: '⚡', name: 'Zeus', bonus: lvl => '+' + (2000*lvl) + ' Auto', cost: 6000000 },
-    { id: 'l8', tier: 'legendary', icon: '👑', name: 'King', bonus: lvl => '+' + (200*lvl) + ' Mining', cost: 10000000 }
+    { id: 'l2', tier: 'legendary', icon: '🦄', name: 'Unicorn', bonus: lvl => '+' + (200*lvl) + ' Tap', cost: 2500000 }
   ];
   const MAX_STICKER_LEVEL = 5;
   const STICKER_MULT = 1.5;
@@ -1063,9 +970,7 @@
     });
     return total;
   }
-  function getEffectiveTapPower() {
-    return baseTapPower + getStickerBonusFromAll('Tap') + boosterAutoTapBonus + boosterDoubleBonus;
-  }
+  function getEffectiveTapPower() { return baseTapPower + getStickerBonusFromAll('Tap') + boosterAutoTapBonus + boosterDoubleBonus; }
   function getEffectiveMaxEnergy() { return maxEnergy + getStickerBonusFromAll('MaxEnergy'); }
 
   function updateUI() {
@@ -1075,25 +980,42 @@
     document.getElementById('maxEnergyText').textContent = getEffectiveMaxEnergy();
     document.getElementById('energyBar').style.width = (energy / getEffectiveMaxEnergy() * 100) + '%';
     document.getElementById('tapPowerText').textContent = getEffectiveTapPower();
-    document.getElementById('statTap').textContent = getEffectiveTapPower();
-    document.getElementById('statAuto').textContent = autoEarn;
 
     const LEVEL_XP = 50000;
     const level = Math.floor(totalEarned / LEVEL_XP) + 1;
     const xpInLevel = totalEarned % LEVEL_XP;
     document.getElementById('levelNum').textContent = level;
     document.getElementById('xpFill').style.width = (xpInLevel / LEVEL_XP * 100) + '%';
-    document.getElementById('profLvlText').textContent = level;
-    document.getElementById('profXpText').textContent = Math.floor(xpInLevel).toLocaleString();
-    document.getElementById('profLevelFill').style.width = (xpInLevel / LEVEL_XP * 100) + '%';
-    document.getElementById('profTaps').textContent = totalTaps.toLocaleString();
-    document.getElementById('profEarned').textContent = Math.floor(totalEarned).toLocaleString();
 
     document.getElementById('moreProfileName').textContent = userName || 'TraxOfficial';
     document.getElementById('moreBadge').textContent = '👑 Lv ' + level;
     document.getElementById('morePlayerId').textContent = String(userId).slice(-4).padStart(4, '0');
     document.getElementById('moreBalance').textContent = Math.floor(balance).toLocaleString();
     document.getElementById('moreRank').textContent = '--';
+
+    updateProfilePage();
+  }
+
+  function updateProfilePage() {
+    const LEVEL_XP = 50000;
+    const level = Math.floor(totalEarned / LEVEL_XP) + 1;
+    const pid = String(userId).slice(-4).padStart(4, '0');
+    const attData = checkAttendanceReset();
+
+    const el = (id) => document.getElementById(id);
+    if (el('profileHeroName')) el('profileHeroName').textContent = userName || 'TraxOfficial';
+    if (el('profileHeroId')) el('profileHeroId').textContent = pid;
+    if (el('profileHeroBadge')) el('profileHeroBadge').textContent = '👑 Level ' + level;
+    if (el('profileStatBalance')) el('profileStatBalance').textContent = Math.floor(balance).toLocaleString();
+    if (el('profileStatEarned')) el('profileStatEarned').textContent = Math.floor(totalEarned).toLocaleString();
+    if (el('profileStatTaps')) el('profileStatTaps').textContent = totalTaps.toLocaleString();
+    if (el('profileStatRank')) el('profileStatRank').textContent = '#---';
+    if (el('profileInfoName')) el('profileInfoName').textContent = userName || 'TraxOfficial';
+    if (el('profileInfoId')) el('profileInfoId').textContent = '#' + pid;
+    if (el('profileInfoTapPower')) el('profileInfoTapPower').textContent = '+' + getEffectiveTapPower();
+    if (el('profileInfoEnergy')) el('profileInfoEnergy').textContent = getEffectiveMaxEnergy();
+    if (el('profileInfoStreak')) el('profileInfoStreak').textContent = attData.currentDay + ' Days';
+    if (el('profileInfoLevel')) el('profileInfoLevel').textContent = level;
   }
 
   function save() {
@@ -1172,32 +1094,22 @@
       if (state.isActive) {
         timerEl.textContent = '⏱ ' + formatBoosterTime(state.timeRemaining);
         timerEl.style.color = '#00ff88';
-        btnEl.disabled = true;
-        btnEl.textContent = 'Active';
-        btnEl.style.opacity = '0.5';
+        btnEl.disabled = true; btnEl.textContent = 'Active'; btnEl.style.opacity = '0.5';
       } else if (state.isCooldown) {
         timerEl.textContent = '⏳ ' + formatBoosterTime(state.timeRemaining);
         timerEl.style.color = '#ff9500';
-        btnEl.disabled = true;
-        btnEl.textContent = 'Wait';
-        btnEl.style.opacity = '0.5';
+        btnEl.disabled = true; btnEl.textContent = 'Wait'; btnEl.style.opacity = '0.5';
       } else {
         timerEl.textContent = 'Ready';
         timerEl.style.color = '#00d4ff';
-        btnEl.disabled = false;
-        btnEl.textContent = 'Activate';
-        btnEl.style.opacity = '1';
+        btnEl.disabled = false; btnEl.textContent = 'Activate'; btnEl.style.opacity = '1';
       }
     });
   }
 
   function activateBooster(id) {
     const state = getBoosterState(id);
-    if (state.isCooldown) {
-      playSound('error'); vibrate('error');
-      showModal('⏰ Cooldown', 'Ye booster abhi cooldown par hai.\n\nAgla use: ' + formatBoosterTime(state.timeRemaining) + ' baad');
-      return;
-    }
+    if (state.isCooldown) { playSound('error'); vibrate('error'); showModal('⏰ Cooldown', 'Agla use: ' + formatBoosterTime(state.timeRemaining) + ' baad'); return; }
     if (state.isActive) { showModal('⚡ Already Active', 'Ye booster pehle se active hai.'); return; }
     const now = Date.now();
     localStorage.setItem('trax_booster_' + id + '_lastUsed', now);
@@ -1218,8 +1130,7 @@
       balance += 5000; totalEarned += 5000;
       showModal('⏰ Offline Profit!', '+5,000 TRAX mile!');
     }
-    updateUI(); save();
-    updateBoosterUI();
+    updateUI(); save(); updateBoosterUI();
     playSound('win'); vibrate('success');
   }
 
@@ -1227,8 +1138,8 @@
     const now = Date.now();
     let changed = false;
     if (boosterAutoTapBonus > 0) {
-      const activeUntil = parseInt(localStorage.getItem('trax_booster_autoTap_activeUntil') || '0');
-      if (activeUntil <= now) {
+      const a = parseInt(localStorage.getItem('trax_booster_autoTap_activeUntil') || '0');
+      if (a <= now) {
         boosterAutoTapBonus = 0;
         localStorage.removeItem('trax_booster_autoTap_bonus');
         localStorage.removeItem('trax_booster_autoTap_activeUntil');
@@ -1237,8 +1148,8 @@
       }
     }
     if (boosterDoubleBonus > 0) {
-      const activeUntil = parseInt(localStorage.getItem('trax_booster_double_activeUntil') || '0');
-      if (activeUntil <= now) {
+      const a = parseInt(localStorage.getItem('trax_booster_double_activeUntil') || '0');
+      if (a <= now) {
         boosterDoubleBonus = 0;
         localStorage.removeItem('trax_booster_double_bonus');
         localStorage.removeItem('trax_booster_double_activeUntil');
@@ -1262,7 +1173,8 @@
       { id: 'tapPower', icon: '⚡', iconClass: 'tap', name: 'Tap Power', desc: '+1 per tap', baseCost: 5000, multiplier: 1.5, level: parseInt(localStorage.getItem('upg_tapPower') || '0') },
       { id: 'maxEnergy', icon: '🔋', iconClass: 'energy', name: 'Max Energy', desc: '+50 energy', baseCost: 3000, multiplier: 1.4, level: parseInt(localStorage.getItem('upg_maxEnergy') || '0') },
       { id: 'autoEarn', icon: '💰', iconClass: 'auto', name: 'Auto Earning', desc: '+5/hr', baseCost: 15000, multiplier: 1.6, level: parseInt(localStorage.getItem('upg_autoEarn') || '0') },
-      { id: 'energyRegen', icon: '⚡', iconClass: 'regen', name: 'Energy Regen', desc: '+1 per 2sec', baseCost: 20000, multiplier: 1.7, level: parseInt(localStorage.getItem('upg_energyRegen') || '0') }
+      { id: 'energyRegen', icon: '⚡', iconClass: 'regen', name: 'Energy Regen', desc: '+1 per 2sec', baseCost: 20000, multiplier: 1.7, level: parseInt(localStorage.getItem('upg_energyRegen') || '0') },
+      { id: 'miningPower', icon: '⛏️', iconClass: 'mine', name: 'Mining Power', desc: '+5 per mine tick', baseCost: 25000, multiplier: 1.8, level: parseInt(localStorage.getItem('upg_miningPower') || '0') }
     ];
     const box = document.getElementById('upgradesList');
     box.innerHTML = '';
@@ -1366,7 +1278,7 @@
     if (miningActive) { showModal('⛏️ Mining', 'Already mining!'); return; }
     energy -= 10; miningActive = true;
     updateUI(); save();
-    showModal('⛏️ Mining Started!', '60 seconds tak har second +5 TRAX milega.');
+    showModal('⛏️ Mining Started!', '60 seconds tak har second coins milega.');
     let sec = 0;
     const timer = setInterval(() => {
       sec++; balance += 5; totalEarned += 5; updateUI(); save();
@@ -1379,10 +1291,19 @@
     const text = 'Trax Coin khelo aur free TRAX kamayein! 🎉';
     if (tg) tg.openTelegramLink('https://t.me/share/url?url=' + encodeURIComponent(link) + '&text=' + encodeURIComponent(text));
   }
+  function shareMyProfile() {
+    const link = 'https://t.me/TraxOfficial_bot?start=ref' + userId;
+    const text = 'Mera TraxOfficial profile dekho! Level ' + (Math.floor(totalEarned / 50000) + 1) + ' · ' + Math.floor(balance).toLocaleString() + ' TRAX 🎉';
+    if (tg) tg.openTelegramLink('https://t.me/share/url?url=' + encodeURIComponent(link) + '&text=' + encodeURIComponent(text));
+  }
 
   function navClick(el, tab) {
     document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
     if (el) el.classList.add('active');
+    else {
+      const found = document.querySelector('.nav-item[data-tab="' + tab + '"]');
+      if (found) found.classList.add('active');
+    }
     document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
     const tabEl = document.getElementById('tab-' + tab);
     if (tabEl) tabEl.classList.add('active');
@@ -1393,10 +1314,11 @@
     if (tab === 'rank') drawRank();
     if (tab === 'attendance') renderAttendance();
     if (tab === 'redpocket') updateRedPocketUI();
+    if (tab === 'profile') updateProfilePage();
   }
   function navTo(tab) {
-    const navMap = { home: 'home', games: 'games', mine: 'mine', tasks: 'tasks', more: 'more', attendance: 'attendance', redpocket: 'redpocket', boosters: 'boosters', upgrades: 'upgrades', sticker: 'sticker', wallet: 'wallet', friends: 'friends', rank: 'rank', profile: 'profile', settings: 'settings', editname: 'editname' };
-    if (navMap[tab] && ['home','games','tasks','more','redpocket'].includes(tab)) navClick(document.querySelector('.nav-item[data-tab="' + tab + '"]'), tab);
+    const navMap = ['home','games','profile','tasks','more','redpocket'];
+    if (navMap.includes(tab)) navClick(document.querySelector('.nav-item[data-tab="' + tab + '"]'), tab);
     else {
       document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
       const tabEl = document.getElementById('tab-' + tab);
@@ -1407,6 +1329,7 @@
       if (tab === 'rank') drawRank();
       if (tab === 'attendance') renderAttendance();
       if (tab === 'redpocket') updateRedPocketUI();
+      if (tab === 'profile') updateProfilePage();
     }
   }
 
@@ -1421,76 +1344,53 @@
   function closeModal() {
     document.getElementById('modal').classList.remove('show');
     document.querySelectorAll('.modal').forEach(m => {
-      if (m.id !== 'modal' && m.style.display === 'none') {
-        m.style.display = 'flex';
-      }
+      if (m.id !== 'modal' && m.style.display === 'none') m.style.display = 'flex';
     });
   }
   function showRarityList() { document.getElementById('rarityModal').classList.add('show'); }
   function closeRarityList() { document.getElementById('rarityModal').classList.remove('show'); }
 
+  // SPIN
   const SPIN_SLOTS = [
-    { reward: 5000,   label: '5K',   weight: 35 },
-    { reward: 10000,  label: '10K',  weight: 28 },
-    { reward: 50000,  label: '50K',  weight: 20 },
-    { reward: 100,    label: '100',  weight: 10 },
-    { reward: 150000, label: '150K', weight: 5 },
-    { reward: 500000, label: '500K', weight: 2 }
+    { reward: 5000, label: '5K', weight: 35 }, { reward: 10000, label: '10K', weight: 28 },
+    { reward: 50000, label: '50K', weight: 20 }, { reward: 100, label: '100', weight: 10 },
+    { reward: 150000, label: '150K', weight: 5 }, { reward: 500000, label: '500K', weight: 2 }
   ];
   const PAID_SPIN_COST = 10000;
   let spinCooldown = false;
-
   function getToday() { return new Date().toDateString(); }
-
   function getSpinState() {
     const dailyDate = localStorage.getItem('trax_spin_dailyDate') || '';
     const today = getToday();
-    if (dailyDate !== today) {
-      localStorage.setItem('trax_spin_dailyDate', today);
-      localStorage.setItem('trax_spin_dailyUsed', '0');
-    }
+    if (dailyDate !== today) { localStorage.setItem('trax_spin_dailyDate', today); localStorage.setItem('trax_spin_dailyUsed', '0'); }
     const dailyUsed = parseInt(localStorage.getItem('trax_spin_dailyUsed') || '0');
-    const freeLeft = dailyUsed === 0 ? 1 : 0;
-    return { freeLeft };
+    return { freeLeft: dailyUsed === 0 ? 1 : 0 };
   }
-
   function updateSpinStatus() {
     const state = getSpinState();
     const bar = document.getElementById('spinStatusBar');
     const info = document.getElementById('spinInfoText');
-    const btn = document.getElementById('spinBtn');
-    if (!bar || !info || !btn) return;
+    if (!bar) return;
     if (state.freeLeft > 0) {
       bar.textContent = '🎁 1 FREE SPIN AVAILABLE TODAY';
-      bar.style.background = 'rgba(0,255,136,0.15)';
-      bar.style.borderColor = 'rgba(0,255,136,0.4)';
-      bar.style.color = '#00ff88';
+      bar.style.background = 'rgba(0,255,136,0.15)'; bar.style.borderColor = 'rgba(0,255,136,0.4)'; bar.style.color = '#00ff88';
       info.textContent = 'Free use karein · Baad mein ' + PAID_SPIN_COST.toLocaleString() + ' TRAX/spin';
     } else {
       bar.textContent = '💰 PAID SPINS · ' + PAID_SPIN_COST.toLocaleString() + ' TRAX each';
-      bar.style.background = 'rgba(255,150,0,0.15)';
-      bar.style.borderColor = 'rgba(255,150,0,0.4)';
-      bar.style.color = '#ff9500';
+      bar.style.background = 'rgba(255,150,0,0.15)'; bar.style.borderColor = 'rgba(255,150,0,0.4)'; bar.style.color = '#ff9500';
       info.textContent = 'Kal phir 1 free spin milega';
     }
-    btn.disabled = false;
-    btn.style.opacity = '1';
   }
-
   function openSpin() {
     document.getElementById('spinModal').classList.add('show');
     document.getElementById('spinResultBox').classList.remove('show');
     document.getElementById('wheel').style.transform = 'rotate(0deg)';
     document.getElementById('spinBtn').textContent = 'SPIN NOW';
-    drawWheelLabels();
-    updateSpinStatus();
-    spinCooldown = false;
+    drawWheelLabels(); updateSpinStatus(); spinCooldown = false;
   }
   function closeSpin() { document.getElementById('spinModal').classList.remove('show'); }
-
   function drawWheelLabels() {
-    const box = document.getElementById('wheelLabels');
-    box.innerHTML = '';
+    const box = document.getElementById('wheelLabels'); box.innerHTML = '';
     const radius = 82;
     SPIN_SLOTS.forEach((slot, i) => {
       const angle = i * 60 + 30;
@@ -1499,39 +1399,25 @@
       const y = 120 + Math.sin(rad) * radius;
       const el = document.createElement('div');
       el.className = 'wheel-label';
-      el.style.left = x + 'px';
-      el.style.top = y + 'px';
-      el.style.fontSize = '10px';
+      el.style.left = x + 'px'; el.style.top = y + 'px'; el.style.fontSize = '10px';
       el.textContent = slot.label;
       box.appendChild(el);
     });
   }
-
   function pickSpinSlot() {
     const total = SPIN_SLOTS.reduce((s, x) => s + x.weight, 0);
     let r = Math.random() * total;
-    for (let i = 0; i < SPIN_SLOTS.length; i++) {
-      r -= SPIN_SLOTS[i].weight;
-      if (r <= 0) return i;
-    }
+    for (let i = 0; i < SPIN_SLOTS.length; i++) { r -= SPIN_SLOTS[i].weight; if (r <= 0) return i; }
     return 0;
   }
-
   function spinWheel() {
     if (spinCooldown) return;
     const state = getSpinState();
     let usedPaid = false;
-    if (state.freeLeft > 0) {
-      localStorage.setItem('trax_spin_dailyUsed', '1');
-    } else {
-      if (balance < PAID_SPIN_COST) {
-        playSound('error'); vibrate('error');
-        showModal('❌ Not Enough TRAX', 'Entry cost: ' + PAID_SPIN_COST.toLocaleString() + ' TRAX\n\nAapke paas: ' + Math.floor(balance).toLocaleString() + ' TRAX');
-        return;
-      }
-      balance -= PAID_SPIN_COST;
-      updateUI(); save();
-      usedPaid = true;
+    if (state.freeLeft > 0) localStorage.setItem('trax_spin_dailyUsed', '1');
+    else {
+      if (balance < PAID_SPIN_COST) { playSound('error'); vibrate('error'); showModal('❌ Not Enough TRAX', 'Entry: ' + PAID_SPIN_COST.toLocaleString() + ' TRAX'); return; }
+      balance -= PAID_SPIN_COST; updateUI(); save(); usedPaid = true;
     }
     spinCooldown = true;
     const wheel = document.getElementById('wheel');
@@ -1542,9 +1428,7 @@
     const idx = pickSpinSlot();
     const slot = SPIN_SLOTS[idx];
     const segmentCenter = idx * 60 + 30;
-    const targetRotation = 360 - segmentCenter;
-    const fullRotations = 8 * 360;
-    const finalRotation = fullRotations + targetRotation;
+    const finalRotation = 8 * 360 + (360 - segmentCenter);
     wheel.style.transform = 'rotate(' + finalRotation + 'deg)';
     setTimeout(() => {
       balance += slot.reward; totalEarned += slot.reward;
@@ -1552,13 +1436,13 @@
       document.getElementById('spinRewardAmount').textContent = '+' + slot.reward.toLocaleString();
       resultBox.classList.add('show');
       btn.textContent = 'SPIN AGAIN';
-      spinCooldown = false;
-      updateSpinStatus();
+      spinCooldown = false; updateSpinStatus();
       playSound('win'); vibrate('success');
       if (usedPaid) showToast('💰 Paid spin · ' + PAID_SPIN_COST.toLocaleString() + ' TRAX used');
     }, 5200);
   }
 
+  // CRASH
   const BET_OPTIONS = [500, 1000, 5000, 10000, 25000, 50000];
   let crashState = { running: false, multiplier: 1, crashed: false, bet: 1000 };
   let crashInterval = null;
@@ -1582,18 +1466,13 @@
     document.getElementById('crashBar').style.width = '0%';
     document.getElementById('crashBetBtn').style.display = 'block';
     document.getElementById('crashCashBtn').style.display = 'none';
-    drawBetSelector();
-    updateCrashButton();
+    drawBetSelector(); updateCrashButton();
   }
-  function closeCrash() {
-    if (crashInterval) { clearInterval(crashInterval); crashInterval = null; }
-    crashState.running = false;
-    document.getElementById('crashModal').classList.remove('show');
-  }
+  function closeCrash() { if (crashInterval) clearInterval(crashInterval); crashState.running = false; document.getElementById('crashModal').classList.remove('show'); }
   function applyCustomBet() {
     const v = parseInt(document.getElementById('customBetInput').value);
-    if (!v || v < 100) { playSound('error'); vibrate('error'); showModal('⚠️ Minimum 100 TRAX', 'Kam se kam 100 TRAX ka bet lagayein.'); return; }
-    if (v > balance) { playSound('error'); vibrate('error'); showModal('❌ Not Enough TRAX', 'Bet: ' + v.toLocaleString() + ' TRAX\n\nAapke paas: ' + Math.floor(balance).toLocaleString() + ' TRAX'); return; }
+    if (!v || v < 100) { showModal('⚠️ Minimum 100 TRAX', ''); return; }
+    if (v > balance) { showModal('❌ Not Enough TRAX', 'Aapke paas: ' + Math.floor(balance).toLocaleString() + ' TRAX'); return; }
     crashState.bet = v;
     document.querySelectorAll('.bet-option').forEach(el => el.classList.remove('selected'));
     updateCrashButton();
@@ -1606,16 +1485,11 @@
     if (r < 90) return 3.0 + Math.random() * 1.0;
     if (r < 95) return 4.0 + Math.random() * 2.0;
     if (r < 98) return 6.0 + Math.random() * 5.0;
-    if (r < 99.5) return 15.0 + Math.random() * 10.0;
-    return 30.0 + Math.random() * 30.0;
+    return 15.0 + Math.random() * 10.0;
   }
   function startCrash() {
     if (crashState.running) return;
-    if (balance < crashState.bet) {
-      playSound('error'); vibrate('error');
-      showModal('❌ Not Enough TRAX', 'Bet: ' + crashState.bet.toLocaleString() + ' TRAX\n\nAapke paas: ' + Math.floor(balance).toLocaleString() + ' TRAX');
-      return;
-    }
+    if (balance < crashState.bet) { showModal('❌ Not Enough TRAX', ''); return; }
     balance -= crashState.bet;
     crashState.running = true; crashState.multiplier = 1; crashState.crashed = false;
     updateUI(); save();
@@ -1629,8 +1503,7 @@
       document.getElementById('crashMultiplier').textContent = crashState.multiplier.toFixed(2) + 'x';
       document.getElementById('crashBar').style.width = Math.min(100, ((crashState.multiplier - 1) / 3) * 100) + '%';
       if (crashState.multiplier >= crashPoint) {
-        crashState.crashed = true; crashState.running = false;
-        clearInterval(crashInterval);
+        crashState.crashed = true; crashState.running = false; clearInterval(crashInterval);
         document.getElementById('crashMultiplier').classList.add('crashed');
         document.getElementById('crashMultiplier').textContent = 'CRASHED @ ' + crashState.multiplier.toFixed(2) + 'x';
         document.getElementById('crashStatus').textContent = 'Lost ' + crashState.bet.toLocaleString() + ' TRAX';
@@ -1644,7 +1517,7 @@
   function cashOutCrash() {
     if (!crashState.running) return;
     crashState.running = false;
-    if (crashInterval) { clearInterval(crashInterval); crashInterval = null; }
+    if (crashInterval) clearInterval(crashInterval);
     const w = Math.floor(crashState.bet * crashState.multiplier);
     balance += w; totalEarned += w; updateUI(); save();
     document.getElementById('crashStatus').textContent = 'Won ' + w.toLocaleString() + ' TRAX!';
@@ -1654,48 +1527,29 @@
     playSound('win'); vibrate('success');
   }
 
-  const PUZZLE_MODES = {
-    hard: { size: 9, cost: 10000, time: 1200, label: 'Hard' },
-    medium: { size: 7, cost: 30000, time: 600, label: 'Medium' },
-    easy: { size: 5, cost: 50000, time: 300, label: 'Easy' }
-  };
+  // PUZZLE
+  const PUZZLE_MODES = { hard: { cost: 10000, time: 1200, label: 'Hard' }, medium: { cost: 30000, time: 600, label: 'Medium' }, easy: { cost: 50000, time: 300, label: 'Easy' } };
   let selectedPuzzleMode = 'hard';
   function openPuzzle() { document.getElementById('puzzleModal').classList.add('show'); }
   function closePuzzle() { document.getElementById('puzzleModal').classList.remove('show'); }
-  function selectPuzzleMode(mode, el) {
-    selectedPuzzleMode = mode;
-    document.querySelectorAll('.puzzle-mode-card').forEach(c => c.classList.remove('selected'));
-    if (el) el.classList.add('selected');
-  }
+  function selectPuzzleMode(mode, el) { selectedPuzzleMode = mode; document.querySelectorAll('.puzzle-mode-card').forEach(c => c.classList.remove('selected')); if (el) el.classList.add('selected'); }
   function startPuzzleGame() {
     const m = PUZZLE_MODES[selectedPuzzleMode];
-    if (balance < m.cost) {
-      playSound('error'); vibrate('error');
-      showModal('❌ Not Enough TRAX', 'Entry cost: ' + m.cost.toLocaleString() + ' TRAX\n\nAapke paas: ' + Math.floor(balance).toLocaleString() + ' TRAX\n\nPehle tap karke coins kamayein!');
-      return;
-    }
-    balance -= m.cost;
-    updateUI(); save();
-    showModal('🧩 Puzzle', 'Puzzle ' + m.label + ' shuru!\n\nTime: ' + (m.time / 60) + ' min');
+    if (balance < m.cost) { playSound('error'); vibrate('error'); showModal('❌ Not Enough TRAX', 'Entry: ' + m.cost.toLocaleString() + ' TRAX'); return; }
+    balance -= m.cost; updateUI(); save();
+    showModal('🧩 Puzzle', 'Puzzle ' + m.label + ' shuru!');
   }
 
-  const FLIP_POOL = [
-    { mult: 1.5, w: 40 }, { mult: 1.7, w: 25 }, { mult: 2, w: 15 },
-    { mult: 3, w: 8 }, { mult: 5, w: 5 }, { mult: 10, w: 3 },
-    { mult: 15, w: 2 }, { mult: 25, w: 1 }, { mult: 50, w: 0.5 }, { mult: 100, w: 0.5 }
-  ];
+  // COIN FLIP
+  const FLIP_POOL = [{ mult: 1.5, w: 40 }, { mult: 1.7, w: 25 }, { mult: 2, w: 15 }, { mult: 3, w: 8 }, { mult: 5, w: 5 }, { mult: 10, w: 3 }, { mult: 15, w: 2 }, { mult: 25, w: 1 }, { mult: 50, w: 0.5 }, { mult: 100, w: 0.5 }];
   function pickFlipMult() {
     const total = FLIP_POOL.reduce((s, x) => s + x.w, 0);
     let r = Math.random() * total;
     for (const m of FLIP_POOL) { r -= m.w; if (r <= 0) return m.mult; }
     return 1.5;
   }
-  let flipState = { active: false, bet: 0, totalMult: 1, winnings: 0, choice: null, playing: false, multipliers: [] };
-
-  function setFlipBet(amount) {
-    document.getElementById('flipBetInput').value = amount;
-    updateFlipPreview();
-  }
+  let flipState = { active: false, bet: 0, totalMult: 1, winnings: 0, choice: null, playing: false };
+  function setFlipBet(amount) { document.getElementById('flipBetInput').value = amount; updateFlipPreview(); }
   function updateFlipPreview() {
     const bet = parseInt(document.getElementById('flipBetInput').value) || 0;
     const info = document.getElementById('flipBetInfo');
@@ -1710,18 +1564,14 @@
     if (!flipState.active) { document.getElementById('flipBetInput').value = 1000; updateFlipPreview(); }
   }
   function closeCoinFlip() {
-    if (flipState.active) {
-      if (!confirm('Game active. Close karne par ' + flipState.bet.toLocaleString() + ' TRAX gaya.')) return;
-      flipState.active = false; flipState.bet = 0; flipState.totalMult = 1; flipState.winnings = 0; flipState.multipliers = [];
-    }
+    if (flipState.active) { if (!confirm('Game active. Close karne par ' + flipState.bet.toLocaleString() + ' TRAX gaya.')) return; flipState.active = false; }
     document.getElementById('coinFlipModal').classList.remove('show');
   }
   function startFlipGame() {
     const bet = parseInt(document.getElementById('flipBetInput').value) || 0;
-    if (bet < 100) { playSound('error'); vibrate('error'); showModal('⚠️ Min 100 TRAX', 'Minimum bet 100 TRAX hai.'); return; }
-    if (bet > balance) { playSound('error'); vibrate('error'); showModal('❌ Not Enough TRAX', 'Bet: ' + bet.toLocaleString() + ' TRAX\n\nAapke paas: ' + Math.floor(balance).toLocaleString() + ' TRAX'); return; }
-    balance -= bet;
-    flipState = { active: true, bet, totalMult: 1, winnings: 0, choice: null, playing: false, multipliers: [] };
+    if (bet < 100) { showModal('⚠️ Min 100 TRAX', ''); return; }
+    if (bet > balance) { showModal('❌ Not Enough TRAX', ''); return; }
+    balance -= bet; flipState = { active: true, bet, totalMult: 1, winnings: 0, choice: null, playing: false };
     updateUI(); save();
     document.getElementById('flipSetup').style.display = 'none';
     document.getElementById('flipGame').style.display = 'block';
@@ -1742,15 +1592,10 @@
     if (flipState.totalMult > 1) {
       document.getElementById('flipCashBtn').style.display = 'block';
       document.getElementById('flipCashBtn').textContent = '💸 CASHOUT ' + Math.floor(flipState.winnings).toLocaleString() + ' TRAX';
-    } else {
-      document.getElementById('flipCashBtn').style.display = 'none';
-    }
+    } else document.getElementById('flipCashBtn').style.display = 'none';
   }
   function doFlip() {
-    if (!flipState.active || !flipState.choice || flipState.playing) {
-      if (!flipState.choice) showModal('⚠️ Choice Required', 'Pehle T ya R select karein');
-      return;
-    }
+    if (!flipState.active || !flipState.choice || flipState.playing) { if (!flipState.choice) showModal('⚠️ Choice Required', 'Pehle T ya R select karein'); return; }
     flipState.playing = true;
     const coin = document.getElementById('flipCoin');
     coin.classList.add('flipping');
@@ -1761,25 +1606,19 @@
       coin.style.transform = result === 'T' ? 'rotateY(0deg)' : 'rotateY(180deg)';
       if (result === flipState.choice) {
         const mult = pickFlipMult();
-        flipState.multipliers.push(mult);
         flipState.totalMult *= mult;
         flipState.winnings = flipState.bet * flipState.totalMult;
         updateFlipUI();
         document.getElementById('flipStatus').textContent = '🎉 WIN! +' + mult + 'x';
         document.getElementById('flipStatus').className = 'flip-status win';
         playSound('win'); vibrate('success');
-        flipState.playing = false;
-        flipState.choice = null;
+        flipState.playing = false; flipState.choice = null;
         document.querySelectorAll('.flip-choice-btn').forEach(b => b.classList.remove('selected'));
       } else {
-        document.getElementById('flipStatus').textContent = '❌ LOSE! Aapka ' + flipState.bet.toLocaleString() + ' TRAX gaya.';
+        document.getElementById('flipStatus').textContent = '❌ LOSE!';
         document.getElementById('flipStatus').className = 'flip-status lose';
         playSound('error'); vibrate('error');
-        setTimeout(() => {
-          flipState.active = false;
-          showModal('❌ Lost', 'Aap haare.');
-          closeCoinFlip();
-        }, 800);
+        setTimeout(() => { flipState.active = false; showModal('❌ Lost', 'Aap haare.'); closeCoinFlip(); }, 800);
       }
     }, 1800);
   }
@@ -1793,13 +1632,10 @@
     setTimeout(closeCoinFlip, 300);
   }
 
-  function resetData() {
-    if (confirm('Reset all data?')) { localStorage.clear(); location.reload(); }
-  }
+  function resetData() { if (confirm('Reset all data?')) { localStorage.clear(); location.reload(); } }
 
-  // ===== ATTENDANCE =====
+  // ATTENDANCE
   const ATTENDANCE_REWARDS = [1000, 2000, 3000, 5000, 8000, 15000, 200000];
-
   function getAttendanceData() {
     return {
       currentDay: parseInt(localStorage.getItem('trax_att_currentDay') || '0'),
@@ -1812,30 +1648,16 @@
     localStorage.setItem('trax_att_lastDate', data.lastClaimDate);
     localStorage.setItem('trax_att_accumulated', data.accumulated);
   }
-  function getTodayStr() {
-    const d = new Date();
-    return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
-  }
-  function getYesterdayStr() {
-    const d = new Date();
-    d.setDate(d.getDate() - 1);
-    return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
-  }
+  function getTodayStr() { const d = new Date(); return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate(); }
+  function getYesterdayStr() { const d = new Date(); d.setDate(d.getDate() - 1); return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate(); }
   function checkAttendanceReset() {
     const data = getAttendanceData();
     if (!data.lastClaimDate) return data;
-    const today = getTodayStr();
-    const yesterday = getYesterdayStr();
+    const today = getTodayStr(); const yesterday = getYesterdayStr();
     if (data.lastClaimDate === today || data.lastClaimDate === yesterday) return data;
-    data.currentDay = 0;
-    data.accumulated = 0;
-    saveAttendanceData(data);
-    return data;
+    data.currentDay = 0; data.accumulated = 0; saveAttendanceData(data); return data;
   }
-  function canClaimToday() {
-    const data = checkAttendanceReset();
-    return data.lastClaimDate !== getTodayStr();
-  }
+  function canClaimToday() { const data = checkAttendanceReset(); return data.lastClaimDate !== getTodayStr(); }
   function renderAttendance() {
     const data = checkAttendanceReset();
     const grid = document.getElementById('attendanceGrid');
@@ -1850,125 +1672,50 @@
       else if (dayNum === data.currentDay + 1 && canClaimToday()) state = 'today';
       card.classList.add(state);
       const isDay7 = dayNum === 7;
-      const icon = isDay7 ? '🎁' : '🪙';
-      card.innerHTML =
-        '<div class="att-day-label">' + dayNum + ' Day</div>' +
-        '<div class="att-day-icon">' + icon + '</div>' +
-        '<div class="att-day-amount">+' + reward.toLocaleString() + '</div>';
+      card.innerHTML = '<div class="att-day-label">' + dayNum + ' Day</div><div class="att-day-icon">' + (isDay7 ? '🎁' : '🪙') + '</div><div class="att-day-amount">+' + reward.toLocaleString() + '</div>';
       grid.appendChild(card);
     });
     document.getElementById('attCurrentDays').textContent = data.currentDay;
     document.getElementById('attAccumulated').textContent = data.accumulated.toLocaleString();
     const btn = document.getElementById('attClaimBtn');
-    if (!btn) return;
     if (canClaimToday()) {
-      if (data.currentDay >= 7) {
-        btn.textContent = 'START NEW CYCLE (DAY 1)';
-        btn.disabled = false;
-        btn.classList.remove('claimed');
-      } else {
-        const nextReward = ATTENDANCE_REWARDS[data.currentDay];
-        btn.textContent = 'CLAIM DAY ' + (data.currentDay + 1) + ' · +' + nextReward.toLocaleString() + ' TRAX';
-        btn.disabled = false;
-        btn.classList.remove('claimed');
-      }
-    } else {
-      btn.textContent = '✓ CLAIMED TODAY · Kal aayein';
-      btn.disabled = true;
-      btn.classList.add('claimed');
-    }
-    updateSideAttendance();
-    renderStreakBar();
+      if (data.currentDay >= 7) { btn.textContent = 'START NEW CYCLE (DAY 1)'; btn.disabled = false; btn.classList.remove('claimed'); }
+      else { btn.textContent = 'CLAIM DAY ' + (data.currentDay + 1) + ' · +' + ATTENDANCE_REWARDS[data.currentDay].toLocaleString() + ' TRAX'; btn.disabled = false; btn.classList.remove('claimed'); }
+    } else { btn.textContent = '✓ CLAIMED TODAY · Kal aayein'; btn.disabled = true; btn.classList.add('claimed'); }
   }
   function claimAttendance() {
     const data = checkAttendanceReset();
-    if (!canClaimToday()) {
-      showModal('✅ Already Claimed', 'Aapne aaj ka bonus already claim kar liya.\nKal dobara aayein!');
-      return;
-    }
-    if (data.currentDay >= 7) {
-      data.currentDay = 0;
-      data.accumulated = 0;
-    }
+    if (!canClaimToday()) { showModal('✅ Already Claimed', 'Kal dobara aayein!'); return; }
+    if (data.currentDay >= 7) { data.currentDay = 0; data.accumulated = 0; }
     const reward = ATTENDANCE_REWARDS[data.currentDay];
-    data.currentDay += 1;
-    data.lastClaimDate = getTodayStr();
-    data.accumulated += reward;
+    data.currentDay += 1; data.lastClaimDate = getTodayStr(); data.accumulated += reward;
     saveAttendanceData(data);
-    balance += reward;
-    totalEarned += reward;
-    updateUI(); save();
+    balance += reward; totalEarned += reward; updateUI(); save();
     playSound('win'); vibrate('success');
-    if (data.currentDay === 7) {
-      showModal('🎉 7-Day Bonus!', 'Mubarak ho! Aapne 7 din complete kar liye.\n\n+' + reward.toLocaleString() + ' TRAX mile!\n\nKal se naya cycle shuru.');
-    } else {
-      showModal('🎁 Day ' + data.currentDay + ' Claimed!', '+' + reward.toLocaleString() + ' TRAX mile!\n\nKal phir aayein · Day ' + (data.currentDay + 1) + ' unlock hoga.');
-    }
+    showModal('🎁 Day ' + data.currentDay + ' Claimed!', '+' + reward.toLocaleString() + ' TRAX mile!');
     renderAttendance();
   }
-  function updateSideAttendance() {
-    const data = checkAttendanceReset();
-    const el = document.getElementById('attSideDay');
-    const dot = document.getElementById('attDot');
-    if (!el) return;
-    if (canClaimToday()) {
-      el.textContent = 'Claim Day ' + (data.currentDay + 1);
-      el.style.color = '#00ff88';
-      if (dot) dot.style.display = 'block';
-    } else {
-      el.textContent = 'Day ' + data.currentDay + ' done';
-      el.style.color = '#7a8ba5';
-      if (dot) dot.style.display = 'none';
-    }
-  }
-  function renderStreakBar() {
-    const row = document.getElementById('streakRow');
-    const countEl = document.getElementById('streakCount');
-    if (!row) return;
-    const data = checkAttendanceReset();
-    countEl.textContent = data.currentDay;
-    row.innerHTML = '';
-    for (let i = 1; i <= 7; i++) {
-      const d = document.createElement('div');
-      d.className = 'streak-day';
-      if (i <= data.currentDay) d.classList.add('done');
-      else if (i === data.currentDay + 1 && canClaimToday()) d.classList.add('today');
-      if (i === 7) d.classList.add('gift');
-      d.textContent = i === 7 ? '🎁' : (i <= data.currentDay ? '✓' : i);
-      row.appendChild(d);
-    }
-  }
 
-  // ===== RED POCKET =====
+  // RED POCKET
   const REDPOCKET_COOLDOWN = 15 * 60 * 1000;
   const REDPOCKET_REWARDS = [
-    { amount: 50,   weight: 35 },
-    { amount: 100,  weight: 30 },
-    { amount: 250,  weight: 20 },
-    { amount: 500,  weight: 10 },
-    { amount: 1000, weight: 5 }
+    { amount: 50, weight: 35 }, { amount: 100, weight: 30 },
+    { amount: 250, weight: 20 }, { amount: 500, weight: 10 }, { amount: 1000, weight: 5 }
   ];
-
   function getRedPocketState() {
     const lastOpen = parseInt(localStorage.getItem('trax_rp_lastOpen') || '0');
-    const now = Date.now();
-    const elapsed = now - lastOpen;
-    const remaining = Math.max(0, REDPOCKET_COOLDOWN - elapsed);
+    const remaining = Math.max(0, REDPOCKET_COOLDOWN - (Date.now() - lastOpen));
     return { ready: remaining === 0, remaining };
   }
   function pickRedPocketReward() {
     const total = REDPOCKET_REWARDS.reduce((s, x) => s + x.weight, 0);
     let r = Math.random() * total;
-    for (const rew of REDPOCKET_REWARDS) {
-      r -= rew.weight;
-      if (r <= 0) return rew.amount;
-    }
+    for (const rew of REDPOCKET_REWARDS) { r -= rew.weight; if (r <= 0) return rew.amount; }
     return 50;
   }
   function formatRPTime(ms) {
     const s = Math.floor(ms / 1000);
-    const m = Math.floor(s / 60);
-    const sec = s % 60;
+    const m = Math.floor(s / 60); const sec = s % 60;
     return String(m).padStart(2, '0') + ':' + String(sec).padStart(2, '0');
   }
   function updateRedPocketUI() {
@@ -1977,40 +1724,26 @@
     const labelEl = document.getElementById('redpocketLabel');
     const boxEl = document.getElementById('redpocketBox');
     const btnEl = document.getElementById('redpocketClaimBtn');
-    const sideTimer = document.getElementById('rpSideTimer');
-    const sideCard = document.getElementById('sideRedPocket');
-    const rpDot = document.getElementById('rpDot');
-
+    if (!timerEl) return;
     if (state.ready) {
-      if (timerEl) { timerEl.textContent = 'READY!'; timerEl.classList.add('ready'); }
-      if (labelEl) labelEl.textContent = 'TAP TO OPEN';
-      if (boxEl) { boxEl.classList.add('ready'); boxEl.classList.remove('disabled'); }
-      if (btnEl) { btnEl.disabled = false; btnEl.textContent = 'OPEN NOW 🧧'; btnEl.classList.add('ready'); }
-      if (sideTimer) { sideTimer.textContent = 'READY'; sideTimer.style.color = '#00ff88'; }
-      if (sideCard) sideCard.classList.add('ready');
-      if (rpDot) rpDot.style.display = 'block';
+      timerEl.textContent = 'READY!'; timerEl.classList.add('ready');
+      labelEl.textContent = 'TAP TO OPEN';
+      boxEl.classList.add('ready'); boxEl.classList.remove('disabled');
+      btnEl.disabled = false; btnEl.textContent = 'OPEN NOW 🧧'; btnEl.classList.add('ready');
     } else {
-      if (timerEl) { timerEl.textContent = formatRPTime(state.remaining); timerEl.classList.remove('ready'); }
-      if (labelEl) labelEl.textContent = 'NEXT POCKET IN';
-      if (boxEl) { boxEl.classList.remove('ready'); boxEl.classList.add('disabled'); }
-      if (btnEl) { btnEl.disabled = true; btnEl.textContent = 'WAIT...'; btnEl.classList.remove('ready'); }
-      if (sideTimer) { sideTimer.textContent = formatRPTime(state.remaining); sideTimer.style.color = '#ff5555'; }
-      if (sideCard) sideCard.classList.remove('ready');
-      if (rpDot) rpDot.style.display = 'none';
+      timerEl.textContent = formatRPTime(state.remaining); timerEl.classList.remove('ready');
+      labelEl.textContent = 'NEXT POCKET IN';
+      boxEl.classList.remove('ready'); boxEl.classList.add('disabled');
+      btnEl.disabled = true; btnEl.textContent = 'WAIT...'; btnEl.classList.remove('ready');
     }
   }
   function openRedPocket() {
     const state = getRedPocketState();
-    if (!state.ready) {
-      playSound('error'); vibrate('error');
-      showModal('⏰ Wait', 'Agla Red Pocket ' + formatRPTime(state.remaining) + ' baad milega.');
-      return;
-    }
+    if (!state.ready) { playSound('error'); vibrate('error'); showModal('⏰ Wait', 'Agla Red Pocket ' + formatRPTime(state.remaining) + ' baad milega.'); return; }
     const reward = pickRedPocketReward();
     balance += reward; totalEarned += reward;
     localStorage.setItem('trax_rp_lastOpen', Date.now());
-    updateUI(); save();
-    playSound('win'); vibrate('success');
+    updateUI(); save(); playSound('win'); vibrate('success');
     updateRedPocketUI();
     const isRare = reward >= 1000;
     showModal(isRare ? '🌟 LUCKY! RARE POCKET!' : '🧧 Red Pocket!', 'Mubarak ho!\n\n+' + reward.toLocaleString() + ' TRAX mile!' + (isRare ? '\n\n🎉 Ye bohot rare hai!' : ''));
@@ -2028,39 +1761,26 @@
   drawRank();
   renderAttendance();
   updateRedPocketUI();
+  updateProfilePage();
 
   (function() {
     const now = Date.now();
     const atUntil = parseInt(localStorage.getItem('trax_booster_autoTap_activeUntil') || '0');
-    if (atUntil > now) { boosterAutoTapBonus = 1; }
+    if (atUntil > now) boosterAutoTapBonus = 1;
     else { localStorage.removeItem('trax_booster_autoTap_bonus'); localStorage.removeItem('trax_booster_autoTap_activeUntil'); boosterAutoTapBonus = 0; }
     const dbUntil = parseInt(localStorage.getItem('trax_booster_double_activeUntil') || '0');
-    if (dbUntil > now) { boosterDoubleBonus = 2; }
+    if (dbUntil > now) boosterDoubleBonus = 2;
     else { localStorage.removeItem('trax_booster_double_bonus'); localStorage.removeItem('trax_booster_double_activeUntil'); boosterDoubleBonus = 0; }
-    updateUI();
-    updateBoosterUI();
+    updateUI(); updateBoosterUI();
   })();
 
-  setInterval(() => {
-    if (autoEarn > 0) { balance += autoEarn / 3600; totalEarned += autoEarn / 3600; updateUI(); save(); }
-  }, 1000);
-
-  setInterval(() => {
-    if (energy < getEffectiveMaxEnergy()) { energy++; updateUI(); save(); }
-  }, 2000);
-
+  setInterval(() => { if (autoEarn > 0) { balance += autoEarn / 3600; totalEarned += autoEarn / 3600; updateUI(); save(); } }, 1000);
+  setInterval(() => { if (energy < getEffectiveMaxEnergy()) { energy++; updateUI(); save(); } }, 2000);
   setInterval(updateBoosterUI, 1000);
   setInterval(checkBoosterExpiry, 5000);
   setInterval(updateRedPocketUI, 1000);
-
-  setInterval(() => {
-    const modal = document.getElementById('spinModal');
-    if (modal && modal.classList.contains('show')) updateSpinStatus();
-  }, 1000);
-
-  setInterval(() => {
-    renderAttendance();
-  }, 60 * 60 * 1000);
+  setInterval(() => { const modal = document.getElementById('spinModal'); if (modal && modal.classList.contains('show')) updateSpinStatus(); }, 1000);
+  setInterval(() => { renderAttendance(); }, 60 * 60 * 1000);
 </script>
 </body>
  </html>
