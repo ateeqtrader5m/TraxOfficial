@@ -27,25 +27,39 @@
 
   .container { padding: 12px 15px; max-width: 500px; margin: 0 auto; }
 
-  /* BALANCE CARD */
-  .balance-card { background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(0,80,180,0.1)); border: 1px solid rgba(0,212,255,0.3); border-radius: 20px; padding: 18px; margin-bottom: 12px; position: relative; overflow: hidden; }
+  .balance-card { background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(0,80,180,0.1)); border: 1px solid rgba(0,212,255,0.3); border-radius: 20px; padding: 16px; margin-bottom: 12px; position: relative; overflow: hidden; }
   .balance-card::before { content: ''; position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(0,212,255,0.15), transparent 60%); animation: rotate 15s linear infinite; }
   @keyframes rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
   .balance-label { font-size: 11px; color: #7a8ba5; letter-spacing: 1.5px; position: relative; z-index: 2; margin-bottom: 6px; }
   .balance-value { font-size: 30px; font-weight: 900; color: white; text-shadow: 0 0 25px rgba(0,212,255,0.7); position: relative; z-index: 2; line-height: 1.1; }
   .balance-value small { font-size: 14px; color: #00d4ff; }
   .balance-sub { font-size: 10px; color: #ff9500; margin-top: 4px; position: relative; z-index: 2; font-weight: 900; }
+  .wallet-connect-btn { background: linear-gradient(135deg, #00d4ff, #0066ff); border: none; border-radius: 14px; padding: 10px 12px; color: white; font-weight: 900; cursor: pointer; box-shadow: 0 4px 18px rgba(0,212,255,0.5); display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 66px; position: relative; z-index: 3; }
+  .wallet-connect-btn:active { transform: scale(0.94); }
 
-  /* RANK BADGE CARD */
   .rank-badge-card { background: linear-gradient(135deg, rgba(0,180,255,0.12), rgba(150,0,255,0.08)); border: 1.5px solid rgba(0,212,255,0.4); border-radius: 18px; padding: 14px 16px; margin-bottom: 12px; display: flex; align-items: center; gap: 14px; position: relative; overflow: hidden; }
   .rank-badge-card::before { content: ''; position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255,215,0,0.1), transparent 60%); animation: rotate 20s linear infinite; pointer-events: none; }
   .rank-badge-icon { width: 52px; height: 52px; border-radius: 14px; background: linear-gradient(135deg, #ffd700, #ff9500); display: flex; align-items: center; justify-content: center; font-size: 26px; flex-shrink: 0; box-shadow: 0 0 20px rgba(255,215,0,0.5); position: relative; z-index: 2; }
   .rank-badge-info { flex: 1; position: relative; z-index: 2; }
   .rank-badge-label { font-size: 10px; color: #ffd700; letter-spacing: 1.5px; font-weight: 900; margin-bottom: 4px; }
   .rank-badge-value { font-size: 26px; font-weight: 900; color: white; text-shadow: 0 0 20px rgba(255,215,0,0.6); line-height: 1; }
-  .rank-badge-status { text-align: right; font-size: 11px; color: #00d4ff; font-weight: 900; position: relative; z-index: 2; max-width: 90px; line-height: 1.3; }
+  .rank-badge-status { text-align: right; font-size: 10px; color: #00d4ff; font-weight: 900; position: relative; z-index: 2; max-width: 90px; line-height: 1.3; }
+  .rarity-show-btn { background: linear-gradient(135deg, #ff9500, #ff5500); border: none; border-radius: 10px; padding: 6px 12px; color: white; font-size: 9px; font-weight: 900; cursor: pointer; letter-spacing: 0.5px; box-shadow: 0 3px 12px rgba(255,150,0,0.5); position: relative; z-index: 3; }
+  .rarity-show-btn:active { transform: scale(0.95); }
 
-  /* COIN */
+  .rarity-item { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 12px; margin-bottom: 8px; border-left: 4px solid; }
+  .rarity-item.brown { background: rgba(205,127,50,0.12); border-left-color: #cd7f32; }
+  .rarity-item.silver { background: rgba(192,192,192,0.12); border-left-color: #c0c0c0; }
+  .rarity-item.gold { background: rgba(255,215,0,0.12); border-left-color: #ffd700; }
+  .rarity-item.diamond { background: rgba(160,224,255,0.12); border-left-color: #a0e0ff; }
+  .rarity-item.epic { background: rgba(153,0,255,0.12); border-left-color: #9900ff; }
+  .rarity-item.legendary { background: rgba(255,150,0,0.12); border-left-color: #ff9500; }
+  .rarity-item.mythic { background: rgba(255,0,85,0.12); border-left-color: #ff0055; }
+  .rarity-item-icon { width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; background: rgba(0,0,0,0.3); }
+  .rarity-item-info h4 { font-size: 13px; font-weight: 900; margin-bottom: 2px; }
+  .rarity-item-info p { font-size: 10px; color: #a0aec0; }
+  .rarity-item-info .range { font-size: 11px; font-weight: 900; margin-top: 2px; }
+
   .tap-title { text-align: center; font-size: 16px; font-weight: 900; color: white; margin: 12px 0 5px; letter-spacing: 1px; }
   .coin-area { display: flex; justify-content: center; align-items: center; margin: 15px 0; position: relative; min-height: 320px; perspective: 1000px; }
   .coin-wrapper { position: relative; z-index: 2; }
@@ -67,7 +81,6 @@
   .coin-per-tap { text-align: center; font-size: 12px; color: #a0aec0; margin-top: 4px; }
   .coin-per-tap strong { color: #00d4ff; font-size: 14px; }
 
-  /* ENERGY */
   .energy-card { background: linear-gradient(135deg, rgba(15,30,55,0.9), rgba(10,20,40,0.7)); border: 1px solid rgba(0,180,255,0.25); border-radius: 16px; padding: 14px; margin-bottom: 12px; }
   .energy-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
   .energy-label { font-size: 13px; font-weight: 900; color: #00d4ff; display: flex; align-items: center; gap: 6px; }
@@ -76,14 +89,12 @@
   .energy-bar { height: 10px; background: rgba(0,0,0,0.3); border-radius: 5px; overflow: hidden; }
   .energy-fill { height: 100%; background: linear-gradient(90deg, #00d4ff, #00ff88); border-radius: 5px; transition: width 0.3s; }
 
-  /* QUICK BUTTONS */
   .quick-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
   .quick-btn { background: linear-gradient(135deg, rgba(0,100,200,0.5), rgba(0,60,150,0.3)); border: 1.5px solid rgba(0,180,255,0.4); border-radius: 16px; padding: 16px 10px; text-align: center; cursor: pointer; transition: transform 0.1s; }
   .quick-btn:active { transform: scale(0.96); }
   .quick-icon { font-size: 28px; margin-bottom: 5px; }
   .quick-label { font-size: 12px; color: #fff; font-weight: 900; letter-spacing: 0.5px; }
 
-  /* RANK BOARD */
   .rank-board { background: linear-gradient(135deg, rgba(0,80,180,0.15), rgba(0,40,100,0.1)); border: 1.5px solid rgba(0,180,255,0.3); border-radius: 20px; padding: 16px; margin-bottom: 15px; }
   .rank-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
   .rank-title { font-size: 15px; font-weight: 900; color: #00d4ff; display: flex; align-items: center; gap: 8px; letter-spacing: 0.5px; }
@@ -101,12 +112,10 @@
   .rank-value { font-size: 12px; color: #00ff88; font-weight: 900; }
   .rank-value small { color: #7a8ba5; font-size: 9px; }
 
-  /* PAGE TITLE */
   .page-title-bar { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; padding: 5px 0; }
   .page-title-icon { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-size: 24px; }
   .page-title-text { font-size: 26px; font-weight: 900; color: #00d4ff; letter-spacing: 0.5px; }
 
-  /* MORE PAGE CARDS */
   .more-card { background: rgba(10,25,45,0.75); border: 1px solid rgba(0,150,255,0.2); border-radius: 16px; padding: 16px; margin-bottom: 10px; display: flex; align-items: center; gap: 14px; cursor: pointer; transition: transform 0.1s, border-color 0.2s; }
   .more-card:active { transform: scale(0.98); }
   .more-card:hover { border-color: rgba(0,212,255,0.5); }
@@ -124,7 +133,6 @@
   .more-card-info p { font-size: 11px; color: #7a8ba5; }
   .more-card-arrow { color: #00d4ff; font-size: 18px; }
 
-  /* TASK ROW */
   .task-row { background: rgba(10,25,45,0.7); border: 1px solid rgba(0,150,255,0.2); border-radius: 16px; padding: 14px; margin-bottom: 10px; display: flex; align-items: center; gap: 12px; }
   .task-row.done { border-color: rgba(0,255,136,0.3); }
   .task-icon-wrap { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
@@ -142,7 +150,6 @@
   .task-btn.go { background: linear-gradient(135deg, #00b4ff, #0066ff); color: white; }
   .task-btn.done { background: linear-gradient(135deg, #00aa55, #006633); color: white; }
 
-  /* BOOSTERS */
   .booster-card { background: rgba(10,25,45,0.7); border: 1px solid rgba(0,150,255,0.2); border-radius: 18px; padding: 16px; margin-bottom: 10px; }
   .booster-row { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(0,150,255,0.08); }
   .booster-row:last-child { border-bottom: none; padding-bottom: 0; }
@@ -164,7 +171,6 @@
   .booster-btn.green { background: linear-gradient(135deg, #00ff88, #008844); color: white; }
   .booster-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
-  /* MINI GAMES */
   .mini-games-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 15px; }
   .mini-game-card { background: linear-gradient(135deg, rgba(0,100,200,0.3), rgba(0,40,100,0.2)); border: 1.5px solid rgba(0,180,255,0.3); border-radius: 18px; padding: 20px 14px; text-align: center; cursor: pointer; transition: transform 0.1s; }
   .mini-game-card:active { transform: scale(0.96); }
@@ -172,7 +178,6 @@
   .mini-game-name { font-size: 14px; font-weight: 900; color: white; margin-bottom: 4px; }
   .mini-game-desc { font-size: 10px; color: #7a8ba5; }
 
-  /* UPGRADES */
   .upgrade-item { background: rgba(10,25,45,0.7); border: 1px solid rgba(0,150,255,0.2); border-radius: 16px; padding: 14px; margin-bottom: 10px; display: flex; align-items: center; gap: 12px; }
   .upgrade-icon-wrap { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
   .upgrade-icon-wrap.tap { background: radial-gradient(circle, #00b4ff, #0050a0); }
@@ -185,7 +190,6 @@
   .upgrade-info .lvl { font-size: 10px; color: #00d4ff; font-weight: 900; }
   .upgrade-btn { background: linear-gradient(135deg, #00b4ff, #0066ff); border: none; border-radius: 10px; padding: 8px 14px; color: white; font-size: 11px; font-weight: 900; cursor: pointer; min-width: 70px; }
 
-  /* STICKER SHOP */
   .sticker-tier-title { font-size: 12px; font-weight: 900; letter-spacing: 2px; margin: 15px 0 10px; display: flex; align-items: center; gap: 8px; }
   .sticker-tier-title.common { color: #a0aec0; }
   .sticker-tier-title.rare { color: #00d4ff; }
@@ -213,7 +217,6 @@
   .sticker-price.max { color: #ff9500; }
   .sticker-price.locked { color: #7a8ba5; }
 
-  /* CRASH */
   .crash-game { text-align: center; padding: 10px 0; }
   .crash-multiplier { font-size: 54px; font-weight: 900; color: #00ff88; margin: 15px 0; }
   .crash-multiplier.crashed { color: #ff0055; }
@@ -225,12 +228,10 @@
   .crash-bet-btn { background: linear-gradient(135deg, #00ff88, #00aa55); border: none; border-radius: 12px; padding: 14px; color: white; font-size: 15px; font-weight: 900; cursor: pointer; width: 100%; }
   .crash-cash-btn { background: linear-gradient(135deg, #ff9500, #ff5500); border: none; border-radius: 12px; padding: 14px; color: white; font-size: 15px; font-weight: 900; cursor: pointer; width: 100%; margin-top: 10px; }
 
-  /* PUZZLE */
   .puzzle-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; margin: 15px auto; max-width: 100%; }
   .puzzle-tile { aspect-ratio: 1; background: linear-gradient(135deg, #00d4ff, #0066ff); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 900; color: white; cursor: pointer; }
   .puzzle-tile.empty { background: rgba(15,30,55,0.4); color: transparent; }
 
-  /* SPIN WHEEL */
   .wheel-wrapper { position: relative; width: 260px; height: 260px; margin: 20px auto; display: flex; align-items: center; justify-content: center; }
   .wheel-pointer { position: absolute; top: -25px; left: 50%; transform: translateX(-50%); font-size: 40px; color: #ff0055; z-index: 10; }
   .wheel-outer { position: absolute; width: 100%; height: 100%; border-radius: 50%; border: 5px solid #00d4ff; z-index: 5; pointer-events: none; }
@@ -245,14 +246,12 @@
   .result-display .reward-amount { font-size: 36px; font-weight: 900; color: #00ff88; }
   .result-display .reward-unit { font-size: 13px; color: #00d4ff; font-weight: 900; }
 
-  /* REFERRAL */
   .ref-card { background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(0,80,180,0.1)); border: 1px solid rgba(0,212,255,0.3); border-radius: 18px; padding: 20px; margin-bottom: 12px; text-align: center; }
   .ref-title { font-size: 16px; font-weight: 900; color: #00d4ff; margin-bottom: 8px; }
   .ref-sub { font-size: 11px; color: #a0aec0; margin-bottom: 15px; }
   .ref-link { background: rgba(0,0,0,0.4); padding: 12px; border-radius: 10px; font-size: 10px; color: #00d4ff; word-break: break-all; margin-bottom: 15px; }
   .ref-share { background: linear-gradient(135deg, #00b4ff, #0066ff); border: none; border-radius: 12px; padding: 12px; color: white; font-size: 13px; font-weight: 900; cursor: pointer; width: 100%; }
 
-  /* SETTINGS */
   .setting-row { display: flex; justify-content: space-between; align-items: center; background: rgba(15,30,55,0.7); border: 1px solid rgba(0,180,255,0.2); border-radius: 14px; padding: 14px; margin-bottom: 10px; }
   .setting-row .label { font-size: 13px; font-weight: 900; color: white; }
   .toggle { width: 50px; height: 28px; border-radius: 14px; background: #4a5568; position: relative; cursor: pointer; transition: background 0.3s; }
@@ -260,7 +259,6 @@
   .toggle::after { content: ''; position: absolute; top: 3px; left: 3px; width: 22px; height: 22px; border-radius: 50%; background: white; transition: transform 0.3s; }
   .toggle.on::after { transform: translateX(22px); }
 
-  /* WITHDRAW */
   .withdraw-option { background: rgba(15,30,55,0.8); border: 1px solid rgba(0,180,255,0.3); border-radius: 14px; padding: 14px; margin-bottom: 10px; display: flex; align-items: center; gap: 12px; }
   .withdraw-option-icon { width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; background: rgba(0,180,255,0.15); flex-shrink: 0; }
   .withdraw-option-info { flex: 1; text-align: left; }
@@ -268,7 +266,6 @@
   .withdraw-option-info p { font-size: 10px; color: #7a8ba5; }
   .coming-soon-badge { background: rgba(255,150,0,0.2); color: #ff9500; font-size: 9px; padding: 3px 8px; border-radius: 8px; font-weight: 900; }
 
-  /* PROFILE */
   .profile-card { background: linear-gradient(135deg, rgba(0,180,255,0.12), rgba(0,60,150,0.08)); border: 1.5px solid rgba(0,212,255,0.35); border-radius: 20px; padding: 18px; margin-bottom: 14px; position: relative; overflow: hidden; }
   .profile-avatar-wrap { width: 80px; height: 80px; position: relative; flex-shrink: 0; }
   .profile-avatar-ring { position: absolute; inset: -5px; border-radius: 50%; background: conic-gradient(from 0deg, #00d4ff, #00ff88, #9900ff, #ff0055, #00d4ff); animation: spinRing 4s linear infinite; opacity: 0.8; filter: blur(2px); }
@@ -284,14 +281,12 @@
   .profile-level-bar { width: 100%; height: 8px; background: rgba(0,0,0,0.4); border-radius: 4px; overflow: hidden; position: relative; z-index: 2; }
   .profile-level-fill { height: 100%; background: linear-gradient(90deg, #00d4ff, #0090ff); border-radius: 4px; transition: width 0.5s; }
 
-  /* NAV */
   .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: linear-gradient(180deg, rgba(10,20,35,0.98), rgba(5,10,20,1)); border-top: 1px solid rgba(0,180,255,0.3); display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr; padding: 8px 0 12px; z-index: 100; }
   .nav-item { display: flex; flex-direction: column; align-items: center; gap: 3px; color: #4a5568; font-size: 8px; cursor: pointer; padding: 5px 0; font-weight: bold; }
   .nav-item.active { color: #00d4ff; }
   .nav-item.active .nav-icon { transform: scale(1.15); }
   .nav-item .nav-icon { font-size: 20px; transition: transform 0.2s; }
 
-  /* MODAL */
   .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 15px; }
   .modal.show { display: flex; }
   .modal-content { background: linear-gradient(135deg, #0f2137, #061224); border: 1px solid rgba(0,212,255,0.5); border-radius: 22px; padding: 22px 18px; max-width: 380px; width: 100%; text-align: center; max-height: 92vh; overflow-y: auto; }
@@ -300,7 +295,6 @@
   .modal-btn { background: linear-gradient(135deg, #00b4ff, #0066ff); border: none; border-radius: 12px; padding: 12px 30px; color: white; font-size: 14px; font-weight: 900; cursor: pointer; }
   .input-field { background: rgba(0,0,0,0.4); border: 1px solid rgba(0,212,255,0.4); border-radius: 12px; padding: 12px 15px; color: white; font-size: 14px; width: 100%; outline: none; text-align: center; margin-bottom: 15px; font-weight: 900; }
 
-  /* FLOATS */
   .float-text { position: fixed; font-size: 26px; font-weight: 900; color: #00d4ff; pointer-events: none; animation: floatUp 1s ease-out forwards; z-index: 999; }
   @keyframes floatUp { 0% { opacity: 1; transform: translateY(0) scale(1); } 100% { opacity: 0; transform: translateY(-130px) scale(1.4); } }
   .sparkle { position: fixed; width: 8px; height: 8px; border-radius: 50%; pointer-events: none; animation: sparkleAnim 0.8s ease-out forwards; z-index: 998; }
@@ -339,9 +333,17 @@
 <div class="tab-content active" id="tab-home">
   <div class="container">
     <div class="balance-card">
-      <div class="balance-label">◆ TOTAL BALANCE</div>
-      <div class="balance-value"><span id="balance">0</span> <small>TRAX</small></div>
-      <div class="balance-sub">⏳ NOT LAUNCHED YET</div>
+      <div style="display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2">
+        <div style="flex:1">
+          <div class="balance-label">◆ TOTAL BALANCE</div>
+          <div class="balance-value"><span id="balance">0</span> <small>TRAX</small></div>
+          <div class="balance-sub">⏳ NOT LAUNCHED YET</div>
+        </div>
+        <button class="wallet-connect-btn" onclick="navTo('wallet')">
+          <div style="font-size:24px;margin-bottom:2px">💼</div>
+          <div style="font-size:8px;letter-spacing:1px">WALLET</div>
+        </button>
+      </div>
     </div>
 
     <div class="rank-badge-card">
@@ -350,7 +352,10 @@
         <div class="rank-badge-label">◆ YOUR RANK</div>
         <div class="rank-badge-value" id="myRankBadge">#---</div>
       </div>
-      <div class="rank-badge-status" id="rankStatus">Keep tapping</div>
+      <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end;position:relative;z-index:2">
+        <div class="rank-badge-status" id="rankStatus">Keep tapping</div>
+        <button class="rarity-show-btn" onclick="showRarityList()">⭐ RARITY</button>
+      </div>
     </div>
 
     <div class="tap-title">⚡ Tap to Earn</div>
@@ -565,6 +570,69 @@
 </div>
 
 <div class="modal" id="modal"><div class="modal-content"><h3 id="modalTitle">Notice</h3><p id="modalText">Message</p><button class="modal-btn" onclick="closeModal()">OK</button></div></div>
+
+<div class="modal" id="rarityModal">
+  <div class="modal-content" style="max-width:420px;text-align:left">
+    <h3 style="text-align:center;margin-bottom:18px">🏆 Rarity Tiers</h3>
+    <div class="rarity-item brown">
+      <div class="rarity-item-icon">🟤</div>
+      <div class="rarity-item-info">
+        <h4 style="color:#cd7f32">BROWN — Common</h4>
+        <p>Beginner tier — sab yahan se shuru</p>
+        <div class="range" style="color:#cd7f32">Level 1 - 10</div>
+      </div>
+    </div>
+    <div class="rarity-item silver">
+      <div class="rarity-item-icon">⚪</div>
+      <div class="rarity-item-info">
+        <h4 style="color:#c0c0c0">SILVER — Uncommon</h4>
+        <p>Active players ka tier</p>
+        <div class="range" style="color:#c0c0c0">Level 10 - 25</div>
+      </div>
+    </div>
+    <div class="rarity-item gold">
+      <div class="rarity-item-icon">🟡</div>
+      <div class="rarity-item-info">
+        <h4 style="color:#ffd700">GOLD — Rare</h4>
+        <p>Serious players ka tier</p>
+        <div class="range" style="color:#ffd700">Level 25 - 50</div>
+      </div>
+    </div>
+    <div class="rarity-item diamond">
+      <div class="rarity-item-icon">💎</div>
+      <div class="rarity-item-info">
+        <h4 style="color:#a0e0ff">DIAMOND — Epic</h4>
+        <p>Top 10% players</p>
+        <div class="range" style="color:#a0e0ff">Level 50 - 100</div>
+      </div>
+    </div>
+    <div class="rarity-item epic">
+      <div class="rarity-item-icon">🟣</div>
+      <div class="rarity-item-info">
+        <h4 style="color:#9900ff">EPIC — Very Rare</h4>
+        <p>Elite players only</p>
+        <div class="range" style="color:#9900ff">Level 100 - 250</div>
+      </div>
+    </div>
+    <div class="rarity-item legendary">
+      <div class="rarity-item-icon">🟠</div>
+      <div class="rarity-item-info">
+        <h4 style="color:#ff9500">LEGENDARY — Mythic</h4>
+        <p>Top 1% players</p>
+        <div class="range" style="color:#ff9500">Level 250 - 500</div>
+      </div>
+    </div>
+    <div class="rarity-item mythic">
+      <div class="rarity-item-icon">🔴</div>
+      <div class="rarity-item-info">
+        <h4 style="color:#ff0055">MYTHIC — Godly</h4>
+        <p>Best of the best players</p>
+        <div class="range" style="color:#ff0055">Level 500+</div>
+      </div>
+    </div>
+    <button class="modal-btn" onclick="closeRarityList()" style="display:block;width:100%;margin-top:10px">Samajh Gaya ✓</button>
+  </div>
+</div>
 
 <div class="modal" id="spinModal">
   <div class="modal-content" style="max-width:380px">
@@ -981,7 +1049,6 @@
     if (changed) saveBoosters();
   }
 
-  // ===== LEADERBOARD SYSTEM =====
   function getAllPlayers() {
     let players = JSON.parse(localStorage.getItem('trax_leaderboard') || '[]');
     players = players.filter(p => p.value >= RANK_MIN_COINS);
@@ -1064,6 +1131,13 @@
     toast.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#00d4ff,#0066ff);color:white;padding:10px 20px;border-radius:20px;font-weight:900;font-size:12px;z-index:9999;box-shadow:0 5px 20px rgba(0,212,255,0.5)';
     document.body.appendChild(toast);
     setTimeout(() => toast.remove(), 2500);
+  }
+
+  function showRarityList() {
+    document.getElementById('rarityModal').classList.add('show');
+  }
+  function closeRarityList() {
+    document.getElementById('rarityModal').classList.remove('show');
   }
 
   function init() {
