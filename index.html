@@ -1300,34 +1300,88 @@
     document.getElementById('modal').classList.remove('show');
   }
 
-  function openSpin() { document.getElementById('spinModal').classList.add('show'); }
+  function openSpin() {
+    document.getElementById('spinModal').classList.add('show');
+    document.getElementById('resultDisplay').classList.remove('show');
+    document.getElementById('wheel').style.transform = 'rotate(0deg)';
+    document.getElementById('spinBtn').textContent = 'SPIN NOW';
+    document.getElementById('spinBtn').disabled = false;
+    document.getElementById('spinBtn').style.opacity = '1';
+    document.getElementById('wheelCenter').textContent = 'SPIN';
+    drawWheelLabels();
+  }
+
   function closeSpin() {
     document.getElementById('spinModal').classList.remove('show');
     document.getElementById('wheel').style.transform = 'rotate(0deg)';
+    document.getElementById('resultDisplay').classList.remove('show');
   }
+
+  function drawWheelLabels() {
+    const wheel = document.getElementById('wheel');
+    wheel.querySelectorAll('.wheel-segment-label').forEach(l => l.remove());
+    const labels = ['50', '100', '200', '500', '1000', '50', '100', '250'];
+    const radius = 90;
+    labels.forEach((label, i) => {
+      const angle = (i * 45) + 22.5;
+      const rad = (angle - 90) * Math.PI / 180;
+      const x = 130 + radius * Math.cos(rad);
+      const y = 130 + radius * Math.sin(rad);
+      const el = document.createElement('div');
+      el.className = 'wheel-segment-label';
+      el.textContent = label;
+      el.style.left = x + 'px';
+      el.style.top = y + 'px';
+      wheel.appendChild(el);
+    });
+  }
+
   let spinning = false;
   function spinWheel() {
     if (spinning) return;
     spinning = true;
+    
     const wheel = document.getElementById('wheel');
     const btn = document.getElementById('spinBtn');
+    const resultBox = document.getElementById('resultDisplay');
+    
+    resultBox.classList.remove('show');
     btn.textContent = 'SPINNING...';
-    const rotations = 5 + Math.random() * 3;
-    const degrees = Math.floor(Math.random() * 360);
-    wheel.style.transform = 'rotate(' + (rotations * 360 + degrees) + 'deg)';
+    btn.disabled = true;
+    btn.style.opacity = '0.6';
+    document.getElementById('wheelCenter').textContent = '...';
+    
+    const rewards = [50, 100, 200, 500, 1000, 50, 100, 250];
+    const idx = Math.floor(Math.random() * rewards.length);
+    const reward = rewards[idx];
+    
+    const segmentAngle = idx * 45 + 22.5;
+    const targetRotation = 360 - segmentAngle;
+    const fullRotations = 8 * 360;
+    const finalRotation = fullRotations + targetRotation;
+    
+    wheel.style.transform = 'rotate(' + finalRotation + 'deg)';
+    
+    if (tg && tg.HapticFeedback) tg.HapticFeedback.impactOccurred('medium');
+    
     setTimeout(() => {
-      const rewards = [50, 100, 200, 500, 1000, 50, 100, 250];
-      const idx = Math.floor(degrees / 45);
-      const reward = rewards[idx];
       balance += reward;
       updateUI();
       save();
+      
+      resultBox.classList.add('show');
+      document.getElementById('rewardAmount').textContent = '+' + reward;
+      document.getElementById('wheelCenter').textContent = '🎉';
+      
       spinning = false;
-      btn.textContent = 'SPIN NOW';
+      btn.textContent = 'SPIN AGAIN';
+      btn.disabled = false;
+      btn.style.opacity = '1';
+      
       if (tg && tg.HapticFeedback) tg.HapticFeedback.notificationOccurred('success');
-      showModal('🎉 You Won!', '+' + reward + ' TRAX!');
-    }, 3200);
-  }
+      createSparkles(window.innerWidth / 2, window.innerHeight / 2);
+    }, 4200);
+               }
 
   function resetData() {
     if (confirm('Kya aap sach mein saara data reset karna chahte hain?')) {
