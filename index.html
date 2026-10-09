@@ -320,8 +320,8 @@
   .modal-content {
     background: linear-gradient(135deg, #0f2137, #061224);
     border: 1px solid rgba(0,212,255,0.5);
-    border-radius: 22px; padding: 28px 24px;
-    max-width: 340px; width: 100%; text-align: center;
+    border-radius: 22px; padding: 24px 20px;
+    max-width: 360px; width: 100%; text-align: center;
     box-shadow: 0 20px 70px rgba(0,212,255,0.5);
   }
   .modal-content h3 {
@@ -351,124 +351,6 @@
     0% { opacity: 1; transform: translateY(0) scale(1); }
     100% { opacity: 0; transform: translateY(-130px) scale(1.4); }
   }
-  .wheel-container {
-    width: 200px; height: 200px; margin: 20px auto;
-    border-radius: 50%;
-    background: conic-gradient(
-      #00d4ff 0deg 45deg, #0066ff 45deg 90deg,
-      #00ff88 90deg 135deg, #ff9500 135deg 180deg,
-      #ff0055 180deg 225deg, #9900ff 225deg 270deg,
-      #00d4ff 270deg 315deg, #0066ff 315deg 360deg
-      position: relative;
-  box-shadow: 
-    0 0 40px rgba(0,212,255,0.8),
-    0 0 80px rgba(0,150,255,0.4),
-    inset 0 0 30px rgba(0,0,0,0.5);
-  transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99);
-  border: 4px solid rgba(255,255,255,0.3);
-}
-.wheel-wrapper {
-  position: relative;
-  width: 260px;
-  height: 260px;
-  margin: 20px auto;
-}
-.wheel-segment-label {
-  position: absolute;
-  font-size: 11px;
-  font-weight: 900;
-  color: white;
-  text-shadow: 0 0 5px rgba(0,0,0,0.9);
-  pointer-events: none;
-  z-index: 3;
-  transform: translate(-50%, -50%);
-}
-.wheel-pointer {
-  position: absolute;
-  top: -20px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 40px;
-  z-index: 5;
-  filter: drop-shadow(0 0 10px #00d4ff) drop-shadow(0 0 20px #00d4ff);
-  animation: pointerPulse 1s infinite;
-}
-@keyframes pointerPulse {
-  0%, 100% { transform: translateX(-50%) scale(1); }
-  50% { transform: translateX(-50%) scale(1.1); }
-}
-.wheel-center {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  width: 70px; height: 70px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #ffffff, #e0e0e0);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 900;
-  color: #0066ff;
-  font-size: 13px;
-  letter-spacing: 1px;
-  z-index: 4;
-  box-shadow: 
-    0 0 25px rgba(255,255,255,1),
-    0 0 50px rgba(0,212,255,0.8),
-    inset 0 -3px 10px rgba(0,0,0,0.2);
-  border: 3px solid #00d4ff;
-  cursor: pointer;
-}
-.wheel-center:active { transform: translate(-50%, -50%) scale(0.95); }
-.wheel-glow {
-  position: absolute;
-  inset: -30px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(0,212,255,0.4), transparent 70%);
-  animation: wheelGlowPulse 2s infinite;
-  z-index: 0;
-  pointer-events: none;
-}
-@keyframes wheelGlowPulse {
-  0%, 100% { opacity: 0.5; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.1); }
-}
-.result-display {
-  background: linear-gradient(135deg, rgba(0,212,255,0.2), rgba(0,100,200,0.1));
-  border: 2px solid #00d4ff;
-  border-radius: 16px;
-  padding: 18px;
-  margin: 15px 0;
-  text-align: center;
-  display: none;
-  box-shadow: 0 0 30px rgba(0,212,255,0.6);
-  animation: resultPop 0.5s;
-}
-@keyframes resultPop {
-  0% { transform: scale(0.5); opacity: 0; }
-  70% { transform: scale(1.1); }
-  100% { transform: scale(1); opacity: 1; }
-}
-.result-display.show { display: block; }
-.result-display h4 {
-  font-size: 12px;
-  color: #a0aec0;
-  letter-spacing: 2px;
-  margin-bottom: 8px;
-}
-.result-display .reward-amount {
-  font-size: 36px;
-  font-weight: 900;
-  color: #00ff88;
-  text-shadow: 0 0 25px rgba(0,255,136,0.9);
-  line-height: 1.1;
-}
-.result-display .reward-unit {
-  font-size: 14px;
-  color: #00d4ff;
-  font-weight: 900;
-  letter-spacing: 2px;
- }
   .sparkle {
     position: fixed; width: 8px; height: 8px;
     background: #00d4ff; border-radius: 50%;
@@ -549,11 +431,146 @@
     25% { transform: rotate(-10deg) scale(1.05); }
     75% { transform: rotate(10deg) scale(1.05); }
   }
+
+  /* ===== WHEEL ===== */
+  .wheel-wrapper {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .wheel-glow {
+    position: absolute;
+    inset: -20px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,212,255,0.5), transparent 70%);
+    animation: wheelGlowPulse 2s infinite;
+    z-index: 0;
+    pointer-events: none;
+  }
+  @keyframes wheelGlowPulse {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+  }
+  .wheel-pointer {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 44px;
+    color: #ff0055;
+    z-index: 10;
+    filter: drop-shadow(0 0 15px #ff0055) drop-shadow(0 0 30px #ff0055);
+    animation: pointerPulse 1.2s infinite;
+  }
+  @keyframes pointerPulse {
+    0%, 100% { transform: translateX(-50%) scale(1); }
+    50% { transform: translateX(-50%) scale(1.15); }
+  }
+  .wheel-outer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 6px solid #00d4ff;
+    box-shadow: 0 0 30px rgba(0,212,255,0.8), inset 0 0 30px rgba(0,212,255,0.4);
+    z-index: 5;
+    pointer-events: none;
+  }
+  .wheel-container {
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    background: conic-gradient(
+      #00d4ff 0deg 45deg,
+      #0066ff 45deg 90deg,
+      #00ff88 90deg 135deg,
+      #ff9500 135deg 180deg,
+      #ff0055 180deg 225deg,
+      #9900ff 225deg 270deg,
+      #ffaa00 270deg 315deg,
+      #ff00aa 315deg 360deg
+    );
+    position: relative;
+    transition: transform 5s cubic-bezier(0.15, 0.9, 0.2, 1);
+    box-shadow: inset 0 0 40px rgba(0,0,0,0.6);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .wheel-labels { width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
+  .wheel-label {
+    position: absolute; top: 50%; left: 50%;
+    width: 0; height: 0;
+    font-size: 13px; font-weight: 900;
+    color: white;
+    text-shadow: 0 0 6px rgba(0,0,0,1), 0 0 10px rgba(0,0,0,0.9);
+    pointer-events: none; z-index: 3;
+  }
+  .wheel-label span {
+    display: block; position: absolute;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+  }
+  .wheel-center {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900; color: #0066ff;
+    font-size: 14px; letter-spacing: 1px;
+    z-index: 6;
+    box-shadow: 0 0 25px rgba(255,255,255,1), 0 0 50px rgba(0,212,255,0.8), inset 0 -3px 10px rgba(0,0,0,0.2);
+    border: 4px solid #00d4ff;
+    cursor: pointer;
+    transition: transform 0.1s;
+  }
+  .wheel-center:active { transform: translate(-50%, -50%) scale(0.9); }
+  .wheel-center.disabled {
+    background: linear-gradient(135deg, #666 0%, #444 100%);
+    color: #aaa; border-color: #666;
+    cursor: not-allowed; box-shadow: none;
+  }
+  .result-display {
+    background: linear-gradient(135deg, rgba(0,212,255,0.2), rgba(0,100,200,0.1));
+    border: 2px solid #00d4ff;
+    border-radius: 16px; padding: 18px;
+    margin: 15px 0; text-align: center;
+    display: none;
+    box-shadow: 0 0 30px rgba(0,212,255,0.6);
+    animation: resultPop 0.5s;
+  }
+  @keyframes resultPop {
+    0% { transform: scale(0.5); opacity: 0; }
+    70% { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  .result-display.show { display: block; }
+  .result-display h4 {
+    font-size: 12px; color: #a0aec0;
+    letter-spacing: 2px; margin-bottom: 8px;
+  }
+  .result-display .reward-amount {
+    font-size: 40px; font-weight: 900;
+    color: #00ff88;
+    text-shadow: 0 0 25px rgba(0,255,136,0.9);
+    line-height: 1.1;
+  }
+  .result-display .reward-unit {
+    font-size: 14px; color: #00d4ff;
+    font-weight: 900; letter-spacing: 2px;
+  }
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <div class="header">
   <div class="header-left">
     <div class="menu-icon">☰</div>
@@ -574,7 +591,6 @@
   </div>
 </div>
 
-<!-- ============ HOME TAB ============ -->
 <div class="tab-content active" id="tab-home">
   <div class="container">
     <div class="balance-card">
@@ -710,13 +726,11 @@
   </div>
 </div>
 
-<!-- ============ TASKS TAB ============ -->
 <div class="tab-content" id="tab-tasks">
   <div class="page-title">📋 Tasks</div>
   <div id="tasksList"></div>
 </div>
 
-<!-- ============ MINE TAB ============ -->
 <div class="tab-content" id="tab-mine">
   <div class="page-title">⛏️ Mining</div>
   <div class="daily-card" style="flex-direction:column;text-align:center">
@@ -725,38 +739,21 @@
     <p style="font-size:12px;color:#a0aec0;margin-bottom:15px">50 energy use karein, 60 sec tak auto-mine karein</p>
     <button class="daily-btn" onclick="startMining()" style="width:100%">START MINING (50 ⚡)</button>
   </div>
-  <div class="energy-card">
-    <div class="energy-header">
-      <span>⚡ Energy</span>
-      <span class="energy-count"><strong id="energyText2">500</strong> / 500</span>
-    </div>
-    <div class="energy-bar">
-      <div class="energy-fill" id="energyBar2" style="width:100%"></div>
-    </div>
-  </div>
 </div>
 
-<!-- ============ FRIENDS TAB ============ -->
 <div class="tab-content" id="tab-friends">
   <div class="page-title">👥 Invite Friends</div>
   <div class="daily-card" style="flex-direction:column;text-align:center">
     <div class="daily-icon" style="font-size:60px">🎁</div>
     <h3 style="margin:10px 0;color:#00d4ff">Invite & Earn</h3>
     <p style="font-size:12px;color:#a0aec0;margin-bottom:5px">Har dost ke liye +500 TRAX</p>
-    <p style="font-size:10px;color:#7a8ba5;margin-bottom:15px">Aapka referral link:</p>
-    <div style="background:rgba(0,0,0,0.4);padding:12px;border-radius:10px;font-size:11px;color:#00d4ff;word-break:break-all;margin-bottom:15px" id="refLink">
+    <div style="background:rgba(0,0,0,0.4);padding:12px;border-radius:10px;font-size:11px;color:#00d4ff;word-break:break-all;margin:15px 0" id="refLink">
       https://t.me/TraxOfficial_bot?start=ref...
     </div>
     <button class="daily-btn" onclick="shareRef()" style="width:100%">SHARE LINK</button>
   </div>
-  <div class="side-item" style="margin-top:15px">
-    <div class="side-item-icon">👥</div>
-    <div class="side-item-info"><h4>Total Invited</h4><p>0 friends</p></div>
-    <div class="side-item-arrow" style="color:#00ff88;font-weight:900">+0 TRAX</div>
-  </div>
 </div>
 
-<!-- ============ WALLET TAB ============ -->
 <div class="tab-content" id="tab-wallet">
   <div class="page-title">💼 My Wallet</div>
   <div class="balance-card">
@@ -769,23 +766,16 @@
   </div>
   <div class="daily-card" style="flex-direction:column;text-align:center">
     <h3 style="margin:10px 0;color:#ff9500">💸 Withdraw</h3>
-    <p style="font-size:12px;color:#a0aec0;margin-bottom:15px">Minimum 10,000 TRAX chahiye withdraw ke liye</p>
+    <p style="font-size:12px;color:#a0aec0;margin-bottom:15px">Minimum 10,000 TRAX</p>
     <button class="daily-btn" onclick="tryWithdraw()" style="width:100%;background:linear-gradient(135deg,#00d4ff,#0066ff)">WITHDRAW</button>
-  </div>
-  <div class="side-item" style="margin-top:15px">
-    <div class="side-item-icon">📊</div>
-    <div class="side-item-info"><h4>Transaction History</h4><p>Coming soon</p></div>
-    <div class="side-item-arrow">›</div>
   </div>
 </div>
 
-<!-- ============ LEADERBOARD TAB ============ -->
 <div class="tab-content" id="tab-rank">
   <div class="page-title">🏆 Leaderboard</div>
   <div id="rankList"></div>
 </div>
 
-<!-- ============ OTHER PAGES ============ -->
 <div class="tab-content" id="tab-boosters">
   <div class="page-title">🚀 Boosters</div>
   <div class="side-item" onclick="buyBooster('tap', 500, 2)">
@@ -810,12 +800,6 @@
   <div class="side-item">
     <div class="side-item-icon">⚡</div>
     <div class="side-item-info"><h4>Tap Power</h4><p>Current: +<span id="tapPower2">1</span> per tap</p></div>
-    <div class="side-item-arrow">›</div>
-  </div>
-  <div class="side-item" style="margin-top:10px">
-    <div class="side-item-icon">🔋</div>
-    <div class="side-item-info"><h4>Max Energy</h4><p>Current: 500</p></div>
-    <div class="side-item-arrow">›</div>
   </div>
 </div>
 
@@ -842,7 +826,7 @@
   <div class="page-title">📦 Lucky Box</div>
   <p style="text-align:center;color:#a0aec0;font-size:12px;margin-bottom:15px">Box kholne ke liye tap karein!</p>
   <div class="lucky-box" id="luckyBox" onclick="openLuckyBox()">📦</div>
-  <p style="text-align:center;color:#7a8ba5;font-size:11px;margin-top:15px">Aapke paas: <span id="luckyKeys">1</span> keys</p>
+  <p style="text-align:center;color:#7a8ba5;font-size:11px;margin-top:15px">Keys: <span id="luckyKeys">1</span></p>
 </div>
 
 <div class="tab-content" id="tab-profile">
@@ -870,21 +854,12 @@
 
 <div class="tab-content" id="tab-settings">
   <div class="page-title">⚙️ Settings</div>
-  <div class="side-item">
-    <div class="side-item-icon">🔊</div>
-    <div class="side-item-info"><h4>Sound</h4><p>On</p></div>
-  </div>
-  <div class="side-item" style="margin-top:10px">
-    <div class="side-item-icon">📳</div>
-    <div class="side-item-info"><h4>Vibration</h4><p>On</p></div>
-  </div>
   <div class="side-item" style="margin-top:10px" onclick="resetData()">
     <div class="side-item-icon">🗑️</div>
     <div class="side-item-info"><h4>Reset Data</h4><p>Clear all progress</p></div>
   </div>
 </div>
 
-<!-- BOTTOM NAV -->
 <div class="bottom-nav">
   <div class="nav-item active" data-tab="home" onclick="navClick(this, 'home')">
     <div class="nav-icon">🏠</div><div>Home</div>
@@ -903,7 +878,6 @@
   </div>
 </div>
 
-<!-- MODAL -->
 <div class="modal" id="modal">
   <div class="modal-content">
     <h3 id="modalTitle">Notice</h3>
@@ -912,25 +886,25 @@
   </div>
 </div>
 
-<!-- SPIN MODAL -->
 <div class="modal" id="spinModal">
-  <div class="modal-content" style="max-width:380px">
+  <div class="modal-content" style="max-width:400px">
     <h3>🎰 Spin to Win!</h3>
-    
     <div class="wheel-wrapper">
       <div class="wheel-glow"></div>
       <div class="wheel-pointer">▼</div>
-      <div class="wheel-container" id="wheel"></div>
-      <div class="wheel-center" id="wheelCenter">SPIN</div>
+      <div class="wheel-outer"></div>
+      <div class="wheel-container" id="wheel">
+        <div class="wheel-labels" id="wheelLabels"></div>
+      </div>
+      <div class="wheel-center" id="wheelCenter" onclick="spinWheel()">SPIN</div>
     </div>
-
     <div class="result-display" id="resultDisplay">
-      <h4>YOU WON</h4>
+      <h4>🎉 YOU WON</h4>
       <div class="reward-amount" id="rewardAmount">+0</div>
       <div class="reward-unit">TRAX</div>
     </div>
-
-    <button class="modal-btn" style="margin-top:15px;display:block;width:100%" onclick="spinWheel()" id="spinBtn">SPIN NOW</button>
+    <div id="spinInfo" style="font-size:11px;color:#7a8ba5;text-align:center;margin:10px 0"></div>
+    <button class="modal-btn" style="margin-top:10px;display:block;width:100%" onclick="spinWheel()" id="spinBtn">SPIN NOW</button>
     <button class="modal-btn" style="margin-top:8px;background:rgba(255,255,255,0.1);box-shadow:none;display:block;width:100%" onclick="closeSpin()">Close</button>
   </div>
 </div>
@@ -939,7 +913,6 @@
   const tg = window.Telegram ? window.Telegram.WebApp : null;
   if (tg) { tg.ready(); tg.expand(); if (tg.setHeaderColor) tg.setHeaderColor('#050a14'); }
 
-  // ===== STATE =====
   let balance = parseInt(localStorage.getItem('trax_balance') || '0');
   let energy = parseInt(localStorage.getItem('trax_energy') || '500');
   let totalTaps = parseInt(localStorage.getItem('trax_taps') || '0');
@@ -950,7 +923,6 @@
   let streakDays = parseInt(localStorage.getItem('trax_streak') || '0');
   let lastStreakDate = localStorage.getItem('trax_lastStreakDate') || '';
   let luckyKeys = parseInt(localStorage.getItem('trax_luckyKeys') || '1');
-  let lastMineTime = parseInt(localStorage.getItem('trax_lastMineTime') || '0');
   let miningActive = false;
   let miningTimer = null;
 
@@ -961,9 +933,7 @@
     ? (tg.initDataUnsafe.user.first_name || 'Player')
     : 'Player';
 
-  // ===== INIT =====
   function init() {
-    // Update streak
     const today = new Date().toDateString();
     if (lastStreakDate !== today) {
       const yesterday = new Date(Date.now() - 86400000).toDateString();
@@ -981,21 +951,12 @@
       streakDays = 1;
       localStorage.setItem('trax_streak', 1);
     }
-
-    // Ref link
     document.getElementById('refLink').textContent = 'https://t.me/TraxOfficial_bot?start=ref' + userId;
     document.getElementById('profileName').textContent = userName;
     document.getElementById('profileId').textContent = 'ID: ' + userId;
-
-    // Draw streak boxes
     drawStreakBoxes();
-
-    // Draw tasks
     drawTasks();
-
-    // Draw rank
     drawRank();
-
     updateUI();
     startAutoEarn();
   }
@@ -1055,7 +1016,7 @@
   }
 
   function drawRank() {
-    const fakeNames = ['Ali', 'Ahmed', 'Sara', 'Hassan', 'Fatima', 'Bilal', 'Ayesha', 'Usman', 'Zara', 'Khan'];
+    const fakeNames = ['Ali', 'Ahmed', 'Sara', 'Hassan', 'Fatima', 'Bilal', 'Ayesha', 'Usman', 'Zara'];
     const list = document.getElementById('rankList');
     list.innerHTML = '';
     const myRank = { name: userName + ' (You)', value: balance };
@@ -1075,7 +1036,6 @@
       `;
       list.appendChild(el);
     });
-    // Save my rank number
     const myIdx = all.findIndex(u => u.name.includes('You'));
     document.getElementById('rankNum').textContent = myIdx + 1;
   }
@@ -1086,14 +1046,11 @@
     document.getElementById('usdValue').textContent = (balance * 0.000001).toFixed(6);
     document.getElementById('usdValue2').textContent = (balance * 0.000001).toFixed(6);
     document.getElementById('energyText').textContent = energy;
-    document.getElementById('energyText2').textContent = energy;
     document.getElementById('energyBar').style.width = (energy / maxEnergy * 100) + '%';
-    document.getElementById('energyBar2').style.width = (energy / maxEnergy * 100) + '%';
     document.getElementById('tapPower').textContent = tapPower;
     document.getElementById('tapPower2').textContent = tapPower;
     document.getElementById('autoEarn').textContent = autoEarn;
     document.getElementById('luckyKeys').textContent = luckyKeys;
-
     const level = Math.floor(balance / 1000) + 1;
     document.getElementById('levelNum').textContent = level;
     document.getElementById('profLvl').textContent = level;
@@ -1101,7 +1058,6 @@
     document.getElementById('profTaps').textContent = totalTaps.toLocaleString();
     const xpInLevel = balance % 1000;
     document.getElementById('xpFill').style.width = (xpInLevel / 1000 * 100) + '%';
-
     const today = new Date().toDateString();
     const dailyBtn = document.getElementById('dailyBtn');
     if (lastDaily === today) {
@@ -1123,12 +1079,11 @@
     localStorage.setItem('trax_luckyKeys', luckyKeys);
   }
 
-  // ===== TAP =====
   const coinBtn = document.getElementById('coinBtn');
   coinBtn.addEventListener('click', (e) => {
     if (energy <= 0) {
       if (tg && tg.HapticFeedback) tg.HapticFeedback.notificationOccurred('error');
-      showModal('⚡ Energy Empty', 'Aapki energy khatam ho gayi.\n\nIntezar karein ya energy boost karein.');
+      showModal('⚡ Energy Empty', 'Aapki energy khatam ho gayi.');
       return;
     }
     balance += tapPower;
@@ -1177,10 +1132,9 @@
     updateUI();
     save();
     if (tg && tg.HapticFeedback) tg.HapticFeedback.notificationOccurred('success');
-    showModal('🎁 Daily Reward!', '+' + reward + ' TRAX mile!\n\nStreak: Day ' + streakDays);
+    showModal('🎁 Daily Reward!', '+' + reward + ' TRAX mile!');
   }
 
-  // ===== MINE =====
   function startMining() {
     if (energy < 50) { showModal('⚡ Not Enough', 'Mining ke liye 50 energy chahiye.'); return; }
     if (miningActive) { showModal('⛏️ Already Mining', 'Mining pehle se chal rahi hai.'); return; }
@@ -1188,7 +1142,7 @@
     miningActive = true;
     updateUI();
     save();
-    showModal('⛏️ Mining Started!', 'Agle 60 seconds tak har second +5 TRAX milega.\n\nScreen khuli rakhein.');
+    showModal('⛏️ Mining Started!', 'Agle 60 seconds tak har second +5 TRAX milega.');
     let sec = 0;
     miningTimer = setInterval(() => {
       sec++;
@@ -1198,14 +1152,13 @@
       if (sec >= 60) {
         clearInterval(miningTimer);
         miningActive = false;
-        showModal('⛏️ Mining Complete!', '60 seconds mein +300 TRAX mile!');
+        showModal('⛏️ Mining Complete!', '+300 TRAX mile!');
       }
     }, 1000);
   }
 
-  // ===== LUCKY BOX =====
   function openLuckyBox() {
-    if (luckyKeys <= 0) { showModal('📦 No Keys', 'Aapke paas keys nahi hain.\n\nTasks se keys kamayein.'); return; }
+    if (luckyKeys <= 0) { showModal('📦 No Keys', 'Aapke paas keys nahi hain.'); return; }
     const box = document.getElementById('luckyBox');
     box.classList.add('shake');
     setTimeout(() => {
@@ -1217,11 +1170,10 @@
       updateUI();
       save();
       if (tg && tg.HapticFeedback) tg.HapticFeedback.notificationOccurred('success');
-      showModal('🎉 Lucky Box!', 'Aapko mila: +' + reward + ' TRAX!');
+      showModal('🎉 Lucky Box!', '+' + reward + ' TRAX mile!');
     }, 500);
   }
 
-  // ===== BOOSTERS =====
   function buyBooster(type, cost, value) {
     if (balance < cost) { showModal('❌ Not Enough', 'Aapke paas ' + cost + ' TRAX nahi hain.'); return; }
     balance -= cost;
@@ -1234,7 +1186,6 @@
     showModal('✅ Purchased!', 'Booster activate ho gaya!');
   }
 
-  // ===== AUTO EARN =====
   function startAutoEarn() {
     setInterval(() => {
       if (autoEarn > 0) {
@@ -1245,7 +1196,6 @@
     }, 1000);
   }
 
-  // ===== REFERRAL =====
   function shareRef() {
     const link = 'https://t.me/TraxOfficial_bot?start=ref' + userId;
     const text = 'Trax Coin khelo aur free TRAX kamayein! 🎉';
@@ -1256,16 +1206,14 @@
     }
   }
 
-  // ===== WITHDRAW =====
   function tryWithdraw() {
     if (balance < 10000) {
-      showModal('💸 Not Enough', 'Withdraw ke liye minimum 10,000 TRAX chahiye.\n\nAbhi aapke paas ' + balance + ' hai.');
+      showModal('💸 Not Enough', 'Minimum 10,000 TRAX chahiye.\n\nAbhi: ' + balance);
       return;
     }
-    showModal('💸 Withdraw', 'Withdraw request bheji gayi!\n\n(Real TON wallet ke liye backend chahiye — next step)');
+    showModal('💸 Withdraw', 'Withdraw request bheji gayi!');
   }
 
-  // ===== NAV =====
   function navClick(el, tab) {
     document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
     if (el) el.classList.add('active');
@@ -1290,7 +1238,6 @@
     }
   }
 
-  // ===== MODAL =====
   function showModal(title, text) {
     document.getElementById('modalTitle').textContent = title;
     document.getElementById('modalText').innerText = text;
@@ -1300,88 +1247,107 @@
     document.getElementById('modal').classList.remove('show');
   }
 
+  // ===== SPIN WHEEL =====
   function openSpin() {
     document.getElementById('spinModal').classList.add('show');
     document.getElementById('resultDisplay').classList.remove('show');
     document.getElementById('wheel').style.transform = 'rotate(0deg)';
-    document.getElementById('spinBtn').textContent = 'SPIN NOW';
-    document.getElementById('spinBtn').disabled = false;
-    document.getElementById('spinBtn').style.opacity = '1';
     document.getElementById('wheelCenter').textContent = 'SPIN';
     drawWheelLabels();
+    updateSpinState();
   }
 
   function closeSpin() {
     document.getElementById('spinModal').classList.remove('show');
-    document.getElementById('wheel').style.transform = 'rotate(0deg)';
     document.getElementById('resultDisplay').classList.remove('show');
   }
 
   function drawWheelLabels() {
-    const wheel = document.getElementById('wheel');
-    wheel.querySelectorAll('.wheel-segment-label').forEach(l => l.remove());
+    const labelsBox = document.getElementById('wheelLabels');
+    labelsBox.innerHTML = '';
     const labels = ['50', '100', '200', '500', '1000', '50', '100', '250'];
-    const radius = 90;
+    const radius = 78;
     labels.forEach((label, i) => {
-      const angle = (i * 45) + 22.5;
+      const angle = i * 45 + 22.5;
       const rad = (angle - 90) * Math.PI / 180;
-      const x = 130 + radius * Math.cos(rad);
-      const y = 130 + radius * Math.sin(rad);
+      const x = Math.cos(rad) * radius;
+      const y = Math.sin(rad) * radius;
       const el = document.createElement('div');
-      el.className = 'wheel-segment-label';
-      el.textContent = label;
-      el.style.left = x + 'px';
-      el.style.top = y + 'px';
-      wheel.appendChild(el);
+      el.className = 'wheel-label';
+      el.innerHTML = '<span style="transform: translate(-50%, -50%) rotate(' + angle + 'deg); left: ' + x + 'px; top: ' + y + 'px;">' + label + '</span>';
+      labelsBox.appendChild(el);
     });
+  }
+
+  function updateSpinState() {
+    const lastSpin = parseInt(localStorage.getItem('trax_lastSpin')) || 0;
+    const now = Date.now();
+    const diff = now - lastSpin;
+    const cooldown = 24 * 60 * 60 * 1000;
+    const btn = document.getElementById('spinBtn');
+    const center = document.getElementById('wheelCenter');
+    const info = document.getElementById('spinInfo');
+    if (lastSpin && diff < cooldown) {
+      const remaining = cooldown - diff;
+      const hours = Math.floor(remaining / 3600000);
+      const mins = Math.floor((remaining % 3600000) / 60000);
+      btn.disabled = true;
+      btn.style.opacity = '0.5';
+      btn.textContent = 'ALREADY SPUN';
+      center.classList.add('disabled');
+      center.textContent = '⏰';
+      info.textContent = 'Agla spin: ' + hours + 'h ' + mins + 'm baad';
+    } else {
+      btn.disabled = false;
+      btn.style.opacity = '1';
+      btn.textContent = 'SPIN NOW';
+      center.classList.remove('disabled');
+      center.textContent = 'SPIN';
+      info.textContent = '24 hours mein 1 baar free spin';
+    }
   }
 
   let spinning = false;
   function spinWheel() {
     if (spinning) return;
+    const lastSpin = parseInt(localStorage.getItem('trax_lastSpin')) || 0;
+    const cooldown = 24 * 60 * 60 * 1000;
+    if (lastSpin && Date.now() - lastSpin < cooldown) {
+      showModal('⏰ Already Spun', 'Aap aaj spin kar chuke hain.\n\nAgla spin 24 ghante baad.');
+      return;
+    }
     spinning = true;
-    
     const wheel = document.getElementById('wheel');
     const btn = document.getElementById('spinBtn');
     const resultBox = document.getElementById('resultDisplay');
-    
     resultBox.classList.remove('show');
     btn.textContent = 'SPINNING...';
     btn.disabled = true;
     btn.style.opacity = '0.6';
     document.getElementById('wheelCenter').textContent = '...';
-    
+    document.getElementById('spinInfo').textContent = '';
     const rewards = [50, 100, 200, 500, 1000, 50, 100, 250];
     const idx = Math.floor(Math.random() * rewards.length);
     const reward = rewards[idx];
-    
-    const segmentAngle = idx * 45 + 22.5;
-    const targetRotation = 360 - segmentAngle;
+    const segmentCenter = idx * 45 + 22.5;
+    const targetRotation = 360 - segmentCenter;
     const fullRotations = 8 * 360;
-    const finalRotation = fullRotations + targetRotation;
-    
+    const finalRotation = fullRotations + targetRotation + 360;
     wheel.style.transform = 'rotate(' + finalRotation + 'deg)';
-    
     if (tg && tg.HapticFeedback) tg.HapticFeedback.impactOccurred('medium');
-    
     setTimeout(() => {
       balance += reward;
+      localStorage.setItem('trax_lastSpin', Date.now());
       updateUI();
       save();
-      
       resultBox.classList.add('show');
       document.getElementById('rewardAmount').textContent = '+' + reward;
-      document.getElementById('wheelCenter').textContent = '🎉';
-      
       spinning = false;
-      btn.textContent = 'SPIN AGAIN';
-      btn.disabled = false;
-      btn.style.opacity = '1';
-      
       if (tg && tg.HapticFeedback) tg.HapticFeedback.notificationOccurred('success');
       createSparkles(window.innerWidth / 2, window.innerHeight / 2);
-    }, 4200);
-               }
+      updateSpinState();
+    }, 5200);
+  }
 
   function resetData() {
     if (confirm('Kya aap sach mein saara data reset karna chahte hain?')) {
@@ -1390,7 +1356,6 @@
     }
   }
 
-  // Energy regen
   setInterval(() => {
     if (energy < maxEnergy) {
       energy++;
