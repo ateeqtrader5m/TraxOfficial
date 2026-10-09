@@ -45,16 +45,26 @@
   @keyframes sidePulse { 0%, 100% { box-shadow: 0 0 0 rgba(0,255,136,0); } 50% { box-shadow: 0 0 20px rgba(0,255,136,0.6); } }
   .side-card .badge-dot { position: absolute; top: 6px; right: 6px; width: 8px; height: 8px; border-radius: 50%; background: #ff0055; box-shadow: 0 0 8px #ff0055; display: none; }
   .side-card .badge-dot.green { background: #00ff88; box-shadow: 0 0 8px #00ff88; }
-  .streak-bar { background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(0,80,180,0.05)); border: 1.5px solid rgba(0,212,255,0.3); border-radius: 16px; padding: 12px; margin-bottom: 12px; }
-  .streak-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-  .streak-title { font-size: 12px; font-weight: 900; color: #ff9500; display: flex; align-items: center; gap: 5px; }
-  .streak-days { font-size: 10px; color: #00ff88; font-weight: 900; }
-  .streak-row { display: flex; gap: 4px; align-items: center; justify-content: space-between; }
-  .streak-day { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 900; color: #7a8ba5; border: 2px solid rgba(0,212,255,0.2); background: rgba(0,0,0,0.3); }
-  .streak-day.done { background: linear-gradient(135deg, #00ff88, #00aa55); color: white; border-color: #00ff88; box-shadow: 0 0 10px rgba(0,255,136,0.5); }
-  .streak-day.today { background: linear-gradient(135deg, #00d4ff, #0066ff); color: white; border-color: #00d4ff; box-shadow: 0 0 15px rgba(0,212,255,0.8); animation: streakPulse 1.5s infinite; }
+  /* Small badge cards */
+  .badge-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
+  .small-badge-card { background: rgba(10,25,45,0.85); border: 1px solid rgba(0,150,255,0.25); border-radius: 14px; padding: 10px 8px; text-align: center; cursor: pointer; transition: transform 0.15s; position: relative; }
+  .small-badge-card:active { transform: scale(0.96); }
+  .small-badge-icon { font-size: 26px; margin-bottom: 4px; }
+  .small-badge-name { font-size: 10px; font-weight: 900; color: #ffffff; margin-bottom: 2px; }
+  .small-badge-sub { font-size: 8px; color: #7a8ba5; font-weight: 700; }
+  .small-badge-card.rank { border-left: 3px solid #ffd700; }
+  .small-badge-card.vip { border-left: 3px solid #a040ff; }
+  /* Streak bar smaller */
+  .streak-bar { background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(0,80,180,0.05)); border: 1.5px solid rgba(0,212,255,0.3); border-radius: 14px; padding: 8px 10px; margin-bottom: 10px; }
+  .streak-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+  .streak-title { font-size: 11px; font-weight: 900; color: #ff9500; display: flex; align-items: center; gap: 4px; }
+  .streak-days { font-size: 9px; color: #00ff88; font-weight: 900; }
+  .streak-row { display: flex; gap: 3px; align-items: center; justify-content: space-between; }
+  .streak-day { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 900; color: #7a8ba5; border: 1.5px solid rgba(0,212,255,0.2); background: rgba(0,0,0,0.3); }
+  .streak-day.done { background: linear-gradient(135deg, #00ff88, #00aa55); color: white; border-color: #00ff88; box-shadow: 0 0 8px rgba(0,255,136,0.5); }
+  .streak-day.today { background: linear-gradient(135deg, #00d4ff, #0066ff); color: white; border-color: #00d4ff; box-shadow: 0 0 10px rgba(0,212,255,0.8); animation: streakPulse 1.5s infinite; }
   .streak-day.gift { background: linear-gradient(135deg, #ff0055, #cc0044); color: white; border-color: #ff0055; }
-  @keyframes streakPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.12); } }
+  @keyframes streakPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
   .tap-title { text-align: center; font-size: 16px; font-weight: 900; margin: 12px 0 5px; letter-spacing: 1px; }
   .coin-area { display: flex; justify-content: center; align-items: center; margin: 15px 0; position: relative; min-height: 240px; perspective: 1000px; }
   .coin-wrapper { position: relative; z-index: 2; }
@@ -121,7 +131,6 @@
   .task-reward-row { font-size: 11px; color: #a0aec0; font-weight: 700; }
   .task-btn { padding: 8px 16px; border-radius: 10px; font-size: 11px; font-weight: 900; cursor: pointer; border: none; }
   .task-btn.go { background: linear-gradient(135deg, #00b4ff, #0066ff); color: white; }
-  .task-btn.verify { background: linear-gradient(135deg, #ffd700, #ff9500); color: #000; }
   .task-btn.done { background: linear-gradient(135deg, #00aa55, #006633); color: white; }
   .booster-card { background: rgba(10,25,45,0.7); border: 1px solid rgba(0,150,255,0.2); border-radius: 18px; padding: 16px; }
   .booster-row { display: flex; align-items: center; gap: 10px; padding: 12px 0; border-bottom: 1px solid rgba(0,150,255,0.08); }
@@ -398,7 +407,6 @@
   .mine-stat .lbl { font-size: 9px; color: #7a8ba5; font-weight: 900; margin-bottom: 3px; }
   .mine-stat .val { font-size: 16px; font-weight: 900; color: #ff9500; }
   .settings-nav-card { background: rgba(10,25,45,0.8); border: 1px solid rgba(0,150,255,0.3); border-radius: 16px; padding: 16px; margin-bottom: 10px; display: flex; align-items: center; gap: 14px; cursor: pointer; }
-  .settings-nav-card:active { transform: scale(0.98); }
   .settings-nav-icon { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; background: linear-gradient(135deg, #666, #333); flex-shrink: 0; }
   .settings-nav-info { flex: 1; }
   .settings-nav-info h4 { font-size: 14px; font-weight: 900; color: white; margin-bottom: 3px; }
@@ -441,6 +449,22 @@
         </button>
       </div>
     </div>
+
+    <!-- Badge row (Rank + VIP) — small cards -->
+    <div class="badge-row">
+      <div class="small-badge-card rank">
+        <div class="small-badge-icon">🏆</div>
+        <div class="small-badge-name">Rank</div>
+        <div class="small-badge-sub">Soon</div>
+      </div>
+      <div class="small-badge-card vip">
+        <div class="small-badge-icon">👑</div>
+        <div class="small-badge-name">VIP</div>
+        <div class="small-badge-sub">Soon</div>
+      </div>
+    </div>
+
+    <!-- Streak bar (smaller) -->
     <div class="streak-bar">
       <div class="streak-top">
         <div class="streak-title">🔥 Daily Streak</div>
@@ -448,6 +472,7 @@
       </div>
       <div class="streak-row" id="streakRow"></div>
     </div>
+
     <div class="home-layout">
       <div class="home-main">
         <div class="tap-title">⚡ Tap to Earn</div>
@@ -668,14 +693,19 @@
       <div style="font-size:9px;color:#ff9500;font-weight:900;margin-top:3px">⏳ NOT LAUNCHED YET</div>
     </div>
   </div>
-  <div class="more-card" style="opacity:0.6;cursor:not-allowed"><div class="more-card-icon lucky">🚀</div><div class="more-card-info"><h4>Rocket Wallet</h4><p>Coming soon</p></div><span class="coming-soon-badge">SOON</span></div>
-  <div style="background:rgba(255,150,0,0.15);border:1px solid rgba(255,150,0,0.4);border-radius:14px;padding:14px;margin-bottom:15px;text-align:center">
+
+  <!-- TON & Binance (top after profile) -->
+  <div class="withdraw-option"><div class="withdraw-option-icon">💎</div><div class="withdraw-option-info"><h4>TON Wallet</h4><p>Tonkeeper, TON Space</p></div><span class="coming-soon-badge">SOON</span></div>
+  <div class="withdraw-option"><div class="withdraw-option-icon">🟡</div><div class="withdraw-option-info"><h4>Binance Wallet</h4><p>Direct to Binance</p></div><span class="coming-soon-badge">SOON</span></div>
+
+  <!-- Coming Soon banner -->
+  <div style="background:rgba(255,150,0,0.15);border:1px solid rgba(255,150,0,0.4);border-radius:14px;padding:14px;margin:14px 0;text-align:center">
     <div style="font-size:32px;margin-bottom:6px">🚀</div>
     <div style="font-size:14px;font-weight:900;color:#ff9500;margin-bottom:4px">Coming Soon</div>
     <div style="font-size:11px;color:#a0aec0">TRAX coin launch hone ke baad withdraw hoga</div>
   </div>
-  <div class="withdraw-option"><div class="withdraw-option-icon">💎</div><div class="withdraw-option-info"><h4>TON Wallet</h4><p>Tonkeeper, TON Space</p></div><span class="coming-soon-badge">SOON</span></div>
-  <div class="withdraw-option"><div class="withdraw-option-icon">🟡</div><div class="withdraw-option-info"><h4>Binance Wallet</h4><p>Direct to Binance</p></div><span class="coming-soon-badge">SOON</span></div>
+
+  <!-- Transfer Coins (last) -->
   <div class="more-card" style="opacity:0.6;cursor:not-allowed"><div class="more-card-icon referral">💸</div><div class="more-card-info"><h4>Transfer Coins</h4><p>Coming soon</p></div><span class="coming-soon-badge">SOON</span></div>
 </div>
 
@@ -1054,10 +1084,7 @@
   }
   function getLevelFromXP() { return { level: currentLevel, xp: currentXP, need: getXPForLevel(currentLevel) }; }
 
-  // ===== STICKERS (random unlock chain) =====
-  // Har sticker ka alag price tier ke hisaab se. Har upgrade par RANDOM next sticker unlock hota hai.
   const STICKERS = [
-    // Common (500 - 150000)
     { id: 'c1', tier: 'common', icon: '👆', name: 'Tap I', bonus: lvl => '+' + (1*lvl) + ' Tap', cost: 500 },
     { id: 'c2', tier: 'common', icon: '✋', name: 'Tap II', bonus: lvl => '+' + (2*lvl) + ' Tap', cost: 1200 },
     { id: 'c3', tier: 'common', icon: '🤚', name: 'Tap III', bonus: lvl => '+' + (3*lvl) + ' Tap', cost: 2500 },
@@ -1068,18 +1095,15 @@
     { id: 'c8', tier: 'common', icon: '💰', name: 'Coin', bonus: lvl => '+' + (5*lvl) + ' Auto', cost: 50000 },
     { id: 'c9', tier: 'common', icon: '⛏️', name: 'Pickaxe', bonus: lvl => '+' + (2*lvl) + ' Mining', cost: 80000 },
     { id: 'c10', tier: 'common', icon: '🌟', name: 'Star', bonus: lvl => '+' + (3*lvl) + ' Tap', cost: 150000 },
-    // Rare (200000 - 900000)
     { id: 'r1', tier: 'rare', icon: '💎', name: 'Diamond', bonus: lvl => '+' + (10*lvl) + ' Tap', cost: 200000 },
     { id: 'r2', tier: 'rare', icon: '🔮', name: 'Orb', bonus: lvl => '+' + (5*lvl) + ' Energy', cost: 300000 },
     { id: 'r3', tier: 'rare', icon: '🚀', name: 'Rocket', bonus: lvl => '+' + (25*lvl) + ' Auto', cost: 450000 },
     { id: 'r4', tier: 'rare', icon: '⚙️', name: 'Gear', bonus: lvl => '+' + (50*lvl) + ' MaxEnergy', cost: 600000 },
     { id: 'r5', tier: 'rare', icon: '🔨', name: 'Hammer', bonus: lvl => '+' + (5*lvl) + ' Mining', cost: 900000 },
-    // Epic (1.5M - 5M)
     { id: 'e1', tier: 'epic', icon: '👑', name: 'Crown', bonus: lvl => '+' + (100*lvl) + ' Auto', cost: 1500000 },
     { id: 'e2', tier: 'epic', icon: '🦅', name: 'Eagle', bonus: lvl => '+' + (40*lvl) + ' Tap', cost: 2500000 },
     { id: 'e3', tier: 'epic', icon: '🔥', name: 'Inferno', bonus: lvl => '+' + (15*lvl) + ' Energy', cost: 3500000 },
     { id: 'e4', tier: 'epic', icon: '⚡', name: 'Thunder', bonus: lvl => '+' + (20*lvl) + ' Mining', cost: 5000000 },
-    // Legendary (10M+)
     { id: 'l1', tier: 'legendary', icon: '🐉', name: 'Dragon', bonus: lvl => '+' + (500*lvl) + ' Auto', cost: 10000000 },
     { id: 'l2', tier: 'legendary', icon: '🦄', name: 'Unicorn', bonus: lvl => '+' + (200*lvl) + ' Tap', cost: 25000000 },
     { id: 'l3', tier: 'legendary', icon: '👾', name: 'Alien', bonus: lvl => '+' + (100*lvl) + ' Mining', cost: 50000000 },
@@ -1088,12 +1112,9 @@
   const MAX_STICKER_LEVEL = 10;
   const STICKER_MULT = 1.5;
 
-  // RANDOM UNLOCK: Pehle sirf c1 unlocked. Har upgrade par random naya sticker unlock hota hai.
   function getUnlockedStickers() {
-    const unlocked = ['c1']; // always unlocked
+    const unlocked = ['c1'];
     const purchased = Object.keys(stickerLevels).filter(id => id !== 'namecard' && id !== 'c1');
-    // Har purchased sticker ke liye random next sticker add karo
-    // Simple: jitne stickers purchased hain, utne random add honge
     const allIds = STICKERS.filter(s => !s.isNameCard && s.id !== 'c1').map(s => s.id);
     const randomPool = [...allIds];
     const count = purchased.length;
@@ -1102,20 +1123,8 @@
       const idx = Math.floor(Math.random() * randomPool.length);
       unlocked.push(randomPool.splice(idx, 1)[0]);
     }
-    // Purchased wale bhi unlocked
     purchased.forEach(id => { if (!unlocked.includes(id)) unlocked.push(id); });
-    // Name card separately
     return unlocked;
-  }
-
-  function isStickerUnlocked(id) {
-    if (id === 'c1') return true;
-    if (id === 'namecard') return true; // always shown (buyable)
-    const unlocked = getUnlockedStickers();
-    return unlocked.includes(id);
-  }
-  function getStickerUnlockReq(id) {
-    return 'Random unlock — upgrade any sticker to unlock';
   }
 
   function getStickerBonusFromAll(keyword) {
@@ -1421,7 +1430,6 @@
     showModal('🎉 Upgraded!', s.name + ' Level ' + stickerLevels[s.id] + ' ho gaya!\n\n🔓 Naya random sticker unlock ho gaya!');
   }
 
-  // ===== TASKS with verification =====
   function drawTasksNew() {
     const box = document.getElementById('fullTasksListNew');
     box.innerHTML = '';
@@ -1462,7 +1470,6 @@
     if (!currentVerifyTask) return;
     const { id, reward, xp } = currentVerifyTask;
     if (localStorage.getItem('task_' + id) === 'done') { showModal('✅ Done', 'Already done.'); closeTaskVerify(); return; }
-    // Simple verification: 1.5 sec wait to simulate "checking"
     const btn = document.querySelector('#taskVerifyModal .modal-btn');
     btn.textContent = '⏳ Verifying...';
     btn.disabled = true;
@@ -1479,7 +1486,6 @@
     }, 1500);
   }
 
-  // ===== LEADERBOARD =====
   const LEADERBOARD_RESET_MS = 30 * 60 * 1000;
   function getLeaderboardData() {
     const raw = localStorage.getItem('trax_leaderboard') || '{}';
@@ -1603,19 +1609,17 @@
     modalStack = [];
   }
 
-  // GAME INFO
   function showGameInfo(game) {
     const info = {
       spin: '🎰 LUCKY SPIN\n\n• 1 free spin rozana\n• Free use karne ke baad 3 paid spins (10,000 TRAX each)\n\nWIN RATES:\n⚪ 5,000 TRAX — 35%\n⚪ 10,000 TRAX — 28%\n🔵 50,000 TRAX — 20%\n⚪ 100 TRAX — 10%\n🟣 150,000 TRAX — 5%\n🟠 500,000 TRAX — 2%',
-      twist: '🌀 TWIST\n\n• Min bet: 1,000 TRAX\n• Max bet: Unlimited\n• Pointer ghumta hai, jis ring pe rukega woh multiplier milega\n\nWIN RATES:\n❌ LOSE — 75%\n⚪ 2x-5x (Inner) — 15%\n🔵 7x-20x (Middle) — 7%\n🟠 28x-200x (Outer) — 3%',
-      crash: '🚀 CRASH\n\n• Min bet: 1,000 TRAX\n• Max bet: Unlimited\n• Multiplier barhta hai, crash se pehle cashout karo\n\nCRASH RATES:\n❌ Instant crash (1.1x-1.4x) — 50%\n❌ 1.5x-1.9x — 25%\n❌ 2x-2.5x — 13%\n⚪ 2.5x-3.5x — 7%\n🔵 4x-6x — 3%\n🟣 8x-12x — 1.5%\n🟠 15x-35x — 0.5%',
-      coinflip: '🪙 COIN FLIP\n\n• Min bet: 1,000 TRAX\n• Max bet: Unlimited\n• T ya R select karo, coin flip karo\n\nWIN RATES:\n❌ LOSE — 80%\n⚪ 1.5x — 15%\n🔵 1.7x — 5%\n🔵 2x — 3%\n🟣 3x — 2%\n🟠 5x — 1%',
+      twist: '🌀 TWIST\n\n• Min bet: 1,000 TRAX\n• Max bet: Unlimited\n\nWIN RATES:\n❌ LOSE — 75%\n⚪ 2x-5x (Inner) — 15%\n🔵 7x-20x (Middle) — 7%\n🟠 28x-200x (Outer) — 3%',
+      crash: '🚀 CRASH\n\n• Min bet: 1,000 TRAX\n• Max bet: Unlimited\n\nCRASH RATES:\n❌ Instant crash (1.1x-1.4x) — 50%\n❌ 1.5x-1.9x — 25%\n❌ 2x-2.5x — 13%\n⚪ 2.5x-3.5x — 7%\n🔵 4x-6x — 3%\n🟣 8x-12x — 1.5%\n🟠 15x-35x — 0.5%',
+      coinflip: '🪙 COIN FLIP\n\n• Min bet: 1,000 TRAX\n• Max bet: Unlimited\n\nWIN RATES:\n❌ LOSE — 80%\n⚪ 1.5x — 15%\n🔵 1.7x — 5%\n🔵 2x — 3%\n🟣 3x — 2%\n🟠 5x — 1%',
       puzzle: '🧩 PUZZLE\n\n• 3 difficulty modes\n• Hard: 10,000 TRAX\n• Medium: 30,000 TRAX\n• Easy: 50,000 TRAX\n\nSolve puzzle to win!'
     };
     showModal('Game Info', info[game] || 'Info not available');
   }
 
-  // SPIN
   const SPIN_SLOTS = [
     { reward: 5000, label: '5K', weight: 35 }, { reward: 10000, label: '10K', weight: 28 },
     { reward: 50000, label: '50K', weight: 20 }, { reward: 100, label: '100', weight: 10 },
@@ -1719,7 +1723,6 @@
     }, 5200);
   }
 
-  // CRASH (min 1000, max unlimited)
   const BET_OPTIONS = [1000, 5000, 10000, 50000, 100000, 500000];
   let crashState = { running: false, multiplier: 1, crashed: false, bet: 1000 };
   let crashInterval = null;
@@ -1818,7 +1821,6 @@
     showModal('🧩 Puzzle', 'Puzzle ' + m.label + ' shuru!');
   }
 
-  // COIN FLIP (min 1000, max unlimited)
   const FLIP_POOL = [{ mult: 1.5, w: 15 }, { mult: 1.7, w: 5 }, { mult: 2, w: 3 }, { mult: 3, w: 2 }, { mult: 5, w: 1 }];
   function pickFlipMult() {
     const total = FLIP_POOL.reduce((s, x) => s + x.w, 0);
@@ -1912,7 +1914,6 @@
     setTimeout(closeCoinFlip, 300);
   }
 
-  // TWIST
   const TWIST_BETS = [1000, 5000, 10000, 50000, 100000, 500000];
   let twistBetIndex = 0;
   let twistSpinning = false;
@@ -2046,10 +2047,16 @@
     }, 3600);
   }
 
-  // RESET ALL
+  // RESET — simplified warning, force reset
   function resetData() {
-    if (confirm('⚠️ Reset ALL data?\n\nAapka balance, level, items, sab kuch A to Z delete ho jayega. Ye undo nahi ho sakta.')) {
+    if (confirm('⚠️ Reset ALL data?')) {
+      // Force clear all keys
+      const keys = ['trax_balance','trax_energy','trax_taps','trax_tapPower','trax_maxEnergy','trax_autoEarn','trax_totalEarned','trax_miningTotal','trax_xp','trax_level','trax_username','trax_avatar','trax_avatar_isimg','trax_playerId','trax_nameChangedAt','trax_stickers_v4','trax_leaderboard','trax_leaderboard_reset','trax_booster_autoTap_bonus','trax_booster_autoTap_activeUntil','trax_booster_double_bonus','trax_booster_double_activeUntil','trax_sound','trax_vibration','trax_rp_lastOpen','trax_att_currentDay','trax_att_lastDate','trax_att_accumulated','trax_spin_dailyDate','trax_spin_dailyUsed','trax_spin_paidUsed','task_tg','task_x','task_yt','task_video','task_invite','task_invite5','task_share','task_daily','task_mine','task_game','task_upgrade'];
+      keys.forEach(k => localStorage.removeItem(k));
       localStorage.clear();
+      // Direct reset in memory too
+      balance = 0; energy = 500; totalTaps = 0; baseTapPower = 1; maxEnergy = 500; autoEarn = 0; totalEarned = 0; miningTotalEarned = 0; currentXP = 0; currentLevel = 1; stickerLevels = {};
+      updateUI();
       location.reload();
     }
   }
@@ -2232,4 +2239,4 @@
   setInterval(drawRank, 60000);
 </script>
 </body>
- </html>
+   </html>
