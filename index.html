@@ -27,7 +27,7 @@
 
   .container { padding: 12px 15px; max-width: 500px; margin: 0 auto; }
 
-  /* BALANCE */
+  /* BALANCE CARD */
   .balance-card { background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(0,80,180,0.1)); border: 1px solid rgba(0,212,255,0.3); border-radius: 20px; padding: 18px; margin-bottom: 12px; position: relative; overflow: hidden; }
   .balance-card::before { content: ''; position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(0,212,255,0.15), transparent 60%); animation: rotate 15s linear infinite; }
   @keyframes rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
@@ -35,6 +35,15 @@
   .balance-value { font-size: 30px; font-weight: 900; color: white; text-shadow: 0 0 25px rgba(0,212,255,0.7); position: relative; z-index: 2; line-height: 1.1; }
   .balance-value small { font-size: 14px; color: #00d4ff; }
   .balance-sub { font-size: 10px; color: #ff9500; margin-top: 4px; position: relative; z-index: 2; font-weight: 900; }
+
+  /* RANK BADGE CARD */
+  .rank-badge-card { background: linear-gradient(135deg, rgba(0,180,255,0.12), rgba(150,0,255,0.08)); border: 1.5px solid rgba(0,212,255,0.4); border-radius: 18px; padding: 14px 16px; margin-bottom: 12px; display: flex; align-items: center; gap: 14px; position: relative; overflow: hidden; }
+  .rank-badge-card::before { content: ''; position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255,215,0,0.1), transparent 60%); animation: rotate 20s linear infinite; pointer-events: none; }
+  .rank-badge-icon { width: 52px; height: 52px; border-radius: 14px; background: linear-gradient(135deg, #ffd700, #ff9500); display: flex; align-items: center; justify-content: center; font-size: 26px; flex-shrink: 0; box-shadow: 0 0 20px rgba(255,215,0,0.5); position: relative; z-index: 2; }
+  .rank-badge-info { flex: 1; position: relative; z-index: 2; }
+  .rank-badge-label { font-size: 10px; color: #ffd700; letter-spacing: 1.5px; font-weight: 900; margin-bottom: 4px; }
+  .rank-badge-value { font-size: 26px; font-weight: 900; color: white; text-shadow: 0 0 20px rgba(255,215,0,0.6); line-height: 1; }
+  .rank-badge-status { text-align: right; font-size: 11px; color: #00d4ff; font-weight: 900; position: relative; z-index: 2; max-width: 90px; line-height: 1.3; }
 
   /* COIN */
   .tap-title { text-align: center; font-size: 16px; font-weight: 900; color: white; margin: 12px 0 5px; letter-spacing: 1px; }
@@ -327,13 +336,21 @@
   </div>
 </div>
 
-<!-- HOME -->
 <div class="tab-content active" id="tab-home">
   <div class="container">
     <div class="balance-card">
       <div class="balance-label">◆ TOTAL BALANCE</div>
       <div class="balance-value"><span id="balance">0</span> <small>TRAX</small></div>
       <div class="balance-sub">⏳ NOT LAUNCHED YET</div>
+    </div>
+
+    <div class="rank-badge-card">
+      <div class="rank-badge-icon">🏆</div>
+      <div class="rank-badge-info">
+        <div class="rank-badge-label">◆ YOUR RANK</div>
+        <div class="rank-badge-value" id="myRankBadge">#---</div>
+      </div>
+      <div class="rank-badge-status" id="rankStatus">Keep tapping</div>
     </div>
 
     <div class="tap-title">⚡ Tap to Earn</div>
@@ -394,42 +411,18 @@
   </div>
 </div>
 
-<!-- GAMES -->
 <div class="tab-content" id="tab-games">
-  <div class="page-title-bar">
-    <div class="page-title-icon">🎮</div>
-    <div class="page-title-text">Mini Games</div>
-  </div>
+  <div class="page-title-bar"><div class="page-title-icon">🎮</div><div class="page-title-text">Mini Games</div></div>
   <div class="mini-games-grid">
-    <div class="mini-game-card" onclick="openSpin()">
-      <div class="mini-game-icon">🎰</div>
-      <div class="mini-game-name">Lucky Spin</div>
-      <div class="mini-game-desc">Win up to 10K</div>
-    </div>
-    <div class="mini-game-card" onclick="openPuzzle()">
-      <div class="mini-game-icon">🧩</div>
-      <div class="mini-game-name">Puzzle 7x7</div>
-      <div class="mini-game-desc">Win 50K</div>
-    </div>
-    <div class="mini-game-card" onclick="openCrash()">
-      <div class="mini-game-icon">🚀</div>
-      <div class="mini-game-name">Crash</div>
-      <div class="mini-game-desc">Win big</div>
-    </div>
-    <div class="mini-game-card" onclick="showModal('🐔 Chicken Road', 'Chicken Road game coming soon!\n\nYe next update mein aayega.')">
-      <div class="mini-game-icon">🐔</div>
-      <div class="mini-game-name">Chicken Road</div>
-      <div class="mini-game-desc">Coming Soon</div>
-    </div>
+    <div class="mini-game-card" onclick="openSpin()"><div class="mini-game-icon">🎰</div><div class="mini-game-name">Lucky Spin</div><div class="mini-game-desc">Win up to 10K</div></div>
+    <div class="mini-game-card" onclick="openPuzzle()"><div class="mini-game-icon">🧩</div><div class="mini-game-name">Puzzle 7x7</div><div class="mini-game-desc">Win 50K</div></div>
+    <div class="mini-game-card" onclick="openCrash()"><div class="mini-game-icon">🚀</div><div class="mini-game-name">Crash</div><div class="mini-game-desc">Win big</div></div>
+    <div class="mini-game-card" onclick="showModal('🐔 Chicken Road', 'Chicken Road game coming soon!\n\nYe next update mein aayega.')"><div class="mini-game-icon">🐔</div><div class="mini-game-name">Chicken Road</div><div class="mini-game-desc">Coming Soon</div></div>
   </div>
 </div>
 
-<!-- MINE -->
 <div class="tab-content" id="tab-mine">
-  <div class="page-title-bar">
-    <div class="page-title-icon">⛏️</div>
-    <div class="page-title-text">Mining</div>
-  </div>
+  <div class="page-title-bar"><div class="page-title-icon">⛏️</div><div class="page-title-text">Mining</div></div>
   <div class="energy-card" style="flex-direction:column;text-align:center;padding:20px">
     <div style="font-size:60px;margin-bottom:10px">⛏️</div>
     <h3 style="margin:10px 0;color:#00d4ff">Auto Mining</h3>
@@ -439,123 +432,46 @@
   </div>
 </div>
 
-<!-- TASKS -->
 <div class="tab-content" id="tab-tasks">
-  <div class="page-title-bar">
-    <div class="page-title-icon">📋</div>
-    <div class="page-title-text">Tasks</div>
-  </div>
+  <div class="page-title-bar"><div class="page-title-icon">📋</div><div class="page-title-text">Tasks</div></div>
   <div id="fullTasksListNew"></div>
 </div>
 
-<!-- MORE -->
 <div class="tab-content" id="tab-more">
-  <div class="page-title-bar">
-    <div class="page-title-icon">⚙️</div>
-    <div class="page-title-text">More</div>
-  </div>
-
-  <div class="more-card" onclick="navTo('boosters')">
-    <div class="more-card-icon boosters">🚀</div>
-    <div class="more-card-info"><h4>Boosters</h4><p>Increase your earnings</p></div>
-    <div class="more-card-arrow">›</div>
-  </div>
-  <div class="more-card" onclick="navTo('upgrades')">
-    <div class="more-card-icon upgrades">⬆️</div>
-    <div class="more-card-info"><h4>Upgrades</h4><p>Upgrade tap power & energy</p></div>
-    <div class="more-card-arrow">›</div>
-  </div>
-  <div class="more-card" onclick="navTo('sticker')">
-    <div class="more-card-icon sticker">🎨</div>
-    <div class="more-card-info"><h4>Sticker Shop</h4><p>50 stickers — Chain unlock</p></div>
-    <div class="more-card-arrow">›</div>
-  </div>
-  <div class="more-card" onclick="navTo('wallet')">
-    <div class="more-card-icon wallet">💼</div>
-    <div class="more-card-info"><h4>My Wallet</h4><p>Withdraw & history</p></div>
-    <div class="more-card-arrow">›</div>
-  </div>
-  <div class="more-card" onclick="navTo('friends')">
-    <div class="more-card-icon referral">👥</div>
-    <div class="more-card-info"><h4>Referral</h4><p>+500 TRAX per friend</p></div>
-    <div class="more-card-arrow">›</div>
-  </div>
-  <div class="more-card" onclick="navTo('lucky')">
-    <div class="more-card-icon lucky">📦</div>
-    <div class="more-card-info"><h4>Lucky Box</h4><p>Random rewards</p></div>
-    <div class="more-card-arrow">›</div>
-  </div>
-  <div class="more-card" onclick="navTo('rank')">
-    <div class="more-card-icon rank">🏆</div>
-    <div class="more-card-info"><h4>Leaderboard</h4><p>Top players</p></div>
-    <div class="more-card-arrow">›</div>
-  </div>
-  <div class="more-card" onclick="navTo('settings')">
-    <div class="more-card-icon settings">⚙️</div>
-    <div class="more-card-info"><h4>Settings</h4><p>Sound & vibration</p></div>
-    <div class="more-card-arrow">›</div>
-  </div>
+  <div class="page-title-bar"><div class="page-title-icon">⚙️</div><div class="page-title-text">More</div></div>
+  <div class="more-card" onclick="navTo('boosters')"><div class="more-card-icon boosters">🚀</div><div class="more-card-info"><h4>Boosters</h4><p>Increase your earnings</p></div><div class="more-card-arrow">›</div></div>
+  <div class="more-card" onclick="navTo('upgrades')"><div class="more-card-icon upgrades">⬆️</div><div class="more-card-info"><h4>Upgrades</h4><p>Upgrade tap power & energy</p></div><div class="more-card-arrow">›</div></div>
+  <div class="more-card" onclick="navTo('sticker')"><div class="more-card-icon sticker">🎨</div><div class="more-card-info"><h4>Sticker Shop</h4><p>50 stickers — Chain unlock</p></div><div class="more-card-arrow">›</div></div>
+  <div class="more-card" onclick="navTo('wallet')"><div class="more-card-icon wallet">💼</div><div class="more-card-info"><h4>My Wallet</h4><p>Withdraw & history</p></div><div class="more-card-arrow">›</div></div>
+  <div class="more-card" onclick="navTo('friends')"><div class="more-card-icon referral">👥</div><div class="more-card-info"><h4>Referral</h4><p>+500 TRAX per friend</p></div><div class="more-card-arrow">›</div></div>
+  <div class="more-card" onclick="navTo('lucky')"><div class="more-card-icon lucky">📦</div><div class="more-card-info"><h4>Lucky Box</h4><p>Random rewards</p></div><div class="more-card-arrow">›</div></div>
+  <div class="more-card" onclick="navTo('rank')"><div class="more-card-icon rank">🏆</div><div class="more-card-info"><h4>Leaderboard</h4><p>Top players</p></div><div class="more-card-arrow">›</div></div>
+  <div class="more-card" onclick="navTo('settings')"><div class="more-card-icon settings">⚙️</div><div class="more-card-info"><h4>Settings</h4><p>Sound & vibration</p></div><div class="more-card-arrow">›</div></div>
 </div>
 
-<!-- BOOSTERS -->
 <div class="tab-content" id="tab-boosters">
-  <div class="page-title-bar">
-    <div class="page-title-icon">🚀</div>
-    <div class="page-title-text">Boosters</div>
-  </div>
+  <div class="page-title-bar"><div class="page-title-icon">🚀</div><div class="page-title-text">Boosters</div></div>
   <div class="booster-card">
-    <div class="booster-row">
-      <div class="booster-icon auto-tap">👆</div>
-      <div class="booster-info"><h4>Auto Tap</h4><p>+50% per tap</p></div>
-      <div class="booster-timer" id="autoTapTimer">10:00</div>
-      <button class="booster-btn purple" id="autoTapBtn" onclick="activateBooster('autoTap')">Activate</button>
-    </div>
-    <div class="booster-row">
-      <div class="booster-icon energy">⚡</div>
-      <div class="booster-info"><h4>Energy Refill</h4><p>+20 Energy</p></div>
-      <div class="booster-timer" id="energyTimer">10:00</div>
-      <button class="booster-btn blue" id="energyBtn" onclick="activateBooster('energy')">Activate</button>
-    </div>
-    <div class="booster-row">
-      <div class="booster-icon double">2x</div>
-      <div class="booster-info"><h4>2x Earnings</h4><p>Double your rewards</p></div>
-      <div class="booster-timer" id="doubleTimer">30:00</div>
-      <button class="booster-btn magenta" id="doubleBtn" onclick="activateBooster('double')">Activate</button>
-    </div>
-    <div class="booster-row">
-      <div class="booster-icon offline">⏰</div>
-      <div class="booster-info"><h4>Offline Profit</h4><p>Earn while you're away</p></div>
-      <div class="booster-timer" id="offlineTimer">6:00:00</div>
-      <button class="booster-btn green" id="offlineBtn" onclick="activateBooster('offline')">Activate</button>
-    </div>
+    <div class="booster-row"><div class="booster-icon auto-tap">👆</div><div class="booster-info"><h4>Auto Tap</h4><p>+50% per tap</p></div><div class="booster-timer" id="autoTapTimer">10:00</div><button class="booster-btn purple" id="autoTapBtn" onclick="activateBooster('autoTap')">Activate</button></div>
+    <div class="booster-row"><div class="booster-icon energy">⚡</div><div class="booster-info"><h4>Energy Refill</h4><p>+20 Energy</p></div><div class="booster-timer" id="energyTimer">10:00</div><button class="booster-btn blue" id="energyBtn" onclick="activateBooster('energy')">Activate</button></div>
+    <div class="booster-row"><div class="booster-icon double">2x</div><div class="booster-info"><h4>2x Earnings</h4><p>Double your rewards</p></div><div class="booster-timer" id="doubleTimer">30:00</div><button class="booster-btn magenta" id="doubleBtn" onclick="activateBooster('double')">Activate</button></div>
+    <div class="booster-row"><div class="booster-icon offline">⏰</div><div class="booster-info"><h4>Offline Profit</h4><p>Earn while you're away</p></div><div class="booster-timer" id="offlineTimer">6:00:00</div><button class="booster-btn green" id="offlineBtn" onclick="activateBooster('offline')">Activate</button></div>
   </div>
 </div>
 
-<!-- UPGRADES -->
 <div class="tab-content" id="tab-upgrades">
-  <div class="page-title-bar">
-    <div class="page-title-icon">⬆️</div>
-    <div class="page-title-text">Upgrades</div>
-  </div>
+  <div class="page-title-bar"><div class="page-title-icon">⬆️</div><div class="page-title-text">Upgrades</div></div>
   <div id="upgradesList"></div>
 </div>
 
-<!-- STICKER -->
 <div class="tab-content" id="tab-sticker">
-  <div class="page-title-bar">
-    <div class="page-title-icon">🎨</div>
-    <div class="page-title-text">Sticker Shop</div>
-  </div>
+  <div class="page-title-bar"><div class="page-title-icon">🎨</div><div class="page-title-text">Sticker Shop</div></div>
   <p style="font-size:10px;color:#a0aec0;margin-bottom:10px;text-align:center">Har sticker ko max (Lv 5) karein — tab agla unlock hoga!</p>
   <div id="stickerShopContainer"></div>
 </div>
 
-<!-- WALLET -->
 <div class="tab-content" id="tab-wallet">
-  <div class="page-title-bar">
-    <div class="page-title-icon">💼</div>
-    <div class="page-title-text">Wallet</div>
-  </div>
+  <div class="page-title-bar"><div class="page-title-icon">💼</div><div class="page-title-text">Wallet</div></div>
   <div class="balance-card" style="margin-bottom:15px">
     <div class="balance-label">◆ TOTAL BALANCE</div>
     <div class="balance-value"><span id="balance2">0</span> <small>TRAX</small></div>
@@ -571,12 +487,8 @@
   <div class="withdraw-option"><div class="withdraw-option-icon">✈️</div><div class="withdraw-option-info"><h4>Telegram Wallet</h4><p>@wallet in Telegram</p></div><span class="coming-soon-badge">SOON</span></div>
 </div>
 
-<!-- REFERRAL -->
 <div class="tab-content" id="tab-friends">
-  <div class="page-title-bar">
-    <div class="page-title-icon">👥</div>
-    <div class="page-title-text">Referral</div>
-  </div>
+  <div class="page-title-bar"><div class="page-title-icon">👥</div><div class="page-title-text">Referral</div></div>
   <div class="ref-card">
     <div class="ref-title">🎁 Invite & Earn</div>
     <div class="ref-sub">Har dost ke liye +500 TRAX</div>
@@ -585,34 +497,22 @@
   </div>
 </div>
 
-<!-- LUCKY -->
 <div class="tab-content" id="tab-lucky">
-  <div class="page-title-bar">
-    <div class="page-title-icon">📦</div>
-    <div class="page-title-text">Lucky Box</div>
-  </div>
+  <div class="page-title-bar"><div class="page-title-icon">📦</div><div class="page-title-text">Lucky Box</div></div>
   <p style="text-align:center;color:#a0aec0;font-size:12px;margin-bottom:15px">Box kholne ke liye tap karein!</p>
   <div class="lucky-box" id="luckyBox" onclick="openLuckyBox()">📦</div>
   <p style="text-align:center;color:#7a8ba5;font-size:11px;margin-top:15px">Keys: <span id="luckyKeys">1</span></p>
 </div>
 
-<!-- RANK (FULL) -->
 <div class="tab-content" id="tab-rank">
-  <div class="page-title-bar">
-    <div class="page-title-icon">🏆</div>
-    <div class="page-title-text">Leaderboard</div>
-  </div>
+  <div class="page-title-bar"><div class="page-title-icon">🏆</div><div class="page-title-text">Leaderboard</div></div>
   <div id="rankList"></div>
 </div>
 
-<!-- PROFILE -->
 <div class="tab-content" id="tab-profile">
   <div class="profile-card">
     <div class="profile-top">
-      <div class="profile-avatar-wrap">
-        <div class="profile-avatar-ring"></div>
-        <div class="profile-avatar" id="profileAvatarBig">👤</div>
-      </div>
+      <div class="profile-avatar-wrap"><div class="profile-avatar-ring"></div><div class="profile-avatar" id="profileAvatarBig">👤</div></div>
       <div class="profile-info" style="flex:1">
         <div class="profile-name"><span id="profileName">TraxOfficial</span><span class="verified-badge">✓</span></div>
         <div class="profile-tagline">Tap. Earn. Grow.</div>
@@ -620,7 +520,7 @@
     </div>
     <div class="profile-level-row">
       <div class="profile-level-label">Level <span id="profLvlText">1</span></div>
-      <div class="profile-level-xp"><span id="profXpText">0</span> / 3,000</div>
+      <div class="profile-level-xp"><span id="profXpText">0</span> / 50,000</div>
     </div>
     <div class="profile-level-bar"><div class="profile-level-fill" id="profLevelFill" style="width:0%"></div></div>
   </div>
@@ -632,24 +532,16 @@
   <button class="modal-btn" onclick="openEditProfile()" style="width:100%">✏️ Edit Name & Avatar</button>
 </div>
 
-<!-- SETTINGS -->
 <div class="tab-content" id="tab-settings">
-  <div class="page-title-bar">
-    <div class="page-title-icon">⚙️</div>
-    <div class="page-title-text">Settings</div>
-  </div>
+  <div class="page-title-bar"><div class="page-title-icon">⚙️</div><div class="page-title-text">Settings</div></div>
   <div class="setting-row"><div class="label">🔊 Sound Effects</div><div class="toggle" id="soundToggle" onclick="toggleSetting('sound')"></div></div>
   <div class="setting-row"><div class="label">📳 Vibration</div><div class="toggle" id="vibrationToggle" onclick="toggleSetting('vibration')"></div></div>
   <div class="more-card" onclick="navTo('editname')"><div class="more-card-icon settings">✏️</div><div class="more-card-info"><h4>Edit Profile</h4><p>Change name & avatar</p></div><div class="more-card-arrow">›</div></div>
   <div class="more-card" onclick="resetData()"><div class="more-card-icon settings">🗑️</div><div class="more-card-info"><h4>Reset Data</h4><p>Clear all progress</p></div><div class="more-card-arrow">›</div></div>
 </div>
 
-<!-- EDIT NAME -->
 <div class="tab-content" id="tab-editname">
-  <div class="page-title-bar">
-    <div class="page-title-icon">✏️</div>
-    <div class="page-title-text">Edit Profile</div>
-  </div>
+  <div class="page-title-bar"><div class="page-title-icon">✏️</div><div class="page-title-text">Edit Profile</div></div>
   <div class="ref-card">
     <h3 style="color:#00d4ff;margin-bottom:15px">Your Name</h3>
     <input type="text" class="input-field" id="usernameInput" placeholder="Enter unique name" maxlength="20">
@@ -724,10 +616,6 @@
       <p>💎 Rare: 6.5% (4x - 20x)</p>
       <p>🔥 Epic: 1.25% (20x - 50x)</p>
       <p>⭐ Legendary: 0.25% (50x - 100x)</p>
-      <p style="margin-top:10px"><b style="color:#00d4ff">Tips:</b></p>
-      <p>✓ Chhoti bet se shuru karein</p>
-      <p>✓ 2x-3x par cash out safe</p>
-      <p>✓ Lalach na karein</p>
     </div>
     <button class="modal-btn" onclick="closeCrashInfo()" style="display:block;width:100%">Samajh Gaya ✓</button>
   </div>
@@ -863,6 +751,9 @@
   let totalEarned = parseInt(localStorage.getItem('trax_totalEarned') || '0');
 
   const userId = tg && tg.initDataUnsafe && tg.initDataUnsafe.user ? tg.initDataUnsafe.user.id : Math.floor(Math.random() * 9000) + 1000;
+
+  const RANK_MIN_COINS = 100000;
+  const RANK_RESET_MS = 5 * 60 * 1000;
 
   const COIN_TIERS = [
     { minLevel: 0, name: 'BASIC', c1: '#5fc8ff', c2: '#00a8ff', c3: '#003d99', border: '#00d4ff' },
@@ -1090,36 +981,89 @@
     if (changed) saveBoosters();
   }
 
-  let fakeRankData = [];
-  function generateFakeRank() {
-    const names = ['Ali', 'Ahmed', 'Sara', 'Hassan', 'Fatima', 'Bilal', 'Ayesha', 'Usman', 'Zara', 'Khan', 'Ayesha', 'Omar', 'Hira', 'Raza', 'Nida'];
-    fakeRankData = [];
-    for (let i = 0; i < 9; i++) {
-      fakeRankData.push({ name: names[i] || ('Player' + (i+1)), value: Math.floor(Math.random() * 5000000) + 100000 });
+  // ===== LEADERBOARD SYSTEM =====
+  function getAllPlayers() {
+    let players = JSON.parse(localStorage.getItem('trax_leaderboard') || '[]');
+    players = players.filter(p => p.value >= RANK_MIN_COINS);
+    const myEntry = players.find(p => p.id === userId);
+    if (balance >= RANK_MIN_COINS) {
+      if (myEntry) {
+        myEntry.name = userName || 'You';
+        myEntry.value = balance;
+        myEntry.avatar = userAvatar;
+      } else {
+        players.push({ id: userId, name: userName || 'You', value: balance, avatar: userAvatar });
+      }
+    } else if (myEntry) {
+      players = players.filter(p => p.id !== userId);
     }
+    players.sort((a, b) => b.value - a.value);
+    localStorage.setItem('trax_leaderboard', JSON.stringify(players));
+    return players;
   }
+
   function drawHomeRank() {
     const box = document.getElementById('homeRankList');
     if (!box) return;
-    if (fakeRankData.length === 0) generateFakeRank();
-    const myRank = { name: (userName || 'You') + ' (You)', value: balance, mine: true };
-    const all = [...fakeRankData, myRank].sort((a, b) => b.value - a.value);
+    const players = getAllPlayers();
     box.innerHTML = '';
-    all.slice(0, 10).forEach((u, i) => {
+
+    const myRankBadge = document.getElementById('myRankBadge');
+    const rankStatus = document.getElementById('rankStatus');
+    if (balance >= RANK_MIN_COINS) {
+      const myIdx = players.findIndex(p => p.id === userId);
+      if (myRankBadge) myRankBadge.textContent = '#' + (myIdx + 1);
+      if (rankStatus) rankStatus.textContent = 'In Top ' + players.length;
+    } else {
+      if (myRankBadge) myRankBadge.textContent = '#---';
+      const needed = RANK_MIN_COINS - Math.floor(balance);
+      if (rankStatus) rankStatus.textContent = needed.toLocaleString() + ' more';
+    }
+
+    if (players.length === 0) {
+      box.innerHTML = '<div style="text-align:center;padding:20px;color:#7a8ba5;font-size:12px">' +
+        '<div style="font-size:32px;margin-bottom:8px">🏆</div>' +
+        '<div style="font-weight:900;color:#00d4ff;margin-bottom:4px">No players yet</div>' +
+        '<div>1,00,000+ TRAX jama karein aur rank board mein aayein!</div>' +
+        '</div>';
+      return;
+    }
+
+    players.slice(0, 10).forEach((u, i) => {
       const el = document.createElement('div');
-      el.className = 'rank-row' + (u.mine ? ' mine' : '') + (i === 0 ? ' top1' : i === 1 ? ' top2' : i === 2 ? ' top3' : '');
+      const isMine = u.id === userId;
+      el.className = 'rank-row' + (isMine ? ' mine' : '') + (i === 0 ? ' top1' : i === 1 ? ' top2' : i === 2 ? ' top3' : '');
       const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : '#' + (i + 1);
-      el.innerHTML = '<div class="rank-num">' + medal + '</div><div class="rank-avatar">' + (u.mine ? userAvatar : '👤') + '</div><div class="rank-name">' + u.name + '</div><div class="rank-value">' + Math.floor(u.value).toLocaleString() + ' <small>TRAX</small></div>';
+      const avatarHtml = (u.avatar && u.avatar.startsWith('data:')) ? 
+        '<div class="rank-avatar" style="background-image:url(' + u.avatar + ');background-size:cover"></div>' :
+        '<div class="rank-avatar">' + (u.avatar || '👤') + '</div>';
+      el.innerHTML = '<div class="rank-num">' + medal + '</div>' +
+        avatarHtml +
+        '<div class="rank-name">' + u.name + (isMine ? ' <span style="color:#00d4ff;font-size:9px">(You)</span>' : '') + '</div>' +
+        '<div class="rank-value">' + Math.floor(u.value).toLocaleString() + ' <small>TRAX</small></div>';
       box.appendChild(el);
     });
   }
-  function updateHomeRankLive() {
-    // Slowly shift fake values for live feel
-    fakeRankData.forEach((u, i) => {
-      u.value += Math.floor(Math.random() * 5000) - 1000;
-      if (u.value < 1000) u.value = 1000 + Math.random() * 100000;
-    });
-    drawHomeRank();
+
+  function updateHomeRankLive() { drawHomeRank(); }
+
+  function scheduleLeaderboardReset() {
+    setInterval(() => {
+      const players = JSON.parse(localStorage.getItem('trax_leaderboard') || '[]');
+      const valid = players.filter(p => p.value >= RANK_MIN_COINS);
+      localStorage.setItem('trax_leaderboard', JSON.stringify(valid));
+      localStorage.setItem('trax_lb_lastReset', Date.now());
+      drawHomeRank();
+      showToast('🏆 Leaderboard refreshed');
+    }, RANK_RESET_MS);
+  }
+
+  function showToast(msg) {
+    const toast = document.createElement('div');
+    toast.textContent = msg;
+    toast.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#00d4ff,#0066ff);color:white;padding:10px 20px;border-radius:20px;font-weight:900;font-size:12px;z-index:9999;box-shadow:0 5px 20px rgba(0,212,255,0.5)';
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 2500);
   }
 
   function init() {
@@ -1130,10 +1074,11 @@
     buildAvatarGrid();
     drawTasksNew(); drawRank(); drawStickers(); drawUpgrades(); drawBetSelector(); updateSettingsUI(); updateUI();
     applyCoinTier(); updateBoosterUI();
-    generateFakeRank(); drawHomeRank();
+    drawHomeRank();
+    scheduleLeaderboardReset();
     setInterval(updateBoosterUI, 1000);
     setInterval(checkBoosterExpiry, 5000);
-    setInterval(updateHomeRankLive, 5000);
+    setInterval(updateHomeRankLive, 10000);
     checkFirstTime();
   }
 
@@ -1170,22 +1115,24 @@
   function drawRank() {
     const list = document.getElementById('rankList');
     if (!list) return;
-    const fakeNames = ['Ali', 'Ahmed', 'Sara', 'Hassan', 'Fatima', 'Bilal', 'Ayesha', 'Usman', 'Zara'];
     list.innerHTML = '';
-    const myRank = { name: (userName || 'You') + ' (You)', value: balance };
-    const others = [];
-    for (let i = 0; i < 9; i++) others.push({ name: fakeNames[i], value: Math.floor(Math.random() * 5000000) + 1000 });
-    const all = [...others, myRank].sort((a, b) => b.value - a.value);
-    all.forEach((u, i) => {
+    const players = getAllPlayers();
+    if (players.length === 0) {
+      list.innerHTML = '<div style="text-align:center;padding:30px;color:#7a8ba5;font-size:13px">' +
+        '<div style="font-size:44px;margin-bottom:10px">🏆</div>' +
+        '<div style="font-weight:900;color:#00d4ff;margin-bottom:6px">No players yet</div>' +
+        '<div>1,00,000+ TRAX jama karein aur rank board mein aayein!</div>' +
+        '</div>';
+      return;
+    }
+    players.forEach((u, i) => {
       const el = document.createElement('div');
+      const isMine = u.id === userId;
       el.style.cssText = 'background:rgba(15,30,55,0.7);border:1px solid rgba(0,180,255,0.2);border-radius:12px;padding:12px;margin-bottom:8px;display:flex;align-items:center;gap:12px;';
-      if (u.name.includes('(You)')) el.style.borderColor = '#00d4ff';
-      el.innerHTML = '<div style="font-size:16px;font-weight:900;color:#00d4ff;min-width:35px">' + (i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : '#' + (i + 1)) + '</div><div style="flex:1;font-size:12px;font-weight:900">' + u.name + '</div><div style="font-size:12px;color:#00d4ff;font-weight:900">' + Math.floor(u.value).toLocaleString() + '</div>';
+      if (isMine) el.style.borderColor = '#00d4ff';
+      el.innerHTML = '<div style="font-size:16px;font-weight:900;color:#00d4ff;min-width:35px">' + (i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : '#' + (i + 1)) + '</div><div style="flex:1;font-size:12px;font-weight:900">' + u.name + (isMine ? ' (You)' : '') + '</div><div style="font-size:12px;color:#00d4ff;font-weight:900">' + Math.floor(u.value).toLocaleString() + '</div>';
       list.appendChild(el);
     });
-    const myIdx = all.findIndex(u => u.name.includes('(You)'));
-    const profRank = document.getElementById('profRank');
-    if (profRank) profRank.textContent = myIdx + 1;
   }
 
   function drawStickers() {
@@ -1276,6 +1223,23 @@
     const mineRateEl = document.getElementById('mineRateText');
     if (mineRateEl) mineRateEl.textContent = getMineRate();
 
+    const myRankBadge = document.getElementById('myRankBadge');
+    const rankStatus = document.getElementById('rankStatus');
+    if (myRankBadge) {
+      if (balance >= RANK_MIN_COINS) {
+        const players = JSON.parse(localStorage.getItem('trax_leaderboard') || '[]');
+        const sorted = players.filter(p => p.value >= RANK_MIN_COINS).sort((a, b) => b.value - a.value);
+        const myIdx = sorted.findIndex(p => p.id === userId);
+        if (myIdx !== -1) myRankBadge.textContent = '#' + (myIdx + 1);
+        else myRankBadge.textContent = '#--';
+        if (rankStatus) rankStatus.textContent = 'In Top ' + sorted.length;
+      } else {
+        myRankBadge.textContent = '#---';
+        const needed = RANK_MIN_COINS - Math.floor(balance);
+        if (rankStatus) rankStatus.textContent = needed.toLocaleString() + ' more';
+      }
+    }
+
     const LEVEL_XP = 50000;
     const level = Math.floor(totalEarned / LEVEL_XP) + 1;
     const xpInLevel = totalEarned % LEVEL_XP;
@@ -1338,17 +1302,6 @@
       s.style.boxShadow = '0 0 15px ' + s.style.background;
       document.body.appendChild(s); setTimeout(() => s.remove(), 800);
     }
-  }
-
-  function claimDaily() {
-    const today = new Date().toDateString();
-    if (lastDaily === today) { showModal('✅ Already Claimed', 'Aap aaj ka reward le chuke hain.'); return; }
-    const reward = 1000 + (streakDays * 100);
-    balance += reward; totalEarned += reward; lastDaily = today;
-    localStorage.setItem('trax_lastDaily', lastDaily);
-    updateUI(); save();
-    playSound('win'); vibrate('success');
-    showModal('🎁 Daily Reward!', '+' + reward + ' TRAX mile!');
   }
 
   function startMining() {
@@ -1420,7 +1373,6 @@
       if (tab === 'upgrades') drawUpgrades();
       if (tab === 'boosters') updateBoosterUI();
       if (tab === 'rank') drawRank();
-      if (tab === 'friends') { /* ref link already set */ }
     }
   }
 
@@ -1500,7 +1452,6 @@
     }, 5200);
   }
 
-  // CRASH
   const BET_OPTIONS = [500, 1000, 5000, 10000, 25000, 50000];
   let crashState = { running: false, multiplier: 1, crashed: false, bet: 1000 };
   let crashInterval = null;
@@ -1608,7 +1559,6 @@
     playSound('win'); vibrate('success');
   }
 
-  // PUZZLE
   let puzzleState = { tiles: [], moves: 0, solved: false };
   const PUZZLE_SIZE = 7;
   const PUZZLE_REWARD = 50000;
