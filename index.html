@@ -137,7 +137,7 @@
   .task-btn.go { background: linear-gradient(135deg, #00b4ff, #0066ff); color: white; }
   .task-btn.done { background: linear-gradient(135deg, #00aa55, #006633); color: white; }
   .booster-card { background: rgba(10,25,45,0.7); border: 1px solid rgba(0,150,255,0.2); border-radius: 18px; padding: 16px; }
-  .booster-row { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(0,150,255,0.08); }
+  .booster-row { display: flex; align-items: center; gap: 10px; padding: 12px 0; border-bottom: 1px solid rgba(0,150,255,0.08); }
   .booster-row:last-child { border-bottom: none; padding-bottom: 0; }
   .booster-row:first-child { padding-top: 0; }
   .booster-icon { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; flex-shrink: 0; }
@@ -182,10 +182,6 @@
   .sticker-card.locked { opacity: 0.5; cursor: not-allowed; }
   .sticker-card.owned { border-color: #00ff88; }
   .sticker-card.max { border-color: #ff9500; background: rgba(255,150,0,0.1); }
-  .sticker-card.common { border-color: rgba(160,174,192,0.4); }
-  .sticker-card.rare { border-color: rgba(0,212,255,0.5); }
-  .sticker-card.epic { border-color: rgba(153,0,255,0.5); }
-  .sticker-card.legendary { border-color: rgba(255,150,0,0.5); }
   .sticker-icon { font-size: 34px; margin-bottom: 4px; }
   .sticker-name { font-size: 11px; font-weight: 900; margin-bottom: 2px; }
   .sticker-lvl { font-size: 8px; color: #ff9500; font-weight: 900; margin-bottom: 3px; }
@@ -206,7 +202,7 @@
   .wheel-wrapper { position: relative; width: 280px; height: 280px; margin: 20px auto; display: flex; align-items: center; justify-content: center; }
   .wheel-pointer { position: absolute; top: -22px; left: 50%; transform: translateX(-50%); font-size: 36px; color: #ff0055; z-index: 10; }
   .wheel-outer { position: absolute; width: 100%; height: 100%; border-radius: 50%; border: 5px solid #ffd700; z-index: 5; pointer-events: none; }
-  .wheel-container { width: 240px; height: 240px; border-radius: 50%; background: conic-gradient(#ff0055 0deg 60deg, #00d4ff 60deg 120deg, #00ff88 120deg 180deg, #ffd700 180deg 240deg, #9900ff 240deg 300deg, #ff9500 300deg 360deg); position: relative; transition: transform 5s cubic-bezier(0.15, 0.9, 0.2, 1); z-index: 2; }
+  .wheel-container { width: 240px; height: 240px; border-radius: 50%; background: conic-gradient(#00d4ff 0deg 60deg, #00ff88 60deg 120deg, #ffd700 120deg 180deg, #ff9500 180deg 240deg, #9900ff 240deg 300deg, #ff0055 300deg 360deg); position: relative; transition: transform 5s cubic-bezier(0.15, 0.9, 0.2, 1); z-index: 2; }
   .wheel-labels { width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
   .wheel-label { position: absolute; font-size: 11px; font-weight: 900; color: white; text-shadow: 0 0 5px #000, 0 0 10px #000; pointer-events: none; z-index: 3; transform: translate(-50%, -50%); }
   .wheel-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 60px; height: 60px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; font-weight: 900; color: #ff0055; font-size: 12px; z-index: 6; border: 3px solid #ffd700; cursor: pointer; }
@@ -389,7 +385,7 @@
 <div class="tab-content" id="tab-games">
   <div class="page-title-bar"><div class="page-title-icon">🎮</div><div class="page-title-text">Mini Games</div></div>
   <div class="mini-games-grid">
-    <div class="mini-game-card" onclick="openSpin()"><div class="mini-game-icon">🎰</div><div class="mini-game-name">Lucky Spin</div><div class="mini-game-desc">Win up to 10K</div></div>
+    <div class="mini-game-card" onclick="openSpin()"><div class="mini-game-icon">🎰</div><div class="mini-game-name">Lucky Spin</div><div class="mini-game-desc">Win up to 500K</div></div>
     <div class="mini-game-card" onclick="openPuzzle()"><div class="mini-game-icon">🧩</div><div class="mini-game-name">Puzzle</div><div class="mini-game-desc">3 Modes</div></div>
     <div class="mini-game-card" onclick="openCrash()"><div class="mini-game-icon">🚀</div><div class="mini-game-name">Crash</div><div class="mini-game-desc">Win big</div></div>
     <div class="mini-game-card" onclick="openCoinFlip()"><div class="mini-game-icon">🪙</div><div class="mini-game-name">Coin Flip</div><div class="mini-game-desc">T or R</div></div>
@@ -601,6 +597,9 @@
 <div class="modal" id="spinModal">
   <div class="modal-content" style="max-width:380px">
     <h3>🎰 Spin to Win!</h3>
+    <div id="spinStatusBar" style="background:rgba(0,212,255,0.15);border:1px solid rgba(0,212,255,0.4);border-radius:10px;padding:8px;margin-bottom:10px;text-align:center;font-size:11px;font-weight:900;color:#00d4ff">
+      🎁 Loading...
+    </div>
     <div class="wheel-wrapper">
       <div class="wheel-pointer">▼</div>
       <div class="wheel-outer"></div>
@@ -615,6 +614,9 @@
       <div class="unit">TRAX</div>
     </div>
     <button class="modal-btn" style="margin-top:10px;display:block;width:100%" onclick="spinWheel()" id="spinBtn">SPIN NOW</button>
+    <div style="font-size:10px;color:#a0aec0;margin-top:8px;text-align:center" id="spinInfoText">
+      Entry: FREE
+    </div>
     <button class="modal-btn" style="margin-top:8px;background:rgba(255,255,255,0.1);display:block;width:100%" onclick="closeSpin()">Close</button>
   </div>
 </div>
@@ -797,7 +799,6 @@
   let totalEarned = parseInt(localStorage.getItem('trax_totalEarned') || '0');
   let miningActive = false;
 
-  // Booster bonuses (separate from base)
   let boosterAutoTapBonus = parseInt(localStorage.getItem('trax_booster_autoTap_bonus') || '0');
   let boosterDoubleBonus = parseInt(localStorage.getItem('trax_booster_double_bonus') || '0');
 
@@ -925,7 +926,6 @@
     localStorage.setItem('trax_totalEarned', Math.floor(totalEarned));
   }
 
-  // ===== TAP =====
   const coinBtn = document.getElementById('coinBtn');
   coinBtn.addEventListener('click', (e) => {
     if (energy <= 0) { playSound('error'); vibrate('error'); showModal('⚡ Energy Empty', 'Energy khatam.'); return; }
@@ -1113,7 +1113,6 @@
     setTimeout(() => t.remove(), 3000);
   }
 
-  // ===== UPGRADES =====
   function drawUpgrades() {
     const upgrades = [
       { id: 'tapPower', icon: '⚡', iconClass: 'tap', name: 'Tap Power', desc: '+1 per tap', baseCost: 5000, multiplier: 1.5, level: parseInt(localStorage.getItem('upg_tapPower') || '0') },
@@ -1144,7 +1143,6 @@
     showModal('✅ Upgraded!', 'Level ' + level + ' ho gaya!');
   }
 
-  // ===== STICKERS =====
   function drawStickers() {
     const container = document.getElementById('stickerShopContainer');
     container.innerHTML = '';
@@ -1186,7 +1184,6 @@
     showModal('🎉 Upgraded!', s.name + ' Level ' + stickerLevels[s.id] + ' ho gaya!');
   }
 
-  // ===== TASKS =====
   function drawTasksNew() {
     const box = document.getElementById('fullTasksListNew');
     box.innerHTML = '';
@@ -1211,7 +1208,6 @@
     showModal('🎉 Task Complete!', '+' + reward.toLocaleString() + ' TRAX!');
   }
 
-  // ===== LEADERBOARD =====
   function drawHomeRank() {
     const box = document.getElementById('homeRankList');
     box.innerHTML = '<div style="text-align:center;padding:20px;color:#7a8ba5;font-size:12px"><div style="font-size:32px;margin-bottom:8px">🏆</div><div style="font-weight:900;color:#00d4ff">No players yet</div><div>1,00,000+ TRAX jama karein</div></div>';
@@ -1223,7 +1219,6 @@
     list.innerHTML = '<div style="text-align:center;padding:30px;color:#7a8ba5"><div style="font-size:44px">🏆</div><div style="font-weight:900;color:#00d4ff;margin-top:10px">No players yet</div></div>';
   }
 
-  // ===== MINING =====
   function startMining() {
     if (energy < 10) { showModal('⚡ Not Enough', '10 energy chahiye.'); return; }
     if (miningActive) { showModal('⛏️ Mining', 'Already mining!'); return; }
@@ -1288,9 +1283,58 @@
   function showRarityList() { document.getElementById('rarityModal').classList.add('show'); }
   function closeRarityList() { document.getElementById('rarityModal').classList.remove('show'); }
 
-  // ===== SPIN WHEEL =====
-  const SPIN_REWARDS = [50, 100, 50, 200, 500, 100, 1000, 100];
+  // ===== SPIN WHEEL: Daily 1 FREE + Paid unlimited =====
+  const SPIN_SLOTS = [
+    { reward: 5000,   label: '5K',   weight: 35 },
+    { reward: 10000,  label: '10K',  weight: 28 },
+    { reward: 50000,  label: '50K',  weight: 20 },
+    { reward: 100,    label: '100',  weight: 10 },
+    { reward: 150000, label: '150K', weight: 5 },
+    { reward: 500000, label: '500K', weight: 2 }
+  ];
+
+  const PAID_SPIN_COST = 10000;
   let spinCooldown = false;
+
+  function getToday() { return new Date().toDateString(); }
+
+  function getSpinState() {
+    const dailyDate = localStorage.getItem('trax_spin_dailyDate') || '';
+    const today = getToday();
+    if (dailyDate !== today) {
+      localStorage.setItem('trax_spin_dailyDate', today);
+      localStorage.setItem('trax_spin_dailyUsed', '0');
+    }
+    const dailyUsed = parseInt(localStorage.getItem('trax_spin_dailyUsed') || '0');
+    const freeLeft = dailyUsed === 0 ? 1 : 0;
+    return { freeLeft };
+  }
+
+  function updateSpinStatus() {
+    const state = getSpinState();
+    const bar = document.getElementById('spinStatusBar');
+    const info = document.getElementById('spinInfoText');
+    const btn = document.getElementById('spinBtn');
+    if (!bar || !info || !btn) return;
+
+    if (state.freeLeft > 0) {
+      bar.textContent = '🎁 1 FREE SPIN AVAILABLE TODAY';
+      bar.style.background = 'rgba(0,255,136,0.15)';
+      bar.style.borderColor = 'rgba(0,255,136,0.4)';
+      bar.style.color = '#00ff88';
+      info.textContent = 'Free use karein · Baad mein ' + PAID_SPIN_COST.toLocaleString() + ' TRAX/spin';
+      btn.disabled = false;
+      btn.style.opacity = '1';
+    } else {
+      bar.textContent = '💰 PAID SPINS · ' + PAID_SPIN_COST.toLocaleString() + ' TRAX each';
+      bar.style.background = 'rgba(255,150,0,0.15)';
+      bar.style.borderColor = 'rgba(255,150,0,0.4)';
+      bar.style.color = '#ff9500';
+      info.textContent = 'Kal phir 1 free spin milega';
+      btn.disabled = false;
+      btn.style.opacity = '1';
+    }
+  }
 
   function openSpin() {
     document.getElementById('spinModal').classList.add('show');
@@ -1298,8 +1342,10 @@
     document.getElementById('wheel').style.transform = 'rotate(0deg)';
     document.getElementById('spinBtn').textContent = 'SPIN NOW';
     drawWheelLabels();
+    updateSpinStatus();
     spinCooldown = false;
   }
+
   function closeSpin() {
     document.getElementById('spinModal').classList.remove('show');
   }
@@ -1308,8 +1354,8 @@
     const box = document.getElementById('wheelLabels');
     box.innerHTML = '';
     const radius = 82;
-    SPIN_REWARDS.forEach((reward, i) => {
-      const angle = i * 45 + 22.5;
+    SPIN_SLOTS.forEach((slot, i) => {
+      const angle = i * 60 + 30;
       const rad = (angle - 90) * Math.PI / 180;
       const x = 120 + Math.cos(rad) * radius;
       const y = 120 + Math.sin(rad) * radius;
@@ -1317,13 +1363,41 @@
       el.className = 'wheel-label';
       el.style.left = x + 'px';
       el.style.top = y + 'px';
-      el.textContent = reward >= 1000 ? '1K' : reward;
+      el.style.fontSize = '10px';
+      el.textContent = slot.label;
       box.appendChild(el);
     });
   }
 
+  function pickSpinSlot() {
+    const total = SPIN_SLOTS.reduce((s, x) => s + x.weight, 0);
+    let r = Math.random() * total;
+    for (let i = 0; i < SPIN_SLOTS.length; i++) {
+      r -= SPIN_SLOTS[i].weight;
+      if (r <= 0) return i;
+    }
+    return 0;
+  }
+
   function spinWheel() {
     if (spinCooldown) return;
+
+    const state = getSpinState();
+    let usedPaid = false;
+
+    if (state.freeLeft > 0) {
+      localStorage.setItem('trax_spin_dailyUsed', '1');
+    } else {
+      if (balance < PAID_SPIN_COST) {
+        playSound('error'); vibrate('error');
+        showModal('❌ Not Enough', 'Entry: ' + PAID_SPIN_COST.toLocaleString() + ' TRAX');
+        return;
+      }
+      balance -= PAID_SPIN_COST;
+      updateUI(); save();
+      usedPaid = true;
+    }
+
     spinCooldown = true;
     const wheel = document.getElementById('wheel');
     const btn = document.getElementById('spinBtn');
@@ -1332,10 +1406,10 @@
     resultBox.classList.remove('show');
     btn.textContent = 'SPINNING...';
 
-    const idx = Math.floor(Math.random() * SPIN_REWARDS.length);
-    const reward = SPIN_REWARDS[idx];
+    const idx = pickSpinSlot();
+    const slot = SPIN_SLOTS[idx];
 
-    const segmentCenter = idx * 45 + 22.5;
+    const segmentCenter = idx * 60 + 30;
     const targetRotation = 360 - segmentCenter;
     const fullRotations = 8 * 360;
     const finalRotation = fullRotations + targetRotation;
@@ -1343,16 +1417,21 @@
     wheel.style.transform = 'rotate(' + finalRotation + 'deg)';
 
     setTimeout(() => {
-      balance += reward; totalEarned += reward;
+      balance += slot.reward; totalEarned += slot.reward;
       updateUI(); save();
 
-      document.getElementById('spinRewardAmount').textContent = '+' + reward;
+      document.getElementById('spinRewardAmount').textContent = '+' + slot.reward.toLocaleString();
       resultBox.classList.add('show');
 
       btn.textContent = 'SPIN AGAIN';
       spinCooldown = false;
 
+      updateSpinStatus();
       playSound('win'); vibrate('success');
+
+      if (usedPaid) {
+        showToast('💰 Paid spin · ' + PAID_SPIN_COST.toLocaleString() + ' TRAX used');
+      }
     }, 5200);
   }
 
@@ -1591,7 +1670,6 @@
     if (confirm('Reset all data?')) { localStorage.clear(); location.reload(); }
   }
 
-  // Init
   updateAvatarDisplays();
   buildAvatarGrid();
   updateSettingsUI();
@@ -1602,7 +1680,6 @@
   drawHomeRank();
   drawRank();
 
-  // Restore booster bonus from localStorage on page load
   (function() {
     const now = Date.now();
     const atUntil = parseInt(localStorage.getItem('trax_booster_autoTap_activeUntil') || '0');
@@ -1625,7 +1702,6 @@
     updateBoosterUI();
   })();
 
-  // Auto-earn & energy regen
   setInterval(() => {
     if (autoEarn > 0) { balance += autoEarn / 3600; totalEarned += autoEarn / 3600; updateUI(); save(); }
   }, 1000);
@@ -1634,11 +1710,16 @@
     if (energy < getEffectiveMaxEnergy()) { energy++; updateUI(); save(); }
   }, 2000);
 
-  // Booster UI refresh every second (live countdown)
   setInterval(updateBoosterUI, 1000);
-
-  // Booster expiry check every 5 sec
   setInterval(checkBoosterExpiry, 5000);
+
+  // Live spin status refresh
+  setInterval(() => {
+    const modal = document.getElementById('spinModal');
+    if (modal && modal.classList.contains('show')) {
+      updateSpinStatus();
+    }
+  }, 1000);
 </script>
 </body>
  </html>
