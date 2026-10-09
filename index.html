@@ -8,26 +8,134 @@
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; -webkit-tap-highlight-color: transparent; }
   body { background: #050a14; color: white; min-height: 100vh; overflow-x: hidden; user-select: none; -webkit-user-select: none; padding-bottom: 100px; position: relative; }
-  body::before { content: ''; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-image: url('city.png'); background-size: cover; background-position: center; opacity: 0.35; z-index: -1; filter: blur(1px); }
-  body::after { content: ''; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(5,10,20,0.55) 0%, rgba(5,10,20,0.9) 100%); z-index: -1; }
-  .header { display: flex; justify-content: space-between; align-items: center; padding: 12px 15px; background: rgba(5,10,20,0.85); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(0,150,255,0.2); position: sticky; top: 0; z-index: 50; }
+  body::before { content: ''; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-image: url('city.png'); background-size: cover; background-position: center; opacity: 0.3; z-index: -1; filter: blur(1px); }
+  body::after { content: ''; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(5,10,20,0.6) 0%, rgba(5,10,20,0.95) 100%); z-index: -1; }
+
+  /* ===== TRAX LOGO (SVG 3D) ===== */
+  .trax-logo {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .trax-logo svg { width: 100%; height: 100%; display: block; }
+
+  /* ===== HEADER ===== */
+  .header { display: flex; justify-content: space-between; align-items: center; padding: 12px 15px; background: rgba(5,10,20,0.9); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(0,150,255,0.15); position: sticky; top: 0; z-index: 50; }
   .header-left { display: flex; align-items: center; gap: 10px; }
-  .menu-icon { font-size: 22px; color: #00d4ff; cursor: pointer; padding: 5px; }
+  .menu-icon { font-size: 20px; color: #00d4ff; cursor: pointer; padding: 5px; }
   .header-logo { display: flex; align-items: center; gap: 10px; }
-  .header-logo-icon { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, #00d4ff, #0066ff); display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 900; color: white; box-shadow: 0 0 20px rgba(0,212,255,0.8); border: 2px solid rgba(0,212,255,0.5); }
-  .header-logo-text h1 { font-size: 17px; font-weight: 900; letter-spacing: 0.5px; background: linear-gradient(90deg, #00d4ff, #ffffff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-  .header-logo-text p { font-size: 8px; color: #00d4ff; letter-spacing: 2px; margin-top: 2px; }
+  .header-logo-icon { width: 40px; height: 40px; position: relative; }
+  .header-logo-text h1 { font-size: 17px; font-weight: 900; letter-spacing: 0.5px; color: #ffffff; }
+  .header-logo-text p { font-size: 8px; color: #00d4ff; letter-spacing: 2px; margin-top: 2px; font-weight: 700; }
   .header-right { display: flex; align-items: center; gap: 10px; }
-  .level-badge { text-align: right; background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.3); border-radius: 12px; padding: 5px 10px; min-width: 80px; }
-  .level-badge .lv { font-size: 11px; font-weight: 900; color: #00d4ff; }
-  .level-badge .xp-bar { width: 60px; height: 3px; background: rgba(255,255,255,0.1); border-radius: 2px; margin-top: 4px; overflow: hidden; }
+  .level-badge { text-align: right; background: rgba(0,212,255,0.08); border: 1px solid rgba(0,212,255,0.3); border-radius: 12px; padding: 5px 10px; min-width: 75px; }
+  .level-badge .lv { font-size: 10px; font-weight: 900; color: #00d4ff; letter-spacing: 0.5px; }
+  .level-badge .xp-bar { width: 55px; height: 3px; background: rgba(255,255,255,0.1); border-radius: 2px; margin-top: 4px; overflow: hidden; }
   .level-badge .xp-fill { height: 100%; background: linear-gradient(90deg, #00d4ff, #00ff88); border-radius: 2px; transition: width 0.3s; }
   .avatar { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, #00d4ff, #0066ff); display: flex; align-items: center; justify-content: center; font-size: 18px; border: 2px solid rgba(0,212,255,0.5); box-shadow: 0 0 15px rgba(0,212,255,0.4); cursor: pointer; background-size: cover; background-position: center; overflow: hidden; }
+
   .container { padding: 12px 15px; max-width: 500px; margin: 0 auto; }
+
+  /* ===== PROFILE CARD (Screenshot 1) ===== */
+  .profile-card { background: linear-gradient(135deg, rgba(0,180,255,0.12), rgba(0,60,150,0.08)); border: 1.5px solid rgba(0,212,255,0.35); border-radius: 20px; padding: 18px; margin-bottom: 14px; position: relative; overflow: hidden; box-shadow: 0 0 30px rgba(0,150,255,0.2); }
+  .profile-card::before { content: ''; position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(0,212,255,0.12), transparent 60%); animation: rotate 20s linear infinite; pointer-events: none; }
+  @keyframes rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+  .profile-top { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; position: relative; z-index: 2; }
+  .profile-avatar-wrap { width: 80px; height: 80px; position: relative; flex-shrink: 0; }
+  .profile-avatar-ring { position: absolute; inset: -5px; border-radius: 50%; background: conic-gradient(from 0deg, #00d4ff, #00ff88, #9900ff, #ff0055, #00d4ff); animation: spinRing 4s linear infinite; opacity: 0.8; filter: blur(2px); }
+  @keyframes spinRing { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+  .profile-avatar { position: absolute; inset: 0; border-radius: 50%; background: linear-gradient(135deg, #0a1929, #061224); display: flex; align-items: center; justify-content: center; font-size: 36px; border: 2px solid rgba(0,212,255,0.5); background-size: cover; background-position: center; overflow: hidden; z-index: 2; }
+  .profile-info { flex: 1; }
+  .profile-name { font-size: 19px; font-weight: 900; color: white; display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+  .verified-badge { width: 16px; height: 16px; background: linear-gradient(135deg, #00d4ff, #0066ff); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; color: white; }
+  .profile-tagline { font-size: 12px; color: #7a8ba5; font-weight: 500; }
+  .profile-level-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; position: relative; z-index: 2; }
+  .profile-level-label { font-size: 13px; font-weight: 900; color: #00d4ff; }
+  .profile-level-xp { font-size: 12px; color: #a0aec0; font-weight: 700; }
+  .profile-level-bar { width: 100%; height: 8px; background: rgba(0,0,0,0.4); border-radius: 4px; overflow: hidden; position: relative; z-index: 2; }
+  .profile-level-fill { height: 100%; background: linear-gradient(90deg, #00d4ff, #0090ff); border-radius: 4px; transition: width 0.5s; box-shadow: 0 0 15px rgba(0,212,255,0.7); }
+
+  /* ===== STATS ROW ===== */
+  .stats-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 14px; }
+  .stat-card { background: linear-gradient(135deg, rgba(0,80,180,0.15), rgba(0,40,100,0.1)); border: 1.5px solid rgba(0,180,255,0.3); border-radius: 14px; padding: 12px 6px; text-align: center; position: relative; overflow: hidden; }
+  .stat-card-label { font-size: 10px; color: #00d4ff; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 6px; }
+  .stat-card-value { font-size: 17px; font-weight: 900; color: white; text-shadow: 0 0 10px rgba(0,212,255,0.5); }
+  .stat-card-value small { font-size: 10px; color: #7a8ba5; font-weight: 500; }
+
+  /* ===== MENU ITEMS (Screenshot 1) ===== */
+  .menu-list { background: rgba(10,25,45,0.7); border: 1px solid rgba(0,150,255,0.15); border-radius: 16px; overflow: hidden; }
+  .menu-item { display: flex; align-items: center; gap: 14px; padding: 16px 18px; cursor: pointer; transition: background 0.2s; border-bottom: 1px solid rgba(0,150,255,0.08); }
+  .menu-item:last-child { border-bottom: none; }
+  .menu-item:active { background: rgba(0,150,255,0.08); }
+  .menu-icon-box { width: 40px; height: 40px; border-radius: 10px; background: linear-gradient(135deg, rgba(0,180,255,0.15), rgba(0,80,180,0.08)); border: 1px solid rgba(0,180,255,0.25); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+  .menu-icon-box.wallet-icon { color: #00d4ff; }
+  .menu-icon-box.referral-icon { color: #00d4ff; }
+  .menu-icon-box.settings-icon { color: #00d4ff; }
+  .menu-item-info { flex: 1; }
+  .menu-item-info h4 { font-size: 14px; font-weight: 700; color: white; margin-bottom: 2px; }
+  .menu-item-info p { font-size: 11px; color: #7a8ba5; }
+  .menu-item-info p.green { color: #00d4ff; font-weight: 700; }
+  .menu-item-arrow { color: #00d4ff; font-size: 18px; opacity: 0.7; }
+
+  /* ===== PAGE TITLE ===== */
+  .page-title-bar { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; padding: 5px 0; }
+  .page-title-icon { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-size: 24px; }
+  .page-title-text { font-size: 26px; font-weight: 900; color: #00d4ff; letter-spacing: 0.5px; text-shadow: 0 0 20px rgba(0,212,255,0.5); }
+
+  /* ===== TASKS (Screenshot 3) ===== */
+  .task-row { background: rgba(10,25,45,0.7); border: 1px solid rgba(0,150,255,0.2); border-radius: 16px; padding: 14px; margin-bottom: 10px; display: flex; align-items: center; gap: 12px; position: relative; overflow: hidden; }
+  .task-row.done { border-color: rgba(0,255,136,0.3); }
+  .task-row.ready { border-color: rgba(0,150,255,0.4); }
+  .task-icon-wrap { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; position: relative; }
+  .task-icon-wrap.telegram { background: linear-gradient(135deg, #0088cc, #0066aa); box-shadow: 0 0 20px rgba(0,136,204,0.4); }
+  .task-icon-wrap.twitter { background: linear-gradient(135deg, #1a1a1a, #000000); border: 1px solid rgba(255,255,255,0.2); box-shadow: 0 0 20px rgba(255,255,255,0.1); }
+  .task-icon-wrap.youtube { background: linear-gradient(135deg, #ff0055, #990033); box-shadow: 0 0 20px rgba(255,0,85,0.4); }
+  .task-icon-wrap.invite { background: linear-gradient(135deg, #00aaff, #0066cc); box-shadow: 0 0 20px rgba(0,170,255,0.4); }
+  .task-content { flex: 1; min-width: 0; }
+  .task-title { font-size: 13px; font-weight: 900; color: white; margin-bottom: 4px; }
+  .task-reward-row { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #a0aec0; font-weight: 700; }
+  .task-reward-row .coin-emoji { font-size: 12px; }
+  .task-reward-row .reward-amount { color: #ffd700; font-weight: 900; }
+  .task-progress-bar { width: 100%; height: 4px; background: rgba(0,0,0,0.4); border-radius: 2px; margin-top: 6px; overflow: hidden; }
+  .task-progress-fill { height: 100%; background: linear-gradient(90deg, #00d4ff, #00ff88); border-radius: 2px; }
+  .task-btn { padding: 8px 16px; border-radius: 10px; font-size: 11px; font-weight: 900; cursor: pointer; letter-spacing: 0.5px; flex-shrink: 0; border: none; }
+  .task-btn.go { background: linear-gradient(135deg, #00b4ff, #0066ff); color: white; box-shadow: 0 4px 15px rgba(0,180,255,0.4); }
+  .task-btn.done { background: linear-gradient(135deg, #00aa55, #006633); color: white; box-shadow: 0 4px 15px rgba(0,170,85,0.4); }
+
+  /* ===== BOOSTERS (Screenshot 2) ===== */
+  .booster-card { background: rgba(10,25,45,0.7); border: 1px solid rgba(0,150,255,0.2); border-radius: 18px; padding: 16px; margin-bottom: 10px; }
+  .booster-header { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .booster-header-icon { font-size: 22px; }
+  .booster-header-text { font-size: 16px; font-weight: 900; color: #00d4ff; }
+  .booster-header-desc { font-size: 11px; color: #7a8ba5; }
+  .booster-row { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(0,150,255,0.08); }
+  .booster-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .booster-row:first-child { padding-top: 0; }
+  .booster-icon { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; flex-shrink: 0; position: relative; }
+  .booster-icon.auto-tap { background: radial-gradient(circle, #a040ff, #6020a0); box-shadow: 0 0 20px rgba(160,64,255,0.5), inset 0 0 15px rgba(255,255,255,0.2); }
+  .booster-icon.energy { background: radial-gradient(circle, #00b4ff, #0050a0); box-shadow: 0 0 20px rgba(0,180,255,0.5), inset 0 0 15px rgba(255,255,255,0.2); }
+  .booster-icon.double { background: radial-gradient(circle, #cc00ff, #6600a0); box-shadow: 0 0 20px rgba(204,0,255,0.5), inset 0 0 15px rgba(255,255,255,0.2); }
+  .booster-icon.offline { background: radial-gradient(circle, #00ff88, #008844); box-shadow: 0 0 20px rgba(0,255,136,0.5), inset 0 0 15px rgba(255,255,255,0.2); }
+  .booster-icon::after { content: ''; position: absolute; inset: 5px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, rgba(255,255,255,0.4), transparent 60%); }
+  .booster-info { flex: 1; min-width: 0; }
+  .booster-info h4 { font-size: 13px; font-weight: 900; color: white; margin-bottom: 3px; }
+  .booster-info p { font-size: 10px; color: #7a8ba5; }
+  .booster-info p.highlight { color: #00d4ff; font-weight: 700; }
+  .booster-timer { text-align: center; font-size: 11px; font-weight: 900; color: #a0aec0; padding: 0 8px; min-width: 55px; }
+  .booster-btn { padding: 9px 14px; border-radius: 10px; font-size: 11px; font-weight: 900; cursor: pointer; border: none; letter-spacing: 0.5px; flex-shrink: 0; }
+  .booster-btn.purple { background: linear-gradient(135deg, #a040ff, #6020a0); color: white; box-shadow: 0 4px 15px rgba(160,64,255,0.4); }
+  .booster-btn.blue { background: linear-gradient(135deg, #00b4ff, #0066ff); color: white; box-shadow: 0 4px 15px rgba(0,180,255,0.4); }
+  .booster-btn.magenta { background: linear-gradient(135deg, #cc00ff, #6600a0); color: white; box-shadow: 0 4px 15px rgba(204,0,255,0.4); }
+  .booster-btn.green { background: linear-gradient(135deg, #00ff88, #008844); color: white; box-shadow: 0 4px 15px rgba(0,255,136,0.4); }
+  .booster-btn:disabled { opacity: 0.5; cursor: not-allowed; box-shadow: none; }
+
+  /* ===== HOME COIN ===== */
   .balance-row { display: grid; grid-template-columns: 1.3fr 1fr; gap: 10px; margin-bottom: 12px; }
   .balance-card { background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(0,80,180,0.1)); border: 1px solid rgba(0,212,255,0.3); border-radius: 18px; padding: 14px; position: relative; overflow: hidden; }
   .balance-card::before { content: ''; position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(0,212,255,0.15), transparent 60%); animation: rotate 15s linear infinite; }
-  @keyframes rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
   .balance-label { font-size: 10px; color: #7a8ba5; letter-spacing: 1px; position: relative; z-index: 2; margin-bottom: 5px; }
   .balance-value { font-size: 22px; font-weight: 900; color: white; text-shadow: 0 0 20px rgba(0,212,255,0.7); position: relative; z-index: 2; line-height: 1.1; }
   .balance-value small { font-size: 11px; color: #00d4ff; }
@@ -58,6 +166,7 @@
   .coin-bottom-text { text-align: center; font-size: 11px; color: #00d4ff; letter-spacing: 3px; margin-top: 5px; font-weight: 900; text-shadow: 0 0 15px rgba(0,212,255,0.8); position: relative; z-index: 4; }
   .coin-per-tap { text-align: center; font-size: 11px; color: #a0aec0; margin-top: 3px; position: relative; z-index: 4; }
   .coin-per-tap strong { color: #00d4ff; }
+
   .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 8px; margin: 15px 0; }
   .grid-btn { background: linear-gradient(135deg, rgba(0,100,200,0.4), rgba(0,60,150,0.3)); border: 1px solid rgba(0,180,255,0.3); border-radius: 14px; padding: 12px 5px; text-align: center; cursor: pointer; transition: transform 0.1s; }
   .grid-btn:active { transform: scale(0.95); }
@@ -104,11 +213,6 @@
   .side-item-info h4 { font-size: 12px; font-weight: 900; margin-bottom: 2px; }
   .side-item-info p { font-size: 9px; color: #7a8ba5; }
   .side-item-arrow { color: #00d4ff; font-size: 16px; }
-  .stats-bar { background: linear-gradient(135deg, rgba(0,100,200,0.2), rgba(0,60,150,0.1)); border: 1px solid rgba(0,180,255,0.3); border-radius: 16px; padding: 12px; margin: 15px 0; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
-  .stat-box { text-align: center; }
-  .stat-box-icon { font-size: 16px; margin-bottom: 2px; }
-  .stat-box-label { font-size: 8px; color: #7a8ba5; letter-spacing: 0.5px; }
-  .stat-box-value { font-size: 12px; font-weight: 900; color: #00d4ff; margin-top: 2px; }
   .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: linear-gradient(180deg, rgba(10,20,35,0.98), rgba(5,10,20,1)); border-top: 1px solid rgba(0,180,255,0.3); display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr; padding: 8px 0 12px; z-index: 100; box-shadow: 0 -10px 30px rgba(0,0,0,0.7); backdrop-filter: blur(15px); }
   .nav-item { display: flex; flex-direction: column; align-items: center; gap: 3px; color: #4a5568; font-size: 8px; letter-spacing: 0.5px; cursor: pointer; padding: 5px 0; transition: color 0.2s; font-weight: bold; }
   .nav-item.active { color: #00d4ff; }
@@ -200,13 +304,17 @@
   .puzzle-tile { aspect-ratio: 1; background: linear-gradient(135deg, #00d4ff, #0066ff); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 900; color: white; cursor: pointer; box-shadow: 0 0 8px rgba(0,212,255,0.4); transition: transform 0.1s; }
   .puzzle-tile.empty { background: rgba(15,30,55,0.4); box-shadow: none; color: transparent; }
   .puzzle-tile:active { transform: scale(0.9); }
-  .upgrade-item { background: rgba(15,30,55,0.7); border: 1px solid rgba(0,180,255,0.2); border-radius: 14px; padding: 14px; margin-bottom: 10px; display: flex; align-items: center; gap: 12px; }
-  .upgrade-icon { width: 44px; height: 44px; border-radius: 12px; background: rgba(0,180,255,0.15); border: 1px solid rgba(0,212,255,0.3); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
-  .upgrade-info { flex: 1; }
-  .upgrade-info h4 { font-size: 13px; font-weight: 900; margin-bottom: 3px; }
+  .upgrade-item { background: rgba(10,25,45,0.7); border: 1px solid rgba(0,150,255,0.2); border-radius: 16px; padding: 14px; margin-bottom: 10px; display: flex; align-items: center; gap: 12px; }
+  .upgrade-icon-wrap { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; position: relative; }
+  .upgrade-icon-wrap.tap { background: radial-gradient(circle, #00b4ff, #0050a0); box-shadow: 0 0 20px rgba(0,180,255,0.5); }
+  .upgrade-icon-wrap.energy { background: radial-gradient(circle, #00ff88, #008844); box-shadow: 0 0 20px rgba(0,255,136,0.5); }
+  .upgrade-icon-wrap.auto { background: radial-gradient(circle, #ffd700, #aa7700); box-shadow: 0 0 20px rgba(255,215,0,0.5); }
+  .upgrade-icon-wrap.regen { background: radial-gradient(circle, #00d4ff, #0066aa); box-shadow: 0 0 20px rgba(0,212,255,0.5); }
+  .upgrade-info { flex: 1; min-width: 0; }
+  .upgrade-info h4 { font-size: 13px; font-weight: 900; margin-bottom: 3px; color: white; }
   .upgrade-info p { font-size: 10px; color: #7a8ba5; margin-bottom: 3px; }
-  .upgrade-info .lvl { font-size: 9px; color: #00d4ff; font-weight: 900; }
-  .upgrade-btn { background: linear-gradient(135deg, #00b4ff, #0066ff); border: none; border-radius: 10px; padding: 8px 12px; color: white; font-size: 10px; font-weight: 900; cursor: pointer; letter-spacing: 0.5px; min-width: 75px; }
+  .upgrade-info .lvl { font-size: 10px; color: #00d4ff; font-weight: 900; }
+  .upgrade-btn { background: linear-gradient(135deg, #00b4ff, #0066ff); border: none; border-radius: 10px; padding: 8px 14px; color: white; font-size: 11px; font-weight: 900; cursor: pointer; letter-spacing: 0.5px; min-width: 70px; }
   .withdraw-option { background: rgba(15,30,55,0.8); border: 1px solid rgba(0,180,255,0.3); border-radius: 14px; padding: 14px; margin-bottom: 10px; display: flex; align-items: center; gap: 12px; cursor: pointer; transition: transform 0.1s; }
   .withdraw-option:active { transform: scale(0.98); }
   .withdraw-option-icon { width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; background: rgba(0,180,255,0.15); flex-shrink: 0; }
@@ -221,11 +329,12 @@
 </head>
 <body>
 
+<!-- HEADER -->
 <div class="header">
   <div class="header-left">
     <div class="menu-icon" onclick="navTo('settings')">☰</div>
     <div class="header-logo">
-      <div class="header-logo-icon">T</div>
+      <div class="header-logo-icon" id="headerLogo"></div>
       <div class="header-logo-text"><h1>TraxOfficial</h1><p>TAP · EARN · GROW</p></div>
     </div>
   </div>
@@ -238,6 +347,7 @@
   </div>
 </div>
 
+<!-- HOME -->
 <div class="tab-content active" id="tab-home">
   <div class="container">
     <div class="balance-row">
@@ -323,19 +433,25 @@
     <div class="side-item" onclick="navTo('friends')"><div class="side-item-icon">👥</div><div class="side-item-info"><h4>Referral</h4><p>+500 TRAX per friend</p></div><div class="side-item-arrow">›</div></div>
     <div class="side-item" onclick="navTo('lucky')"><div class="side-item-icon">📦</div><div class="side-item-info"><h4>Lucky Box</h4><p>Open for random rewards</p></div><div class="side-item-arrow">›</div></div>
     <div class="side-item" onclick="navTo('settings')"><div class="side-item-icon">⚙️</div><div class="side-item-info"><h4>Settings</h4><p>Sound & vibration</p></div><div class="side-item-arrow">›</div></div>
-    <div class="stats-bar">
-      <div class="stat-box"><div class="stat-box-icon">⚡</div><div class="stat-box-label">TAP POWER</div><div class="stat-box-value">+<span id="tapPower">1</span></div></div>
-      <div class="stat-box"><div class="stat-box-icon">🪙</div><div class="stat-box-label">AUTO EARN</div><div class="stat-box-value">+<span id="autoEarn">0</span>/hr</div></div>
-      <div class="stat-box"><div class="stat-box-icon">⭐</div><div class="stat-box-label">RANK</div><div class="stat-box-value">#<span id="rankNum">---</span></div></div>
-    </div>
     <div style="text-align:center;font-size:8px;color:#4a5568;margin:20px 0;line-height:1.8;letter-spacing:1px">TRAX OFFICIAL · SMALL TAPS BIG DREAMS<br>DEMO POINTS ONLY · NOT A REAL TOKEN</div>
   </div>
 </div>
 
-<div class="tab-content" id="tab-tasks"><div class="page-title">📋 Tasks</div><div id="fullTasksList"></div></div>
+<!-- TASKS -->
+<div class="tab-content" id="tab-tasks">
+  <div class="page-title-bar">
+    <div class="page-title-icon">📋</div>
+    <div class="page-title-text">Tasks</div>
+  </div>
+  <div id="fullTasksListNew"></div>
+</div>
 
+<!-- MINE -->
 <div class="tab-content" id="tab-mine">
-  <div class="page-title">⛏️ Mining</div>
+  <div class="page-title-bar">
+    <div class="page-title-icon">⛏️</div>
+    <div class="page-title-text">Mining</div>
+  </div>
   <div class="daily-card" style="flex-direction:column;text-align:center">
     <div class="daily-icon" style="font-size:60px">⛏️</div>
     <h3 style="margin:10px 0;color:#00d4ff">Auto Mining</h3>
@@ -345,8 +461,12 @@
   </div>
 </div>
 
+<!-- FRIENDS -->
 <div class="tab-content" id="tab-friends">
-  <div class="page-title">👥 Invite Friends</div>
+  <div class="page-title-bar">
+    <div class="page-title-icon">👥</div>
+    <div class="page-title-text">Referral</div>
+  </div>
   <div class="ref-card">
     <div class="ref-title">🎁 Invite & Earn</div>
     <div class="ref-sub">Har dost ke liye +500 TRAX</div>
@@ -355,8 +475,12 @@
   </div>
 </div>
 
+<!-- WALLET -->
 <div class="tab-content" id="tab-wallet">
-  <div class="page-title">💼 My Wallet</div>
+  <div class="page-title-bar">
+    <div class="page-title-icon">💼</div>
+    <div class="page-title-text">Wallet</div>
+  </div>
   <div class="balance-card" style="margin-bottom:15px">
     <div class="balance-label">◆ TOTAL BALANCE</div>
     <div class="balance-value"><span id="balance2">0</span> <small>TRAX</small></div>
@@ -367,69 +491,211 @@
     <div style="font-size:14px;font-weight:900;color:#ff9500;margin-bottom:4px">Coming Soon</div>
     <div style="font-size:11px;color:#a0aec0">TRAX coin launch hone ke baad withdraw available hoga</div>
   </div>
-  <div style="font-size:12px;font-weight:900;color:#a0aec0;margin-bottom:10px;letter-spacing:1px">◆ WITHDRAW OPTIONS (After Launch)</div>
   <div class="withdraw-option"><div class="withdraw-option-icon">💎</div><div class="withdraw-option-info"><h4>TON Wallet</h4><p>Tonkeeper, TON Space</p></div><span class="coming-soon-badge">SOON</span></div>
   <div class="withdraw-option"><div class="withdraw-option-icon">🟡</div><div class="withdraw-option-info"><h4>Binance Wallet</h4><p>Direct to Binance account</p></div><span class="coming-soon-badge">SOON</span></div>
   <div class="withdraw-option"><div class="withdraw-option-icon">✈️</div><div class="withdraw-option-info"><h4>Telegram Wallet</h4><p>@wallet in Telegram</p></div><span class="coming-soon-badge">SOON</span></div>
 </div>
 
-<div class="tab-content" id="tab-rank"><div class="page-title">🏆 Leaderboard</div><div id="rankList"></div></div>
-
-<div class="tab-content" id="tab-boosters">
-  <div class="page-title">🚀 Boosters</div>
-  <div class="side-item" onclick="buyBooster('tap', 40000, 1)"><div class="side-item-icon">⚡</div><div class="side-item-info"><h4>+1 Tap Power</h4><p>Cost: 40,000 TRAX</p></div><div class="side-item-arrow">›</div></div>
-  <div class="side-item" onclick="buyBooster('energy', 25000, 100)"><div class="side-item-icon">🔋</div><div class="side-item-info"><h4>Max Energy +100</h4><p>Cost: 25,000 TRAX</p></div><div class="side-item-arrow">›</div></div>
-  <div class="side-item" onclick="buyBooster('auto', 75000, 50)"><div class="side-item-icon">💰</div><div class="side-item-info"><h4>Auto Earning +50/hr</h4><p>Cost: 75,000 TRAX</p></div><div class="side-item-arrow">›</div></div>
+<!-- RANK -->
+<div class="tab-content" id="tab-rank">
+  <div class="page-title-bar">
+    <div class="page-title-icon">🏆</div>
+    <div class="page-title-text">Leaderboard</div>
+  </div>
+  <div id="rankList"></div>
 </div>
 
-<div class="tab-content" id="tab-upgrades"><div class="page-title">⬆️ Upgrades</div><div id="upgradesList"></div></div>
+<!-- BOOSTERS (NEW) -->
+<div class="tab-content" id="tab-boosters">
+  <div class="page-title-bar">
+    <div class="page-title-icon">🚀</div>
+    <div class="page-title-text">Boosters</div>
+  </div>
 
+  <div class="booster-card">
+    <div class="booster-header">
+      <div class="booster-header-icon">👆</div>
+      <div>
+        <div class="booster-header-text">Boosters</div>
+        <div class="booster-header-desc">Increase your earnings</div>
+      </div>
+    </div>
+
+    <div class="booster-row">
+      <div class="booster-icon auto-tap">👆</div>
+      <div class="booster-info">
+        <h4>Auto Tap</h4>
+        <p>+50% per tap</p>
+      </div>
+      <div class="booster-timer" id="autoTapTimer">10:00</div>
+      <button class="booster-btn purple" id="autoTapBtn" onclick="activateBooster('autoTap')">Activate</button>
+    </div>
+
+    <div class="booster-row">
+      <div class="booster-icon energy">⚡</div>
+      <div class="booster-info">
+        <h4>Energy Refill</h4>
+        <p>+20 Energy</p>
+      </div>
+      <div class="booster-timer" id="energyTimer">10:00</div>
+      <button class="booster-btn blue" id="energyBtn" onclick="activateBooster('energy')">Activate</button>
+    </div>
+
+    <div class="booster-row">
+      <div class="booster-icon double">2x</div>
+      <div class="booster-info">
+        <h4>2x Earnings</h4>
+        <p>Double your rewards</p>
+      </div>
+      <div class="booster-timer" id="doubleTimer">30:00</div>
+      <button class="booster-btn magenta" id="doubleBtn" onclick="activateBooster('double')">Activate</button>
+    </div>
+
+    <div class="booster-row">
+      <div class="booster-icon offline">⏰</div>
+      <div class="booster-info">
+        <h4>Offline Profit</h4>
+        <p>Earn while you're away</p>
+      </div>
+      <div class="booster-timer" id="offlineTimer">6:00:00</div>
+      <button class="booster-btn green" id="offlineBtn" onclick="activateBooster('offline')">Activate</button>
+    </div>
+  </div>
+</div>
+
+<!-- UPGRADES (NEW) -->
+<div class="tab-content" id="tab-upgrades">
+  <div class="page-title-bar">
+    <div class="page-title-icon">⬆️</div>
+    <div class="page-title-text">Upgrades</div>
+  </div>
+  <div id="upgradesList"></div>
+</div>
+
+<!-- EARN -->
 <div class="tab-content" id="tab-earn">
-  <div class="page-title">🎁 Earn More</div>
+  <div class="page-title-bar">
+    <div class="page-title-icon">🎁</div>
+    <div class="page-title-text">Earn More</div>
+  </div>
   <div class="side-item" onclick="navTo('friends')"><div class="side-item-icon">👥</div><div class="side-item-info"><h4>Invite Friends</h4><p>+500 TRAX per friend</p></div><div class="side-item-arrow">›</div></div>
   <div class="side-item" onclick="openSpin()"><div class="side-item-icon">🎰</div><div class="side-item-info"><h4>Spin Wheel</h4><p>Win up to 1000 TRAX</p></div><div class="side-item-arrow">›</div></div>
   <div class="side-item" onclick="navTo('lucky')"><div class="side-item-icon">📦</div><div class="side-item-info"><h4>Lucky Box</h4><p>Random rewards</p></div><div class="side-item-arrow">›</div></div>
   <div class="side-item" onclick="navTo('sticker')"><div class="side-item-icon">🎨</div><div class="side-item-info"><h4>Sticker Shop</h4><p>50 stickers for bonuses</p></div><div class="side-item-arrow">›</div></div>
 </div>
 
+<!-- STICKER -->
 <div class="tab-content" id="tab-sticker">
-  <div class="page-title">🎨 Sticker Shop</div>
+  <div class="page-title-bar">
+    <div class="page-title-icon">🎨</div>
+    <div class="page-title-text">Sticker Shop</div>
+  </div>
   <p style="font-size:10px;color:#a0aec0;margin-bottom:10px;text-align:center">Har sticker ko max (Lv 5) karein — tab agla unlock hoga!</p>
   <div id="stickerShopContainer"></div>
 </div>
 
+<!-- LUCKY -->
 <div class="tab-content" id="tab-lucky">
-  <div class="page-title">📦 Lucky Box</div>
+  <div class="page-title-bar">
+    <div class="page-title-icon">📦</div>
+    <div class="page-title-text">Lucky Box</div>
+  </div>
   <p style="text-align:center;color:#a0aec0;font-size:12px;margin-bottom:15px">Box kholne ke liye tap karein!</p>
   <div class="lucky-box" id="luckyBox" onclick="openLuckyBox()">📦</div>
   <p style="text-align:center;color:#7a8ba5;font-size:11px;margin-top:15px">Keys: <span id="luckyKeys">1</span></p>
 </div>
 
+<!-- PROFILE (NEW - Screenshot 1) -->
 <div class="tab-content" id="tab-profile">
-  <div class="page-title">👤 Profile</div>
-  <div class="ref-card">
-    <div style="width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,#00d4ff,#0066ff);display:flex;align-items:center;justify-content:center;font-size:50px;border:3px solid #00d4ff;margin:0 auto 15px;box-shadow:0 0 25px rgba(0,212,255,0.6);background-size:cover;background-position:center" id="profileAvatarBig">👤</div>
-    <h3 style="color:#00d4ff;margin-bottom:5px" id="profileName">Player</h3>
-    <p style="font-size:11px;color:#7a8ba5" id="profileId">ID: ---</p>
-    <button class="daily-btn" onclick="openEditProfile()" style="margin-top:15px;width:100%">✏️ Edit Name & Avatar</button>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:20px">
-      <div><div style="font-size:18px;font-weight:900;color:#00d4ff" id="profBal">0</div><div style="font-size:9px;color:#7a8ba5">BALANCE</div></div>
-      <div><div style="font-size:18px;font-weight:900;color:#00d4ff" id="profTaps">0</div><div style="font-size:9px;color:#7a8ba5">TAPS</div></div>
-      <div><div style="font-size:18px;font-weight:900;color:#00d4ff" id="profLvl">1</div><div style="font-size:9px;color:#7a8ba5">LEVEL</div></div>
+  <div style="margin-bottom:15px"></div>
+  
+  <!-- Profile Card -->
+  <div class="profile-card">
+    <div class="profile-top">
+      <div class="profile-avatar-wrap">
+        <div class="profile-avatar-ring"></div>
+        <div class="profile-avatar" id="profileAvatarBig">👤</div>
+      </div>
+      <div class="profile-info">
+        <div class="profile-name">
+          <span id="profileName">TraxOfficial</span>
+          <span class="verified-badge">✓</span>
+        </div>
+        <div class="profile-tagline">Tap. Earn. Grow.</div>
+      </div>
+    </div>
+    <div class="profile-level-row">
+      <div class="profile-level-label">Level <span id="profLvlText">1</span></div>
+      <div class="profile-level-xp"><span id="profXpText">0</span> / 3,000</div>
+    </div>
+    <div class="profile-level-bar">
+      <div class="profile-level-fill" id="profLevelFill" style="width:0%"></div>
     </div>
   </div>
+
+  <!-- Stats Row -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-card-label">Total Taps</div>
+      <div class="stat-card-value" id="profTaps">0</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-label">Total Earned</div>
+      <div class="stat-card-value" id="profEarned">0</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-label">Rank</div>
+      <div class="stat-card-value">#<span id="profRank">---</span></div>
+    </div>
+  </div>
+
+  <!-- Menu List -->
+  <div class="menu-list">
+    <div class="menu-item" onclick="navTo('wallet')">
+      <div class="menu-icon-box wallet-icon">💼</div>
+      <div class="menu-item-info">
+        <h4>My Wallet</h4>
+      </div>
+      <div class="menu-item-arrow">›</div>
+    </div>
+    <div class="menu-item" onclick="navTo('friends')">
+      <div class="menu-icon-box referral-icon">👥</div>
+      <div class="menu-item-info">
+        <h4>Referral</h4>
+        <p class="green">+500 TRAX per friend</p>
+      </div>
+      <div class="menu-item-arrow">›</div>
+    </div>
+    <div class="menu-item" onclick="navTo('settings')">
+      <div class="menu-icon-box settings-icon">⚙️</div>
+      <div class="menu-item-info">
+        <h4>Settings</h4>
+      </div>
+      <div class="menu-item-arrow">›</div>
+    </div>
+  </div>
+
+  <button class="daily-btn" onclick="openEditProfile()" style="margin-top:15px;width:100%">✏️ Edit Name & Avatar</button>
 </div>
 
+<!-- SETTINGS -->
 <div class="tab-content" id="tab-settings">
-  <div class="page-title">⚙️ Settings</div>
+  <div class="page-title-bar">
+    <div class="page-title-icon">⚙️</div>
+    <div class="page-title-text">Settings</div>
+  </div>
   <div class="setting-row"><div class="label">🔊 Sound Effects</div><div class="toggle" id="soundToggle" onclick="toggleSetting('sound')"></div></div>
   <div class="setting-row"><div class="label">📳 Vibration</div><div class="toggle" id="vibrationToggle" onclick="toggleSetting('vibration')"></div></div>
   <div class="side-item" onclick="navTo('editname')"><div class="side-item-icon">✏️</div><div class="side-item-info"><h4>Edit Name & Avatar</h4><p>Change your profile</p></div></div>
   <div class="side-item" onclick="resetData()"><div class="side-item-icon">🗑️</div><div class="side-item-info"><h4>Reset Data</h4><p>Clear all progress</p></div></div>
 </div>
 
+<!-- EDIT NAME -->
 <div class="tab-content" id="tab-editname">
-  <div class="page-title">✏️ Edit Profile</div>
+  <div class="page-title-bar">
+    <div class="page-title-icon">✏️</div>
+    <div class="page-title-text">Edit Profile</div>
+  </div>
   <div class="ref-card">
     <h3 style="color:#00d4ff;margin-bottom:15px">Your Name</h3>
     <input type="text" class="input-field" id="usernameInput" placeholder="Enter unique name" maxlength="20">
@@ -444,6 +710,7 @@
   </div>
 </div>
 
+<!-- BOTTOM NAV -->
 <div class="bottom-nav">
   <div class="nav-item active" data-tab="home" onclick="navClick(this, 'home')"><div class="nav-icon">🏠</div><div>Home</div></div>
   <div class="nav-item" data-tab="tasks" onclick="navClick(this, 'tasks')"><div class="nav-icon">📋</div><div>Tasks</div></div>
@@ -452,6 +719,7 @@
   <div class="nav-item" data-tab="wallet" onclick="navClick(this, 'wallet')"><div class="nav-icon">💼</div><div>Wallet</div></div>
 </div>
 
+<!-- MODAL -->
 <div class="modal" id="modal">
   <div class="modal-content">
     <h3 id="modalTitle">Notice</h3>
@@ -460,6 +728,7 @@
   </div>
 </div>
 
+<!-- SPIN MODAL -->
 <div class="modal" id="spinModal">
   <div class="modal-content" style="max-width:380px">
     <h3>🎰 Spin to Win!</h3>
@@ -476,6 +745,7 @@
   </div>
 </div>
 
+<!-- CRASH MODAL -->
 <div class="modal" id="crashModal">
   <div class="modal-content" style="max-width:380px">
     <h3 style="display:flex;justify-content:space-between;align-items:center">🚀 Crash Game <span onclick="showCrashInfo()" style="width:28px;height:28px;border-radius:50%;background:rgba(0,212,255,0.2);border:2px solid #00d4ff;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:#00d4ff;cursor:pointer">i</span></h3>
@@ -497,6 +767,7 @@
   </div>
 </div>
 
+<!-- CRASH INFO -->
 <div class="modal" id="crashInfoModal">
   <div class="modal-content" style="max-width:400px;text-align:left">
     <h3 style="text-align:center">🚀 How to Play Crash</h3>
@@ -509,30 +780,31 @@
       <p style="margin-bottom:10px"><b style="color:#00d4ff">🎰 Rarity Chances:</b></p>
       <div style="background:rgba(160,174,192,0.1);border-left:3px solid #a0aec0;padding:8px 12px;border-radius:6px;margin-bottom:8px">
         <b style="color:#a0aec0">🔘 COMMON — 92%</b><br>
-        <span style="font-size:11px">1.5x se 4x tak — zyada tar games yahi hoti hain</span>
+        <span style="font-size:11px">1.5x se 4x tak</span>
       </div>
       <div style="background:rgba(0,212,255,0.1);border-left:3px solid #00d4ff;padding:8px 12px;border-radius:6px;margin-bottom:8px">
         <b style="color:#00d4ff">💎 RARE — 6.5%</b><br>
-        <span style="font-size:11px">4x se 20x tak — 15 games mein 1 baar</span>
+        <span style="font-size:11px">4x se 20x tak</span>
       </div>
       <div style="background:rgba(153,0,255,0.1);border-left:3px solid #9900ff;padding:8px 12px;border-radius:6px;margin-bottom:8px">
         <b style="color:#9900ff">🔥 EPIC — 1.25%</b><br>
-        <span style="font-size:11px">20x se 50x tak — 80 games mein 1 baar</span>
+        <span style="font-size:11px">20x se 50x tak</span>
       </div>
       <div style="background:rgba(255,150,0,0.1);border-left:3px solid #ff9500;padding:8px 12px;border-radius:6px;margin-bottom:15px">
         <b style="color:#ff9500">⭐ LEGENDARY — 0.25%</b><br>
-        <span style="font-size:11px">50x se 100x tak — 400 games mein 1 baar</span>
+        <span style="font-size:11px">50x se 100x tak</span>
       </div>
       <p style="margin-bottom:10px"><b style="color:#00d4ff">💡 Tips:</b></p>
       <p style="margin-bottom:6px">✓ Chhoti bet se shuru karein</p>
       <p style="margin-bottom:6px">✓ 2x ya 3x par cash out karna safe hai</p>
-      <p style="margin-bottom:6px">✓ Zyada lalach bura hai — crash ho sakta hai</p>
+      <p style="margin-bottom:6px">✓ Zyada lalach bura hai</p>
       <p>✓ Kismat ka khel hai — soch samajh kar khelein</p>
     </div>
     <button class="modal-btn" onclick="closeCrashInfo()" style="display:block;width:100%">Samajh Gaya ✓</button>
   </div>
 </div>
 
+<!-- PUZZLE MODAL -->
 <div class="modal" id="puzzleModal">
   <div class="modal-content" style="max-width:400px">
     <h3>🧩 Puzzle 7x7</h3>
@@ -548,6 +820,37 @@
   const tg = window.Telegram ? window.Telegram.WebApp : null;
   if (tg) { tg.ready(); tg.expand(); if (tg.setHeaderColor) tg.setHeaderColor('#050a14'); }
 
+  // ===== TRAX LOGO SVG =====
+  function getTraxLogoSVG(size) {
+    return '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">' +
+      '<defs>' +
+      '<radialGradient id="ringGrad" cx="50%" cy="50%">' +
+      '<stop offset="0%" stop-color="#00d4ff"/>' +
+      '<stop offset="50%" stop-color="#0088ff"/>' +
+      '<stop offset="100%" stop-color="#9900ff"/>' +
+      '</radialGradient>' +
+      '<radialGradient id="innerBg" cx="40%" cy="35%">' +
+      '<stop offset="0%" stop-color="#0a2540"/>' +
+      '<stop offset="100%" stop-color="#030812"/>' +
+      '</radialGradient>' +
+      '<linearGradient id="tGrad" x1="0%" y1="0%" x2="100%" y2="100%">' +
+      '<stop offset="0%" stop-color="#ffffff"/>' +
+      '<stop offset="50%" stop-color="#a0e8ff"/>' +
+      '<stop offset="100%" stop-color="#00a8ff"/>' +
+      '</linearGradient>' +
+      '<filter id="glow"><feGaussianBlur stdDeviation="2" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>' +
+      '</defs>' +
+      '<circle cx="50" cy="50" r="48" fill="url(#ringGrad)" filter="url(#glow)"/>' +
+      '<circle cx="50" cy="50" r="42" fill="url(#innerBg)" stroke="rgba(0,212,255,0.5)" stroke-width="0.5"/>' +
+      '<path d="M 28 38 L 72 38 L 72 46 L 58 46 L 58 72 L 42 72 L 42 46 L 28 46 Z" fill="url(#tGrad)" stroke="rgba(255,255,255,0.6)" stroke-width="0.5" stroke-linejoin="round"/>' +
+      '<path d="M 58 46 L 72 46 L 72 38 L 58 38 Z" fill="#00d4ff" opacity="0.6"/>' +
+      '</svg>';
+  }
+
+  // Apply logo to header
+  document.getElementById('headerLogo').innerHTML = getTraxLogoSVG(40);
+
+  // ===== AUDIO =====
   let audioCtx = null;
   function initAudio() { if (!audioCtx) { try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e) {} } }
   function playSound(type) {
@@ -658,6 +961,8 @@
   let luckyKeys = parseInt(localStorage.getItem('trax_luckyKeys') || '1');
   let miningActive = false;
   let stickerLevels = JSON.parse(localStorage.getItem('trax_stickers_v4') || '{}');
+  let boosters = JSON.parse(localStorage.getItem('trax_boosters') || '{}');
+  let totalEarned = parseInt(localStorage.getItem('trax_totalEarned') || '0');
 
   const userId = tg && tg.initDataUnsafe && tg.initDataUnsafe.user ? tg.initDataUnsafe.user.id : Math.floor(Math.random() * 9000) + 1000;
 
@@ -714,6 +1019,7 @@
   function applyCoinTier() {
     const tier = getCurrentCoinTier();
     const btn = document.getElementById('coinBtn');
+    if (!btn) return;
     btn.style.setProperty('--coin-c1', tier.c1);
     btn.style.setProperty('--coin-c2', tier.c2);
     btn.style.setProperty('--coin-c3', tier.c3);
@@ -805,7 +1111,6 @@
     const prevLevel = stickerLevels[prevSticker.id] || 0;
     return prevLevel >= MAX_STICKER_LEVEL;
   }
-
   function getStickerUnlockReq(stickerId) {
     const idx = STICKERS.findIndex(s => s.id === stickerId);
     if (idx === 0) return null;
@@ -851,7 +1156,12 @@
     }); return total;
   }
 
-  function getEffectiveTapPower() { return tapPower + getTapBonusFromStickers(); }
+  function getEffectiveTapPower() {
+    let base = tapPower + getTapBonusFromStickers();
+    if (boosters.autoTapActive) base = Math.floor(base * 1.5);
+    if (boosters.doubleActive) base = base * 2;
+    return base;
+  }
   function getEffectiveAutoEarn() { return autoEarn + getAutoBonusFromStickers(); }
   function getEnergyRegen() { return 1 + parseInt(localStorage.getItem('upg_energyRegen') || '0') + getEnergyRegenBonusFromStickers(); }
   function getMineRate() { return 5 + getMiningBonusFromStickers(); }
@@ -873,15 +1183,110 @@
     return 100.0;
   }
 
+  // ===== BOOSTER SYSTEM =====
+  const BOOSTER_DURATIONS = {
+    autoTap: 10 * 60 * 1000,
+    energy: 10 * 60 * 1000,
+    double: 30 * 60 * 1000,
+    offline: 6 * 60 * 60 * 1000
+  };
+  const BOOSTER_COOLDOWNS = {
+    autoTap: 30 * 60 * 1000,
+    energy: 30 * 60 * 1000,
+    double: 60 * 60 * 1000,
+    offline: 12 * 60 * 60 * 1000
+  };
+
+  function activateBooster(id) {
+    const now = Date.now();
+    const lastUsed = boosters[id + 'LastUsed'] || 0;
+    const cooldown = BOOSTER_COOLDOWNS[id];
+    if (now - lastUsed < cooldown) {
+      const remaining = cooldown - (now - lastUsed);
+      const mins = Math.ceil(remaining / 60000);
+      showModal('⏰ Cooldown', 'Ye booster abhi cooldown par hai.\n\nAgla use: ' + mins + ' minute baad');
+      return;
+    }
+    if (id === 'autoTap') {
+      boosters.autoTapActive = true;
+      boosters.autoTapLastUsed = now;
+      showModal('👆 Auto Tap Active!', 'Agle 10 minute tak har tap 50% zyada coins dega!');
+    } else if (id === 'energy') {
+      energy = Math.min(getEffectiveMaxEnergy(), energy + 20);
+      boosters.energyLastUsed = now;
+      updateUI();
+      showModal('⚡ Energy Refilled!', '+20 Energy mile!');
+    } else if (id === 'double') {
+      boosters.doubleActive = true;
+      boosters.doubleLastUsed = now;
+      showModal('2️⃣ 2x Earnings Active!', 'Agle 30 minute tak saare rewards double milenge!');
+    } else if (id === 'offline') {
+      boosters.offlineActive = true;
+      boosters.offlineLastUsed = now;
+      showModal('⏰ Offline Profit Active!', 'Agle 6 ghante tak aap offline bhi coins kamayenge!');
+    }
+    saveBoosters();
+    playSound('win'); vibrate('success');
+    updateBoosterUI();
+  }
+
+  function updateBoosterUI() {
+    const now = Date.now();
+    ['autoTap', 'energy', 'double', 'offline'].forEach(id => {
+      const lastUsed = boosters[id + 'LastUsed'] || 0;
+      const cooldown = BOOSTER_COOLDOWNS[id];
+      const timerEl = document.getElementById(id + 'Timer');
+      const btnEl = document.getElementById(id + 'Btn');
+      if (!timerEl || !btnEl) return;
+      const diff = now - lastUsed;
+      if (diff < cooldown) {
+        const remaining = cooldown - diff;
+        const hrs = Math.floor(remaining / 3600000);
+        const mins = Math.floor((remaining % 3600000) / 60000);
+        const secs = Math.floor((remaining % 60000) / 1000);
+        if (hrs > 0) timerEl.textContent = hrs + ':' + String(mins).padStart(2, '0') + ':' + String(secs).padStart(2, '0');
+        else timerEl.textContent = mins + ':' + String(secs).padStart(2, '0');
+        btnEl.disabled = true;
+        btnEl.textContent = 'Cooldown';
+      } else {
+        if (id === 'autoTap') timerEl.textContent = '10:00';
+        if (id === 'energy') timerEl.textContent = '10:00';
+        if (id === 'double') timerEl.textContent = '30:00';
+        if (id === 'offline') timerEl.textContent = '6:00:00';
+        btnEl.disabled = false;
+        btnEl.textContent = 'Activate';
+      }
+    });
+  }
+
+  function saveBoosters() { localStorage.setItem('trax_boosters', JSON.stringify(boosters)); }
+
+  function checkBoosterExpiry() {
+    const now = Date.now();
+    let changed = false;
+    if (boosters.autoTapActive && now - boosters.autoTapLastUsed > BOOSTER_DURATIONS.autoTap) {
+      boosters.autoTapActive = false; changed = true;
+    }
+    if (boosters.doubleActive && now - boosters.doubleLastUsed > BOOSTER_DURATIONS.double) {
+      boosters.doubleActive = false; changed = true;
+    }
+    if (boosters.offlineActive && now - boosters.offlineLastUsed > BOOSTER_DURATIONS.offline) {
+      boosters.offlineActive = false; changed = true;
+    }
+    if (changed) saveBoosters();
+  }
+
   function init() {
     document.getElementById('refLink').textContent = 'https://t.me/TraxOfficial_bot?start=ref' + userId;
-    document.getElementById('profileName').textContent = userName || 'Set Name';
-    document.getElementById('profileId').textContent = 'ID: ' + userId;
+    document.getElementById('profileName').textContent = userName || 'TraxOfficial';
     document.getElementById('usernameInput').value = userName;
     updateAvatarDisplays();
     buildAvatarGrid();
-    drawTasks(); drawRank(); drawStickers(); drawUpgrades(); drawBetSelector(); updateSettingsUI(); updateUI();
+    drawTasks(); drawTasksNew(); drawRank(); drawStickers(); drawUpgrades(); drawBetSelector(); updateSettingsUI(); updateUI();
     applyCoinTier();
+    updateBoosterUI();
+    setInterval(updateBoosterUI, 1000);
+    setInterval(checkBoosterExpiry, 5000);
     checkFirstTime();
   }
 
@@ -893,23 +1298,73 @@
       { icon: '👥', name: 'Invite 5 Friends', reward: 5000, done: false }
     ];
     const homeBox = document.getElementById('homeTasks');
-    const fullBox = document.getElementById('fullTasksList');
-    homeBox.innerHTML = ''; fullBox.innerHTML = '';
+    if (!homeBox) return;
+    homeBox.innerHTML = '';
     tasks.forEach((t, i) => {
       const html = '<div class="task-icon">' + t.icon + '</div><div class="task-info"><h4>' + t.name + '</h4><div class="reward">+' + t.reward + ' TRAX</div></div><button class="task-btn ' + (t.done ? 'done' : '') + '" onclick="doTask(' + i + ',' + t.reward + ')">' + (t.done ? '✓ DONE' : 'GO') + '</button>';
       const e1 = document.createElement('div'); e1.className = 'task-item'; e1.innerHTML = html; homeBox.appendChild(e1);
-      const e2 = document.createElement('div'); e2.className = 'task-item'; e2.innerHTML = html; fullBox.appendChild(e2);
     });
+  }
+
+  // ===== NEW TASKS PAGE (Screenshot 3) =====
+  function drawTasksNew() {
+    const box = document.getElementById('fullTasksListNew');
+    if (!box) return;
+    box.innerHTML = '';
+    const tasks = [
+      { id: 'tg', icon: '📢', iconClass: 'telegram', name: 'Join Telegram Channel', reward: 1000, done: localStorage.getItem('task_tg') === 'done' },
+      { id: 'x', icon: '𝕏', iconClass: 'twitter', name: 'Follow on X (Twitter)', reward: 1000, done: localStorage.getItem('task_x') === 'done' },
+      { id: 'video', icon: '▶', iconClass: 'youtube', name: 'Watch Video', reward: 2000, done: localStorage.getItem('task_video') === 'done' },
+      { id: 'invite', icon: '👥', iconClass: 'invite', name: 'Invite 5 Friends', reward: 5000, done: false, progress: 2, total: 5 }
+    ];
+    tasks.forEach(t => {
+      const el = document.createElement('div');
+      el.className = 'task-row' + (t.done ? ' done' : ' ready');
+      let actionHtml = '';
+      if (t.done) {
+        actionHtml = '<button class="task-btn done">✓ DONE</button>';
+      } else if (t.id === 'invite') {
+        actionHtml = '<button class="task-btn go" onclick="navTo(\'friends\')">GO</button>';
+      } else {
+        actionHtml = '<button class="task-btn go" onclick="doTaskNew(\'' + t.id + '\',' + t.reward + ')">GO</button>';
+      }
+      let progressHtml = '';
+      if (t.id === 'invite' && t.progress !== undefined) {
+        progressHtml = '<div class="task-progress-bar"><div class="task-progress-fill" style="width:' + (t.progress/t.total*100) + '%"></div></div>';
+      }
+      el.innerHTML = 
+        '<div class="task-icon-wrap ' + t.iconClass + '">' + t.icon + '</div>' +
+        '<div class="task-content">' +
+          '<div class="task-title">' + t.name + '</div>' +
+          '<div class="task-reward-row"><span class="coin-emoji">🪙</span> <span class="reward-amount">+' + t.reward.toLocaleString() + '</span> TRAX</div>' +
+          progressHtml +
+        '</div>' +
+        actionHtml;
+      box.appendChild(el);
+    });
+  }
+
+  function doTaskNew(id, reward) {
+    if (localStorage.getItem('task_' + id) === 'done') { showModal('✅ Done', 'Aap ye task pehle kar chuke hain.'); return; }
+    localStorage.setItem('task_' + id, 'done');
+    balance += reward;
+    totalEarned += reward;
+    updateUI(); save();
+    playSound('win'); vibrate('success');
+    showModal('🎉 Task Complete!', '+' + reward + ' TRAX mile!');
+    drawTasks(); drawTasksNew();
   }
 
   function doTask(idx, reward) {
     const keys = ['task_tg', 'task_x', 'task_video', 'task_invite'];
     if (localStorage.getItem(keys[idx]) === 'done') { showModal('✅ Done', 'Aap ye task pehle kar chuke hain.'); return; }
     localStorage.setItem(keys[idx], 'done');
-    balance += reward; updateUI(); save();
+    balance += reward;
+    totalEarned += reward;
+    updateUI(); save();
     playSound('win'); vibrate('success');
     showModal('🎉 Task Complete!', '+' + reward + ' TRAX mile!');
-    drawTasks();
+    drawTasks(); drawTasksNew();
   }
 
   function drawRank() {
@@ -928,11 +1383,15 @@
       list.appendChild(el);
     });
     const myIdx = all.findIndex(u => u.name.includes('(You)'));
-    document.getElementById('rankNum').textContent = myIdx + 1;
+    const rankNum = document.getElementById('rankNum');
+    if (rankNum) rankNum.textContent = myIdx + 1;
+    const profRank = document.getElementById('profRank');
+    if (profRank) profRank.textContent = myIdx + 1;
   }
 
   function drawStickers() {
     const container = document.getElementById('stickerShopContainer');
+    if (!container) return;
     container.innerHTML = '';
     const tiers = [
       { id: 'common', label: '◆ COMMON' },
@@ -981,18 +1440,26 @@
 
   function drawUpgrades() {
     const upgrades = [
-      { id: 'tapPower', icon: '⚡', name: 'Tap Power', desc: '+1 per tap', baseCost: 5000, multiplier: 1.5, level: parseInt(localStorage.getItem('upg_tapPower') || '0') },
-      { id: 'maxEnergy', icon: '🔋', name: 'Max Energy', desc: '+50 max energy', baseCost: 3000, multiplier: 1.4, level: parseInt(localStorage.getItem('upg_maxEnergy') || '0') },
-      { id: 'autoEarn', icon: '💰', name: 'Auto Earning', desc: '+5 TRAX/hr', baseCost: 15000, multiplier: 1.6, level: parseInt(localStorage.getItem('upg_autoEarn') || '0') },
-      { id: 'energyRegen', icon: '⚡', name: 'Energy Regen', desc: '+1 per 2 sec', baseCost: 20000, multiplier: 1.7, level: parseInt(localStorage.getItem('upg_energyRegen') || '0') }
+      { id: 'tapPower', icon: '⚡', iconClass: 'tap', name: 'Tap Power', desc: '+1 per tap', baseCost: 5000, multiplier: 1.5, level: parseInt(localStorage.getItem('upg_tapPower') || '0') },
+      { id: 'maxEnergy', icon: '🔋', iconClass: 'energy', name: 'Max Energy', desc: '+50 max energy', baseCost: 3000, multiplier: 1.4, level: parseInt(localStorage.getItem('upg_maxEnergy') || '0') },
+      { id: 'autoEarn', icon: '💰', iconClass: 'auto', name: 'Auto Earning', desc: '+5 TRAX/hr', baseCost: 15000, multiplier: 1.6, level: parseInt(localStorage.getItem('upg_autoEarn') || '0') },
+      { id: 'energyRegen', icon: '⚡', iconClass: 'regen', name: 'Energy Regen', desc: '+1 per 2 sec', baseCost: 20000, multiplier: 1.7, level: parseInt(localStorage.getItem('upg_energyRegen') || '0') }
     ];
     const box = document.getElementById('upgradesList');
+    if (!box) return;
     box.innerHTML = '';
     upgrades.forEach(u => {
       const cost = Math.floor(u.baseCost * Math.pow(u.multiplier, u.level));
       const el = document.createElement('div');
       el.className = 'upgrade-item';
-      el.innerHTML = '<div class="upgrade-icon">' + u.icon + '</div><div class="upgrade-info"><h4>' + u.name + '</h4><p>' + u.desc + '</p><div class="lvl">Level: ' + u.level + '</div></div><button class="upgrade-btn" onclick="buyUpgrade(\'' + u.id + '\',' + cost + ')">' + cost.toLocaleString() + '</button>';
+      el.innerHTML = 
+        '<div class="upgrade-icon-wrap ' + u.iconClass + '">' + u.icon + '</div>' +
+        '<div class="upgrade-info">' +
+          '<h4>' + u.name + '</h4>' +
+          '<p>' + u.desc + '</p>' +
+          '<div class="lvl">Level: ' + u.level + '</div>' +
+        '</div>' +
+        '<button class="upgrade-btn" onclick="buyUpgrade(\'' + u.id + '\',' + cost + ')">' + cost.toLocaleString() + '</button>';
       box.appendChild(el);
     });
   }
@@ -1018,28 +1485,41 @@
     document.getElementById('energyText').textContent = energy;
     document.getElementById('maxEnergyText').textContent = getEffectiveMaxEnergy();
     document.getElementById('energyBar').style.width = (energy / getEffectiveMaxEnergy() * 100) + '%';
-    document.getElementById('tapPower').textContent = getEffectiveTapPower();
-    document.getElementById('tapPowerText').textContent = getEffectiveTapPower();
+    const tp = getEffectiveTapPower();
+    document.getElementById('tapPower').textContent = tp;
+    document.getElementById('tapPowerText').textContent = tp;
     document.getElementById('autoEarn').textContent = getEffectiveAutoEarn();
     document.getElementById('luckyKeys').textContent = luckyKeys;
     const mineRateEl = document.getElementById('mineRateText');
     if (mineRateEl) mineRateEl.textContent = getMineRate();
 
-    const LEVEL_XP = 50000;
-    const level = Math.floor(balance / LEVEL_XP) + 1;
-    const xpInLevel = balance % LEVEL_XP;
+    // Header level
+    const LEVEL_XP = 3000;
+    const level = Math.floor(totalEarned / LEVEL_XP) + 1;
+    const xpInLevel = totalEarned % LEVEL_XP;
     document.getElementById('levelNum').textContent = level;
     document.getElementById('diamondLevel').textContent = level;
     document.getElementById('diamondXp').textContent = Math.floor(xpInLevel).toLocaleString();
     document.getElementById('diamondFill').style.width = (xpInLevel / LEVEL_XP * 100) + '%';
-    document.getElementById('profLvl').textContent = level;
-    document.getElementById('profBal').textContent = Math.floor(balance).toLocaleString();
-    document.getElementById('profTaps').textContent = totalTaps.toLocaleString();
+
+    // Profile page
+    const profLvlText = document.getElementById('profLvlText');
+    const profXpText = document.getElementById('profXpText');
+    const profLevelFill = document.getElementById('profLevelFill');
+    const profTapsEl = document.getElementById('profTaps');
+    const profEarnedEl = document.getElementById('profEarned');
+    if (profLvlText) profLvlText.textContent = level;
+    if (profXpText) profXpText.textContent = Math.floor(xpInLevel).toLocaleString();
+    if (profLevelFill) profLevelFill.style.width = (xpInLevel / LEVEL_XP * 100) + '%';
+    if (profTapsEl) profTapsEl.textContent = totalTaps.toLocaleString();
+    if (profEarnedEl) profEarnedEl.textContent = Math.floor(totalEarned).toLocaleString();
 
     const today = new Date().toDateString();
     const dailyBtn = document.getElementById('dailyBtn');
-    if (lastDaily === today) { dailyBtn.textContent = 'Claimed'; dailyBtn.classList.add('claimed'); }
-    else { dailyBtn.textContent = 'Claim'; dailyBtn.classList.remove('claimed'); }
+    if (dailyBtn) {
+      if (lastDaily === today) { dailyBtn.textContent = 'Claimed'; dailyBtn.classList.add('claimed'); }
+      else { dailyBtn.textContent = 'Claim'; dailyBtn.classList.remove('claimed'); }
+    }
   }
 
   function save() {
@@ -1050,18 +1530,21 @@
     localStorage.setItem('trax_maxEnergy', maxEnergy);
     localStorage.setItem('trax_autoEarn', autoEarn);
     localStorage.setItem('trax_luckyKeys', luckyKeys);
+    localStorage.setItem('trax_totalEarned', Math.floor(totalEarned));
   }
 
   const coinBtn = document.getElementById('coinBtn');
-  coinBtn.addEventListener('click', (e) => {
-    if (energy <= 0) { playSound('error'); vibrate('error'); showModal('⚡ Energy Empty', 'Aapki energy khatam ho gayi.'); return; }
-    const gain = getEffectiveTapPower();
-    balance += gain; energy--; totalTaps++;
-    updateUI(); save();
-    createSparkles(e.clientX, e.clientY);
-    showFloat(e.clientX, e.clientY, '+' + gain);
-    playSound('tap'); vibrate('light');
-  });
+  if (coinBtn) {
+    coinBtn.addEventListener('click', (e) => {
+      if (energy <= 0) { playSound('error'); vibrate('error'); showModal('⚡ Energy Empty', 'Aapki energy khatam ho gayi.'); return; }
+      const gain = getEffectiveTapPower();
+      balance += gain; energy--; totalTaps++; totalEarned += gain;
+      updateUI(); save();
+      createSparkles(e.clientX, e.clientY);
+      showFloat(e.clientX, e.clientY, '+' + gain);
+      playSound('tap'); vibrate('light');
+    });
+  }
 
   function showFloat(x, y, text) {
     const el = document.createElement('div');
@@ -1087,11 +1570,11 @@
     const today = new Date().toDateString();
     if (lastDaily === today) { showModal('✅ Already Claimed', 'Aap aaj ka reward le chuke hain.'); return; }
     const reward = 1000 + (streakDays * 100);
-    balance += reward; lastDaily = today;
+    balance += reward; totalEarned += reward; lastDaily = today;
     localStorage.setItem('trax_lastDaily', lastDaily);
     updateUI(); save();
     playSound('win'); vibrate('success');
-    showModal('🎁 Daily Reward!', '+' + reward + ' TRAX mile!\n\nStreak: Day ' + streakDays);
+    showModal('🎁 Daily Reward!', '+' + reward + ' TRAX mile!');
   }
 
   function refillEnergy() {
@@ -1107,13 +1590,12 @@
     if (energy < 10) { playSound('error'); showModal('⚡ Not Enough', 'Mining ke liye 10 energy chahiye.'); return; }
     if (miningActive) { showModal('⛏️ Already Mining', 'Mining pehle se chal rahi hai.'); return; }
     energy -= 10; miningActive = true;
-    const rate = getMineRate();
     updateUI(); save();
     playSound('win'); vibrate('medium');
-    showModal('⛏️ Mining Started!', 'Agle 60 seconds tak har second +' + rate + ' TRAX milega.');
+    showModal('⛏️ Mining Started!', 'Agle 60 seconds tak har second +' + getMineRate() + ' TRAX milega.');
     let sec = 0;
     const timer = setInterval(() => {
-      sec++; balance += getMineRate(); updateUI(); save();
+      sec++; const gain = getMineRate(); balance += gain; totalEarned += gain; updateUI(); save();
       if (sec >= 60) { clearInterval(timer); miningActive = false; playSound('win'); vibrate('success'); showModal('⛏️ Mining Complete!', '+' + (getMineRate() * 60) + ' TRAX mile!'); }
     }, 1000);
   }
@@ -1126,25 +1608,14 @@
       box.classList.remove('shake'); luckyKeys--;
       const rewards = [100, 200, 500, 1000, 2000, 5000];
       const reward = rewards[Math.floor(Math.random() * rewards.length)];
-      balance += reward; updateUI(); save();
+      balance += reward; totalEarned += reward; updateUI(); save();
       playSound('win'); vibrate('success');
       showModal('🎉 Lucky Box!', '+' + reward + ' TRAX mile!');
     }, 500);
   }
 
-  function buyBooster(type, cost, value) {
-    if (balance < cost) { playSound('error'); vibrate('error'); showModal('❌ Not Enough', 'Aapke paas ' + cost.toLocaleString() + ' TRAX nahi hain.'); return; }
-    balance -= cost;
-    if (type === 'tap') tapPower += value;
-    if (type === 'energy') maxEnergy += value;
-    if (type === 'auto') autoEarn += value;
-    updateUI(); save();
-    playSound('win'); vibrate('success');
-    showModal('✅ Purchased!', 'Booster activate ho gaya!');
-  }
-
   setInterval(() => {
-    if (getEffectiveAutoEarn() > 0) { balance += getEffectiveAutoEarn() / 3600; updateUI(); save(); }
+    if (getEffectiveAutoEarn() > 0) { const gain = getEffectiveAutoEarn() / 3600; balance += gain; totalEarned += gain; updateUI(); save(); }
   }, 1000);
 
   setInterval(() => {
@@ -1159,10 +1630,6 @@
     else showModal('📤 Share', 'Link: ' + link);
   }
 
-  function tryWithdraw() {
-    showModal('🚀 Coming Soon', 'TRAX coin abhi launch nahi hua.\n\nLaunch ke baad withdraw available hoga:\n• TON Wallet\n• Binance\n• Telegram Wallet');
-  }
-
   function navClick(el, tab) {
     document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
     if (el) el.classList.add('active');
@@ -1171,9 +1638,10 @@
     if (tabEl) tabEl.classList.add('active');
     window.scrollTo(0, 0);
     if (tab === 'rank') drawRank();
-    if (tab === 'tasks') drawTasks();
+    if (tab === 'tasks') { drawTasks(); drawTasksNew(); }
     if (tab === 'sticker') drawStickers();
     if (tab === 'upgrades') drawUpgrades();
+    if (tab === 'boosters') updateBoosterUI();
   }
   function navTo(tab) {
     const navMap = { home: 'home', tasks: 'tasks', mine: 'mine', friends: 'friends', wallet: 'wallet' };
@@ -1185,6 +1653,7 @@
       window.scrollTo(0, 0);
       if (tab === 'sticker') drawStickers();
       if (tab === 'upgrades') drawUpgrades();
+      if (tab === 'boosters') updateBoosterUI();
     }
   }
 
@@ -1194,13 +1663,8 @@
     document.getElementById('modal').classList.add('show');
   }
   function closeModal() { document.getElementById('modal').classList.remove('show'); }
-
-  function showCrashInfo() {
-    document.getElementById('crashInfoModal').classList.add('show');
-  }
-  function closeCrashInfo() {
-    document.getElementById('crashInfoModal').classList.remove('show');
-  }
+  function showCrashInfo() { document.getElementById('crashInfoModal').classList.add('show'); }
+  function closeCrashInfo() { document.getElementById('crashInfoModal').classList.remove('show'); }
 
   function openSpin() {
     document.getElementById('spinModal').classList.add('show');
@@ -1259,7 +1723,7 @@
     wheel.style.transform = 'rotate(' + finalRotation + 'deg)';
     vibrate('medium');
     setTimeout(() => {
-      balance += reward; localStorage.setItem('trax_lastSpin', Date.now());
+      balance += reward; totalEarned += reward; localStorage.setItem('trax_lastSpin', Date.now());
       updateUI(); save();
       resultBox.classList.add('show');
       document.getElementById('rewardAmount').textContent = '+' + reward;
@@ -1288,16 +1752,9 @@
     if (crashState.running) return;
     const val = parseInt(document.getElementById('customBetInput').value);
     const info = document.getElementById('betInfo');
-    if (!val || val < 100) {
-      info.textContent = '⚠️ Minimum bet: 100 TRAX';
-      info.style.color = '#ff9500';
-    } else if (val > balance) {
-      info.textContent = '⚠️ Aapke paas sirf ' + Math.floor(balance).toLocaleString() + ' TRAX hain';
-      info.style.color = '#ff0055';
-    } else {
-      info.textContent = '✓ Custom bet: ' + val.toLocaleString() + ' TRAX (SET dabayein)';
-      info.style.color = '#00ff88';
-    }
+    if (!val || val < 100) { info.textContent = '⚠️ Minimum bet: 100 TRAX'; info.style.color = '#ff9500'; }
+    else if (val > balance) { info.textContent = '⚠️ Aapke paas sirf ' + Math.floor(balance).toLocaleString() + ' TRAX hain'; info.style.color = '#ff0055'; }
+    else { info.textContent = '✓ Custom bet: ' + val.toLocaleString() + ' TRAX (SET dabayein)'; info.style.color = '#00ff88'; }
   }
 
   function applyCustomBet() {
@@ -1363,7 +1820,7 @@
     if (!crashState.running) return;
     crashState.running = false;
     const winnings = Math.floor(crashState.bet * crashState.multiplier);
-    balance += winnings; updateUI(); save();
+    balance += winnings; totalEarned += winnings; updateUI(); save();
     document.getElementById('crashStatus').textContent = 'Aapne ' + winnings.toLocaleString() + ' TRAX kamaye! 🎉';
     document.getElementById('crashMultiplier').textContent = crashState.multiplier.toFixed(2) + 'x';
     document.getElementById('crashCashBtn').style.display = 'none';
@@ -1419,7 +1876,7 @@
     drawPuzzle();
     if (isPuzzleSolved()) {
       puzzleState.solved = true;
-      balance += PUZZLE_REWARD; updateUI(); save();
+      balance += PUZZLE_REWARD; totalEarned += PUZZLE_REWARD; updateUI(); save();
       playSound('win'); vibrate('success');
       setTimeout(() => showModal('🎉 Puzzle Solved!', '+' + PUZZLE_REWARD.toLocaleString() + ' TRAX!\n\nMoves: ' + puzzleState.moves), 300);
     }
