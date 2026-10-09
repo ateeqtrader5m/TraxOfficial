@@ -49,12 +49,41 @@
   .rarity-item-info h4 { font-size: 13px; font-weight: 900; margin-bottom: 2px; }
   .rarity-item-info p { font-size: 10px; color: #a0aec0; }
   .rarity-item-info .range { font-size: 11px; font-weight: 900; margin-top: 2px; }
+
+  /* ===== HOME LAYOUT WITH SIDE PANEL ===== */
+  .home-layout { display: flex; gap: 10px; margin-bottom: 12px; }
+  .home-main { flex: 1; min-width: 0; }
+  .home-side { width: 120px; flex-shrink: 0; display: flex; flex-direction: column; gap: 8px; }
+  .side-card { background: rgba(10,25,45,0.85); border: 1px solid rgba(0,150,255,0.25); border-radius: 14px; padding: 10px 8px; text-align: center; cursor: pointer; transition: transform 0.15s; position: relative; }
+  .side-card:active { transform: scale(0.95); }
+  .side-card-icon { font-size: 26px; margin-bottom: 4px; }
+  .side-card-name { font-size: 10px; font-weight: 900; color: #ffffff; margin-bottom: 2px; }
+  .side-card-sub { font-size: 8px; color: #7a8ba5; font-weight: 700; }
+  .side-card.highlight { background: linear-gradient(135deg, rgba(255,0,85,0.2), rgba(150,0,50,0.1)); border-color: rgba(255,0,85,0.5); }
+  .side-card.highlight .side-card-name { color: #ff5555; }
+  .side-card.ready { animation: sidePulse 1.5s infinite; }
+  @keyframes sidePulse { 0%, 100% { box-shadow: 0 0 0 rgba(0,255,136,0); } 50% { box-shadow: 0 0 20px rgba(0,255,136,0.6); } }
+  .side-card .badge-dot { position: absolute; top: 6px; right: 6px; width: 8px; height: 8px; border-radius: 50%; background: #ff0055; box-shadow: 0 0 8px #ff0055; }
+  .side-card .badge-dot.green { background: #00ff88; box-shadow: 0 0 8px #00ff88; }
+
+  /* ===== DAILY STREAK BAR ===== */
+  .streak-bar { background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(0,80,180,0.05)); border: 1.5px solid rgba(0,212,255,0.3); border-radius: 16px; padding: 12px; margin-bottom: 12px; }
+  .streak-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  .streak-title { font-size: 12px; font-weight: 900; color: #ff9500; display: flex; align-items: center; gap: 5px; }
+  .streak-days { font-size: 10px; color: #00ff88; font-weight: 900; }
+  .streak-row { display: flex; gap: 4px; align-items: center; justify-content: space-between; }
+  .streak-day { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 900; color: #7a8ba5; border: 2px solid rgba(0,212,255,0.2); background: rgba(0,0,0,0.3); }
+  .streak-day.done { background: linear-gradient(135deg, #00ff88, #00aa55); color: white; border-color: #00ff88; box-shadow: 0 0 10px rgba(0,255,136,0.5); }
+  .streak-day.today { background: linear-gradient(135deg, #00d4ff, #0066ff); color: white; border-color: #00d4ff; box-shadow: 0 0 15px rgba(0,212,255,0.8); animation: todayPulse 1.5s infinite; }
+  .streak-day.gift { background: linear-gradient(135deg, #ff0055, #cc0044); color: white; border-color: #ff0055; }
+  @keyframes todayPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.12); } }
+
   .tap-title { text-align: center; font-size: 16px; font-weight: 900; margin: 12px 0 5px; letter-spacing: 1px; }
-  .coin-area { display: flex; justify-content: center; align-items: center; margin: 15px 0; position: relative; min-height: 260px; perspective: 1000px; }
+  .coin-area { display: flex; justify-content: center; align-items: center; margin: 15px 0; position: relative; min-height: 240px; perspective: 1000px; }
   .coin-wrapper { position: relative; z-index: 2; }
-  .coin-bg-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(0,180,255,0.55) 0%, rgba(0,100,200,0.1) 40%, transparent 70%); animation: glowPulse 3s infinite; }
+  .coin-bg-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 280px; height: 280px; border-radius: 50%; background: radial-gradient(circle, rgba(0,180,255,0.55) 0%, rgba(0,100,200,0.1) 40%, transparent 70%); animation: glowPulse 3s infinite; }
   @keyframes glowPulse { 0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; } 50% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; } }
-  .coin-3d-btn { width: 190px; height: 190px; position: relative; transform-style: preserve-3d; animation: coin3DFloat 5s ease-in-out infinite; cursor: pointer; background: none; border: none; padding: 0; }
+  .coin-3d-btn { width: 170px; height: 170px; position: relative; transform-style: preserve-3d; animation: coin3DFloat 5s ease-in-out infinite; cursor: pointer; background: none; border: none; padding: 0; }
   @keyframes coin3DFloat { 0%, 100% { transform: rotateY(-12deg) rotateX(4deg) translateY(0); } 50% { transform: rotateY(12deg) rotateX(-4deg) translateY(-8px); } }
   .coin-3d-btn:active { animation: coin3DShake 0.2s; }
   @keyframes coin3DShake { 0%, 100% { transform: rotateY(-12deg) rotateX(4deg) scale(1); } 50% { transform: rotateY(-12deg) rotateX(4deg) scale(0.92); } }
@@ -71,11 +100,11 @@
   .energy-count strong { color: #00d4ff; font-size: 14px; }
   .energy-bar { height: 10px; background: rgba(0,0,0,0.3); border-radius: 5px; overflow: hidden; }
   .energy-fill { height: 100%; background: linear-gradient(90deg, #00d4ff, #00ff88); border-radius: 5px; }
-  .quick-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
-  .quick-btn { background: linear-gradient(135deg, rgba(0,100,200,0.5), rgba(0,60,150,0.3)); border: 1.5px solid rgba(0,180,255,0.4); border-radius: 16px; padding: 16px 10px; text-align: center; cursor: pointer; }
-  .quick-btn:active { transform: scale(0.96); }
-  .quick-icon { font-size: 28px; margin-bottom: 5px; }
-  .quick-label { font-size: 12px; color: #fff; font-weight: 900; }
+  .quick-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-bottom: 12px; }
+  .stat-box { background: rgba(10,25,45,0.7); border: 1px solid rgba(0,150,255,0.2); border-radius: 12px; padding: 8px 6px; text-align: center; }
+  .stat-box .lbl { font-size: 8px; color: #7a8ba5; font-weight: 900; margin-bottom: 3px; letter-spacing: 0.5px; }
+  .stat-box .val { font-size: 12px; font-weight: 900; color: #00d4ff; }
+
   .rank-board { background: linear-gradient(135deg, rgba(0,80,180,0.15), rgba(0,40,100,0.1)); border: 1.5px solid rgba(0,180,255,0.3); border-radius: 20px; padding: 16px; }
   .rank-header { display: flex; justify-content: space-between; margin-bottom: 12px; }
   .rank-title { font-size: 15px; font-weight: 900; color: #00d4ff; display: flex; align-items: center; gap: 8px; }
@@ -279,8 +308,6 @@
   .puzzle-mode-desc { font-size: 9px; color: #7a8ba5; margin-bottom: 2px; }
   .puzzle-mode-time { font-size: 9px; color: #00d4ff; margin-bottom: 2px; }
   .puzzle-mode-price { font-size: 10px; color: #ffd700; font-weight: 900; }
-
-  /* ATTENDANCE */
   .attendance-header { background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(0,80,180,0.08)); border: 1.5px solid rgba(0,212,255,0.4); border-radius: 16px; padding: 14px; margin-bottom: 12px; }
   .attendance-title { font-size: 15px; font-weight: 900; color: #00d4ff; margin-bottom: 4px; }
   .attendance-sub { font-size: 10px; color: #7a8ba5; margin-bottom: 12px; }
@@ -292,7 +319,6 @@
   .att-day-card.claimed::after { content: '✓'; position: absolute; top: 4px; right: 6px; color: #00ff88; font-weight: 900; font-size: 14px; }
   .att-day-card.today { background: linear-gradient(135deg, rgba(0,212,255,0.25), rgba(0,100,200,0.15)); border-color: #00d4ff; box-shadow: 0 0 20px rgba(0,212,255,0.5); animation: todayPulse 2s infinite; }
   .att-day-card.locked { opacity: 0.5; }
-  @keyframes todayPulse { 0%, 100% { box-shadow: 0 0 15px rgba(0,212,255,0.4); } 50% { box-shadow: 0 0 25px rgba(0,212,255,0.8); } }
   .att-day-label { font-size: 11px; font-weight: 900; color: #a0aec0; margin-bottom: 6px; }
   .att-day-card.claimed .att-day-label { color: #00ff88; }
   .att-day-card.today .att-day-label { color: #00d4ff; }
@@ -312,8 +338,6 @@
   .attendance-claim-btn { background: linear-gradient(135deg, #00ff88, #00aa55); border: none; border-radius: 14px; padding: 16px; color: white; font-size: 15px; font-weight: 900; cursor: pointer; width: 100%; box-shadow: 0 4px 20px rgba(0,255,136,0.4); }
   .attendance-claim-btn:disabled { background: linear-gradient(135deg, #666, #333); cursor: not-allowed; box-shadow: none; opacity: 0.6; }
   .attendance-claim-btn.claimed { background: linear-gradient(135deg, #00aa55, #006633); }
-
-  /* RED POCKET PAGE */
   .redpocket-page { text-align: center; padding: 20px 0; }
   .redpocket-box { width: 200px; height: 200px; margin: 20px auto; position: relative; cursor: pointer; transition: transform 0.2s; }
   .redpocket-box:active { transform: scale(0.95); }
@@ -334,8 +358,6 @@
   .redpocket-info ul { list-style: none; padding-left: 0; }
   .redpocket-info li { font-size: 10px; color: #a0aec0; margin-bottom: 4px; }
   .redpocket-info li b { color: #ffd700; }
-
-  /* PROFILE PAGE */
   .profile-hero { background: linear-gradient(135deg, rgba(0,180,255,0.2), rgba(150,0,255,0.1)); border: 2px solid rgba(0,212,255,0.5); border-radius: 24px; padding: 24px 18px; margin-bottom: 14px; text-align: center; position: relative; overflow: hidden; }
   .profile-hero::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent, rgba(0,212,255,0.15), transparent, rgba(255,0,85,0.15), transparent); animation: spinRing 8s linear infinite; pointer-events: none; }
   .profile-hero-avatar-wrap { width: 100px; height: 100px; margin: 0 auto 14px; position: relative; }
@@ -344,19 +366,16 @@
   .profile-hero-name { font-size: 22px; font-weight: 900; color: white; margin-bottom: 6px; position: relative; z-index: 2; }
   .profile-hero-id { font-size: 12px; color: #00d4ff; font-weight: 900; letter-spacing: 2px; margin-bottom: 10px; position: relative; z-index: 2; }
   .profile-hero-badge { display: inline-block; background: linear-gradient(135deg, #ffd700, #ff9500); color: #000; font-size: 10px; font-weight: 900; padding: 4px 12px; border-radius: 10px; position: relative; z-index: 2; }
-
   .profile-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
   .profile-stat-box { background: rgba(15,30,55,0.85); border: 1.5px solid rgba(0,180,255,0.3); border-radius: 16px; padding: 14px; text-align: center; }
   .profile-stat-box .icon { font-size: 24px; margin-bottom: 4px; }
   .profile-stat-box .lbl { font-size: 9px; color: #7a8ba5; font-weight: 900; letter-spacing: 1px; margin-bottom: 4px; }
   .profile-stat-box .val { font-size: 18px; font-weight: 900; color: #00d4ff; }
-
   .profile-info-card { background: rgba(15,30,55,0.7); border: 1px solid rgba(0,180,255,0.25); border-radius: 16px; padding: 14px; margin-bottom: 10px; }
   .profile-info-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(0,180,255,0.1); }
   .profile-info-row:last-child { border-bottom: none; }
   .profile-info-row .lbl { font-size: 12px; color: #a0aec0; font-weight: 700; display: flex; align-items: center; gap: 8px; }
   .profile-info-row .val { font-size: 13px; color: white; font-weight: 900; }
-
   .profile-action-btn { background: linear-gradient(135deg, #00b4ff, #0066ff); border: none; border-radius: 14px; padding: 14px; color: white; font-size: 14px; font-weight: 900; cursor: pointer; width: 100%; margin-bottom: 10px; }
   .profile-action-btn.green { background: linear-gradient(135deg, #00ff88, #00aa55); }
 </style>
@@ -365,7 +384,7 @@
 
 <div class="header">
   <div class="header-left">
-    <div class="menu-icon" onclick="navTo('more')">☰</div>
+    <div class="menu-icon" onclick="navTo('wallet')">☰</div>
     <div class="header-logo">
       <div class="header-logo-icon" id="headerLogo"></div>
       <div class="header-logo-text"><h1>TraxOfficial</h1><p>TAP · EARN · GROW</p></div>
@@ -380,6 +399,7 @@
   </div>
 </div>
 
+<!-- ===== HOME ===== -->
 <div class="tab-content active" id="tab-home">
   <div class="container">
     <div class="balance-card">
@@ -396,35 +416,83 @@
       </div>
     </div>
 
-    <div class="tap-title">⚡ Tap to Earn</div>
-    <div class="coin-area">
-      <div class="coin-wrapper">
-        <div class="coin-bg-glow"></div>
-        <button class="coin-3d-btn" id="coinBtn">
-          <div class="coin-3d-ring"></div>
-          <svg class="coin-3d-svg" viewBox="0 0 200 200">
-            <defs>
-              <radialGradient id="coinBg" cx="35%" cy="30%">
-                <stop offset="0%" stop-color="#5fc8ff"/>
-                <stop offset="45%" stop-color="#00a8ff"/>
-                <stop offset="100%" stop-color="#003d99"/>
-              </radialGradient>
-              <linearGradient id="tGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#ffffff"/>
-                <stop offset="50%" stop-color="#d0f0ff"/>
-                <stop offset="100%" stop-color="#7ddcff"/>
-              </linearGradient>
-            </defs>
-            <circle cx="100" cy="100" r="90" fill="url(#coinBg)" stroke="#00d4ff" stroke-width="3"/>
-            <circle cx="100" cy="100" r="82" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
-            <path d="M 55 65 L 145 65 L 145 82 L 115 82 L 115 145 L 85 145 L 85 82 L 55 82 Z" fill="url(#tGrad)" stroke="#ffffff" stroke-width="2" stroke-linejoin="round"/>
-            <text x="100" y="175" text-anchor="middle" font-family="Arial Black, sans-serif" font-size="22" font-weight="900" fill="#ffffff" letter-spacing="2">TRAX</text>
-          </svg>
-        </button>
+    <div class="streak-bar">
+      <div class="streak-top">
+        <div class="streak-title">🔥 Daily Streak</div>
+        <div class="streak-days"><span id="streakCount">0</span> Day</div>
+      </div>
+      <div class="streak-row" id="streakRow"></div>
+    </div>
+
+    <div class="home-layout">
+      <div class="home-main">
+        <div class="tap-title">⚡ Tap to Earn</div>
+        <div class="coin-area">
+          <div class="coin-wrapper">
+            <div class="coin-bg-glow"></div>
+            <button class="coin-3d-btn" id="coinBtn">
+              <div class="coin-3d-ring"></div>
+              <svg class="coin-3d-svg" viewBox="0 0 200 200">
+                <defs>
+                  <radialGradient id="coinBg" cx="35%" cy="30%">
+                    <stop offset="0%" stop-color="#5fc8ff"/>
+                    <stop offset="45%" stop-color="#00a8ff"/>
+                    <stop offset="100%" stop-color="#003d99"/>
+                  </radialGradient>
+                  <linearGradient id="tGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#ffffff"/>
+                    <stop offset="50%" stop-color="#d0f0ff"/>
+                    <stop offset="100%" stop-color="#7ddcff"/>
+                  </linearGradient>
+                </defs>
+                <circle cx="100" cy="100" r="90" fill="url(#coinBg)" stroke="#00d4ff" stroke-width="3"/>
+                <circle cx="100" cy="100" r="82" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+                <path d="M 55 65 L 145 65 L 145 82 L 115 82 L 115 145 L 85 145 L 85 82 L 55 82 Z" fill="url(#tGrad)" stroke="#ffffff" stroke-width="2" stroke-linejoin="round"/>
+                <text x="100" y="175" text-anchor="middle" font-family="Arial Black, sans-serif" font-size="22" font-weight="900" fill="#ffffff" letter-spacing="2">TRAX</text>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="coin-bottom-text">👆 TAP THE COIN</div>
+        <div class="coin-per-tap">Per Tap: <strong>+<span id="tapPowerText">1</span> TRAX</strong></div>
+      </div>
+
+      <div class="home-side">
+        <div class="side-card highlight" id="sideRedPocket" onclick="navTo('redpocket')">
+          <div class="badge-dot" id="rpDot"></div>
+          <div class="side-card-icon">🧧</div>
+          <div class="side-card-name">Pocket</div>
+          <div class="side-card-sub" id="rpSideTimer">15:00</div>
+        </div>
+        <div class="side-card" id="sideAttendance" onclick="navTo('attendance')">
+          <div class="badge-dot green" id="attDot"></div>
+          <div class="side-card-icon">📅</div>
+          <div class="side-card-name">Daily</div>
+          <div class="side-card-sub" id="attSideDay">Day 1</div>
+        </div>
+        <div class="side-card" onclick="navTo('boosters')">
+          <div class="side-card-icon">🚀</div>
+          <div class="side-card-name">Boosters</div>
+          <div class="side-card-sub">+Power</div>
+        </div>
+        <div class="side-card" onclick="navTo('upgrades')">
+          <div class="side-card-icon">⬆️</div>
+          <div class="side-card-name">Upgrades</div>
+          <div class="side-card-sub">Tap power</div>
+        </div>
+        <div class="side-card" onclick="navTo('sticker')">
+          <div class="side-card-icon">🎨</div>
+          <div class="side-card-name">Shop</div>
+          <div class="side-card-sub">Stickers</div>
+        </div>
+        <div class="side-card" onclick="navTo('mine')">
+          <div class="side-card-icon">⛏️</div>
+          <div class="side-card-name">Mine</div>
+          <div class="side-card-sub">Auto mine</div>
+        </div>
       </div>
     </div>
-    <div class="coin-bottom-text">👆 TAP THE COIN</div>
-    <div class="coin-per-tap">Per Tap: <strong>+<span id="tapPowerText">1</span> TRAX</strong></div>
+
     <div class="energy-card">
       <div class="energy-header">
         <span class="energy-label">⚡ Energy</span>
@@ -432,10 +500,13 @@
       </div>
       <div class="energy-bar"><div class="energy-fill" id="energyBar" style="width:100%"></div></div>
     </div>
-    <div class="quick-row">
-      <div class="quick-btn" onclick="navTo('boosters')"><div class="quick-icon">🚀</div><div class="quick-label">Boosters</div></div>
-      <div class="quick-btn" onclick="navTo('upgrades')"><div class="quick-icon">⬆️</div><div class="quick-label">Upgrades</div></div>
+
+    <div class="quick-stats">
+      <div class="stat-box"><div class="lbl">TAP/CLICK</div><div class="val">+<span id="statTap">1</span></div></div>
+      <div class="stat-box"><div class="lbl">AUTO/HOUR</div><div class="val">+<span id="statAuto">0</span></div></div>
+      <div class="stat-box"><div class="lbl">RANK</div><div class="val">#---</div></div>
     </div>
+
     <div class="rank-board">
       <div class="rank-header">
         <div class="rank-title"><span class="live-dot"></span>🏆 LIVE LEADERBOARD</div>
@@ -445,6 +516,7 @@
   </div>
 </div>
 
+<!-- ===== GAMES ===== -->
 <div class="tab-content" id="tab-games">
   <div class="page-title-bar"><div class="page-title-icon">🎮</div><div class="page-title-text">Mini Games</div></div>
   <div class="mini-games-grid">
@@ -455,6 +527,7 @@
   </div>
 </div>
 
+<!-- ===== ATTENDANCE ===== -->
 <div class="tab-content" id="tab-attendance">
   <div class="page-title-bar"><div class="page-title-icon">📅</div><div class="page-title-text">Attendance</div></div>
   <div class="attendance-header">
@@ -481,6 +554,7 @@
   <button class="attendance-claim-btn" id="attClaimBtn" onclick="claimAttendance()">CLAIM TODAY'S REWARD</button>
 </div>
 
+<!-- ===== RED POCKET ===== -->
 <div class="tab-content" id="tab-redpocket">
   <div class="page-title-bar"><div class="page-title-icon">🧧</div><div class="page-title-text">Red Pocket</div></div>
   <div class="redpocket-page">
@@ -502,10 +576,9 @@
   </div>
 </div>
 
-<!-- ===== PROFILE TAB ===== -->
+<!-- ===== PROFILE ===== -->
 <div class="tab-content" id="tab-profile">
   <div class="page-title-bar"><div class="page-title-icon">👤</div><div class="page-title-text">My Profile</div></div>
-
   <div class="profile-hero">
     <div class="profile-hero-avatar-wrap">
       <div class="profile-hero-ring"></div>
@@ -515,61 +588,25 @@
     <div class="profile-hero-id">ID: #<span id="profileHeroId">0000</span></div>
     <div class="profile-hero-badge" id="profileHeroBadge">👑 Level 1</div>
   </div>
-
   <div class="profile-stats">
-    <div class="profile-stat-box">
-      <div class="icon">💰</div>
-      <div class="lbl">BALANCE</div>
-      <div class="val" id="profileStatBalance">0</div>
-    </div>
-    <div class="profile-stat-box">
-      <div class="icon">📈</div>
-      <div class="lbl">EARNED</div>
-      <div class="val" id="profileStatEarned">0</div>
-    </div>
-    <div class="profile-stat-box">
-      <div class="icon">👆</div>
-      <div class="lbl">TOTAL TAPS</div>
-      <div class="val" id="profileStatTaps">0</div>
-    </div>
-    <div class="profile-stat-box">
-      <div class="icon">🏆</div>
-      <div class="lbl">RANK</div>
-      <div class="val" id="profileStatRank">#---</div>
-    </div>
+    <div class="profile-stat-box"><div class="icon">💰</div><div class="lbl">BALANCE</div><div class="val" id="profileStatBalance">0</div></div>
+    <div class="profile-stat-box"><div class="icon">📈</div><div class="lbl">EARNED</div><div class="val" id="profileStatEarned">0</div></div>
+    <div class="profile-stat-box"><div class="icon">👆</div><div class="lbl">TOTAL TAPS</div><div class="val" id="profileStatTaps">0</div></div>
+    <div class="profile-stat-box"><div class="icon">🏆</div><div class="lbl">RANK</div><div class="val" id="profileStatRank">#---</div></div>
   </div>
-
   <div class="profile-info-card">
-    <div class="profile-info-row">
-      <div class="lbl">📛 Username</div>
-      <div class="val" id="profileInfoName">TraxOfficial</div>
-    </div>
-    <div class="profile-info-row">
-      <div class="lbl">🆔 Player ID</div>
-      <div class="val" id="profileInfoId">#0000</div>
-    </div>
-    <div class="profile-info-row">
-      <div class="lbl">🎯 Tap Power</div>
-      <div class="val" id="profileInfoTapPower">+1</div>
-    </div>
-    <div class="profile-info-row">
-      <div class="lbl">⚡ Max Energy</div>
-      <div class="val" id="profileInfoEnergy">500</div>
-    </div>
-    <div class="profile-info-row">
-      <div class="lbl">🔥 Daily Streak</div>
-      <div class="val" id="profileInfoStreak">0 Days</div>
-    </div>
-    <div class="profile-info-row">
-      <div class="lbl">⭐ Level</div>
-      <div class="val" id="profileInfoLevel">1</div>
-    </div>
+    <div class="profile-info-row"><div class="lbl">📛 Username</div><div class="val" id="profileInfoName">TraxOfficial</div></div>
+    <div class="profile-info-row"><div class="lbl">🆔 Player ID</div><div class="val" id="profileInfoId">#0000</div></div>
+    <div class="profile-info-row"><div class="lbl">🎯 Tap Power</div><div class="val" id="profileInfoTapPower">+1</div></div>
+    <div class="profile-info-row"><div class="lbl">⚡ Max Energy</div><div class="val" id="profileInfoEnergy">500</div></div>
+    <div class="profile-info-row"><div class="lbl">🔥 Daily Streak</div><div class="val" id="profileInfoStreak">0 Days</div></div>
+    <div class="profile-info-row"><div class="lbl">⭐ Level</div><div class="val" id="profileInfoLevel">1</div></div>
   </div>
-
   <button class="profile-action-btn" onclick="navTo('editname')">✏️ Edit Name & Avatar</button>
   <button class="profile-action-btn green" onclick="shareMyProfile()">🔗 Share My Profile</button>
 </div>
 
+<!-- ===== MINE ===== -->
 <div class="tab-content" id="tab-mine">
   <div class="page-title-bar"><div class="page-title-icon">⛏️</div><div class="page-title-text">Mining</div></div>
   <div class="energy-card" style="text-align:center;padding:20px">
@@ -580,20 +617,22 @@
   </div>
 </div>
 
+<!-- ===== TASKS ===== -->
 <div class="tab-content" id="tab-tasks">
   <div class="page-title-bar"><div class="page-title-icon">📋</div><div class="page-title-text">Tasks</div></div>
   <div id="fullTasksListNew"></div>
 </div>
 
-<div class="tab-content" id="tab-more">
-  <div class="page-title-bar"><div class="page-title-icon">⚙️</div><div class="page-title-text">More</div></div>
+<!-- ===== WALLET (was More) ===== -->
+<div class="tab-content" id="tab-wallet">
+  <div class="page-title-bar"><div class="page-title-icon">💼</div><div class="page-title-text">Wallet</div></div>
+
   <div class="big-profile-card">
     <div class="big-profile-top">
       <div class="big-profile-avatar-wrap"><div class="big-profile-ring"></div><div class="big-profile-avatar" id="moreAvatarBig">👤</div></div>
       <div class="big-profile-info">
         <div class="big-profile-name-row"><span id="moreProfileName">TraxOfficial</span><span class="big-profile-badge" id="moreBadge">👑 Lv 1</span></div>
         <div class="big-profile-id">ID: #<span id="morePlayerId">0000</span></div>
-        <div class="big-profile-rank">🏆 Rank: #<span id="moreRank">---</span></div>
       </div>
     </div>
     <div class="big-profile-balance">
@@ -602,59 +641,26 @@
       <div class="big-profile-balance-sub">⏳ NOT LAUNCHED YET</div>
     </div>
     <div class="big-profile-actions">
-      <button class="big-profile-btn wallet" onclick="navTo('wallet')"><div style="font-size:22px">💼</div><div style="font-size:10px;font-weight:900">WALLET</div></button>
-      <button class="big-profile-btn withdraw" onclick="navTo('wallet')"><div style="font-size:22px">💸</div><div style="font-size:10px;font-weight:900">WITHDRAW</div></button>
+      <button class="big-profile-btn wallet" onclick="shareRef()"><div style="font-size:22px">👥</div><div style="font-size:10px;font-weight:900">INVITE</div></button>
+      <button class="big-profile-btn withdraw" onclick="shareMyProfile()"><div style="font-size:22px">📤</div><div style="font-size:10px;font-weight:900">SHARE</div></button>
     </div>
   </div>
-  <div class="more-card" onclick="navTo('redpocket')"><div class="more-card-icon lucky">🧧</div><div class="more-card-info"><h4>Red Pocket</h4><p>Free coins every 15 min</p></div><div class="more-card-arrow">›</div></div>
-  <div class="more-card" onclick="navTo('boosters')"><div class="more-card-icon boosters">🚀</div><div class="more-card-info"><h4>Boosters</h4><p>Increase your earnings</p></div><div class="more-card-arrow">›</div></div>
-  <div class="more-card" onclick="navTo('upgrades')"><div class="more-card-icon upgrades">⬆️</div><div class="more-card-info"><h4>Upgrades</h4><p>Upgrade tap power</p></div><div class="more-card-arrow">›</div></div>
-  <div class="more-card" onclick="navTo('sticker')"><div class="more-card-icon sticker">🎨</div><div class="more-card-info"><h4>Sticker Shop</h4><p>50 stickers</p></div><div class="more-card-arrow">›</div></div>
-  <div class="more-card" onclick="navTo('attendance')"><div class="more-card-icon rank">📅</div><div class="more-card-info"><h4>Daily Attendance</h4><p>7-day login rewards</p></div><div class="more-card-arrow">›</div></div>
-  <div class="more-card" onclick="navTo('wallet')"><div class="more-card-icon wallet">💼</div><div class="more-card-info"><h4>My Wallet</h4><p>Withdraw & history</p></div><div class="more-card-arrow">›</div></div>
-  <div class="more-card" onclick="navTo('friends')"><div class="more-card-icon referral">👥</div><div class="more-card-info"><h4>Referral</h4><p>+500 TRAX per friend</p></div><div class="more-card-arrow">›</div></div>
-  <div class="more-card" onclick="navTo('rank')"><div class="more-card-icon rank">🏆</div><div class="more-card-info"><h4>Leaderboard</h4><p>Top players</p></div><div class="more-card-arrow">›</div></div>
-  <div class="more-card" onclick="navTo('settings')"><div class="more-card-icon settings">⚙️</div><div class="more-card-info"><h4>Settings</h4><p>Sound & vibration</p></div><div class="more-card-arrow">›</div></div>
-</div>
 
-<div class="tab-content" id="tab-boosters">
-  <div class="page-title-bar"><div class="page-title-icon">🚀</div><div class="page-title-text">Boosters</div></div>
-  <div class="booster-card">
-    <div class="booster-row"><div class="booster-icon auto-tap">👆</div><div class="booster-info"><h4>Auto Tap</h4><p>+1 Tap Power (10 min)</p></div><div class="booster-timer" id="autoTapTimer">Ready</div><button class="booster-btn purple" id="autoTapBtn" onclick="activateBooster('autoTap')">Activate</button></div>
-    <div class="booster-row"><div class="booster-icon energy">⚡</div><div class="booster-info"><h4>Energy Refill</h4><p>+50 Energy (instant)</p></div><div class="booster-timer" id="energyTimer">Ready</div><button class="booster-btn blue" id="energyBtn" onclick="activateBooster('energy')">Activate</button></div>
-    <div class="booster-row"><div class="booster-icon double">2x</div><div class="booster-info"><h4>2x Earnings</h4><p>+2 Tap Power (30 min)</p></div><div class="booster-timer" id="doubleTimer">Ready</div><button class="booster-btn magenta" id="doubleBtn" onclick="activateBooster('double')">Activate</button></div>
-    <div class="booster-row"><div class="booster-icon offline">⏰</div><div class="booster-info"><h4>Offline Profit</h4><p>+5000 TRAX (instant)</p></div><div class="booster-timer" id="offlineTimer">Ready</div><button class="booster-btn green" id="offlineBtn" onclick="activateBooster('offline')">Activate</button></div>
-  </div>
-</div>
-
-<div class="tab-content" id="tab-upgrades">
-  <div class="page-title-bar"><div class="page-title-icon">⬆️</div><div class="page-title-text">Upgrades</div></div>
-  <div id="upgradesList"></div>
-</div>
-
-<div class="tab-content" id="tab-sticker">
-  <div class="page-title-bar"><div class="page-title-icon">🎨</div><div class="page-title-text">Sticker Shop</div></div>
-  <p style="font-size:10px;color:#a0aec0;margin-bottom:10px;text-align:center">Har sticker ko max (Lv 5) karein — tab agla unlock hoga!</p>
-  <div id="stickerShopContainer"></div>
-</div>
-
-<div class="tab-content" id="tab-wallet">
-  <div class="page-title-bar"><div class="page-title-icon">💼</div><div class="page-title-text">Wallet</div></div>
-  <div class="balance-card" style="margin-bottom:15px">
-    <div class="balance-label">◆ TOTAL COIN</div>
-    <div class="balance-value"><span id="balance2">0</span> <small>TRAX</small></div>
-    <div class="balance-sub">⏳ NOT LAUNCHED YET</div>
-  </div>
   <div style="background:rgba(255,150,0,0.15);border:1px solid rgba(255,150,0,0.4);border-radius:14px;padding:14px;margin-bottom:15px;text-align:center">
     <div style="font-size:32px;margin-bottom:6px">🚀</div>
     <div style="font-size:14px;font-weight:900;color:#ff9500;margin-bottom:4px">Coming Soon</div>
-    <div style="font-size:11px;color:#a0aec0">TRAX coin launch hone ke baad</div>
+    <div style="font-size:11px;color:#a0aec0">TRAX coin launch hone ke baad withdraw hoga</div>
   </div>
+
   <div class="withdraw-option"><div class="withdraw-option-icon">💎</div><div class="withdraw-option-info"><h4>TON Wallet</h4><p>Tonkeeper, TON Space</p></div><span class="coming-soon-badge">SOON</span></div>
   <div class="withdraw-option"><div class="withdraw-option-icon">🟡</div><div class="withdraw-option-info"><h4>Binance Wallet</h4><p>Direct to Binance</p></div><span class="coming-soon-badge">SOON</span></div>
   <div class="withdraw-option"><div class="withdraw-option-icon">✈️</div><div class="withdraw-option-info"><h4>Telegram Wallet</h4><p>@wallet in Telegram</p></div><span class="coming-soon-badge">SOON</span></div>
+
+  <div class="more-card" onclick="navTo('friends')" style="margin-top:15px"><div class="more-card-icon referral">👥</div><div class="more-card-info"><h4>Referral Program</h4><p>+500 TRAX per friend</p></div><div class="more-card-arrow">›</div></div>
+  <div class="more-card" onclick="navTo('settings')"><div class="more-card-icon settings">⚙️</div><div class="more-card-info"><h4>Settings</h4><p>Sound & vibration</p></div><div class="more-card-arrow">›</div></div>
 </div>
 
+<!-- ===== FRIENDS ===== -->
 <div class="tab-content" id="tab-friends">
   <div class="page-title-bar"><div class="page-title-icon">👥</div><div class="page-title-text">Referral</div></div>
   <div class="ref-card">
@@ -665,11 +671,37 @@
   </div>
 </div>
 
+<!-- ===== RANK ===== -->
 <div class="tab-content" id="tab-rank">
   <div class="page-title-bar"><div class="page-title-icon">🏆</div><div class="page-title-text">Leaderboard</div></div>
   <div id="rankList"></div>
 </div>
 
+<!-- ===== BOOSTERS ===== -->
+<div class="tab-content" id="tab-boosters">
+  <div class="page-title-bar"><div class="page-title-icon">🚀</div><div class="page-title-text">Boosters</div></div>
+  <div class="booster-card">
+    <div class="booster-row"><div class="booster-icon auto-tap">👆</div><div class="booster-info"><h4>Auto Tap</h4><p>+1 Tap Power (10 min)</p></div><div class="booster-timer" id="autoTapTimer">Ready</div><button class="booster-btn purple" id="autoTapBtn" onclick="activateBooster('autoTap')">Activate</button></div>
+    <div class="booster-row"><div class="booster-icon energy">⚡</div><div class="booster-info"><h4>Energy Refill</h4><p>+50 Energy (instant)</p></div><div class="booster-timer" id="energyTimer">Ready</div><button class="booster-btn blue" id="energyBtn" onclick="activateBooster('energy')">Activate</button></div>
+    <div class="booster-row"><div class="booster-icon double">2x</div><div class="booster-info"><h4>2x Earnings</h4><p>+2 Tap Power (30 min)</p></div><div class="booster-timer" id="doubleTimer">Ready</div><button class="booster-btn magenta" id="doubleBtn" onclick="activateBooster('double')">Activate</button></div>
+    <div class="booster-row"><div class="booster-icon offline">⏰</div><div class="booster-info"><h4>Offline Profit</h4><p>+5000 TRAX (instant)</p></div><div class="booster-timer" id="offlineTimer">Ready</div><button class="booster-btn green" id="offlineBtn" onclick="activateBooster('offline')">Activate</button></div>
+  </div>
+</div>
+
+<!-- ===== UPGRADES ===== -->
+<div class="tab-content" id="tab-upgrades">
+  <div class="page-title-bar"><div class="page-title-icon">⬆️</div><div class="page-title-text">Upgrades</div></div>
+  <div id="upgradesList"></div>
+</div>
+
+<!-- ===== STICKER ===== -->
+<div class="tab-content" id="tab-sticker">
+  <div class="page-title-bar"><div class="page-title-icon">🎨</div><div class="page-title-text">Sticker Shop</div></div>
+  <p style="font-size:10px;color:#a0aec0;margin-bottom:10px;text-align:center">Har sticker ko max (Lv 5) karein — tab agla unlock hoga!</p>
+  <div id="stickerShopContainer"></div>
+</div>
+
+<!-- ===== SETTINGS ===== -->
 <div class="tab-content" id="tab-settings">
   <div class="page-title-bar"><div class="page-title-icon">⚙️</div><div class="page-title-text">Settings</div></div>
   <div class="setting-row"><div class="label">🔊 Sound Effects</div><div class="toggle" id="soundToggle" onclick="toggleSetting('sound')"></div></div>
@@ -677,6 +709,7 @@
   <div class="more-card" onclick="resetData()"><div class="more-card-icon settings">🗑️</div><div class="more-card-info"><h4>Reset Data</h4><p>Clear all progress</p></div><div class="more-card-arrow">›</div></div>
 </div>
 
+<!-- ===== EDIT NAME ===== -->
 <div class="tab-content" id="tab-editname">
   <div class="page-title-bar"><div class="page-title-icon">✏️</div><div class="page-title-text">Edit Profile</div></div>
   <div class="ref-card">
@@ -693,13 +726,13 @@
   </div>
 </div>
 
-<!-- ===== BOTTOM NAV — POCKET → PROFILE ===== -->
+<!-- ===== BOTTOM NAV ===== -->
 <div class="bottom-nav">
   <div class="nav-item active" data-tab="home" onclick="navClick(this, 'home')"><div class="nav-icon">🏠</div><div>Home</div></div>
   <div class="nav-item" data-tab="games" onclick="navClick(this, 'games')"><div class="nav-icon">🎮</div><div>Games</div></div>
   <div class="nav-item" data-tab="profile" onclick="navClick(this, 'profile')"><div class="nav-icon">👤</div><div>Profile</div></div>
   <div class="nav-item" data-tab="tasks" onclick="navClick(this, 'tasks')"><div class="nav-icon">📋</div><div>Tasks</div></div>
-  <div class="nav-item" data-tab="more" onclick="navClick(this, 'more')"><div class="nav-icon">⚙️</div><div>More</div></div>
+  <div class="nav-item" data-tab="wallet" onclick="navClick(this, 'wallet')"><div class="nav-icon">💼</div><div>Wallet</div></div>
 </div>
 
 <div class="modal" id="modal"><div class="modal-content"><h3 id="modalTitle">Notice</h3><p id="modalText">Message</p><button class="modal-btn" onclick="closeModal()">OK</button></div></div>
@@ -892,8 +925,7 @@
     if (userName) {
       localStorage.setItem('trax_avatar', userAvatar);
       localStorage.setItem('trax_avatar_isimg', avatarIsImage);
-      updateAvatarDisplays();
-      updateProfilePage();
+      updateAvatarDisplays(); updateProfilePage();
       showModal('✅ Saved', 'Avatar update ho gaya!');
       return;
     }
@@ -902,8 +934,7 @@
     localStorage.setItem('trax_username', userName);
     localStorage.setItem('trax_avatar', userAvatar);
     localStorage.setItem('trax_avatar_isimg', avatarIsImage);
-    updateAvatarDisplays();
-    updateProfilePage();
+    updateAvatarDisplays(); updateProfilePage();
     showModal('🎉 Name Set!', 'Welcome ' + userName + '!');
   }
 
@@ -975,11 +1006,12 @@
 
   function updateUI() {
     document.getElementById('balance').textContent = Math.floor(balance).toLocaleString();
-    document.getElementById('balance2').textContent = Math.floor(balance).toLocaleString();
     document.getElementById('energyText').textContent = energy;
     document.getElementById('maxEnergyText').textContent = getEffectiveMaxEnergy();
     document.getElementById('energyBar').style.width = (energy / getEffectiveMaxEnergy() * 100) + '%';
     document.getElementById('tapPowerText').textContent = getEffectiveTapPower();
+    document.getElementById('statTap').textContent = getEffectiveTapPower();
+    document.getElementById('statAuto').textContent = autoEarn;
 
     const LEVEL_XP = 50000;
     const level = Math.floor(totalEarned / LEVEL_XP) + 1;
@@ -991,9 +1023,27 @@
     document.getElementById('moreBadge').textContent = '👑 Lv ' + level;
     document.getElementById('morePlayerId').textContent = String(userId).slice(-4).padStart(4, '0');
     document.getElementById('moreBalance').textContent = Math.floor(balance).toLocaleString();
-    document.getElementById('moreRank').textContent = '--';
 
     updateProfilePage();
+    updateSideCards();
+  }
+
+  function updateSideCards() {
+    const rp = getRedPocketState();
+    const rpTimer = document.getElementById('rpSideTimer');
+    const rpCard = document.getElementById('sideRedPocket');
+    const rpDot = document.getElementById('rpDot');
+    if (rpTimer) {
+      if (rp.ready) { rpTimer.textContent = 'READY'; rpTimer.style.color = '#00ff88'; rpCard.classList.add('ready'); rpDot.style.display = 'block'; }
+      else { rpTimer.textContent = formatRPTime(rp.remaining); rpTimer.style.color = '#ff5555'; rpCard.classList.remove('ready'); rpDot.style.display = 'none'; }
+    }
+    const attData = checkAttendanceReset();
+    const attDay = document.getElementById('attSideDay');
+    const attDot = document.getElementById('attDot');
+    if (attDay) {
+      if (canClaimToday()) { attDay.textContent = 'Claim Day ' + (attData.currentDay + 1); attDay.style.color = '#00ff88'; attDot.style.display = 'block'; }
+      else { attDay.textContent = 'Day ' + attData.currentDay + ' done'; attDay.style.color = '#7a8ba5'; attDot.style.display = 'none'; }
+    }
   }
 
   function updateProfilePage() {
@@ -1001,7 +1051,6 @@
     const level = Math.floor(totalEarned / LEVEL_XP) + 1;
     const pid = String(userId).slice(-4).padStart(4, '0');
     const attData = checkAttendanceReset();
-
     const el = (id) => document.getElementById(id);
     if (el('profileHeroName')) el('profileHeroName').textContent = userName || 'TraxOfficial';
     if (el('profileHeroId')) el('profileHeroId').textContent = pid;
@@ -1047,21 +1096,18 @@
   function createSparkles(x, y) {
     for (let i = 0; i < 4; i++) {
       const s = document.createElement('div');
-      s.style.position = 'fixed';
-      s.style.width = '8px'; s.style.height = '8px';
+      s.style.position = 'fixed'; s.style.width = '8px'; s.style.height = '8px';
       s.style.borderRadius = '50%'; s.style.pointerEvents = 'none';
       s.style.left = (x + (Math.random() - 0.5) * 60) + 'px';
       s.style.top = (y + (Math.random() - 0.5) * 60) + 'px';
       s.style.background = ['#00d4ff', '#00ff88', '#ffffff', '#ff9500'][i];
-      s.style.boxShadow = '0 0 15px ' + s.style.background;
-      s.style.zIndex = '998';
+      s.style.boxShadow = '0 0 15px ' + s.style.background; s.style.zIndex = '998';
       document.body.appendChild(s); setTimeout(() => s.remove(), 800);
     }
   }
 
   const BOOSTER_DURATIONS = { autoTap: 10 * 60 * 1000, energy: 0, double: 30 * 60 * 1000, offline: 0 };
   const BOOSTER_COOLDOWNS = { autoTap: 30 * 60 * 1000, energy: 30 * 60 * 1000, double: 60 * 60 * 1000, offline: 12 * 60 * 60 * 1000 };
-
   function formatBoosterTime(ms) {
     if (ms <= 0) return '--:--';
     const totalSec = Math.floor(ms / 1000);
@@ -1072,19 +1118,16 @@
     if (m > 0) return String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
     return '00:' + String(s).padStart(2, '0');
   }
-
   function getBoosterState(id) {
     const lastUsed = parseInt(localStorage.getItem('trax_booster_' + id + '_lastUsed') || '0');
     const activeUntil = parseInt(localStorage.getItem('trax_booster_' + id + '_activeUntil') || '0');
     const now = Date.now();
-    const cooldown = BOOSTER_COOLDOWNS[id];
-    const duration = BOOSTER_DURATIONS[id];
+    const cooldown = BOOSTER_COOLDOWNS[id]; const duration = BOOSTER_DURATIONS[id];
     let isActive = false, isCooldown = false, timeRemaining = 0;
     if (duration > 0 && activeUntil > now) { isActive = true; timeRemaining = activeUntil - now; }
     if (lastUsed > 0 && (now - lastUsed) < cooldown) { isCooldown = true; timeRemaining = cooldown - (now - lastUsed); }
     return { isActive, isCooldown, timeRemaining, lastUsed };
   }
-
   function updateBoosterUI() {
     ['autoTap', 'energy', 'double', 'offline'].forEach(id => {
       const timerEl = document.getElementById(id + 'Timer');
@@ -1093,20 +1136,16 @@
       const state = getBoosterState(id);
       if (state.isActive) {
         timerEl.textContent = '⏱ ' + formatBoosterTime(state.timeRemaining);
-        timerEl.style.color = '#00ff88';
-        btnEl.disabled = true; btnEl.textContent = 'Active'; btnEl.style.opacity = '0.5';
+        timerEl.style.color = '#00ff88'; btnEl.disabled = true; btnEl.textContent = 'Active'; btnEl.style.opacity = '0.5';
       } else if (state.isCooldown) {
         timerEl.textContent = '⏳ ' + formatBoosterTime(state.timeRemaining);
-        timerEl.style.color = '#ff9500';
-        btnEl.disabled = true; btnEl.textContent = 'Wait'; btnEl.style.opacity = '0.5';
+        timerEl.style.color = '#ff9500'; btnEl.disabled = true; btnEl.textContent = 'Wait'; btnEl.style.opacity = '0.5';
       } else {
-        timerEl.textContent = 'Ready';
-        timerEl.style.color = '#00d4ff';
+        timerEl.textContent = 'Ready'; timerEl.style.color = '#00d4ff';
         btnEl.disabled = false; btnEl.textContent = 'Activate'; btnEl.style.opacity = '1';
       }
     });
   }
-
   function activateBooster(id) {
     const state = getBoosterState(id);
     if (state.isCooldown) { playSound('error'); vibrate('error'); showModal('⏰ Cooldown', 'Agla use: ' + formatBoosterTime(state.timeRemaining) + ' baad'); return; }
@@ -1133,39 +1172,24 @@
     updateUI(); save(); updateBoosterUI();
     playSound('win'); vibrate('success');
   }
-
   function checkBoosterExpiry() {
     const now = Date.now();
     let changed = false;
     if (boosterAutoTapBonus > 0) {
       const a = parseInt(localStorage.getItem('trax_booster_autoTap_activeUntil') || '0');
-      if (a <= now) {
-        boosterAutoTapBonus = 0;
-        localStorage.removeItem('trax_booster_autoTap_bonus');
-        localStorage.removeItem('trax_booster_autoTap_activeUntil');
-        showToast('⏰ Auto Tap expired!');
-        changed = true;
-      }
+      if (a <= now) { boosterAutoTapBonus = 0; localStorage.removeItem('trax_booster_autoTap_bonus'); localStorage.removeItem('trax_booster_autoTap_activeUntil'); showToast('⏰ Auto Tap expired!'); changed = true; }
     }
     if (boosterDoubleBonus > 0) {
       const a = parseInt(localStorage.getItem('trax_booster_double_activeUntil') || '0');
-      if (a <= now) {
-        boosterDoubleBonus = 0;
-        localStorage.removeItem('trax_booster_double_bonus');
-        localStorage.removeItem('trax_booster_double_activeUntil');
-        showToast('⏰ 2x Earnings expired!');
-        changed = true;
-      }
+      if (a <= now) { boosterDoubleBonus = 0; localStorage.removeItem('trax_booster_double_bonus'); localStorage.removeItem('trax_booster_double_activeUntil'); showToast('⏰ 2x Earnings expired!'); changed = true; }
     }
     if (changed) { updateUI(); save(); }
   }
-
   function showToast(msg) {
     const t = document.createElement('div');
     t.textContent = msg;
     t.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#ff9500,#ff5500);color:white;padding:10px 20px;border-radius:20px;font-weight:900;font-size:12px;z-index:9999;box-shadow:0 5px 20px rgba(255,150,0,0.5)';
-    document.body.appendChild(t);
-    setTimeout(() => t.remove(), 3000);
+    document.body.appendChild(t); setTimeout(() => t.remove(), 3000);
   }
 
   function drawUpgrades() {
@@ -1174,7 +1198,7 @@
       { id: 'maxEnergy', icon: '🔋', iconClass: 'energy', name: 'Max Energy', desc: '+50 energy', baseCost: 3000, multiplier: 1.4, level: parseInt(localStorage.getItem('upg_maxEnergy') || '0') },
       { id: 'autoEarn', icon: '💰', iconClass: 'auto', name: 'Auto Earning', desc: '+5/hr', baseCost: 15000, multiplier: 1.6, level: parseInt(localStorage.getItem('upg_autoEarn') || '0') },
       { id: 'energyRegen', icon: '⚡', iconClass: 'regen', name: 'Energy Regen', desc: '+1 per 2sec', baseCost: 20000, multiplier: 1.7, level: parseInt(localStorage.getItem('upg_energyRegen') || '0') },
-      { id: 'miningPower', icon: '⛏️', iconClass: 'mine', name: 'Mining Power', desc: '+5 per mine tick', baseCost: 25000, multiplier: 1.8, level: parseInt(localStorage.getItem('upg_miningPower') || '0') }
+      { id: 'miningPower', icon: '⛏️', iconClass: 'mine', name: 'Mining Power', desc: '+5 per tick', baseCost: 25000, multiplier: 1.8, level: parseInt(localStorage.getItem('upg_miningPower') || '0') }
     ];
     const box = document.getElementById('upgradesList');
     box.innerHTML = '';
@@ -1278,7 +1302,7 @@
     if (miningActive) { showModal('⛏️ Mining', 'Already mining!'); return; }
     energy -= 10; miningActive = true;
     updateUI(); save();
-    showModal('⛏️ Mining Started!', '60 seconds tak har second coins milega.');
+    showModal('⛏️ Mining Started!', '60 seconds tak coins milenge.');
     let sec = 0;
     const timer = setInterval(() => {
       sec++; balance += 5; totalEarned += 5; updateUI(); save();
@@ -1300,10 +1324,7 @@
   function navClick(el, tab) {
     document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
     if (el) el.classList.add('active');
-    else {
-      const found = document.querySelector('.nav-item[data-tab="' + tab + '"]');
-      if (found) found.classList.add('active');
-    }
+    else { const f = document.querySelector('.nav-item[data-tab="' + tab + '"]'); if (f) f.classList.add('active'); }
     document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
     const tabEl = document.getElementById('tab-' + tab);
     if (tabEl) tabEl.classList.add('active');
@@ -1317,7 +1338,7 @@
     if (tab === 'profile') updateProfilePage();
   }
   function navTo(tab) {
-    const navMap = ['home','games','profile','tasks','more','redpocket'];
+    const navMap = ['home','games','profile','tasks','wallet'];
     if (navMap.includes(tab)) navClick(document.querySelector('.nav-item[data-tab="' + tab + '"]'), tab);
     else {
       document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
@@ -1334,18 +1355,14 @@
   }
 
   function showModal(title, text) {
-    document.querySelectorAll('.modal.show').forEach(m => {
-      if (m.id !== 'modal') m.style.display = 'none';
-    });
+    document.querySelectorAll('.modal.show').forEach(m => { if (m.id !== 'modal') m.style.display = 'none'; });
     document.getElementById('modalTitle').textContent = title;
     document.getElementById('modalText').innerText = text;
     document.getElementById('modal').classList.add('show');
   }
   function closeModal() {
     document.getElementById('modal').classList.remove('show');
-    document.querySelectorAll('.modal').forEach(m => {
-      if (m.id !== 'modal' && m.style.display === 'none') m.style.display = 'flex';
-    });
+    document.querySelectorAll('.modal').forEach(m => { if (m.id !== 'modal' && m.style.display === 'none') m.style.display = 'flex'; });
   }
   function showRarityList() { document.getElementById('rarityModal').classList.add('show'); }
   function closeRarityList() { document.getElementById('rarityModal').classList.remove('show'); }
@@ -1472,7 +1489,7 @@
   function applyCustomBet() {
     const v = parseInt(document.getElementById('customBetInput').value);
     if (!v || v < 100) { showModal('⚠️ Minimum 100 TRAX', ''); return; }
-    if (v > balance) { showModal('❌ Not Enough TRAX', 'Aapke paas: ' + Math.floor(balance).toLocaleString() + ' TRAX'); return; }
+    if (v > balance) { showModal('❌ Not Enough TRAX', 'Aapke paas: ' + Math.floor(balance).toLocaleString()); return; }
     crashState.bet = v;
     document.querySelectorAll('.bet-option').forEach(el => el.classList.remove('selected'));
     updateCrashButton();
@@ -1528,7 +1545,7 @@
   }
 
   // PUZZLE
-  const PUZZLE_MODES = { hard: { cost: 10000, time: 1200, label: 'Hard' }, medium: { cost: 30000, time: 600, label: 'Medium' }, easy: { cost: 50000, time: 300, label: 'Easy' } };
+  const PUZZLE_MODES = { hard: { cost: 10000, label: 'Hard' }, medium: { cost: 30000, label: 'Medium' }, easy: { cost: 50000, label: 'Easy' } };
   let selectedPuzzleMode = 'hard';
   function openPuzzle() { document.getElementById('puzzleModal').classList.add('show'); }
   function closePuzzle() { document.getElementById('puzzleModal').classList.remove('show'); }
@@ -1541,7 +1558,7 @@
   }
 
   // COIN FLIP
-  const FLIP_POOL = [{ mult: 1.5, w: 40 }, { mult: 1.7, w: 25 }, { mult: 2, w: 15 }, { mult: 3, w: 8 }, { mult: 5, w: 5 }, { mult: 10, w: 3 }, { mult: 15, w: 2 }, { mult: 25, w: 1 }, { mult: 50, w: 0.5 }, { mult: 100, w: 0.5 }];
+  const FLIP_POOL = [{ mult: 1.5, w: 40 }, { mult: 1.7, w: 25 }, { mult: 2, w: 15 }, { mult: 3, w: 8 }, { mult: 5, w: 5 }, { mult: 10, w: 3 }, { mult: 15, w: 2 }, { mult: 25, w: 1 }];
   function pickFlipMult() {
     const total = FLIP_POOL.reduce((s, x) => s + x.w, 0);
     let r = Math.random() * total;
@@ -1682,6 +1699,8 @@
       if (data.currentDay >= 7) { btn.textContent = 'START NEW CYCLE (DAY 1)'; btn.disabled = false; btn.classList.remove('claimed'); }
       else { btn.textContent = 'CLAIM DAY ' + (data.currentDay + 1) + ' · +' + ATTENDANCE_REWARDS[data.currentDay].toLocaleString() + ' TRAX'; btn.disabled = false; btn.classList.remove('claimed'); }
     } else { btn.textContent = '✓ CLAIMED TODAY · Kal aayein'; btn.disabled = true; btn.classList.add('claimed'); }
+    renderStreakBar();
+    updateSideCards();
   }
   function claimAttendance() {
     const data = checkAttendanceReset();
@@ -1694,6 +1713,23 @@
     playSound('win'); vibrate('success');
     showModal('🎁 Day ' + data.currentDay + ' Claimed!', '+' + reward.toLocaleString() + ' TRAX mile!');
     renderAttendance();
+  }
+  function renderStreakBar() {
+    const row = document.getElementById('streakRow');
+    const countEl = document.getElementById('streakCount');
+    if (!row) return;
+    const data = checkAttendanceReset();
+    countEl.textContent = data.currentDay;
+    row.innerHTML = '';
+    for (let i = 1; i <= 7; i++) {
+      const d = document.createElement('div');
+      d.className = 'streak-day';
+      if (i <= data.currentDay) d.classList.add('done');
+      else if (i === data.currentDay + 1 && canClaimToday()) d.classList.add('today');
+      if (i === 7) d.classList.add('gift');
+      d.textContent = i === 7 ? '🎁' : (i <= data.currentDay ? '✓' : i);
+      row.appendChild(d);
+    }
   }
 
   // RED POCKET
@@ -1736,10 +1772,11 @@
       boxEl.classList.remove('ready'); boxEl.classList.add('disabled');
       btnEl.disabled = true; btnEl.textContent = 'WAIT...'; btnEl.classList.remove('ready');
     }
+    updateSideCards();
   }
   function openRedPocket() {
     const state = getRedPocketState();
-    if (!state.ready) { playSound('error'); vibrate('error'); showModal('⏰ Wait', 'Agla Red Pocket ' + formatRPTime(state.remaining) + ' baad milega.'); return; }
+    if (!state.ready) { playSound('error'); vibrate('error'); showModal('⏰ Wait', 'Agla Red Pocket ' + formatRPTime(state.remaining) + ' baad.'); return; }
     const reward = pickRedPocketReward();
     balance += reward; totalEarned += reward;
     localStorage.setItem('trax_rp_lastOpen', Date.now());
@@ -1762,6 +1799,7 @@
   renderAttendance();
   updateRedPocketUI();
   updateProfilePage();
+  updateSideCards();
 
   (function() {
     const now = Date.now();
