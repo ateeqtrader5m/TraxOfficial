@@ -914,13 +914,22 @@
 
 <!-- SPIN MODAL -->
 <div class="modal" id="spinModal">
-  <div class="modal-content">
+  <div class="modal-content" style="max-width:380px">
     <h3>🎰 Spin to Win!</h3>
-    <div style="position:relative;display:inline-block">
+    
+    <div class="wheel-wrapper">
+      <div class="wheel-glow"></div>
       <div class="wheel-pointer">▼</div>
       <div class="wheel-container" id="wheel"></div>
+      <div class="wheel-center" id="wheelCenter">SPIN</div>
     </div>
-    <div class="wheel-center" style="position:relative;margin-top:-125px;margin-bottom:95px;z-index:3;left:50%;transform:translateX(-50%)">SPIN</div>
+
+    <div class="result-display" id="resultDisplay">
+      <h4>YOU WON</h4>
+      <div class="reward-amount" id="rewardAmount">+0</div>
+      <div class="reward-unit">TRAX</div>
+    </div>
+
     <button class="modal-btn" style="margin-top:15px;display:block;width:100%" onclick="spinWheel()" id="spinBtn">SPIN NOW</button>
     <button class="modal-btn" style="margin-top:8px;background:rgba(255,255,255,0.1);box-shadow:none;display:block;width:100%" onclick="closeSpin()">Close</button>
   </div>
