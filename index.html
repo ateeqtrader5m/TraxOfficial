@@ -221,23 +221,28 @@
   .puzzle-mode-name { font-size: 11px; font-weight: 900; margin-bottom: 2px; }
   .puzzle-mode-desc { font-size: 8px; color: #7a8ba5; }
   .puzzle-mode-time { font-size: 9px; color: #ff9500; font-weight: 900; margin-top: 3px; }
+  .puzzle-mode-price { font-size: 10px; color: #ffd700; font-weight: 900; margin-top: 3px; }
   .puzzle-timer-display { background: rgba(0,0,0,0.5); border-radius: 10px; padding: 8px; display: flex; justify-content: space-around; margin-bottom: 10px; border: 1px solid rgba(0,212,255,0.3); }
   .puzzle-timer-display div { font-size: 11px; font-weight: 900; }
   .puzzle-timer-warn { color: #ff0055 !important; animation: pulseWarn 0.5s infinite; }
   @keyframes pulseWarn { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
-  .wheel-wrapper { position: relative; width: 260px; height: 260px; margin: 20px auto; display: flex; align-items: center; justify-content: center; }
-  .wheel-pointer { position: absolute; top: -25px; left: 50%; transform: translateX(-50%); font-size: 40px; color: #ff0055; z-index: 10; }
-  .wheel-outer { position: absolute; width: 100%; height: 100%; border-radius: 50%; border: 5px solid #00d4ff; z-index: 5; pointer-events: none; }
-  .wheel-container { width: 220px; height: 220px; border-radius: 50%; background: conic-gradient(#00d4ff 0deg 45deg, #0066ff 45deg 90deg, #00ff88 90deg 135deg, #ff9500 135deg 180deg, #ff0055 180deg 225deg, #9900ff 225deg 270deg, #ffaa00 270deg 315deg, #ff00aa 315deg 360deg); position: relative; transition: transform 5s cubic-bezier(0.15, 0.9, 0.2, 1); z-index: 2; }
+  .wheel-wrapper { position: relative; width: 280px; height: 280px; margin: 20px auto; display: flex; align-items: center; justify-content: center; }
+  .wheel-pointer { position: absolute; top: -22px; left: 50%; transform: translateX(-50%); font-size: 36px; color: #ff0055; z-index: 10; filter: drop-shadow(0 0 10px #ff0055); }
+  .wheel-outer { position: absolute; width: 100%; height: 100%; border-radius: 50%; border: 5px solid #ffd700; box-shadow: 0 0 40px #ffd700; z-index: 5; pointer-events: none; }
+  .wheel-container { width: 240px; height: 240px; border-radius: 50%; background: conic-gradient(#ff0055 0deg 60deg, #00d4ff 60deg 120deg, #00ff88 120deg 180deg, #ffd700 180deg 240deg, #9900ff 240deg 300deg, #ff9500 300deg 360deg); position: relative; transition: transform 5s cubic-bezier(0.15, 0.9, 0.2, 1); z-index: 2; }
   .wheel-labels { width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
-  .wheel-label { position: absolute; top: 50%; left: 50%; width: 0; height: 0; font-size: 12px; font-weight: 900; color: white; pointer-events: none; z-index: 3; }
+  .wheel-label { position: absolute; top: 50%; left: 50%; width: 0; height: 0; font-size: 13px; font-weight: 900; color: white; pointer-events: none; z-index: 3; text-shadow: 0 0 5px #000; }
   .wheel-label span { display: block; position: absolute; transform: translate(-50%, -50%); white-space: nowrap; }
-  .wheel-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 70px; height: 70px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; font-weight: 900; color: #0066ff; font-size: 13px; z-index: 6; border: 3px solid #00d4ff; cursor: pointer; }
+  .wheel-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 60px; height: 60px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; font-weight: 900; color: #ff0055; font-size: 12px; z-index: 6; border: 3px solid #ffd700; cursor: pointer; }
   .result-display { background: linear-gradient(135deg, rgba(0,212,255,0.2), rgba(0,100,200,0.1)); border: 2px solid #00d4ff; border-radius: 16px; padding: 15px; margin: 15px 0; text-align: center; display: none; }
   .result-display.show { display: block; }
   .result-display h4 { font-size: 11px; color: #a0aec0; margin-bottom: 8px; }
   .result-display .reward-amount { font-size: 36px; font-weight: 900; color: #00ff88; }
   .result-display .reward-unit { font-size: 13px; color: #00d4ff; font-weight: 900; }
+  .slot-machine { display: flex; justify-content: center; gap: 10px; margin: 20px 0; }
+  .slot-reel { width: 70px; height: 90px; background: linear-gradient(135deg, #0a1929, #061224); border: 2px solid #ffd700; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 32px; font-weight: 900; color: #ffd700; overflow: hidden; position: relative; box-shadow: inset 0 0 20px rgba(255,215,0,0.3); }
+  .slot-reel.spinning { animation: slotSpin 0.15s infinite; }
+  @keyframes slotSpin { 0%, 100% { transform: translateY(-5px); } 50% { transform: translateY(5px); } }
   .ref-card { background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(0,80,180,0.1)); border: 1px solid rgba(0,212,255,0.3); border-radius: 18px; padding: 20px; margin-bottom: 12px; text-align: center; }
   .ref-title { font-size: 16px; font-weight: 900; color: #00d4ff; margin-bottom: 8px; }
   .ref-sub { font-size: 11px; color: #a0aec0; margin-bottom: 15px; }
@@ -608,17 +613,12 @@
       <p>1. Bet select karein</p>
       <p>2. START dabayein</p>
       <p>3. CASH OUT (crash se pehle!)</p>
-      <p style="margin-top:10px"><b style="color:#00d4ff">Rarity:</b></p>
-      <p>🔘 Common: 92% (1.5x-4x)</p>
-      <p>💎 Rare: 6.5% (4x-20x)</p>
-      <p>🔥 Epic: 1.25% (20x-50x)</p>
-      <p>⭐ Legendary: 0.25% (50x-100x)</p>
     </div>
     <button class="modal-btn" onclick="closeCrashInfo()" style="display:block;width:100%">Samajh Gaya ✓</button>
   </div>
 </div>
 
-<!-- NEW PUZZLE MODAL -->
+<!-- PUZZLE MODAL -->
 <div class="modal" id="puzzleModal">
   <div class="modal-content" style="max-width:420px">
     <h3 style="text-align:center">🧩 Puzzle Challenge</h3>
@@ -626,34 +626,33 @@
       <div style="margin-bottom:14px">
         <div style="font-size:12px;color:#a0aec0;margin-bottom:8px;text-align:left;font-weight:900">◆ SELECT DIFFICULTY</div>
         <div class="puzzle-mode-grid" id="puzzleModeGrid">
-          <div class="puzzle-mode-card" data-mode="easy" onclick="selectPuzzleMode('easy')">
-            <div class="puzzle-mode-icon">🟢</div>
-            <div class="puzzle-mode-name">Easy</div>
-            <div class="puzzle-mode-desc">5x5</div>
-            <div class="puzzle-mode-time">⏱ 5 min</div>
+          <div class="puzzle-mode-card" data-mode="hard" onclick="selectPuzzleMode('hard')">
+            <div class="puzzle-mode-icon">🔴</div>
+            <div class="puzzle-mode-name">Hard</div>
+            <div class="puzzle-mode-desc">9x9</div>
+            <div class="puzzle-mode-time">⏱ 20 min</div>
+            <div class="puzzle-mode-price">10,000</div>
           </div>
           <div class="puzzle-mode-card" data-mode="medium" onclick="selectPuzzleMode('medium')">
             <div class="puzzle-mode-icon">🟡</div>
             <div class="puzzle-mode-name">Medium</div>
             <div class="puzzle-mode-desc">7x7</div>
             <div class="puzzle-mode-time">⏱ 10 min</div>
+            <div class="puzzle-mode-price">30,000</div>
           </div>
-          <div class="puzzle-mode-card" data-mode="hard" onclick="selectPuzzleMode('hard')">
-            <div class="puzzle-mode-icon">🔴</div>
-            <div class="puzzle-mode-name">Hard</div>
-            <div class="puzzle-mode-desc">9x9</div>
-            <div class="puzzle-mode-time">⏱ 20 min</div>
+          <div class="puzzle-mode-card" data-mode="easy" onclick="selectPuzzleMode('easy')">
+            <div class="puzzle-mode-icon">🟢</div>
+            <div class="puzzle-mode-name">Easy</div>
+            <div class="puzzle-mode-desc">5x5</div>
+            <div class="puzzle-mode-time">⏱ 5 min</div>
+            <div class="puzzle-mode-price">50,000</div>
           </div>
         </div>
       </div>
-      <div style="margin-bottom:12px;text-align:left">
-        <div style="font-size:12px;color:#a0aec0;margin-bottom:8px;font-weight:900">◆ YOUR BET (Min: <span id="puzzleMinBet">100</span> TRAX)</div>
-        <input type="number" id="puzzleBetInput" class="input-field" placeholder="Enter bet amount" min="100" value="1000" oninput="updatePuzzlePreview()">
-      </div>
-      <div id="puzzlePreview" style="background:linear-gradient(135deg,rgba(0,212,255,0.15),rgba(150,0,255,0.1));border:1.5px solid rgba(0,212,255,0.4);border-radius:14px;padding:14px;margin-bottom:14px;text-align:center">
-        <div style="font-size:11px;color:#7a8ba5;margin-bottom:6px">POTENTIAL REWARD</div>
-        <div style="font-size:28px;font-weight:900;color:#00ff88;text-shadow:0 0 20px rgba(0,255,136,0.6)" id="puzzleRewardPreview">+2,000 TRAX</div>
-        <div style="font-size:10px;color:#00d4ff;margin-top:4px" id="puzzleModePreview">Easy · 5x5 · 5 min</div>
+      <div id="puzzleCostDisplay" style="background:rgba(0,0,0,0.4);border:1.5px solid rgba(0,212,255,0.4);border-radius:14px;padding:14px;margin-bottom:14px;text-align:center">
+        <div style="font-size:11px;color:#7a8ba5;margin-bottom:6px">ENTRY COST</div>
+        <div style="font-size:26px;font-weight:900;color:#ffd700;text-shadow:0 0 15px rgba(255,215,0,0.6)" id="puzzleCostAmount">10,000 TRAX</div>
+        <div style="font-size:10px;color:#00d4ff;margin-top:4px" id="puzzleModeDisplay">Hard · 9x9 · 20 min</div>
       </div>
       <button class="crash-bet-btn" onclick="startPuzzleGame()" style="width:100%">🎮 START PUZZLE</button>
       <button class="modal-btn" style="margin-top:8px;background:rgba(255,255,255,0.1);display:block;width:100%" onclick="closePuzzle()">Close</button>
@@ -662,12 +661,62 @@
     <div id="puzzleGame" style="display:none">
       <div class="puzzle-timer-display">
         <div>⏱ <span id="puzzleTimer" style="color:#00d4ff">05:00</span></div>
-        <div>🎯 <span id="puzzleBetDisplay" style="color:#ffd700">0</span> TRAX</div>
+        <div>💰 <span id="puzzleCostDisplay2" style="color:#ffd700">0</span></div>
         <div>🔄 <span id="puzzleMoves" style="color:#00ff88">0</span></div>
       </div>
       <div class="puzzle-grid" id="puzzleGrid"></div>
-      <button class="modal-btn" style="margin-top:10px;background:linear-gradient(135deg,#ff0055,#990033);display:block;width:100%" onclick="forfeitPuzzle()">⚠️ FORFEIT (Lose Bet)</button>
+      <button class="modal-btn" style="margin-top:10px;background:linear-gradient(135deg,#ff0055,#990033);display:block;width:100%" onclick="forfeitPuzzle()">⚠️ FORFEIT (Lose Cost)</button>
     </div>
+  </div>
+</div>
+
+<!-- REWARD WHEEL MODAL -->
+<div class="modal" id="rewardWheelModal">
+  <div class="modal-content" style="max-width:420px">
+    <h3>🎡 Bonus Spin!</h3>
+    <p style="font-size:12px;color:#a0aec0;margin-bottom:10px">Mubarak! Aapne puzzle solve kiya. Ab spin karein!</p>
+    <div style="background:linear-gradient(135deg,rgba(255,215,0,0.2),rgba(255,150,0,0.1));border:2px solid #ffd700;border-radius:16px;padding:12px;margin-bottom:15px">
+      <div style="font-size:11px;color:#a0aec0;margin-bottom:4px">PRIZE POOL</div>
+      <div style="font-size:14px;font-weight:900;color:#ffd700">10,000 · 30,000 · 1,50,000 TRAX</div>
+    </div>
+    <div class="wheel-wrapper">
+      <div class="wheel-pointer">▼</div>
+      <div class="wheel-outer"></div>
+      <div class="wheel-container" id="rewardWheel" style="background:conic-gradient(#ff0055 0deg 60deg, #00d4ff 60deg 120deg, #00ff88 120deg 180deg, #ffd700 180deg 240deg, #9900ff 240deg 300deg, #ff9500 300deg 360deg)"><div class="wheel-labels" id="rewardWheelLabels"></div></div>
+      <div class="wheel-center" id="rewardWheelCenter" onclick="spinRewardWheel()" style="color:#ffd700;border-color:#ffd700">SPIN</div>
+    </div>
+    <div id="rewardResultDisplay" style="background:linear-gradient(135deg,rgba(255,215,0,0.2),rgba(255,150,0,0.1));border:2px solid #ffd700;border-radius:16px;padding:15px;margin:15px 0;text-align:center;display:none">
+      <h4 style="font-size:11px;color:#a0aec0;margin-bottom:8px">🎉 PRIZE</h4>
+      <div style="font-size:36px;font-weight:900;color:#ffd700;text-shadow:0 0 20px rgba(255,215,0,0.8)" id="rewardPrizeAmount">+0</div>
+      <div style="font-size:13px;color:#00d4ff;font-weight:900">TRAX</div>
+    </div>
+    <button class="modal-btn" style="margin-top:8px;background:rgba(255,255,255,0.1);display:none;width:100%" id="continueToSlotBtn" onclick="continueToSlot()">CONTINUE TO SLOT →</button>
+  </div>
+</div>
+
+<!-- SLOT MULTIPLIER MODAL -->
+<div class="modal" id="slotModal">
+  <div class="modal-content" style="max-width:420px">
+    <h3>🎰 Slot Multiplier!</h3>
+    <p style="font-size:12px;color:#a0aec0;margin-bottom:5px">Aapka Prize: <b style="color:#ffd700" id="slotPrizeDisplay">0 TRAX</b></p>
+    <p style="font-size:11px;color:#a0aec0;margin-bottom:15px">Ab slot machine ghumayein — multiplier milega!</p>
+    <div class="slot-machine">
+      <div class="slot-reel" id="reel1">🎰</div>
+      <div class="slot-reel" id="reel2">🎰</div>
+      <div class="slot-reel" id="reel3">🎰</div>
+    </div>
+    <div style="background:linear-gradient(135deg,rgba(0,255,136,0.15),rgba(0,180,255,0.1));border:2px solid #00ff88;border-radius:16px;padding:14px;margin:15px 0;text-align:center">
+      <div style="font-size:11px;color:#a0aec0;margin-bottom:4px">MULTIPLIER</div>
+      <div style="font-size:42px;font-weight:900;color:#00ff88;text-shadow:0 0 25px rgba(0,255,136,0.8)" id="slotMultiplier">x1</div>
+    </div>
+    <button class="modal-btn" style="display:block;width:100%" onclick="spinSlot()" id="spinSlotBtn">🎲 SPIN SLOT</button>
+    <div id="finalRewardBox" style="background:linear-gradient(135deg,rgba(255,215,0,0.2),rgba(255,150,0,0.1));border:2px solid #ffd700;border-radius:16px;padding:15px;margin:15px 0;text-align:center;display:none">
+      <div style="font-size:11px;color:#a0aec0;margin-bottom:6px">🎉 FINAL REWARD</div>
+      <div style="font-size:38px;font-weight:900;color:#ffd700;text-shadow:0 0 25px rgba(255,215,0,0.9)" id="finalRewardAmount">+0</div>
+      <div style="font-size:13px;color:#00d4ff;font-weight:900">TRAX</div>
+      <div style="font-size:10px;color:#a0aec0;margin-top:6px" id="finalBreakdown"></div>
+    </div>
+    <button class="modal-btn" style="margin-top:8px;display:none;width:100%;background:linear-gradient(135deg,#00ff88,#00aa55)" id="collectBtn" onclick="collectFinalReward()">✓ COLLECT REWARD</button>
   </div>
 </div>
 
@@ -1261,13 +1310,6 @@
     if (profLevelFill) profLevelFill.style.width = (xpInLevel / LEVEL_XP * 100) + '%';
     if (profTapsEl) profTapsEl.textContent = totalTaps.toLocaleString();
     if (profEarnedEl) profEarnedEl.textContent = Math.floor(totalEarned).toLocaleString();
-
-    const today = new Date().toDateString();
-    const dailyBtn = document.getElementById('dailyBtn');
-    if (dailyBtn) {
-      if (lastDaily === today) { dailyBtn.textContent = 'Claimed'; dailyBtn.classList.add('claimed'); }
-      else { dailyBtn.textContent = 'Claim'; dailyBtn.classList.remove('claimed'); }
-    }
   }
 
   function save() {
@@ -1564,39 +1606,41 @@
     playSound('win'); vibrate('success');
   }
 
-  // ===== NEW PUZZLE GAME =====
+  // ===== NEW PUZZLE + SPIN WHEEL + SLOT =====
   const PUZZLE_MODES = {
-    easy:   { size: 5, time: 300,  multiplier: 2,  minBet: 100,  label: 'Easy',   tiles: '5x5', timeLabel: '5 min' },
-    medium: { size: 7, time: 600,  multiplier: 5,  minBet: 500,  label: 'Medium', tiles: '7x7', timeLabel: '10 min' },
-    hard:   { size: 9, time: 1200, multiplier: 15, minBet: 1000, label: 'Hard',   tiles: '9x9', timeLabel: '20 min' }
+    hard:   { size: 9, time: 1200, cost: 10000, label: 'Hard',   tiles: '9x9', timeLabel: '20 min' },
+    medium: { size: 7, time: 600,  cost: 30000, label: 'Medium', tiles: '7x7', timeLabel: '10 min' },
+    easy:   { size: 5, time: 300,  cost: 50000, label: 'Easy',   tiles: '5x5', timeLabel: '5 min' }
   };
-  let selectedPuzzleMode = 'easy';
-  let puzzleState = { tiles: [], moves: 0, solved: false, mode: 'easy', bet: 0, timeLeft: 0, timer: null, size: 0 };
+  let selectedPuzzleMode = 'hard';
+  let puzzleState = { tiles: [], moves: 0, solved: false, mode: 'hard', cost: 0, timeLeft: 0, timer: null, size: 0 };
+
+  // Reward Wheel data
+  const REWARD_PRIZES = [10000, 30000, 150000, 10000, 30000, 150000];
+  let rewardWheelSpinning = false;
+  let rewardPrize = 0;
+
+  // Slot Multipliers
+  const SLOT_MULTIPLIERS = [2, 3, 5, 10];
+  const SLOT_ICONS = ['2️⃣', '3️⃣', '5️⃣', '🔟'];
+  let slotSpinning = false;
+  let slotMultiplier = 1;
 
   function selectPuzzleMode(mode) {
     selectedPuzzleMode = mode;
     document.querySelectorAll('.puzzle-mode-card').forEach(c => c.classList.remove('selected'));
     const card = document.querySelector('.puzzle-mode-card[data-mode="' + mode + '"]');
     if (card) card.classList.add('selected');
-    document.getElementById('puzzleMinBet').textContent = PUZZLE_MODES[mode].minBet.toLocaleString();
-    const betInput = document.getElementById('puzzleBetInput');
-    if (parseInt(betInput.value) < PUZZLE_MODES[mode].minBet) betInput.value = PUZZLE_MODES[mode].minBet;
-    updatePuzzlePreview();
-  }
-
-  function updatePuzzlePreview() {
-    const mode = PUZZLE_MODES[selectedPuzzleMode];
-    const bet = parseInt(document.getElementById('puzzleBetInput').value) || mode.minBet;
-    const reward = Math.floor(bet * mode.multiplier);
-    document.getElementById('puzzleRewardPreview').textContent = '+' + reward.toLocaleString() + ' TRAX';
-    document.getElementById('puzzleModePreview').textContent = mode.label + ' · ' + mode.tiles + ' · ' + mode.timeLabel;
+    const m = PUZZLE_MODES[mode];
+    document.getElementById('puzzleCostAmount').textContent = m.cost.toLocaleString() + ' TRAX';
+    document.getElementById('puzzleModeDisplay').textContent = m.label + ' · ' + m.tiles + ' · ' + m.timeLabel;
   }
 
   function openPuzzle() {
     document.getElementById('puzzleSetup').style.display = 'block';
     document.getElementById('puzzleGame').style.display = 'none';
     document.getElementById('puzzleModal').classList.add('show');
-    selectPuzzleMode('easy');
+    selectPuzzleMode('hard');
   }
 
   function closePuzzle() {
@@ -1605,22 +1649,20 @@
   }
 
   function startPuzzleGame() {
-    const mode = PUZZLE_MODES[selectedPuzzleMode];
-    const bet = parseInt(document.getElementById('puzzleBetInput').value) || 0;
-    if (bet < mode.minBet) { showModal('⚠️ Bet Too Low', mode.label + ' ke liye minimum ' + mode.minBet.toLocaleString() + ' TRAX chahiye.'); return; }
-    if (bet > balance) { showModal('❌ Not Enough', 'Aapke paas ' + Math.floor(balance).toLocaleString() + ' TRAX hain.'); return; }
-    balance -= bet;
+    const m = PUZZLE_MODES[selectedPuzzleMode];
+    if (balance < m.cost) { showModal('❌ Not Enough', 'Puzzle ke liye ' + m.cost.toLocaleString() + ' TRAX chahiye.\nAapke paas ' + Math.floor(balance).toLocaleString() + ' TRAX hain.'); return; }
+    balance -= m.cost;
     puzzleState.mode = selectedPuzzleMode;
-    puzzleState.bet = bet;
-    puzzleState.timeLeft = mode.time;
-    puzzleState.size = mode.size;
+    puzzleState.cost = m.cost;
+    puzzleState.timeLeft = m.time;
+    puzzleState.size = m.size;
     puzzleState.moves = 0;
     puzzleState.solved = false;
     updateUI(); save();
 
     document.getElementById('puzzleSetup').style.display = 'none';
     document.getElementById('puzzleGame').style.display = 'block';
-    document.getElementById('puzzleBetDisplay').textContent = bet.toLocaleString();
+    document.getElementById('puzzleCostDisplay2').textContent = m.cost.toLocaleString();
     document.getElementById('puzzleMoves').textContent = '0';
 
     initPuzzle();
@@ -1631,9 +1673,8 @@
       updatePuzzleTimerDisplay();
       if (puzzleState.timeLeft <= 0) {
         clearInterval(puzzleState.timer); puzzleState.timer = null;
-        // Time up
         playSound('error'); vibrate('error');
-        showModal('⏰ Time Up!', 'Aapne ' + puzzleState.bet.toLocaleString() + ' TRAX kho diye.');
+        showModal('⏰ Time Up!', 'Aapne ' + puzzleState.cost.toLocaleString() + ' TRAX kho diye.');
         closePuzzle();
       }
     }, 1000);
@@ -1656,7 +1697,6 @@
     puzzleState.tiles = [];
     for (let i = 1; i < total; i++) puzzleState.tiles.push(i);
     puzzleState.tiles.push(0);
-    // Shuffle
     for (let i = 0; i < size * size * 20; i++) {
       const emptyIdx = puzzleState.tiles.indexOf(0);
       const neighbors = [];
@@ -1702,14 +1742,10 @@
     if (isPuzzleSolved()) {
       puzzleState.solved = true;
       if (puzzleState.timer) { clearInterval(puzzleState.timer); puzzleState.timer = null; }
-      const reward = Math.floor(puzzleState.bet * PUZZLE_MODES[puzzleState.mode].multiplier);
-      balance += reward; totalEarned += reward;
-      updateUI(); save();
       playSound('win'); vibrate('success');
-      setTimeout(() => {
-        showModal('🎉 Puzzle Solved!', '+' + reward.toLocaleString() + ' TRAX!\n\nMoves: ' + puzzleState.moves + '\nTime left: ' + Math.floor(puzzleState.timeLeft/60) + 'm ' + (puzzleState.timeLeft%60) + 's');
-        closePuzzle();
-      }, 300);
+      // Puzzle solve → Open reward wheel
+      closePuzzle();
+      setTimeout(() => openRewardWheel(), 300);
     }
   }
 
@@ -1720,11 +1756,148 @@
   }
 
   function forfeitPuzzle() {
-    if (!confirm('Kya aap forit karna chahte hain? Aapka ' + puzzleState.bet.toLocaleString() + ' TRAX wapas nahi hoga.')) return;
+    if (!confirm('Kya aap forit karna chahte hain? Aapka ' + puzzleState.cost.toLocaleString() + ' TRAX wapas nahi hoga.')) return;
     if (puzzleState.timer) { clearInterval(puzzleState.timer); puzzleState.timer = null; }
     playSound('error'); vibrate('error');
-    showModal('❌ Forfeited', 'Aapne ' + puzzleState.bet.toLocaleString() + ' TRAX kho diye.');
+    showModal('❌ Forfeited', 'Aapne ' + puzzleState.cost.toLocaleString() + ' TRAX kho diye.');
     closePuzzle();
+  }
+
+  // ===== REWARD WHEEL =====
+  function openRewardWheel() {
+    document.getElementById('rewardWheelModal').classList.add('show');
+    document.getElementById('rewardResultDisplay').style.display = 'none';
+    document.getElementById('continueToSlotBtn').style.display = 'none';
+    document.getElementById('rewardWheel').style.transform = 'rotate(0deg)';
+    document.getElementById('rewardWheelCenter').textContent = 'SPIN';
+    document.getElementById('rewardWheelCenter').classList.remove('disabled');
+    drawRewardWheelLabels();
+  }
+
+  function drawRewardWheelLabels() {
+    const labelsBox = document.getElementById('rewardWheelLabels');
+    labelsBox.innerHTML = '';
+    const labels = ['10K', '30K', '150K', '10K', '30K', '150K'];
+    const radius = 78;
+    labels.forEach((label, i) => {
+      const angle = i * 60 + 30;
+      const rad = (angle - 90) * Math.PI / 180;
+      const x = Math.cos(rad) * radius;
+      const y = Math.sin(rad) * radius;
+      const el = document.createElement('div');
+      el.className = 'wheel-label';
+      el.innerHTML = '<span style="transform: translate(-50%, -50%) rotate(' + angle + 'deg); left: ' + x + 'px; top: ' + y + 'px;">' + label + '</span>';
+      labelsBox.appendChild(el);
+    });
+  }
+
+  function spinRewardWheel() {
+    if (rewardWheelSpinning) return;
+    rewardWheelSpinning = true;
+    const wheel = document.getElementById('rewardWheel');
+    const center = document.getElementById('rewardWheelCenter');
+    center.textContent = '...';
+    center.classList.add('disabled');
+
+    // Random prize index
+    const idx = Math.floor(Math.random() * REWARD_PRIZES.length);
+    rewardPrize = REWARD_PRIZES[idx];
+    const segmentCenter = idx * 60 + 30;
+    const targetRotation = 360 - segmentCenter;
+    const fullRotations = 8 * 360;
+    const finalRotation = fullRotations + targetRotation + 360;
+    wheel.style.transform = 'rotate(' + finalRotation + 'deg)';
+    vibrate('medium');
+
+    setTimeout(() => {
+      center.textContent = '🎉';
+      document.getElementById('rewardResultDisplay').style.display = 'block';
+      document.getElementById('rewardPrizeAmount').textContent = '+' + rewardPrize.toLocaleString();
+      document.getElementById('continueToSlotBtn').style.display = 'block';
+      rewardWheelSpinning = false;
+      playSound('win'); vibrate('success');
+    }, 5200);
+  }
+
+  function continueToSlot() {
+    document.getElementById('rewardWheelModal').classList.remove('show');
+    setTimeout(() => openSlot(rewardPrize), 300);
+  }
+
+  // ===== SLOT MULTIPLIER =====
+  function openSlot(prize) {
+    document.getElementById('slotModal').classList.add('show');
+    document.getElementById('slotPrizeDisplay').textContent = prize.toLocaleString() + ' TRAX';
+    document.getElementById('slotMultiplier').textContent = 'x1';
+    document.getElementById('slotMultiplier').style.color = '#00ff88';
+    document.getElementById('finalRewardBox').style.display = 'none';
+    document.getElementById('collectBtn').style.display = 'none';
+    document.getElementById('spinSlotBtn').style.display = 'block';
+    document.getElementById('reel1').textContent = '🎰';
+    document.getElementById('reel2').textContent = '🎰';
+    document.getElementById('reel3').textContent = '🎰';
+    document.getElementById('reel1').classList.remove('spinning');
+    document.getElementById('reel2').classList.remove('spinning');
+    document.getElementById('reel3').classList.remove('spinning');
+    slotMultiplier = 1;
+  }
+
+  function spinSlot() {
+    if (slotSpinning) return;
+    slotSpinning = true;
+    const r1 = document.getElementById('reel1');
+    const r2 = document.getElementById('reel2');
+    const r3 = document.getElementById('reel3');
+    const btn = document.getElementById('spinSlotBtn');
+    btn.disabled = true; btn.textContent = 'SPINNING...';
+    r1.classList.add('spinning'); r2.classList.add('spinning'); r3.classList.add('spinning');
+
+    // Random multiplier
+    const idx = Math.floor(Math.random() * SLOT_MULTIPLIERS.length);
+    const idx2 = Math.floor(Math.random() * SLOT_MULTIPLIERS.length);
+    const idx3 = Math.floor(Math.random() * SLOT_MULTIPLIERS.length);
+    slotMultiplier = SLOT_MULTIPLIERS[idx];
+    vibrate('medium');
+    playSound('tap');
+
+    // Spin animation
+    let counter = 0;
+    const spinInterval = setInterval(() => {
+      r1.textContent = SLOT_ICONS[Math.floor(Math.random() * 4)];
+      r2.textContent = SLOT_ICONS[Math.floor(Math.random() * 4)];
+      r3.textContent = SLOT_ICONS[Math.floor(Math.random() * 4)];
+      counter++;
+      if (counter > 15) {
+        clearInterval(spinInterval);
+        r1.classList.remove('spinning'); r2.classList.remove('spinning'); r3.classList.remove('spinning');
+        r1.textContent = SLOT_ICONS[idx];
+        r2.textContent = SLOT_ICONS[idx2];
+        r3.textContent = SLOT_ICONS[idx3];
+        document.getElementById('slotMultiplier').textContent = 'x' + slotMultiplier;
+        document.getElementById('slotMultiplier').style.color = slotMultiplier >= 10 ? '#ff0055' : slotMultiplier >= 5 ? '#ff9500' : '#00ff88';
+        finalizeReward();
+        slotSpinning = false;
+      }
+    }, 100);
+  }
+
+  function finalizeReward() {
+    const finalAmount = rewardPrize * slotMultiplier;
+    document.getElementById('finalRewardBox').style.display = 'block';
+    document.getElementById('finalRewardAmount').textContent = '+' + finalAmount.toLocaleString();
+    document.getElementById('finalBreakdown').textContent = rewardPrize.toLocaleString() + ' × ' + slotMultiplier + 'x = ' + finalAmount.toLocaleString() + ' TRAX';
+    document.getElementById('collectBtn').style.display = 'block';
+    document.getElementById('spinSlotBtn').style.display = 'none';
+    playSound('win'); vibrate('success');
+  }
+
+  function collectFinalReward() {
+    const finalAmount = rewardPrize * slotMultiplier;
+    balance += finalAmount; totalEarned += finalAmount;
+    updateUI(); save();
+    document.getElementById('slotModal').classList.remove('show');
+    showModal('🎉 Reward Collected!', '+' + finalAmount.toLocaleString() + ' TRAX aapke account mein add ho gaye!');
+    playSound('win'); vibrate('success');
   }
 
   function resetData() {
@@ -1735,4 +1908,4 @@
   updateSettingsUI();
 </script>
 </body>
-       </html>
+ </html>
