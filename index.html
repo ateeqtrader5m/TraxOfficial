@@ -19,7 +19,7 @@
     position: relative;
   }
 
-  /* BACKGROUND CITY */
+  /* CITY BACKGROUND - HALKI */
   body::before {
     content: '';
     position: fixed;
@@ -27,15 +27,15 @@
     background-image: url('city.png');
     background-size: cover;
     background-position: center;
-    opacity: 0.25;
+    opacity: 0.35;
     z-index: -1;
-    filter: blur(2px);
+    filter: blur(1px);
   }
   body::after {
     content: '';
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: linear-gradient(180deg, rgba(5,10,20,0.7) 0%, rgba(5,10,20,0.95) 100%);
+    background: linear-gradient(180deg, rgba(5,10,20,0.55) 0%, rgba(5,10,20,0.9) 100%);
     z-index: -1;
   }
 
@@ -63,11 +63,15 @@
   .header-logo-icon {
     width: 38px; height: 38px;
     border-radius: 50%;
-    background-image: url('icon.png');
-    background-size: cover;
-    background-position: center;
-    border: 2px solid #00d4ff;
+    background: linear-gradient(135deg, #00d4ff, #0066ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 900;
+    color: white;
     box-shadow: 0 0 20px rgba(0,212,255,0.8);
+    border: 2px solid rgba(0,212,255,0.5);
   }
   .header-logo-text h1 {
     font-size: 17px; font-weight: 900; letter-spacing: 0.5px;
@@ -111,9 +115,11 @@
   .avatar {
     width: 38px; height: 38px;
     border-radius: 50%;
-    background-image: url('character.png');
-    background-size: cover;
-    background-position: center top;
+    background: linear-gradient(135deg, #00d4ff, #0066ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
     border: 2px solid rgba(0,212,255,0.5);
     box-shadow: 0 0 15px rgba(0,212,255,0.4);
     cursor: pointer;
@@ -221,6 +227,17 @@
     margin-top: 3px;
   }
 
+  /* TAP TITLE */
+  .tap-title {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 900;
+    color: white;
+    margin: 10px 0 5px;
+    letter-spacing: 1px;
+    text-shadow: 0 0 15px rgba(0,212,255,0.5);
+  }
+
   /* COIN AREA */
   .coin-area {
     display: flex;
@@ -228,59 +245,28 @@
     align-items: center;
     margin: 25px 0 15px;
     position: relative;
-    min-height: 300px;
-  }
-  .coin-character {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 120px;
-    height: 180px;
-    background-image: url('character.png');
-    background-size: contain;
-    background-position: bottom center;
-    background-repeat: no-repeat;
-    z-index: 1;
-    filter: drop-shadow(0 0 20px rgba(0,212,255,0.5));
+    min-height: 280px;
   }
   .coin-wrapper {
     position: relative;
     z-index: 2;
-    margin-left: 60px;
   }
   .coin-bg-glow {
     position: absolute;
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    width: 280px; height: 280px;
+    width: 300px; height: 300px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(0,180,255,0.4) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(0,180,255,0.5) 0%, rgba(0,100,200,0.15) 40%, transparent 70%);
     animation: glowPulse 3s infinite;
   }
   @keyframes glowPulse {
     0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
     50% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
   }
-  .coin-ring-img {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 220px;
-    height: 220px;
-    background-image: url('ring.png');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    animation: ringSpin 20s linear infinite;
-    opacity: 0.85;
-  }
-  @keyframes ringSpin {
-    0% { transform: translate(-50%, -50%) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg); }
-  }
   .coin-btn {
-    width: 180px;
-    height: 180px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
     background: radial-gradient(circle at 35% 30%, #7ddcff 0%, #00b4ff 45%, #0044aa 100%);
     border: none;
@@ -289,8 +275,9 @@
     box-shadow:
       0 0 40px rgba(0,180,255,0.9),
       0 0 80px rgba(0,150,255,0.5),
-      inset 0 -8px 25px rgba(0,0,0,0.4),
-      inset 0 8px 25px rgba(255,255,255,0.4);
+      0 0 120px rgba(0,100,255,0.3),
+      inset 0 -10px 30px rgba(0,0,0,0.4),
+      inset 0 10px 30px rgba(255,255,255,0.4);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -300,7 +287,7 @@
   }
   .coin-btn:active { transform: scale(0.93); }
   .coin-letter {
-    font-size: 75px;
+    font-size: 90px;
     font-weight: 900;
     color: white;
     text-shadow:
@@ -310,16 +297,16 @@
     line-height: 1;
   }
   .coin-sub {
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 900;
-    color: rgba(255,255,255,0.9);
+    color: rgba(255,255,255,0.95);
     letter-spacing: 1.5px;
-    margin-top: 3px;
+    margin-top: 5px;
     text-shadow: 0 0 10px rgba(0,0,0,0.5);
   }
   .coin-bottom-text {
     text-align: center;
-    font-size: 10px;
+    font-size: 11px;
     color: #00d4ff;
     letter-spacing: 3px;
     margin-top: 5px;
@@ -337,17 +324,6 @@
     z-index: 4;
   }
   .coin-per-tap strong { color: #00d4ff; }
-
-  /* TAP TO EARN TITLE */
-  .tap-title {
-    text-align: center;
-    font-size: 16px;
-    font-weight: 900;
-    color: white;
-    margin: 10px 0 5px;
-    letter-spacing: 1px;
-    text-shadow: 0 0 15px rgba(0,212,255,0.5);
-  }
 
   /* 4 BUTTONS */
   .grid-4 {
@@ -414,12 +390,14 @@
     background: rgba(0,212,255,0.15);
     border: 1px solid rgba(0,212,255,0.4);
     color: #00d4ff;
-    padding: 6px 12px;
+    padding: 8px 12px;
     border-radius: 8px;
     font-size: 11px;
     font-weight: 900;
     cursor: pointer;
     letter-spacing: 1px;
+    margin-top: 8px;
+    width: 100%;
   }
 
   /* DAILY REWARD */
@@ -573,10 +551,6 @@
     background: rgba(0,255,136,0.2);
     color: #00ff88;
     box-shadow: none;
-  }
-  .task-progress {
-    font-size: 10px;
-    color: #7a8ba5;
   }
 
   /* MENU ITEMS */
@@ -985,7 +959,7 @@
   <div class="header-left">
     <div class="menu-icon" onclick="navTo('settings')">☰</div>
     <div class="header-logo">
-      <div class="header-logo-icon"></div>
+      <div class="header-logo-icon">T</div>
       <div class="header-logo-text">
         <h1>TraxOfficial</h1>
         <p>TAP · EARN · GROW</p>
@@ -997,7 +971,7 @@
       <div class="lv">Diamond Lv. <span id="levelNum">1</span></div>
       <div class="xp-bar"><div class="xp-fill" id="xpFill" style="width:20%"></div></div>
     </div>
-    <div class="avatar" onclick="navTo('profile')"></div>
+    <div class="avatar" onclick="navTo('profile')">👤</div>
   </div>
 </div>
 
@@ -1025,10 +999,8 @@
 
     <!-- COIN AREA -->
     <div class="coin-area">
-      <div class="coin-character"></div>
       <div class="coin-wrapper">
         <div class="coin-bg-glow"></div>
-        <div class="coin-ring-img"></div>
         <button class="coin-btn" id="coinBtn">
           <div class="coin-letter">T</div>
           <div class="coin-sub">+1 TRAX per tap</div>
@@ -1067,7 +1039,7 @@
       <div class="energy-bar">
         <div class="energy-fill" id="energyBar" style="width:100%"></div>
       </div>
-      <button class="energy-full-btn" style="margin-top:8px;width:100%" onclick="refillEnergy()">⚡ FULL REFILL (500 TRAX)</button>
+      <button class="energy-full-btn" onclick="refillEnergy()">⚡ FULL REFILL (500 TRAX)</button>
     </div>
 
     <!-- DAILY REWARD -->
@@ -1283,7 +1255,7 @@
 <div class="tab-content" id="tab-profile">
   <div class="page-title">👤 Profile</div>
   <div class="ref-card">
-    <div style="width:90px;height:90px;border-radius:50%;background-image:url('character.png');background-size:cover;background-position:center top;border:3px solid #00d4ff;margin:0 auto 15px;box-shadow:0 0 25px rgba(0,212,255,0.6)"></div>
+    <div style="width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,#00d4ff,#0066ff);display:flex;align-items:center;justify-content:center;font-size:44px;border:3px solid #00d4ff;margin:0 auto 15px;box-shadow:0 0 25px rgba(0,212,255,0.6)">👤</div>
     <h3 style="color:#00d4ff;margin-bottom:5px" id="profileName">Player</h3>
     <p style="font-size:11px;color:#7a8ba5" id="profileId">ID: ---</p>
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:20px">
@@ -1459,6 +1431,7 @@
     all.forEach((u, i) => {
       const el = document.createElement('div');
       el.className = 'rank-item';
+      el.style.cssText = 'background:rgba(15,30,55,0.7);border:1px solid rgba(0,180,255,0.2);border-radius:12px;padding:12px;margin-bottom:8px;display:flex;align-items:center;gap:12px;';
       if (u.name.includes('You')) el.style.borderColor = '#00d4ff';
       el.innerHTML = `
         <div style="font-size:16px;font-weight:900;color:#00d4ff;min-width:35px">${i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : '#' + (i + 1)}</div>
@@ -1763,7 +1736,6 @@
     btn.style.opacity = '0.6';
     document.getElementById('wheelCenter').textContent = '...';
 
-    // Weighted rewards - common zyada, rare kam
     const weighted = [
       { amount: 50, weight: 30 },
       { amount: 100, weight: 25 },
