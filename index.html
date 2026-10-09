@@ -49,8 +49,6 @@
   .rarity-item-info h4 { font-size: 13px; font-weight: 900; margin-bottom: 2px; }
   .rarity-item-info p { font-size: 10px; color: #a0aec0; }
   .rarity-item-info .range { font-size: 11px; font-weight: 900; margin-top: 2px; }
-
-  /* ===== HOME LAYOUT WITH SIDE PANEL ===== */
   .home-layout { display: flex; gap: 10px; margin-bottom: 12px; }
   .home-main { flex: 1; min-width: 0; }
   .home-side { width: 120px; flex-shrink: 0; display: flex; flex-direction: column; gap: 8px; }
@@ -61,12 +59,12 @@
   .side-card-sub { font-size: 8px; color: #7a8ba5; font-weight: 700; }
   .side-card.highlight { background: linear-gradient(135deg, rgba(255,0,85,0.2), rgba(150,0,50,0.1)); border-color: rgba(255,0,85,0.5); }
   .side-card.highlight .side-card-name { color: #ff5555; }
+  .side-card.twist { background: linear-gradient(135deg, rgba(153,0,255,0.25), rgba(80,0,150,0.1)); border-color: rgba(153,0,255,0.5); }
+  .side-card.twist .side-card-name { color: #cc88ff; }
   .side-card.ready { animation: sidePulse 1.5s infinite; }
   @keyframes sidePulse { 0%, 100% { box-shadow: 0 0 0 rgba(0,255,136,0); } 50% { box-shadow: 0 0 20px rgba(0,255,136,0.6); } }
   .side-card .badge-dot { position: absolute; top: 6px; right: 6px; width: 8px; height: 8px; border-radius: 50%; background: #ff0055; box-shadow: 0 0 8px #ff0055; }
   .side-card .badge-dot.green { background: #00ff88; box-shadow: 0 0 8px #00ff88; }
-
-  /* ===== DAILY STREAK BAR ===== */
   .streak-bar { background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(0,80,180,0.05)); border: 1.5px solid rgba(0,212,255,0.3); border-radius: 16px; padding: 12px; margin-bottom: 12px; }
   .streak-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
   .streak-title { font-size: 12px; font-weight: 900; color: #ff9500; display: flex; align-items: center; gap: 5px; }
@@ -77,7 +75,6 @@
   .streak-day.today { background: linear-gradient(135deg, #00d4ff, #0066ff); color: white; border-color: #00d4ff; box-shadow: 0 0 15px rgba(0,212,255,0.8); animation: todayPulse 1.5s infinite; }
   .streak-day.gift { background: linear-gradient(135deg, #ff0055, #cc0044); color: white; border-color: #ff0055; }
   @keyframes todayPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.12); } }
-
   .tap-title { text-align: center; font-size: 16px; font-weight: 900; margin: 12px 0 5px; letter-spacing: 1px; }
   .coin-area { display: flex; justify-content: center; align-items: center; margin: 15px 0; position: relative; min-height: 240px; perspective: 1000px; }
   .coin-wrapper { position: relative; z-index: 2; }
@@ -104,7 +101,6 @@
   .stat-box { background: rgba(10,25,45,0.7); border: 1px solid rgba(0,150,255,0.2); border-radius: 12px; padding: 8px 6px; text-align: center; }
   .stat-box .lbl { font-size: 8px; color: #7a8ba5; font-weight: 900; margin-bottom: 3px; letter-spacing: 0.5px; }
   .stat-box .val { font-size: 12px; font-weight: 900; color: #00d4ff; }
-
   .rank-board { background: linear-gradient(135deg, rgba(0,80,180,0.15), rgba(0,40,100,0.1)); border: 1.5px solid rgba(0,180,255,0.3); border-radius: 20px; padding: 16px; }
   .rank-header { display: flex; justify-content: space-between; margin-bottom: 12px; }
   .rank-title { font-size: 15px; font-weight: 900; color: #00d4ff; display: flex; align-items: center; gap: 8px; }
@@ -271,10 +267,13 @@
   .modal#modal { z-index: 9999; background: rgba(0,0,0,0.95); }
   .modal#modal .modal-content { box-shadow: 0 0 40px rgba(0,212,255,0.4); border: 2px solid rgba(0,212,255,0.7); animation: modalPop 0.3s ease-out; }
   @keyframes modalPop { 0% { transform: scale(0.85); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
-  .modal-content { background: linear-gradient(135deg, #0f2137, #061224); border: 1px solid rgba(0,212,255,0.5); border-radius: 22px; padding: 22px 18px; max-width: 380px; width: 100%; text-align: center; max-height: 92vh; overflow-y: auto; }
+  .modal-content { background: linear-gradient(135deg, #0f2137, #061224); border: 1px solid rgba(0,212,255,0.5); border-radius: 22px; padding: 22px 18px; max-width: 380px; width: 100%; text-align: center; max-height: 92vh; overflow-y: auto; position: relative; }
   .modal-content h3 { color: #00d4ff; margin-bottom: 12px; font-size: 18px; font-weight: 900; }
   .modal-content p { color: #a0aec0; font-size: 13px; margin-bottom: 20px; line-height: 1.6; white-space: pre-line; }
   .modal-btn { background: linear-gradient(135deg, #00b4ff, #0066ff); border: none; border-radius: 12px; padding: 12px 30px; color: white; font-size: 14px; font-weight: 900; cursor: pointer; }
+  /* CLOSE X button on game modals */
+  .modal-close-x { position: absolute; top: 10px; right: 12px; width: 34px; height: 34px; border-radius: 50%; background: rgba(255,0,85,0.2); border: 1.5px solid rgba(255,0,85,0.5); color: #ff5555; font-size: 20px; font-weight: 900; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 100; line-height: 1; }
+  .modal-close-x:active { transform: scale(0.9); background: rgba(255,0,85,0.4); }
   .input-field { background: rgba(0,0,0,0.4); border: 1px solid rgba(0,212,255,0.4); border-radius: 12px; padding: 12px 15px; color: white; font-size: 14px; width: 100%; outline: none; text-align: center; margin-bottom: 15px; font-weight: 900; }
   .float-text { position: fixed; font-size: 26px; font-weight: 900; color: #00d4ff; pointer-events: none; animation: floatUp 1s ease-out forwards; z-index: 999; }
   @keyframes floatUp { 0% { opacity: 1; transform: translateY(0) scale(1); } 100% { opacity: 0; transform: translateY(-130px) scale(1.4); } }
@@ -378,6 +377,55 @@
   .profile-info-row .val { font-size: 13px; color: white; font-weight: 900; }
   .profile-action-btn { background: linear-gradient(135deg, #00b4ff, #0066ff); border: none; border-radius: 14px; padding: 14px; color: white; font-size: 14px; font-weight: 900; cursor: pointer; width: 100%; margin-bottom: 10px; }
   .profile-action-btn.green { background: linear-gradient(135deg, #00ff88, #00aa55); }
+
+  /* ===== TWIST ===== */
+  .twist-payouts { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin: 10px 0; }
+  .twist-payout-box { background: rgba(15,30,55,0.8); border-radius: 10px; padding: 6px; text-align: center; }
+  .twist-payout-box .lbl { font-size: 8px; color: #7a8ba5; font-weight: 900; margin-bottom: 2px; }
+  .twist-payout-box .val { font-size: 11px; color: #ffd700; font-weight: 900; }
+  .twist-wheel-wrap { position: relative; width: 300px; height: 300px; margin: 10px auto; }
+  .twist-ring { position: absolute; border-radius: 50%; border: 3px solid rgba(255,255,255,0.08); }
+  .twist-ring.outer { inset: 0; }
+  .twist-ring.middle { inset: 40px; }
+  .twist-ring.inner { inset: 95px; }
+  .twist-mult-label { position: absolute; font-size: 10px; font-weight: 900; color: rgba(255,255,255,0.55); transform: translate(-50%, -50%); text-align: center; white-space: nowrap; }
+  .twist-mult-label.gold { color: #ffd700; text-shadow: 0 0 8px rgba(255,215,0,0.7); }
+  .twist-mult-label.fire { color: #ff9500; text-shadow: 0 0 8px rgba(255,149,0,0.7); }
+  .twist-pointer { position: absolute; top: 50%; left: 50%; width: 55px; height: 55px; margin: -27px 0 0 -27px; border-radius: 50%; background: radial-gradient(circle, #ff0055, #990033); box-shadow: 0 0 30px rgba(255,0,85,0.9), inset 0 0 15px rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; font-size: 28px; z-index: 10; }
+  .twist-pointer::before { content: ''; position: absolute; top: -14px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 8px solid transparent; border-right: 8px solid transparent; border-bottom: 16px solid #ff0055; filter: drop-shadow(0 0 8px rgba(255,0,85,0.9)); }
+  .twist-arrow-marker { position: absolute; top: -25px; left: 50%; transform: translateX(-50%); color: #ff0055; font-size: 26px; z-index: 12; }
+  .twist-result-box { background: linear-gradient(135deg, rgba(0,255,136,0.15), rgba(0,212,255,0.1)); border: 2px solid #00ff88; border-radius: 16px; padding: 14px; margin: 12px 0 10px; text-align: center; display: none; }
+  .twist-result-box.show { display: block; }
+  .twist-result-box .label { font-size: 11px; color: #a0aec0; letter-spacing: 2px; margin-bottom: 6px; }
+  .twist-result-box .mult { font-size: 34px; font-weight: 900; color: #00ff88; text-shadow: 0 0 25px rgba(0,255,136,0.9); line-height: 1; }
+  .twist-result-box .amount { font-size: 13px; color: #00d4ff; font-weight: 900; margin-top: 4px; }
+  .twist-bet-row { display: flex; gap: 8px; margin: 12px 0; align-items: center; }
+  .twist-bet-display { flex: 1; background: rgba(0,0,0,0.4); border: 1px solid rgba(0,212,255,0.4); border-radius: 12px; padding: 10px; text-align: center; }
+  .twist-bet-display .lbl { font-size: 9px; color: #7a8ba5; font-weight: 900; letter-spacing: 1px; margin-bottom: 2px; }
+  .twist-bet-display .val { font-size: 16px; font-weight: 900; color: #00d4ff; }
+  .twist-bet-btn { width: 44px; height: 44px; border-radius: 10px; background: rgba(0,180,255,0.2); border: 1px solid rgba(0,180,255,0.4); color: white; font-size: 20px; font-weight: 900; cursor: pointer; }
+  .twist-spin-btn { background: linear-gradient(135deg, #ff0055, #cc0044); border: none; border-radius: 14px; padding: 16px; color: white; font-size: 16px; font-weight: 900; cursor: pointer; width: 100%; box-shadow: 0 4px 20px rgba(255,0,85,0.5); margin-top: 8px; letter-spacing: 2px; }
+  .twist-spin-btn:disabled { background: linear-gradient(135deg, #444, #222); box-shadow: none; opacity: 0.6; cursor: not-allowed; }
+  .twist-info { font-size: 10px; color: #7a8ba5; text-align: center; margin-top: 10px; line-height: 1.6; }
+
+  /* ===== MINING ===== */
+  .mine-page { text-align: center; padding: 10px 0; }
+  .mine-box { background: linear-gradient(135deg, rgba(255,149,0,0.15), rgba(150,80,0,0.08)); border: 2px solid rgba(255,149,0,0.5); border-radius: 22px; padding: 24px 18px; margin-bottom: 14px; }
+  .mine-icon { font-size: 80px; margin-bottom: 12px; filter: drop-shadow(0 0 25px rgba(255,149,0,0.7)); animation: pickFloat 3s ease-in-out infinite; }
+  @keyframes pickFloat { 0%, 100% { transform: translateY(0) rotate(-5deg); } 50% { transform: translateY(-10px) rotate(5deg); } }
+  .mine-title { font-size: 20px; font-weight: 900; color: #ff9500; margin-bottom: 6px; }
+  .mine-sub { font-size: 12px; color: #a0aec0; margin-bottom: 16px; }
+  .mine-progress { background: rgba(0,0,0,0.4); border-radius: 10px; height: 14px; overflow: hidden; margin-bottom: 8px; }
+  .mine-progress-fill { height: 100%; background: linear-gradient(90deg, #ff9500, #ffd700); border-radius: 10px; transition: width 1s linear; }
+  .mine-timer { font-size: 22px; font-weight: 900; color: #ffd700; text-shadow: 0 0 15px rgba(255,215,0,0.7); margin-bottom: 12px; }
+  .mine-btn { background: linear-gradient(135deg, #00b4ff, #0066ff); border: none; border-radius: 14px; padding: 16px; color: white; font-size: 15px; font-weight: 900; cursor: pointer; width: 100%; }
+  .mine-btn:disabled { background: linear-gradient(135deg, #444, #222); cursor: not-allowed; opacity: 0.6; }
+  .mine-btn.mining { background: linear-gradient(135deg, #ff9500, #cc7700); animation: minePulse 1.5s infinite; }
+  @keyframes minePulse { 0%, 100% { box-shadow: 0 0 0 rgba(255,149,0,0); } 50% { box-shadow: 0 0 25px rgba(255,149,0,0.8); } }
+  .mine-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+  .mine-stat { background: rgba(15,30,55,0.8); border: 1px solid rgba(255,149,0,0.3); border-radius: 14px; padding: 12px; text-align: center; }
+  .mine-stat .lbl { font-size: 9px; color: #7a8ba5; font-weight: 900; margin-bottom: 3px; }
+  .mine-stat .val { font-size: 16px; font-weight: 900; color: #ff9500; }
 </style>
 </head>
 <body>
@@ -399,7 +447,7 @@
   </div>
 </div>
 
-<!-- ===== HOME ===== -->
+<!-- HOME -->
 <div class="tab-content active" id="tab-home">
   <div class="container">
     <div class="balance-card">
@@ -415,7 +463,6 @@
         </button>
       </div>
     </div>
-
     <div class="streak-bar">
       <div class="streak-top">
         <div class="streak-title">🔥 Daily Streak</div>
@@ -423,7 +470,6 @@
       </div>
       <div class="streak-row" id="streakRow"></div>
     </div>
-
     <div class="home-layout">
       <div class="home-main">
         <div class="tap-title">⚡ Tap to Earn</div>
@@ -434,16 +480,8 @@
               <div class="coin-3d-ring"></div>
               <svg class="coin-3d-svg" viewBox="0 0 200 200">
                 <defs>
-                  <radialGradient id="coinBg" cx="35%" cy="30%">
-                    <stop offset="0%" stop-color="#5fc8ff"/>
-                    <stop offset="45%" stop-color="#00a8ff"/>
-                    <stop offset="100%" stop-color="#003d99"/>
-                  </radialGradient>
-                  <linearGradient id="tGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#ffffff"/>
-                    <stop offset="50%" stop-color="#d0f0ff"/>
-                    <stop offset="100%" stop-color="#7ddcff"/>
-                  </linearGradient>
+                  <radialGradient id="coinBg" cx="35%" cy="30%"><stop offset="0%" stop-color="#5fc8ff"/><stop offset="45%" stop-color="#00a8ff"/><stop offset="100%" stop-color="#003d99"/></radialGradient>
+                  <linearGradient id="tGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ffffff"/><stop offset="50%" stop-color="#d0f0ff"/><stop offset="100%" stop-color="#7ddcff"/></linearGradient>
                 </defs>
                 <circle cx="100" cy="100" r="90" fill="url(#coinBg)" stroke="#00d4ff" stroke-width="3"/>
                 <circle cx="100" cy="100" r="82" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
@@ -456,7 +494,6 @@
         <div class="coin-bottom-text">👆 TAP THE COIN</div>
         <div class="coin-per-tap">Per Tap: <strong>+<span id="tapPowerText">1</span> TRAX</strong></div>
       </div>
-
       <div class="home-side">
         <div class="side-card highlight" id="sideRedPocket" onclick="navTo('redpocket')">
           <div class="badge-dot" id="rpDot"></div>
@@ -469,6 +506,11 @@
           <div class="side-card-icon">📅</div>
           <div class="side-card-name">Daily</div>
           <div class="side-card-sub" id="attSideDay">Day 1</div>
+        </div>
+        <div class="side-card twist" onclick="openTwist()">
+          <div class="side-card-icon">🌀</div>
+          <div class="side-card-name">Twist</div>
+          <div class="side-card-sub">200x</div>
         </div>
         <div class="side-card" onclick="navTo('boosters')">
           <div class="side-card-icon">🚀</div>
@@ -488,11 +530,10 @@
         <div class="side-card" onclick="navTo('mine')">
           <div class="side-card-icon">⛏️</div>
           <div class="side-card-name">Mine</div>
-          <div class="side-card-sub">Auto mine</div>
+          <div class="side-card-sub" id="mineSideStatus">Ready</div>
         </div>
       </div>
     </div>
-
     <div class="energy-card">
       <div class="energy-header">
         <span class="energy-label">⚡ Energy</span>
@@ -500,34 +541,31 @@
       </div>
       <div class="energy-bar"><div class="energy-fill" id="energyBar" style="width:100%"></div></div>
     </div>
-
     <div class="quick-stats">
       <div class="stat-box"><div class="lbl">TAP/CLICK</div><div class="val">+<span id="statTap">1</span></div></div>
       <div class="stat-box"><div class="lbl">AUTO/HOUR</div><div class="val">+<span id="statAuto">0</span></div></div>
       <div class="stat-box"><div class="lbl">RANK</div><div class="val">#---</div></div>
     </div>
-
     <div class="rank-board">
-      <div class="rank-header">
-        <div class="rank-title"><span class="live-dot"></span>🏆 LIVE LEADERBOARD</div>
-      </div>
+      <div class="rank-header"><div class="rank-title"><span class="live-dot"></span>🏆 LIVE LEADERBOARD</div></div>
       <div id="homeRankList"></div>
     </div>
   </div>
 </div>
 
-<!-- ===== GAMES ===== -->
+<!-- GAMES -->
 <div class="tab-content" id="tab-games">
   <div class="page-title-bar"><div class="page-title-icon">🎮</div><div class="page-title-text">Mini Games</div></div>
   <div class="mini-games-grid">
     <div class="mini-game-card" onclick="openSpin()"><div class="mini-game-icon">🎰</div><div class="mini-game-name">Lucky Spin</div><div class="mini-game-desc">Win up to 500K</div></div>
+    <div class="mini-game-card" onclick="openTwist()"><div class="mini-game-icon">🌀</div><div class="mini-game-name">Twist</div><div class="mini-game-desc">Up to 200x</div></div>
     <div class="mini-game-card" onclick="openPuzzle()"><div class="mini-game-icon">🧩</div><div class="mini-game-name">Puzzle</div><div class="mini-game-desc">3 Modes</div></div>
     <div class="mini-game-card" onclick="openCrash()"><div class="mini-game-icon">🚀</div><div class="mini-game-name">Crash</div><div class="mini-game-desc">Win big</div></div>
     <div class="mini-game-card" onclick="openCoinFlip()"><div class="mini-game-icon">🪙</div><div class="mini-game-name">Coin Flip</div><div class="mini-game-desc">T or R</div></div>
   </div>
 </div>
 
-<!-- ===== ATTENDANCE ===== -->
+<!-- ATTENDANCE -->
 <div class="tab-content" id="tab-attendance">
   <div class="page-title-bar"><div class="page-title-icon">📅</div><div class="page-title-text">Attendance</div></div>
   <div class="attendance-header">
@@ -540,10 +578,7 @@
   </div>
   <div class="attendance-grid" id="attendanceGrid"></div>
   <div class="attendance-big-bonus">
-    <div class="att-big-info">
-      <div class="att-big-day">7 Day 🎁</div>
-      <div class="att-big-amount">+200,000</div>
-    </div>
+    <div class="att-big-info"><div class="att-big-day">7 Day 🎁</div><div class="att-big-amount">+200,000</div></div>
     <div class="att-big-icon">🎁</div>
   </div>
   <div class="attendance-rules">
@@ -554,7 +589,7 @@
   <button class="attendance-claim-btn" id="attClaimBtn" onclick="claimAttendance()">CLAIM TODAY'S REWARD</button>
 </div>
 
-<!-- ===== RED POCKET ===== -->
+<!-- RED POCKET -->
 <div class="tab-content" id="tab-redpocket">
   <div class="page-title-bar"><div class="page-title-icon">🧧</div><div class="page-title-text">Red Pocket</div></div>
   <div class="redpocket-page">
@@ -576,14 +611,11 @@
   </div>
 </div>
 
-<!-- ===== PROFILE ===== -->
+<!-- PROFILE -->
 <div class="tab-content" id="tab-profile">
   <div class="page-title-bar"><div class="page-title-icon">👤</div><div class="page-title-text">My Profile</div></div>
   <div class="profile-hero">
-    <div class="profile-hero-avatar-wrap">
-      <div class="profile-hero-ring"></div>
-      <div class="profile-hero-avatar" id="profileHeroAvatar">👤</div>
-    </div>
+    <div class="profile-hero-avatar-wrap"><div class="profile-hero-ring"></div><div class="profile-hero-avatar" id="profileHeroAvatar">👤</div></div>
     <div class="profile-hero-name" id="profileHeroName">TraxOfficial</div>
     <div class="profile-hero-id">ID: #<span id="profileHeroId">0000</span></div>
     <div class="profile-hero-badge" id="profileHeroBadge">👑 Level 1</div>
@@ -606,27 +638,40 @@
   <button class="profile-action-btn green" onclick="shareMyProfile()">🔗 Share My Profile</button>
 </div>
 
-<!-- ===== MINE ===== -->
+<!-- MINE -->
 <div class="tab-content" id="tab-mine">
   <div class="page-title-bar"><div class="page-title-icon">⛏️</div><div class="page-title-text">Mining</div></div>
-  <div class="energy-card" style="text-align:center;padding:20px">
-    <div style="font-size:60px;margin-bottom:10px">⛏️</div>
-    <h3 style="margin:10px 0;color:#00d4ff">Auto Mining</h3>
-    <p style="font-size:12px;color:#a0aec0;margin-bottom:15px">10 energy use karein, 60 sec tak auto-mine karein</p>
-    <button class="modal-btn" onclick="startMining()" style="width:100%">START MINING (10 ⚡)</button>
+  <div class="mine-page">
+    <div class="mine-box">
+      <div class="mine-icon">⛏️</div>
+      <div class="mine-title">Auto Mining</div>
+      <div class="mine-sub" id="mineSubText">10 energy use karein · 60 sec tak auto-mine</div>
+      <div class="mine-progress"><div class="mine-progress-fill" id="mineProgressFill" style="width:0%"></div></div>
+      <div class="mine-timer" id="mineTimer">READY</div>
+      <button class="mine-btn" id="mineStartBtn" onclick="startMining()">START MINING (10 ⚡)</button>
+    </div>
+    <div class="mine-stats">
+      <div class="mine-stat"><div class="lbl">PER SECOND</div><div class="val" id="mineRateVal">+5</div></div>
+      <div class="mine-stat"><div class="lbl">TOTAL MINED</div><div class="val" id="mineTotalVal">+0</div></div>
+    </div>
+    <div style="background:rgba(255,149,0,0.1);border:1px solid rgba(255,149,0,0.3);border-radius:14px;padding:14px;text-align:left">
+      <div style="font-size:12px;color:#ff9500;font-weight:900;margin-bottom:8px">⛏️ MINING LEVELS</div>
+      <div style="font-size:10px;color:#a0aec0;line-height:1.8">
+        Level 1: +5/sec · Level 2: +10/sec · Level 3: +20/sec · Level 4: +35/sec · Level 5: +50/sec
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- ===== TASKS ===== -->
+<!-- TASKS -->
 <div class="tab-content" id="tab-tasks">
   <div class="page-title-bar"><div class="page-title-icon">📋</div><div class="page-title-text">Tasks</div></div>
   <div id="fullTasksListNew"></div>
 </div>
 
-<!-- ===== WALLET (was More) ===== -->
+<!-- WALLET -->
 <div class="tab-content" id="tab-wallet">
   <div class="page-title-bar"><div class="page-title-icon">💼</div><div class="page-title-text">Wallet</div></div>
-
   <div class="big-profile-card">
     <div class="big-profile-top">
       <div class="big-profile-avatar-wrap"><div class="big-profile-ring"></div><div class="big-profile-avatar" id="moreAvatarBig">👤</div></div>
@@ -645,22 +690,18 @@
       <button class="big-profile-btn withdraw" onclick="shareMyProfile()"><div style="font-size:22px">📤</div><div style="font-size:10px;font-weight:900">SHARE</div></button>
     </div>
   </div>
-
   <div style="background:rgba(255,150,0,0.15);border:1px solid rgba(255,150,0,0.4);border-radius:14px;padding:14px;margin-bottom:15px;text-align:center">
     <div style="font-size:32px;margin-bottom:6px">🚀</div>
     <div style="font-size:14px;font-weight:900;color:#ff9500;margin-bottom:4px">Coming Soon</div>
     <div style="font-size:11px;color:#a0aec0">TRAX coin launch hone ke baad withdraw hoga</div>
   </div>
-
   <div class="withdraw-option"><div class="withdraw-option-icon">💎</div><div class="withdraw-option-info"><h4>TON Wallet</h4><p>Tonkeeper, TON Space</p></div><span class="coming-soon-badge">SOON</span></div>
   <div class="withdraw-option"><div class="withdraw-option-icon">🟡</div><div class="withdraw-option-info"><h4>Binance Wallet</h4><p>Direct to Binance</p></div><span class="coming-soon-badge">SOON</span></div>
   <div class="withdraw-option"><div class="withdraw-option-icon">✈️</div><div class="withdraw-option-info"><h4>Telegram Wallet</h4><p>@wallet in Telegram</p></div><span class="coming-soon-badge">SOON</span></div>
-
   <div class="more-card" onclick="navTo('friends')" style="margin-top:15px"><div class="more-card-icon referral">👥</div><div class="more-card-info"><h4>Referral Program</h4><p>+500 TRAX per friend</p></div><div class="more-card-arrow">›</div></div>
   <div class="more-card" onclick="navTo('settings')"><div class="more-card-icon settings">⚙️</div><div class="more-card-info"><h4>Settings</h4><p>Sound & vibration</p></div><div class="more-card-arrow">›</div></div>
 </div>
 
-<!-- ===== FRIENDS ===== -->
 <div class="tab-content" id="tab-friends">
   <div class="page-title-bar"><div class="page-title-icon">👥</div><div class="page-title-text">Referral</div></div>
   <div class="ref-card">
@@ -671,13 +712,11 @@
   </div>
 </div>
 
-<!-- ===== RANK ===== -->
 <div class="tab-content" id="tab-rank">
   <div class="page-title-bar"><div class="page-title-icon">🏆</div><div class="page-title-text">Leaderboard</div></div>
   <div id="rankList"></div>
 </div>
 
-<!-- ===== BOOSTERS ===== -->
 <div class="tab-content" id="tab-boosters">
   <div class="page-title-bar"><div class="page-title-icon">🚀</div><div class="page-title-text">Boosters</div></div>
   <div class="booster-card">
@@ -688,20 +727,17 @@
   </div>
 </div>
 
-<!-- ===== UPGRADES ===== -->
 <div class="tab-content" id="tab-upgrades">
   <div class="page-title-bar"><div class="page-title-icon">⬆️</div><div class="page-title-text">Upgrades</div></div>
   <div id="upgradesList"></div>
 </div>
 
-<!-- ===== STICKER ===== -->
 <div class="tab-content" id="tab-sticker">
   <div class="page-title-bar"><div class="page-title-icon">🎨</div><div class="page-title-text">Sticker Shop</div></div>
   <p style="font-size:10px;color:#a0aec0;margin-bottom:10px;text-align:center">Har sticker ko max (Lv 5) karein — tab agla unlock hoga!</p>
   <div id="stickerShopContainer"></div>
 </div>
 
-<!-- ===== SETTINGS ===== -->
 <div class="tab-content" id="tab-settings">
   <div class="page-title-bar"><div class="page-title-icon">⚙️</div><div class="page-title-text">Settings</div></div>
   <div class="setting-row"><div class="label">🔊 Sound Effects</div><div class="toggle" id="soundToggle" onclick="toggleSetting('sound')"></div></div>
@@ -709,7 +745,6 @@
   <div class="more-card" onclick="resetData()"><div class="more-card-icon settings">🗑️</div><div class="more-card-info"><h4>Reset Data</h4><p>Clear all progress</p></div><div class="more-card-arrow">›</div></div>
 </div>
 
-<!-- ===== EDIT NAME ===== -->
 <div class="tab-content" id="tab-editname">
   <div class="page-title-bar"><div class="page-title-icon">✏️</div><div class="page-title-text">Edit Profile</div></div>
   <div class="ref-card">
@@ -726,7 +761,6 @@
   </div>
 </div>
 
-<!-- ===== BOTTOM NAV ===== -->
 <div class="bottom-nav">
   <div class="nav-item active" data-tab="home" onclick="navClick(this, 'home')"><div class="nav-icon">🏠</div><div>Home</div></div>
   <div class="nav-item" data-tab="games" onclick="navClick(this, 'games')"><div class="nav-icon">🎮</div><div>Games</div></div>
@@ -737,22 +771,9 @@
 
 <div class="modal" id="modal"><div class="modal-content"><h3 id="modalTitle">Notice</h3><p id="modalText">Message</p><button class="modal-btn" onclick="closeModal()">OK</button></div></div>
 
-<div class="modal" id="rarityModal">
-  <div class="modal-content" style="max-width:420px;text-align:left">
-    <h3 style="text-align:center;margin-bottom:18px">🏆 Rarity Tiers</h3>
-    <div class="rarity-item brown"><div class="rarity-item-icon">🟤</div><div class="rarity-item-info"><h4 style="color:#cd7f32">BROWN</h4><p>Beginner</p><div class="range" style="color:#cd7f32">Level 1-10</div></div></div>
-    <div class="rarity-item silver"><div class="rarity-item-icon">⚪</div><div class="rarity-item-info"><h4 style="color:#c0c0c0">SILVER</h4><p>Active</p><div class="range" style="color:#c0c0c0">Level 10-25</div></div></div>
-    <div class="rarity-item gold"><div class="rarity-item-icon">🟡</div><div class="rarity-item-info"><h4 style="color:#ffd700">GOLD</h4><p>Serious</p><div class="range" style="color:#ffd700">Level 25-50</div></div></div>
-    <div class="rarity-item diamond"><div class="rarity-item-icon">💎</div><div class="rarity-item-info"><h4 style="color:#a0e0ff">DIAMOND</h4><p>Top 10%</p><div class="range" style="color:#a0e0ff">Level 50-100</div></div></div>
-    <div class="rarity-item epic"><div class="rarity-item-icon">🟣</div><div class="rarity-item-info"><h4 style="color:#9900ff">EPIC</h4><p>Elite</p><div class="range" style="color:#9900ff">Level 100-250</div></div></div>
-    <div class="rarity-item legendary"><div class="rarity-item-icon">🟠</div><div class="rarity-item-info"><h4 style="color:#ff9500">LEGENDARY</h4><p>Top 1%</p><div class="range" style="color:#ff9500">Level 250-500</div></div></div>
-    <div class="rarity-item mythic"><div class="rarity-item-icon">🔴</div><div class="rarity-item-info"><h4 style="color:#ff0055">MYTHIC</h4><p>Best</p><div class="range" style="color:#ff0055">Level 500+</div></div></div>
-    <button class="modal-btn" onclick="closeRarityList()" style="display:block;width:100%;margin-top:10px">OK</button>
-  </div>
-</div>
-
 <div class="modal" id="spinModal">
   <div class="modal-content" style="max-width:380px">
+    <button class="modal-close-x" onclick="closeSpin()">×</button>
     <h3>🎰 Spin to Win!</h3>
     <div id="spinStatusBar" style="background:rgba(0,212,255,0.15);border:1px solid rgba(0,212,255,0.4);border-radius:10px;padding:8px;margin-bottom:10px;text-align:center;font-size:11px;font-weight:900;color:#00d4ff">🎁 Loading...</div>
     <div class="wheel-wrapper">
@@ -768,12 +789,12 @@
     </div>
     <button class="modal-btn" style="margin-top:10px;display:block;width:100%" onclick="spinWheel()" id="spinBtn">SPIN NOW</button>
     <div style="font-size:10px;color:#a0aec0;margin-top:8px;text-align:center" id="spinInfoText">Entry: FREE</div>
-    <button class="modal-btn" style="margin-top:8px;background:rgba(255,255,255,0.1);display:block;width:100%" onclick="closeSpin()">Close</button>
   </div>
 </div>
 
 <div class="modal" id="crashModal">
   <div class="modal-content" style="max-width:380px">
+    <button class="modal-close-x" onclick="closeCrash()">×</button>
     <h3>🚀 Crash</h3>
     <div class="crash-game">
       <div class="bet-selector" id="betSelector"></div>
@@ -787,12 +808,12 @@
       <button class="crash-bet-btn" onclick="startCrash()" id="crashBetBtn">START</button>
       <button class="crash-cash-btn" onclick="cashOutCrash()" id="crashCashBtn" style="display:none">CASH OUT</button>
     </div>
-    <button class="modal-btn" style="margin-top:10px;background:rgba(255,255,255,0.1);display:block;width:100%" onclick="closeCrash()">Close</button>
   </div>
 </div>
 
 <div class="modal" id="puzzleModal">
   <div class="modal-content" style="max-width:420px">
+    <button class="modal-close-x" onclick="closePuzzle()">×</button>
     <h3>🧩 Puzzle</h3>
     <div class="puzzle-mode-grid">
       <div class="puzzle-mode-card" onclick="selectPuzzleMode('hard', this)"><div class="puzzle-mode-icon">🔴</div><div class="puzzle-mode-name">Hard</div><div class="puzzle-mode-desc">9x9</div><div class="puzzle-mode-time">20 min</div><div class="puzzle-mode-price">10,000</div></div>
@@ -800,12 +821,12 @@
       <div class="puzzle-mode-card" onclick="selectPuzzleMode('easy', this)"><div class="puzzle-mode-icon">🟢</div><div class="puzzle-mode-name">Easy</div><div class="puzzle-mode-desc">5x5</div><div class="puzzle-mode-time">5 min</div><div class="puzzle-mode-price">50,000</div></div>
     </div>
     <button class="crash-bet-btn" onclick="startPuzzleGame()" style="width:100%">🎮 START</button>
-    <button class="modal-btn" style="margin-top:8px;background:rgba(255,255,255,0.1);display:block;width:100%" onclick="closePuzzle()">Close</button>
   </div>
 </div>
 
 <div class="modal" id="coinFlipModal">
   <div class="modal-content" style="max-width:420px">
+    <button class="modal-close-x" onclick="closeCoinFlip()">×</button>
     <h3 style="text-align:center">🪙 Coin Flip</h3>
     <div id="flipSetup">
       <div style="background:rgba(0,0,0,0.4);border:1.5px solid rgba(0,212,255,0.4);border-radius:14px;padding:14px;margin:14px 0;text-align:left">
@@ -819,7 +840,6 @@
         <div style="font-size:10px;color:#ff9500;text-align:center" id="flipBetInfo">Min bet: 100 TRAX</div>
       </div>
       <button class="crash-bet-btn" onclick="startFlipGame()" style="width:100%">🎮 START</button>
-      <button class="modal-btn" style="margin-top:8px;background:rgba(255,255,255,0.1);display:block;width:100%" onclick="closeCoinFlip()">Close</button>
     </div>
     <div id="flipGame" style="display:none">
       <div class="flip-coin-area">
@@ -841,6 +861,41 @@
       <button class="crash-bet-btn" onclick="doFlip()" id="flipPlayBtn" style="width:100%">🪙 FLIP COIN</button>
       <button class="crash-cash-btn" onclick="cashOutFlip()" id="flipCashBtn" style="display:none">💸 CASHOUT</button>
     </div>
+  </div>
+</div>
+
+<!-- TWIST MODAL -->
+<div class="modal" id="twistModal">
+  <div class="modal-content" style="max-width:400px">
+    <button class="modal-close-x" onclick="closeTwist()">×</button>
+    <h3>🌀 TWIST</h3>
+    <div class="twist-payouts">
+      <div class="twist-payout-box"><div class="lbl">INNER</div><div class="val">2x - 5x</div></div>
+      <div class="twist-payout-box"><div class="lbl">MIDDLE</div><div class="val">7x - 20x</div></div>
+      <div class="twist-payout-box"><div class="lbl">OUTER</div><div class="val">28x - 200x</div></div>
+    </div>
+    <div class="twist-wheel-wrap" id="twistWheel">
+      <div class="twist-ring outer"></div>
+      <div class="twist-ring middle"></div>
+      <div class="twist-ring inner"></div>
+      <div class="twist-pointer" id="twistPointer">🔥</div>
+      <div class="twist-arrow-marker">▼</div>
+    </div>
+    <div class="twist-result-box" id="twistResultBox">
+      <div class="label">🎉 YOU WON</div>
+      <div class="mult" id="twistResultMult">2x</div>
+      <div class="amount" id="twistResultAmount">+0 TRAX</div>
+    </div>
+    <div class="twist-bet-row">
+      <button class="twist-bet-btn" onclick="adjustTwistBet(-1)">−</button>
+      <div class="twist-bet-display">
+        <div class="lbl">BET AMOUNT</div>
+        <div class="val"><span id="twistBetValue">1,000</span> TRAX</div>
+      </div>
+      <button class="twist-bet-btn" onclick="adjustTwistBet(1)">+</button>
+    </div>
+    <button class="twist-spin-btn" id="twistSpinBtn" onclick="playTwist()">🌀 SPIN</button>
+    <div class="twist-info">Pointer ghume ga · Jis ring pe rukega, woh multiplier milega</div>
   </div>
 </div>
 
@@ -878,15 +933,8 @@
   }
 
   let settings = { sound: localStorage.getItem('trax_sound') !== 'off', vibration: localStorage.getItem('trax_vibration') !== 'off' };
-  function toggleSetting(key) {
-    settings[key] = !settings[key];
-    localStorage.setItem('trax_' + key, settings[key] ? 'on' : 'off');
-    updateSettingsUI();
-  }
-  function updateSettingsUI() {
-    document.getElementById('soundToggle').classList.toggle('on', settings.sound);
-    document.getElementById('vibrationToggle').classList.toggle('on', settings.vibration);
-  }
+  function toggleSetting(key) { settings[key] = !settings[key]; localStorage.setItem('trax_' + key, settings[key] ? 'on' : 'off'); updateSettingsUI(); }
+  function updateSettingsUI() { document.getElementById('soundToggle').classList.toggle('on', settings.sound); document.getElementById('vibrationToggle').classList.toggle('on', settings.vibration); }
 
   let userName = localStorage.getItem('trax_username') || '';
   let userAvatar = localStorage.getItem('trax_avatar') || '👤';
@@ -947,6 +995,7 @@
   let stickerLevels = JSON.parse(localStorage.getItem('trax_stickers_v4') || '{}');
   let totalEarned = parseInt(localStorage.getItem('trax_totalEarned') || '0');
   let miningActive = false;
+  let miningTotalEarned = parseInt(localStorage.getItem('trax_miningTotal') || '0');
 
   let boosterAutoTapBonus = parseInt(localStorage.getItem('trax_booster_autoTap_bonus') || '0');
   let boosterDoubleBonus = parseInt(localStorage.getItem('trax_booster_double_bonus') || '0');
@@ -967,13 +1016,9 @@
     { id: 'r1', tier: 'rare', icon: '💎', name: 'Diamond', bonus: lvl => '+' + (10*lvl) + ' Tap', cost: 60000 },
     { id: 'r2', tier: 'rare', icon: '🔮', name: 'Orb', bonus: lvl => '+' + (5*lvl) + ' Energy', cost: 70000 },
     { id: 'r3', tier: 'rare', icon: '🚀', name: 'Rocket', bonus: lvl => '+' + (25*lvl) + ' Auto', cost: 80000 },
-    { id: 'r4', tier: 'rare', icon: '⚙️', name: 'Gear', bonus: lvl => '+' + (50*lvl) + ' MaxEnergy', cost: 90000 },
-    { id: 'r5', tier: 'rare', icon: '⛏️', name: 'Drill', bonus: lvl => '+' + (5*lvl) + ' Mining', cost: 100000 },
     { id: 'e1', tier: 'epic', icon: '👑', name: 'Crown', bonus: lvl => '+' + (100*lvl) + ' Auto', cost: 400000 },
     { id: 'e2', tier: 'epic', icon: '🦅', name: 'Eagle', bonus: lvl => '+' + (40*lvl) + ' Tap', cost: 450000 },
-    { id: 'e3', tier: 'epic', icon: '🔥', name: 'Inferno', bonus: lvl => '+' + (15*lvl) + ' Energy', cost: 500000 },
-    { id: 'l1', tier: 'legendary', icon: '🐉', name: 'Dragon', bonus: lvl => '+' + (500*lvl) + ' Auto', cost: 2000000 },
-    { id: 'l2', tier: 'legendary', icon: '🦄', name: 'Unicorn', bonus: lvl => '+' + (200*lvl) + ' Tap', cost: 2500000 }
+    { id: 'l1', tier: 'legendary', icon: '🐉', name: 'Dragon', bonus: lvl => '+' + (500*lvl) + ' Auto', cost: 2000000 }
   ];
   const MAX_STICKER_LEVEL = 5;
   const STICKER_MULT = 1.5;
@@ -1018,12 +1063,11 @@
     const xpInLevel = totalEarned % LEVEL_XP;
     document.getElementById('levelNum').textContent = level;
     document.getElementById('xpFill').style.width = (xpInLevel / LEVEL_XP * 100) + '%';
-
     document.getElementById('moreProfileName').textContent = userName || 'TraxOfficial';
     document.getElementById('moreBadge').textContent = '👑 Lv ' + level;
     document.getElementById('morePlayerId').textContent = String(userId).slice(-4).padStart(4, '0');
     document.getElementById('moreBalance').textContent = Math.floor(balance).toLocaleString();
-
+    document.getElementById('mineTotalVal').textContent = '+' + miningTotalEarned.toLocaleString();
     updateProfilePage();
     updateSideCards();
   }
@@ -1043,6 +1087,12 @@
     if (attDay) {
       if (canClaimToday()) { attDay.textContent = 'Claim Day ' + (attData.currentDay + 1); attDay.style.color = '#00ff88'; attDot.style.display = 'block'; }
       else { attDay.textContent = 'Day ' + attData.currentDay + ' done'; attDay.style.color = '#7a8ba5'; attDot.style.display = 'none'; }
+    }
+    const mineStatus = document.getElementById('mineSideStatus');
+    if (mineStatus) {
+      if (miningActive) mineStatus.textContent = 'Mining...';
+      else if (energy >= 10) { mineStatus.textContent = 'Ready'; mineStatus.style.color = '#00ff88'; }
+      else { mineStatus.textContent = 'Need ⚡'; mineStatus.style.color = '#ff5555'; }
     }
   }
 
@@ -1075,6 +1125,7 @@
     localStorage.setItem('trax_maxEnergy', maxEnergy);
     localStorage.setItem('trax_autoEarn', autoEarn);
     localStorage.setItem('trax_totalEarned', Math.floor(totalEarned));
+    localStorage.setItem('trax_miningTotal', miningTotalEarned);
   }
 
   const coinBtn = document.getElementById('coinBtn');
@@ -1106,17 +1157,83 @@
     }
   }
 
+  // ===== MINING =====
+  const MINING_LEVELS = [
+    { level: 1, rate: 5, total: 300 },     // 60 sec × 5
+    { level: 2, rate: 10, total: 600 },
+    { level: 3, rate: 20, total: 1200 },
+    { level: 4, rate: 35, total: 2100 },
+    { level: 5, rate: 50, total: 3000 }
+  ];
+  let miningTimerInterval = null;
+  let miningElapsed = 0;
+
+  function getMiningRate() {
+    const lvl = parseInt(localStorage.getItem('upg_miningPower') || '0');
+    return MINING_LEVELS[Math.min(lvl, MINING_LEVELS.length - 1)].rate;
+  }
+
+  function startMining() {
+    if (miningActive) { showModal('⛏️ Mining', 'Already mining!'); return; }
+    if (energy < 10) { showModal('⚡ Not Enough', '10 energy chahiye.'); return; }
+    energy -= 10;
+    miningActive = true;
+    miningElapsed = 0;
+    updateUI(); save();
+
+    const btn = document.getElementById('mineStartBtn');
+    const timer = document.getElementById('mineTimer');
+    const progress = document.getElementById('mineProgressFill');
+    btn.disabled = true;
+    btn.classList.add('mining');
+    btn.textContent = '⛏️ MINING...';
+
+    miningTimerInterval = setInterval(() => {
+      miningElapsed++;
+      const rate = getMiningRate();
+      balance += rate;
+      totalEarned += rate;
+      miningTotalEarned += rate;
+      const remaining = 60 - miningElapsed;
+      const mm = String(Math.floor(remaining / 60)).padStart(2, '0');
+      const ss = String(remaining % 60).padStart(2, '0');
+      timer.textContent = mm + ':' + ss;
+      progress.style.width = (miningElapsed / 60 * 100) + '%';
+      updateUI(); save();
+
+      if (miningElapsed >= 60) {
+        clearInterval(miningTimerInterval);
+        miningTimerInterval = null;
+        miningActive = false;
+        btn.disabled = false;
+        btn.classList.remove('mining');
+        btn.textContent = 'START MINING (10 ⚡)';
+        timer.textContent = 'READY';
+        progress.style.width = '0%';
+        const total = rate * 60;
+        playSound('win'); vibrate('success');
+        showModal('⛏️ Mining Complete!', 'Aapne 60 seconds mein\n+' + total.toLocaleString() + ' TRAX kamaye!');
+        updateUI();
+      }
+    }, 1000);
+
+    // Reset timer label immediately
+    timer.textContent = '01:00';
+    progress.style.width = '0%';
+  }
+
+  // ===== BOOSTERS =====
   const BOOSTER_DURATIONS = { autoTap: 10 * 60 * 1000, energy: 0, double: 30 * 60 * 1000, offline: 0 };
   const BOOSTER_COOLDOWNS = { autoTap: 30 * 60 * 1000, energy: 30 * 60 * 1000, double: 60 * 60 * 1000, offline: 12 * 60 * 60 * 1000 };
   function formatBoosterTime(ms) {
     if (ms <= 0) return '--:--';
-    const totalSec = Math.floor(ms / 1000);
-    const h = Math.floor(totalSec / 3600);
-    const m = Math.floor((totalSec % 3600) / 60);
-    const s = totalSec % 60;
+    const s = Math.floor(ms / 1000);
+    const h = Math.floor(s / 3600);
+    const m = Math.floor((s % 3600) / 60);
+    const sec = s % 60;
     if (h > 0) return h + 'h ' + String(m).padStart(2, '0') + 'm';
-    if (m > 0) return String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
-    return '00:' + String(s).padStart(2, '0');
+    if (m > 0) return String(m).padStart(2, '0') + ':' + String(sec).padStart(2, '0');
+    return '00:' + String(sec).padStart(2, '0');
   }
   function getBoosterState(id) {
     const lastUsed = parseInt(localStorage.getItem('trax_booster_' + id + '_lastUsed') || '0');
@@ -1173,8 +1290,7 @@
     playSound('win'); vibrate('success');
   }
   function checkBoosterExpiry() {
-    const now = Date.now();
-    let changed = false;
+    const now = Date.now(); let changed = false;
     if (boosterAutoTapBonus > 0) {
       const a = parseInt(localStorage.getItem('trax_booster_autoTap_activeUntil') || '0');
       if (a <= now) { boosterAutoTapBonus = 0; localStorage.removeItem('trax_booster_autoTap_bonus'); localStorage.removeItem('trax_booster_autoTap_activeUntil'); showToast('⏰ Auto Tap expired!'); changed = true; }
@@ -1198,7 +1314,7 @@
       { id: 'maxEnergy', icon: '🔋', iconClass: 'energy', name: 'Max Energy', desc: '+50 energy', baseCost: 3000, multiplier: 1.4, level: parseInt(localStorage.getItem('upg_maxEnergy') || '0') },
       { id: 'autoEarn', icon: '💰', iconClass: 'auto', name: 'Auto Earning', desc: '+5/hr', baseCost: 15000, multiplier: 1.6, level: parseInt(localStorage.getItem('upg_autoEarn') || '0') },
       { id: 'energyRegen', icon: '⚡', iconClass: 'regen', name: 'Energy Regen', desc: '+1 per 2sec', baseCost: 20000, multiplier: 1.7, level: parseInt(localStorage.getItem('upg_energyRegen') || '0') },
-      { id: 'miningPower', icon: '⛏️', iconClass: 'mine', name: 'Mining Power', desc: '+5 per tick', baseCost: 25000, multiplier: 1.8, level: parseInt(localStorage.getItem('upg_miningPower') || '0') }
+      { id: 'miningPower', icon: '⛏️', iconClass: 'mine', name: 'Mining Power', desc: '+5/10/20/35/50 per sec', baseCost: 25000, multiplier: 1.8, level: parseInt(localStorage.getItem('upg_miningPower') || '0') }
     ];
     const box = document.getElementById('upgradesList');
     box.innerHTML = '';
@@ -1214,6 +1330,7 @@
     if (balance < cost) { showModal('❌ Not Enough', 'Cost: ' + cost.toLocaleString() + ' TRAX'); return; }
     balance -= cost;
     let level = parseInt(localStorage.getItem('upg_' + id) || '0') + 1;
+    if (id === 'miningPower' && level > 5) { showModal('⛏️ Max Level', 'Mining max level 5 tak hi hai.'); return; }
     localStorage.setItem('upg_' + id, level);
     if (id === 'tapPower') baseTapPower += 1;
     if (id === 'maxEnergy') maxEnergy += 50;
@@ -1297,19 +1414,6 @@
     list.innerHTML = '<div style="text-align:center;padding:30px;color:#7a8ba5"><div style="font-size:44px">🏆</div><div style="font-weight:900;color:#00d4ff;margin-top:10px">No players yet</div></div>';
   }
 
-  function startMining() {
-    if (energy < 10) { showModal('⚡ Not Enough', '10 energy chahiye.'); return; }
-    if (miningActive) { showModal('⛏️ Mining', 'Already mining!'); return; }
-    energy -= 10; miningActive = true;
-    updateUI(); save();
-    showModal('⛏️ Mining Started!', '60 seconds tak coins milenge.');
-    let sec = 0;
-    const timer = setInterval(() => {
-      sec++; balance += 5; totalEarned += 5; updateUI(); save();
-      if (sec >= 60) { clearInterval(timer); miningActive = false; showModal('⛏️ Complete!', '+300 TRAX mile!'); }
-    }, 1000);
-  }
-
   function shareRef() {
     const link = 'https://t.me/TraxOfficial_bot?start=ref' + userId;
     const text = 'Trax Coin khelo aur free TRAX kamayein! 🎉';
@@ -1364,8 +1468,6 @@
     document.getElementById('modal').classList.remove('show');
     document.querySelectorAll('.modal').forEach(m => { if (m.id !== 'modal' && m.style.display === 'none') m.style.display = 'flex'; });
   }
-  function showRarityList() { document.getElementById('rarityModal').classList.add('show'); }
-  function closeRarityList() { document.getElementById('rarityModal').classList.remove('show'); }
 
   // SPIN
   const SPIN_SLOTS = [
@@ -1649,6 +1751,124 @@
     setTimeout(closeCoinFlip, 300);
   }
 
+  // TWIST
+  const TWIST_BETS = [500, 1000, 2500, 5000, 10000, 25000, 50000, 100000];
+  let twistBetIndex = 1;
+  let twistSpinning = false;
+  const TWIST_RINGS = {
+    inner:  { min: 2,   max: 5,   weight: 55 },
+    middle: { min: 7,   max: 20,  weight: 30 },
+    outer:  { min: 28,  max: 200, weight: 15 }
+  };
+  function getTwistBet() { return TWIST_BETS[twistBetIndex]; }
+  function updateTwistBetUI() { const el = document.getElementById('twistBetValue'); if (el) el.textContent = getTwistBet().toLocaleString(); }
+  function adjustTwistBet(dir) {
+    if (twistSpinning) return;
+    twistBetIndex += dir;
+    if (twistBetIndex < 0) twistBetIndex = 0;
+    if (twistBetIndex >= TWIST_BETS.length) twistBetIndex = TWIST_BETS.length - 1;
+    updateTwistBetUI();
+  }
+  function openTwist() {
+    if (document.getElementById('twistModal')) {
+      document.getElementById('twistModal').classList.add('show');
+      document.getElementById('twistResultBox').classList.remove('show');
+      document.getElementById('twistPointer').style.transform = 'rotate(0deg)';
+      updateTwistBetUI();
+      twistSpinning = false;
+      drawTwistLabels();
+    }
+  }
+  function closeTwist() { document.getElementById('twistModal').classList.remove('show'); }
+  function drawTwistLabels() {
+    const wrap = document.getElementById('twistWheel');
+    if (!wrap) return;
+    wrap.querySelectorAll('.twist-mult-label').forEach(el => el.remove());
+    const centerX = 150, centerY = 150;
+    const outerMults = [200, 133, 85, 52, 28, 16, 12.5, 7.7, 4.85, 3.9, 27.5, 10];
+    const middleMults = [20.5, 12.5, 7.7, 4.85, 3.9, 2.5, 1.55, 2.5, 3.9, 7.7, 12.5, 20.5];
+    for (let i = 0; i < 12; i++) {
+      const oAngle = (i * 30) - 90;
+      const oRad = oAngle * Math.PI / 180;
+      const oLabel = document.createElement('div');
+      oLabel.className = 'twist-mult-label fire';
+      oLabel.style.left = (centerX + Math.cos(oRad) * 138) + 'px';
+      oLabel.style.top = (centerY + Math.sin(oRad) * 138) + 'px';
+      oLabel.style.transform = 'translate(-50%, -50%) rotate(' + (oAngle + 90) + 'deg)';
+      oLabel.textContent = outerMults[i] + 'x';
+      wrap.appendChild(oLabel);
+
+      const mAngle = (i * 30 + 15) - 90;
+      const mRad = mAngle * Math.PI / 180;
+      const mLabel = document.createElement('div');
+      mLabel.className = 'twist-mult-label gold';
+      mLabel.style.left = (centerX + Math.cos(mRad) * 100) + 'px';
+      mLabel.style.top = (centerY + Math.sin(mRad) * 100) + 'px';
+      mLabel.style.transform = 'translate(-50%, -50%) rotate(' + (mAngle + 90) + 'deg)';
+      mLabel.textContent = middleMults[i] + 'x';
+      wrap.appendChild(mLabel);
+    }
+  }
+  function pickTwistRing() {
+    const total = TWIST_RINGS.inner.weight + TWIST_RINGS.middle.weight + TWIST_RINGS.outer.weight;
+    let r = Math.random() * total;
+    if (r < TWIST_RINGS.inner.weight) return 'inner';
+    if (r < TWIST_RINGS.inner.weight + TWIST_RINGS.middle.weight) return 'middle';
+    return 'outer';
+  }
+  function pickTwistMult(ring) {
+    const cfg = TWIST_RINGS[ring];
+    const r = Math.pow(Math.random(), 1.5);
+    const mult = cfg.min + r * (cfg.max - cfg.min);
+    if (mult < 10) return Math.round(mult * 10) / 10;
+    if (mult < 50) return Math.round(mult);
+    return Math.round(mult / 5) * 5;
+  }
+  function playTwist() {
+    if (twistSpinning) return;
+    const bet = getTwistBet();
+    if (balance < bet) {
+      playSound('error'); vibrate('error');
+      showModal('❌ Not Enough TRAX', 'Bet: ' + bet.toLocaleString() + ' TRAX\n\nAapke paas: ' + Math.floor(balance).toLocaleString() + ' TRAX');
+      return;
+    }
+    balance -= bet;
+    updateUI(); save();
+
+    twistSpinning = true;
+    const pointer = document.getElementById('twistPointer');
+    const resultBox = document.getElementById('twistResultBox');
+    const spinBtn = document.getElementById('twistSpinBtn');
+    resultBox.classList.remove('show');
+
+    const ring = pickTwistRing();
+    const mult = pickTwistMult(ring);
+
+    const spins = 5 + Math.floor(Math.random() * 3);
+    const finalAngle = spins * 360 + Math.floor(Math.random() * 360);
+    pointer.style.transition = 'transform 3.5s cubic-bezier(0.15, 0.9, 0.2, 1)';
+    pointer.style.transform = 'rotate(' + finalAngle + 'deg)';
+
+    spinBtn.disabled = true;
+    spinBtn.textContent = '🌀 SPINNING...';
+
+    setTimeout(() => {
+      const winAmount = Math.floor(bet * mult);
+      balance += winAmount;
+      totalEarned += winAmount;
+      updateUI(); save();
+
+      document.getElementById('twistResultMult').textContent = mult + 'x';
+      document.getElementById('twistResultAmount').textContent = '+' + winAmount.toLocaleString() + ' TRAX';
+      resultBox.classList.add('show');
+
+      playSound('win'); vibrate('success');
+      spinBtn.disabled = false;
+      spinBtn.textContent = '🌀 SPIN AGAIN';
+      twistSpinning = false;
+    }, 3600);
+  }
+
   function resetData() { if (confirm('Reset all data?')) { localStorage.clear(); location.reload(); } }
 
   // ATTENDANCE
@@ -1819,6 +2039,9 @@
   setInterval(updateRedPocketUI, 1000);
   setInterval(() => { const modal = document.getElementById('spinModal'); if (modal && modal.classList.contains('show')) updateSpinStatus(); }, 1000);
   setInterval(() => { renderAttendance(); }, 60 * 60 * 1000);
+  setInterval(() => { updateSideCards(); }, 1000);
+
+  setTimeout(drawTwistLabels, 500);
 </script>
 </body>
- </html>
+                      </html>
