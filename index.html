@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>TraxOfficial</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
+<!-- 🔥 FIREBASE SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; -webkit-tap-highlight-color: transparent; }
   body { background: #050a14; color: white; min-height: 100vh; overflow-x: hidden; user-select: none; -webkit-user-select: none; padding-bottom: 100px; position: relative; }
@@ -422,15 +425,12 @@
   .settings-nav-info { flex: 1; }
   .settings-nav-info h4 { font-size: 14px; font-weight: 900; color: white; margin-bottom: 3px; }
   .settings-nav-info p { font-size: 11px; color: #7a8ba5; }
-
-  /* RANK TAB */
   .rank-top-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 14px; }
   .rank-top-tab { padding: 12px; text-align: center; font-size: 13px; font-weight: 900; border-radius: 12px; background: rgba(15,30,55,0.8); border: 1.5px solid rgba(0,180,255,0.3); color: #a0aec0; cursor: pointer; }
   .rank-top-tab.active { background: linear-gradient(135deg, #00d4ff, #0066ff); color: white; border-color: #00d4ff; }
   .rank-sub-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 14px; }
   .rank-sub-tab { padding: 8px; text-align: center; font-size: 11px; font-weight: 900; border-radius: 10px; background: rgba(15,30,55,0.8); border: 1px solid rgba(0,180,255,0.25); color: #a0aec0; cursor: pointer; }
   .rank-sub-tab.active { background: linear-gradient(135deg, #00ff88, #00aa55); color: white; border-color: #00ff88; }
-
   .rank-current-card { background: linear-gradient(135deg, rgba(0,180,255,0.2), rgba(150,0,255,0.1)); border: 2px solid rgba(0,212,255,0.6); border-radius: 20px; padding: 20px; margin-bottom: 14px; text-align: center; position: relative; overflow: hidden; }
   .rank-badge-big { font-size: 70px; line-height: 1; margin-bottom: 8px; filter: drop-shadow(0 0 20px rgba(255,215,0,0.7)); }
   .rank-name-big { font-size: 22px; font-weight: 900; color: white; margin-bottom: 4px; }
@@ -440,7 +440,6 @@
   .rank-rp-text { display: flex; justify-content: space-between; font-size: 11px; font-weight: 900; color: #a0aec0; margin-bottom: 10px; }
   .rank-rp-text b { color: #ffd700; }
   .rank-next-text { font-size: 11px; color: #00ff88; font-weight: 900; }
-
   .rank-tier-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
   .rank-tier-row { background: rgba(15,30,55,0.85); border: 1.5px solid rgba(0,180,255,0.25); border-radius: 14px; padding: 12px; display: flex; align-items: center; gap: 12px; }
   .rank-tier-row.current { border-color: #00d4ff; box-shadow: 0 0 20px rgba(0,212,255,0.5); background: rgba(0,212,255,0.1); }
@@ -458,7 +457,6 @@
   .rank-tier-name { font-size: 14px; font-weight: 900; color: white; margin-bottom: 2px; }
   .rank-tier-rp { font-size: 10px; color: #a0aec0; font-weight: 700; }
   .rank-tier-tag { font-size: 11px; font-weight: 900; color: #00d4ff; }
-
   .mission-section-title { font-size: 14px; font-weight: 900; color: #00d4ff; margin: 14px 0 10px; display: flex; align-items: center; gap: 8px; }
   .mission-section-title.easy { color: #00ff88; }
   .mission-section-title.medium { color: #ffd700; }
@@ -473,8 +471,6 @@
   .mission-btn.claim { background: linear-gradient(135deg, #00ff88, #00aa55); color: white; }
   .mission-btn.claimed { background: rgba(0,170,85,0.3); color: #00ff88; cursor: default; }
   .mission-btn.verify { background: linear-gradient(135deg, #ffd700, #ff9500); color: #000; }
-
-  /* LEADERBOARD TABS */
   .lb-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 14px; }
   .lb-tab { padding: 12px; text-align: center; font-size: 13px; font-weight: 900; border-radius: 12px; background: rgba(15,30,55,0.8); border: 1.5px solid rgba(0,180,255,0.3); color: #a0aec0; cursor: pointer; }
   .lb-tab.active { background: linear-gradient(135deg, #00d4ff, #0066ff); color: white; border-color: #00d4ff; }
@@ -483,14 +479,10 @@
   .lb-period-tabs { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-bottom: 14px; }
   .lb-period-tab { padding: 8px; text-align: center; font-size: 10px; font-weight: 900; border-radius: 10px; background: rgba(15,30,55,0.8); border: 1px solid rgba(0,180,255,0.25); color: #a0aec0; cursor: pointer; }
   .lb-period-tab.active { background: linear-gradient(135deg, #a040ff, #6020a0); color: white; border-color: #a040ff; }
-
-  /* WALLET ORDER */
   .wallet-order-1 { order: 1; }
   .wallet-order-2 { order: 2; }
   .wallet-order-3 { order: 3; }
   .wallet-order-4 { order: 4; }
-
-  /* VIP SOON */
   .vip-soon-badge { position: absolute; top: 4px; right: 4px; background: rgba(160,64,255,0.3); color: #cc88ff; font-size: 7px; font-weight: 900; padding: 2px 5px; border-radius: 5px; }
 </style>
 </head>
@@ -514,7 +506,6 @@
   </div>
 </div>
 
-<!-- HOME -->
 <div class="tab-content active" id="tab-home">
   <div class="container">
     <div class="balance-card">
@@ -530,8 +521,6 @@
         </button>
       </div>
     </div>
-
-    <!-- Badge row -->
     <div class="badge-row">
       <div class="small-badge-card rank brown" id="rankBadgeCard" onclick="navTo('rank')">
         <div class="small-badge-icon" id="rankBadgeIcon">🥉</div>
@@ -545,7 +534,6 @@
         <div class="small-badge-sub">Coming Soon</div>
       </div>
     </div>
-
     <div class="streak-bar">
       <div class="streak-top">
         <div class="streak-title">🔥 Daily Streak</div>
@@ -553,7 +541,6 @@
       </div>
       <div class="streak-row" id="streakRow"></div>
     </div>
-
     <div class="home-layout">
       <div class="home-main">
         <div class="tap-title">⚡ Tap to Earn</div>
@@ -632,7 +619,6 @@
   </div>
 </div>
 
-<!-- GAMES -->
 <div class="tab-content" id="tab-games">
   <div class="page-title-bar"><div class="page-title-icon">🎮</div><div class="page-title-text">Mini Games</div></div>
   <div class="mini-games-grid">
@@ -659,16 +645,12 @@
   </div>
 </div>
 
-<!-- RANK TAB -->
 <div class="tab-content" id="tab-rank">
   <div class="page-title-bar"><div class="page-title-icon">🏆</div><div class="page-title-text">Rank</div></div>
-
   <div class="rank-top-tabs">
     <div class="rank-top-tab active" data-rank-tab="rank" onclick="switchRankTop('rank')">🏆 Rank</div>
     <div class="rank-top-tab" data-rank-tab="missions" onclick="switchRankTop('missions')">📋 Missions</div>
   </div>
-
-  <!-- RANK SUB PAGE -->
   <div id="rankSubPage">
     <div class="rank-current-card">
       <div class="rank-badge-big" id="rankBigIcon">🥉</div>
@@ -681,10 +663,8 @@
       </div>
       <div class="rank-next-text" id="rankBigNext">Next: Silver / #E</div>
     </div>
-
     <div class="mission-section-title">📊 All Rank Tiers</div>
     <div class="rank-tier-list" id="rankTierList"></div>
-
     <div class="mission-section-title">📈 Your Progress</div>
     <div style="background:rgba(15,30,55,0.8);border-radius:14px;padding:14px;margin-bottom:12px">
       <div class="profile-info-row"><div class="lbl">📅 Daily RP</div><div class="val" id="rankDailyRP">0</div></div>
@@ -693,8 +673,6 @@
       <div class="profile-info-row"><div class="lbl">🏆 All-Time RP</div><div class="val" id="rankAllTimeRP">0</div></div>
     </div>
   </div>
-
-  <!-- MISSIONS SUB PAGE -->
   <div id="rankMissionsPage" style="display:none">
     <div class="rank-sub-tabs">
       <div class="rank-sub-tab active" data-mission-tab="daily" onclick="switchMissionTab('daily')">📅 Daily (20)</div>
@@ -704,7 +682,6 @@
   </div>
 </div>
 
-<!-- ATTENDANCE -->
 <div class="tab-content" id="tab-attendance">
   <div class="page-title-bar"><div class="page-title-icon">📅</div><div class="page-title-text">Attendance</div></div>
   <div class="attendance-header">
@@ -728,7 +705,6 @@
   <button class="attendance-claim-btn" id="attClaimBtn" onclick="claimAttendance()">CLAIM TODAY'S REWARD</button>
 </div>
 
-<!-- RED POCKET -->
 <div class="tab-content" id="tab-redpocket">
   <div class="page-title-bar"><div class="page-title-icon">🧧</div><div class="page-title-text">Red Pocket</div></div>
   <div class="redpocket-page">
@@ -749,7 +725,6 @@
   </div>
 </div>
 
-<!-- PROFILE -->
 <div class="tab-content" id="tab-profile">
   <div class="page-title-bar"><div class="page-title-icon">👤</div><div class="page-title-text">My Profile</div></div>
   <div class="profile-hero">
@@ -776,7 +751,6 @@
   </div>
 </div>
 
-<!-- MINE -->
 <div class="tab-content" id="tab-mine">
   <div class="page-title-bar"><div class="page-title-icon">⛏️</div><div class="page-title-text">Mining</div></div>
   <div class="mine-page">
@@ -796,33 +770,22 @@
   </div>
 </div>
 
-<!-- TASKS -->
 <div class="tab-content" id="tab-tasks">
   <div class="page-title-bar"><div class="page-title-icon">📋</div><div class="page-title-text">Tasks</div></div>
   <div id="fullTasksListNew"></div>
 </div>
 
-<!-- WALLET - NEW ORDER -->
 <div class="tab-content" id="tab-wallet">
   <div class="page-title-bar"><div class="page-title-icon">💼</div><div class="page-title-text">Wallet</div></div>
   <div class="wallet-items" style="display:flex;flex-direction:column;gap:10px">
-
-    <!-- ORDER: 1 Coming Soon banner -->
     <div style="background:rgba(255,150,0,0.15);border:1px solid rgba(255,150,0,0.4);border-radius:14px;padding:14px;text-align:center;order:1">
       <div style="font-size:32px;margin-bottom:6px">🚀</div>
       <div style="font-size:14px;font-weight:900;color:#ff9500;margin-bottom:4px">Coming Soon</div>
       <div style="font-size:11px;color:#a0aec0">TRAX coin launch hone ke baad withdraw hoga</div>
     </div>
-
-    <!-- ORDER: 2 TON Wallet -->
     <div class="withdraw-option" style="order:2"><div class="withdraw-option-icon">💎</div><div class="withdraw-option-info"><h4>TON Wallet</h4><p>Tonkeeper, TON Space</p></div><span class="coming-soon-badge">SOON</span></div>
-
-    <!-- ORDER: 3 Binance Wallet -->
     <div class="withdraw-option" style="order:3"><div class="withdraw-option-icon">🟡</div><div class="withdraw-option-info"><h4>Binance Wallet</h4><p>Direct to Binance</p></div><span class="coming-soon-badge">SOON</span></div>
-
-    <!-- ORDER: 4 Transfer Coins -->
     <div class="more-card" style="opacity:0.6;cursor:not-allowed;order:4"><div class="more-card-icon referral">💸</div><div class="more-card-info"><h4>Transfer Coins</h4><p>Coming soon</p></div><span class="coming-soon-badge">SOON</span></div>
-
   </div>
 </div>
 
@@ -836,25 +799,20 @@
   </div>
 </div>
 
-<!-- LEADERBOARD (RP + Coin Collector) -->
 <div class="tab-content" id="tab-leaderboard">
   <div class="page-title-bar"><div class="page-title-icon">🏆</div><div class="page-title-text">Leaderboard</div></div>
-
   <div class="lb-tabs">
     <div class="lb-tab rp active" data-lb="rp" onclick="switchLeaderboard('rp')">💎 RP COLLECTOR</div>
     <div class="lb-tab coin" data-lb="coin" onclick="switchLeaderboard('coin')">💰 COIN COLLECTOR</div>
   </div>
-
   <div class="lb-period-tabs">
     <div class="lb-period-tab" data-period="daily" onclick="switchLBPeriod('daily')">📅 Daily</div>
     <div class="lb-period-tab active" data-period="weekly" onclick="switchLBPeriod('weekly')">📆 Weekly</div>
     <div class="lb-period-tab" data-period="season" onclick="switchLBPeriod('season')">🌟 Season</div>
   </div>
-
   <div id="leaderboardContent"></div>
 </div>
 
-<!-- RANK HISTORY -->
 <div class="tab-content" id="tab-history">
   <div class="page-title-bar"><div class="page-title-icon">📜</div><div class="page-title-text">Rank History</div></div>
   <div id="historyContent"></div>
@@ -881,7 +839,6 @@
   <div class="sticker-shop" id="stickerShopContainer"></div>
 </div>
 
-<!-- SETTINGS MENU (hamburger) -->
 <div class="tab-content" id="tab-settings-menu">
   <div class="page-title-bar"><div class="page-title-icon">☰</div><div class="page-title-text">Menu</div></div>
   <div class="settings-nav-card" onclick="navTo('leaderboard')">
@@ -1075,6 +1032,23 @@
 </div>
 
 <script>
+  // 🔥 FIREBASE CONFIG
+  const firebaseConfig = {
+    apiKey: "AIzaSyDaZzT1xw3KO-aKB2QbL_Yltdvm2dQ0",
+    authDomain: "traxofficial-6b4d8.firebaseapp.com",
+    databaseURL: "https://traxofficial-6b4d8-default-rtdb.firebaseio.com",
+    projectId: "traxofficial-6b4d8",
+    storageBucket: "traxofficial-6b4d8.firebasestorage.app",
+    messagingSenderId: "37313778052",
+    appId: "1:37313778052:web:5db5351e38bb057834dd1",
+    measurementId: "G-2XQS78XYWC"
+  };
+
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const database = firebase.database();
+  const dbRef = database.ref('users');
+
   const tg = window.Telegram ? window.Telegram.WebApp : null;
   if (tg) { tg.ready(); tg.expand(); if (tg.setHeaderColor) tg.setHeaderColor('#050a14'); }
 
@@ -1208,7 +1182,6 @@
   let playerId = localStorage.getItem('trax_playerId') || String(userId).slice(-6).padStart(6, '0');
   localStorage.setItem('trax_playerId', playerId);
 
-  // ===== RANK SYSTEM =====
   const RANKS = [
     { id: 'brown', name: 'BROWN', icon: '🥉', sub: '#F', min: 0, max: 500, colour: '#cd7f32', next: 'silver' },
     { id: 'silver', name: 'SILVER', icon: '🥈', sub: '#E', min: 500, max: 1200, colour: '#c0c0c0', next: 'gold' },
@@ -1295,9 +1268,7 @@
     renderRankTierList();
   }
 
-  // ===== MISSIONS =====
   const DAILY_MISSIONS = [
-    // Easy (7)
     { id: 'd1', name: 'Tap 50 times', target: 50, reward: 20, xp: 5, diff: 'easy', type: 'tap' },
     { id: 'd2', name: 'Tap 100 times', target: 100, reward: 30, xp: 8, diff: 'easy', type: 'tap' },
     { id: 'd3', name: 'Win 1 game', target: 1, reward: 30, xp: 8, diff: 'easy', type: 'game' },
@@ -1305,7 +1276,6 @@
     { id: 'd5', name: 'Play 1 mine', target: 1, reward: 20, xp: 5, diff: 'easy', type: 'mine' },
     { id: 'd6', name: 'Share profile', target: 1, reward: 20, xp: 5, diff: 'easy', type: 'share' },
     { id: 'd7', name: 'Open red pocket', target: 1, reward: 20, xp: 5, diff: 'easy', type: 'pocket' },
-    // Medium (7)
     { id: 'd8', name: 'Tap 500 times', target: 500, reward: 50, xp: 12, diff: 'medium', type: 'tap' },
     { id: 'd9', name: 'Tap 1000 times', target: 1000, reward: 70, xp: 18, diff: 'medium', type: 'tap' },
     { id: 'd10', name: 'Win 3 games', target: 3, reward: 80, xp: 20, diff: 'medium', type: 'game' },
@@ -1313,7 +1283,6 @@
     { id: 'd12', name: 'Upgrade 1 item', target: 1, reward: 50, xp: 12, diff: 'medium', type: 'upgrade' },
     { id: 'd13', name: 'Complete 1 task', target: 1, reward: 50, xp: 12, diff: 'medium', type: 'task' },
     { id: 'd14', name: 'Spend 10,000 TRAX', target: 10000, reward: 50, xp: 12, diff: 'medium', type: 'spend' },
-    // Hard (6)
     { id: 'd15', name: 'Tap 5000 times', target: 5000, reward: 150, xp: 30, diff: 'hard', type: 'tap' },
     { id: 'd16', name: 'Win 10 games', target: 10, reward: 200, xp: 40, diff: 'hard', type: 'game' },
     { id: 'd17', name: 'Mine 10 times', target: 10, reward: 150, xp: 30, diff: 'hard', type: 'mine' },
@@ -1433,7 +1402,6 @@
     else renderMissions();
   }
 
-  // ===== LEADERBOARD =====
   let currentLB = 'rp';
   let currentLBPeriod = 'weekly';
   function switchLeaderboard(type) {
@@ -1478,7 +1446,6 @@
     localStorage.setItem(key, JSON.stringify(data));
   }
 
-  // ===== HISTORY =====
   function renderHistory() {
     const container = document.getElementById('historyContent');
     if (!container) return;
@@ -1498,7 +1465,6 @@
     });
   }
 
-  // ===== XP & LEVEL =====
   function getXPForLevel(level) {
     const arr = [100, 250, 500, 900, 1500, 2300, 3400, 4800, 6500, 8500, 11000, 14000, 17500, 21500, 26000];
     if (level <= arr.length) return arr[level - 1];
@@ -1662,6 +1628,69 @@
     localStorage.setItem('trax_autoEarn', autoEarn);
     localStorage.setItem('trax_totalEarned', Math.floor(totalEarned));
     localStorage.setItem('trax_miningTotal', miningTotalEarned);
+    saveToFirebase();
+  }
+
+  function saveToFirebase() {
+    if (!playerId) return;
+    const userData = {
+      name: userName || 'Player',
+      balance: Math.floor(balance),
+      energy: energy,
+      taps: totalTaps,
+      tapPower: getEffectiveTapPower(),
+      maxEnergy: getEffectiveMaxEnergy(),
+      autoEarn: autoEarn,
+      totalEarned: Math.floor(totalEarned),
+      level: currentLevel,
+      xp: currentXP,
+      rp: currentRP,
+      dailyRP: dailyRP,
+      weeklyRP: weeklyRP,
+      seasonRP: seasonRP,
+      lastSeen: Date.now(),
+      avatar: userAvatar,
+      avatarIsImage: avatarIsImage,
+      miningTotal: miningTotalEarned,
+      stickers: stickerLevels,
+      boosterAutoTap: boosterAutoTapBonus,
+      boosterDouble: boosterDoubleBonus
+    };
+    dbRef.child(playerId).set(userData)
+      .then(() => console.log('✅ Firebase saved'))
+      .catch(err => console.error('❌ Firebase error:', err));
+  }
+
+  function loadFromFirebase() {
+    if (!playerId) return;
+    dbRef.child(playerId).once('value').then((snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+        if (data.name && !userName) userName = data.name;
+        if (data.balance) balance = data.balance;
+        if (data.energy) energy = data.energy;
+        if (data.taps) totalTaps = data.taps;
+        if (data.totalEarned) totalEarned = data.totalEarned;
+        if (data.level) currentLevel = data.level;
+        if (data.xp) currentXP = data.xp;
+        if (data.rp) currentRP = data.rp;
+        if (data.dailyRP) dailyRP = data.dailyRP;
+        if (data.weeklyRP) weeklyRP = data.weeklyRP;
+        if (data.seasonRP) seasonRP = data.seasonRP;
+        if (data.stickers) stickerLevels = data.stickers;
+        if (data.miningTotal) miningTotalEarned = data.miningTotal;
+        if (data.avatar) userAvatar = data.avatar;
+        if (data.avatarIsImage !== undefined) avatarIsImage = data.avatarIsImage;
+        console.log('✅ Firebase data loaded');
+        updateUI();
+        updateProfilePage();
+        updateRankBadge();
+      } else {
+        saveToFirebase();
+      }
+    }).catch(err => {
+      console.error('❌ Load error:', err);
+    });
   }
 
   document.getElementById('coinBtn').addEventListener('click', (e) => {
@@ -2042,7 +2071,6 @@
     showModal('Game Info', info[game] || 'Info not available');
   }
 
-  // SPIN
   const SPIN_SLOTS = [
     { reward: 5000, label: '5K', weight: 35 }, { reward: 10000, label: '10K', weight: 28 },
     { reward: 50000, label: '50K', weight: 20 }, { reward: 100, label: '100', weight: 10 },
@@ -2662,6 +2690,9 @@
   setInterval(() => { if (document.getElementById('tab-attendance').classList.contains('active') || document.getElementById('tab-home').classList.contains('active')) renderAttendance(); }, 60 * 1000);
   setInterval(updateSideCards, 5000);
   setInterval(updateRankResetTimer, 1000);
+
+  // 🔥 App start hote hi Firebase se data load karo
+  setTimeout(loadFromFirebase, 1500);
 </script>
 </body>
-    </html>
+ </html>
