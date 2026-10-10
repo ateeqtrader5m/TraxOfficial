@@ -639,7 +639,6 @@
     <div class="wallet-header-sub">◆ YOUR CRYPTO WALLET ◆</div>
   </div>
 
-  <!-- Withdraw SOON - UPAR -->
   <div class="withdraw-soon-box">
     <div style="font-size:32px;margin-bottom:6px">⏳</div>
     <div style="font-size:14px;font-weight:900;color:#ff9500;margin-bottom:4px">Withdraw — SOON</div>
@@ -808,7 +807,1065 @@
 </div></div>
 
 <script>
-// PART 2 WILL GO HERE
+// ===== INIT =====
+const tg = window.Telegram ? window.Telegram.WebApp : null;
+if (tg) { tg.ready(); tg.expand(); if (tg.setHeaderColor) tg.setHeaderColor('#050a14'); }
+
+function getTraxLogoSVG() {
+  return '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="rg" cx="50%" cy="50%"><stop offset="0%" stop-color="#00d4ff"/><stop offset="50%" stop-color="#0088ff"/><stop offset="100%" stop-color="#9900ff"/></radialGradient><radialGradient id="bg" cx="40%" cy="35%"><stop offset="0%" stop-color="#0a2540"/><stop offset="100%" stop-color="#030812"/></radialGradient><linearGradient id="tg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ffffff"/><stop offset="50%" stop-color="#a0e8ff"/><stop offset="100%" stop-color="#00a8ff"/></linearGradient></defs><circle cx="50" cy="50" r="48" fill="url(#rg)"/><circle cx="50" cy="50" r="42" fill="url(#bg)"/><path d="M 28 38 L 72 38 L 72 46 L 58 46 L 58 72 L 42 72 L 42 46 L 28 46 Z" fill="url(#tg)"/></svg>';
+}
+document.getElementById('headerLogo').innerHTML = getTraxLogoSVG();
+
+// ===== GLOBALS =====
+let settings = { sound: localStorage.getItem('trax_sound') !== 'off', vibration: localStorage.getItem('trax_vibration') !== 'off' };
+let userName = localStorage.getItem('trax_username') || '';
+let userAvatar = localStorage.getItem('trax_avatar') || '👤';
+let avatarIsImage = localStorage.getItem('trax_avatar_isimg') === 'true';
+
+let balance = parseInt(localStorage.getItem('trax_balance') || '0');
+let diamonds = parseInt(localStorage.getItem('trax_diamonds') || '0');
+let energy = parseInt(localStorage.getItem('trax_energy') || '500');
+let totalTaps = parseInt(localStorage.getItem('trax_taps') || '0');
+let baseTapPower = parseInt(localStorage.getItem('trax_tapPower') || '1');
+let maxEnergy = parseInt(localStorage.getItem('trax_maxEnergy') || '500');
+let autoEarn = parseInt(localStorage.getItem('trax_autoEarn') || '0');
+let nftLevels = JSON.parse(localStorage.getItem('trax_nft_v1') || '{}');
+let totalEarned = parseInt(localStorage.getItem('trax_totalEarned') || '0');
+let miningActive = false;
+let miningTotalEarned = parseInt(localStorage.getItem('trax_miningTotal') || '0');
+let currentXP = parseInt(localStorage.getItem('trax_xp') || '0');
+let currentLevel = parseInt(localStorage.getItem('trax_level') || '1');
+let currentRP = parseInt(localStorage.getItem('trax_rp') || '0');
+let boosterAutoTapBonus = parseInt(localStorage.getItem('trax_booster_autoTap_bonus') || '0');
+let boosterDoubleBonus = parseInt(localStorage.getItem('trax_booster_double_bonus') || '0');
+
+const userId = tg && tg.initDataUnsafe && tg.initDataUnsafe.user ? tg.initDataUnsafe.user.id : Math.floor(Math.random() * 9000) + 1000;
+let playerId = localStorage.getItem('trax_playerId') || String(userId).slice(-6).padStart(6, '0');
+localStorage.setItem('trax_playerId', playerId);
+
+const DIAMOND_TO_USD = 0.01;
+
+// ===== RANKS =====
+const RANKS = [
+  { id: 'brown', name: 'BROWN', icon: '🥉', sub: '#F', min: 0, max: 500, next: 'silver' },
+  { id: 'silver', name: 'SILVER', icon: '🥈', sub: '#E', min: 500, max: 1200, next: 'gold' },
+  { id: 'gold', name: 'GOLD', icon: '🥇', sub: '#D', min: 1200, max: 2000, next: 'platinum' },
+  { id: 'platinum', name: 'PLATINUM', icon: '💠', sub: '#C', min: 2000, max: 3000, next: 'diamond' },
+  { id: 'diamond', name: 'DIAMOND', icon: '💎', sub: '#B', min: 3000, max: 4500, next: 'epic' },
+  { id: 'epic', name: 'EPIC', icon: '🟣', sub: '#A', min: 4500, max: 6000, next: 'legendary' },
+  { id: 'legendary', name: 'LEGENDARY', icon: '🟠', sub: '#R', min: 6000, max: 8000, next: 'obsidian' },
+  { id: 'obsidian', name: 'OBSIDIAN', icon: '🔴', sub: '#S', min: 8000, max: 999999, next: null }
+];
+function getRankFromRP(rp) { for (let i = RANKS.length - 1; i >= 0; i--) { if (rp >= RANKS[i].min) return RANKS[i]; } return RANKS[0]; }
+function addRP(amount) { currentRP += amount; localStorage.setItem('trax_rp', currentRP); updateRankBadge(); updateUI(); }
+
+// ===== XP =====
+function getXPForLevel(level) { const arr = [100, 250, 500, 900, 1500, 2300, 3400, 4800, 6500, 8500, 11000, 14000, 17500, 21500, 26000]; if (level <= arr.length) return arr[level - 1]; return 26000 + (level - arr.length) * 5000; }
+function addXP(amount) {
+  currentXP += amount;
+  let needed = getXPForLevel(currentLevel);
+  while (currentXP >= needed) { currentXP -= needed; currentLevel++; showToast('⭐ LEVEL UP! Lv ' + currentLevel); addRP(50); needed = getXPForLevel(currentLevel); }
+  localStorage.setItem('trax_xp', currentXP);
+  localStorage.setItem('trax_level', currentLevel);
+  updateUI();
+}
+function getLevelFromXP() { return { level: currentLevel, xp: currentXP, need: getXPForLevel(currentLevel) }; }
+
+// ===== NFT DATA =====
+const NFT_CATEGORIES = [
+  { id: 'all', name: 'All', icon: '🎨' },
+  { id: 'tap', name: 'Tap', icon: '👆' },
+  { id: 'energy', name: 'Energy', icon: '⚡' },
+  { id: 'earning', name: 'Earning', icon: '💰' },
+  { id: 'mining', name: 'Mining', icon: '⛏️' },
+  { id: 'premium', name: 'Premium', icon: '💎' },
+  { id: 'legendary', name: 'Legendary', icon: '🏆' }
+];
+const NFTS = [
+  { id: 'c1', cat: 'tap', tier: 'common', icon: '👆', name: 'Tap I', profitPerHour: 100, cost: 500, bonus: lvl => '+' + (1*lvl) + ' Tap' },
+  { id: 'c2', cat: 'tap', tier: 'common', icon: '✋', name: 'Tap II', profitPerHour: 250, cost: 1200, bonus: lvl => '+' + (2*lvl) + ' Tap' },
+  { id: 'c3', cat: 'tap', tier: 'common', icon: '🤚', name: 'Tap III', profitPerHour: 500, cost: 2500, bonus: lvl => '+' + (3*lvl) + ' Tap' },
+  { id: 'c4', cat: 'tap', tier: 'common', icon: '💪', name: 'Power', profitPerHour: 1000, cost: 5000, bonus: lvl => '+' + (4*lvl) + ' Tap' },
+  { id: 'c5', cat: 'tap', tier: 'common', icon: '🔥', name: 'Flame', profitPerHour: 2000, cost: 8000, bonus: lvl => '+' + (5*lvl) + ' Tap' },
+  { id: 'c6', cat: 'energy', tier: 'common', icon: '⚡', name: 'Spark', profitPerHour: 500, cost: 15000, bonus: lvl => '+' + (2*lvl) + ' Energy' },
+  { id: 'c7', cat: 'energy', tier: 'common', icon: '🔋', name: 'Battery', profitPerHour: 1200, cost: 25000, bonus: lvl => '+' + (25*lvl) + ' MaxEnergy' },
+  { id: 'c8', cat: 'earning', tier: 'common', icon: '💰', name: 'Coin', profitPerHour: 1500, cost: 50000, bonus: lvl => '+' + (5*lvl) + ' Auto' },
+  { id: 'c9', cat: 'mining', tier: 'common', icon: '⛏️', name: 'Pickaxe', profitPerHour: 800, cost: 80000, bonus: lvl => '+' + (2*lvl) + ' Mining' },
+  { id: 'c10', cat: 'tap', tier: 'common', icon: '🌟', name: 'Star', profitPerHour: 3000, cost: 150000, bonus: lvl => '+' + (3*lvl) + ' Tap' },
+  { id: 'r1', cat: 'premium', tier: 'rare', icon: '💎', name: 'Diamond', profitPerHour: 8000, cost: 200000, bonus: lvl => '+' + (10*lvl) + ' Tap' },
+  { id: 'r2', cat: 'energy', tier: 'rare', icon: '🔮', name: 'Orb', profitPerHour: 5000, cost: 300000, bonus: lvl => '+' + (5*lvl) + ' Energy' },
+  { id: 'r3', cat: 'earning', tier: 'rare', icon: '🚀', name: 'Rocket', profitPerHour: 15000, cost: 450000, bonus: lvl => '+' + (25*lvl) + ' Auto' },
+  { id: 'r4', cat: 'mining', tier: 'rare', icon: '⚙️', name: 'Gear', profitPerHour: 10000, cost: 600000, bonus: lvl => '+' + (50*lvl) + ' MaxEnergy' },
+  { id: 'r5', cat: 'mining', tier: 'rare', icon: '🔨', name: 'Hammer', profitPerHour: 12000, cost: 900000, bonus: lvl => '+' + (5*lvl) + ' Mining' },
+  { id: 'e1', cat: 'premium', tier: 'epic', icon: '👑', name: 'Crown', profitPerHour: 50000, cost: 1500000, bonus: lvl => '+' + (100*lvl) + ' Auto' },
+  { id: 'e2', cat: 'tap', tier: 'epic', icon: '🦅', name: 'Eagle', profitPerHour: 35000, cost: 2500000, bonus: lvl => '+' + (40*lvl) + ' Tap' },
+  { id: 'e3', cat: 'energy', tier: 'epic', icon: '🌟', name: 'Inferno', profitPerHour: 40000, cost: 3500000, bonus: lvl => '+' + (15*lvl) + ' Energy' },
+  { id: 'e4', cat: 'mining', tier: 'epic', icon: '🌋', name: 'Thunder', profitPerHour: 45000, cost: 5000000, bonus: lvl => '+' + (20*lvl) + ' Mining' },
+  { id: 'l1', cat: 'legendary', tier: 'legendary', icon: '🐉', name: 'Dragon', profitPerHour: 200000, cost: 10000000, bonus: lvl => '+' + (500*lvl) + ' Auto' },
+  { id: 'l2', cat: 'legendary', tier: 'legendary', icon: '🦄', name: 'Unicorn', profitPerHour: 150000, cost: 25000000, bonus: lvl => '+' + (200*lvl) + ' Tap' },
+  { id: 'l3', cat: 'legendary', tier: 'legendary', icon: '👾', name: 'Alien', profitPerHour: 180000, cost: 50000000, bonus: lvl => '+' + (100*lvl) + ' Mining' }
+];
+const MAX_NFT_LEVEL = 10;
+const NFT_MULT = 1.5;
+let currentNFTCat = 'all';
+
+function getNFTLevel(id) { return nftLevels[id] || 0; }
+function isNFTMax(id) { return getNFTLevel(id) >= MAX_NFT_LEVEL; }
+function getNFTBonusFromAll(keyword) {
+  let total = 0;
+  NFTS.forEach(n => { const lvl = getNFTLevel(n.id); if (!lvl) return; const text = n.bonus(lvl); if (text.includes(keyword)) { const m = text.match(/(\d+)/); if (m) total += parseInt(m[1]); } });
+  return total;
+}
+function getEffectiveTapPower() { return baseTapPower + getNFTBonusFromAll('Tap') + boosterAutoTapBonus + boosterDoubleBonus; }
+function getEffectiveMaxEnergy() { return maxEnergy + getNFTBonusFromAll('MaxEnergy'); }
+function getTotalProfitPerHour() { let total = 0; NFTS.forEach(n => { const lvl = getNFTLevel(n.id); if (lvl > 0) total += n.profitPerHour * lvl; }); return total; }
+function isNFTUnlocked(id) {
+  const idx = NFTS.findIndex(n => n.id === id);
+  if (idx <= 0) return true;
+  return getNFTLevel(NFTS[idx - 1].id) >= MAX_NFT_LEVEL;
+}
+function formatProfit(n) {
+  if (n >= 1000000) return (n/1000000).toFixed(2) + 'M';
+  if (n >= 1000) return (n/1000).toFixed(2) + 'K';
+  return n.toString();
+}
+
+// ===== UI UPDATE =====
+function updateUI() {
+  document.getElementById('balance').textContent = Math.floor(balance).toLocaleString();
+  document.getElementById('walletCoinBalance').textContent = Math.floor(balance).toLocaleString();
+  document.getElementById('diamondBalance').textContent = diamonds.toLocaleString();
+  document.getElementById('walletDiamondBalance').textContent = diamonds.toLocaleString();
+  document.getElementById('shopDiamondBalance').textContent = diamonds.toLocaleString();
+  document.getElementById('diamondUSD').textContent = (diamonds * DIAMOND_TO_USD).toFixed(2);
+  document.getElementById('walletDiamondUSD').textContent = (diamonds * DIAMOND_TO_USD).toFixed(2);
+  document.getElementById('energyText').textContent = energy;
+  document.getElementById('maxEnergyText').textContent = getEffectiveMaxEnergy();
+  document.getElementById('energyBar').style.width = (energy / getEffectiveMaxEnergy() * 100) + '%';
+  document.getElementById('tapPowerText').textContent = getEffectiveTapPower();
+  document.getElementById('statTap').textContent = getEffectiveTapPower();
+  document.getElementById('statAuto').textContent = autoEarn;
+
+  const levelInfo = getLevelFromXP();
+  document.getElementById('levelNum').textContent = levelInfo.level;
+  document.getElementById('xpFill').style.width = (levelInfo.xp / levelInfo.need * 100) + '%';
+  document.getElementById('xpCurrent').textContent = levelInfo.xp;
+  document.getElementById('xpNeed').textContent = levelInfo.need;
+
+  const totalProfit = getTotalProfitPerHour();
+  document.getElementById('headerProfit').textContent = '+' + formatProfit(totalProfit);
+
+  updateRankBadge();
+  updateProfilePage();
+  updateSideCards();
+  updateNFTProduction();
+}
+
+function updateRankBadge() {
+  const rank = getRankFromRP(currentRP);
+  document.getElementById('rankBadgeIcon').textContent = rank.icon;
+  document.getElementById('rankBadgeName').textContent = rank.name;
+  document.getElementById('rankBadgeSub').textContent = rank.sub + ' · ' + currentRP + ' RP';
+  document.getElementById('rankBadgeCard').className = 'small-badge-card rank ' + rank.id;
+}
+
+function updateProfilePage() {
+  const levelInfo = getLevelFromXP();
+  const rank = getRankFromRP(currentRP);
+  document.getElementById('profileHeroName').textContent = userName || 'Player';
+  document.getElementById('profileHeroId').textContent = playerId;
+  document.getElementById('profileHeroBadge').textContent = rank.icon + ' ' + rank.name + ' ' + rank.sub;
+  document.getElementById('profileStatBalance').textContent = Math.floor(balance).toLocaleString();
+  document.getElementById('profileStatDiamond').textContent = diamonds.toLocaleString();
+  document.getElementById('profileStatTaps').textContent = totalTaps.toLocaleString();
+  document.getElementById('profileStatRank').textContent = '#' + rank.sub;
+
+  const hA = document.getElementById('headerAvatar');
+  if (avatarIsImage) { hA.style.backgroundImage = 'url(' + userAvatar + ')'; hA.style.backgroundSize = 'cover'; hA.textContent = ''; }
+  else { hA.style.backgroundImage = 'none'; hA.textContent = userAvatar; }
+  const pA = document.getElementById('profileHeroAvatar');
+  if (avatarIsImage) { pA.style.backgroundImage = 'url(' + userAvatar + ')'; pA.style.backgroundSize = 'cover'; pA.textContent = ''; }
+  else { pA.style.backgroundImage = 'none'; pA.textContent = userAvatar; }
+}
+
+function updateSideCards() {
+  document.getElementById('mineSideStatus').textContent = miningActive ? 'Mining...' : (energy >= 10 ? 'Ready' : 'Need ⚡');
+}
+
+function updateNFTProduction() {
+  document.getElementById('nftProductionValue').textContent = '+' + formatProfit(getTotalProfitPerHour());
+  document.getElementById('nftTotalBalance').textContent = Math.floor(balance).toLocaleString();
+}
+
+// ===== SAVE =====
+function save() {
+  localStorage.setItem('trax_balance', Math.floor(balance));
+  localStorage.setItem('trax_diamonds', diamonds);
+  localStorage.setItem('trax_energy', energy);
+  localStorage.setItem('trax_taps', totalTaps);
+  localStorage.setItem('trax_tapPower', baseTapPower);
+  localStorage.setItem('trax_maxEnergy', maxEnergy);
+  localStorage.setItem('trax_autoEarn', autoEarn);
+  localStorage.setItem('trax_totalEarned', Math.floor(totalEarned));
+  localStorage.setItem('trax_miningTotal', miningTotalEarned);
+}
+
+// ===== TAP =====
+document.getElementById('coinBtn').addEventListener('click', (e) => {
+  if (energy <= 0) { showModal('⚡ Energy Empty', 'Energy khatam.'); return; }
+  const gain = getEffectiveTapPower();
+  balance += gain; energy--; totalTaps++; totalEarned += gain;
+  addXP(1); addRP(1);
+  updateUI(); save();
+  const el = document.createElement('div');
+  el.textContent = '+' + gain;
+  el.className = 'float-text';
+  el.style.left = (e.clientX - 20) + 'px';
+  el.style.top = (e.clientY - 40) + 'px';
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 1000);
+});
+
+// ===== MINING =====
+let miningTimer = null;
+let miningElapsed = 0;
+function startMining() {
+  if (miningActive) { showModal('⛏️ Mining', 'Already mining!'); return; }
+  if (energy < 10) { showModal('⚡ Not Enough', '10 energy chahiye.'); return; }
+  energy -= 10; miningActive = true; miningElapsed = 0;
+  document.getElementById('mineStartBtn').disabled = true;
+  document.getElementById('mineStartBtn').textContent = '⛏️ MINING...';
+  document.getElementById('mineTimer').textContent = '01:00';
+  document.getElementById('mineProgressFill').style.width = '0%';
+  miningTimer = setInterval(() => {
+    miningElapsed++;
+    balance += 5; totalEarned += 5; miningTotalEarned += 5;
+    addXP(1); addRP(1);
+    const remaining = 60 - miningElapsed;
+    document.getElementById('mineTimer').textContent = '00:' + String(remaining).padStart(2, '0');
+    document.getElementById('mineProgressFill').style.width = (miningElapsed / 60 * 100) + '%';
+    updateUI(); save();
+    if (miningElapsed >= 60) {
+      clearInterval(miningTimer); miningActive = false;
+      document.getElementById('mineStartBtn').disabled = false;
+      document.getElementById('mineStartBtn').textContent = 'START MINING (10 ⚡)';
+      document.getElementById('mineTimer').textContent = 'READY';
+      document.getElementById('mineProgressFill').style.width = '0%';
+      showModal('⛏️ Mining Complete!', '+300 TRAX kamaye!');
+    }
+  }, 1000);
+}
+
+// ===== BOOSTERS =====
+function activateBooster(id) {
+  if (id === 'autoTap') { boosterAutoTapBonus += 1; localStorage.setItem('trax_booster_autoTap_bonus', boosterAutoTapBonus); showToast('👆 Auto Tap +1!'); }
+  else if (id === 'energy') { energy = Math.min(getEffectiveMaxEnergy(), energy + 50); showToast('⚡ +50 Energy!'); }
+  else if (id === 'double') { boosterDoubleBonus += 2; localStorage.setItem('trax_booster_double_bonus', boosterDoubleBonus); showToast('2️⃣ 2x +2!'); }
+  else if (id === 'offline') { balance += 5000; totalEarned += 5000; showToast('⏰ +5,000 TRAX!'); }
+  updateUI(); save();
+}
+
+// ===== UPGRADES =====
+function drawUpgrades() {
+  const box = document.getElementById('upgradesList');
+  if (!box) return;
+  const upgrades = [
+    { id: 'tapPower', icon: '⚡', cls: 'tap', name: 'Tap Power', desc: '+1 per tap', baseCost: 5000, mult: 1.5, lvl: parseInt(localStorage.getItem('upg_tapPower') || '0') },
+    { id: 'maxEnergy', icon: '🔋', cls: 'energy', name: 'Max Energy', desc: '+50 energy', baseCost: 3000, mult: 1.4, lvl: parseInt(localStorage.getItem('upg_maxEnergy') || '0') },
+    { id: 'autoEarn', icon: '💰', cls: 'auto', name: 'Auto Earning', desc: '+5/hr', baseCost: 15000, mult: 1.6, lvl: parseInt(localStorage.getItem('upg_autoEarn') || '0') },
+    { id: 'miningPower', icon: '⛏️', cls: 'mine', name: 'Mining Power', desc: '+5 mining', baseCost: 25000, mult: 1.8, lvl: parseInt(localStorage.getItem('upg_miningPower') || '0') }
+  ];
+  box.innerHTML = '';
+  upgrades.forEach(u => {
+    const cost = Math.floor(u.baseCost * Math.pow(u.mult, u.lvl));
+    const el = document.createElement('div');
+    el.className = 'upgrade-item';
+    el.innerHTML = '<div class="upgrade-icon-wrap ' + u.cls + '">' + u.icon + '</div><div class="upgrade-info"><h4>' + u.name + '</h4><p>' + u.desc + '</p><div class="lvl">Lv ' + u.lvl + '</div></div><button class="upgrade-btn" onclick="buyUpgrade(\'' + u.id + '\',' + cost + ')">' + cost.toLocaleString() + '</button>';
+    box.appendChild(el);
+  });
+}
+function buyUpgrade(id, cost) {
+  if (balance < cost) { showModal('❌ Not Enough', 'Cost: ' + cost.toLocaleString()); return; }
+  balance -= cost;
+  let lvl = parseInt(localStorage.getItem('upg_' + id) || '0') + 1;
+  localStorage.setItem('upg_' + id, lvl);
+  if (id === 'tapPower') baseTapPower += 1;
+  if (id === 'maxEnergy') maxEnergy += 50;
+  if (id === 'autoEarn') autoEarn += 5;
+  addXP(15); addRP(25);
+  updateUI(); save(); drawUpgrades();
+  showToast('✅ Upgraded! Lv ' + lvl);
+}
+
+// ===== TASKS =====
+function drawTasksNew() {
+  const box = document.getElementById('fullTasksListNew');
+  if (!box) return;
+  const tasks = [
+    { id: 'tg', icon: '📢', cls: '', name: 'Join Telegram', reward: 1000, xp: 50, link: 'https://t.me/TraxOfficial_bot', done: localStorage.getItem('task_tg') === 'done' },
+    { id: 'x', icon: '𝕏', cls: 'twitter', name: 'Follow X', reward: 1000, xp: 50, link: 'https://twitter.com/', done: localStorage.getItem('task_x') === 'done' },
+    { id: 'yt', icon: '▶', cls: 'youtube', name: 'Subscribe YouTube', reward: 2000, xp: 75, link: 'https://youtube.com/', done: localStorage.getItem('task_yt') === 'done' },
+    { id: 'invite', icon: '👥', cls: 'invite', name: 'Invite 1 Friend', reward: 5000, xp: 100, link: '', done: localStorage.getItem('task_invite') === 'done' }
+  ];
+  box.innerHTML = '';
+  tasks.forEach(t => {
+    const el = document.createElement('div');
+    el.className = 'task-row';
+    el.innerHTML = '<div class="task-icon-wrap ' + t.cls + '">' + t.icon + '</div><div class="task-content"><div class="task-title">' + t.name + '</div><div class="task-reward-row">+' + t.reward.toLocaleString() + ' TRAX · +' + t.xp + ' XP</div></div><button class="task-btn ' + (t.done ? 'done' : 'go') + '" onclick="doTask(\'' + t.id + '\',' + t.reward + ',' + t.xp + ',\'' + t.link + '\')">' + (t.done ? '✓ DONE' : 'GO') + '</button>';
+    box.appendChild(el);
+  });
+}
+function doTask(id, reward, xp, link) {
+  if (localStorage.getItem('task_' + id) === 'done') return;
+  if (link) { if (tg) tg.openTelegramLink(link); else window.open(link, '_blank'); }
+  localStorage.setItem('task_' + id, 'done');
+  balance += reward; totalEarned += reward;
+  addXP(xp); addRP(50);
+  updateUI(); save(); drawTasksNew();
+  showModal('🎉 Task Complete!', '+' + reward.toLocaleString() + ' TRAX\n+' + xp + ' XP');
+}
+
+// ===== MISSIONS =====
+const DAILY_MISSIONS = [
+  { id: 'd1', name: 'Tap 50 times', target: 50, reward: 20, xp: 5, diff: 'easy', type: 'tap' },
+  { id: 'd2', name: 'Tap 100 times', target: 100, reward: 30, xp: 8, diff: 'easy', type: 'tap' },
+  { id: 'd3', name: 'Win 1 game', target: 1, reward: 30, xp: 8, diff: 'easy', type: 'game' },
+  { id: 'd4', name: 'Claim daily', target: 1, reward: 20, xp: 5, diff: 'easy', type: 'daily' },
+  { id: 'd5', name: 'Mine 1 time', target: 1, reward: 20, xp: 5, diff: 'easy', type: 'mine' },
+  { id: 'd6', name: 'Share profile', target: 1, reward: 20, xp: 5, diff: 'easy', type: 'share' },
+  { id: 'd7', name: 'Open pocket', target: 1, reward: 20, xp: 5, diff: 'easy', type: 'pocket' },
+  { id: 'd8', name: 'Tap 500 times', target: 500, reward: 50, xp: 12, diff: 'medium', type: 'tap' },
+  { id: 'd9', name: 'Tap 1000 times', target: 1000, reward: 70, xp: 18, diff: 'medium', type: 'tap' },
+  { id: 'd10', name: 'Win 3 games', target: 3, reward: 80, xp: 20, diff: 'medium', type: 'game' },
+  { id: 'd11', name: 'Mine 3 times', target: 3, reward: 60, xp: 15, diff: 'medium', type: 'mine' },
+  { id: 'd12', name: 'Upgrade 1 item', target: 1, reward: 50, xp: 12, diff: 'medium', type: 'upgrade' },
+  { id: 'd13', name: 'Complete 1 task', target: 1, reward: 50, xp: 12, diff: 'medium', type: 'task' },
+  { id: 'd14', name: 'Spend 10K', target: 10000, reward: 50, xp: 12, diff: 'medium', type: 'spend' },
+  { id: 'd15', name: 'Tap 5000', target: 5000, reward: 150, xp: 30, diff: 'hard', type: 'tap' },
+  { id: 'd16', name: 'Win 10 games', target: 10, reward: 200, xp: 40, diff: 'hard', type: 'game' },
+  { id: 'd17', name: 'Mine 10 times', target: 10, reward: 150, xp: 30, diff: 'hard', type: 'mine' },
+  { id: 'd18', name: 'Upgrade 5 items', target: 5, reward: 200, xp: 40, diff: 'hard', type: 'upgrade' },
+  { id: 'd19', name: 'Spend 100K', target: 100000, reward: 200, xp: 40, diff: 'hard', type: 'spend' },
+  { id: 'd20', name: 'Reach Level 5', target: 5, reward: 250, xp: 50, diff: 'hard', type: 'level' }
+];
+const WEEKLY_MISSIONS = [
+  { id: 'w1', name: 'Invite 5 friends', target: 5, reward: 300, xp: 60, type: 'invite' },
+  { id: 'w2', name: 'Win 25 games', target: 25, reward: 400, xp: 80, type: 'game' },
+  { id: 'w3', name: 'Tap 50K', target: 50000, reward: 500, xp: 100, type: 'tap' },
+  { id: 'w4', name: 'Reach Silver', target: 1, reward: 500, xp: 100, type: 'rank' },
+  { id: 'w5', name: 'Claim 5 days', target: 5, reward: 400, xp: 80, type: 'daily' },
+  { id: 'w6', name: 'Buy 10 upgrades', target: 10, reward: 300, xp: 60, type: 'upgrade' },
+  { id: 'w7', name: 'Collect 10 pockets', target: 10, reward: 200, xp: 40, type: 'pocket' },
+  { id: 'w8', name: 'Reach Level 10', target: 10, reward: 400, xp: 80, type: 'level' },
+  { id: 'w9', name: 'Mine 50 times', target: 50, reward: 400, xp: 80, type: 'mine' },
+  { id: 'w10', name: 'Spend 1M', target: 1000000, reward: 500, xp: 100, type: 'spend' }
+];
+let currentMissionTab = 'daily';
+
+function getMissionProgress(id) { return parseInt(localStorage.getItem('mission_' + id) || '0'); }
+function getMissionClaimed(id) { return localStorage.getItem('mission_' + id + '_claimed') === '1'; }
+function resetMissionsIfNeeded() {
+  const today = new Date().toDateString();
+  const lastDaily = localStorage.getItem('mission_daily_reset') || '';
+  if (lastDaily !== today) {
+    DAILY_MISSIONS.forEach(m => { localStorage.removeItem('mission_' + m.id); localStorage.removeItem('mission_' + m.id + '_claimed'); });
+    localStorage.setItem('mission_daily_reset', today);
+  }
+  const week = Math.floor(Date.now() / (7 * 24 * 60 * 60 * 1000)).toString();
+  const lastWeekly = localStorage.getItem('mission_weekly_reset') || '';
+  if (lastWeekly !== week) {
+    WEEKLY_MISSIONS.forEach(m => { localStorage.removeItem('mission_' + m.id); localStorage.removeItem('mission_' + m.id + '_claimed'); });
+    localStorage.setItem('mission_weekly_reset', week);
+  }
+}
+
+function switchMissionTab(tab) {
+  currentMissionTab = tab;
+  document.querySelectorAll('.rank-sub-tab').forEach(t => t.classList.remove('active'));
+  document.querySelector('.rank-sub-tab[data-mission-tab="' + tab + '"]').classList.add('active');
+  renderMissions();
+}
+
+function renderMissions() {
+  resetMissionsIfNeeded();
+  const container = document.getElementById('missionsContent');
+  if (!container) return;
+  container.innerHTML = '';
+  const missions = currentMissionTab === 'daily' ? DAILY_MISSIONS : WEEKLY_MISSIONS;
+  if (currentMissionTab === 'daily') {
+    ['easy', 'medium', 'hard'].forEach(diff => {
+      const dm = missions.filter(m => m.diff === diff);
+      const title = document.createElement('div');
+      title.className = 'mission-section-title ' + diff;
+      title.textContent = diff.charAt(0).toUpperCase() + diff.slice(1) + ' (' + dm.length + ')';
+      container.appendChild(title);
+      dm.forEach(m => renderMissionCard(container, m));
+    });
+  } else {
+    missions.forEach(m => renderMissionCard(container, m));
+  }
+}
+function renderMissionCard(container, m) {
+  const progress = getMissionProgress(m.id);
+  const claimed = getMissionClaimed(m.id);
+  const complete = progress >= m.target;
+  const card = document.createElement('div');
+  card.className = 'mission-card' + (claimed ? ' done' : '');
+  card.innerHTML = '<div class="mission-info"><div class="mission-name">' + m.name + '</div><div class="mission-progress">' + Math.min(progress, m.target) + ' / ' + m.target + '</div><div class="mission-reward">+' + m.reward + ' RP · +' + m.xp + ' XP</div></div><button class="mission-btn ' + (claimed ? 'claimed' : (complete ? 'claim' : 'pending')) + '" onclick="' + (claimed ? '' : (complete ? 'claimMission(\'' + m.id + '\',' + m.reward + ',' + m.xp + ')' : '')) + '">' + (claimed ? '✓ Done' : (complete ? 'Claim' : 'Pending')) + '</button>';
+  container.appendChild(card);
+}
+function claimMission(id, reward, xp) {
+  if (getMissionClaimed(id)) return;
+  localStorage.setItem('mission_' + id + '_claimed', '1');
+  addRP(reward); addXP(xp);
+  showModal('🎉 Mission Complete!', '+' + reward + ' RP\n+' + xp + ' XP');
+  renderMissions();
+}
+function addMissionProgress(type, amount) {
+  [DAILY_MISSIONS, WEEKLY_MISSIONS].forEach(list => {
+    list.forEach(m => {
+      if (m.type === type) {
+        const cur = getMissionProgress(m.id);
+        if (cur < m.target) localStorage.setItem('mission_' + m.id, Math.min(cur + amount, m.target));
+      }
+    });
+  });
+}
+
+// ===== NFT SHOP RENDER =====
+function renderNFTCategories() {
+  const c = document.getElementById('nftCategories');
+  if (!c) return;
+  c.innerHTML = '';
+  NFT_CATEGORIES.forEach(cat => {
+    const el = document.createElement('div');
+    el.className = 'nft-cat-tab' + (currentNFTCat === cat.id ? ' active' : '');
+    el.textContent = cat.icon + ' ' + cat.name;
+    el.onclick = () => { currentNFTCat = cat.id; renderNFTCategories(); renderNFTGrid(); };
+    c.appendChild(el);
+  });
+}
+function renderNFTGrid() {
+  const g = document.getElementById('nftGrid');
+  if (!g) return;
+  g.innerHTML = '';
+  const filtered = currentNFTCat === 'all' ? NFTS : NFTS.filter(n => n.cat === currentNFTCat);
+  filtered.forEach(nft => {
+    const lvl = getNFTLevel(nft.id);
+    const isMax = isNFTMax(nft.id);
+    const unlocked = isNFTUnlocked(nft.id);
+    const nextCost = isMax ? 0 : Math.floor(nft.cost * Math.pow(NFT_MULT, lvl));
+    const profitValue = nft.profitPerHour * Math.max(lvl, 1);
+    const el = document.createElement('div');
+    el.className = 'nft-card ' + nft.tier + (isMax ? ' max' : '') + (!unlocked ? ' locked' : '');
+    const tierLabel = nft.tier.charAt(0).toUpperCase() + nft.tier.slice(1);
+    el.innerHTML = '<div class="nft-tier-badge ' + nft.tier + '">' + tierLabel + '</div>' +
+      '<div class="nft-icon-3d">' + nft.icon + '</div>' +
+      '<div class="nft-name">' + nft.name + '</div>' +
+      '<div class="nft-profit-label">PROFIT/HOUR</div>' +
+      '<div class="nft-profit-value">💰 +' + formatProfit(profitValue) + '</div>' +
+      '<div class="nft-footer"><div class="nft-level">Lv ' + lvl + '</div><div class="nft-total">' + (unlocked ? (isMax ? '⭐ MAX' : nextCost.toLocaleString() + ' 💰') : '🔒') + '</div></div>';
+    if (unlocked && !isMax) el.onclick = () => buyNFT(nft, nextCost);
+    else if (!unlocked) el.onclick = () => showModal('🔒 Locked', 'Pehle previous NFT max karo.');
+    g.appendChild(el);
+  });
+}
+function buyNFT(nft, cost) {
+  if (balance < cost) { showModal('❌ Not Enough', 'Cost: ' + cost.toLocaleString() + ' TRAX'); return; }
+  balance -= cost;
+  nftLevels[nft.id] = (nftLevels[nft.id] || 0) + 1;
+  localStorage.setItem('trax_nft_v1', JSON.stringify(nftLevels));
+  addXP(20); addRP(20);
+  updateUI(); save(); renderNFTGrid();
+  showModal('🎉 NFT Upgraded!', nft.name + ' Lv ' + nftLevels[nft.id] + '\nProfit: +' + formatProfit(nft.profitPerHour * nftLevels[nft.id]) + '/hr');
+}
+
+// ===== PRODUCTION TIMER =====
+let productionSeconds = parseInt(localStorage.getItem('trax_prod_timer') || '86400');
+setInterval(() => {
+  productionSeconds--;
+  if (productionSeconds <= 0) {
+    const profit = getTotalProfitPerHour() * 24;
+    if (profit > 0) { balance += profit; totalEarned += profit; showToast('💰 +' + formatProfit(profit) + ' TRAX from NFT!'); }
+    productionSeconds = 86400;
+  }
+  localStorage.setItem('trax_prod_timer', productionSeconds);
+  const el = document.getElementById('nftProductionTimer');
+  if (el) {
+    const h = Math.floor(productionSeconds / 3600);
+    const m = Math.floor((productionSeconds % 3600) / 60);
+    const s = productionSeconds % 60;
+    el.textContent = String(h).padStart(2, '0') + ':' + String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+  }
+  updateUI();
+}, 1000);
+
+// ===== RANK RENDER =====
+function renderRankTierList() {
+  const list = document.getElementById('rankTierList');
+  if (!list) return;
+  const currentRank = getRankFromRP(currentRP);
+  list.innerHTML = '';
+  RANKS.forEach(r => {
+    const row = document.createElement('div');
+    row.className = 'rank-tier-row' + (r.id === currentRank.id ? ' current' : '');
+    const rpText = r.max > 100000 ? r.min + '+ RP' : r.min + ' - ' + r.max + ' RP';
+    row.innerHTML = '<div style="font-size:32px">' + r.icon + '</div><div style="flex:1"><div style="font-size:14px;font-weight:900;color:white">' + r.name + '</div><div style="font-size:10px;color:#a0aec0">' + rpText + ' · ' + r.sub + '</div></div><div style="font-size:11px;font-weight:900;color:#00d4ff">' + (r.id === currentRank.id ? '◀ YOU' : (currentRP >= r.min ? '✓' : '🔒')) + '</div>';
+    list.appendChild(row);
+  });
+}
+function renderRankPage() {
+  const rank = getRankFromRP(currentRP);
+  const next = rank.next ? RANKS.find(r => r.id === rank.next) : null;
+  document.getElementById('rankBigIcon').textContent = rank.icon;
+  document.getElementById('rankBigName').textContent = rank.name;
+  document.getElementById('rankBigSub').textContent = rank.sub;
+  const rpInRank = currentRP - rank.min;
+  const rpRange = rank.max - rank.min;
+  const pct = Math.min(100, (rpInRank / rpRange) * 100);
+  document.getElementById('rankBigBar').style.width = pct + '%';
+  document.getElementById('rankBigRP').textContent = currentRP;
+  document.getElementById('rankBigRPNext').textContent = rank.max;
+  document.getElementById('rankBigNext').textContent = next ? 'Next: ' + next.name + ' / ' + next.sub : 'MAX RANK!';
+  renderRankTierList();
+}
+function switchRankTop(tab) {
+  document.querySelectorAll('.rank-top-tab').forEach(t => t.classList.remove('active'));
+  document.querySelector('.rank-top-tab[data-rank-tab="' + tab + '"]').classList.add('active');
+  document.getElementById('rankSubPage').style.display = tab === 'rank' ? 'block' : 'none';
+  document.getElementById('rankMissionsPage').style.display = tab === 'missions' ? 'block' : 'none';
+  if (tab === 'rank') renderRankPage();
+  else renderMissions();
+}
+
+// ===== SHOP RENDER =====
+const TOPUP_PACKAGES = [
+  { id: 'starter', icon: '🥉', name: 'Starter', diamonds: 100, price: 0.99 },
+  { id: 'small', icon: '🥈', name: 'Small', diamonds: 550, price: 4.99 },
+  { id: 'medium', icon: '🥇', name: 'Medium', diamonds: 1200, price: 9.99 },
+  { id: 'large', icon: '💎', name: 'Large', diamonds: 2600, price: 19.99 },
+  { id: 'mega', icon: '👑', name: 'Mega', diamonds: 7000, price: 49.99 },
+  { id: 'ultimate', icon: '🌟', name: 'Ultimate', diamonds: 15000, price: 99.99 }
+];
+const PREMIUM_ITEMS = [
+  { id: 'nftchest', icon: '🎁', name: 'NFT Chest', desc: 'Random NFT', price: 100 },
+  { id: 'energyrefill', icon: '⚡', name: 'Energy Refill', desc: 'Full energy', price: 10 },
+  { id: 'boost2x', icon: '🚀', name: '2x Boost 24hr', desc: 'Double earnings', price: 50 },
+  { id: 'xpboost', icon: '✨', name: 'XP Boost', desc: 'Jump 1 level', price: 25 }
+];
+function renderShop() {
+  const topup = document.getElementById('topupPackages');
+  if (!topup) return;
+  topup.innerHTML = '';
+  TOPUP_PACKAGES.forEach(p => {
+    const el = document.createElement('div');
+    el.className = 'shop-pack';
+    el.onclick = () => openDeposit('package:' + p.id);
+    el.innerHTML = '<div class="shop-pack-icon">' + p.icon + '</div><div class="shop-pack-info"><div class="shop-pack-name">' + p.name + '</div><div class="shop-pack-diamonds">💎 ' + p.diamonds.toLocaleString() + '</div></div><div class="shop-pack-price">$' + p.price + '</div>';
+    topup.appendChild(el);
+  });
+  const items = document.getElementById('premiumItems');
+  items.innerHTML = '';
+  PREMIUM_ITEMS.forEach(it => {
+    const el = document.createElement('div');
+    el.className = 'shop-item';
+    el.onclick = () => buyPremiumItem(it);
+    el.innerHTML = '<div class="shop-item-icon">' + it.icon + '</div><div class="shop-item-info"><div class="shop-item-name">' + it.name + '</div><div class="shop-item-desc">' + it.desc + '</div><div class="shop-item-price">💎 ' + it.price + '</div></div>';
+    items.appendChild(el);
+  });
+}
+function openDeposit(method) {
+  if (method.startsWith('package:')) {
+    const pkg = TOPUP_PACKAGES.find(p => p.id === method.split(':')[1]);
+    if (pkg) showModal('💎 ' + pkg.name, 'Diamonds: ' + pkg.diamonds.toLocaleString() + '\nPrice: $' + pkg.price + '\n\nBackend coming soon.');
+    return;
+  }
+  const names = { stars: '⭐ Telegram Stars', ton: '💎 TON', binance: '🟡 Binance', crypto: '🪙 Crypto' };
+  showModal('💳 ' + (names[method] || method), 'Backend integration coming soon.');
+}
+function buyPremiumItem(item) {
+  if (diamonds < item.price) { showModal('❌ Not Enough Diamonds', 'Chahiye: ' + item.price + ' 💎'); return; }
+  diamonds -= item.price;
+  localStorage.setItem('trax_diamonds', diamonds);
+  if (item.id === 'energyrefill') energy = getEffectiveMaxEnergy();
+  if (item.id === 'xpboost') addXP(getXPForLevel(currentLevel));
+  showToast('✅ ' + item.name + ' purchased!');
+  updateUI(); save();
+}
+
+// ===== ATTENDANCE =====
+let attStreak = parseInt(localStorage.getItem('trax_streak') || '0');
+let attLastClaim = localStorage.getItem('trax_streak_last') || '';
+function renderAttendance() {
+  const grid = document.getElementById('attendanceGrid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  const today = new Date().toDateString();
+  for (let i = 1; i <= 7; i++) {
+    const d = document.createElement('div');
+    d.className = 'streak-day';
+    if (i <= attStreak) d.classList.add('done');
+    else if (i === attStreak + 1 && attLastClaim !== today) d.classList.add('today');
+    if (i === 7) d.classList.add('gift');
+    d.textContent = i === 7 ? '🎁' : (i <= attStreak ? '✓' : i);
+    grid.appendChild(d);
+  }
+  document.getElementById('attCurrentDays').textContent = attStreak;
+  const btn = document.getElementById('attClaimBtn');
+  if (attLastClaim === today) { btn.textContent = '✓ CLAIMED TODAY'; btn.disabled = true; }
+  else { btn.textContent = 'CLAIM TODAY (+50 RP)'; btn.disabled = false; }
+}
+function claimAttendance() {
+  const today = new Date().toDateString();
+  if (attLastClaim === today) return;
+  attStreak = Math.min(7, attStreak + 1);
+  if (attStreak >= 7) attStreak = 0;
+  attLastClaim = today;
+  localStorage.setItem('trax_streak', attStreak);
+  localStorage.setItem('trax_streak_last', attLastClaim);
+  addRP(50); addXP(30);
+  balance += 5000; totalEarned += 5000;
+  addMissionProgress('daily', 1);
+  updateUI(); save(); renderAttendance();
+  showToast('🎁 Claimed! +50 RP');
+}
+
+// ===== RED POCKET =====
+let rpLastOpen = parseInt(localStorage.getItem('trax_rp_last') || '0');
+function updateRedPocket() {
+  const now = Date.now();
+  const remaining = Math.max(0, 15 * 60 * 1000 - (now - rpLastOpen));
+  const timerEl = document.getElementById('redpocketTimer');
+  const btnEl = document.getElementById('redpocketClaimBtn');
+  if (!timerEl) return;
+  if (remaining === 0) {
+    timerEl.textContent = 'READY!';
+    timerEl.style.color = '#00ff88';
+    btnEl.disabled = false;
+    btnEl.textContent = 'OPEN NOW 🧧';
+  } else {
+    const m = Math.floor(remaining / 60000);
+    const s = Math.floor((remaining % 60000) / 1000);
+    timerEl.textContent = String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+    timerEl.style.color = '#ff0055';
+    btnEl.disabled = true;
+    btnEl.textContent = 'WAIT...';
+  }
+}
+function openRedPocket() {
+  const remaining = Math.max(0, 15 * 60 * 1000 - (Date.now() - rpLastOpen));
+  if (remaining > 0) { showModal('⏰ Wait', 'Please wait.'); return; }
+  const rewards = [50, 100, 250, 500, 1000];
+  const weights = [35, 30, 20, 10, 5];
+  let total = weights.reduce((a, b) => a + b, 0);
+  let r = Math.random() * total;
+  let reward = 50;
+  for (let i = 0; i < rewards.length; i++) { r -= weights[i]; if (r <= 0) { reward = rewards[i]; break; } }
+  balance += reward; totalEarned += reward;
+  rpLastOpen = Date.now();
+  localStorage.setItem('trax_rp_last', rpLastOpen);
+  addXP(10); addRP(5);
+  addMissionProgress('pocket', 1);
+  updateUI(); save(); updateRedPocket();
+  showToast('🎉 +' + reward + ' TRAX!');
+}
+
+// ===== LEADERBOARD =====
+let currentLB = 'rp';
+function switchLeaderboard(type, el) {
+  currentLB = type;
+  document.querySelectorAll('.lb-tab').forEach(t => { t.style.background = 'rgba(15,30,55,0.8)'; t.style.color = '#a0aec0'; });
+  if (el) { el.style.background = type === 'rp' ? 'linear-gradient(135deg,#ffd700,#ff9500)' : 'linear-gradient(135deg,#00ff88,#00aa55)'; el.style.color = type === 'rp' ? '#000' : '#fff'; }
+  renderLeaderboardContent();
+}
+function renderLeaderboardContent() {
+  const c = document.getElementById('leaderboardContent');
+  if (!c) return;
+  c.innerHTML = '<div style="text-align:center;padding:30px;color:#7a8ba5"><div style="font-size:44px">🏆</div><div style="font-weight:900;color:#00d4ff;margin-top:10px">Be the first!</div></div>';
+}
+function renderHomeRank() {
+  const box = document.getElementById('homeRankList');
+  if (!box) return;
+  box.innerHTML = '<div style="text-align:center;padding:20px;color:#7a8ba5;font-size:12px"><div style="font-size:32px;margin-bottom:8px">🏆</div><div style="font-weight:900;color:#00d4ff">No players yet</div></div>';
+}
+function updateRankResetTimer() {
+  const el = document.getElementById('rankResetTimer');
+  if (!el) return;
+  el.textContent = '30m';
+}
+
+// ===== NAVIGATION =====
+const BOTTOM_NAV = ['home', 'games', 'rank', 'nft', 'wallet'];
+function navClick(el, tab) {
+  document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+  if (el) el.classList.add('active');
+  else { const f = document.querySelector('.nav-item[data-tab="' + tab + '"]'); if (f) f.classList.add('active'); }
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  const tabEl = document.getElementById('tab-' + tab);
+  if (tabEl) tabEl.classList.add('active');
+  window.scrollTo(0, 0);
+  if (tab === 'tasks') drawTasksNew();
+  if (tab === 'upgrades') drawUpgrades();
+  if (tab === 'rank') switchRankTop('rank');
+  if (tab === 'nft') { renderNFTCategories(); renderNFTGrid(); }
+  if (tab === 'shop') renderShop();
+  if (tab === 'attendance') renderAttendance();
+  if (tab === 'leaderboard') renderLeaderboardContent();
+}
+function navTo(tab) {
+  if (BOTTOM_NAV.includes(tab)) navClick(document.querySelector('.nav-item[data-tab="' + tab + '"]'), tab);
+  else {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    const tabEl = document.getElementById('tab-' + tab);
+    if (tabEl) tabEl.classList.add('active');
+    window.scrollTo(0, 0);
+    if (tab === 'nft') { renderNFTCategories(); renderNFTGrid(); }
+    if (tab === 'rank') switchRankTop('rank');
+    if (tab === 'shop') renderShop();
+    if (tab === 'tasks') drawTasksNew();
+    if (tab === 'upgrades') drawUpgrades();
+    if (tab === 'attendance') renderAttendance();
+    if (tab === 'leaderboard') renderLeaderboardContent();
+  }
+}
+
+// ===== MODAL =====
+function showModal(title, text) {
+  document.getElementById('modalTitle').textContent = title;
+  document.getElementById('modalText').innerText = text;
+  document.getElementById('modal').classList.add('show');
+}
+function closeModal() { document.getElementById('modal').classList.remove('show'); }
+function showToast(msg) {
+  const t = document.createElement('div');
+  t.textContent = msg;
+  t.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#00ffcc,#00aa88);color:white;padding:10px 20px;border-radius:20px;font-weight:900;font-size:12px;z-index:9999;';
+  document.body.appendChild(t); setTimeout(() => t.remove(), 2500);
+}
+
+// ===== GAMES =====
+function showGameInfo(game) {
+  const info = {
+    spin: '🎰 SPIN\n\n5K-500K rewards',
+    twist: '🌀 TWIST\n\n200x max',
+    crash: '🚀 CRASH\n\nWin big',
+    coinflip: '🪙 COIN FLIP\n\nT or R',
+    puzzle: '🧩 PUZZLE\n\n3 modes'
+  };
+  showModal('Game Info', info[game] || 'Info');
+}
+
+// SPIN
+const SPIN_SLOTS = [
+  { reward: 5000, label: '5K' }, { reward: 10000, label: '10K' },
+  { reward: 50000, label: '50K' }, { reward: 100, label: '100' },
+  { reward: 150000, label: '150K' }, { reward: 500000, label: '500K' }
+];
+let spinCooldown = false;
+function openSpin() {
+  document.getElementById('spinModal').classList.add('show');
+  document.getElementById('spinResultBox').classList.remove('show');
+  document.getElementById('wheel').style.transform = 'rotate(0deg)';
+  drawWheelLabels();
+  spinCooldown = false;
+}
+function closeSpin() { document.getElementById('spinModal').classList.remove('show'); }
+function drawWheelLabels() {
+  const box = document.getElementById('wheelLabels');
+  box.innerHTML = '';
+  const radius = 75;
+  SPIN_SLOTS.forEach((slot, i) => {
+    const angle = i * 60 + 30;
+    const rad = (angle - 90) * Math.PI / 180;
+    const x = 110 + Math.cos(rad) * radius;
+    const y = 110 + Math.sin(rad) * radius;
+    const el = document.createElement('div');
+    el.className = 'wheel-label';
+    el.style.left = x + 'px';
+    el.style.top = y + 'px';
+    el.textContent = slot.label;
+    box.appendChild(el);
+  });
+}
+function spinWheel() {
+  if (spinCooldown) return;
+  spinCooldown = true;
+  const idx = Math.floor(Math.random() * SPIN_SLOTS.length);
+  const slot = SPIN_SLOTS[idx];
+  const wheel = document.getElementById('wheel');
+  const segmentCenter = idx * 60 + 30;
+  const finalRotation = 8 * 360 + (360 - segmentCenter);
+  wheel.style.transform = 'rotate(' + finalRotation + 'deg)';
+  setTimeout(() => {
+    balance += slot.reward; totalEarned += slot.reward;
+    addXP(30); addRP(20);
+    addMissionProgress('game', 1);
+    document.getElementById('spinRewardAmount').textContent = '+' + slot.reward.toLocaleString();
+    document.getElementById('spinResultBox').classList.add('show');
+    spinCooldown = false;
+    updateUI(); save();
+    showToast('🎉 +' + slot.reward + ' TRAX!');
+  }, 5200);
+}
+
+// CRASH
+let crashState = { running: false, mult: 1, bet: 1000 };
+let crashInterval = null;
+const CRASH_BETS = [1000, 5000, 10000, 50000, 100000, 500000];
+function openCrash() {
+  document.getElementById('crashModal').classList.add('show');
+  if (crashInterval) clearInterval(crashInterval);
+  crashState = { running: false, mult: 1, bet: 1000 };
+  document.getElementById('crashMultiplier').textContent = '1.00x';
+  document.getElementById('crashMultiplier').classList.remove('crashed');
+  document.getElementById('crashBar').style.width = '0%';
+  document.getElementById('crashBetBtn').style.display = 'block';
+  document.getElementById('crashCashBtn').style.display = 'none';
+  const box = document.getElementById('betSelector');
+  box.innerHTML = '';
+  CRASH_BETS.forEach(amt => {
+    const el = document.createElement('div');
+    el.className = 'bet-option' + (amt === crashState.bet ? ' selected' : '');
+    el.textContent = amt >= 1000 ? (amt/1000) + 'K' : amt;
+    el.onclick = () => { if (crashState.running) return; crashState.bet = amt; openCrash(); };
+    box.appendChild(el);
+  });
+}
+function closeCrash() { if (crashInterval) clearInterval(crashInterval); document.getElementById('crashModal').classList.remove('show'); }
+function startCrash() {
+  if (crashState.running) return;
+  if (balance < crashState.bet) { showModal('❌ Not Enough', ''); return; }
+  balance -= crashState.bet;
+  crashState.running = true; crashState.mult = 1;
+  document.getElementById('crashBetBtn').style.display = 'none';
+  document.getElementById('crashCashBtn').style.display = 'block';
+  document.getElementById('crashStatus').textContent = 'Barh raha hai...';
+  const crashPoint = 1.5 + Math.random() * 3;
+  crashInterval = setInterval(() => {
+    crashState.mult += 0.05 + Math.random() * 0.05;
+    document.getElementById('crashMultiplier').textContent = crashState.mult.toFixed(2) + 'x';
+    document.getElementById('crashBar').style.width = Math.min(100, (crashState.mult - 1) * 30) + '%';
+    if (crashState.mult >= crashPoint) {
+      crashState.running = false;
+      clearInterval(crashInterval);
+      document.getElementById('crashMultiplier').classList.add('crashed');
+      document.getElementById('crashMultiplier').textContent = 'CRASHED @ ' + crashState.mult.toFixed(2) + 'x';
+      document.getElementById('crashStatus').textContent = 'Lost ' + crashState.bet.toLocaleString();
+      document.getElementById('crashCashBtn').style.display = 'none';
+      document.getElementById('crashBetBtn').style.display = 'block';
+      document.getElementById('crashBetBtn').textContent = 'PLAY AGAIN';
+      updateUI(); save();
+    }
+  }, 300);
+}
+function cashOutCrash() {
+  if (!crashState.running) return;
+  crashState.running = false;
+  clearInterval(crashInterval);
+  const w = Math.floor(crashState.bet * crashState.mult);
+  balance += w; totalEarned += w;
+  addXP(20); addRP(15);
+  addMissionProgress('game', 1);
+  document.getElementById('crashStatus').textContent = 'Won ' + w.toLocaleString();
+  document.getElementById('crashCashBtn').style.display = 'none';
+  document.getElementById('crashBetBtn').style.display = 'block';
+  document.getElementById('crashBetBtn').textContent = 'PLAY AGAIN';
+  updateUI(); save();
+  showToast('💰 +' + w + ' TRAX!');
+}
+
+// PUZZLE
+let puzzleMode = 'medium';
+function openPuzzle() {
+  document.getElementById('puzzleModal').classList.add('show');
+  document.getElementById('puzzleBoard').style.display = 'none';
+}
+function closePuzzle() { document.getElementById('puzzleModal').classList.remove('show'); }
+function selectPuzzleMode(mode, el) {
+  puzzleMode = mode;
+  document.querySelectorAll('.puzzle-mode-card').forEach(c => c.classList.remove('selected'));
+  if (el) el.classList.add('selected');
+}
+function startPuzzleGame() {
+  const costs = { hard: 10000, medium: 30000, easy: 50000 };
+  const cost = costs[puzzleMode];
+  if (balance < cost) { showModal('❌ Not Enough', 'Cost: ' + cost.toLocaleString()); return; }
+  balance -= cost; updateUI(); save();
+  showToast('🧩 Puzzle starting...');
+  setTimeout(() => {
+    const win = Math.random() < 0.3;
+    if (win) {
+      const reward = cost * (1.5 + Math.random() * 2);
+      balance += Math.floor(reward); totalEarned += Math.floor(reward);
+      addXP(50); addRP(30);
+      addMissionProgress('game', 1);
+      showModal('🎉 Puzzle Solved!', '+' + Math.floor(reward).toLocaleString() + ' TRAX!');
+    } else {
+      showModal('❌ Puzzle Failed', 'Try again!');
+    }
+    updateUI(); save();
+    closePuzzle();
+  }, 2000);
+}
+
+// COIN FLIP
+let flipState = { active: false, bet: 1000, choice: null, playing: false };
+function openCoinFlip() {
+  document.getElementById('coinFlipModal').classList.add('show');
+  document.getElementById('flipSetup').style.display = flipState.active ? 'none' : 'block';
+  document.getElementById('flipGame').style.display = flipState.active ? 'block' : 'none';
+}
+function closeCoinFlip() { document.getElementById('coinFlipModal').classList.remove('show'); }
+function startFlipGame() {
+  const bet = parseInt(document.getElementById('flipBetInput').value) || 1000;
+  if (bet < 1000) { showModal('⚠️ Min 1000', ''); return; }
+  if (bet > balance) { showModal('❌ Not Enough', ''); return; }
+  balance -= bet;
+  flipState = { active: true, bet, choice: null, playing: false };
+  document.getElementById('flipSetup').style.display = 'none';
+  document.getElementById('flipGame').style.display = 'block';
+  document.getElementById('flipStatus').textContent = 'T ya R select karein';
+  document.getElementById('flipStatus').className = 'flip-status info';
+  updateUI(); save();
+}
+function selectFlipChoice(c) {
+  if (!flipState.active || flipState.playing) return;
+  flipState.choice = c;
+  document.querySelectorAll('.flip-choice-btn').forEach(b => b.classList.remove('selected'));
+  document.querySelector('.flip-choice-btn[data-choice="' + c + '"]').classList.add('selected');
+  document.getElementById('flipStatus').textContent = 'Choice: ' + c;
+}
+function doFlip() {
+  if (!flipState.active || !flipState.choice || flipState.playing) {
+    if (!flipState.choice) showModal('⚠️ Choice Required', 'Pehle T ya R');
+    return;
+  }
+  flipState.playing = true;
+  const coin = document.getElementById('flipCoin');
+  coin.classList.add('flipping');
+  document.getElementById('flipStatus').textContent = '🪙 Flipping...';
+  setTimeout(() => {
+    coin.classList.remove('flipping');
+    const winChance = Math.random() < 0.2;
+    const result = Math.random() < 0.5 ? 'T' : 'R';
+    if (winChance && result === flipState.choice) {
+      const mult = 1.5 + Math.random();
+      const w = Math.floor(flipState.bet * mult);
+      balance += w; totalEarned += w;
+      addXP(20); addRP(15);
+      addMissionProgress('game', 1);
+      document.getElementById('flipStatus').textContent = '🎉 WIN! +' + w;
+      document.getElementById('flipStatus').className = 'flip-status win';
+      updateUI(); save();
+      showToast('💰 +' + w + ' TRAX!');
+    } else {
+      document.getElementById('flipStatus').textContent = '❌ LOSE!';
+      document.getElementById('flipStatus').className = 'flip-status lose';
+      setTimeout(() => { flipState.active = false; closeCoinFlip(); showModal('❌ Lost', 'Aap haare.'); }, 1000);
+    }
+    flipState.playing = false;
+    flipState.choice = null;
+  }, 1800);
+}
+
+// TWIST
+let twistBet = 1000;
+let twistSpinning = false;
+function openTwist() {
+  document.getElementById('twistModal').classList.add('show');
+  document.getElementById('twistResultBox').classList.remove('show');
+  document.getElementById('twistBetValue').textContent = twistBet.toLocaleString();
+  twistSpinning = false;
+}
+function closeTwist() { document.getElementById('twistModal').classList.remove('show'); }
+function playTwist() {
+  if (twistSpinning) return;
+  if (balance < twistBet) { showModal('❌ Not Enough', 'Bet: ' + twistBet); return; }
+  balance -= twistBet; updateUI(); save();
+  twistSpinning = true;
+  const pointer = document.getElementById('twistPointer');
+  pointer.style.transition = 'transform 3s ease-out';
+  const finalAngle = 5 * 360 + Math.random() * 360;
+  pointer.style.transform = 'rotate(' + finalAngle + 'deg)';
+  const resultBox = document.getElementById('twistResultBox');
+  resultBox.classList.remove('show', 'lose');
+  setTimeout(() => {
+    const lose = Math.random() < 0.75;
+    if (lose) {
+      document.getElementById('twistResultMult').textContent = '0x';
+      document.getElementById('twistResultAmount').textContent = '-' + twistBet;
+      resultBox.classList.add('show', 'lose');
+    } else {
+      const mult = 2 + Math.random() * 5;
+      const w = Math.floor(twistBet * mult);
+      balance += w; totalEarned += w;
+      addXP(15); addRP(10);
+      addMissionProgress('game', 1);
+      document.getElementById('twistResultMult').textContent = mult.toFixed(1) + 'x';
+      document.getElementById('twistResultAmount').textContent = '+' + w;
+      resultBox.classList.add('show');
+      showToast('🎉 +' + w + ' TRAX!');
+    }
+    twistSpinning = false;
+    updateUI(); save();
+  }, 3200);
+}
+
+// ===== PROFILE =====
+function saveProfile() {
+  const newName = document.getElementById('usernameInput').value.trim();
+  if (!newName && !userName) { showModal('⚠️ Name Required', ''); return; }
+  if (newName.length < 3) { showModal('⚠️ Too Short', ''); return; }
+  userName = newName;
+  localStorage.setItem('trax_username', userName);
+  updateProfilePage();
+  showToast('✅ Name saved!');
+}
+
+// ===== SETTINGS =====
+function toggleSetting(key, el) {
+  settings[key] = !settings[key];
+  localStorage.setItem('trax_' + key, settings[key] ? 'on' : 'off');
+  if (el) el.classList.toggle('on', settings[key]);
+}
+
+// ===== RESET =====
+function resetData() {
+  if (confirm('Reset ALL data?')) { localStorage.clear(); location.reload(); }
+}
+
+// ===== SHARE =====
+function shareRef() {
+  const link = 'https://t.me/TraxOfficial_bot?start=ref' + userId;
+  if (tg) tg.openTelegramLink('https://t.me/share/url?url=' + encodeURIComponent(link));
+  else window.open(link, '_blank');
+}
+
+// ===== AUTO EARN =====
+setInterval(() => {
+  if (autoEarn > 0) { balance += autoEarn / 3600; totalEarned += autoEarn / 3600; updateUI(); save(); }
+}, 1000);
+
+// Energy regen
+setInterval(() => {
+  if (energy < getEffectiveMaxEnergy()) { energy++; updateUI(); save(); }
+}, 2000);
+
+// Red pocket timer
+setInterval(updateRedPocket, 1000);
+
+// ===== INIT =====
+updateUI();
+drawTasksNew();
+drawUpgrades();
+renderNFTCategories();
+renderNFTGrid();
+renderRankPage();
+renderShop();
+renderAttendance();
+updateRedPocket();
+renderHomeRank();
+updateRankResetTimer();
 </script>
 </body>
-                                                                                                              </html>
+ </html>
