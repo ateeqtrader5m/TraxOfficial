@@ -206,19 +206,19 @@
         .fund-item .arrow { color: #8899aa; font-size: 16px; }
         .fund-item.disabled { opacity: 0.5; cursor: not-allowed; }
 
-        /* PROFILE (Red Theme) */
+        /* PROFILE (Blue Theme) */
         .profile-scroll { padding: 12px 14px; display: flex; flex-direction: column; gap: 12px; }
-        .profile-header { background: linear-gradient(135deg, #1a0a0a, #0a0505); border: 1px solid rgba(255, 50, 50, 0.3); border-radius: 16px; padding: 20px; text-align: center; position: relative; }
-        .profile-header .avatar-big { width: 80px; height: 80px; border-radius: 50%; background: #1a2332; border: 3px solid #ff0055; margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 36px; overflow: hidden; }
+        .profile-header { background: linear-gradient(135deg, #0a1a2a, #050a14); border: 1px solid rgba(0, 212, 255, 0.3); border-radius: 16px; padding: 20px; text-align: center; position: relative; }
+        .profile-header .avatar-big { width: 80px; height: 80px; border-radius: 50%; background: #1a2332; border: 3px solid #00d4ff; margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 36px; overflow: hidden; }
         .profile-header .avatar-big img { width: 100%; height: 100%; object-fit: cover; }
         .profile-header .p-name { font-size: 20px; font-weight: 800; margin-top: 10px; color: #fff; }
         .profile-header .p-id { font-size: 12px; color: #8899aa; margin-top: 2px; }
         .profile-header .p-level { display: inline-block; background: #ffd700; color: #050a14; padding: 2px 12px; border-radius: 10px; font-size: 11px; font-weight: 700; margin-top: 6px; }
         .profile-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .profile-stat { background: linear-gradient(135deg, #1a0a0a, #0a0505); border: 1px solid rgba(255, 50, 50, 0.2); border-radius: 14px; padding: 12px; text-align: center; }
+        .profile-stat { background: linear-gradient(135deg, #0a1a2a, #050a14); border: 1px solid rgba(0, 212, 255, 0.2); border-radius: 14px; padding: 12px; text-align: center; }
         .profile-stat .lbl { font-size: 9px; color: #8899aa; }
-        .profile-stat .val { font-size: 18px; font-weight: 800; color: #ff6b6b; margin-top: 2px; }
-        .profile-info { background: linear-gradient(135deg, #1a0a0a, #0a0505); border: 1px solid rgba(255, 50, 50, 0.2); border-radius: 14px; padding: 14px; }
+        .profile-stat .val { font-size: 18px; font-weight: 800; color: #00d4ff; margin-top: 2px; }
+        .profile-info { background: linear-gradient(135deg, #0a1a2a, #050a14); border: 1px solid rgba(0, 212, 255, 0.2); border-radius: 14px; padding: 14px; }
         .profile-info .info-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 12px; }
         .profile-info .info-row:last-child { border-bottom: none; }
         .profile-info .info-row .lbl { color: #8899aa; }
@@ -227,6 +227,7 @@
         .profile-btn:active { transform: scale(0.97); }
         .profile-btn.blue { background: linear-gradient(135deg, #00d4ff, #0066ff); color: #fff; }
         .profile-btn.purple { background: linear-gradient(135deg, #a040ff, #6600cc); color: #fff; }
+        .profile-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
         /* BOTTOM NAV */
         .bottom-nav { display: flex; justify-content: space-around; align-items: center; background: rgba(5, 10, 20, 0.98); backdrop-filter: blur(10px); border-top: 1px solid rgba(0, 212, 255, 0.1); padding: 6px 0 10px; position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 500px; z-index: 200; }
@@ -281,6 +282,8 @@
         .puzzle-grid { display: grid; gap: 2px; margin: 10px auto; max-width: 200px; }
         .puzzle-cell { aspect-ratio: 1; background: rgba(255,255,255,0.08); border-radius: 2px; cursor: pointer; transition: 0.1s; }
         .puzzle-cell:active { background: rgba(0, 212, 255, 0.3); }
+        .custom-bet-input { width: 100%; padding: 10px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); color: #fff; font-size: 13px; outline: none; margin-top: 6px; }
+        .custom-bet-input::placeholder { color: #556; }
     </style>
 </head>
 <body>
@@ -530,7 +533,7 @@
         </div>
     </div>
 
-    <!-- PROFILE (Red Theme) -->
+    <!-- PROFILE (Blue Theme) -->
     <div class="page" id="page-profile">
         <div class="scrollable profile-scroll">
             <div class="profile-header">
@@ -553,7 +556,7 @@
                 <div class="info-row"><span class="lbl">⚡ Max Energy</span><span class="val" id="profileMaxEnergy">500</span></div>
                 <div class="info-row"><span class="lbl">🔥 Daily Streak</span><span class="val" id="profileStreak">0 Days</span></div>
             </div>
-            <button class="profile-btn blue" onclick="editProfile()">✏️ Edit Name & Avatar</button>
+            <button class="profile-btn blue" id="editProfileBtn" onclick="editProfile()">✏️ Edit Name & Avatar</button>
             <button class="profile-btn purple" onclick="shareProfile()">🔗 Share My Profile</button>
         </div>
     </div>
@@ -603,12 +606,15 @@ const S = {
     spinActive: false, twistActive: false, crashActive: false,
     crashMult: 1, crashTimer: null, flipActive: false, flipBet: 1000,
     flipChoice: null, twistBet: 1000, crashBet: 1000,
-    // Cooldowns
-    boosterCooldown: 0, upgradeCooldown: 0,
-    // Spin cooldown
-    lastFreeSpin: 0, spinCount: 0,
+    // Individual cooldowns (timestamp)
+    cdTap: 0, cdAuto: 0, cdEnergy: 0, cdDouble: 0, cdOffline: 0,
+    cdUpgrade: 0, cdMine: 0, cdPocket: 0, cdSpinFree: 0,
+    // Profile edit cooldown
+    lastProfileEdit: 0,
+    // Custom bets
+    spinBet: 10000, twistBetCustom: 1000, crashBetCustom: 1000, flipBetCustom: 1000,
     // Leaderboard
-    lbLastReward: 0,
+    lbLastReset: 0, lbHighest: 0,
 };
 
 // ===== SAVE / LOAD =====
@@ -622,8 +628,11 @@ function save() {
         upgTap: S.upgTap, upgEnergy: S.upgEnergy, upgAuto: S.upgAuto, upgMining: S.upgMining,
         taskTg: S.taskTg, taskX: S.taskX, taskYt: S.taskYt, taskInvite: S.taskInvite,
         missions: S.missions, missionsClaimed: S.missionsClaimed,
-        sound: S.sound, vibration: S.vibration, lbLastReward: S.lbLastReward,
-        lastFreeSpin: S.lastFreeSpin, spinCount: S.spinCount,
+        sound: S.sound, vibration: S.vibration,
+        cdTap: S.cdTap, cdAuto: S.cdAuto, cdEnergy: S.cdEnergy, cdDouble: S.cdDouble,
+        cdOffline: S.cdOffline, cdUpgrade: S.cdUpgrade, cdMine: S.cdMine, cdPocket: S.cdPocket,
+        cdSpinFree: S.cdSpinFree, lastProfileEdit: S.lastProfileEdit,
+        lbLastReset: S.lbLastReset, lbHighest: S.lbHighest,
     };
     localStorage.setItem('trax_save', JSON.stringify(d));
 }
@@ -655,6 +664,15 @@ function formatProfit(n) {
     if (n >= 1e6) return (n / 1e6).toFixed(2) + 'M';
     if (n >= 1e3) return (n / 1e3).toFixed(1) + 'K';
     return Math.floor(n).toString();
+}
+function formatTime(ms) {
+    if (ms < 0) ms = 0;
+    const h = Math.floor(ms / 3600000);
+    const m = Math.floor((ms % 3600000) / 60000);
+    const s = Math.floor((ms % 60000) / 1000);
+    if (h > 0) return `${h}h ${m}m`;
+    if (m > 0) return `${m}m ${s}s`;
+    return `${s}s`;
 }
 function vibrate(ms = 10) { if (S.vibration && navigator.vibrate) navigator.vibrate(ms); }
 function showToast(msg, type = '') {
@@ -863,6 +881,14 @@ function updateProfileUI() {
     document.getElementById('profileTapPower').textContent = '+' + S.tapPower;
     document.getElementById('profileMaxEnergy').textContent = S.maxEnergy;
     document.getElementById('profileStreak').textContent = S.streak + ' Days';
+    // Profile edit cooldown
+    const now = Date.now();
+    const canEdit = (now - S.lastProfileEdit) >= 7 * 24 * 3600 * 1000;
+    const btn = document.getElementById('editProfileBtn');
+    if (btn) {
+        btn.disabled = !canEdit;
+        btn.textContent = canEdit ? '✏️ Edit Name & Avatar' : '⏳ Edit in ' + formatTime(7 * 24 * 3600 * 1000 - (now - S.lastProfileEdit));
+    }
 }
 
 function updateAllUI() {
@@ -873,7 +899,7 @@ function updateAllUI() {
     save();
 }
 
-// ===== TAP (Click on whole box) =====
+// ===== TAP =====
 document.getElementById('tapMain').addEventListener('click', function(e) {
     if (S.energy < 1) { showToast('Energy khatam! Wait for recharge.', 'error'); return; }
     const now = Date.now();
@@ -996,67 +1022,62 @@ function buyNFT(id, cost) {
     renderNFTGrid('all');
 }
 
-// ===== GAMES =====
-// --- SPIN (Updated: 12hr free spin, 6 slots, 95% win rate) ---
+// ===== GAMES (Reset on close for re-open) =====
+// --- SPIN (UI like Pic 2, custom bet, cooldown 12hr free) ---
 function openSpin() {
-    if (S.spinActive) return; S.spinActive = true;
+    if (S.spinActive) return;
+    S.spinActive = true;
     const now = Date.now();
-    const freeReady = (now - S.lastFreeSpin) >= 12 * 3600 * 1000;
+    const freeReady = (now - S.cdSpinFree) >= 12 * 3600 * 1000;
     openModal(`
         <div class="game-modal-box">
             <div class="modal-title">🎰 Spin to Win!</div>
-            <div style="font-size:11px;color:#8899aa;margin-bottom:8px;">${freeReady ? '✅ Free Spin Available!' : '⏳ Next free spin in ' + formatTime(12*3600*1000 - (now - S.lastFreeSpin))}</div>
+            <div style="font-size:11px;color:#8899aa;margin-bottom:6px;">${freeReady ? '✅ Free Spin Available!' : '⏳ Next free spin in ' + formatTime(12*3600*1000 - (now - S.cdSpinFree))}</div>
+            <div style="display:flex;justify-content:center;margin-bottom:6px;">
+                <div style="background:linear-gradient(135deg,#1a1a0a,#0a0a05);border:1px solid rgba(255,215,0,0.3);border-radius:10px;padding:6px 16px;font-size:11px;color:#ffd700;">💰 Paid Spins - 10,000 TRAX each</div>
+            </div>
             <div class="spin-wheel" id="spinWheel">
                 <div style="position:absolute;width:100%;height:100%;border-radius:50%;background:conic-gradient(#00d4ff 0deg 60deg, #00ff88 60deg 120deg, #ffd700 120deg 180deg, #ff0055 180deg 240deg, #a040ff 240deg 300deg, #ffaa00 300deg 360deg);"></div>
                 <div class="spin-pointer"></div>
             </div>
-            <div id="spinResult" style="font-size:20px;font-weight:700;min-height:30px;"></div>
-            <div style="font-size:10px;color:#8899aa;margin-bottom:6px;">Slots: 1K | 5K | 10K | 50K | 75K | 100K</div>
-            <button class="modal-btn primary" onclick="doSpin(${freeReady})" id="spinBtn">${freeReady ? 'FREE SPIN' : 'SPIN (10,000 TRAX)'}</button>
+            <div id="spinResult" style="font-size:20px;font-weight:700;min-height:30px;margin:6px 0;"></div>
+            <div style="display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:6px 0;">
+                <div class="bet-btn active" onclick="S.spinBet=10000;this.parentElement.querySelectorAll('.bet-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active')">10K</div>
+                <div class="bet-btn" onclick="S.spinBet=25000;this.parentElement.querySelectorAll('.bet-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active')">25K</div>
+                <div class="bet-btn" onclick="S.spinBet=50000;this.parentElement.querySelectorAll('.bet-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active')">50K</div>
+            </div>
+            <input type="number" id="spinCustomBet" class="custom-bet-input" placeholder="Custom bet (min 10,000)" value="${S.spinBet}">
+            <button class="modal-btn primary" onclick="doSpin(${freeReady})" style="margin-top:10px;">${freeReady ? 'FREE SPIN' : 'SPIN (10,000 TRAX)'}</button>
             <button class="modal-btn secondary" onclick="closeModal();S.spinActive=false;">Close</button>
         </div>
     `);
 }
-function formatTime(ms) {
-    const h = Math.floor(ms / 3600000);
-    const m = Math.floor((ms % 3600000) / 60000);
-    const s = Math.floor((ms % 60000) / 1000);
-    return `${h}h ${m}m ${s}s`;
-}
 function doSpin(freeReady) {
+    const customBet = parseInt(document.getElementById('spinCustomBet')?.value) || 10000;
     if (freeReady) {
-        S.lastFreeSpin = Date.now();
+        S.cdSpinFree = Date.now();
     } else {
-        if (S.balance < 10000) { showToast('Not enough TRAX!', 'error'); return; }
-        S.balance -= 10000;
+        const bet = Math.max(10000, customBet);
+        if (S.balance < bet) { showToast('Not enough TRAX!', 'error'); return; }
+        S.balance -= bet;
     }
-    // 95% win rate: 5K or 10K
     const r = Math.random();
     let amt = 0;
-    if (r < 0.95) {
-        // 95% chance: 5K or 10K
-        amt = Math.random() < 0.5 ? 5000 : 10000;
-    } else if (r < 0.98) {
-        // 3% chance: 50K
-        amt = 50000;
-    } else if (r < 0.99) {
-        // 1% chance: 75K
-        amt = 75000;
-    } else {
-        // 1% chance: 100K
-        amt = 100000;
-    }
+    if (r < 0.95) { amt = Math.random() < 0.5 ? 5000 : 10000; }
+    else if (r < 0.98) { amt = 50000; }
+    else if (r < 0.99) { amt = 75000; }
+    else { amt = 100000; }
     S.balance += amt; S.totalEarned += amt;
     document.getElementById('spinResult').innerHTML = `🎉 YOU WON <span style="color:#00ff88;">+${formatNum(amt)} TRAX</span>`;
     showToast(`🎉 Won ${formatNum(amt)} TRAX!`, 'success');
     updateHeaderUI(); save();
-    // Refresh button
-    setTimeout(() => { openSpin(); }, 1500);
+    setTimeout(() => { closeModal(); S.spinActive = false; openSpin(); }, 1500);
 }
 
-// --- TWIST (Updated UI Pic 3) ---
+// --- TWIST (UI like Pic 3) ---
 function openTwist() {
-    if (S.twistActive) return; S.twistActive = true;
+    if (S.twistActive) return;
+    S.twistActive = true;
     openModal(`
         <div class="game-modal-box">
             <div class="modal-title">🌀 TWIST</div>
@@ -1068,9 +1089,7 @@ function openTwist() {
             <div style="width:200px;height:200px;border-radius:50%;margin:10px auto;position:relative;background:conic-gradient(#00d4ff 0deg 30deg, #00ff88 30deg 60deg, #ffd700 60deg 90deg, #ff0055 90deg 120deg, #a040ff 120deg 150deg, #ffaa00 150deg 180deg, #00d4ff 180deg 210deg, #00ff88 210deg 240deg, #ffd700 240deg 270deg, #ff0055 270deg 300deg, #a040ff 300deg 330deg, #ffaa00 330deg 360deg);display:flex;align-items:center;justify-content:center;">
                 <div style="width:40px;height:40px;border-radius:50%;background:#fff;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:5;"></div>
                 <div style="position:absolute;top:-8px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:12px solid transparent;border-right:12px solid transparent;border-top:24px solid #ff0055;z-index:6;"></div>
-                <!-- Inner ring -->
                 <div style="position:absolute;width:60%;height:60%;border-radius:50%;border:2px solid rgba(255,215,0,0.3);"></div>
-                <!-- Middle ring -->
                 <div style="position:absolute;width:80%;height:80%;border-radius:50%;border:2px solid rgba(255,215,0,0.3);"></div>
             </div>
             <div id="twistResult" style="font-size:20px;font-weight:700;min-height:30px;"></div>
@@ -1079,16 +1098,17 @@ function openTwist() {
                 <div class="bet-btn" onclick="S.twistBet=5000;this.parentElement.querySelectorAll('.bet-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active')">5K</div>
                 <div class="bet-btn" onclick="S.twistBet=10000;this.parentElement.querySelectorAll('.bet-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active')">10K</div>
             </div>
-            <button class="modal-btn primary" onclick="doTwist()">SPIN AGAIN</button>
+            <input type="number" id="twistCustomBet" class="custom-bet-input" placeholder="Custom bet (min 100)" value="${S.twistBet}">
+            <button class="modal-btn primary" onclick="doTwist()" style="margin-top:10px;">SPIN AGAIN</button>
             <button class="modal-btn secondary" onclick="closeModal();S.twistActive=false;">Close</button>
         </div>
     `);
 }
 function doTwist() {
-    const bet = S.twistBet || 1000;
+    const customBet = parseInt(document.getElementById('twistCustomBet')?.value) || 1000;
+    const bet = Math.max(100, customBet);
     if (S.balance < bet) { showToast('Not enough TRAX!', 'error'); return; }
     S.balance -= bet;
-    // 75% lose, 25% win
     const win = Math.random() < 0.25;
     if (win) {
         const mults = [2, 3, 4, 5, 7, 10, 15, 20, 28, 50, 100, 200];
@@ -1147,7 +1167,8 @@ function completePuzzle(reward) {
 
 // --- CRASH ---
 function openCrash() {
-    if (S.crashActive) return; S.crashActive = true;
+    if (S.crashActive) return;
+    S.crashActive = true;
     openModal(`
         <div class="game-modal-box">
             <div class="modal-title">🚀 Crash Game</div>
@@ -1158,16 +1179,18 @@ function openCrash() {
                 <div class="bet-btn" onclick="S.crashBet=5000;this.parentElement.querySelectorAll('.bet-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active')">5,000</div>
                 <div class="bet-btn" onclick="S.crashBet=10000;this.parentElement.querySelectorAll('.bet-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active')">10,000</div>
             </div>
+            <input type="number" id="crashCustomBet" class="custom-bet-input" placeholder="Custom bet (min 100)" value="${S.crashBet}">
             <div class="crash-mult" id="crashMult">1.00x</div>
             <div style="font-size:11px;color:#8899aa;" id="crashStatus">Bet select karein!</div>
-            <button class="modal-btn success" onclick="startCrash()" id="crashStartBtn">START (${formatNum(S.crashBet || 1000)} TRAX)</button>
+            <button class="modal-btn success" onclick="startCrash()" id="crashStartBtn">START</button>
             <button class="modal-btn danger" onclick="cashOutCrash()" id="crashCashBtn" style="display:none;">CASHOUT</button>
             <button class="modal-btn secondary" onclick="closeModal();S.crashActive=false;">Close</button>
         </div>
     `);
 }
 function startCrash() {
-    const bet = S.crashBet || 1000;
+    const customBet = parseInt(document.getElementById('crashCustomBet')?.value) || 1000;
+    const bet = Math.max(100, customBet);
     if (S.balance < bet) { showToast('Not enough TRAX!', 'error'); return; }
     S.balance -= bet;
     S.crashMult = 1.00;
@@ -1195,7 +1218,8 @@ function startCrash() {
 function cashOutCrash() {
     if (!S.crashActive) return;
     clearInterval(S.crashTimer); S.crashActive = false;
-    const bet = S.crashBet || 1000;
+    const customBet = parseInt(document.getElementById('crashCustomBet')?.value) || 1000;
+    const bet = Math.max(100, customBet);
     const win = bet * S.crashMult;
     S.balance += win; S.totalEarned += win;
     document.getElementById('crashCashBtn').style.display = 'none';
@@ -1207,7 +1231,8 @@ function cashOutCrash() {
 
 // --- COIN FLIP ---
 function openCoinFlip() {
-    if (S.flipActive) return; S.flipActive = true;
+    if (S.flipActive) return;
+    S.flipActive = true;
     openModal(`
         <div class="game-modal-box">
             <div class="modal-title">🪙 Coin Flip</div>
@@ -1219,6 +1244,7 @@ function openCoinFlip() {
                 <div class="bet-btn" onclick="S.flipBet=5000;this.parentElement.querySelectorAll('.bet-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active')">5K</div>
                 <div class="bet-btn" onclick="S.flipBet=10000;this.parentElement.querySelectorAll('.bet-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active')">10K</div>
             </div>
+            <input type="number" id="flipCustomBet" class="custom-bet-input" placeholder="Custom bet (min 100)" value="${S.flipBet}">
             <div style="display:flex;gap:10px;margin:10px 0;">
                 <div class="bet-btn" style="flex:1;padding:14px;background:#0055aa;color:#fff;" onclick="S.flipChoice='T';document.getElementById('flipResult').textContent='Selected: T';">T</div>
                 <div class="bet-btn" style="flex:1;padding:14px;background:#ffaa00;color:#050a14;" onclick="S.flipChoice='R';document.getElementById('flipResult').textContent='Selected: R';">R</div>
@@ -1230,7 +1256,8 @@ function openCoinFlip() {
 }
 function doFlip() {
     if (!S.flipChoice) { showToast('Pehle T ya R select karein!', 'error'); return; }
-    const bet = S.flipBet || 1000;
+    const customBet = parseInt(document.getElementById('flipCustomBet')?.value) || 1000;
+    const bet = Math.max(100, customBet);
     if (S.balance < bet) { showToast('Not enough TRAX!', 'error'); return; }
     S.balance -= bet;
     const win = Math.random() < 0.25;
@@ -1251,7 +1278,7 @@ function doFlip() {
 // ===== GAME INFO =====
 function showGameInfo(game) {
     const infos = {
-        spin: '🎰 Lucky Spin: 12hr free spin, then 10K per spin. 6 slots, win up to 100K!',
+        spin: '🎰 Lucky Spin: 12hr free spin, then 10K+ per spin. 6 slots, win up to 100K!',
         twist: '🌀 Twist: Choose bet, spin wheel. Multipliers from 2x to 200x!',
         puzzle: '🧩 Puzzle: Complete the puzzle. Easy 50K, Medium 30K, Hard 10K!',
         crash: '🚀 Crash: Multiplier grows, cashout before crash. If crash, you lose!',
@@ -1273,16 +1300,16 @@ function claimAttendance() {
     showToast(`📅 Day ${S.streak} claimed! +${reward} TRAX`, 'success');
 }
 
-// ===== RED POCKET =====
+// ===== RED POCKET (Cooldown 15min) =====
 function openRedPocket() {
     const now = Date.now();
-    if (now - S.rpLast < 900000) {
-        const rem = Math.ceil((900000 - (now - S.rpLast)) / 1000);
+    if (now - S.cdPocket < 900000) {
+        const rem = Math.ceil((900000 - (now - S.cdPocket)) / 1000);
         const m = Math.floor(rem / 60), s = rem % 60;
         showToast(`⏳ Wait ${m}:${s.toString().padStart(2,'0')}`, 'error'); return;
     }
     const reward = Math.floor(500 + Math.random() * 5000);
-    S.balance += reward; S.totalEarned += reward; S.rpLast = now; S.xp += 10;
+    S.balance += reward; S.totalEarned += reward; S.cdPocket = now; S.xp += 10;
     save(); updateAllUI();
     showToast(`🧧 Red Pocket: +${formatNum(reward)} TRAX`, 'success');
     updateRedPocketTimer();
@@ -1290,48 +1317,44 @@ function openRedPocket() {
 function updateRedPocketTimer() {
     const now = Date.now(); const el = document.getElementById('pocketTimer');
     if (!el) return;
-    if (now - S.rpLast < 900000) {
-        const rem = Math.ceil((900000 - (now - S.rpLast)) / 1000);
+    if (now - S.cdPocket < 900000) {
+        const rem = Math.ceil((900000 - (now - S.cdPocket)) / 1000);
         const m = Math.floor(rem / 60), s = rem % 60;
         el.textContent = `${m}:${s.toString().padStart(2,'0')}`; el.classList.add('red');
     } else { el.textContent = 'Ready!'; el.classList.remove('red'); }
 }
 setInterval(updateRedPocketTimer, 1000);
 
-// ===== BOOSTERS (Updated: Coins, Cooldown) =====
+// ===== BOOSTERS (Coins, Individual Cooldowns) =====
 function openBoosters() {
     const now = Date.now();
-    const cooldownReady = (now - S.boosterCooldown) >= 60000; // 1 min cooldown
-    openModal(`
-        <div class="modal-title">🚀 Boosters</div>
-        <div style="font-size:11px;color:#8899aa;margin-bottom:6px;">${cooldownReady ? '✅ Ready to use!' : '⏳ Cooldown: ' + Math.ceil((60000 - (now - S.boosterCooldown))/1000) + 's'}</div>
-        <div style="display:flex;flex-direction:column;gap:8px;margin-top:10px;">
-            <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.04);padding:12px;border-radius:12px;">
-                <div><div style="font-weight:700;">Auto Tap</div><div style="font-size:10px;color:#8899aa;">+1 tap power</div></div>
-                <button class="modal-btn primary" style="width:auto;padding:8px 16px;margin:0;${cooldownReady?'':'opacity:0.5;pointer-events:none;'}" onclick="buyBooster('auto')">500💰</button>
+    const items = [
+        { key: 'auto', name: 'Auto Tap', desc: '+1 tap power', cost: 500, cd: 600000, icon: '👆' },
+        { key: 'energy', name: 'Energy Refill', desc: '+50 energy', cost: 200, cd: 900000, icon: '⚡' },
+        { key: 'double', name: '2x Earnings', desc: 'Double tap earnings', cost: 1000, cd: 1800000, icon: '💰' },
+        { key: 'offline', name: 'Offline Profit', desc: '+5,000 coins', cost: 800, cd: 1800000, icon: '💤' },
+    ];
+    let html = `<div class="modal-title">🚀 Boosters</div>`;
+    items.forEach(it => {
+        const lastUsed = S['cd' + it.key.charAt(0).toUpperCase() + it.key.slice(1)] || 0;
+        const ready = (now - lastUsed) >= it.cd;
+        const remain = it.cd - (now - lastUsed);
+        html += `
+            <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.04);padding:12px;border-radius:12px;margin-top:8px;">
+                <div><div style="font-weight:700;">${it.icon} ${it.name}</div><div style="font-size:10px;color:#8899aa;">${it.desc}</div>${!ready ? `<div style="font-size:9px;color:#ff6b6b;">⏳ ${formatTime(remain)}</div>` : `<div style="font-size:9px;color:#00ff88;">✅ Ready</div>`}</div>
+                <button class="modal-btn primary" style="width:auto;padding:8px 16px;margin:0;${ready?'':'opacity:0.5;pointer-events:none;'}" onclick="buyBooster('${it.key}')">${formatNum(it.cost)}💰</button>
             </div>
-            <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.04);padding:12px;border-radius:12px;">
-                <div><div style="font-weight:700;">Energy Refill</div><div style="font-size:10px;color:#8899aa;">+50 energy</div></div>
-                <button class="modal-btn primary" style="width:auto;padding:8px 16px;margin:0;${cooldownReady?'':'opacity:0.5;pointer-events:none;'}" onclick="buyBooster('energy')">200💰</button>
-            </div>
-            <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.04);padding:12px;border-radius:12px;">
-                <div><div style="font-weight:700;">2x Earnings</div><div style="font-size:10px;color:#8899aa;">Double tap earnings</div></div>
-                <button class="modal-btn primary" style="width:auto;padding:8px 16px;margin:0;${cooldownReady?'':'opacity:0.5;pointer-events:none;'}" onclick="buyBooster('double')">1000💰</button>
-            </div>
-            <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.04);padding:12px;border-radius:12px;">
-                <div><div style="font-weight:700;">Offline Profit</div><div style="font-size:10px;color:#8899aa;">+5,000 coins</div></div>
-                <button class="modal-btn primary" style="width:auto;padding:8px 16px;margin:0;${cooldownReady?'':'opacity:0.5;pointer-events:none;'}" onclick="buyBooster('offline')">800💰</button>
-            </div>
-        </div>
-        <button class="modal-btn secondary" onclick="closeModal()">Close</button>
-    `);
+        `;
+    });
+    html += `<button class="modal-btn secondary" onclick="closeModal()">Close</button>`;
+    openModal(html);
 }
 function buyBooster(type) {
     const costs = { auto: 500, energy: 200, double: 1000, offline: 800 };
     const cost = costs[type];
     if (S.balance < cost) { showToast('Not enough TRAX!', 'error'); return; }
     S.balance -= cost;
-    S.boosterCooldown = Date.now();
+    S['cd' + type.charAt(0).toUpperCase() + type.slice(1)] = Date.now();
     if (type === 'auto') S.boosterAuto += 1;
     if (type === 'energy') S.energy = Math.min(S.maxEnergy, S.energy + 50);
     if (type === 'double') S.boosterDouble += 2;
@@ -1339,40 +1362,42 @@ function buyBooster(type) {
     save(); updateAllUI(); showToast('✅ Booster activated!', 'success'); closeModal();
 }
 
-// ===== UPGRADES (Updated: Coins, Cooldown) =====
+// ===== UPGRADES (Coins, Cooldown 5min) =====
 function openUpgrades() {
     const now = Date.now();
-    const cooldownReady = (now - S.upgradeCooldown) >= 60000;
-    openModal(`
-        <div class="modal-title">⬆️ Upgrades</div>
-        <div style="font-size:11px;color:#8899aa;margin-bottom:6px;">${cooldownReady ? '✅ Ready to use!' : '⏳ Cooldown: ' + Math.ceil((60000 - (now - S.upgradeCooldown))/1000) + 's'}</div>
+    const ready = (now - S.cdUpgrade) >= 300000;
+    const remain = 300000 - (now - S.cdUpgrade);
+    let html = `<div class="modal-title">⬆️ Upgrades</div>`;
+    html += `<div style="font-size:11px;color:#8899aa;margin-bottom:6px;">${ready ? '✅ Ready to use!' : '⏳ Cooldown: ' + formatTime(remain)}</div>`;
+    html += `
         <div style="display:flex;flex-direction:column;gap:8px;margin-top:10px;">
             <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.04);padding:12px;border-radius:12px;">
-                <div><div style="font-weight:700;">Tap Power</div><div style="font-size:10px;color:#8899aa;">+1 tap power</div></div>
-                <button class="modal-btn primary" style="width:auto;padding:8px 16px;margin:0;${cooldownReady?'':'opacity:0.5;pointer-events:none;'}" onclick="buyUpgrade('tap')">500💰</button>
+                <div><div style="font-weight:700;">👆 Tap Power</div><div style="font-size:10px;color:#8899aa;">+1 tap power</div></div>
+                <button class="modal-btn primary" style="width:auto;padding:8px 16px;margin:0;${ready?'':'opacity:0.5;pointer-events:none;'}" onclick="buyUpgrade('tap')">500💰</button>
             </div>
             <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.04);padding:12px;border-radius:12px;">
-                <div><div style="font-weight:700;">Max Energy</div><div style="font-size:10px;color:#8899aa;">+50 max energy</div></div>
-                <button class="modal-btn primary" style="width:auto;padding:8px 16px;margin:0;${cooldownReady?'':'opacity:0.5;pointer-events:none;'}" onclick="buyUpgrade('energy')">1000💰</button>
+                <div><div style="font-weight:700;">⚡ Max Energy</div><div style="font-size:10px;color:#8899aa;">+50 max energy</div></div>
+                <button class="modal-btn primary" style="width:auto;padding:8px 16px;margin:0;${ready?'':'opacity:0.5;pointer-events:none;'}" onclick="buyUpgrade('energy')">1000💰</button>
             </div>
             <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.04);padding:12px;border-radius:12px;">
-                <div><div style="font-weight:700;">Auto Earn</div><div style="font-size:10px;color:#8899aa;">+100/hr auto</div></div>
-                <button class="modal-btn primary" style="width:auto;padding:8px 16px;margin:0;${cooldownReady?'':'opacity:0.5;pointer-events:none;'}" onclick="buyUpgrade('auto')">2000💰</button>
+                <div><div style="font-weight:700;">💰 Auto Earn</div><div style="font-size:10px;color:#8899aa;">+100/hr auto</div></div>
+                <button class="modal-btn primary" style="width:auto;padding:8px 16px;margin:0;${ready?'':'opacity:0.5;pointer-events:none;'}" onclick="buyUpgrade('auto')">2000💰</button>
             </div>
             <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.04);padding:12px;border-radius:12px;">
-                <div><div style="font-weight:700;">Mining Power</div><div style="font-size:10px;color:#8899aa;">+5 mining coins</div></div>
-                <button class="modal-btn primary" style="width:auto;padding:8px 16px;margin:0;${cooldownReady?'':'opacity:0.5;pointer-events:none;'}" onclick="buyUpgrade('mining')">5000💰</button>
+                <div><div style="font-weight:700;">⛏️ Mining Power</div><div style="font-size:10px;color:#8899aa;">+5 mining coins</div></div>
+                <button class="modal-btn primary" style="width:auto;padding:8px 16px;margin:0;${ready?'':'opacity:0.5;pointer-events:none;'}" onclick="buyUpgrade('mining')">5000💰</button>
             </div>
         </div>
         <button class="modal-btn secondary" onclick="closeModal()">Close</button>
-    `);
+    `;
+    openModal(html);
 }
 function buyUpgrade(type) {
     const costs = { tap: 500, energy: 1000, auto: 2000, mining: 5000 };
     const cost = costs[type];
     if (S.balance < cost) { showToast('Not enough TRAX!', 'error'); return; }
     S.balance -= cost;
-    S.upgradeCooldown = Date.now();
+    S.cdUpgrade = Date.now();
     if (type === 'tap') S.tapPower += 1;
     if (type === 'energy') S.maxEnergy += 50;
     if (type === 'auto') S.upgAuto += 100;
@@ -1383,8 +1408,8 @@ function buyUpgrade(type) {
 // ===== MINING =====
 function openMine() {
     const now = Date.now();
-    if (now - S.lastMineTime < 60000) {
-        const rem = Math.ceil((60000 - (now - S.lastMineTime)) / 1000);
+    if (now - S.cdMine < 60000) {
+        const rem = Math.ceil((60000 - (now - S.cdMine)) / 1000);
         showToast(`⏳ Wait ${rem}s`, 'error'); return;
     }
     S.mineActive = true;
@@ -1405,7 +1430,7 @@ function openMine() {
         document.getElementById('mineProgress').style.width = (sec / 60 * 100) + '%';
         if (sec >= 60) {
             clearInterval(S.mineTimer); S.mineActive = false;
-            S.balance += earned; S.totalEarned += earned; S.lastMineTime = Date.now();
+            S.balance += earned; S.totalEarned += earned; S.cdMine = Date.now();
             save(); updateAllUI();
             showToast(`⛏️ Mining complete! +${formatNum(earned)} TRAX`, 'success');
             closeModal();
@@ -1414,7 +1439,7 @@ function openMine() {
 }
 function stopMine() {
     if (S.mineTimer) clearInterval(S.mineTimer);
-    S.mineActive = false; S.lastMineTime = Date.now(); closeModal();
+    S.mineActive = false; S.cdMine = Date.now(); closeModal();
 }
 
 // ===== MENU =====
@@ -1453,28 +1478,19 @@ function openSettings() {
     }, 200);
 }
 
-// ===== DEPOSIT =====
-function openDeposit(method) {
-    const names = { stars: 'Telegram Stars', ton: 'TON Wallet', binance: 'Binance Pay', crypto: 'Crypto (USDT/BTC/ETH)' };
-    openModal(`
-        <div class="modal-title">💳 Deposit via ${names[method]}</div>
-        <div class="modal-text">Diamond real money se le sakte hain. Yeh feature SOON aa raha hai!</div>
-        <div style="background:rgba(255,255,255,0.04);border-radius:12px;padding:14px;margin-top:10px;text-align:center;">
-            <div style="font-size:12px;color:#8899aa;">Status:</div>
-            <div style="font-size:14px;font-weight:700;color:#ffd700;">COMING SOON</div>
-        </div>
-        <button class="modal-btn secondary" onclick="closeModal()">Close</button>
-    `);
-}
-
-// ===== PROFILE EDIT =====
+// ===== PROFILE EDIT (7-day cooldown) =====
 function editProfile() {
+    const now = Date.now();
+    if (now - S.lastProfileEdit < 7 * 24 * 3600 * 1000) {
+        showToast('⏳ You can only edit once every 7 days!', 'error');
+        return;
+    }
     openModal(`
         <div class="modal-title">✏️ Edit Profile</div>
         <div style="margin-top:10px;">
             <input type="text" id="editName" value="${S.username}" placeholder="Enter name" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.05);color:#fff;font-size:14px;outline:none;">
             <div style="display:flex;gap:6px;margin-top:10px;flex-wrap:wrap;">
-                ${['👤','🐱','🐶','🦊','🐼','🐸','🦁','🐯','🐨','🐵','🦄','🐉'].map(e => `<div onclick="S.avatar='${e}';updateProfileUI();this.parentElement.querySelectorAll('div').forEach(d=>d.style.border='2px solid transparent');this.style.border='2px solid #00d4ff';" style="width:40px;height:40px;border-radius:50%;background:#1a2332;display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer;border:2px solid transparent;">${e}</div>`).join('')}
+                ${['👤','🐱','🐶','🦊','🐼','🐸','🦁','🐯','🐨','🐵','🦄','🐉'].map(e => `<div onclick="S.avatar='${e}';this.parentElement.querySelectorAll('div').forEach(d=>d.style.border='2px solid transparent');this.style.border='2px solid #00d4ff';" style="width:40px;height:40px;border-radius:50%;background:#1a2332;display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer;border:2px solid transparent;">${e}</div>`).join('')}
             </div>
         </div>
         <button class="modal-btn success" onclick="saveProfile()">Save</button>
@@ -1484,9 +1500,9 @@ function editProfile() {
 function saveProfile() {
     const n = document.getElementById('editName').value.trim();
     if (n) S.username = n;
-    S.playerId = S.playerId || Math.floor(100000 + Math.random() * 900000);
+    S.lastProfileEdit = Date.now();
     save(); updateProfileUI(); updateHeaderUI();
-    showToast('✅ Profile updated!', 'success'); closeModal();
+    showToast('✅ Profile updated! Next edit in 7 days.', 'success'); closeModal();
 }
 function shareProfile() {
     const url = 'https://t.me/TraxOfficial_bot?start=' + S.playerId;
@@ -1497,23 +1513,35 @@ function shareProfile() {
     }
 }
 
-// ===== LEADERBOARD (Updated: No fake names, only user if 100K+) =====
+// ===== LEADERBOARD (Reset every 30min, announce new record) =====
 function renderHomeLeaderboard() {
+    const now = Date.now();
+    // Reset every 30 min
+    if (now - S.lbLastReset > 1800000) {
+        S.lbLastReset = now;
+        S.lbHighest = 0;
+        showToast('🏆 Leaderboard reset! New round started.', 'success');
+    }
     const container = document.getElementById('homeLeaderboard');
     // Only show user if they have 100K+ coins
     if (S.balance < 100000) {
         container.innerHTML = `<div style="text-align:center;padding:20px;color:#8899aa;font-size:12px;">Earn 100,000+ TRAX to appear on the leaderboard!</div>`;
         return;
     }
-    // Simulate: user is the only one on the leaderboard for now
+    // Check for new record
+    if (S.balance > S.lbHighest) {
+        S.lbHighest = S.balance;
+        showToast('🎉 New record! You are #1 on the leaderboard!', 'success');
+    }
+    // User is #1
     let html = `<div class="lb-row my-rank"><span class="pos gold">#1</span><span class="name">${S.username} (You)</span><span class="score">${formatNum(S.balance)}</span></div>`;
     container.innerHTML = html;
-    // Reward check: Top 1 gets 50K every 24hr
-    const now = Date.now();
-    if (now - S.lbLastReward > 86400000) {
+    // Top 1 reward: 50K every 30 min
+    const timeSinceReset = now - S.lbLastReset;
+    if (timeSinceReset > 1800000 && S.lbHighest === S.balance) {
         const reward = 50000;
         S.balance += reward;
-        S.lbLastReward = now;
+        S.lbLastReset = now;
         showToast(`🏆 Leaderboard Reward! You ranked #1 and won ${formatNum(reward)} TRAX!`, 'success');
         save();
     }
@@ -1523,14 +1551,16 @@ function renderHomeLeaderboard() {
 setInterval(() => {
     S.prodTimer = (S.prodTimer + 1) % 86400;
     const h = Math.floor(S.prodTimer / 3600), m = Math.floor((S.prodTimer % 3600) / 60), s = S.prodTimer % 60;
-    document.getElementById('nftTimer').textContent = `⏱ ${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+    const el = document.getElementById('nftTimer');
+    if (el) el.textContent = `⏱ ${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
 }, 1000);
 
 setInterval(() => {
     if (S.lbTimer > 0) S.lbTimer--;
     else { S.lbTimer = 1800; renderHomeLeaderboard(); }
     const m = Math.floor(S.lbTimer / 60);
-    document.getElementById('lbTimer').textContent = m + 'm';
+    const el = document.getElementById('lbTimer');
+    if (el) el.textContent = m + 'm';
 }, 1000);
 
 // ===== INIT =====
@@ -1561,4 +1591,4 @@ document.addEventListener('keydown', function(e) { if (e.key === 'Escape') close
 console.log('🚀 TraxOfficial FINAL loaded!');
 </script>
 </body>
-    </html>
+            </html>
