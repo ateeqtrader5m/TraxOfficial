@@ -6,114 +6,40 @@
     <title>TraxOfficial — Tap · Earn · Grow</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        /* ===== RESET & GLOBAL ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background: #050a14;
-            color: #fff;
-            overflow: hidden;
-            height: 100vh;
-            width: 100vw;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        #app {
-            width: 100%;
-            max-width: 500px;
-            height: 100vh;
-            background: #050a14;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 0 50px rgba(0, 212, 255, 0.1);
-        }
-        /* ===== SCROLLBAR ===== */
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #050a14; color: #fff; overflow: hidden; height: 100vh; width: 100vw; display: flex; justify-content: center; align-items: center; }
+        #app { width: 100%; max-width: 500px; height: 100vh; background: #050a14; position: relative; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 0 50px rgba(0, 212, 255, 0.1); }
         ::-webkit-scrollbar { width: 0; height: 0; }
         .scrollable { overflow-y: auto; flex: 1; padding-bottom: 80px; scrollbar-width: none; }
         
-        /* ===== HEADER ===== */
-        .header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 14px;
-            background: rgba(5, 10, 20, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0, 212, 255, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            min-height: 60px;
-        }
+        /* HEADER */
+        .header { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: rgba(5, 10, 20, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(0, 212, 255, 0.1); position: sticky; top: 0; z-index: 100; min-height: 60px; }
         .header-left { display: flex; align-items: center; gap: 10px; }
-        .menu-btn {
-            font-size: 22px; cursor: pointer; color: #8899aa; width: 32px; text-align: center;
-            transition: 0.2s;
-        }
+        .menu-btn { font-size: 22px; cursor: pointer; color: #8899aa; width: 32px; text-align: center; transition: 0.2s; }
         .menu-btn:active { transform: scale(0.9); }
         .logo-area { display: flex; align-items: center; gap: 6px; }
-        .logo-icon {
-            width: 32px; height: 32px; border-radius: 50%;
-            background: linear-gradient(135deg, #00d4ff, #0066ff);
-            display: flex; align-items: center; justify-content: center;
-            font-weight: 900; font-size: 18px; color: #fff;
-            box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
-        }
+        .logo-icon { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #00d4ff, #0066ff); display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 18px; color: #fff; box-shadow: 0 0 15px rgba(0, 212, 255, 0.4); }
         .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
         .logo-text .name { font-size: 15px; font-weight: 700; color: #fff; }
         .logo-text .sub { font-size: 7px; color: #00d4ff; letter-spacing: 2px; font-weight: 600; }
-        
-        .header-center {
-            display: flex; flex-direction: column; align-items: center;
-            background: rgba(0, 212, 255, 0.08);
-            padding: 3px 12px; border-radius: 12px;
-            border: 1px solid rgba(0, 212, 255, 0.15);
-            min-width: 90px;
-        }
+        .header-center { display: flex; flex-direction: column; align-items: center; background: rgba(0, 212, 255, 0.08); padding: 3px 12px; border-radius: 12px; border: 1px solid rgba(0, 212, 255, 0.15); min-width: 90px; }
         .header-center .lvl { font-size: 10px; font-weight: 700; color: #ffd700; }
-        .header-center .xp-bar {
-            width: 100%; height: 3px; background: rgba(255,255,255,0.1);
-            border-radius: 4px; margin-top: 3px; overflow: hidden;
-        }
-        .header-center .xp-fill {
-            height: 100%; background: linear-gradient(90deg, #00d4ff, #00ff88);
-            width: 0%; transition: width 0.3s;
-        }
+        .header-center .xp-bar { width: 100%; height: 3px; background: rgba(255,255,255,0.1); border-radius: 4px; margin-top: 3px; overflow: hidden; }
+        .header-center .xp-fill { height: 100%; background: linear-gradient(90deg, #00d4ff, #00ff88); width: 0%; transition: width 0.3s; }
         .header-center .xp-text { font-size: 8px; color: #8899aa; margin-top: 1px; }
-        
         .header-right { display: flex; align-items: center; gap: 8px; }
-        .profit-badge {
-            background: rgba(255, 215, 0, 0.1);
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            padding: 4px 10px; border-radius: 10px;
-            font-size: 10px; font-weight: 700; color: #ffd700;
-            display: flex; align-items: center; gap: 4px;
-        }
-        .avatar-btn {
-            width: 32px; height: 32px; border-radius: 50%;
-            background: #1a2332; border: 2px solid #00d4ff;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 16px; cursor: pointer; overflow: hidden;
-        }
+        .profit-badge { background: rgba(255, 215, 0, 0.1); border: 1px solid rgba(255, 215, 0, 0.3); padding: 4px 10px; border-radius: 10px; font-size: 10px; font-weight: 700; color: #ffd700; display: flex; align-items: center; gap: 4px; }
+        .avatar-btn { width: 32px; height: 32px; border-radius: 50%; background: #1a2332; border: 2px solid #00d4ff; display: flex; align-items: center; justify-content: center; font-size: 16px; cursor: pointer; overflow: hidden; }
         .avatar-btn img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* ===== PAGES ===== */
+        /* PAGES */
         .page { display: none; flex-direction: column; flex: 1; overflow: hidden; }
         .page.active { display: flex; }
 
-        /* ===== HOME ===== */
+        /* HOME */
         .home-scroll { padding: 12px; display: flex; flex-direction: column; gap: 12px; }
-        
         .stat-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .stat-card {
-            background: linear-gradient(135deg, #0d1628, #0a1220);
-            border: 1px solid rgba(0, 212, 255, 0.15);
-            border-radius: 16px; padding: 14px 12px;
-            position: relative; overflow: hidden;
-        }
+        .stat-card { background: linear-gradient(135deg, #0d1628, #0a1220); border: 1px solid rgba(0, 212, 255, 0.15); border-radius: 16px; padding: 14px 12px; position: relative; overflow: hidden; }
         .stat-card .label { font-size: 9px; color: #8899aa; letter-spacing: 1px; font-weight: 600; margin-bottom: 4px; }
         .stat-card .value { font-size: 20px; font-weight: 800; color: #fff; line-height: 1.2; }
         .stat-card .sub { font-size: 9px; color: #00ff88; margin-top: 4px; font-weight: 600; }
@@ -121,62 +47,27 @@
         .stat-card .sub.red { color: #ff0055; }
         .stat-card .icon-abs { position: absolute; right: 8px; bottom: 8px; font-size: 28px; opacity: 0.2; }
 
-        .rank-card {
-            background: linear-gradient(135deg, #0d1628, #0a1220);
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            border-radius: 16px; padding: 14px;
-            display: flex; align-items: center; gap: 14px;
-        }
+        .rank-card { background: linear-gradient(135deg, #0d1628, #0a1220); border: 1px solid rgba(255, 215, 0, 0.2); border-radius: 16px; padding: 14px; display: flex; align-items: center; gap: 14px; }
         .rank-card .medal { font-size: 32px; }
         .rank-card .info { flex: 1; }
         .rank-card .info .title { font-size: 14px; font-weight: 700; color: #ffd700; }
         .rank-card .info .desc { font-size: 10px; color: #8899aa; margin-top: 2px; }
-        .rank-card .info .progress-bar {
-            width: 100%; height: 6px; background: rgba(255,255,255,0.1);
-            border-radius: 4px; margin-top: 6px; overflow: hidden;
-        }
-        .rank-card .info .progress-fill {
-            height: 100%; background: linear-gradient(90deg, #ffd700, #ffaa00);
-            width: 0%; border-radius: 4px; transition: width 0.3s;
-        }
+        .rank-card .info .progress-bar { width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 4px; margin-top: 6px; overflow: hidden; }
+        .rank-card .info .progress-fill { height: 100%; background: linear-gradient(90deg, #ffd700, #ffaa00); width: 0%; border-radius: 4px; transition: width 0.3s; }
 
-        .streak-card {
-            background: linear-gradient(135deg, #0d1628, #0a1220);
-            border: 1px solid rgba(255, 100, 100, 0.2);
-            border-radius: 16px; padding: 12px 14px;
-        }
+        .streak-card { background: linear-gradient(135deg, #0d1628, #0a1220); border: 1px solid rgba(255, 100, 100, 0.2); border-radius: 16px; padding: 12px 14px; }
         .streak-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
         .streak-header .title { font-size: 12px; font-weight: 700; color: #ff6b6b; }
         .streak-header .days { font-size: 11px; color: #8899aa; }
         .streak-days { display: flex; justify-content: space-between; gap: 4px; }
-        .streak-day {
-            flex: 1; aspect-ratio: 1; border-radius: 8px;
-            background: rgba(255,255,255,0.05);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 14px; font-weight: 700; color: #8899aa;
-            border: 1px solid rgba(255,255,255,0.05);
-            cursor: pointer; transition: 0.2s;
-        }
+        .streak-day { flex: 1; aspect-ratio: 1; border-radius: 8px; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: #8899aa; border: 1px solid rgba(255,255,255,0.05); cursor: pointer; transition: 0.2s; }
         .streak-day.claimed { background: rgba(0, 255, 136, 0.15); border-color: #00ff88; color: #00ff88; }
         .streak-day.active { background: rgba(255, 215, 0, 0.15); border-color: #ffd700; color: #ffd700; animation: pulse 1.5s infinite; }
         .streak-day.gift { font-size: 18px; }
 
         .tap-area { display: flex; gap: 10px; }
-        .tap-main {
-            flex: 2; background: linear-gradient(135deg, #0d1628, #0a1220);
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            border-radius: 20px; padding: 20px 10px;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            position: relative;
-        }
-        .tap-coin {
-            width: 130px; height: 130px; border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, #00d4ff, #0055aa);
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            box-shadow: 0 0 40px rgba(0, 212, 255, 0.4), inset 0 -5px 15px rgba(0,0,0,0.3);
-            cursor: pointer; transition: transform 0.1s;
-            user-select: none; position: relative;
-        }
+        .tap-main { flex: 2; background: linear-gradient(135deg, #0d1628, #0a1220); border: 1px solid rgba(0, 212, 255, 0.2); border-radius: 20px; padding: 20px 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; }
+        .tap-coin { width: 130px; height: 130px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #00d4ff, #0055aa); display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 0 40px rgba(0, 212, 255, 0.4), inset 0 -5px 15px rgba(0,0,0,0.3); cursor: pointer; transition: transform 0.1s; user-select: none; position: relative; }
         .tap-coin:active { transform: scale(0.92); }
         .tap-coin .coin-t { font-size: 40px; font-weight: 900; color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
         .tap-coin .coin-label { font-size: 10px; letter-spacing: 3px; color: rgba(255,255,255,0.8); font-weight: 700; }
@@ -184,51 +75,30 @@
         .tap-power { font-size: 12px; color: #00d4ff; font-weight: 700; margin-top: 4px; }
 
         .tap-side { flex: 1; display: flex; flex-direction: column; gap: 8px; }
-        .side-btn {
-            flex: 1; background: linear-gradient(135deg, #0d1628, #0a1220);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 14px; display: flex; flex-direction: column;
-            align-items: center; justify-content: center; gap: 2px;
-            cursor: pointer; transition: 0.2s; padding: 6px;
-            min-height: 55px;
-        }
+        .side-btn { flex: 1; background: linear-gradient(135deg, #0d1628, #0a1220); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; cursor: pointer; transition: 0.2s; padding: 6px; min-height: 55px; }
         .side-btn:active { transform: scale(0.95); background: #1a2332; }
         .side-btn .icon { font-size: 20px; }
         .side-btn .label { font-size: 9px; color: #8899aa; font-weight: 600; text-align: center; }
         .side-btn .badge { font-size: 8px; color: #00ff88; font-weight: 700; }
         .side-btn .badge.red { color: #ff6b6b; }
 
-        .energy-section {
-            background: linear-gradient(135deg, #0d1628, #0a1220);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 16px; padding: 12px 14px;
-        }
+        .energy-section { background: linear-gradient(135deg, #0d1628, #0a1220); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 16px; padding: 12px 14px; }
         .energy-header { display: flex; justify-content: space-between; font-size: 11px; color: #8899aa; margin-bottom: 6px; }
         .energy-header .val { color: #00ff88; font-weight: 700; }
         .energy-bar { width: 100%; height: 8px; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; }
         .energy-fill { height: 100%; background: linear-gradient(90deg, #00ff88, #00d4ff); width: 100%; border-radius: 10px; transition: width 0.2s; }
 
         .stats-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
-        .stats-row .stat-box {
-            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 12px; padding: 8px; text-align: center;
-        }
+        .stats-row .stat-box { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 8px; text-align: center; }
         .stats-row .stat-box .lbl { font-size: 8px; color: #8899aa; text-transform: uppercase; letter-spacing: 0.5px; }
         .stats-row .stat-box .val { font-size: 14px; font-weight: 700; color: #00d4ff; margin-top: 2px; }
 
-        /* ===== LEADERBOARD ===== */
-        .lb-section {
-            background: linear-gradient(135deg, #0d1628, #0a1220);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 16px; padding: 12px 14px;
-        }
+        /* LEADERBOARD */
+        .lb-section { background: linear-gradient(135deg, #0d1628, #0a1220); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 12px 14px; }
         .lb-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
         .lb-header .title { font-size: 12px; font-weight: 700; color: #ffd700; }
         .lb-header .timer { font-size: 10px; color: #8899aa; }
-        .lb-row {
-            display: flex; align-items: center; gap: 10px;
-            padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
-        }
+        .lb-row { display: flex; align-items: center; gap: 10px; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
         .lb-row:last-child { border-bottom: none; }
         .lb-row .pos { width: 22px; font-size: 12px; font-weight: 700; color: #8899aa; text-align: center; }
         .lb-row .pos.gold { color: #ffd700; }
@@ -236,74 +106,34 @@
         .lb-row .pos.bronze { color: #cd7f32; }
         .lb-row .name { flex: 1; font-size: 12px; font-weight: 600; }
         .lb-row .score { font-size: 12px; font-weight: 700; color: #00d4ff; }
+        .lb-row.my-rank { background: rgba(0, 212, 255, 0.08); border-radius: 8px; padding: 6px 8px; margin: 2px 0; border: 1px solid rgba(0, 212, 255, 0.2); }
 
-        /* ===== GAMES ===== */
+        /* GAMES */
         .games-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 12px; }
-        .game-card {
-            background: linear-gradient(135deg, #0d1628, #0a1220);
-            border: 1px solid rgba(0, 212, 255, 0.15);
-            border-radius: 16px; padding: 16px 10px;
-            display: flex; flex-direction: column; align-items: center;
-            cursor: pointer; transition: 0.2s; position: relative;
-            min-height: 100px; justify-content: center;
-        }
+        .game-card { background: linear-gradient(135deg, #0d1628, #0a1220); border: 1px solid rgba(0, 212, 255, 0.15); border-radius: 16px; padding: 16px 10px; display: flex; flex-direction: column; align-items: center; cursor: pointer; transition: 0.2s; position: relative; min-height: 100px; justify-content: center; }
         .game-card:active { transform: scale(0.95); border-color: #00d4ff; }
         .game-card .game-icon { font-size: 32px; margin-bottom: 6px; }
         .game-card .game-name { font-size: 13px; font-weight: 700; color: #fff; }
         .game-card .game-desc { font-size: 9px; color: #8899aa; margin-top: 2px; }
-        .game-card .info-icon {
-            position: absolute; top: 8px; right: 8px;
-            width: 18px; height: 18px; border-radius: 50%;
-            background: rgba(0, 212, 255, 0.2); color: #00d4ff;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 10px; font-weight: 700; cursor: pointer;
-        }
+        .game-card .info-icon { position: absolute; top: 8px; right: 8px; width: 18px; height: 18px; border-radius: 50%; background: rgba(0, 212, 255, 0.2); color: #00d4ff; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; cursor: pointer; }
 
-        /* ===== NFT SHOP ===== */
+        /* NFT */
         .nft-header { padding: 12px 14px 0; }
         .nft-title { font-size: 20px; font-weight: 800; color: #00d4ff; }
         .nft-sub { font-size: 10px; color: #8899aa; margin-top: 2px; }
-        .nft-profit-card {
-            margin: 10px 14px; background: linear-gradient(135deg, #1a1a0a, #0a0a05);
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 14px; padding: 12px 14px;
-            display: flex; justify-content: space-between; align-items: center;
-        }
+        .nft-profit-card { margin: 10px 14px; background: linear-gradient(135deg, #1a1a0a, #0a0a05); border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 14px; padding: 12px 14px; display: flex; justify-content: space-between; align-items: center; }
         .nft-profit-card .left .lbl { font-size: 9px; color: #8899aa; font-weight: 600; }
         .nft-profit-card .left .val { font-size: 16px; font-weight: 800; color: #ffd700; }
         .nft-profit-card .right { font-size: 10px; color: #8899aa; }
-        .nft-balance-card {
-            margin: 0 14px 10px; background: linear-gradient(135deg, #0d1628, #0a1220);
-            border: 1px solid rgba(0, 212, 255, 0.15);
-            border-radius: 14px; padding: 12px 14px;
-            text-align: center;
-        }
+        .nft-balance-card { margin: 0 14px 10px; background: linear-gradient(135deg, #0d1628, #0a1220); border: 1px solid rgba(0, 212, 255, 0.15); border-radius: 14px; padding: 12px 14px; text-align: center; }
         .nft-balance-card .val { font-size: 24px; font-weight: 800; color: #fff; }
-        .nft-cats {
-            display: flex; gap: 6px; padding: 0 14px 10px;
-            overflow-x: auto; scrollbar-width: none;
-        }
-        .nft-cat {
-            padding: 6px 14px; border-radius: 10px;
-            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
-            font-size: 10px; font-weight: 600; color: #8899aa;
-            white-space: nowrap; cursor: pointer; transition: 0.2s;
-        }
+        .nft-cats { display: flex; gap: 6px; padding: 0 14px 10px; overflow-x: auto; scrollbar-width: none; }
+        .nft-cat { padding: 6px 14px; border-radius: 10px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); font-size: 10px; font-weight: 600; color: #8899aa; white-space: nowrap; cursor: pointer; transition: 0.2s; }
         .nft-cat.active { background: #00d4ff; color: #050a14; border-color: #00d4ff; }
         .nft-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 14px 14px; }
-        .nft-card {
-            background: linear-gradient(135deg, #0d1628, #0a1220);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 14px; padding: 12px 10px;
-            display: flex; flex-direction: column; align-items: center;
-            cursor: pointer; transition: 0.2s; position: relative;
-        }
+        .nft-card { background: linear-gradient(135deg, #0d1628, #0a1220); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 12px 10px; display: flex; flex-direction: column; align-items: center; cursor: pointer; transition: 0.2s; position: relative; }
         .nft-card:active { transform: scale(0.96); }
-        .nft-card .tier-badge {
-            position: absolute; top: 6px; right: 6px;
-            font-size: 7px; font-weight: 700; padding: 2px 6px;
-            border-radius: 6px; text-transform: uppercase;
-        }
+        .nft-card .tier-badge { position: absolute; top: 6px; right: 6px; font-size: 7px; font-weight: 700; padding: 2px 6px; border-radius: 6px; text-transform: uppercase; }
         .tier-common { background: rgba(136, 153, 170, 0.2); color: #8899aa; }
         .tier-rare { background: rgba(0, 212, 255, 0.15); color: #00d4ff; }
         .tier-epic { background: rgba(160, 64, 255, 0.15); color: #a040ff; }
@@ -312,232 +142,104 @@
         .nft-card .nft-name { font-size: 11px; font-weight: 700; color: #fff; text-align: center; }
         .nft-card .nft-profit { font-size: 9px; color: #00ff88; font-weight: 600; margin-top: 2px; }
         .nft-card .nft-level { font-size: 9px; color: #8899aa; margin-top: 4px; }
-        .nft-card .nft-cost {
-            font-size: 10px; font-weight: 700; color: #ffd700;
-            margin-top: 4px; background: rgba(255,215,0,0.1);
-            padding: 2px 10px; border-radius: 8px;
-        }
+        .nft-card .nft-cost { font-size: 10px; font-weight: 700; color: #ffd700; margin-top: 4px; background: rgba(255,215,0,0.1); padding: 2px 10px; border-radius: 8px; }
         .nft-card .nft-cost.locked { color: #ff6b6b; background: rgba(255,0,85,0.1); }
         .nft-card .nft-cost.max { color: #00ff88; background: rgba(0,255,136,0.1); }
 
-        /* ===== RANK / MISSIONS ===== */
+        /* RANK & MISSIONS */
         .rank-tabs { display: flex; gap: 8px; padding: 12px 14px 0; }
-        .rank-tab {
-            flex: 1; padding: 10px; border-radius: 12px;
-            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
-            text-align: center; font-size: 12px; font-weight: 700; color: #8899aa;
-            cursor: pointer; transition: 0.2s;
-        }
+        .rank-tab { flex: 1; padding: 10px; border-radius: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); text-align: center; font-size: 12px; font-weight: 700; color: #8899aa; cursor: pointer; transition: 0.2s; }
         .rank-tab.active { background: #00d4ff; color: #050a14; border-color: #00d4ff; }
         .rank-tab.miss.active { background: #00ff88; color: #050a14; border-color: #00ff88; }
         .rank-content { padding: 12px 14px; display: flex; flex-direction: column; gap: 12px; }
-        
-        .rank-display {
-            background: linear-gradient(135deg, #0d1628, #0a1220);
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            border-radius: 16px; padding: 20px; text-align: center;
-        }
+        .rank-display { background: linear-gradient(135deg, #0d1628, #0a1220); border: 1px solid rgba(255, 215, 0, 0.2); border-radius: 16px; padding: 20px; text-align: center; }
         .rank-display .medal { font-size: 48px; }
         .rank-display .rank-name { font-size: 22px; font-weight: 800; color: #ffd700; margin-top: 4px; }
         .rank-display .rank-id { font-size: 12px; color: #8899aa; }
-        .rank-display .progress-bar {
-            width: 80%; height: 8px; background: rgba(255,255,255,0.1);
-            border-radius: 10px; margin: 12px auto 4px; overflow: hidden;
-        }
-        .rank-display .progress-fill {
-            height: 100%; background: linear-gradient(90deg, #ffd700, #ffaa00);
-            width: 0%; border-radius: 10px; transition: width 0.3s;
-        }
+        .rank-display .progress-bar { width: 80%; height: 8px; background: rgba(255,255,255,0.1); border-radius: 10px; margin: 12px auto 4px; overflow: hidden; }
+        .rank-display .progress-fill { height: 100%; background: linear-gradient(90deg, #ffd700, #ffaa00); width: 0%; border-radius: 10px; transition: width 0.3s; }
         .rank-display .next-rank { font-size: 10px; color: #8899aa; margin-top: 4px; }
-
         .rank-tier-list { display: flex; flex-direction: column; gap: 6px; }
-        .tier-item {
-            display: flex; align-items: center; gap: 10px;
-            padding: 8px 12px; border-radius: 12px;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.05);
-        }
+        .tier-item { display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); }
         .tier-item .t-medal { font-size: 20px; }
         .tier-item .t-info { flex: 1; }
         .tier-item .t-info .t-name { font-size: 12px; font-weight: 700; }
         .tier-item .t-info .t-rp { font-size: 9px; color: #8899aa; }
         .tier-item.active { border-color: #ffd700; background: rgba(255,215,0,0.05); }
-
         .mission-tabs { display: flex; gap: 8px; }
-        .mission-tab {
-            flex: 1; padding: 8px; border-radius: 10px;
-            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
-            text-align: center; font-size: 11px; font-weight: 600; color: #8899aa;
-            cursor: pointer; transition: 0.2s;
-        }
+        .mission-tab { flex: 1; padding: 8px; border-radius: 10px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); text-align: center; font-size: 11px; font-weight: 600; color: #8899aa; cursor: pointer; transition: 0.2s; }
         .mission-tab.active { background: #ffd700; color: #050a14; border-color: #ffd700; }
         .mission-list { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
-        .mission-item {
-            background: linear-gradient(135deg, #0d1628, #0a1220);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 14px; padding: 12px 14px;
-            display: flex; align-items: center; justify-content: space-between;
-            transition: 0.2s;
-        }
+        .mission-item { background: linear-gradient(135deg, #0d1628, #0a1220); border: 1px solid rgba(255,255,255,0.06); border-radius: 14px; padding: 12px 14px; display: flex; align-items: center; justify-content: space-between; transition: 0.2s; }
         .mission-item .m-left { flex: 1; }
         .mission-item .m-left .m-title { font-size: 12px; font-weight: 700; color: #fff; }
         .mission-item .m-left .m-reward { font-size: 10px; color: #ffd700; margin-top: 2px; }
         .mission-item .m-left .m-progress { font-size: 9px; color: #8899aa; margin-top: 1px; }
         .mission-item .m-right { display: flex; align-items: center; gap: 8px; }
-        .mission-item .m-status {
-            padding: 4px 12px; border-radius: 8px;
-            font-size: 10px; font-weight: 700;
-            background: rgba(255,255,255,0.08); color: #8899aa;
-        }
+        .mission-item .m-status { padding: 4px 12px; border-radius: 8px; font-size: 10px; font-weight: 700; background: rgba(255,255,255,0.08); color: #8899aa; }
         .mission-item .m-status.claim { background: #00ff88; color: #050a14; cursor: pointer; }
         .mission-item .m-status.claimed { background: rgba(0,255,136,0.2); color: #00ff88; cursor: default; }
-        .mission-item .m-status.pending { background: rgba(255,255,255,0.08); color: #8899aa; }
 
-        /* ===== WALLET ===== */
+        /* WALLET */
         .wallet-scroll { padding: 12px 14px; display: flex; flex-direction: column; gap: 12px; }
-        .wallet-header-card {
-            background: linear-gradient(135deg, #0d1628, #0a1220);
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            border-radius: 16px; padding: 20px; text-align: center;
-        }
+        .wallet-header-card { background: linear-gradient(135deg, #0d1628, #0a1220); border: 1px solid rgba(0, 212, 255, 0.2); border-radius: 16px; padding: 20px; text-align: center; }
         .wallet-header-card .icon { font-size: 36px; }
         .wallet-header-card .title { font-size: 18px; font-weight: 800; color: #00d4ff; margin-top: 4px; }
         .wallet-header-card .sub { font-size: 9px; color: #8899aa; letter-spacing: 2px; margin-top: 2px; }
-        .withdraw-soon {
-            background: linear-gradient(135deg, #1a1a0a, #0a0a05);
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 14px; padding: 14px; text-align: center;
-        }
+        .withdraw-soon { background: linear-gradient(135deg, #1a1a0a, #0a0a05); border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 14px; padding: 14px; text-align: center; }
         .withdraw-soon .icon { font-size: 24px; }
         .withdraw-soon .title { font-size: 14px; font-weight: 700; color: #ffd700; margin-top: 2px; }
         .withdraw-soon .sub { font-size: 10px; color: #8899aa; margin-top: 2px; }
         .wallet-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .wallet-stat {
-            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 14px; padding: 12px;
-        }
+        .wallet-stat { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 14px; padding: 12px; }
         .wallet-stat .lbl { font-size: 9px; color: #8899aa; }
         .wallet-stat .val { font-size: 16px; font-weight: 800; color: #fff; margin-top: 2px; }
         .wallet-stat .sub { font-size: 9px; color: #00ff88; margin-top: 2px; }
-        .add-funds {
-            background: linear-gradient(135deg, #0d1628, #0a1220);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 16px; padding: 14px;
-        }
+        .add-funds { background: linear-gradient(135deg, #0d1628, #0a1220); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 14px; }
         .add-funds .title { font-size: 13px; font-weight: 700; color: #ffd700; margin-bottom: 10px; }
-        .fund-item {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
-            cursor: pointer;
-        }
+        .fund-item { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.04); cursor: pointer; }
         .fund-item:last-child { border-bottom: none; }
         .fund-item .f-left { display: flex; align-items: center; gap: 10px; }
         .fund-item .f-icon { font-size: 22px; }
         .fund-item .f-info .f-name { font-size: 12px; font-weight: 600; }
         .fund-item .f-info .f-desc { font-size: 9px; color: #8899aa; }
         .fund-item .arrow { color: #8899aa; font-size: 16px; }
+        .fund-item.disabled { opacity: 0.5; cursor: not-allowed; }
 
-        /* ===== BOTTOM NAV ===== */
-        .bottom-nav {
-            display: flex; justify-content: space-around; align-items: center;
-            background: rgba(5, 10, 20, 0.98);
-            backdrop-filter: blur(10px);
-            border-top: 1px solid rgba(0, 212, 255, 0.1);
-            padding: 6px 0 10px;
-            position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
-            width: 100%; max-width: 500px;
-            z-index: 200;
-        }
-        .nav-item {
-            display: flex; flex-direction: column; align-items: center; gap: 2px;
-            padding: 4px 12px; border-radius: 12px;
-            cursor: pointer; transition: 0.2s;
-            color: #8899aa; min-width: 55px;
-        }
+        /* BOTTOM NAV */
+        .bottom-nav { display: flex; justify-content: space-around; align-items: center; background: rgba(5, 10, 20, 0.98); backdrop-filter: blur(10px); border-top: 1px solid rgba(0, 212, 255, 0.1); padding: 6px 0 10px; position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 500px; z-index: 200; }
+        .nav-item { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 4px 12px; border-radius: 12px; cursor: pointer; transition: 0.2s; color: #8899aa; min-width: 55px; }
         .nav-item .nav-icon { font-size: 20px; }
         .nav-item .nav-label { font-size: 8px; font-weight: 600; }
         .nav-item.active { color: #00d4ff; background: rgba(0, 212, 255, 0.08); }
 
-        /* ===== MODAL ===== */
-        .modal-overlay {
-            display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.8); backdrop-filter: blur(5px);
-            z-index: 1000; align-items: center; justify-content: center;
-            padding: 20px;
-        }
+        /* MODAL */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); z-index: 1000; align-items: center; justify-content: center; padding: 20px; }
         .modal-overlay.show { display: flex; }
-        .modal-box {
-            background: linear-gradient(135deg, #0d1628, #050a14);
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            border-radius: 20px; padding: 24px 20px;
-            width: 100%; max-width: 380px;
-            max-height: 90vh; overflow-y: auto;
-            position: relative;
-            animation: modalIn 0.3s ease;
-        }
+        .modal-box { background: linear-gradient(135deg, #0d1628, #050a14); border: 1px solid rgba(0, 212, 255, 0.2); border-radius: 20px; padding: 24px 20px; width: 100%; max-width: 380px; max-height: 90vh; overflow-y: auto; position: relative; animation: modalIn 0.3s ease; }
         @keyframes modalIn { from { opacity: 0; transform: scale(0.9) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
-        .modal-close {
-            position: absolute; top: 12px; right: 14px;
-            width: 28px; height: 28px; border-radius: 50%;
-            background: rgba(255,0,85,0.15); color: #ff0055;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 16px; font-weight: 700; cursor: pointer;
-            border: none;
-        }
+        .modal-close { position: absolute; top: 12px; right: 14px; width: 28px; height: 28px; border-radius: 50%; background: rgba(255,0,85,0.15); color: #ff0055; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; cursor: pointer; border: none; }
         .modal-title { font-size: 18px; font-weight: 800; color: #00d4ff; text-align: center; margin-bottom: 6px; }
         .modal-text { font-size: 12px; color: #8899aa; text-align: center; line-height: 1.5; }
-        .modal-btn {
-            width: 100%; padding: 12px; border-radius: 12px;
-            border: none; font-size: 14px; font-weight: 700;
-            cursor: pointer; margin-top: 10px; transition: 0.2s;
-        }
+        .modal-btn { width: 100%; padding: 12px; border-radius: 12px; border: none; font-size: 14px; font-weight: 700; cursor: pointer; margin-top: 10px; transition: 0.2s; }
         .modal-btn:active { transform: scale(0.97); }
         .modal-btn.primary { background: linear-gradient(135deg, #00d4ff, #0066ff); color: #fff; }
         .modal-btn.success { background: linear-gradient(135deg, #00ff88, #00aa55); color: #050a14; }
         .modal-btn.danger { background: linear-gradient(135deg, #ff0055, #aa0033); color: #fff; }
         .modal-btn.secondary { background: rgba(255,255,255,0.08); color: #fff; }
 
-        /* ===== TOAST ===== */
-        .toast {
-            position: fixed; top: 80px; left: 50%; transform: translateX(-50%);
-            background: rgba(0, 212, 255, 0.95); color: #050a14;
-            padding: 10px 24px; border-radius: 12px;
-            font-size: 13px; font-weight: 700;
-            z-index: 2000; opacity: 0; transition: 0.3s;
-            pointer-events: none; max-width: 90%;
-            text-align: center; box-shadow: 0 0 30px rgba(0,212,255,0.3);
-        }
+        /* TOAST */
+        .toast { position: fixed; top: 80px; left: 50%; transform: translateX(-50%); background: rgba(0, 212, 255, 0.95); color: #050a14; padding: 10px 24px; border-radius: 12px; font-size: 13px; font-weight: 700; z-index: 2000; opacity: 0; transition: 0.3s; pointer-events: none; max-width: 90%; text-align: center; box-shadow: 0 0 30px rgba(0,212,255,0.3); }
         .toast.show { opacity: 1; top: 90px; }
         .toast.error { background: rgba(255, 0, 85, 0.95); color: #fff; }
         .toast.success { background: rgba(0, 255, 136, 0.95); color: #050a14; }
 
-        /* ===== FLOAT TEXT ===== */
-        .float-text {
-            position: fixed; font-size: 18px; font-weight: 800;
-            color: #00ff88; pointer-events: none; z-index: 3000;
-            animation: floatUp 0.8s ease-out forwards;
-            text-shadow: 0 0 20px rgba(0,255,136,0.5);
-        }
-        @keyframes floatUp {
-            0% { opacity: 1; transform: translateY(0) scale(1); }
-            100% { opacity: 0; transform: translateY(-80px) scale(1.2); }
-        }
+        /* FLOAT TEXT */
+        .float-text { position: fixed; font-size: 18px; font-weight: 800; color: #00ff88; pointer-events: none; z-index: 3000; animation: floatUp 0.8s ease-out forwards; text-shadow: 0 0 20px rgba(0,255,136,0.5); }
+        @keyframes floatUp { 0% { opacity: 1; transform: translateY(0) scale(1); } 100% { opacity: 0; transform: translateY(-80px) scale(1.2); } }
 
-        /* ===== ANIMATIONS ===== */
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        @keyframes glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.3); }
-            50% { box-shadow: 0 0 40px rgba(0, 212, 255, 0.6); }
-        }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
 
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 380px) {
             .stat-card .value { font-size: 16px; }
             .tap-coin { width: 110px; height: 110px; }
@@ -545,34 +247,18 @@
             .nft-grid { grid-template-columns: 1fr 1fr; gap: 6px; }
         }
 
-        /* ===== GAME SPECIFIC ===== */
+        /* GAME SPECIFIC */
         .game-modal-box { text-align: center; }
-        .game-modal-box .game-display { font-size: 42px; font-weight: 900; margin: 10px 0; }
-        .game-modal-box .game-result { font-size: 20px; font-weight: 700; margin: 8px 0; }
-        .spin-wheel {
-            width: 180px; height: 180px; border-radius: 50%;
-            margin: 10px auto; position: relative;
-            border: 4px solid #ffd700; overflow: hidden;
-        }
-        .spin-wheel .wheel-seg {
-            position: absolute; width: 50%; height: 50%;
-            transform-origin: 100% 100%;
-        }
-        .spin-pointer {
-            width: 0; height: 0; border-left: 10px solid transparent;
-            border-right: 10px solid transparent; border-top: 20px solid #ff0055;
-            position: absolute; top: -6px; left: 50%; transform: translateX(-50%);
-            z-index: 10;
-        }
+        .spin-wheel { width: 180px; height: 180px; border-radius: 50%; margin: 10px auto; position: relative; border: 4px solid #ffd700; overflow: hidden; }
+        .spin-pointer { width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 20px solid #ff0055; position: absolute; top: -6px; left: 50%; transform: translateX(-50%); z-index: 10; }
         .bet-buttons { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; margin: 10px 0; }
-        .bet-btn {
-            padding: 6px 14px; border-radius: 10px;
-            background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1);
-            color: #fff; font-size: 11px; font-weight: 600; cursor: pointer;
-        }
+        .bet-btn { padding: 6px 14px; border-radius: 10px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1); color: #fff; font-size: 11px; font-weight: 600; cursor: pointer; }
         .bet-btn.active { background: #00d4ff; color: #050a14; }
         .bet-btn:active { transform: scale(0.95); }
         .crash-mult { font-size: 48px; font-weight: 900; color: #00ff88; margin: 10px 0; }
+        .puzzle-grid { display: grid; gap: 2px; margin: 10px auto; max-width: 200px; }
+        .puzzle-cell { aspect-ratio: 1; background: rgba(255,255,255,0.08); border-radius: 2px; cursor: pointer; transition: 0.1s; }
+        .puzzle-cell:active { background: rgba(0, 212, 255, 0.3); }
     </style>
 </head>
 <body>
@@ -647,7 +333,7 @@
                         <div class="label">Pocket</div>
                         <div class="badge" id="pocketTimer">15:00</div>
                     </div>
-                    <div class="side-btn" onclick="navTo('attendance')">
+                    <div class="side-btn" onclick="claimAttendance()">
                         <div class="icon">📅</div>
                         <div class="label">Daily</div>
                         <div class="badge" id="dailyBadge">Day 1</div>
@@ -696,7 +382,7 @@
         </div>
     </div>
 
-    <!-- GAMES PAGE -->
+    <!-- GAMES -->
     <div class="page" id="page-games">
         <div class="scrollable" style="padding:12px;">
             <div style="font-size:20px;font-weight:800;color:#00d4ff;margin-bottom:12px;">🎮 Mini Games</div>
@@ -735,18 +421,16 @@
         </div>
     </div>
 
-    <!-- RANK PAGE -->
+    <!-- RANK -->
     <div class="page" id="page-rank">
         <div class="rank-tabs">
             <div class="rank-tab active" id="rankTabRank" onclick="switchRankTop('rank')">🏆 Rank</div>
             <div class="rank-tab miss" id="rankTabMissions" onclick="switchRankTop('missions')">📋 Missions</div>
         </div>
-        <div class="scrollable" id="rankContent" style="padding:12px 14px;">
-            <!-- Rendered via JS -->
-        </div>
+        <div class="scrollable" id="rankContent" style="padding:12px 14px;"></div>
     </div>
 
-    <!-- NFT PAGE -->
+    <!-- NFT -->
     <div class="page" id="page-nft">
         <div class="scrollable">
             <div class="nft-header">
@@ -777,7 +461,7 @@
         </div>
     </div>
 
-    <!-- WALLET PAGE -->
+    <!-- WALLET -->
     <div class="page" id="page-wallet">
         <div class="scrollable wallet-scroll">
             <div class="wallet-header-card">
@@ -804,27 +488,27 @@
             </div>
             <div class="add-funds">
                 <div class="title">💳 ADD FUNDS</div>
-                <div class="fund-item" onclick="openDeposit('stars')">
-                    <div class="f-left"><span class="f-icon">⭐</span><div class="f-info"><div class="f-name">Telegram Stars</div><div class="f-desc">Buy with Stars</div></div></div>
+                <div class="fund-item disabled" onclick="showToast('Diamond real money se le sakte hain. SOON!', 'error')">
+                    <div class="f-left"><span class="f-icon">⭐</span><div class="f-info"><div class="f-name">Telegram Stars</div><div class="f-desc">Buy with Stars (SOON)</div></div></div>
                     <span class="arrow">›</span>
                 </div>
-                <div class="fund-item" onclick="openDeposit('ton')">
-                    <div class="f-left"><span class="f-icon">💎</span><div class="f-info"><div class="f-name">TON Wallet</div><div class="f-desc">Connect TON</div></div></div>
+                <div class="fund-item disabled" onclick="showToast('Diamond real money se le sakte hain. SOON!', 'error')">
+                    <div class="f-left"><span class="f-icon">💎</span><div class="f-info"><div class="f-name">TON Wallet</div><div class="f-desc">Connect TON (SOON)</div></div></div>
                     <span class="arrow">›</span>
                 </div>
-                <div class="fund-item" onclick="openDeposit('binance')">
-                    <div class="f-left"><span class="f-icon">🟡</span><div class="f-info"><div class="f-name">Binance Pay</div><div class="f-desc">Pay via Binance</div></div></div>
+                <div class="fund-item disabled" onclick="showToast('Diamond real money se le sakte hain. SOON!', 'error')">
+                    <div class="f-left"><span class="f-icon">🟡</span><div class="f-info"><div class="f-name">Binance Pay</div><div class="f-desc">Pay via Binance (SOON)</div></div></div>
                     <span class="arrow">›</span>
                 </div>
-                <div class="fund-item" onclick="openDeposit('crypto')">
-                    <div class="f-left"><span class="f-icon">🪙</span><div class="f-info"><div class="f-name">Crypto</div><div class="f-desc">USDT, BTC, ETH</div></div></div>
+                <div class="fund-item disabled" onclick="showToast('Diamond real money se le sakte hain. SOON!', 'error')">
+                    <div class="f-left"><span class="f-icon">🪙</span><div class="f-info"><div class="f-name">Crypto</div><div class="f-desc">USDT, BTC, ETH (SOON)</div></div></div>
                     <span class="arrow">›</span>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- PROFILE PAGE (hidden, accessed via avatar/menu) -->
+    <!-- PROFILE -->
     <div class="page" id="page-profile">
         <div class="scrollable" style="padding:20px;">
             <div style="text-align:center;">
@@ -833,22 +517,10 @@
                 <div style="font-size:12px;color:#8899aa;" id="profileId">ID: 000000</div>
             </div>
             <div style="margin-top:20px;display:flex;flex-direction:column;gap:10px;">
-                <div style="background:rgba(255,255,255,0.03);border-radius:12px;padding:14px;display:flex;justify-content:space-between;">
-                    <span style="color:#8899aa;font-size:12px;">Total Earned</span>
-                    <span style="font-weight:700;color:#00ff88;" id="profileEarned">0</span>
-                </div>
-                <div style="background:rgba(255,255,255,0.03);border-radius:12px;padding:14px;display:flex;justify-content:space-between;">
-                    <span style="color:#8899aa;font-size:12px;">Total Taps</span>
-                    <span style="font-weight:700;color:#00d4ff;" id="profileTaps">0</span>
-                </div>
-                <div style="background:rgba(255,255,255,0.03);border-radius:12px;padding:14px;display:flex;justify-content:space-between;">
-                    <span style="color:#8899aa;font-size:12px;">Level</span>
-                    <span style="font-weight:700;color:#ffd700;" id="profileLevel">1</span>
-                </div>
-                <div style="background:rgba(255,255,255,0.03);border-radius:12px;padding:14px;display:flex;justify-content:space-between;">
-                    <span style="color:#8899aa;font-size:12px;">Rank</span>
-                    <span style="font-weight:700;color:#ffd700;" id="profileRank">Brown #F</span>
-                </div>
+                <div style="background:rgba(255,255,255,0.03);border-radius:12px;padding:14px;display:flex;justify-content:space-between;"><span style="color:#8899aa;font-size:12px;">Total Earned</span><span style="font-weight:700;color:#00ff88;" id="profileEarned">0</span></div>
+                <div style="background:rgba(255,255,255,0.03);border-radius:12px;padding:14px;display:flex;justify-content:space-between;"><span style="color:#8899aa;font-size:12px;">Total Taps</span><span style="font-weight:700;color:#00d4ff;" id="profileTaps">0</span></div>
+                <div style="background:rgba(255,255,255,0.03);border-radius:12px;padding:14px;display:flex;justify-content:space-between;"><span style="color:#8899aa;font-size:12px;">Level</span><span style="font-weight:700;color:#ffd700;" id="profileLevel">1</span></div>
+                <div style="background:rgba(255,255,255,0.03);border-radius:12px;padding:14px;display:flex;justify-content:space-between;"><span style="color:#8899aa;font-size:12px;">Rank</span><span style="font-weight:700;color:#ffd700;" id="profileRank">Brown #F</span></div>
             </div>
             <button class="modal-btn secondary" style="margin-top:20px;" onclick="navTo('home')">⬅ Back to Home</button>
         </div>
@@ -863,7 +535,7 @@
         <div class="nav-item" data-tab="wallet" onclick="navTo('wallet')"><span class="nav-icon">💳</span><span class="nav-label">Wallet</span></div>
     </div>
 
-    <!-- MODAL OVERLAY -->
+    <!-- MODAL -->
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal-box" id="modalBox">
             <button class="modal-close" onclick="closeModal()">✕</button>
@@ -877,67 +549,33 @@
 
 <script>
 // ============================================================
-// TRAXOFFICIAL — COMPLETE GAME LOGIC
+// TRAXOFFICIAL — COMPLETE GAME LOGIC (Updated)
 // ============================================================
 
-// ===== TELEGRAM INIT =====
 const tg = window.Telegram?.WebApp;
 if (tg) { tg.ready(); tg.expand(); }
 
 // ===== STATE =====
 const S = {
-    balance: 0,
-    diamonds: 0,
-    energy: 500,
-    maxEnergy: 500,
-    tapPower: 1,
-    taps: 0,
-    totalEarned: 0,
-    xp: 0,
-    level: 1,
-    rp: 0,
-    username: 'Player',
-    avatar: '👤',
-    playerId: Math.floor(100000 + Math.random() * 900000),
-    nft: {}, // id: level
-    streak: 0,
-    streakLast: null,
-    rpLast: 0,
-    prodTimer: 0,
-    boosterAuto: 0,
-    boosterDouble: 0,
-    upgTap: 1,
-    upgEnergy: 1,
-    upgAuto: 0,
-    upgMining: 1,
+    balance: 0, diamonds: 0, energy: 500, maxEnergy: 500, tapPower: 1,
+    taps: 0, totalEarned: 0, xp: 0, level: 1, rp: 0,
+    username: 'Player', avatar: '👤', playerId: Math.floor(100000 + Math.random() * 900000),
+    nft: {}, streak: 0, streakLast: null, rpLast: 0, prodTimer: 0,
+    boosterAuto: 0, boosterDouble: 0,
+    upgTap: 1, upgEnergy: 1, upgAuto: 0, upgMining: 1,
     taskTg: false, taskX: false, taskYt: false, taskInvite: false,
-    missions: {},
-    missionsClaimed: {},
-    sound: true,
-    vibration: true,
-    lastTapTime: 0,
-    lastMineTime: 0,
-    mineActive: false,
-    mineTimer: null,
-    activeTab: 'home',
-    rankView: 'rank',
-    missionTab: 'daily',
-    lbTimer: 1800,
-    // Games state
-    spinActive: false,
-    twistActive: false,
-    crashActive: false,
-    crashMult: 1,
-    crashTimer: null,
-    flipActive: false,
-    flipBet: 1000,
-    flipChoice: null,
-    flipMult: 1,
-    puzzleActive: false,
-    puzzleMode: 'easy',
+    missions: {}, missionsClaimed: {},
+    sound: true, vibration: true, lastTapTime: 0, lastMineTime: 0,
+    mineActive: false, mineTimer: null, activeTab: 'home',
+    rankView: 'rank', missionTab: 'daily', lbTimer: 1800,
+    spinActive: false, twistActive: false, crashActive: false,
+    crashMult: 1, crashTimer: null, flipActive: false, flipBet: 1000,
+    flipChoice: null, twistBet: 1000, crashBet: 1000,
+    // Leaderboard reward tracking
+    lbLastReward: 0,
 };
 
-// ===== LOAD / SAVE =====
+// ===== SAVE / LOAD =====
 function save() {
     const d = {
         balance: S.balance, diamonds: S.diamonds, energy: S.energy, maxEnergy: S.maxEnergy,
@@ -948,7 +586,7 @@ function save() {
         upgTap: S.upgTap, upgEnergy: S.upgEnergy, upgAuto: S.upgAuto, upgMining: S.upgMining,
         taskTg: S.taskTg, taskX: S.taskX, taskYt: S.taskYt, taskInvite: S.taskInvite,
         missions: S.missions, missionsClaimed: S.missionsClaimed,
-        sound: S.sound, vibration: S.vibration,
+        sound: S.sound, vibration: S.vibration, lbLastReward: S.lbLastReward,
     };
     localStorage.setItem('trax_save', JSON.stringify(d));
 }
@@ -961,11 +599,9 @@ function load() {
             Object.keys(d).forEach(k => { if (S[k] !== undefined) S[k] = d[k]; });
         } catch (e) {}
     } else {
-        // default missions
         for (let i = 0; i < 20; i++) S.missions['d' + i] = 0;
         for (let i = 0; i < 10; i++) S.missions['w' + i] = 0;
     }
-    // Init NFTs
     if (!S.nft || Object.keys(S.nft).length === 0) {
         NFT_LIST.forEach(n => { S.nft[n.id] = 0; });
     }
@@ -986,19 +622,15 @@ function formatProfit(n) {
 function vibrate(ms = 10) { if (S.vibration && navigator.vibrate) navigator.vibrate(ms); }
 function showToast(msg, type = '') {
     const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.className = 'toast ' + type;
+    t.textContent = msg; t.className = 'toast ' + type;
     t.classList.add('show');
     clearTimeout(t._timeout);
     t._timeout = setTimeout(() => t.classList.remove('show'), 2500);
 }
 function showFloat(text, color = '#00ff88') {
     const el = document.createElement('div');
-    el.className = 'float-text';
-    el.textContent = text;
-    el.style.color = color;
-    el.style.left = (30 + Math.random() * 40) + '%';
-    el.style.top = '40%';
+    el.className = 'float-text'; el.textContent = text; el.style.color = color;
+    el.style.left = (30 + Math.random() * 40) + '%'; el.style.top = '40%';
     document.body.appendChild(el);
     setTimeout(() => el.remove(), 800);
 }
@@ -1008,9 +640,7 @@ function openModal(html) {
     document.getElementById('modalContent').innerHTML = html;
     document.getElementById('modalOverlay').classList.add('show');
 }
-function closeModal() {
-    document.getElementById('modalOverlay').classList.remove('show');
-}
+function closeModal() { document.getElementById('modalOverlay').classList.remove('show'); }
 
 // ===== NAVIGATION =====
 function navTo(tab) {
@@ -1023,10 +653,11 @@ function navTo(tab) {
     if (tab === 'rank') renderRankPage();
     if (tab === 'nft') { renderNFTGrid('all'); }
     if (tab === 'home') updateHomeUI();
+    if (tab === 'wallet') updateHeaderUI();
     save();
 }
 
-// ===== RANK DATA =====
+// ===== RANK =====
 const RANKS = [
     { name: 'Brown', id: 'F', medal: '🥉', min: 0, max: 500 },
     { name: 'Silver', id: 'E', medal: '🥈', min: 500, max: 1200 },
@@ -1038,26 +669,17 @@ const RANKS = [
     { name: 'Obsidian', id: 'S', medal: '🔴', min: 8000, max: 999999 },
 ];
 function getRankFromRP(rp) {
-    for (let i = RANKS.length - 1; i >= 0; i--) {
-        if (rp >= RANKS[i].min) return RANKS[i];
-    }
+    for (let i = RANKS.length - 1; i >= 0; i--) if (rp >= RANKS[i].min) return RANKS[i];
     return RANKS[0];
 }
 function getNextRank(rp) {
-    const cur = getRankFromRP(rp);
-    const idx = RANKS.indexOf(cur);
+    const cur = getRankFromRP(rp); const idx = RANKS.indexOf(cur);
     return RANKS[idx + 1] || null;
 }
-function addRP(amount) {
-    S.rp += amount;
-    save();
-    updateHeaderUI();
-    updateHomeUI();
-}
+function addRP(amount) { S.rp += amount; save(); updateHeaderUI(); updateHomeUI(); }
 
 // ===== NFT DATA =====
 const NFT_LIST = [
-    // Common
     { id: 'tap1', name: 'Tap I', icon: '👆', tier: 'common', cost: 500, profit: 100, maxLvl: 10, cat: 'tap' },
     { id: 'tap2', name: 'Tap II', icon: '✋', tier: 'common', cost: 1200, profit: 250, maxLvl: 10, cat: 'tap' },
     { id: 'tap3', name: 'Tap III', icon: '🖐️', tier: 'common', cost: 3000, profit: 500, maxLvl: 10, cat: 'tap' },
@@ -1069,40 +691,29 @@ const NFT_LIST = [
     { id: 'bank', name: 'Bank', icon: '🏦', tier: 'common', cost: 80000, profit: 8000, maxLvl: 10, cat: 'earning' },
     { id: 'gem', name: 'Gem', icon: '💎', tier: 'common', cost: 120000, profit: 12000, maxLvl: 10, cat: 'earning' },
     { id: 'pick', name: 'Pickaxe', icon: '⛏️', tier: 'common', cost: 150000, profit: 15000, maxLvl: 10, cat: 'mining' },
-    // Rare
     { id: 'rocket', name: 'Rocket', icon: '🚀', tier: 'rare', cost: 200000, profit: 25000, maxLvl: 15, cat: 'mining' },
     { id: 'crown', name: 'Crown', icon: '👑', tier: 'rare', cost: 350000, profit: 40000, maxLvl: 15, cat: 'premium' },
     { id: 'dragon', name: 'Dragon', icon: '🐉', tier: 'rare', cost: 500000, profit: 60000, maxLvl: 15, cat: 'legend' },
     { id: 'star', name: 'Star', icon: '🌟', tier: 'rare', cost: 700000, profit: 85000, maxLvl: 15, cat: 'legend' },
     { id: 'bolt', name: 'Thunder', icon: '🌩️', tier: 'rare', cost: 900000, profit: 110000, maxLvl: 15, cat: 'energy' },
-    // Epic
     { id: 'phoenix', name: 'Phoenix', icon: '🔥', tier: 'epic', cost: 1500000, profit: 200000, maxLvl: 20, cat: 'legend' },
     { id: 'unicorn', name: 'Unicorn', icon: '🦄', tier: 'epic', cost: 2500000, profit: 350000, maxLvl: 20, cat: 'legend' },
     { id: 'alien', name: 'Alien', icon: '👽', tier: 'epic', cost: 4000000, profit: 600000, maxLvl: 20, cat: 'premium' },
     { id: 'planet', name: 'Planet', icon: '🪐', tier: 'epic', cost: 5000000, profit: 800000, maxLvl: 20, cat: 'legend' },
-    // Legendary
     { id: 'galaxy', name: 'Galaxy', icon: '🌌', tier: 'legendary', cost: 10000000, profit: 2000000, maxLvl: 25, cat: 'legend' },
     { id: 'cosmos', name: 'Cosmos', icon: '🌠', tier: 'legendary', cost: 20000000, profit: 5000000, maxLvl: 25, cat: 'legend' },
     { id: 'blackhole', name: 'Black Hole', icon: '⚫', tier: 'legendary', cost: 35000000, profit: 10000000, maxLvl: 25, cat: 'legend' },
     { id: 'infinity', name: 'Infinity', icon: '♾️', tier: 'legendary', cost: 50000000, profit: 20000000, maxLvl: 25, cat: 'legend' },
 ];
-const NFT_TIER_COLORS = { common: '#8899aa', rare: '#00d4ff', epic: '#a040ff', legendary: '#ffd700' };
-
 function getNFTLevel(id) { return S.nft[id] || 0; }
-function isNFTMax(id) {
-    const n = NFT_LIST.find(x => x.id === id);
-    return n ? getNFTLevel(id) >= n.maxLvl : false;
-}
+function isNFTMax(id) { const n = NFT_LIST.find(x => x.id === id); return n ? getNFTLevel(id) >= n.maxLvl : false; }
 function getTotalProfitPerHour() {
     let total = 0;
-    NFT_LIST.forEach(n => {
-        const lvl = getNFTLevel(n.id);
-        total += n.profit * lvl;
-    });
+    NFT_LIST.forEach(n => { total += n.profit * getNFTLevel(n.id); });
     return total;
 }
 
-// ===== MISSIONS DATA =====
+// ===== MISSIONS =====
 const DAILY_MISSIONS = [
     { id: 'd0', title: 'Tap 100 times', target: 100, reward: 20, xp: 10 },
     { id: 'd1', title: 'Tap 500 times', target: 500, reward: 30, xp: 15 },
@@ -1137,28 +748,20 @@ const WEEKLY_MISSIONS = [
     { id: 'w8', title: 'Reach 50,000 energy', target: 50000, reward: 350, xp: 175 },
     { id: 'w9', title: 'Complete 10 daily missions', target: 10, reward: 500, xp: 250 },
 ];
-
 function getMissionProgress(id) { return S.missions[id] || 0; }
 function isMissionClaimed(id) { return S.missionsClaimed[id] || false; }
-function addMissionProgress(type, amount) {
-    // type matches mission id? No, we need mapping. For simplicity, we skip complex tracking and just increment random ones
-    // This is a simplified version for the demo
-}
 function claimMission(id, reward, xp) {
     if (isMissionClaimed(id)) { showToast('Already claimed!', 'error'); return; }
     const m = [...DAILY_MISSIONS, ...WEEKLY_MISSIONS].find(x => x.id === id);
     if (!m) return;
     if (getMissionProgress(id) < m.target) { showToast('Mission not complete!', 'error'); return; }
-    S.balance += reward;
-    S.xp += xp;
-    S.missionsClaimed[id] = true;
-    save();
-    updateAllUI();
+    S.balance += reward; S.xp += xp; S.missionsClaimed[id] = true;
+    save(); updateAllUI();
     showToast(`+${reward} TRAX claimed!`, 'success');
     renderRankPage();
 }
 
-// ===== RENDER FUNCTIONS =====
+// ===== UI UPDATE =====
 function updateHeaderUI() {
     document.getElementById('hLevel').textContent = S.level;
     const xpNeeded = S.level * 100;
@@ -1200,7 +803,6 @@ function updateHomeUI() {
     const next = getNextRank(S.rp);
     const pct = next ? ((S.rp - r.min) / (next.min - r.min) * 100) : 100;
     document.getElementById('homeRankProgress').style.width = Math.min(100, pct) + '%';
-    // Streak
     const days = ['✓','✓','3','4','5','6','🎁'];
     const container = document.getElementById('streakDaysContainer');
     container.innerHTML = days.map((d, i) => {
@@ -1215,10 +817,9 @@ function updateHomeUI() {
 }
 
 function updateAllUI() {
-    updateHeaderUI();
-    updateHomeUI();
-    renderNFTGrid('all');
+    updateHeaderUI(); updateHomeUI(); renderNFTGrid('all');
     if (S.activeTab === 'rank') renderRankPage();
+    renderHomeLeaderboard();
     save();
 }
 
@@ -1230,43 +831,29 @@ document.getElementById('tapCoin').addEventListener('click', function(e) {
     S.lastTapTime = now;
     S.energy -= 1;
     const earn = S.tapPower + S.boosterDouble;
-    S.balance += earn;
-    S.totalEarned += earn;
-    S.taps += 1;
-    S.xp += 1;
+    S.balance += earn; S.totalEarned += earn; S.taps += 1; S.xp += 1;
     if (S.xp >= S.level * 100) { S.xp -= S.level * 100; S.level++; showToast('🎉 Level Up! Level ' + S.level, 'success'); }
-    vibrate(5);
-    updateHeaderUI();
-    showFloat('+' + earn);
-    save();
+    vibrate(5); updateHeaderUI(); showFloat('+' + earn); save();
 });
 
 // ===== ENERGY RECHARGE =====
 setInterval(() => {
-    if (S.energy < S.maxEnergy) {
-        S.energy = Math.min(S.maxEnergy, S.energy + 1);
-        updateHeaderUI();
-    }
+    if (S.energy < S.maxEnergy) { S.energy = Math.min(S.maxEnergy, S.energy + 1); updateHeaderUI(); }
 }, 2000);
 
-// ===== PROFIT PER HOUR (passive) =====
+// ===== PASSIVE PROFIT =====
 setInterval(() => {
     const p = getTotalProfitPerHour();
-    if (p > 0) {
-        S.balance += p / 3600;
-        S.totalEarned += p / 3600;
-        updateHeaderUI();
-    }
+    if (p > 0) { S.balance += p / 3600; S.totalEarned += p / 3600; updateHeaderUI(); }
 }, 1000);
 
-// ===== RANK PAGE RENDER =====
+// ===== RANK PAGE =====
 function switchRankTop(tab) {
     S.rankView = tab;
     document.getElementById('rankTabRank').classList.toggle('active', tab === 'rank');
     document.getElementById('rankTabMissions').classList.toggle('active', tab === 'missions');
     renderRankPage();
 }
-
 function renderRankPage() {
     const el = document.getElementById('rankContent');
     if (S.rankView === 'rank') {
@@ -1333,8 +920,7 @@ function renderNFTGrid(cat) {
     let list = NFT_LIST;
     if (cat !== 'all') list = NFT_LIST.filter(n => n.cat === cat);
     grid.innerHTML = list.map(n => {
-        const lvl = getNFTLevel(n.id);
-        const max = isNFTMax(n.id);
+        const lvl = getNFTLevel(n.id); const max = isNFTMax(n.id);
         const cost = n.cost * (lvl + 1);
         const canAfford = S.balance >= cost;
         return `
@@ -1349,27 +935,21 @@ function renderNFTGrid(cat) {
         `;
     }).join('');
 }
-
 function buyNFT(id, cost) {
     const n = NFT_LIST.find(x => x.id === id);
     if (!n) return;
     if (isNFTMax(id)) { showToast('Already MAX level!', 'error'); return; }
     if (S.balance < cost) { showToast('Not enough TRAX!', 'error'); return; }
-    S.balance -= cost;
-    S.nft[id] = getNFTLevel(id) + 1;
-    S.xp += 10;
+    S.balance -= cost; S.nft[id] = getNFTLevel(id) + 1; S.xp += 10;
     if (S.xp >= S.level * 100) { S.xp -= S.level * 100; S.level++; }
-    save();
-    updateAllUI();
-    showToast(`✅ ${n.name} upgraded to Lv ${S.nft[id]}!`, 'success');
+    save(); updateAllUI(); showToast(`✅ ${n.name} upgraded to Lv ${S.nft[id]}!`, 'success');
     renderNFTGrid('all');
 }
 
-// ===== GAMES =====
-// --- LUCKY SPIN ---
+// ===== GAMES (With 75% Lose Rate) =====
+// --- SPIN ---
 function openSpin() {
-    if (S.spinActive) return;
-    S.spinActive = true;
+    if (S.spinActive) return; S.spinActive = true;
     openModal(`
         <div class="game-modal-box">
             <div class="modal-title">🎰 Spin to Win!</div>
@@ -1387,20 +967,24 @@ function openSpin() {
 function doSpin() {
     if (S.balance < 10000) { showToast('Not enough TRAX!', 'error'); return; }
     S.balance -= 10000;
-    const prizes = [500, 1000, 5000, 10000, 50000, 100000];
-    const win = prizes[Math.floor(Math.random() * prizes.length)];
-    S.balance += win;
-    S.totalEarned += win;
-    document.getElementById('spinResult').innerHTML = `🎉 YOU WON <span style="color:#00ff88;">+${formatNum(win)} TRAX</span>`;
-    updateHeaderUI();
-    save();
-    showToast(`🎉 Won ${formatNum(win)} TRAX!`, 'success');
+    // 75% lose, 25% win
+    const win = Math.random() < 0.25;
+    if (win) {
+        const prizes = [500, 1000, 5000, 10000, 50000, 100000];
+        const amt = prizes[Math.floor(Math.random() * prizes.length)];
+        S.balance += amt; S.totalEarned += amt;
+        document.getElementById('spinResult').innerHTML = `🎉 YOU WON <span style="color:#00ff88;">+${formatNum(amt)} TRAX</span>`;
+        showToast(`🎉 Won ${formatNum(amt)} TRAX!`, 'success');
+    } else {
+        document.getElementById('spinResult').innerHTML = `❌ YOU LOST <span style="color:#ff0055;">-10,000 TRAX</span>`;
+        showToast('❌ You lost!', 'error');
+    }
+    updateHeaderUI(); save();
 }
 
 // --- TWIST ---
 function openTwist() {
-    if (S.twistActive) return;
-    S.twistActive = true;
+    if (S.twistActive) return; S.twistActive = true;
     openModal(`
         <div class="game-modal-box">
             <div class="modal-title">🌀 TWIST</div>
@@ -1424,18 +1008,23 @@ function doTwist() {
     const bet = S.twistBet || 1000;
     if (S.balance < bet) { showToast('Not enough TRAX!', 'error'); return; }
     S.balance -= bet;
-    const mults = [2, 3, 4, 5, 7, 10, 15, 20, 28, 50, 100, 200];
-    const m = mults[Math.floor(Math.random() * mults.length)];
-    const win = bet * m;
-    S.balance += win;
-    S.totalEarned += win;
-    document.getElementById('twistResult').innerHTML = `🎉 YOU WON <span style="color:#00ff88;">${m}x = +${formatNum(win)} TRAX</span>`;
-    updateHeaderUI();
-    save();
-    showToast(`🎉 Won ${formatNum(win)} TRAX!`, 'success');
+    // 75% lose, 25% win
+    const win = Math.random() < 0.25;
+    if (win) {
+        const mults = [2, 3, 4, 5, 7, 10, 15, 20, 28, 50, 100, 200];
+        const m = mults[Math.floor(Math.random() * mults.length)];
+        const amt = bet * m;
+        S.balance += amt; S.totalEarned += amt;
+        document.getElementById('twistResult').innerHTML = `🎉 YOU WON <span style="color:#00ff88;">${m}x = +${formatNum(amt)} TRAX</span>`;
+        showToast(`🎉 Won ${formatNum(amt)} TRAX!`, 'success');
+    } else {
+        document.getElementById('twistResult').innerHTML = `❌ YOU LOST <span style="color:#ff0055;">-${formatNum(bet)} TRAX</span>`;
+        showToast('❌ You lost!', 'error');
+    }
+    updateHeaderUI(); save();
 }
 
-// --- PUZZLE ---
+// --- PUZZLE (Updated Logo & Grid) ---
 function openPuzzle() {
     openModal(`
         <div class="game-modal-box">
@@ -1460,39 +1049,38 @@ function startPuzzleGame() {
     const size = S.puzzleMode === 'hard' ? 9 : (S.puzzleMode === 'medium' ? 7 : 5);
     const reward = S.puzzleMode === 'hard' ? 10000 : (S.puzzleMode === 'medium' ? 30000 : 50000);
     let html = `<div style="font-size:12px;color:#8899aa;">Mode: ${S.puzzleMode.toUpperCase()} | Reward: ${formatNum(reward)}</div>`;
-    html += `<div style="display:grid;grid-template-columns:repeat(${size},1fr);gap:2px;margin:10px auto;max-width:200px;">`;
-    for (let i = 0; i < size * size; i++) {
-        html += `<div style="aspect-ratio:1;background:rgba(255,255,255,0.08);border-radius:2px;"></div>`;
-    }
+    html += `<div class="puzzle-grid" style="grid-template-columns:repeat(${size},1fr);">`;
+    for (let i = 0; i < size * size; i++) html += `<div class="puzzle-cell"></div>`;
     html += `</div><button class="modal-btn success" onclick="completePuzzle(${reward})">✅ Complete Puzzle</button>`;
     document.getElementById('puzzleGameArea').innerHTML = html;
 }
 function completePuzzle(reward) {
-    S.balance += reward;
-    S.totalEarned += reward;
-    save(); updateHeaderUI();
-    showToast(`🧩 Puzzle complete! +${formatNum(reward)} TRAX`, 'success');
-    closeModal();
+    // 75% lose, 25% win
+    const win = Math.random() < 0.25;
+    if (win) {
+        S.balance += reward; S.totalEarned += reward;
+        showToast(`🧩 Puzzle complete! +${formatNum(reward)} TRAX`, 'success');
+    } else {
+        showToast('🧩 Puzzle failed! No reward.', 'error');
+    }
+    save(); updateHeaderUI(); closeModal();
 }
 
 // --- CRASH ---
 function openCrash() {
-    if (S.crashActive) return;
-    S.crashActive = true;
+    if (S.crashActive) return; S.crashActive = true;
     openModal(`
         <div class="game-modal-box">
             <div class="modal-title">🚀 Crash Game</div>
-            <div style="font-size:11px;color:#8899aa;">Bet select karein ya custom likhein:</div>
+            <div style="font-size:11px;color:#8899aa;">Bet select karein:</div>
             <div class="bet-buttons">
                 <div class="bet-btn" onclick="S.crashBet=500;this.parentElement.querySelectorAll('.bet-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active')">500</div>
                 <div class="bet-btn active" onclick="S.crashBet=1000;this.parentElement.querySelectorAll('.bet-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active')">1,000</div>
                 <div class="bet-btn" onclick="S.crashBet=5000;this.parentElement.querySelectorAll('.bet-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active')">5,000</div>
                 <div class="bet-btn" onclick="S.crashBet=10000;this.parentElement.querySelectorAll('.bet-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active')">10,000</div>
-                <div class="bet-btn" onclick="S.crashBet=25000;this.parentElement.querySelectorAll('.bet-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active')">25,000</div>
-                <div class="bet-btn" onclick="S.crashBet=50000;this.parentElement.querySelectorAll('.bet-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active')">50,000</div>
             </div>
             <div class="crash-mult" id="crashMult">1.00x</div>
-            <div style="font-size:11px;color:#8899aa;" id="crashStatus">Bet select karein ya custom likhein!</div>
+            <div style="font-size:11px;color:#8899aa;" id="crashStatus">Bet select karein!</div>
             <button class="modal-btn success" onclick="startCrash()" id="crashStartBtn">START (${formatNum(S.crashBet || 1000)} TRAX)</button>
             <button class="modal-btn danger" onclick="cashOutCrash()" id="crashCashBtn" style="display:none;">CASHOUT</button>
             <button class="modal-btn secondary" onclick="closeModal();S.crashActive=false;">Close</button>
@@ -1509,12 +1097,13 @@ function startCrash() {
     document.getElementById('crashStatus').textContent = 'Crash ho gaya toh paisa gaya! Cashout karein.';
     document.getElementById('crashMult').style.color = '#00ff88';
     S.crashActive = true;
+    // 75% lose: crash at random low mult
+    const crashPoint = Math.random() < 0.75 ? (1.00 + Math.random() * 0.5) : (2.0 + Math.random() * 5);
     S.crashTimer = setInterval(() => {
         S.crashMult += 0.05 + Math.random() * 0.1;
         document.getElementById('crashMult').textContent = S.crashMult.toFixed(2) + 'x';
-        if (S.crashMult > 2 && Math.random() < 0.02) { // Random crash
-            clearInterval(S.crashTimer);
-            S.crashActive = false;
+        if (S.crashMult >= crashPoint) {
+            clearInterval(S.crashTimer); S.crashActive = false;
             document.getElementById('crashMult').textContent = 'CRASHED!';
             document.getElementById('crashMult').style.color = '#ff0055';
             document.getElementById('crashCashBtn').style.display = 'none';
@@ -1527,12 +1116,10 @@ function startCrash() {
 }
 function cashOutCrash() {
     if (!S.crashActive) return;
-    clearInterval(S.crashTimer);
-    S.crashActive = false;
+    clearInterval(S.crashTimer); S.crashActive = false;
     const bet = S.crashBet || 1000;
     const win = bet * S.crashMult;
-    S.balance += win;
-    S.totalEarned += win;
+    S.balance += win; S.totalEarned += win;
     document.getElementById('crashCashBtn').style.display = 'none';
     document.getElementById('crashStartBtn').style.display = 'block';
     document.getElementById('crashStatus').textContent = `🎉 Cashout at ${S.crashMult.toFixed(2)}x = +${formatNum(win)} TRAX`;
@@ -1542,8 +1129,7 @@ function cashOutCrash() {
 
 // --- COIN FLIP ---
 function openCoinFlip() {
-    if (S.flipActive) return;
-    S.flipActive = true;
+    if (S.flipActive) return; S.flipActive = true;
     openModal(`
         <div class="game-modal-box">
             <div class="modal-title">🪙 Coin Flip</div>
@@ -1569,14 +1155,15 @@ function doFlip() {
     const bet = S.flipBet || 1000;
     if (S.balance < bet) { showToast('Not enough TRAX!', 'error'); return; }
     S.balance -= bet;
-    const result = Math.random() < 0.5 ? 'T' : 'R';
+    // 75% lose, 25% win
+    const win = Math.random() < 0.25;
+    const result = win ? S.flipChoice : (S.flipChoice === 'T' ? 'R' : 'T');
     document.getElementById('flipCoin').textContent = result;
-    if (result === S.flipChoice) {
-        const win = bet * 2;
-        S.balance += win;
-        S.totalEarned += win;
-        document.getElementById('flipResult').innerHTML = `🎉 YOU WON <span style="color:#00ff88;">+${formatNum(win)} TRAX</span>`;
-        showToast(`🎉 Won ${formatNum(win)} TRAX!`, 'success');
+    if (win) {
+        const amt = bet * 2;
+        S.balance += amt; S.totalEarned += amt;
+        document.getElementById('flipResult').innerHTML = `🎉 YOU WON <span style="color:#00ff88;">+${formatNum(amt)} TRAX</span>`;
+        showToast(`🎉 Won ${formatNum(amt)} TRAX!`, 'success');
     } else {
         document.getElementById('flipResult').innerHTML = `❌ YOU LOST <span style="color:#ff0055;">-${formatNum(bet)} TRAX</span>`;
         showToast('❌ You lost!', 'error');
@@ -1589,14 +1176,14 @@ function showGameInfo(game) {
     const infos = {
         spin: '🎰 Lucky Spin: 10,000 TRAX per spin. Win up to 500,000 TRAX!',
         twist: '🌀 Twist: Choose bet, spin wheel. Multipliers from 2x to 200x!',
-        puzzle: '🧩 Puzzle: Complete the puzzle in time. Easy 50K, Medium 30K, Hard 10K!',
+        puzzle: '🧩 Puzzle: Complete the puzzle. Easy 50K, Medium 30K, Hard 10K!',
         crash: '🚀 Crash: Multiplier grows, cashout before crash. If crash, you lose!',
         coinflip: '🪙 Coin Flip: Choose T or R, flip coin. Win 2x your bet!'
     };
     openModal(`<div class="modal-title">ℹ️ Game Info</div><div class="modal-text">${infos[game] || 'Info not available'}</div><button class="modal-btn secondary" onclick="closeModal()">Close</button>`);
 }
 
-// ===== ATTENDANCE =====
+// ===== ATTENDANCE (Fixed) =====
 function claimAttendance() {
     const today = new Date().toDateString();
     if (S.streakLast === today) { showToast('Aaj ka reward claim ho chuka hai!', 'error'); return; }
@@ -1604,8 +1191,7 @@ function claimAttendance() {
     if (S.streakLast === yesterday) { S.streak++; } else { S.streak = 1; }
     S.streakLast = today;
     const reward = 100 * S.streak;
-    S.balance += reward;
-    S.xp += 20;
+    S.balance += reward; S.xp += 20;
     save(); updateAllUI();
     showToast(`📅 Day ${S.streak} claimed! +${reward} TRAX`, 'success');
 }
@@ -1616,31 +1202,22 @@ function openRedPocket() {
     if (now - S.rpLast < 900000) {
         const rem = Math.ceil((900000 - (now - S.rpLast)) / 1000);
         const m = Math.floor(rem / 60), s = rem % 60;
-        showToast(`⏳ Wait ${m}:${s.toString().padStart(2,'0')}`, 'error');
-        return;
+        showToast(`⏳ Wait ${m}:${s.toString().padStart(2,'0')}`, 'error'); return;
     }
     const reward = Math.floor(500 + Math.random() * 5000);
-    S.balance += reward;
-    S.totalEarned += reward;
-    S.rpLast = now;
-    S.xp += 10;
+    S.balance += reward; S.totalEarned += reward; S.rpLast = now; S.xp += 10;
     save(); updateAllUI();
     showToast(`🧧 Red Pocket: +${formatNum(reward)} TRAX`, 'success');
     updateRedPocketTimer();
 }
 function updateRedPocketTimer() {
-    const now = Date.now();
-    const el = document.getElementById('pocketTimer');
+    const now = Date.now(); const el = document.getElementById('pocketTimer');
     if (!el) return;
     if (now - S.rpLast < 900000) {
         const rem = Math.ceil((900000 - (now - S.rpLast)) / 1000);
         const m = Math.floor(rem / 60), s = rem % 60;
-        el.textContent = `${m}:${s.toString().padStart(2,'0')}`;
-        el.classList.add('red');
-    } else {
-        el.textContent = 'Ready!';
-        el.classList.remove('red');
-    }
+        el.textContent = `${m}:${s.toString().padStart(2,'0')}`; el.classList.add('red');
+    } else { el.textContent = 'Ready!'; el.classList.remove('red'); }
 }
 setInterval(updateRedPocketTimer, 1000);
 
@@ -1678,9 +1255,7 @@ function buyBooster(type) {
     if (type === 'energy') S.energy = Math.min(S.maxEnergy, S.energy + 50);
     if (type === 'double') S.boosterDouble += 2;
     if (type === 'offline') S.balance += 5000;
-    save(); updateAllUI();
-    showToast('✅ Booster activated!', 'success');
-    closeModal();
+    save(); updateAllUI(); showToast('✅ Booster activated!', 'success'); closeModal();
 }
 
 // ===== UPGRADES =====
@@ -1717,9 +1292,7 @@ function buyUpgrade(type) {
     if (type === 'energy') S.maxEnergy += 50;
     if (type === 'auto') S.upgAuto += 100;
     if (type === 'mining') S.upgMining += 5;
-    save(); updateAllUI();
-    showToast('✅ Upgrade purchased!', 'success');
-    closeModal();
+    save(); updateAllUI(); showToast('✅ Upgrade purchased!', 'success'); closeModal();
 }
 
 // ===== MINING =====
@@ -1727,8 +1300,7 @@ function openMine() {
     const now = Date.now();
     if (now - S.lastMineTime < 60000) {
         const rem = Math.ceil((60000 - (now - S.lastMineTime)) / 1000);
-        showToast(`⏳ Wait ${rem}s`, 'error');
-        return;
+        showToast(`⏳ Wait ${rem}s`, 'error'); return;
     }
     S.mineActive = true;
     openModal(`
@@ -1740,21 +1312,15 @@ function openMine() {
         </div>
         <button class="modal-btn secondary" onclick="stopMine()">Stop</button>
     `);
-    let sec = 0;
-    let earned = 0;
-    const rate = S.upgMining * 5;
+    let sec = 0; let earned = 0; const rate = S.upgMining * 5;
     S.mineTimer = setInterval(() => {
         if (!S.mineActive) return;
-        sec++;
-        earned += rate;
+        sec++; earned += rate;
         document.getElementById('mineCounter').textContent = formatNum(earned) + ' TRAX';
         document.getElementById('mineProgress').style.width = (sec / 60 * 100) + '%';
         if (sec >= 60) {
-            clearInterval(S.mineTimer);
-            S.mineActive = false;
-            S.balance += earned;
-            S.totalEarned += earned;
-            S.lastMineTime = Date.now();
+            clearInterval(S.mineTimer); S.mineActive = false;
+            S.balance += earned; S.totalEarned += earned; S.lastMineTime = Date.now();
             save(); updateAllUI();
             showToast(`⛏️ Mining complete! +${formatNum(earned)} TRAX`, 'success');
             closeModal();
@@ -1763,9 +1329,7 @@ function openMine() {
 }
 function stopMine() {
     if (S.mineTimer) clearInterval(S.mineTimer);
-    S.mineActive = false;
-    S.lastMineTime = Date.now();
-    closeModal();
+    S.mineActive = false; S.lastMineTime = Date.now(); closeModal();
 }
 
 // ===== MENU =====
@@ -1774,17 +1338,15 @@ function openMenu() {
         <div class="modal-title">⚙️ Menu</div>
         <div style="display:flex;flex-direction:column;gap:6px;margin-top:10px;">
             <div class="modal-btn secondary" onclick="navTo('profile');closeModal();">👤 Profile</div>
-            <div class="modal-btn secondary" onclick="navTo('attendance');closeModal();">📅 Attendance</div>
-            <div class="modal-btn secondary" onclick="navTo('tasks');closeModal();">📋 Tasks</div>
-            <div class="modal-btn secondary" onclick="navTo('leaderboard');closeModal();">🏆 Leaderboard</div>
+            <div class="modal-btn secondary" onclick="navTo('rank');closeModal();">📅 Attendance</div>
+            <div class="modal-btn secondary" onclick="navTo('games');closeModal();">📋 Tasks</div>
+            <div class="modal-btn secondary" onclick="navTo('rank');closeModal();">🏆 Leaderboard</div>
             <div class="modal-btn secondary" onclick="openSettings()">⚙️ Settings</div>
-            <div class="modal-btn secondary" onclick="navTo('shop');closeModal();">💎 Diamond Shop</div>
+            <div class="modal-btn secondary" onclick="navTo('wallet');closeModal();">💎 Diamond Shop</div>
         </div>
         <button class="modal-btn danger" onclick="closeModal()">Close</button>
     `);
 }
-
-// ===== SETTINGS =====
 function openSettings() {
     closeModal();
     setTimeout(() => {
@@ -1806,47 +1368,71 @@ function openSettings() {
     }, 200);
 }
 
-// ===== DEPOSIT =====
+// ===== DEPOSIT (Updated Message) =====
 function openDeposit(method) {
     const names = { stars: 'Telegram Stars', ton: 'TON Wallet', binance: 'Binance Pay', crypto: 'Crypto (USDT/BTC/ETH)' };
     openModal(`
         <div class="modal-title">💳 Deposit via ${names[method]}</div>
-        <div class="modal-text">This is a demo. Payment integration coming soon!</div>
+        <div class="modal-text">Diamond real money se le sakte hain. Yeh feature SOON aa raha hai!</div>
         <div style="background:rgba(255,255,255,0.04);border-radius:12px;padding:14px;margin-top:10px;text-align:center;">
-            <div style="font-size:12px;color:#8899aa;">Send to:</div>
-            <div style="font-size:14px;font-weight:700;color:#00d4ff;word-break:break-all;">TRAX_DEMO_WALLET_1234567890</div>
+            <div style="font-size:12px;color:#8899aa;">Status:</div>
+            <div style="font-size:14px;font-weight:700;color:#ffd700;">COMING SOON</div>
         </div>
         <button class="modal-btn secondary" onclick="closeModal()">Close</button>
     `);
 }
 
-// ===== LEADERBOARD =====
+// ===== LEADERBOARD (Updated: Show rank after 100K, Top 3 reward) =====
 function renderHomeLeaderboard() {
-    const names = ['CryptoKing', 'TraxMaster', 'MoonBoy', 'WhaleAlert', 'SatoshiFan', 'DiamondHands'];
+    const names = ['CryptoKing', 'TraxMaster', 'MoonBoy', 'WhaleAlert', 'SatoshiFan', 'DiamondHands', 'TraxLegend', 'CoinHunter'];
     const container = document.getElementById('homeLeaderboard');
+    // Simulate other players
+    let players = names.map((n, i) => ({
+        name: n,
+        score: Math.floor(500000 + Math.random() * 2000000),
+        isMe: false
+    }));
+    // Add user if they have > 100,000 coins
+    if (S.balance >= 100000) {
+        players.push({ name: S.username + ' (You)', score: S.balance, isMe: true });
+    }
+    // Sort by score
+    players.sort((a, b) => b.score - a.score);
+    // Top 3 reward check (simulated 24hr)
+    const now = Date.now();
+    if (now - S.lbLastReward > 86400000) {
+        // Reward top 3
+        const top3 = players.slice(0, 3);
+        // If user is in top 3, reward them
+        if (top3.some(p => p.isMe)) {
+            const rank = top3.findIndex(p => p.isMe) + 1;
+            const rewards = { 1: 50000, 2: 30000, 3: 20000 };
+            const reward = rewards[rank];
+            S.balance += reward;
+            S.lbLastReward = now;
+            showToast(`🏆 Leaderboard Reward! You ranked #${rank} and won ${formatNum(reward)} TRAX!`, 'success');
+            save();
+        }
+    }
     let html = '';
-    names.forEach((n, i) => {
-        const score = Math.floor(1000000 / (i + 1) + Math.random() * 500000);
+    players.slice(0, 8).forEach((p, i) => {
         const pos = i + 1;
         let cls = '';
         if (pos === 1) cls = 'gold'; if (pos === 2) cls = 'silver'; if (pos === 3) cls = 'bronze';
-        html += `<div class="lb-row"><span class="pos ${cls}">#${pos}</span><span class="name">${n}</span><span class="score">${formatNum(score)}</span></div>`;
+        const rowCls = p.isMe ? 'my-rank' : '';
+        html += `<div class="lb-row ${rowCls}"><span class="pos ${cls}">#${pos}</span><span class="name">${p.name}</span><span class="score">${formatNum(p.score)}</span></div>`;
     });
     container.innerHTML = html;
 }
 
 // ===== TIMERS =====
 setInterval(() => {
-    // Profit timer
     S.prodTimer = (S.prodTimer + 1) % 86400;
-    const h = Math.floor(S.prodTimer / 3600);
-    const m = Math.floor((S.prodTimer % 3600) / 60);
-    const s = S.prodTimer % 60;
+    const h = Math.floor(S.prodTimer / 3600), m = Math.floor((S.prodTimer % 3600) / 60), s = S.prodTimer % 60;
     document.getElementById('nftTimer').textContent = `⏱ ${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
 }, 1000);
 
 setInterval(() => {
-    // Leaderboard timer
     if (S.lbTimer > 0) S.lbTimer--;
     else { S.lbTimer = 1800; renderHomeLeaderboard(); }
     const m = Math.floor(S.lbTimer / 60);
@@ -1861,40 +1447,25 @@ function init() {
     renderHomeLeaderboard();
     renderNFTGrid('all');
     updateRedPocketTimer();
-    // Start passive profit
     save();
     // Auto tap
     setInterval(() => {
-        if (S.boosterAuto > 0) {
-            S.balance += S.boosterAuto;
-            S.totalEarned += S.boosterAuto;
-            updateHeaderUI();
-        }
+        if (S.boosterAuto > 0) { S.balance += S.boosterAuto; S.totalEarned += S.boosterAuto; updateHeaderUI(); }
     }, 1000);
     // Auto earn
     setInterval(() => {
-        if (S.upgAuto > 0) {
-            S.balance += S.upgAuto / 3600;
-            S.totalEarned += S.upgAuto / 3600;
-            updateHeaderUI();
-        }
+        if (S.upgAuto > 0) { S.balance += S.upgAuto / 3600; S.totalEarned += S.upgAuto / 3600; updateHeaderUI(); }
     }, 1000);
 }
 
-// Start game
 init();
 
-// Close modal on overlay click
 document.getElementById('modalOverlay').addEventListener('click', function(e) {
     if (e.target === this) closeModal();
 });
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
 
-// Keyboard shortcut
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeModal();
-});
-
-console.log('🚀 TraxOfficial loaded successfully!');
+console.log('🚀 TraxOfficial updated successfully!');
 </script>
 </body>
- </html>
+</html>
