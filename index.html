@@ -11,7 +11,7 @@
         #app { width: 100%; max-width: 500px; height: 100vh; background: #050a14; position: relative; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 0 50px rgba(0, 212, 255, 0.1); }
         ::-webkit-scrollbar { width: 0; height: 0; }
         .scrollable { overflow-y: auto; flex: 1; padding-bottom: 80px; scrollbar-width: none; }
-        
+
         /* HEADER */
         .header { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: rgba(5, 10, 20, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(0, 212, 255, 0.1); position: sticky; top: 0; z-index: 100; min-height: 60px; }
         .header-left { display: flex; align-items: center; gap: 10px; }
@@ -66,8 +66,8 @@
         .streak-day.gift { font-size: 18px; }
 
         .tap-area { display: flex; gap: 10px; }
-        .tap-main { flex: 2; background: linear-gradient(135deg, #0d1628, #0a1220); border: 1px solid rgba(0, 212, 255, 0.2); border-radius: 20px; padding: 20px 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; }
-        .tap-coin { width: 130px; height: 130px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #00d4ff, #0055aa); display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 0 40px rgba(0, 212, 255, 0.4), inset 0 -5px 15px rgba(0,0,0,0.3); cursor: pointer; transition: transform 0.1s; user-select: none; position: relative; }
+        .tap-main { flex: 2; background: linear-gradient(135deg, #0d1628, #0a1220); border: 1px solid rgba(0, 212, 255, 0.2); border-radius: 20px; padding: 20px 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; cursor: pointer; }
+        .tap-coin { width: 130px; height: 130px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #00d4ff, #0055aa); display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 0 40px rgba(0, 212, 255, 0.4), inset 0 -5px 15px rgba(0,0,0,0.3); transition: transform 0.1s; user-select: none; position: relative; }
         .tap-coin:active { transform: scale(0.92); }
         .tap-coin .coin-t { font-size: 40px; font-weight: 900; color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
         .tap-coin .coin-label { font-size: 10px; letter-spacing: 3px; color: rgba(255,255,255,0.8); font-weight: 700; }
@@ -206,6 +206,28 @@
         .fund-item .arrow { color: #8899aa; font-size: 16px; }
         .fund-item.disabled { opacity: 0.5; cursor: not-allowed; }
 
+        /* PROFILE (Red Theme) */
+        .profile-scroll { padding: 12px 14px; display: flex; flex-direction: column; gap: 12px; }
+        .profile-header { background: linear-gradient(135deg, #1a0a0a, #0a0505); border: 1px solid rgba(255, 50, 50, 0.3); border-radius: 16px; padding: 20px; text-align: center; position: relative; }
+        .profile-header .avatar-big { width: 80px; height: 80px; border-radius: 50%; background: #1a2332; border: 3px solid #ff0055; margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 36px; overflow: hidden; }
+        .profile-header .avatar-big img { width: 100%; height: 100%; object-fit: cover; }
+        .profile-header .p-name { font-size: 20px; font-weight: 800; margin-top: 10px; color: #fff; }
+        .profile-header .p-id { font-size: 12px; color: #8899aa; margin-top: 2px; }
+        .profile-header .p-level { display: inline-block; background: #ffd700; color: #050a14; padding: 2px 12px; border-radius: 10px; font-size: 11px; font-weight: 700; margin-top: 6px; }
+        .profile-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .profile-stat { background: linear-gradient(135deg, #1a0a0a, #0a0505); border: 1px solid rgba(255, 50, 50, 0.2); border-radius: 14px; padding: 12px; text-align: center; }
+        .profile-stat .lbl { font-size: 9px; color: #8899aa; }
+        .profile-stat .val { font-size: 18px; font-weight: 800; color: #ff6b6b; margin-top: 2px; }
+        .profile-info { background: linear-gradient(135deg, #1a0a0a, #0a0505); border: 1px solid rgba(255, 50, 50, 0.2); border-radius: 14px; padding: 14px; }
+        .profile-info .info-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 12px; }
+        .profile-info .info-row:last-child { border-bottom: none; }
+        .profile-info .info-row .lbl { color: #8899aa; }
+        .profile-info .info-row .val { color: #fff; font-weight: 600; }
+        .profile-btn { width: 100%; padding: 12px; border-radius: 12px; border: none; font-size: 14px; font-weight: 700; cursor: pointer; transition: 0.2s; }
+        .profile-btn:active { transform: scale(0.97); }
+        .profile-btn.blue { background: linear-gradient(135deg, #00d4ff, #0066ff); color: #fff; }
+        .profile-btn.purple { background: linear-gradient(135deg, #a040ff, #6600cc); color: #fff; }
+
         /* BOTTOM NAV */
         .bottom-nav { display: flex; justify-content: space-around; align-items: center; background: rgba(5, 10, 20, 0.98); backdrop-filter: blur(10px); border-top: 1px solid rgba(0, 212, 255, 0.1); padding: 6px 0 10px; position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 500px; z-index: 200; }
         .nav-item { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 4px 12px; border-radius: 12px; cursor: pointer; transition: 0.2s; color: #8899aa; min-width: 55px; }
@@ -319,7 +341,7 @@
                 <div class="streak-days" id="streakDaysContainer"></div>
             </div>
             <div class="tap-area">
-                <div class="tap-main">
+                <div class="tap-main" id="tapMain">
                     <div class="tap-coin" id="tapCoin">
                         <div class="coin-t">T</div>
                         <div class="coin-label">TRAX</div>
@@ -508,21 +530,31 @@
         </div>
     </div>
 
-    <!-- PROFILE -->
+    <!-- PROFILE (Red Theme) -->
     <div class="page" id="page-profile">
-        <div class="scrollable" style="padding:20px;">
-            <div style="text-align:center;">
-                <div style="width:80px;height:80px;border-radius:50%;background:#1a2332;border:3px solid #00d4ff;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:36px;" id="profileAvatar">👤</div>
-                <div style="font-size:20px;font-weight:800;margin-top:10px;" id="profileName">Player</div>
-                <div style="font-size:12px;color:#8899aa;" id="profileId">ID: 000000</div>
+        <div class="scrollable profile-scroll">
+            <div class="profile-header">
+                <div class="avatar-big" id="profileAvatar">👤</div>
+                <div class="p-name" id="profileName">Player</div>
+                <div class="p-id" id="profileId">ID: #000000</div>
+                <div class="p-level" id="profileLevelBadge">⭐ Level 1</div>
             </div>
-            <div style="margin-top:20px;display:flex;flex-direction:column;gap:10px;">
-                <div style="background:rgba(255,255,255,0.03);border-radius:12px;padding:14px;display:flex;justify-content:space-between;"><span style="color:#8899aa;font-size:12px;">Total Earned</span><span style="font-weight:700;color:#00ff88;" id="profileEarned">0</span></div>
-                <div style="background:rgba(255,255,255,0.03);border-radius:12px;padding:14px;display:flex;justify-content:space-between;"><span style="color:#8899aa;font-size:12px;">Total Taps</span><span style="font-weight:700;color:#00d4ff;" id="profileTaps">0</span></div>
-                <div style="background:rgba(255,255,255,0.03);border-radius:12px;padding:14px;display:flex;justify-content:space-between;"><span style="color:#8899aa;font-size:12px;">Level</span><span style="font-weight:700;color:#ffd700;" id="profileLevel">1</span></div>
-                <div style="background:rgba(255,255,255,0.03);border-radius:12px;padding:14px;display:flex;justify-content:space-between;"><span style="color:#8899aa;font-size:12px;">Rank</span><span style="font-weight:700;color:#ffd700;" id="profileRank">Brown #F</span></div>
+            <div class="profile-stats">
+                <div class="profile-stat"><div class="lbl">💰 BALANCE</div><div class="val" id="profileBalance">0</div></div>
+                <div class="profile-stat"><div class="lbl">📈 EARNED</div><div class="val" id="profileEarned">0</div></div>
+                <div class="profile-stat"><div class="lbl">👆 TAPS</div><div class="val" id="profileTaps">0</div></div>
+                <div class="profile-stat"><div class="lbl">🏆 RANK</div><div class="val" id="profileRank">#---</div></div>
             </div>
-            <button class="modal-btn secondary" style="margin-top:20px;" onclick="navTo('home')">⬅ Back to Home</button>
+            <div class="profile-info">
+                <div class="info-row"><span class="lbl">👤 Username</span><span class="val" id="profileUsername">Player</span></div>
+                <div class="info-row"><span class="lbl">🆔 Player ID</span><span class="val" id="profilePlayerId">#000000</span></div>
+                <div class="info-row"><span class="lbl">⭐ Level</span><span class="val" id="profileLevel">1</span></div>
+                <div class="info-row"><span class="lbl">👆 Tap Power</span><span class="val" id="profileTapPower">+1</span></div>
+                <div class="info-row"><span class="lbl">⚡ Max Energy</span><span class="val" id="profileMaxEnergy">500</span></div>
+                <div class="info-row"><span class="lbl">🔥 Daily Streak</span><span class="val" id="profileStreak">0 Days</span></div>
+            </div>
+            <button class="profile-btn blue" onclick="editProfile()">✏️ Edit Name & Avatar</button>
+            <button class="profile-btn purple" onclick="shareProfile()">🔗 Share My Profile</button>
         </div>
     </div>
 
@@ -549,7 +581,7 @@
 
 <script>
 // ============================================================
-// TRAXOFFICIAL — COMPLETE GAME LOGIC (Updated)
+// TRAXOFFICIAL — FINAL GAME LOGIC
 // ============================================================
 
 const tg = window.Telegram?.WebApp;
@@ -571,7 +603,11 @@ const S = {
     spinActive: false, twistActive: false, crashActive: false,
     crashMult: 1, crashTimer: null, flipActive: false, flipBet: 1000,
     flipChoice: null, twistBet: 1000, crashBet: 1000,
-    // Leaderboard reward tracking
+    // Cooldowns
+    boosterCooldown: 0, upgradeCooldown: 0,
+    // Spin cooldown
+    lastFreeSpin: 0, spinCount: 0,
+    // Leaderboard
     lbLastReward: 0,
 };
 
@@ -587,6 +623,7 @@ function save() {
         taskTg: S.taskTg, taskX: S.taskX, taskYt: S.taskYt, taskInvite: S.taskInvite,
         missions: S.missions, missionsClaimed: S.missionsClaimed,
         sound: S.sound, vibration: S.vibration, lbLastReward: S.lbLastReward,
+        lastFreeSpin: S.lastFreeSpin, spinCount: S.spinCount,
     };
     localStorage.setItem('trax_save', JSON.stringify(d));
 }
@@ -654,6 +691,7 @@ function navTo(tab) {
     if (tab === 'nft') { renderNFTGrid('all'); }
     if (tab === 'home') updateHomeUI();
     if (tab === 'wallet') updateHeaderUI();
+    if (tab === 'profile') updateProfileUI();
     save();
 }
 
@@ -786,13 +824,7 @@ function updateHeaderUI() {
     document.getElementById('walletBalance').textContent = formatNum(S.balance);
     document.getElementById('walletDiamonds').textContent = formatNum(S.diamonds);
     document.getElementById('walletDiamondUsd').textContent = (S.diamonds * 0.01).toFixed(2);
-    document.getElementById('profileName').textContent = S.username;
-    document.getElementById('profileId').textContent = 'ID: ' + S.playerId;
-    document.getElementById('profileAvatar').textContent = S.avatar;
-    document.getElementById('profileEarned').textContent = formatNum(S.totalEarned);
-    document.getElementById('profileTaps').textContent = S.taps;
-    document.getElementById('profileLevel').textContent = S.level;
-    document.getElementById('profileRank').textContent = getRankFromRP(S.rp).name + ' #' + getRankFromRP(S.rp).id;
+    updateProfileUI();
 }
 
 function updateHomeUI() {
@@ -816,15 +848,33 @@ function updateHomeUI() {
     document.getElementById('dailyBadge').textContent = 'Day ' + (S.streak + 1);
 }
 
+function updateProfileUI() {
+    document.getElementById('profileAvatar').innerHTML = S.avatar;
+    document.getElementById('profileName').textContent = S.username;
+    document.getElementById('profileId').textContent = 'ID: #' + S.playerId;
+    document.getElementById('profileLevelBadge').textContent = '⭐ Level ' + S.level;
+    document.getElementById('profileBalance').textContent = formatNum(S.balance);
+    document.getElementById('profileEarned').textContent = formatNum(S.totalEarned);
+    document.getElementById('profileTaps').textContent = S.taps;
+    document.getElementById('profileRank').textContent = getRankFromRP(S.rp).name + ' #' + getRankFromRP(S.rp).id;
+    document.getElementById('profileUsername').textContent = S.username;
+    document.getElementById('profilePlayerId').textContent = '#' + S.playerId;
+    document.getElementById('profileLevel').textContent = S.level;
+    document.getElementById('profileTapPower').textContent = '+' + S.tapPower;
+    document.getElementById('profileMaxEnergy').textContent = S.maxEnergy;
+    document.getElementById('profileStreak').textContent = S.streak + ' Days';
+}
+
 function updateAllUI() {
     updateHeaderUI(); updateHomeUI(); renderNFTGrid('all');
     if (S.activeTab === 'rank') renderRankPage();
+    if (S.activeTab === 'profile') updateProfileUI();
     renderHomeLeaderboard();
     save();
 }
 
-// ===== TAP =====
-document.getElementById('tapCoin').addEventListener('click', function(e) {
+// ===== TAP (Click on whole box) =====
+document.getElementById('tapMain').addEventListener('click', function(e) {
     if (S.energy < 1) { showToast('Energy khatam! Wait for recharge.', 'error'); return; }
     const now = Date.now();
     if (now - S.lastTapTime < 50) return;
@@ -946,52 +996,82 @@ function buyNFT(id, cost) {
     renderNFTGrid('all');
 }
 
-// ===== GAMES (With 75% Lose Rate) =====
-// --- SPIN ---
+// ===== GAMES =====
+// --- SPIN (Updated: 12hr free spin, 6 slots, 95% win rate) ---
 function openSpin() {
     if (S.spinActive) return; S.spinActive = true;
+    const now = Date.now();
+    const freeReady = (now - S.lastFreeSpin) >= 12 * 3600 * 1000;
     openModal(`
         <div class="game-modal-box">
             <div class="modal-title">🎰 Spin to Win!</div>
-            <div style="font-size:11px;color:#8899aa;">Paid Spins · 10,000 TRAX each</div>
+            <div style="font-size:11px;color:#8899aa;margin-bottom:8px;">${freeReady ? '✅ Free Spin Available!' : '⏳ Next free spin in ' + formatTime(12*3600*1000 - (now - S.lastFreeSpin))}</div>
             <div class="spin-wheel" id="spinWheel">
-                <div style="position:absolute;width:100%;height:100%;border-radius:50%;background:conic-gradient(#00d4ff 0deg 45deg, #00ff88 45deg 90deg, #ffd700 90deg 135deg, #ff0055 135deg 180deg, #a040ff 180deg 225deg, #ffaa00 225deg 270deg, #00ff88 270deg 315deg, #00d4ff 315deg 360deg);"></div>
+                <div style="position:absolute;width:100%;height:100%;border-radius:50%;background:conic-gradient(#00d4ff 0deg 60deg, #00ff88 60deg 120deg, #ffd700 120deg 180deg, #ff0055 180deg 240deg, #a040ff 240deg 300deg, #ffaa00 300deg 360deg);"></div>
                 <div class="spin-pointer"></div>
             </div>
             <div id="spinResult" style="font-size:20px;font-weight:700;min-height:30px;"></div>
-            <button class="modal-btn primary" onclick="doSpin()" id="spinBtn">SPIN (10,000 TRAX)</button>
+            <div style="font-size:10px;color:#8899aa;margin-bottom:6px;">Slots: 1K | 5K | 10K | 50K | 75K | 100K</div>
+            <button class="modal-btn primary" onclick="doSpin(${freeReady})" id="spinBtn">${freeReady ? 'FREE SPIN' : 'SPIN (10,000 TRAX)'}</button>
             <button class="modal-btn secondary" onclick="closeModal();S.spinActive=false;">Close</button>
         </div>
     `);
 }
-function doSpin() {
-    if (S.balance < 10000) { showToast('Not enough TRAX!', 'error'); return; }
-    S.balance -= 10000;
-    // 75% lose, 25% win
-    const win = Math.random() < 0.25;
-    if (win) {
-        const prizes = [500, 1000, 5000, 10000, 50000, 100000];
-        const amt = prizes[Math.floor(Math.random() * prizes.length)];
-        S.balance += amt; S.totalEarned += amt;
-        document.getElementById('spinResult').innerHTML = `🎉 YOU WON <span style="color:#00ff88;">+${formatNum(amt)} TRAX</span>`;
-        showToast(`🎉 Won ${formatNum(amt)} TRAX!`, 'success');
+function formatTime(ms) {
+    const h = Math.floor(ms / 3600000);
+    const m = Math.floor((ms % 3600000) / 60000);
+    const s = Math.floor((ms % 60000) / 1000);
+    return `${h}h ${m}m ${s}s`;
+}
+function doSpin(freeReady) {
+    if (freeReady) {
+        S.lastFreeSpin = Date.now();
     } else {
-        document.getElementById('spinResult').innerHTML = `❌ YOU LOST <span style="color:#ff0055;">-10,000 TRAX</span>`;
-        showToast('❌ You lost!', 'error');
+        if (S.balance < 10000) { showToast('Not enough TRAX!', 'error'); return; }
+        S.balance -= 10000;
     }
+    // 95% win rate: 5K or 10K
+    const r = Math.random();
+    let amt = 0;
+    if (r < 0.95) {
+        // 95% chance: 5K or 10K
+        amt = Math.random() < 0.5 ? 5000 : 10000;
+    } else if (r < 0.98) {
+        // 3% chance: 50K
+        amt = 50000;
+    } else if (r < 0.99) {
+        // 1% chance: 75K
+        amt = 75000;
+    } else {
+        // 1% chance: 100K
+        amt = 100000;
+    }
+    S.balance += amt; S.totalEarned += amt;
+    document.getElementById('spinResult').innerHTML = `🎉 YOU WON <span style="color:#00ff88;">+${formatNum(amt)} TRAX</span>`;
+    showToast(`🎉 Won ${formatNum(amt)} TRAX!`, 'success');
     updateHeaderUI(); save();
+    // Refresh button
+    setTimeout(() => { openSpin(); }, 1500);
 }
 
-// --- TWIST ---
+// --- TWIST (Updated UI Pic 3) ---
 function openTwist() {
     if (S.twistActive) return; S.twistActive = true;
     openModal(`
         <div class="game-modal-box">
             <div class="modal-title">🌀 TWIST</div>
-            <div style="font-size:11px;color:#8899aa;">Inner 2x-5x · Middle 7x-20x · Outer 28x-200x</div>
-            <div style="width:180px;height:180px;border-radius:50%;margin:10px auto;background:conic-gradient(#00d4ff 0deg 30deg, #00ff88 30deg 60deg, #ffd700 60deg 90deg, #ff0055 90deg 120deg, #a040ff 120deg 150deg, #ffaa00 150deg 180deg, #00d4ff 180deg 210deg, #00ff88 210deg 240deg, #ffd700 240deg 270deg, #ff0055 270deg 300deg, #a040ff 300deg 330deg, #ffaa00 330deg 360deg);display:flex;align-items:center;justify-content:center;position:relative;">
-                <div style="width:30px;height:30px;border-radius:50%;background:#fff;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);"></div>
-                <div style="position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:10px solid transparent;border-right:10px solid transparent;border-top:20px solid #ff0055;"></div>
+            <div style="display:flex;justify-content:space-around;font-size:10px;color:#8899aa;margin-bottom:6px;">
+                <span>INNER<br><b style="color:#ffd700;">2x - 5x</b></span>
+                <span>MIDDLE<br><b style="color:#ffd700;">7x - 20x</b></span>
+                <span>OUTER<br><b style="color:#ffd700;">28x - 200x</b></span>
+            </div>
+            <div style="width:200px;height:200px;border-radius:50%;margin:10px auto;position:relative;background:conic-gradient(#00d4ff 0deg 30deg, #00ff88 30deg 60deg, #ffd700 60deg 90deg, #ff0055 90deg 120deg, #a040ff 120deg 150deg, #ffaa00 150deg 180deg, #00d4ff 180deg 210deg, #00ff88 210deg 240deg, #ffd700 240deg 270deg, #ff0055 270deg 300deg, #a040ff 300deg 330deg, #ffaa00 330deg 360deg);display:flex;align-items:center;justify-content:center;">
+                <div style="width:40px;height:40px;border-radius:50%;background:#fff;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:5;"></div>
+                <div style="position:absolute;top:-8px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:12px solid transparent;border-right:12px solid transparent;border-top:24px solid #ff0055;z-index:6;"></div>
+                <!-- Inner ring -->
+                <div style="position:absolute;width:60%;height:60%;border-radius:50%;border:2px solid rgba(255,215,0,0.3);"></div>
+                <!-- Middle ring -->
+                <div style="position:absolute;width:80%;height:80%;border-radius:50%;border:2px solid rgba(255,215,0,0.3);"></div>
             </div>
             <div id="twistResult" style="font-size:20px;font-weight:700;min-height:30px;"></div>
             <div class="bet-buttons">
@@ -1024,7 +1104,7 @@ function doTwist() {
     updateHeaderUI(); save();
 }
 
-// --- PUZZLE (Updated Logo & Grid) ---
+// --- PUZZLE ---
 function openPuzzle() {
     openModal(`
         <div class="game-modal-box">
@@ -1055,7 +1135,6 @@ function startPuzzleGame() {
     document.getElementById('puzzleGameArea').innerHTML = html;
 }
 function completePuzzle(reward) {
-    // 75% lose, 25% win
     const win = Math.random() < 0.25;
     if (win) {
         S.balance += reward; S.totalEarned += reward;
@@ -1097,7 +1176,6 @@ function startCrash() {
     document.getElementById('crashStatus').textContent = 'Crash ho gaya toh paisa gaya! Cashout karein.';
     document.getElementById('crashMult').style.color = '#00ff88';
     S.crashActive = true;
-    // 75% lose: crash at random low mult
     const crashPoint = Math.random() < 0.75 ? (1.00 + Math.random() * 0.5) : (2.0 + Math.random() * 5);
     S.crashTimer = setInterval(() => {
         S.crashMult += 0.05 + Math.random() * 0.1;
@@ -1155,7 +1233,6 @@ function doFlip() {
     const bet = S.flipBet || 1000;
     if (S.balance < bet) { showToast('Not enough TRAX!', 'error'); return; }
     S.balance -= bet;
-    // 75% lose, 25% win
     const win = Math.random() < 0.25;
     const result = win ? S.flipChoice : (S.flipChoice === 'T' ? 'R' : 'T');
     document.getElementById('flipCoin').textContent = result;
@@ -1174,7 +1251,7 @@ function doFlip() {
 // ===== GAME INFO =====
 function showGameInfo(game) {
     const infos = {
-        spin: '🎰 Lucky Spin: 10,000 TRAX per spin. Win up to 500,000 TRAX!',
+        spin: '🎰 Lucky Spin: 12hr free spin, then 10K per spin. 6 slots, win up to 100K!',
         twist: '🌀 Twist: Choose bet, spin wheel. Multipliers from 2x to 200x!',
         puzzle: '🧩 Puzzle: Complete the puzzle. Easy 50K, Medium 30K, Hard 10K!',
         crash: '🚀 Crash: Multiplier grows, cashout before crash. If crash, you lose!',
@@ -1183,7 +1260,7 @@ function showGameInfo(game) {
     openModal(`<div class="modal-title">ℹ️ Game Info</div><div class="modal-text">${infos[game] || 'Info not available'}</div><button class="modal-btn secondary" onclick="closeModal()">Close</button>`);
 }
 
-// ===== ATTENDANCE (Fixed) =====
+// ===== ATTENDANCE =====
 function claimAttendance() {
     const today = new Date().toDateString();
     if (S.streakLast === today) { showToast('Aaj ka reward claim ho chuka hai!', 'error'); return; }
@@ -1221,36 +1298,40 @@ function updateRedPocketTimer() {
 }
 setInterval(updateRedPocketTimer, 1000);
 
-// ===== BOOSTERS =====
+// ===== BOOSTERS (Updated: Coins, Cooldown) =====
 function openBoosters() {
+    const now = Date.now();
+    const cooldownReady = (now - S.boosterCooldown) >= 60000; // 1 min cooldown
     openModal(`
         <div class="modal-title">🚀 Boosters</div>
+        <div style="font-size:11px;color:#8899aa;margin-bottom:6px;">${cooldownReady ? '✅ Ready to use!' : '⏳ Cooldown: ' + Math.ceil((60000 - (now - S.boosterCooldown))/1000) + 's'}</div>
         <div style="display:flex;flex-direction:column;gap:8px;margin-top:10px;">
             <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.04);padding:12px;border-radius:12px;">
                 <div><div style="font-weight:700;">Auto Tap</div><div style="font-size:10px;color:#8899aa;">+1 tap power</div></div>
-                <button class="modal-btn primary" style="width:auto;padding:8px 16px;margin:0;" onclick="buyBooster('auto')">100💎</button>
+                <button class="modal-btn primary" style="width:auto;padding:8px 16px;margin:0;${cooldownReady?'':'opacity:0.5;pointer-events:none;'}" onclick="buyBooster('auto')">500💰</button>
             </div>
             <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.04);padding:12px;border-radius:12px;">
                 <div><div style="font-weight:700;">Energy Refill</div><div style="font-size:10px;color:#8899aa;">+50 energy</div></div>
-                <button class="modal-btn primary" style="width:auto;padding:8px 16px;margin:0;" onclick="buyBooster('energy')">10💎</button>
+                <button class="modal-btn primary" style="width:auto;padding:8px 16px;margin:0;${cooldownReady?'':'opacity:0.5;pointer-events:none;'}" onclick="buyBooster('energy')">200💰</button>
             </div>
             <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.04);padding:12px;border-radius:12px;">
                 <div><div style="font-weight:700;">2x Earnings</div><div style="font-size:10px;color:#8899aa;">Double tap earnings</div></div>
-                <button class="modal-btn primary" style="width:auto;padding:8px 16px;margin:0;" onclick="buyBooster('double')">50💎</button>
+                <button class="modal-btn primary" style="width:auto;padding:8px 16px;margin:0;${cooldownReady?'':'opacity:0.5;pointer-events:none;'}" onclick="buyBooster('double')">1000💰</button>
             </div>
             <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.04);padding:12px;border-radius:12px;">
                 <div><div style="font-weight:700;">Offline Profit</div><div style="font-size:10px;color:#8899aa;">+5,000 coins</div></div>
-                <button class="modal-btn primary" style="width:auto;padding:8px 16px;margin:0;" onclick="buyBooster('offline')">25💎</button>
+                <button class="modal-btn primary" style="width:auto;padding:8px 16px;margin:0;${cooldownReady?'':'opacity:0.5;pointer-events:none;'}" onclick="buyBooster('offline')">800💰</button>
             </div>
         </div>
         <button class="modal-btn secondary" onclick="closeModal()">Close</button>
     `);
 }
 function buyBooster(type) {
-    const costs = { auto: 100, energy: 10, double: 50, offline: 25 };
+    const costs = { auto: 500, energy: 200, double: 1000, offline: 800 };
     const cost = costs[type];
-    if (S.diamonds < cost) { showToast('Not enough Diamonds!', 'error'); return; }
-    S.diamonds -= cost;
+    if (S.balance < cost) { showToast('Not enough TRAX!', 'error'); return; }
+    S.balance -= cost;
+    S.boosterCooldown = Date.now();
     if (type === 'auto') S.boosterAuto += 1;
     if (type === 'energy') S.energy = Math.min(S.maxEnergy, S.energy + 50);
     if (type === 'double') S.boosterDouble += 2;
@@ -1258,26 +1339,29 @@ function buyBooster(type) {
     save(); updateAllUI(); showToast('✅ Booster activated!', 'success'); closeModal();
 }
 
-// ===== UPGRADES =====
+// ===== UPGRADES (Updated: Coins, Cooldown) =====
 function openUpgrades() {
+    const now = Date.now();
+    const cooldownReady = (now - S.upgradeCooldown) >= 60000;
     openModal(`
         <div class="modal-title">⬆️ Upgrades</div>
+        <div style="font-size:11px;color:#8899aa;margin-bottom:6px;">${cooldownReady ? '✅ Ready to use!' : '⏳ Cooldown: ' + Math.ceil((60000 - (now - S.upgradeCooldown))/1000) + 's'}</div>
         <div style="display:flex;flex-direction:column;gap:8px;margin-top:10px;">
             <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.04);padding:12px;border-radius:12px;">
                 <div><div style="font-weight:700;">Tap Power</div><div style="font-size:10px;color:#8899aa;">+1 tap power</div></div>
-                <button class="modal-btn primary" style="width:auto;padding:8px 16px;margin:0;" onclick="buyUpgrade('tap')">500💰</button>
+                <button class="modal-btn primary" style="width:auto;padding:8px 16px;margin:0;${cooldownReady?'':'opacity:0.5;pointer-events:none;'}" onclick="buyUpgrade('tap')">500💰</button>
             </div>
             <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.04);padding:12px;border-radius:12px;">
                 <div><div style="font-weight:700;">Max Energy</div><div style="font-size:10px;color:#8899aa;">+50 max energy</div></div>
-                <button class="modal-btn primary" style="width:auto;padding:8px 16px;margin:0;" onclick="buyUpgrade('energy')">1000💰</button>
+                <button class="modal-btn primary" style="width:auto;padding:8px 16px;margin:0;${cooldownReady?'':'opacity:0.5;pointer-events:none;'}" onclick="buyUpgrade('energy')">1000💰</button>
             </div>
             <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.04);padding:12px;border-radius:12px;">
                 <div><div style="font-weight:700;">Auto Earn</div><div style="font-size:10px;color:#8899aa;">+100/hr auto</div></div>
-                <button class="modal-btn primary" style="width:auto;padding:8px 16px;margin:0;" onclick="buyUpgrade('auto')">2000💰</button>
+                <button class="modal-btn primary" style="width:auto;padding:8px 16px;margin:0;${cooldownReady?'':'opacity:0.5;pointer-events:none;'}" onclick="buyUpgrade('auto')">2000💰</button>
             </div>
             <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.04);padding:12px;border-radius:12px;">
                 <div><div style="font-weight:700;">Mining Power</div><div style="font-size:10px;color:#8899aa;">+5 mining coins</div></div>
-                <button class="modal-btn primary" style="width:auto;padding:8px 16px;margin:0;" onclick="buyUpgrade('mining')">5000💰</button>
+                <button class="modal-btn primary" style="width:auto;padding:8px 16px;margin:0;${cooldownReady?'':'opacity:0.5;pointer-events:none;'}" onclick="buyUpgrade('mining')">5000💰</button>
             </div>
         </div>
         <button class="modal-btn secondary" onclick="closeModal()">Close</button>
@@ -1288,6 +1372,7 @@ function buyUpgrade(type) {
     const cost = costs[type];
     if (S.balance < cost) { showToast('Not enough TRAX!', 'error'); return; }
     S.balance -= cost;
+    S.upgradeCooldown = Date.now();
     if (type === 'tap') S.tapPower += 1;
     if (type === 'energy') S.maxEnergy += 50;
     if (type === 'auto') S.upgAuto += 100;
@@ -1368,7 +1453,7 @@ function openSettings() {
     }, 200);
 }
 
-// ===== DEPOSIT (Updated Message) =====
+// ===== DEPOSIT =====
 function openDeposit(method) {
     const names = { stars: 'Telegram Stars', ton: 'TON Wallet', binance: 'Binance Pay', crypto: 'Crypto (USDT/BTC/ETH)' };
     openModal(`
@@ -1382,47 +1467,56 @@ function openDeposit(method) {
     `);
 }
 
-// ===== LEADERBOARD (Updated: Show rank after 100K, Top 3 reward) =====
-function renderHomeLeaderboard() {
-    const names = ['CryptoKing', 'TraxMaster', 'MoonBoy', 'WhaleAlert', 'SatoshiFan', 'DiamondHands', 'TraxLegend', 'CoinHunter'];
-    const container = document.getElementById('homeLeaderboard');
-    // Simulate other players
-    let players = names.map((n, i) => ({
-        name: n,
-        score: Math.floor(500000 + Math.random() * 2000000),
-        isMe: false
-    }));
-    // Add user if they have > 100,000 coins
-    if (S.balance >= 100000) {
-        players.push({ name: S.username + ' (You)', score: S.balance, isMe: true });
+// ===== PROFILE EDIT =====
+function editProfile() {
+    openModal(`
+        <div class="modal-title">✏️ Edit Profile</div>
+        <div style="margin-top:10px;">
+            <input type="text" id="editName" value="${S.username}" placeholder="Enter name" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.05);color:#fff;font-size:14px;outline:none;">
+            <div style="display:flex;gap:6px;margin-top:10px;flex-wrap:wrap;">
+                ${['👤','🐱','🐶','🦊','🐼','🐸','🦁','🐯','🐨','🐵','🦄','🐉'].map(e => `<div onclick="S.avatar='${e}';updateProfileUI();this.parentElement.querySelectorAll('div').forEach(d=>d.style.border='2px solid transparent');this.style.border='2px solid #00d4ff';" style="width:40px;height:40px;border-radius:50%;background:#1a2332;display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer;border:2px solid transparent;">${e}</div>`).join('')}
+            </div>
+        </div>
+        <button class="modal-btn success" onclick="saveProfile()">Save</button>
+        <button class="modal-btn secondary" onclick="closeModal()">Cancel</button>
+    `);
+}
+function saveProfile() {
+    const n = document.getElementById('editName').value.trim();
+    if (n) S.username = n;
+    S.playerId = S.playerId || Math.floor(100000 + Math.random() * 900000);
+    save(); updateProfileUI(); updateHeaderUI();
+    showToast('✅ Profile updated!', 'success'); closeModal();
+}
+function shareProfile() {
+    const url = 'https://t.me/TraxOfficial_bot?start=' + S.playerId;
+    if (navigator.share) {
+        navigator.share({ title: 'TraxOfficial', text: 'Join me on TraxOfficial!', url: url });
+    } else {
+        navigator.clipboard.writeText(url).then(() => showToast('🔗 Link copied!', 'success'));
     }
-    // Sort by score
-    players.sort((a, b) => b.score - a.score);
-    // Top 3 reward check (simulated 24hr)
+}
+
+// ===== LEADERBOARD (Updated: No fake names, only user if 100K+) =====
+function renderHomeLeaderboard() {
+    const container = document.getElementById('homeLeaderboard');
+    // Only show user if they have 100K+ coins
+    if (S.balance < 100000) {
+        container.innerHTML = `<div style="text-align:center;padding:20px;color:#8899aa;font-size:12px;">Earn 100,000+ TRAX to appear on the leaderboard!</div>`;
+        return;
+    }
+    // Simulate: user is the only one on the leaderboard for now
+    let html = `<div class="lb-row my-rank"><span class="pos gold">#1</span><span class="name">${S.username} (You)</span><span class="score">${formatNum(S.balance)}</span></div>`;
+    container.innerHTML = html;
+    // Reward check: Top 1 gets 50K every 24hr
     const now = Date.now();
     if (now - S.lbLastReward > 86400000) {
-        // Reward top 3
-        const top3 = players.slice(0, 3);
-        // If user is in top 3, reward them
-        if (top3.some(p => p.isMe)) {
-            const rank = top3.findIndex(p => p.isMe) + 1;
-            const rewards = { 1: 50000, 2: 30000, 3: 20000 };
-            const reward = rewards[rank];
-            S.balance += reward;
-            S.lbLastReward = now;
-            showToast(`🏆 Leaderboard Reward! You ranked #${rank} and won ${formatNum(reward)} TRAX!`, 'success');
-            save();
-        }
+        const reward = 50000;
+        S.balance += reward;
+        S.lbLastReward = now;
+        showToast(`🏆 Leaderboard Reward! You ranked #1 and won ${formatNum(reward)} TRAX!`, 'success');
+        save();
     }
-    let html = '';
-    players.slice(0, 8).forEach((p, i) => {
-        const pos = i + 1;
-        let cls = '';
-        if (pos === 1) cls = 'gold'; if (pos === 2) cls = 'silver'; if (pos === 3) cls = 'bronze';
-        const rowCls = p.isMe ? 'my-rank' : '';
-        html += `<div class="lb-row ${rowCls}"><span class="pos ${cls}">#${pos}</span><span class="name">${p.name}</span><span class="score">${formatNum(p.score)}</span></div>`;
-    });
-    container.innerHTML = html;
 }
 
 // ===== TIMERS =====
@@ -1444,15 +1538,14 @@ function init() {
     load();
     updateAllUI();
     updateHomeUI();
+    updateProfileUI();
     renderHomeLeaderboard();
     renderNFTGrid('all');
     updateRedPocketTimer();
     save();
-    // Auto tap
     setInterval(() => {
         if (S.boosterAuto > 0) { S.balance += S.boosterAuto; S.totalEarned += S.boosterAuto; updateHeaderUI(); }
     }, 1000);
-    // Auto earn
     setInterval(() => {
         if (S.upgAuto > 0) { S.balance += S.upgAuto / 3600; S.totalEarned += S.upgAuto / 3600; updateHeaderUI(); }
     }, 1000);
@@ -1465,7 +1558,7 @@ document.getElementById('modalOverlay').addEventListener('click', function(e) {
 });
 document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
 
-console.log('🚀 TraxOfficial updated successfully!');
+console.log('🚀 TraxOfficial FINAL loaded!');
 </script>
 </body>
-</html>
+    </html>
