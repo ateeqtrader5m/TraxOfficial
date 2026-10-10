@@ -206,14 +206,15 @@
         .fund-item .arrow { color: #8899aa; font-size: 16px; }
         .fund-item.disabled { opacity: 0.5; cursor: not-allowed; }
 
-        /* PROFILE (Blue Theme) */
+        /* PROFILE (100% SAME AS SCREENSHOT) */
         .profile-scroll { padding: 12px 14px; display: flex; flex-direction: column; gap: 12px; }
-        .profile-header { background: linear-gradient(135deg, #0a1a2a, #050a14); border: 1px solid rgba(0, 212, 255, 0.3); border-radius: 16px; padding: 20px; text-align: center; position: relative; }
-        .profile-header .avatar-big { width: 80px; height: 80px; border-radius: 50%; background: #1a2332; border: 3px solid #00d4ff; margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 36px; overflow: hidden; }
+        .profile-header { background: linear-gradient(135deg, #0a1a2a, #050a14); border: 1px solid rgba(0, 212, 255, 0.3); border-radius: 16px; padding: 20px; text-align: center; position: relative; overflow: hidden; }
+        .profile-header::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at 30% 30%, rgba(0,212,255,0.1), transparent 70%); pointer-events: none; }
+        .profile-header .avatar-big { width: 80px; height: 80px; border-radius: 50%; background: #1a2332; border: 3px solid #00d4ff; margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 36px; overflow: hidden; position: relative; z-index: 1; box-shadow: 0 0 30px rgba(0,212,255,0.3); }
         .profile-header .avatar-big img { width: 100%; height: 100%; object-fit: cover; }
-        .profile-header .p-name { font-size: 20px; font-weight: 800; margin-top: 10px; color: #fff; }
-        .profile-header .p-id { font-size: 12px; color: #8899aa; margin-top: 2px; }
-        .profile-header .p-level { display: inline-block; background: #ffd700; color: #050a14; padding: 2px 12px; border-radius: 10px; font-size: 11px; font-weight: 700; margin-top: 6px; }
+        .profile-header .p-name { font-size: 20px; font-weight: 800; margin-top: 10px; color: #fff; position: relative; z-index: 1; }
+        .profile-header .p-id { font-size: 12px; color: #8899aa; margin-top: 2px; position: relative; z-index: 1; }
+        .profile-header .p-level { display: inline-block; background: #ffd700; color: #050a14; padding: 2px 12px; border-radius: 10px; font-size: 11px; font-weight: 700; margin-top: 6px; position: relative; z-index: 1; }
         .profile-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         .profile-stat { background: linear-gradient(135deg, #0a1a2a, #050a14); border: 1px solid rgba(0, 212, 255, 0.2); border-radius: 14px; padding: 12px; text-align: center; }
         .profile-stat .lbl { font-size: 9px; color: #8899aa; }
@@ -533,7 +534,7 @@
         </div>
     </div>
 
-    <!-- PROFILE (Blue Theme) -->
+    <!-- PROFILE (100% SAME AS SCREENSHOT) -->
     <div class="page" id="page-profile">
         <div class="scrollable profile-scroll">
             <div class="profile-header">
@@ -606,14 +607,10 @@ const S = {
     spinActive: false, twistActive: false, crashActive: false,
     crashMult: 1, crashTimer: null, flipActive: false, flipBet: 1000,
     flipChoice: null, twistBet: 1000, crashBet: 1000,
-    // Individual cooldowns (timestamp)
     cdTap: 0, cdAuto: 0, cdEnergy: 0, cdDouble: 0, cdOffline: 0,
     cdUpgrade: 0, cdMine: 0, cdPocket: 0, cdSpinFree: 0,
-    // Profile edit cooldown
     lastProfileEdit: 0,
-    // Custom bets
     spinBet: 10000, twistBetCustom: 1000, crashBetCustom: 1000, flipBetCustom: 1000,
-    // Leaderboard
     lbLastReset: 0, lbHighest: 0,
 };
 
@@ -881,7 +878,6 @@ function updateProfileUI() {
     document.getElementById('profileTapPower').textContent = '+' + S.tapPower;
     document.getElementById('profileMaxEnergy').textContent = S.maxEnergy;
     document.getElementById('profileStreak').textContent = S.streak + ' Days';
-    // Profile edit cooldown
     const now = Date.now();
     const canEdit = (now - S.lastProfileEdit) >= 7 * 24 * 3600 * 1000;
     const btn = document.getElementById('editProfileBtn');
@@ -1022,8 +1018,7 @@ function buyNFT(id, cost) {
     renderNFTGrid('all');
 }
 
-// ===== GAMES (Reset on close for re-open) =====
-// --- SPIN (UI like Pic 2, custom bet, cooldown 12hr free) ---
+// ===== GAMES =====
 function openSpin() {
     if (S.spinActive) return;
     S.spinActive = true;
@@ -1074,7 +1069,6 @@ function doSpin(freeReady) {
     setTimeout(() => { closeModal(); S.spinActive = false; openSpin(); }, 1500);
 }
 
-// --- TWIST (UI like Pic 3) ---
 function openTwist() {
     if (S.twistActive) return;
     S.twistActive = true;
@@ -1124,7 +1118,6 @@ function doTwist() {
     updateHeaderUI(); save();
 }
 
-// --- PUZZLE ---
 function openPuzzle() {
     openModal(`
         <div class="game-modal-box">
@@ -1165,7 +1158,6 @@ function completePuzzle(reward) {
     save(); updateHeaderUI(); closeModal();
 }
 
-// --- CRASH ---
 function openCrash() {
     if (S.crashActive) return;
     S.crashActive = true;
@@ -1229,7 +1221,6 @@ function cashOutCrash() {
     updateHeaderUI(); save();
 }
 
-// --- COIN FLIP ---
 function openCoinFlip() {
     if (S.flipActive) return;
     S.flipActive = true;
@@ -1275,7 +1266,6 @@ function doFlip() {
     updateHeaderUI(); save();
 }
 
-// ===== GAME INFO =====
 function showGameInfo(game) {
     const infos = {
         spin: '🎰 Lucky Spin: 12hr free spin, then 10K+ per spin. 6 slots, win up to 100K!',
@@ -1300,7 +1290,7 @@ function claimAttendance() {
     showToast(`📅 Day ${S.streak} claimed! +${reward} TRAX`, 'success');
 }
 
-// ===== RED POCKET (Cooldown 15min) =====
+// ===== RED POCKET =====
 function openRedPocket() {
     const now = Date.now();
     if (now - S.cdPocket < 900000) {
@@ -1325,7 +1315,7 @@ function updateRedPocketTimer() {
 }
 setInterval(updateRedPocketTimer, 1000);
 
-// ===== BOOSTERS (Coins, Individual Cooldowns) =====
+// ===== BOOSTERS =====
 function openBoosters() {
     const now = Date.now();
     const items = [
@@ -1362,7 +1352,7 @@ function buyBooster(type) {
     save(); updateAllUI(); showToast('✅ Booster activated!', 'success'); closeModal();
 }
 
-// ===== UPGRADES (Coins, Cooldown 5min) =====
+// ===== UPGRADES =====
 function openUpgrades() {
     const now = Date.now();
     const ready = (now - S.cdUpgrade) >= 300000;
@@ -1478,7 +1468,7 @@ function openSettings() {
     }, 200);
 }
 
-// ===== PROFILE EDIT (7-day cooldown) =====
+// ===== PROFILE EDIT =====
 function editProfile() {
     const now = Date.now();
     if (now - S.lastProfileEdit < 7 * 24 * 3600 * 1000) {
@@ -1513,30 +1503,25 @@ function shareProfile() {
     }
 }
 
-// ===== LEADERBOARD (Reset every 30min, announce new record) =====
+// ===== LEADERBOARD =====
 function renderHomeLeaderboard() {
     const now = Date.now();
-    // Reset every 30 min
     if (now - S.lbLastReset > 1800000) {
         S.lbLastReset = now;
         S.lbHighest = 0;
         showToast('🏆 Leaderboard reset! New round started.', 'success');
     }
     const container = document.getElementById('homeLeaderboard');
-    // Only show user if they have 100K+ coins
     if (S.balance < 100000) {
         container.innerHTML = `<div style="text-align:center;padding:20px;color:#8899aa;font-size:12px;">Earn 100,000+ TRAX to appear on the leaderboard!</div>`;
         return;
     }
-    // Check for new record
     if (S.balance > S.lbHighest) {
         S.lbHighest = S.balance;
         showToast('🎉 New record! You are #1 on the leaderboard!', 'success');
     }
-    // User is #1
     let html = `<div class="lb-row my-rank"><span class="pos gold">#1</span><span class="name">${S.username} (You)</span><span class="score">${formatNum(S.balance)}</span></div>`;
     container.innerHTML = html;
-    // Top 1 reward: 50K every 30 min
     const timeSinceReset = now - S.lbLastReset;
     if (timeSinceReset > 1800000 && S.lbHighest === S.balance) {
         const reward = 50000;
@@ -1591,4 +1576,4 @@ document.addEventListener('keydown', function(e) { if (e.key === 'Escape') close
 console.log('🚀 TraxOfficial FINAL loaded!');
 </script>
 </body>
-            </html>
+    </html>
