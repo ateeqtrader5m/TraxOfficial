@@ -3,177 +3,209 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TraxOfficial - Admin Panel PRO</title>
+<title>TraxOfficial - Admin Panel</title>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-  body { background: #050a14; color: white; min-height: 100vh; padding: 15px; }
-  .container { max-width: 1000px; margin: 0 auto; }
-  .header { text-align: center; margin-bottom: 20px; padding: 20px 0; border-bottom: 1px solid rgba(0,212,255,0.3); }
-  .header h1 { font-size: 26px; font-weight: 900; color: #00d4ff; text-shadow: 0 0 20px rgba(0,212,255,0.6); }
-  .header p { font-size: 12px; color: #7a8ba5; margin-top: 5px; letter-spacing: 2px; }
-  .login-box { max-width: 400px; margin: 60px auto; background: linear-gradient(135deg, rgba(0,180,255,0.1), rgba(150,0,255,0.05)); border: 2px solid rgba(0,212,255,0.5); border-radius: 20px; padding: 30px 25px; text-align: center; }
-  .login-box h2 { font-size: 22px; font-weight: 900; color: #00d4ff; margin-bottom: 20px; }
-  .login-box input { width: 100%; background: rgba(0,0,0,0.4); border: 1.5px solid rgba(0,212,255,0.4); border-radius: 12px; padding: 14px; color: white; font-size: 15px; font-weight: 900; text-align: center; outline: none; margin-bottom: 15px; letter-spacing: 3px; }
-  .login-box button { width: 100%; background: linear-gradient(135deg, #00ff88, #00aa55); border: none; border-radius: 12px; padding: 15px; color: white; font-size: 15px; font-weight: 900; cursor: pointer; letter-spacing: 2px; }
+  body { background: #050a14; color: white; min-height: 100vh; padding: 10px; overflow-x: hidden; padding-bottom: 120px; }
+  .container { max-width: 100%; margin: 0 auto; padding: 0 5px; }
+  .header { text-align: center; margin-bottom: 15px; padding: 15px 0; border-bottom: 1px solid rgba(0,212,255,0.3); position: relative; }
+  .header h1 { font-size: 22px; font-weight: 900; color: #00d4ff; text-shadow: 0 0 20px rgba(0,212,255,0.6); }
+  .header p { font-size: 10px; color: #7a8ba5; margin-top: 5px; letter-spacing: 2px; }
+  .logout-btn { position: absolute; top: 10px; right: 5px; background: rgba(255,0,85,0.25); border: 1.5px solid rgba(255,0,85,0.6); border-radius: 10px; padding: 6px 12px; color: #ff5555; font-size: 11px; font-weight: 900; cursor: pointer; }
+  .login-box { max-width: 350px; margin: 80px auto; background: linear-gradient(135deg, rgba(0,180,255,0.1), rgba(150,0,255,0.05)); border: 2px solid rgba(0,212,255,0.5); border-radius: 20px; padding: 25px 20px; text-align: center; }
+  .login-box h2 { font-size: 20px; font-weight: 900; color: #00d4ff; margin-bottom: 18px; }
+  .login-box input { width: 100%; background: rgba(0,0,0,0.4); border: 1.5px solid rgba(0,212,255,0.4); border-radius: 12px; padding: 12px; color: white; font-size: 14px; font-weight: 900; text-align: center; outline: none; margin-bottom: 12px; letter-spacing: 3px; }
+  .login-box button { width: 100%; background: linear-gradient(135deg, #00ff88, #00aa55); border: none; border-radius: 12px; padding: 14px; color: white; font-size: 14px; font-weight: 900; cursor: pointer; }
   .login-error { color: #ff0055; font-size: 12px; font-weight: 900; margin-top: 10px; display: none; }
   .dashboard { display: none; }
   
-  /* TABS */
-  .main-tabs { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr; gap: 8px; margin-bottom: 20px; }
-  .main-tab { padding: 12px 6px; text-align: center; font-size: 11px; font-weight: 900; border-radius: 12px; background: rgba(15,30,55,0.8); border: 1.5px solid rgba(0,180,255,0.3); color: #a0aec0; cursor: pointer; }
+  .main-tabs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; margin-bottom: 15px; }
+  .main-tab { padding: 10px 4px; text-align: center; font-size: 9px; font-weight: 900; border-radius: 10px; background: rgba(15,30,55,0.8); border: 1.5px solid rgba(0,180,255,0.3); color: #a0aec0; cursor: pointer; }
   .main-tab.active { background: linear-gradient(135deg, #00d4ff, #0066ff); color: white; border-color: #00d4ff; }
-  .main-tab .icon { display: block; font-size: 20px; margin-bottom: 4px; }
+  .main-tab .icon { display: block; font-size: 18px; margin-bottom: 3px; }
   .tab-panel { display: none; }
   .tab-panel.active { display: block; }
   
-  /* STATS GRID */
-  .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
-  .stat-card { background: linear-gradient(135deg, rgba(0,180,255,0.15), rgba(0,80,180,0.08)); border: 1.5px solid rgba(0,180,255,0.3); border-radius: 16px; padding: 14px; text-align: center; }
-  .stat-card .icon { font-size: 24px; margin-bottom: 4px; }
-  .stat-card .label { font-size: 9px; color: #7a8ba5; font-weight: 900; letter-spacing: 1px; margin-bottom: 4px; }
-  .stat-card .value { font-size: 18px; font-weight: 900; color: #00d4ff; }
+  .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+  .stat-card { background: linear-gradient(135deg, rgba(0,180,255,0.15), rgba(0,80,180,0.08)); border: 1.5px solid rgba(0,180,255,0.3); border-radius: 14px; padding: 12px; text-align: center; }
+  .stat-card .icon { font-size: 22px; margin-bottom: 4px; }
+  .stat-card .label { font-size: 8px; color: #7a8ba5; font-weight: 900; letter-spacing: 1px; margin-bottom: 3px; }
+  .stat-card .value { font-size: 16px; font-weight: 900; color: #00d4ff; word-break: break-all; }
   
-  .search-box { background: rgba(0,0,0,0.4); border: 1.5px solid rgba(0,212,255,0.4); border-radius: 12px; padding: 12px; color: white; font-size: 13px; width: 100%; outline: none; margin-bottom: 12px; font-weight: 700; }
+  .search-box { background: rgba(0,0,0,0.4); border: 1.5px solid rgba(0,212,255,0.4); border-radius: 10px; padding: 11px; color: white; font-size: 12px; width: 100%; outline: none; margin-bottom: 10px; font-weight: 700; }
+  
+  /* SELECT ALL BAR */
+  .select-bar { background: linear-gradient(135deg, rgba(0,180,255,0.2), rgba(0,80,180,0.1)); border: 1.5px solid rgba(0,212,255,0.5); border-radius: 12px; padding: 10px; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .select-bar .count { flex: 1; font-size: 12px; font-weight: 900; color: #00d4ff; }
+  .select-bar button { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); border-radius: 8px; padding: 6px 10px; color: white; font-size: 10px; font-weight: 900; cursor: pointer; }
   
   /* USER CARD */
-  .user-card { background: linear-gradient(135deg, rgba(15,30,55,0.9), rgba(10,20,40,0.8)); border: 1.5px solid rgba(0,180,255,0.3); border-radius: 16px; padding: 14px; margin-bottom: 12px; }
-  .user-header { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
-  .user-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, #00d4ff, #0066ff); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; border: 2px solid rgba(0,212,255,0.5); }
+  .user-card { background: linear-gradient(135deg, rgba(15,30,55,0.9), rgba(10,20,40,0.8)); border: 1.5px solid rgba(0,180,255,0.3); border-radius: 14px; padding: 12px; margin-bottom: 10px; transition: all 0.2s; }
+  .user-card.selected { border-color: #00ff88; box-shadow: 0 0 15px rgba(0,255,136,0.4); background: linear-gradient(135deg, rgba(0,255,136,0.1), rgba(0,80,40,0.08)); }
+  .user-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .user-checkbox { width: 22px; height: 22px; border: 2px solid rgba(0,212,255,0.5); border-radius: 6px; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; cursor: pointer; }
+  .user-checkbox.checked { background: linear-gradient(135deg, #00ff88, #00aa55); border-color: #00ff88; color: white; }
+  .user-avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #00d4ff, #0066ff); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; border: 2px solid rgba(0,212,255,0.5); }
   .user-info { flex: 1; min-width: 0; }
-  .user-name { font-size: 14px; font-weight: 900; color: white; margin-bottom: 2px; }
-  .user-id { font-size: 9px; color: #7a8ba5; font-weight: 700; word-break: break-all; }
-  .user-stats { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 5px; margin-bottom: 10px; }
-  .user-stat { background: rgba(0,0,0,0.3); border-radius: 8px; padding: 6px 4px; text-align: center; }
-  .user-stat .lbl { font-size: 7px; color: #7a8ba5; font-weight: 900; margin-bottom: 2px; }
-  .user-stat .val { font-size: 11px; font-weight: 900; color: #00d4ff; }
-  .user-actions { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr; gap: 5px; }
-  .btn { padding: 8px 4px; border-radius: 8px; font-size: 9px; font-weight: 900; border: none; cursor: pointer; color: white; }
+  .user-name { font-size: 13px; font-weight: 900; color: white; margin-bottom: 2px; word-break: break-all; }
+  .user-id { font-size: 8px; color: #7a8ba5; font-weight: 700; word-break: break-all; }
+  .user-stats { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 4px; margin-bottom: 8px; }
+  .user-stat { background: rgba(0,0,0,0.3); border-radius: 6px; padding: 5px 3px; text-align: center; }
+  .user-stat .lbl { font-size: 6px; color: #7a8ba5; font-weight: 900; margin-bottom: 2px; }
+  .user-stat .val { font-size: 10px; font-weight: 900; color: #00d4ff; }
+  .user-actions { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr; gap: 4px; }
+  .btn { padding: 7px 2px; border-radius: 6px; font-size: 8px; font-weight: 900; border: none; cursor: pointer; color: white; }
   .btn:active { transform: scale(0.95); }
   .btn.add { background: linear-gradient(135deg, #00ff88, #00aa55); }
   .btn.remove { background: linear-gradient(135deg, #ff9500, #cc5500); }
   .btn.ban { background: linear-gradient(135deg, #ff0055, #990033); }
   .btn.info { background: linear-gradient(135deg, #00b4ff, #0066ff); }
-  .btn.rp { background: linear-gradient(135deg, #a040ff, #6020a0); }
+  .btn.delete { background: linear-gradient(135deg, #990000, #660000); }
+  
+  /* BOTTOM BULK BAR */
+  .bulk-bar { position: fixed; bottom: 0; left: 0; right: 0; background: linear-gradient(180deg, rgba(0,20,40,0.98), rgba(5,10,20,1)); border-top: 2px solid rgba(0,212,255,0.6); padding: 10px 12px 15px; z-index: 100; display: none; box-shadow: 0 -5px 30px rgba(0,212,255,0.3); }
+  .bulk-bar.show { display: block; }
+  .bulk-info { text-align: center; font-size: 11px; font-weight: 900; color: #00d4ff; margin-bottom: 8px; }
+  .bulk-actions { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr; gap: 5px; }
+  .bulk-btn { padding: 10px 3px; border-radius: 10px; font-size: 9px; font-weight: 900; border: none; cursor: pointer; color: white; }
+  .bulk-btn.gift { background: linear-gradient(135deg, #00ff88, #00aa55); }
+  .bulk-btn.rp { background: linear-gradient(135deg, #a040ff, #6020a0); }
+  .bulk-btn.ban { background: linear-gradient(135deg, #ff9500, #cc5500); }
+  .bulk-btn.unban { background: linear-gradient(135deg, #00b4ff, #0066ff); }
+  .bulk-btn.del { background: linear-gradient(135deg, #ff0055, #990033); }
+  .bulk-close { position: absolute; top: -35px; right: 10px; background: rgba(255,0,85,0.3); border: 1.5px solid rgba(255,0,85,0.6); border-radius: 50%; width: 30px; height: 30px; color: white; font-size: 16px; font-weight: 900; cursor: pointer; }
   
   /* MODAL */
-  .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 15px; }
+  .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 12px; }
   .modal.show { display: flex; }
-  .modal-content { background: linear-gradient(135deg, #0f2137, #061224); border: 2px solid rgba(0,212,255,0.6); border-radius: 22px; padding: 22px 18px; max-width: 420px; width: 100%; max-height: 90vh; overflow-y: auto; }
-  .modal-content h3 { color: #00d4ff; font-size: 17px; font-weight: 900; margin-bottom: 15px; text-align: center; }
-  .modal-content input, .modal-content select, .modal-content textarea { width: 100%; background: rgba(0,0,0,0.4); border: 1.5px solid rgba(0,212,255,0.4); border-radius: 12px; padding: 12px; color: white; font-size: 13px; font-weight: 900; outline: none; margin-bottom: 12px; font-family: inherit; }
-  .modal-content textarea { min-height: 100px; resize: vertical; }
-  .modal-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .modal-actions button { padding: 12px; border-radius: 12px; font-weight: 900; font-size: 13px; border: none; cursor: pointer; color: white; }
+  .modal-content { background: linear-gradient(135deg, #0f2137, #061224); border: 2px solid rgba(0,212,255,0.6); border-radius: 18px; padding: 18px 14px; max-width: 380px; width: 100%; max-height: 90vh; overflow-y: auto; }
+  .modal-content h3 { color: #00d4ff; font-size: 15px; font-weight: 900; margin-bottom: 12px; text-align: center; }
+  .modal-content input, .modal-content textarea { width: 100%; background: rgba(0,0,0,0.4); border: 1.5px solid rgba(0,212,255,0.4); border-radius: 10px; padding: 11px; color: white; font-size: 12px; font-weight: 900; outline: none; margin-bottom: 10px; font-family: inherit; }
+  .modal-content textarea { min-height: 80px; resize: vertical; }
+  .modal-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .modal-actions button { padding: 11px; border-radius: 10px; font-weight: 900; font-size: 12px; border: none; cursor: pointer; color: white; }
   .cancel-btn { background: #4a5568; }
   .confirm-btn { background: linear-gradient(135deg, #00ff88, #00aa55); }
   .confirm-btn.danger { background: linear-gradient(135deg, #ff0055, #990033); }
   
-  /* TOAST */
-  .toast { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #00ff88, #00aa55); color: white; padding: 12px 24px; border-radius: 30px; font-weight: 900; font-size: 13px; z-index: 9999; display: none; max-width: 90%; text-align: center; }
+  .toast { position: fixed; top: 15px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #00ff88, #00aa55); color: white; padding: 10px 20px; border-radius: 25px; font-weight: 900; font-size: 12px; z-index: 9999; display: none; max-width: 90%; text-align: center; }
   .toast.error { background: linear-gradient(135deg, #ff0055, #990033); }
   
-  .empty-msg { text-align: center; padding: 40px 20px; color: #7a8ba5; font-size: 14px; }
-  .logout-btn { position: fixed; top: 15px; right: 15px; background: rgba(255,0,85,0.25); border: 1.5px solid rgba(255,0,85,0.6); border-radius: 12px; padding: 8px 14px; color: #ff5555; font-size: 12px; font-weight: 900; cursor: pointer; z-index: 100; }
+  .empty-msg { text-align: center; padding: 30px 15px; color: #7a8ba5; font-size: 13px; }
   
-  /* TOP LIST */
-  .top-user { display: flex; align-items: center; gap: 10px; padding: 10px; background: rgba(0,0,0,0.3); border-radius: 10px; margin-bottom: 8px; }
-  .top-user .rank { font-size: 18px; min-width: 30px; text-align: center; }
-  .top-user .name { flex: 1; font-size: 13px; font-weight: 900; }
-  .top-user .value { font-size: 13px; font-weight: 900; color: #00d4ff; }
+  .top-user { display: flex; align-items: center; gap: 8px; padding: 8px 10px; background: rgba(0,0,0,0.3); border-radius: 10px; margin-bottom: 6px; }
+  .top-user .rank { font-size: 16px; min-width: 25px; text-align: center; }
+  .top-user .name { flex: 1; font-size: 12px; font-weight: 900; word-break: break-all; }
+  .top-user .value { font-size: 12px; font-weight: 900; color: #00d4ff; }
   
-  /* BROADCAST */
-  .broadcast-box { background: rgba(15,30,55,0.8); border: 1.5px solid rgba(0,180,255,0.3); border-radius: 16px; padding: 16px; margin-bottom: 12px; }
-  .broadcast-box h4 { font-size: 14px; color: #00d4ff; margin-bottom: 10px; font-weight: 900; }
-  .broadcast-box textarea { width: 100%; background: rgba(0,0,0,0.4); border: 1.5px solid rgba(0,212,255,0.4); border-radius: 12px; padding: 12px; color: white; font-size: 13px; outline: none; min-height: 100px; font-family: inherit; margin-bottom: 10px; }
-  .broadcast-box button { width: 100%; background: linear-gradient(135deg, #00b4ff, #0066ff); border: none; border-radius: 12px; padding: 14px; color: white; font-size: 14px; font-weight: 900; cursor: pointer; }
+  .broadcast-box { background: rgba(15,30,55,0.8); border: 1.5px solid rgba(0,180,255,0.3); border-radius: 14px; padding: 14px; margin-bottom: 10px; }
+  .broadcast-box h4 { font-size: 13px; color: #00d4ff; margin-bottom: 8px; font-weight: 900; }
+  .broadcast-box textarea { width: 100%; background: rgba(0,0,0,0.4); border: 1.5px solid rgba(0,212,255,0.4); border-radius: 10px; padding: 10px; color: white; font-size: 12px; outline: none; min-height: 80px; font-family: inherit; margin-bottom: 8px; }
+  .broadcast-box button { width: 100%; background: linear-gradient(135deg, #00b4ff, #0066ff); border: none; border-radius: 10px; padding: 12px; color: white; font-size: 13px; font-weight: 900; cursor: pointer; }
+  
+  .section-title { color: #00d4ff; font-size: 13px; font-weight: 900; margin: 12px 0 8px; }
 </style>
 </head>
 <body>
 
 <div class="login-box" id="loginScreen">
   <h2>🔐 ADMIN LOGIN</h2>
-  <p style="font-size:11px;color:#7a8ba5;margin-bottom:20px">Enter admin password</p>
+  <p style="font-size:10px;color:#7a8ba5;margin-bottom:15px">Enter admin password</p>
   <input type="password" id="passwordInput" placeholder="••••••••" onkeypress="if(event.key==='Enter')login()">
   <button onclick="login()">LOGIN</button>
   <div class="login-error" id="loginError">❌ Wrong password!</div>
 </div>
 
 <div class="dashboard" id="dashboard">
-  <button class="logout-btn" onclick="logout()">LOGOUT</button>
   <div class="header">
-    <h1>⚡ ADMIN PANEL PRO</h1>
+    <h1>⚡ ADMIN PANEL</h1>
     <p>TRAX OFFICIAL</p>
+    <button class="logout-btn" onclick="logout()">LOGOUT</button>
   </div>
   <div class="container">
     
-    <!-- MAIN TABS -->
     <div class="main-tabs">
-      <div class="main-tab active" onclick="switchTab('users')"><span class="icon">👥</span>Users</div>
-      <div class="main-tab" onclick="switchTab('stats')"><span class="icon">📊</span>Stats</div>
-      <div class="main-tab" onclick="switchTab('top')"><span class="icon">🏆</span>Top</div>
-      <div class="main-tab" onclick="switchTab('broadcast')"><span class="icon">📢</span>Broadcast</div>
-      <div class="main-tab" onclick="switchTab('log')"><span class="icon">📜</span>Log</div>
+      <div class="main-tab active" onclick="switchTab('users', event)"><span class="icon">👥</span>Users</div>
+      <div class="main-tab" onclick="switchTab('stats', event)"><span class="icon">📊</span>Stats</div>
+      <div class="main-tab" onclick="switchTab('top', event)"><span class="icon">🏆</span>Top</div>
+      <div class="main-tab" onclick="switchTab('broadcast', event)"><span class="icon">📢</span>Broadcast</div>
+      <div class="main-tab" onclick="switchTab('log', event)"><span class="icon">📜</span>Log</div>
     </div>
     
-    <!-- USERS TAB -->
     <div class="tab-panel active" id="panel-users">
       <div class="stats-grid">
         <div class="stat-card"><div class="icon">👥</div><div class="label">TOTAL USERS</div><div class="value" id="totalUsers">0</div></div>
         <div class="stat-card"><div class="icon">💰</div><div class="label">TOTAL COINS</div><div class="value" id="totalCoins">0</div></div>
       </div>
-      <input type="text" class="search-box" id="searchInput" placeholder="🔍 Search by username or Telegram ID..." oninput="renderUsers()">
+      
+      <!-- SELECT ALL BAR -->
+      <div class="select-bar">
+        <div class="user-checkbox" id="selectAllBox" onclick="toggleSelectAll()"></div>
+        <div class="count" id="selectCount">0 selected</div>
+        <button onclick="selectAllVisible()">✓ All</button>
+        <button onclick="clearSelection()">✗ Clear</button>
+      </div>
+      
+      <input type="text" class="search-box" id="searchInput" placeholder="🔍 Search by username or ID..." oninput="renderUsers()">
       <div id="usersList"></div>
     </div>
     
-    <!-- STATS TAB -->
     <div class="tab-panel" id="panel-stats">
       <div class="stats-grid">
         <div class="stat-card"><div class="icon">🟢</div><div class="label">ACTIVE TODAY</div><div class="value" id="activeToday">0</div></div>
         <div class="stat-card"><div class="icon">🆕</div><div class="label">NEW TODAY</div><div class="value" id="newToday">0</div></div>
-        <div class="stat-card"><div class="icon">👆</div><div class="label">TOTAL TAPS TODAY</div><div class="value" id="tapsToday">0</div></div>
-        <div class="stat-card"><div class="icon">💰</div><div class="label">EARNED TODAY</div><div class="value" id="earnedToday">0</div></div>
-        <div class="stat-card"><div class="icon">🚫</div><div class="label">BANNED USERS</div><div class="value" id="bannedCount">0</div></div>
+        <div class="stat-card"><div class="icon">👆</div><div class="label">TOTAL TAPS</div><div class="value" id="tapsToday">0</div></div>
+        <div class="stat-card"><div class="icon">💰</div><div class="label">TOTAL EARNED</div><div class="value" id="earnedToday">0</div></div>
+        <div class="stat-card"><div class="icon">🚫</div><div class="label">BANNED</div><div class="value" id="bannedCount">0</div></div>
         <div class="stat-card"><div class="icon">⭐</div><div class="label">AVG LEVEL</div><div class="value" id="avgLevel">0</div></div>
       </div>
     </div>
     
-    <!-- TOP TAB -->
     <div class="tab-panel" id="panel-top">
-      <h3 style="color:#00d4ff;font-size:14px;margin-bottom:10px">💰 Top 10 Richest</h3>
+      <div class="section-title">💰 Top 10 Richest</div>
       <div id="topRichest"></div>
-      <h3 style="color:#00d4ff;font-size:14px;margin:15px 0 10px">👆 Top 10 Active (Taps)</h3>
+      <div class="section-title">👆 Top 10 Active</div>
       <div id="topActive"></div>
-      <h3 style="color:#00d4ff;font-size:14px;margin:15px 0 10px">💎 Top 10 RP</h3>
+      <div class="section-title">💎 Top 10 RP</div>
       <div id="topRP"></div>
     </div>
     
-    <!-- BROADCAST TAB -->
     <div class="tab-panel" id="panel-broadcast">
       <div class="broadcast-box">
-        <h4>📢 Broadcast Message</h4>
-        <p style="font-size:11px;color:#7a8ba5;margin-bottom:10px">Yeh message sab users ko dikhega jab woh app kholenge.</p>
+        <h4>📢 Send Broadcast Message</h4>
         <textarea id="broadcastMsg" placeholder="Type your message here..."></textarea>
         <button onclick="sendBroadcast()">📤 SEND TO ALL USERS</button>
       </div>
       <div class="broadcast-box" style="background:rgba(0,255,136,0.08);border-color:rgba(0,255,136,0.4)">
         <h4 style="color:#00ff88">✅ Current Broadcast</h4>
-        <div id="currentBroadcast" style="font-size:12px;color:#a0aec0;padding:10px;background:rgba(0,0,0,0.4);border-radius:10px;margin-bottom:10px">No active broadcast</div>
+        <div id="currentBroadcast" style="font-size:11px;color:#a0aec0;padding:10px;background:rgba(0,0,0,0.4);border-radius:8px;margin-bottom:8px;word-break:break-word">No active broadcast</div>
         <button onclick="clearBroadcast()" style="background:linear-gradient(135deg,#ff0055,#990033)">🗑️ CLEAR BROADCAST</button>
       </div>
     </div>
     
-    <!-- LOG TAB -->
     <div class="tab-panel" id="panel-log">
-      <h3 style="color:#00d4ff;font-size:14px;margin-bottom:10px">📜 Recent Activity</h3>
+      <div class="section-title">📜 Recent Activity</div>
       <div id="activityLog"></div>
     </div>
     
   </div>
 </div>
 
-<!-- ACTION MODAL -->
+<!-- BULK ACTION BAR -->
+<div class="bulk-bar" id="bulkBar">
+  <button class="bulk-close" onclick="clearSelection()">✕</button>
+  <div class="bulk-info" id="bulkInfo">0 users selected</div>
+  <div class="bulk-actions">
+    <button class="bulk-btn gift" onclick="bulkGift()">🎁 Gift</button>
+    <button class="bulk-btn rp" onclick="bulkRP()">💎 RP</button>
+    <button class="bulk-btn ban" onclick="bulkBan(true)">🚫 Ban</button>
+    <button class="bulk-btn unban" onclick="bulkBan(false)">✅ Unban</button>
+    <button class="bulk-btn del" onclick="bulkDelete()">🗑️ Del</button>
+  </div>
+</div>
+
 <div class="modal" id="actionModal">
   <div class="modal-content">
     <h3 id="modalTitle">Action</h3>
@@ -185,12 +217,11 @@
   </div>
 </div>
 
-<!-- USER INFO MODAL -->
 <div class="modal" id="infoModal">
   <div class="modal-content">
     <h3>👤 User Details</h3>
-    <div id="infoContent" style="font-size:12px;line-height:1.8;color:#a0aec0"></div>
-    <div class="modal-actions" style="margin-top:15px">
+    <div id="infoContent" style="font-size:11px;line-height:1.8;color:#a0aec0;word-break:break-word"></div>
+    <div class="modal-actions" style="margin-top:12px">
       <button class="cancel-btn" onclick="document.getElementById('infoModal').classList.remove('show')">Close</button>
     </div>
   </div>
@@ -213,11 +244,13 @@
   const dbRef = database.ref('users');
   const logRef = database.ref('admin_log');
   const broadcastRef = database.ref('broadcast');
+  const usernamesRef = database.ref('usernames');
 
   const ADMIN_PASSWORD = "traxadmin123";
 
   let allUsers = {};
   let currentAction = null;
+  let selectedUsers = new Set();
 
   function login() {
     const pass = document.getElementById('passwordInput').value;
@@ -245,10 +278,10 @@
     loadBroadcast();
   }
 
-  function switchTab(tab) {
+  function switchTab(tab, event) {
     document.querySelectorAll('.main-tab').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-    event.currentTarget.classList.add('active');
+    if (event) event.currentTarget.classList.add('active');
     document.getElementById('panel-' + tab).classList.add('active');
     if (tab === 'stats') renderStats();
     if (tab === 'top') renderTop();
@@ -263,6 +296,12 @@
     });
   }
 
+  function getDisplayName(user, key) {
+    if (user.username && user.username.length > 0) return '@' + user.username;
+    if (user.telegramId) return '@' + user.telegramId;
+    return '@' + key;
+  }
+
   function renderStats() {
     const users = Object.values(allUsers);
     const now = Date.now();
@@ -272,36 +311,29 @@
     const totalCoins = users.reduce((s, u) => s + (u.balance || 0), 0);
     document.getElementById('totalCoins').textContent = totalCoins.toLocaleString();
     
-    // Stats
-    const activeToday = users.filter(u => (u.lastSeen || 0) > oneDayAgo).length;
-    const newToday = users.filter(u => (u.createdAt || 0) > oneDayAgo).length;
-    const totalTaps = users.reduce((s, u) => s + (u.taps || 0), 0);
-    const totalEarned = users.reduce((s, u) => s + (u.totalEarned || 0), 0);
-    const banned = users.filter(u => u.banned).length;
-    const avgLvl = users.length ? Math.round(users.reduce((s, u) => s + (u.level || 1), 0) / users.length) : 0;
-    
-    document.getElementById('activeToday').textContent = activeToday;
-    document.getElementById('newToday').textContent = newToday;
-    document.getElementById('tapsToday').textContent = totalTaps.toLocaleString();
-    document.getElementById('earnedToday').textContent = totalEarned.toLocaleString();
-    document.getElementById('bannedCount').textContent = banned;
-    document.getElementById('avgLevel').textContent = avgLvl;
+    document.getElementById('activeToday').textContent = users.filter(u => (u.lastSeen || 0) > oneDayAgo).length;
+    document.getElementById('newToday').textContent = users.filter(u => (u.createdAt || 0) > oneDayAgo).length;
+    document.getElementById('tapsToday').textContent = users.reduce((s, u) => s + (u.taps || 0), 0).toLocaleString();
+    document.getElementById('earnedToday').textContent = users.reduce((s, u) => s + (u.totalEarned || 0), 0).toLocaleString();
+    document.getElementById('bannedCount').textContent = users.filter(u => u.banned).length;
+    document.getElementById('avgLevel').textContent = users.length ? Math.round(users.reduce((s, u) => s + (u.level || 1), 0) / users.length) : 0;
   }
 
   function renderUsers() {
     const search = document.getElementById('searchInput').value.toLowerCase().trim();
     const container = document.getElementById('usersList');
-    let users = Object.entries(allUsers).map(([username, u]) => ({ ...u, _key: username }));
+    let users = Object.entries(allUsers).map(([key, u]) => ({ ...u, _key: key }));
 
     if (search) {
       users = users.filter(u => 
         (u.username || '').toLowerCase().includes(search) || 
-        (u.telegramId || '').includes(search)
+        (u.telegramId || '').includes(search) ||
+        (u._key || '').toLowerCase().includes(search)
       );
     }
 
     users.sort((a, b) => (b.lastSeen || 0) - (a.lastSeen || 0));
-    users = users.slice(0, 50); // Show max 50
+    users = users.slice(0, 100);
 
     if (users.length === 0) {
       container.innerHTML = '<div class="empty-msg">😕 No users found</div>';
@@ -311,14 +343,18 @@
     container.innerHTML = '';
     users.forEach(u => {
       const card = document.createElement('div');
-      card.className = 'user-card';
-      const isBanned = u.banned ? ' <span style="color:#ff0055;font-size:10px">🚫 BANNED</span>' : '';
+      card.className = 'user-card' + (selectedUsers.has(u._key) ? ' selected' : '');
+      const displayName = getDisplayName(u, u._key);
+      const isBanned = u.banned ? ' <span style="color:#ff0055;font-size:9px">🚫</span>' : '';
+      const isChecked = selectedUsers.has(u._key) ? 'checked' : '';
+      
       card.innerHTML = 
         '<div class="user-header">' +
+          '<div class="user-checkbox ' + isChecked + '" onclick="toggleSelect(\'' + u._key + '\')">' + (isChecked ? '✓' : '') + '</div>' +
           '<div class="user-avatar">' + (u.avatar || '👤') + '</div>' +
           '<div class="user-info">' +
-            '<div class="user-name">@' + (u.username || u._key) + isBanned + '</div>' +
-            '<div class="user-id">TG: ' + (u.telegramId || 'N/A') + '</div>' +
+            '<div class="user-name">' + displayName + isBanned + '</div>' +
+            '<div class="user-id">ID: ' + (u.telegramId || u._key) + '</div>' +
           '</div>' +
         '</div>' +
         '<div class="user-stats">' +
@@ -328,50 +364,175 @@
           '<div class="user-stat"><div class="lbl">TAPS</div><div class="val">' + (u.taps || 0).toLocaleString() + '</div></div>' +
         '</div>' +
         '<div class="user-actions">' +
-          '<button class="btn add" onclick="openAction(\'add\',\'' + u._key + '\')">➕ ADD</button>' +
-          '<button class="btn remove" onclick="openAction(\'remove\',\'' + u._key + '\')">➖ CUT</button>' +
-          '<button class="btn rp" onclick="openAction(\'rp\',\'' + u._key + '\')">💎 RP</button>' +
-          '<button class="btn ban" onclick="toggleBan(\'' + u._key + '\',' + (u.banned ? 'true' : 'false') + ')">' + (u.banned ? '✅ UNBAN' : '🚫 BAN') + '</button>' +
+          '<button class="btn add" onclick="openAction(\'add\',\'' + u._key + '\')">➕</button>' +
+          '<button class="btn remove" onclick="openAction(\'remove\',\'' + u._key + '\')">➖</button>' +
+          '<button class="btn ban" onclick="toggleBan(\'' + u._key + '\',' + (u.banned ? 'true' : 'false') + ')">' + (u.banned ? '✅' : '🚫') + '</button>' +
           '<button class="btn info" onclick="showInfo(\'' + u._key + '\')">ℹ️</button>' +
+          '<button class="btn delete" onclick="deleteUser(\'' + u._key + '\')">🗑️</button>' +
         '</div>';
       container.appendChild(card);
     });
   }
 
-  function renderTop() {
-    const users = Object.entries(allUsers).map(([k, u]) => ({ ...u, _key: k }));
-    
-    // Top Richest
-    const richest = [...users].sort((a, b) => (b.balance || 0) - (a.balance || 0)).slice(0, 10);
-    renderTopList('topRichest', richest, 'balance');
-    
-    // Top Active
-    const active = [...users].sort((a, b) => (b.taps || 0) - (a.taps || 0)).slice(0, 10);
-    renderTopList('topActive', active, 'taps');
-    
-    // Top RP
-    const topRP = [...users].sort((a, b) => (b.rp || 0) - (a.rp || 0)).slice(0, 10);
-    renderTopList('topRP', topRP, 'rp');
+  // ===== SELECTION =====
+  function toggleSelect(key) {
+    if (selectedUsers.has(key)) selectedUsers.delete(key);
+    else selectedUsers.add(key);
+    updateBulkBar();
+    renderUsers();
   }
-  
-  function renderTopList(containerId, list, field) {
-    const box = document.getElementById(containerId);
-    box.innerHTML = '';
-    list.forEach((u, i) => {
-      const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : '#' + (i + 1);
-      const row = document.createElement('div');
-      row.className = 'top-user';
-      row.innerHTML = '<div class="rank">' + medal + '</div><div class="name">@' + (u.username || u._key) + '</div><div class="value">' + (u[field] || 0).toLocaleString() + '</div>';
-      box.appendChild(row);
+
+  function toggleSelectAll() {
+    if (selectedUsers.size === Object.keys(allUsers).length) {
+      selectedUsers.clear();
+    } else {
+      Object.keys(allUsers).forEach(k => selectedUsers.add(k));
+    }
+    updateBulkBar();
+    renderUsers();
+  }
+
+  function selectAllVisible() {
+    const search = document.getElementById('searchInput').value.toLowerCase().trim();
+    let users = Object.entries(allUsers).map(([key, u]) => ({ ...u, _key: key }));
+    if (search) {
+      users = users.filter(u => 
+        (u.username || '').toLowerCase().includes(search) || 
+        (u.telegramId || '').includes(search)
+      );
+    }
+    users.forEach(u => selectedUsers.add(u._key));
+    updateBulkBar();
+    renderUsers();
+  }
+
+  function clearSelection() {
+    selectedUsers.clear();
+    updateBulkBar();
+    renderUsers();
+  }
+
+  function updateBulkBar() {
+    const bar = document.getElementById('bulkBar');
+    const info = document.getElementById('bulkInfo');
+    const countEl = document.getElementById('selectCount');
+    const box = document.getElementById('selectAllBox');
+    
+    const count = selectedUsers.size;
+    countEl.textContent = count + ' selected';
+    info.textContent = count + ' users selected';
+    
+    if (count > 0) {
+      bar.classList.add('show');
+      box.classList.add('checked');
+      box.textContent = '✓';
+    } else {
+      bar.classList.remove('show');
+      box.classList.remove('checked');
+      box.textContent = '';
+    }
+  }
+
+  // ===== BULK ACTIONS =====
+  function bulkGift() {
+    if (selectedUsers.size === 0) return;
+    const amount = prompt('🎁 Enter amount to GIFT to each selected user:\n\nSelected: ' + selectedUsers.size + ' users');
+    if (!amount) return;
+    const amt = parseInt(amount);
+    if (!amt || amt <= 0) { showToast('Invalid amount', true); return; }
+    if (!confirm('Gift ' + amt.toLocaleString() + ' coins to ' + selectedUsers.size + ' users?')) return;
+    
+    let completed = 0;
+    selectedUsers.forEach(key => {
+      const user = allUsers[key];
+      if (user) {
+        dbRef.child(key).update({ balance: (user.balance || 0) + amt })
+          .then(() => {
+            completed++;
+            if (completed === selectedUsers.size) {
+              showToast('🎁 Gifted to ' + completed + ' users');
+              addLog('bulk', 'Gifted ' + amt + ' to ' + completed + ' users');
+              clearSelection();
+            }
+          });
+      }
     });
   }
 
-  function openAction(type, username) {
-    currentAction = { type, username };
+  function bulkRP() {
+    if (selectedUsers.size === 0) return;
+    const amount = prompt('💎 Enter RP to ADD to each selected user:\n\nSelected: ' + selectedUsers.size + ' users');
+    if (!amount) return;
+    const amt = parseInt(amount);
+    if (!amt || amt <= 0) { showToast('Invalid amount', true); return; }
+    if (!confirm('Add ' + amt + ' RP to ' + selectedUsers.size + ' users?')) return;
+    
+    let completed = 0;
+    selectedUsers.forEach(key => {
+      const user = allUsers[key];
+      if (user) {
+        dbRef.child(key).update({ rp: (user.rp || 0) + amt })
+          .then(() => {
+            completed++;
+            if (completed === selectedUsers.size) {
+              showToast('💎 Added RP to ' + completed + ' users');
+              addLog('bulk', 'Added ' + amt + ' RP to ' + completed + ' users');
+              clearSelection();
+            }
+          });
+      }
+    });
+  }
+
+  function bulkBan(ban) {
+    if (selectedUsers.size === 0) return;
+    const action = ban ? 'BAN' : 'UNBAN';
+    if (!confirm(action + ' ' + selectedUsers.size + ' users?')) return;
+    
+    let completed = 0;
+    selectedUsers.forEach(key => {
+      dbRef.child(key).update({ banned: ban })
+        .then(() => {
+          completed++;
+          if (completed === selectedUsers.size) {
+            showToast('✅ ' + action + ' ' + completed + ' users');
+            addLog('bulk', action + ' ' + completed + ' users');
+            clearSelection();
+          }
+        });
+    });
+  }
+
+  function bulkDelete() {
+    if (selectedUsers.size === 0) return;
+    if (!confirm('⚠️ DELETE ' + selectedUsers.size + ' USERS?\n\nYeh action undo nahi ho sakta!')) return;
+    if (!confirm('⚠️ FINAL WARNING!\n\n' + selectedUsers.size + ' users ka pura data delete ho jayega. Pakka?')) return;
+    
+    let completed = 0;
+    const total = selectedUsers.size;
+    selectedUsers.forEach(key => {
+      const user = allUsers[key];
+      // Delete username mapping
+      if (user && user.username) {
+        usernamesRef.child(user.username).remove();
+      }
+      dbRef.child(key).remove().then(() => {
+        completed++;
+        if (completed === total) {
+          showToast('🗑️ Deleted ' + completed + ' users');
+          addLog('bulk', 'Deleted ' + completed + ' users');
+          clearSelection();
+        }
+      });
+    });
+  }
+
+  // ===== SINGLE ACTIONS =====
+  function openAction(type, key) {
+    currentAction = { type, key };
     let title = '';
     if (type === 'add') title = '➕ Add Coins';
     else if (type === 'remove') title = '➖ Remove Coins';
-    else if (type === 'rp') title = '💎 Add RP';
     document.getElementById('modalTitle').textContent = title;
     document.getElementById('modalAmount').value = '';
     document.getElementById('modalConfirmBtn').className = 'confirm-btn' + (type === 'remove' ? ' danger' : '');
@@ -388,42 +549,49 @@
     const amount = parseInt(document.getElementById('modalAmount').value);
     if (!amount || amount <= 0) { showToast('Enter valid amount', true); return; }
 
-    const user = allUsers[currentAction.username];
+    const user = allUsers[currentAction.key];
     if (!user) { showToast('User not found', true); return; }
 
-    let updates = {};
-    if (currentAction.type === 'add') {
-      updates.balance = (user.balance || 0) + amount;
-    } else if (currentAction.type === 'remove') {
-      updates.balance = Math.max(0, (user.balance || 0) - amount);
-    } else if (currentAction.type === 'rp') {
-      updates.rp = (user.rp || 0) + amount;
-    }
+    let newBalance = user.balance || 0;
+    if (currentAction.type === 'add') newBalance += amount;
+    else newBalance = Math.max(0, newBalance - amount);
 
-    dbRef.child(currentAction.username).update(updates)
+    dbRef.child(currentAction.key).update({ balance: newBalance })
       .then(() => {
-        const msg = currentAction.type === 'rp' ? 'RP' : 'Coins';
-        showToast('✅ ' + (currentAction.type === 'remove' ? 'Removed ' : 'Added ') + amount.toLocaleString() + ' ' + msg);
-        addLog('admin', (currentAction.type === 'remove' ? 'Removed ' : 'Added ') + amount + ' ' + msg + ' to @' + currentAction.username);
+        showToast((currentAction.type === 'add' ? '✅ Added ' : '✅ Removed ') + amount.toLocaleString());
+        addLog('admin', (currentAction.type === 'add' ? 'Added ' : 'Removed ') + amount + ' to ' + getDisplayName(user, currentAction.key));
         closeActionModal();
       })
-      .catch(err => showToast('❌ Error: ' + err.message, true));
+      .catch(err => showToast('❌ ' + err.message, true));
   }
 
-  function toggleBan(username, isBanned) {
-    if (!confirm('Are you sure you want to ' + (isBanned ? 'unban' : 'ban') + ' this user?')) return;
-    dbRef.child(username).update({ banned: !isBanned })
+  function toggleBan(key, isBanned) {
+    if (!confirm((isBanned ? 'Unban' : 'Ban') + ' this user?')) return;
+    dbRef.child(key).update({ banned: !isBanned })
       .then(() => {
-        showToast(isBanned ? '✅ User Unbanned' : '🚫 User Banned');
-        addLog('admin', (isBanned ? 'Unbanned' : 'Banned') + ' @' + username);
+        showToast(isBanned ? '✅ Unbanned' : '🚫 Banned');
+        addLog('admin', (isBanned ? 'Unbanned' : 'Banned') + ' ' + key);
       });
   }
 
-  function showInfo(username) {
-    const u = allUsers[username];
+  function deleteUser(key) {
+    const user = allUsers[key];
+    if (!user) return;
+    if (!confirm('⚠️ DELETE?\n\nUsername: ' + (user.username || key) + '\n\nYeh undo nahi hoga!')) return;
+    if (!confirm('⚠️ FINAL CONFIRM!\n\nPakka delete karna hai?')) return;
+    
+    dbRef.child(key).remove().then(() => {
+      if (user.username) usernamesRef.child(user.username).remove();
+      showToast('🗑️ Deleted');
+      addLog('admin', 'Deleted ' + getDisplayName(user, key));
+    });
+  }
+
+  function showInfo(key) {
+    const u = allUsers[key];
     if (!u) return;
     const info = 
-      '<b>📛 Username:</b> @' + (u.username || username) + '<br>' +
+      '<b>📛 Username:</b> ' + (u.username ? '@' + u.username : 'Not set') + '<br>' +
       '<b>🆔 Telegram ID:</b> ' + (u.telegramId || 'N/A') + '<br>' +
       '<b>💰 Balance:</b> ' + (u.balance || 0).toLocaleString() + '<br>' +
       '<b>📈 Total Earned:</b> ' + (u.totalEarned || 0).toLocaleString() + '<br>' +
@@ -438,7 +606,26 @@
     document.getElementById('infoModal').classList.add('show');
   }
 
-  // ===== BROADCAST =====
+  function renderTop() {
+    const users = Object.entries(allUsers).map(([k, u]) => ({ ...u, _key: k }));
+    renderTopList('topRichest', [...users].sort((a, b) => (b.balance || 0) - (a.balance || 0)).slice(0, 10), 'balance');
+    renderTopList('topActive', [...users].sort((a, b) => (b.taps || 0) - (a.taps || 0)).slice(0, 10), 'taps');
+    renderTopList('topRP', [...users].sort((a, b) => (b.rp || 0) - (a.rp || 0)).slice(0, 10), 'rp');
+  }
+  
+  function renderTopList(containerId, list, field) {
+    const box = document.getElementById(containerId);
+    box.innerHTML = '';
+    if (list.length === 0) { box.innerHTML = '<div class="empty-msg">No data</div>'; return; }
+    list.forEach((u, i) => {
+      const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : '#' + (i + 1);
+      const row = document.createElement('div');
+      row.className = 'top-user';
+      row.innerHTML = '<div class="rank">' + medal + '</div><div class="name">' + getDisplayName(u, u._key) + '</div><div class="value">' + (u[field] || 0).toLocaleString() + '</div>';
+      box.appendChild(row);
+    });
+  }
+
   function loadBroadcast() {
     broadcastRef.on('value', (snap) => {
       const data = snap.val();
@@ -456,7 +643,7 @@
   function sendBroadcast() {
     const msg = document.getElementById('broadcastMsg').value.trim();
     if (!msg) { showToast('Enter message', true); return; }
-    if (!confirm('Send this message to ALL users?')) return;
+    if (!confirm('Send to ALL users?')) return;
     broadcastRef.set({ message: msg, sentAt: Date.now() })
       .then(() => {
         showToast('✅ Broadcast sent!');
@@ -466,17 +653,12 @@
   }
 
   function clearBroadcast() {
-    if (!confirm('Clear the broadcast?')) return;
+    if (!confirm('Clear broadcast?')) return;
     broadcastRef.remove().then(() => showToast('✅ Cleared'));
   }
 
-  // ===== LOG =====
   function addLog(type, message) {
-    logRef.push({
-      type: type,
-      message: message,
-      time: Date.now()
-    });
+    logRef.push({ type, message, time: Date.now() });
   }
 
   function renderLog() {
@@ -484,15 +666,12 @@
       const data = snap.val() || {};
       const entries = Object.values(data).sort((a, b) => b.time - a.time);
       const box = document.getElementById('activityLog');
-      if (entries.length === 0) {
-        box.innerHTML = '<div class="empty-msg">No activity yet</div>';
-        return;
-      }
+      if (entries.length === 0) { box.innerHTML = '<div class="empty-msg">No activity yet</div>'; return; }
       box.innerHTML = '';
       entries.forEach(e => {
         const row = document.createElement('div');
-        row.style.cssText = 'padding:10px;background:rgba(0,0,0,0.3);border-radius:10px;margin-bottom:8px;font-size:12px';
-        row.innerHTML = '<span style="color:#00d4ff;font-weight:900">' + (e.type === 'admin' ? '👑' : '📢') + '</span> ' + e.message + '<div style="font-size:10px;color:#7a8ba5;margin-top:4px">' + new Date(e.time).toLocaleString() + '</div>';
+        row.style.cssText = 'padding:8px 10px;background:rgba(0,0,0,0.3);border-radius:8px;margin-bottom:6px;font-size:11px;word-break:break-word';
+        row.innerHTML = '<span style="color:#00d4ff;font-weight:900">' + (e.type === 'admin' ? '👑' : e.type === 'bulk' ? '⚡' : '📢') + '</span> ' + e.message + '<div style="font-size:9px;color:#7a8ba5;margin-top:3px">' + new Date(e.time).toLocaleString() + '</div>';
         box.appendChild(row);
       });
     });
@@ -507,4 +686,4 @@
   }
 </script>
 </body>
- </html>
+</html>
