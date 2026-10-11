@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>TraxOfficial</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
-<!-- 🔥 FIREBASE SDK -->
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 <style>
@@ -1044,7 +1043,6 @@
     measurementId: "G-2XQS78XYWC"
   };
 
-  // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   const database = firebase.database();
   const dbRef = database.ref('users');
@@ -1081,13 +1079,15 @@
     }
   }
 
-  let settings = { sound: localStorage.getItem('trax_sound') !== 'off', vibration: localStorage.getItem('trax_vibration') !== 'off' };
-  function toggleSetting(key) { settings[key] = !settings[key]; localStorage.setItem('trax_' + key, settings[key] ? 'on' : 'off'); updateSettingsUI(); }
+  // 🔥 SETTINGS (sirf runtime — Firebase mein save nahi)
+  let settings = { sound: true, vibration: true };
+  function toggleSetting(key) { settings[key] = !settings[key]; updateSettingsUI(); }
   function updateSettingsUI() { document.getElementById('soundToggle').classList.toggle('on', settings.sound); document.getElementById('vibrationToggle').classList.toggle('on', settings.vibration); }
 
-  let userName = localStorage.getItem('trax_username') || '';
-  let userAvatar = localStorage.getItem('trax_avatar') || '👤';
-  let avatarIsImage = localStorage.getItem('trax_avatar_isimg') === 'true';
+  // 🔥 SAB KUCH FIREBASE SE AAYEGA
+  let userName = '';
+  let userAvatar = '👤';
+  let avatarIsImage = false;
   const PRESET_AVATARS = ['👤','😎','🤖','👽','🐱','🦊','🐼','🦁','🐯','🐸','🧑‍🚀','🥷','🧙','👑','💎','🔥'];
   function applyAvatar(el, avatar, isImage) {
     if (!el) return;
@@ -1116,71 +1116,59 @@
     reader.readAsDataURL(file);
   }
 
-  const NAME_COOLDOWN_MS = 15 * 24 * 60 * 60 * 1000;
-  function getNameCooldownRemaining() {
-    const last = parseInt(localStorage.getItem('trax_nameChangedAt') || '0');
-    if (!last) return 0;
-    return Math.max(0, NAME_COOLDOWN_MS - (Date.now() - last));
-  }
-  function formatNameCooldown(ms) {
-    const days = Math.floor(ms / (24*60*60*1000));
-    const hours = Math.floor((ms % (24*60*60*1000)) / (60*60*1000));
-    return days + 'd ' + hours + 'h';
-  }
-
   function saveProfile() {
     const newName = document.getElementById('usernameInput').value.trim();
     if (!newName && !userName) { showModal('⚠️ Name Required', 'Pehle apna naam likhein.'); return; }
     if (userName) {
       if (newName && newName !== userName) {
-        const remaining = getNameCooldownRemaining();
-        const hasCard = stickerLevels['namecard'];
-        if (remaining > 0) { showModal('⏰ Cooldown Active', 'Agla naam change: ' + formatNameCooldown(remaining) + ' baad.' + (hasCard ? '\n\n⚠️ Card aapke paas hai but cooldown khatam nahi hua.' : '')); return; }
-        if (!hasCard) { showModal('❌ Name Card Required', 'Name change karne ke liye Trax NFT section mein\nName Change Card kharido (1,000,000 TRAX).'); return; }
+        if (!stickerLevels['namecard']) { showModal('❌ Name Card Required', 'Name change karne ke liye Trax NFT section mein\nName Change Card kharido (1,000,000 TRAX).'); return; }
         delete stickerLevels['namecard'];
-        localStorage.setItem('trax_stickers_v4', JSON.stringify(stickerLevels));
         userName = newName;
-        localStorage.setItem('trax_username', userName);
-        localStorage.setItem('trax_nameChangedAt', Date.now());
         updateAvatarDisplays(); updateProfilePage();
+        saveToFirebase();
         showModal('🎉 Name Changed!', 'Welcome ' + userName + '!');
         return;
       }
-      localStorage.setItem('trax_avatar', userAvatar);
-      localStorage.setItem('trax_avatar_isimg', avatarIsImage);
       updateAvatarDisplays(); updateProfilePage();
+      saveToFirebase();
       showModal('✅ Saved', 'Avatar update ho gaya!');
       return;
     }
     if (newName.length < 3) { showModal('⚠️ Too Short', 'Naam kam se kam 3 characters.'); return; }
     userName = newName;
-    localStorage.setItem('trax_username', userName);
-    localStorage.setItem('trax_avatar', userAvatar);
-    localStorage.setItem('trax_avatar_isimg', avatarIsImage);
-    localStorage.setItem('trax_nameChangedAt', Date.now());
     updateAvatarDisplays(); updateProfilePage();
+    saveToFirebase();
     showModal('🎉 Name Set!', 'Welcome ' + userName + '!');
   }
 
-  let balance = parseInt(localStorage.getItem('trax_balance') || '0');
-  let energy = parseInt(localStorage.getItem('trax_energy') || '500');
-  let totalTaps = parseInt(localStorage.getItem('trax_taps') || '0');
-  let baseTapPower = parseInt(localStorage.getItem('trax_tapPower') || '1');
-  let maxEnergy = parseInt(localStorage.getItem('trax_maxEnergy') || '500');
-  let autoEarn = parseInt(localStorage.getItem('trax_autoEarn') || '0');
-  let stickerLevels = JSON.parse(localStorage.getItem('trax_stickers_v4') || '{}');
-  let totalEarned = parseInt(localStorage.getItem('trax_totalEarned') || '0');
+  // 🔥 SAARE GAME VARIABLES (Firebase se load honge)
+  let balance = 0;
+  let energy = 500;
+  let totalTaps = 0;
+  let baseTapPower = 1;
+  let maxEnergy = 500;
+  let autoEarn = 0;
+  let stickerLevels = {};
+  let totalEarned = 0;
   let miningActive = false;
-  let miningTotalEarned = parseInt(localStorage.getItem('trax_miningTotal') || '0');
-  let currentXP = parseInt(localStorage.getItem('trax_xp') || '0');
-  let currentLevel = parseInt(localStorage.getItem('trax_level') || '1');
+  let miningTotalEarned = 0;
+  let currentXP = 0;
+  let currentLevel = 1;
+  let boosterAutoTapBonus = 0;
+  let boosterDoubleBonus = 0;
+  let currentRP = 0;
+  let dailyRP = 0;
+  let weeklyRP = 0;
+  let seasonRP = 0;
 
-  let boosterAutoTapBonus = parseInt(localStorage.getItem('trax_booster_autoTap_bonus') || '0');
-  let boosterDoubleBonus = parseInt(localStorage.getItem('trax_booster_double_bonus') || '0');
+  // 🔥 TELEGRAM ID = UNIQUE PLAYER ID
+  const userId = tg && tg.initDataUnsafe && tg.initDataUnsafe.user ? tg.initDataUnsafe.user.id : Math.floor(Math.random() * 900000000) + 100000000;
+  let playerId = String(userId);
 
-  const userId = tg && tg.initDataUnsafe && tg.initDataUnsafe.user ? tg.initDataUnsafe.user.id : Math.floor(Math.random() * 9000) + 1000;
-  let playerId = localStorage.getItem('trax_playerId') || String(userId).slice(-6).padStart(6, '0');
-  localStorage.setItem('trax_playerId', playerId);
+  // Telegram username auto-set
+  if (tg && tg.initDataUnsafe && tg.initDataUnsafe.user && tg.initDataUnsafe.user.first_name) {
+    if (!userName) userName = tg.initDataUnsafe.user.first_name;
+  }
 
   const RANKS = [
     { id: 'brown', name: 'BROWN', icon: '🥉', sub: '#F', min: 0, max: 500, colour: '#cd7f32', next: 'silver' },
@@ -1192,11 +1180,6 @@
     { id: 'legendary', name: 'LEGENDARY', icon: '🟠', sub: '#R', min: 6000, max: 8000, colour: '#ff9500', next: 'obsidian' },
     { id: 'obsidian', name: 'OBSIDIAN', icon: '🔴', sub: '#S', min: 8000, max: 999999, colour: '#ff0055', next: null }
   ];
-
-  let currentRP = parseInt(localStorage.getItem('trax_rp') || '0');
-  let dailyRP = parseInt(localStorage.getItem('trax_dailyRP') || '0');
-  let weeklyRP = parseInt(localStorage.getItem('trax_weeklyRP') || '0');
-  let seasonRP = parseInt(localStorage.getItem('trax_seasonRP') || '0');
 
   function getRankFromRP(rp) {
     for (let i = RANKS.length - 1; i >= 0; i--) {
@@ -1210,10 +1193,6 @@
     dailyRP += amount;
     weeklyRP += amount;
     seasonRP += amount;
-    localStorage.setItem('trax_rp', currentRP);
-    localStorage.setItem('trax_dailyRP', dailyRP);
-    localStorage.setItem('trax_weeklyRP', weeklyRP);
-    localStorage.setItem('trax_seasonRP', seasonRP);
     updateRankBadge();
     updateUI();
   }
@@ -1227,9 +1206,7 @@
     if (icon) icon.textContent = rank.icon;
     if (name) name.textContent = rank.name;
     if (sub) sub.textContent = rank.sub + ' · ' + currentRP + ' RP';
-    if (card) {
-      card.className = 'small-badge-card rank ' + rank.id;
-    }
+    if (card) card.className = 'small-badge-card rank ' + rank.id;
   }
 
   function renderRankTierList() {
@@ -1304,35 +1281,10 @@
     { id: 'w10', name: 'Spend 1M TRAX', target: 1000000, reward: 500, xp: 100, type: 'spend' }
   ];
 
-  function getMissionProgress(id) {
-    return parseInt(localStorage.getItem('mission_' + id) || '0');
-  }
-  function getMissionClaimed(id) {
-    return localStorage.getItem('mission_' + id + '_claimed') === '1';
-  }
-  function getDailyReset() {
-    const today = new Date().toDateString();
-    const last = localStorage.getItem('mission_daily_reset') || '';
-    if (last !== today) {
-      DAILY_MISSIONS.forEach(m => {
-        localStorage.removeItem('mission_' + m.id);
-        localStorage.removeItem('mission_' + m.id + '_claimed');
-      });
-      localStorage.setItem('mission_daily_reset', today);
-    }
-  }
-  function getWeeklyReset() {
-    const now = new Date();
-    const week = Math.floor(now.getTime() / (7 * 24 * 60 * 60 * 1000));
-    const last = parseInt(localStorage.getItem('mission_weekly_reset') || '0');
-    if (last !== week) {
-      WEEKLY_MISSIONS.forEach(m => {
-        localStorage.removeItem('mission_' + m.id);
-        localStorage.removeItem('mission_' + m.id + '_claimed');
-      });
-      localStorage.setItem('mission_weekly_reset', week);
-    }
-  }
+  function getMissionProgress(id) { return 0; }
+  function getMissionClaimed(id) { return false; }
+  function getDailyReset() {}
+  function getWeeklyReset() {}
 
   let currentMissionTab = 'daily';
   function switchMissionTab(tab) {
@@ -1345,8 +1297,6 @@
   function renderMissions() {
     const container = document.getElementById('missionsContent');
     if (!container) return;
-    getDailyReset();
-    getWeeklyReset();
     container.innerHTML = '';
     const missions = currentMissionTab === 'daily' ? DAILY_MISSIONS : WEEKLY_MISSIONS;
     if (currentMissionTab === 'daily') {
@@ -1363,35 +1313,13 @@
     }
   }
   function renderMissionCard(container, m) {
-    const progress = getMissionProgress(m.id);
-    const claimed = getMissionClaimed(m.id);
-    const complete = progress >= m.target;
     const card = document.createElement('div');
-    card.className = 'mission-card' + (claimed ? ' done' : '');
-    card.innerHTML = '<div class="mission-info"><div class="mission-name">' + m.name + '</div><div class="mission-progress">' + Math.min(progress, m.target) + ' / ' + m.target + '</div><div class="mission-reward">+' + m.reward + ' RP · +' + m.xp + ' XP</div></div><button class="mission-btn ' + (claimed ? 'claimed' : (complete ? 'claim' : 'verify')) + '" onclick="' + (claimed ? '' : (complete ? 'claimMission(\'' + m.id + '\',' + m.reward + ',' + m.xp + ')' : 'showToast(\'Complete the task first\')')) + '">' + (claimed ? '✓ Done' : (complete ? 'Claim' : 'Pending')) + '</button>';
+    card.className = 'mission-card';
+    card.innerHTML = '<div class="mission-info"><div class="mission-name">' + m.name + '</div><div class="mission-progress">0 / ' + m.target + '</div><div class="mission-reward">+' + m.reward + ' RP · +' + m.xp + ' XP</div></div><button class="mission-btn verify" onclick="showToast(\'Complete the task first\')">Pending</button>';
     container.appendChild(card);
   }
-  function claimMission(id, reward, xp) {
-    if (getMissionClaimed(id)) return;
-    localStorage.setItem('mission_' + id + '_claimed', '1');
-    addRP(reward);
-    addXP(xp);
-    playSound('win'); vibrate('success');
-    showModal('🎉 Mission Complete!', '+' + reward + ' RP\n+' + xp + ' XP');
-    renderMissions();
-  }
-  function addMissionProgress(type, amount) {
-    [DAILY_MISSIONS, WEEKLY_MISSIONS].forEach(list => {
-      list.forEach(m => {
-        if (m.type === type) {
-          const current = getMissionProgress(m.id);
-          if (current < m.target) {
-            localStorage.setItem('mission_' + m.id, Math.min(current + amount, m.target));
-          }
-        }
-      });
-    });
-  }
+  function claimMission(id, reward, xp) { addRP(reward); addXP(xp); renderMissions(); }
+  function addMissionProgress(type, amount) {}
 
   function switchRankTop(tab) {
     document.querySelectorAll('.rank-top-tab').forEach(t => t.classList.remove('active'));
@@ -1419,50 +1347,34 @@
   function renderLeaderboard() {
     const container = document.getElementById('leaderboardContent');
     if (!container) return;
-    const key = 'trax_lb_' + currentLB + '_' + currentLBPeriod;
-    const raw = localStorage.getItem(key) || '{}';
-    let data = {};
-    try { data = JSON.parse(raw); } catch(e) {}
-    const entries = Object.values(data).sort((a, b) => b.value - a.value).slice(0, 20);
-    if (entries.length === 0) {
-      container.innerHTML = '<div style="text-align:center;padding:30px;color:#7a8ba5"><div style="font-size:44px">🏆</div><div style="font-weight:900;color:#00d4ff;margin-top:10px">No players yet</div></div>';
-      return;
-    }
-    container.innerHTML = '';
-    entries.forEach((e, i) => {
-      const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : '#' + (i + 1);
-      const row = document.createElement('div');
-      row.style.cssText = 'display:flex;justify-content:space-between;align-items:center;padding:12px;background:rgba(0,0,0,0.3);border-radius:12px;margin-bottom:8px';
-      row.innerHTML = '<div style="display:flex;align-items:center;gap:10px"><span style="font-size:20px">' + medal + '</span><div><div style="font-size:13px;font-weight:900;color:white">' + e.name + '</div><div style="font-size:9px;color:#7a8ba5">#' + e.id + '</div></div></div><span style="font-size:14px;font-weight:900;color:#00d4ff">' + e.value.toLocaleString() + (currentLB === 'rp' ? ' RP' : ' TRAX') + '</span>';
-      container.appendChild(row);
+    container.innerHTML = '<div style="text-align:center;padding:30px;color:#7a8ba5"><div style="font-size:44px">🏆</div><div style="font-weight:900;color:#00d4ff;margin-top:10px">Loading...</div></div>';
+    database.ref('users').once('value').then((snap) => {
+      const data = snap.val() || {};
+      const entries = Object.values(data).map(u => ({
+        id: u.id || 'unknown',
+        name: u.name || 'Player',
+        value: currentLB === 'rp' ? (u.rp || 0) : (u.totalEarned || 0)
+      })).sort((a, b) => b.value - a.value).slice(0, 20);
+      if (entries.length === 0) {
+        container.innerHTML = '<div style="text-align:center;padding:30px;color:#7a8ba5"><div style="font-size:44px">🏆</div><div style="font-weight:900;color:#00d4ff;margin-top:10px">No players yet</div></div>';
+        return;
+      }
+      container.innerHTML = '';
+      entries.forEach((e, i) => {
+        const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : '#' + (i + 1);
+        const row = document.createElement('div');
+        row.style.cssText = 'display:flex;justify-content:space-between;align-items:center;padding:12px;background:rgba(0,0,0,0.3);border-radius:12px;margin-bottom:8px';
+        row.innerHTML = '<div style="display:flex;align-items:center;gap:10px"><span style="font-size:20px">' + medal + '</span><div><div style="font-size:13px;font-weight:900;color:white">' + e.name + '</div></div></div><span style="font-size:14px;font-weight:900;color:#00d4ff">' + e.value.toLocaleString() + (currentLB === 'rp' ? ' RP' : ' TRAX') + '</span>';
+        container.appendChild(row);
+      });
     });
   }
-  function recordLeaderboardEntry(type, period, value) {
-    const key = 'trax_lb_' + type + '_' + period;
-    const raw = localStorage.getItem(key) || '{}';
-    let data = {};
-    try { data = JSON.parse(raw); } catch(e) {}
-    data[playerId] = { id: playerId, name: userName || 'Player', value: Math.floor(value) };
-    localStorage.setItem(key, JSON.stringify(data));
-  }
+  function recordLeaderboardEntry() {}
 
   function renderHistory() {
     const container = document.getElementById('historyContent');
     if (!container) return;
-    const raw = localStorage.getItem('trax_history') || '[]';
-    let history = [];
-    try { history = JSON.parse(raw); } catch(e) {}
-    if (history.length === 0) {
-      container.innerHTML = '<div style="text-align:center;padding:30px;color:#7a8ba5"><div style="font-size:44px">📜</div><div style="font-weight:900;color:#00d4ff;margin-top:10px">No history yet</div><div style="font-size:11px">Complete a season to see records</div></div>';
-      return;
-    }
-    container.innerHTML = '';
-    history.reverse().forEach(h => {
-      const card = document.createElement('div');
-      card.className = 'more-card';
-      card.innerHTML = '<div class="more-card-icon rank">🏆</div><div class="more-card-info"><h4>Season ' + h.season + '</h4><p>' + h.rank + ' · ' + h.rp + ' RP · ' + h.date + '</p></div>';
-      container.appendChild(card);
-    });
+    container.innerHTML = '<div style="text-align:center;padding:30px;color:#7a8ba5"><div style="font-size:44px">📜</div><div style="font-weight:900;color:#00d4ff;margin-top:10px">No history yet</div></div>';
   }
 
   function getXPForLevel(level) {
@@ -1481,8 +1393,6 @@
       playSound('win'); vibrate('success');
       needed = getXPForLevel(currentLevel);
     }
-    localStorage.setItem('trax_xp', currentXP);
-    localStorage.setItem('trax_level', currentLevel);
     updateUI();
   }
   function getLevelFromXP() { return { level: currentLevel, xp: currentXP, need: getXPForLevel(currentLevel) }; }
@@ -1510,7 +1420,7 @@
     { id: 'l1', tier: 'legendary', icon: '🐉', name: 'Dragon', bonus: lvl => '+' + (500*lvl) + ' Auto', cost: 10000000 },
     { id: 'l2', tier: 'legendary', icon: '🦄', name: 'Unicorn', bonus: lvl => '+' + (200*lvl) + ' Tap', cost: 25000000 },
     { id: 'l3', tier: 'legendary', icon: '👾', name: 'Alien', bonus: lvl => '+' + (100*lvl) + ' Mining', cost: 50000000 },
-    { id: 'namecard', tier: 'legendary', icon: '📝', name: 'Name Change Card', bonus: () => 'Change name after 15d cooldown', cost: 1000000, isNameCard: true }
+    { id: 'namecard', tier: 'legendary', icon: '📝', name: 'Name Change Card', bonus: () => 'Change name', cost: 1000000, isNameCard: true }
   ];
   const MAX_STICKER_LEVEL = 10;
   const STICKER_MULT = 1.5;
@@ -1520,8 +1430,7 @@
     const purchased = Object.keys(stickerLevels).filter(id => id !== 'namecard' && id !== 'c1');
     const allIds = STICKERS.filter(s => !s.isNameCard && s.id !== 'c1').map(s => s.id);
     const randomPool = [...allIds];
-    const count = purchased.length;
-    for (let i = 0; i < count; i++) {
+    for (let i = 0; i < purchased.length; i++) {
       if (randomPool.length === 0) break;
       const idx = Math.floor(Math.random() * randomPool.length);
       unlocked.push(randomPool.splice(idx, 1)[0]);
@@ -1529,7 +1438,6 @@
     purchased.forEach(id => { if (!unlocked.includes(id)) unlocked.push(id); });
     return unlocked;
   }
-
   function getStickerBonusFromAll(keyword) {
     let total = 0;
     STICKERS.forEach(s => {
@@ -1552,27 +1460,16 @@
     document.getElementById('tapPowerText').textContent = getEffectiveTapPower();
     document.getElementById('statTap').textContent = getEffectiveTapPower();
     document.getElementById('statAuto').textContent = autoEarn;
-
     const levelInfo = getLevelFromXP();
     document.getElementById('levelNum').textContent = levelInfo.level;
     document.getElementById('xpFill').style.width = (levelInfo.xp / levelInfo.need * 100) + '%';
     document.getElementById('xpCurrent').textContent = levelInfo.xp;
     document.getElementById('xpNeed').textContent = levelInfo.need;
-
     document.getElementById('mineTotalVal').textContent = '+' + miningTotalEarned.toLocaleString();
     document.getElementById('mineRateVal').textContent = '+' + getMiningRate();
     updateRankBadge();
     updateProfilePage();
     updateSideCards();
-    updateNameCooldownText();
-  }
-
-  function updateNameCooldownText() {
-    const el = document.getElementById('nameCooldownText');
-    if (!el) return;
-    const remaining = getNameCooldownRemaining();
-    if (remaining > 0) { el.textContent = '⏰ Agla naam change: ' + formatNameCooldown(remaining) + ' baad'; el.style.color = '#ff9500'; }
-    else { el.textContent = '✅ Name change kar sakte ho (card required — 15d cooldown done)'; el.style.color = '#00ff88'; }
   }
 
   function updateSideCards() {
@@ -1584,13 +1481,6 @@
       if (rp.ready) { rpTimer.textContent = 'READY'; rpTimer.style.color = '#00ff88'; rpCard.classList.add('ready'); rpDot.style.display = 'block'; }
       else { rpTimer.textContent = formatRPTime(rp.remaining); rpTimer.style.color = '#ff5555'; rpCard.classList.remove('ready'); rpDot.style.display = 'none'; }
     }
-    const attData = checkAttendanceReset();
-    const attDay = document.getElementById('attSideDay');
-    const attDot = document.getElementById('attDot');
-    if (attDay) {
-      if (canClaimToday()) { attDay.textContent = 'Claim Day ' + (attData.currentDay + 1); attDay.style.color = '#00ff88'; attDot.style.display = 'block'; }
-      else { attDay.textContent = 'Day ' + attData.currentDay + ' done'; attDay.style.color = '#7a8ba5'; attDot.style.display = 'none'; }
-    }
     const mineStatus = document.getElementById('mineSideStatus');
     if (mineStatus) {
       if (miningActive) { mineStatus.textContent = 'Mining...'; mineStatus.style.color = '#ff9500'; }
@@ -1601,7 +1491,6 @@
 
   function updateProfilePage() {
     const levelInfo = getLevelFromXP();
-    const attData = checkAttendanceReset();
     const rank = getRankFromRP(currentRP);
     const el = (id) => document.getElementById(id);
     if (el('profileHeroName')) el('profileHeroName').textContent = userName || 'Player';
@@ -1616,30 +1505,25 @@
     if (el('profileInfoLevel')) el('profileInfoLevel').textContent = levelInfo.level;
     if (el('profileInfoTapPower')) el('profileInfoTapPower').textContent = '+' + getEffectiveTapPower();
     if (el('profileInfoEnergy')) el('profileInfoEnergy').textContent = getEffectiveMaxEnergy();
-    if (el('profileInfoStreak')) el('profileInfoStreak').textContent = attData.currentDay + ' Days';
   }
 
+  // 🔥 SAVE TO FIREBASE
+  let saveTimeout = null;
   function save() {
-    localStorage.setItem('trax_balance', Math.floor(balance));
-    localStorage.setItem('trax_energy', energy);
-    localStorage.setItem('trax_taps', totalTaps);
-    localStorage.setItem('trax_tapPower', baseTapPower);
-    localStorage.setItem('trax_maxEnergy', maxEnergy);
-    localStorage.setItem('trax_autoEarn', autoEarn);
-    localStorage.setItem('trax_totalEarned', Math.floor(totalEarned));
-    localStorage.setItem('trax_miningTotal', miningTotalEarned);
-    saveToFirebase();
+    if (saveTimeout) clearTimeout(saveTimeout);
+    saveTimeout = setTimeout(saveToFirebase, 500);
   }
 
   function saveToFirebase() {
     if (!playerId) return;
     const userData = {
+      id: playerId,
       name: userName || 'Player',
       balance: Math.floor(balance),
       energy: energy,
       taps: totalTaps,
-      tapPower: getEffectiveTapPower(),
-      maxEnergy: getEffectiveMaxEnergy(),
+      tapPower: baseTapPower,
+      maxEnergy: maxEnergy,
       autoEarn: autoEarn,
       totalEarned: Math.floor(totalEarned),
       level: currentLevel,
@@ -1666,43 +1550,47 @@
     dbRef.child(playerId).once('value').then((snapshot) => {
       const data = snapshot.val();
       if (data) {
-        if (data.name && !userName) userName = data.name;
-        if (data.balance) balance = data.balance;
-        if (data.energy) energy = data.energy;
-        if (data.taps) totalTaps = data.taps;
-        if (data.totalEarned) totalEarned = data.totalEarned;
-        if (data.level) currentLevel = data.level;
-        if (data.xp) currentXP = data.xp;
-        if (data.rp) currentRP = data.rp;
-        if (data.dailyRP) dailyRP = data.dailyRP;
-        if (data.weeklyRP) weeklyRP = data.weeklyRP;
-        if (data.seasonRP) seasonRP = data.seasonRP;
-        if (data.stickers) stickerLevels = data.stickers;
-        if (data.miningTotal) miningTotalEarned = data.miningTotal;
-        if (data.avatar) userAvatar = data.avatar;
-        if (data.avatarIsImage !== undefined) avatarIsImage = data.avatarIsImage;
+        userName = data.name || userName || '';
+        balance = data.balance || 0;
+        energy = data.energy || 500;
+        totalTaps = data.taps || 0;
+        baseTapPower = data.tapPower || 1;
+        maxEnergy = data.maxEnergy || 500;
+        autoEarn = data.autoEarn || 0;
+        totalEarned = data.totalEarned || 0;
+        currentLevel = data.level || 1;
+        currentXP = data.xp || 0;
+        currentRP = data.rp || 0;
+        dailyRP = data.dailyRP || 0;
+        weeklyRP = data.weeklyRP || 0;
+        seasonRP = data.seasonRP || 0;
+        stickerLevels = data.stickers || {};
+        miningTotalEarned = data.miningTotal || 0;
+        userAvatar = data.avatar || '👤';
+        avatarIsImage = data.avatarIsImage || false;
+        boosterAutoTapBonus = data.boosterAutoTap || 0;
+        boosterDoubleBonus = data.boosterDouble || 0;
         console.log('✅ Firebase data loaded');
-        updateUI();
-        updateProfilePage();
-        updateRankBadge();
       } else {
+        console.log('🆕 New user');
         saveToFirebase();
       }
+      updateUI();
+      updateProfilePage();
+      updateRankBadge();
+      updateAvatarDisplays();
     }).catch(err => {
       console.error('❌ Load error:', err);
     });
   }
 
+  // TAP
   document.getElementById('coinBtn').addEventListener('click', (e) => {
     if (energy <= 0) { playSound('error'); vibrate('error'); showModal('⚡ Energy Empty', 'Energy khatam.'); return; }
     const gain = getEffectiveTapPower();
     balance += gain; energy--; totalTaps++; totalEarned += gain;
-    addXP(1);
-    addRP(1);
-    addMissionProgress('tap', 1);
+    addXP(1); addRP(1);
     updateUI(); save();
-    recordLeaderboardEntry('coin', currentLBPeriod, totalEarned);
-    recordLeaderboardEntry('rp', currentLBPeriod, currentRP);
     showFloat(e.clientX, e.clientY, '+' + gain);
     playSound('tap'); vibrate('light');
   });
@@ -1713,13 +1601,11 @@
     document.body.appendChild(el); setTimeout(() => el.remove(), 1000);
   }
 
+  // MINING
   const MINING_RATES = [5, 10, 20, 35, 50];
   let miningTimerInterval = null;
   let miningElapsed = 0;
-  function getMiningRate() {
-    const lvl = Math.min(parseInt(localStorage.getItem('upg_miningPower') || '0'), MINING_RATES.length - 1);
-    return MINING_RATES[lvl];
-  }
+  function getMiningRate() { return MINING_RATES[0]; }
   function startMining() {
     if (miningActive) { showModal('⛏️ Mining', 'Already mining!'); return; }
     if (energy < 10) { showModal('⚡ Not Enough', '10 energy chahiye.'); return; }
@@ -1742,18 +1628,20 @@
       if (miningElapsed >= 60) {
         clearInterval(miningTimerInterval); miningTimerInterval = null;
         miningActive = false; miningElapsed = 0;
-        addMissionProgress('mine', 1);
         btn.disabled = false; btn.classList.remove('mining'); btn.textContent = 'START MINING (10 ⚡)';
         timer.textContent = 'READY'; progress.style.width = '0%';
         playSound('win'); vibrate('success');
-        showModal('⛏️ Mining Complete!', 'Aapne 60 seconds mein\n+' + (rate * 60).toLocaleString() + ' TRAX kamaye!');
+        showModal('⛏️ Mining Complete!', '+' + (rate * 60).toLocaleString() + ' TRAX!');
         updateUI();
       }
     }, 1000);
   }
 
+  // BOOSTERS
   const BOOSTER_DURATIONS = { autoTap: 10 * 60 * 1000, energy: 0, double: 30 * 60 * 1000, offline: 0 };
   const BOOSTER_COOLDOWNS = { autoTap: 30 * 60 * 1000, energy: 30 * 60 * 1000, double: 60 * 60 * 1000, offline: 12 * 60 * 60 * 1000 };
+  let boosterLastUsed = {};
+  let boosterActiveUntil = {};
   function formatBoosterTime(ms) {
     if (ms <= 0) return '--:--';
     const s = Math.floor(ms / 1000);
@@ -1765,8 +1653,8 @@
     return '00:' + String(sec).padStart(2, '0');
   }
   function getBoosterState(id) {
-    const lastUsed = parseInt(localStorage.getItem('trax_booster_' + id + '_lastUsed') || '0');
-    const activeUntil = parseInt(localStorage.getItem('trax_booster_' + id + '_activeUntil') || '0');
+    const lastUsed = boosterLastUsed[id] || 0;
+    const activeUntil = boosterActiveUntil[id] || 0;
     const now = Date.now();
     const cooldown = BOOSTER_COOLDOWNS[id]; const duration = BOOSTER_DURATIONS[id];
     let isActive = false, isCooldown = false, timeRemaining = 0;
@@ -1794,14 +1682,14 @@
   }
   function activateBooster(id) {
     const state = getBoosterState(id);
-    if (state.isCooldown) { playSound('error'); vibrate('error'); showModal('⏰ Cooldown', 'Agla use: ' + formatBoosterTime(state.timeRemaining) + ' baad'); return; }
-    if (state.isActive) { showModal('⚡ Already Active', 'Ye booster pehle se active hai.'); return; }
+    if (state.isCooldown) { showModal('⏰ Cooldown', 'Agla use: ' + formatBoosterTime(state.timeRemaining) + ' baad'); return; }
+    if (state.isActive) { showModal('⚡ Already Active', ''); return; }
     const now = Date.now();
-    localStorage.setItem('trax_booster_' + id + '_lastUsed', now);
-    if (id === 'autoTap') { boosterAutoTapBonus = 1; localStorage.setItem('trax_booster_autoTap_bonus', '1'); localStorage.setItem('trax_booster_autoTap_activeUntil', now + BOOSTER_DURATIONS.autoTap); showModal('👆 Auto Tap Active!', '+1 Tap Power for 10 minutes!'); }
-    else if (id === 'energy') { energy = Math.min(getEffectiveMaxEnergy(), energy + 50); showModal('⚡ Energy Refilled!', '+50 Energy mile!'); }
-    else if (id === 'double') { boosterDoubleBonus = 2; localStorage.setItem('trax_booster_double_bonus', '2'); localStorage.setItem('trax_booster_double_activeUntil', now + BOOSTER_DURATIONS.double); showModal('2️⃣ 2x Earnings Active!', '+2 Tap Power for 30 minutes!'); }
-    else if (id === 'offline') { balance += 5000; totalEarned += 5000; showModal('⏰ Offline Profit!', '+5,000 TRAX mile!'); }
+    boosterLastUsed[id] = now;
+    if (id === 'autoTap') { boosterAutoTapBonus = 1; boosterActiveUntil[id] = now + BOOSTER_DURATIONS.autoTap; showModal('👆 Auto Tap Active!', '+1 Tap Power 10 min!'); }
+    else if (id === 'energy') { energy = Math.min(getEffectiveMaxEnergy(), energy + 50); showModal('⚡ Energy Refilled!', '+50 Energy!'); }
+    else if (id === 'double') { boosterDoubleBonus = 2; boosterActiveUntil[id] = now + BOOSTER_DURATIONS.double; showModal('2️⃣ 2x Active!', '+2 Tap Power 30 min!'); }
+    else if (id === 'offline') { balance += 5000; totalEarned += 5000; showModal('⏰ Offline Profit!', '+5,000 TRAX!'); }
     addXP(10); addRP(10);
     updateUI(); save(); updateBoosterUI();
     playSound('win'); vibrate('success');
@@ -1809,12 +1697,12 @@
   function checkBoosterExpiry() {
     const now = Date.now(); let changed = false;
     if (boosterAutoTapBonus > 0) {
-      const a = parseInt(localStorage.getItem('trax_booster_autoTap_activeUntil') || '0');
-      if (a <= now) { boosterAutoTapBonus = 0; localStorage.removeItem('trax_booster_autoTap_bonus'); localStorage.removeItem('trax_booster_autoTap_activeUntil'); showToast('⏰ Auto Tap expired!'); changed = true; }
+      const a = boosterActiveUntil['autoTap'] || 0;
+      if (a <= now && a > 0) { boosterAutoTapBonus = 0; boosterActiveUntil['autoTap'] = 0; showToast('⏰ Auto Tap expired!'); changed = true; }
     }
     if (boosterDoubleBonus > 0) {
-      const a = parseInt(localStorage.getItem('trax_booster_double_activeUntil') || '0');
-      if (a <= now) { boosterDoubleBonus = 0; localStorage.removeItem('trax_booster_double_bonus'); localStorage.removeItem('trax_booster_double_activeUntil'); showToast('⏰ 2x Earnings expired!'); changed = true; }
+      const a = boosterActiveUntil['double'] || 0;
+      if (a <= now && a > 0) { boosterDoubleBonus = 0; boosterActiveUntil['double'] = 0; showToast('⏰ 2x expired!'); changed = true; }
     }
     if (changed) { updateUI(); save(); }
   }
@@ -1825,13 +1713,14 @@
     document.body.appendChild(t); setTimeout(() => t.remove(), 3000);
   }
 
+  // UPGRADES
   function drawUpgrades() {
     const upgrades = [
-      { id: 'tapPower', icon: '⚡', iconClass: 'tap', name: 'Tap Power', desc: '+1 per tap', baseCost: 5000, multiplier: 1.5, level: parseInt(localStorage.getItem('upg_tapPower') || '0'), max: 999 },
-      { id: 'maxEnergy', icon: '🔋', iconClass: 'energy', name: 'Max Energy', desc: '+50 energy', baseCost: 3000, multiplier: 1.4, level: parseInt(localStorage.getItem('upg_maxEnergy') || '0'), max: 999 },
-      { id: 'autoEarn', icon: '💰', iconClass: 'auto', name: 'Auto Earning', desc: '+5/hr', baseCost: 15000, multiplier: 1.6, level: parseInt(localStorage.getItem('upg_autoEarn') || '0'), max: 999 },
-      { id: 'energyRegen', icon: '⚡', iconClass: 'regen', name: 'Energy Regen', desc: '+1 per 2sec', baseCost: 20000, multiplier: 1.7, level: parseInt(localStorage.getItem('upg_energyRegen') || '0'), max: 999 },
-      { id: 'miningPower', icon: '⛏️', iconClass: 'mine', name: 'Mining Power', desc: 'Level 1→5: +5/10/20/35/50', baseCost: 25000, multiplier: 1.8, level: parseInt(localStorage.getItem('upg_miningPower') || '0'), max: 5 }
+      { id: 'tapPower', icon: '⚡', iconClass: 'tap', name: 'Tap Power', desc: '+1 per tap', baseCost: 5000, multiplier: 1.5, level: 0, max: 999 },
+      { id: 'maxEnergy', icon: '🔋', iconClass: 'energy', name: 'Max Energy', desc: '+50 energy', baseCost: 3000, multiplier: 1.4, level: 0, max: 999 },
+      { id: 'autoEarn', icon: '💰', iconClass: 'auto', name: 'Auto Earning', desc: '+5/hr', baseCost: 15000, multiplier: 1.6, level: 0, max: 999 },
+      { id: 'energyRegen', icon: '⚡', iconClass: 'regen', name: 'Energy Regen', desc: '+1 per 2sec', baseCost: 20000, multiplier: 1.7, level: 0, max: 999 },
+      { id: 'miningPower', icon: '⛏️', iconClass: 'mine', name: 'Mining Power', desc: 'Max Level 5', baseCost: 25000, multiplier: 1.8, level: 0, max: 5 }
     ];
     const box = document.getElementById('upgradesList');
     box.innerHTML = '';
@@ -1846,21 +1735,17 @@
   }
   function buyUpgrade(id, cost) {
     if (balance < cost) { showModal('❌ Not Enough', 'Cost: ' + cost.toLocaleString() + ' TRAX'); return; }
-    if (id === 'miningPower' && parseInt(localStorage.getItem('upg_' + id) || '0') >= 5) { showModal('⛏️ Max Level', 'Mining max level 5 tak hi hai.'); return; }
     balance -= cost;
-    let level = parseInt(localStorage.getItem('upg_' + id) || '0') + 1;
-    localStorage.setItem('upg_' + id, level);
     if (id === 'tapPower') baseTapPower += 1;
     if (id === 'maxEnergy') maxEnergy += 50;
     if (id === 'autoEarn') autoEarn += 5;
     addXP(15); addRP(25);
-    addMissionProgress('upgrade', 1);
-    addMissionProgress('spend', cost);
     updateUI(); save(); drawUpgrades();
     playSound('win'); vibrate('success');
-    showModal('✅ Upgraded!', 'Level ' + level + ' ho gaya!');
+    showModal('✅ Upgraded!', 'Level badh gaya!');
   }
 
+  // STICKERS
   function drawStickers() {
     const container = document.getElementById('stickerShopContainer');
     container.innerHTML = '';
@@ -1883,130 +1768,102 @@
   function buySticker(s, cost) {
     if (balance < cost) { showModal('❌ Not Enough', 'Cost: ' + cost.toLocaleString() + ' TRAX'); return; }
     if (s.isNameCard) {
-      if (stickerLevels[s.id]) { showModal('✓ Already Owned', 'Aapke paas name change card already hai.'); return; }
+      if (stickerLevels[s.id]) { showModal('✓ Already Owned', ''); return; }
       balance -= cost; stickerLevels[s.id] = 1;
-      localStorage.setItem('trax_stickers_v4', JSON.stringify(stickerLevels));
       addXP(100); addRP(100);
       updateUI(); save(); drawStickers();
       playSound('win'); vibrate('success');
-      showModal('📝 Name Change Card!', 'Card kharida!');
+      showModal('📝 Name Card!', 'Card kharida!');
       return;
     }
     balance -= cost;
     stickerLevels[s.id] = (stickerLevels[s.id] || 0) + 1;
-    localStorage.setItem('trax_stickers_v4', JSON.stringify(stickerLevels));
     addXP(20); addRP(20);
-    addMissionProgress('spend', cost);
     updateUI(); save(); drawStickers();
     playSound('win'); vibrate('success');
-    showModal('🎉 Upgraded!', s.name + ' Level ' + stickerLevels[s.id] + ' ho gaya!');
+    showModal('🎉 Upgraded!', s.name + ' Level ' + stickerLevels[s.id]);
   }
 
+  // TASKS
   function drawTasksNew() {
     const box = document.getElementById('fullTasksListNew');
     box.innerHTML = '';
     const tasks = [
-      { id: 'tg', icon: '📢', iconClass: 'telegram', name: 'Join Telegram', reward: 1000, xp: 50, verifyLink: 'https://t.me/TraxOfficial_bot', done: localStorage.getItem('task_tg') === 'done' },
-      { id: 'x', icon: '𝕏', iconClass: 'twitter', name: 'Follow X', reward: 1000, xp: 50, verifyLink: 'https://twitter.com/', done: localStorage.getItem('task_x') === 'done' },
-      { id: 'yt', icon: '▶', iconClass: 'youtube', name: 'Subscribe YouTube', reward: 2000, xp: 75, verifyLink: 'https://youtube.com/', done: localStorage.getItem('task_yt') === 'done' },
-      { id: 'video', icon: '🎬', iconClass: 'pink', name: 'Watch Video', reward: 2000, xp: 75, verifyLink: '', done: localStorage.getItem('task_video') === 'done' },
-      { id: 'invite', icon: '👥', iconClass: 'invite', name: 'Invite 1 Friend', reward: 5000, xp: 100, verifyLink: '', done: localStorage.getItem('task_invite') === 'done' },
-      { id: 'invite5', icon: '👨‍👩‍👧', iconClass: 'green', name: 'Invite 5 Friends', reward: 25000, xp: 300, verifyLink: '', done: localStorage.getItem('task_invite5') === 'done' },
-      { id: 'share', icon: '📤', iconClass: 'orange', name: 'Share Profile', reward: 1500, xp: 60, verifyLink: '', done: localStorage.getItem('task_share') === 'done' },
-      { id: 'daily', icon: '📅', iconClass: 'purple', name: 'Claim Daily Reward', reward: 3000, xp: 100, verifyLink: '', done: localStorage.getItem('task_daily') === 'done' },
-      { id: 'mine', icon: '⛏️', iconClass: 'cyan', name: 'Mine Once', reward: 2500, xp: 80, verifyLink: '', done: localStorage.getItem('task_mine') === 'done' },
-      { id: 'game', icon: '🎮', iconClass: 'red', name: 'Play Any Game', reward: 2500, xp: 80, verifyLink: '', done: localStorage.getItem('task_game') === 'done' },
-      { id: 'upgrade', icon: '⬆️', iconClass: 'yellow', name: 'Upgrade Anything', reward: 3000, xp: 90, verifyLink: '', done: localStorage.getItem('task_upgrade') === 'done' }
+      { id: 'tg', icon: '📢', iconClass: 'telegram', name: 'Join Telegram', reward: 1000, xp: 50, verifyLink: 'https://t.me/TraxOfficial_bot' },
+      { id: 'x', icon: '𝕏', iconClass: 'twitter', name: 'Follow X', reward: 1000, xp: 50, verifyLink: 'https://twitter.com/' },
+      { id: 'yt', icon: '▶', iconClass: 'youtube', name: 'Subscribe YouTube', reward: 2000, xp: 75, verifyLink: 'https://youtube.com/' },
+      { id: 'video', icon: '🎬', iconClass: 'pink', name: 'Watch Video', reward: 2000, xp: 75, verifyLink: '' },
+      { id: 'invite', icon: '👥', iconClass: 'invite', name: 'Invite 1 Friend', reward: 5000, xp: 100, verifyLink: '' },
+      { id: 'invite5', icon: '👨‍👩‍👧', iconClass: 'green', name: 'Invite 5 Friends', reward: 25000, xp: 300, verifyLink: '' },
+      { id: 'share', icon: '📤', iconClass: 'orange', name: 'Share Profile', reward: 1500, xp: 60, verifyLink: '' },
+      { id: 'daily', icon: '📅', iconClass: 'purple', name: 'Claim Daily Reward', reward: 3000, xp: 100, verifyLink: '' },
+      { id: 'mine', icon: '⛏️', iconClass: 'cyan', name: 'Mine Once', reward: 2500, xp: 80, verifyLink: '' },
+      { id: 'game', icon: '🎮', iconClass: 'red', name: 'Play Any Game', reward: 2500, xp: 80, verifyLink: '' },
+      { id: 'upgrade', icon: '⬆️', iconClass: 'yellow', name: 'Upgrade Anything', reward: 3000, xp: 90, verifyLink: '' }
     ];
     tasks.forEach(t => {
       const el = document.createElement('div');
       el.className = 'task-row';
-      el.innerHTML = '<div class="task-icon-wrap ' + t.iconClass + '">' + t.icon + '</div><div class="task-content"><div class="task-title">' + t.name + '</div><div class="task-reward-row">+' + t.reward.toLocaleString() + ' TRAX · +' + t.xp + ' XP</div></div><button class="task-btn ' + (t.done ? 'done' : 'go') + '" onclick="startTaskVerify(\'' + t.id + '\',' + t.reward + ',' + t.xp + ',\'' + (t.verifyLink || '') + '\')">' + (t.done ? '✓ DONE' : 'GO') + '</button>';
+      el.innerHTML = '<div class="task-icon-wrap ' + t.iconClass + '">' + t.icon + '</div><div class="task-content"><div class="task-title">' + t.name + '</div><div class="task-reward-row">+' + t.reward.toLocaleString() + ' TRAX · +' + t.xp + ' XP</div></div><button class="task-btn go" onclick="startTaskVerify(\'' + t.id + '\',' + t.reward + ',' + t.xp + ',\'' + (t.verifyLink || '') + '\')">GO</button>';
       box.appendChild(el);
     });
   }
   let currentVerifyTask = null;
   function startTaskVerify(id, reward, xp, link) {
-    if (localStorage.getItem('task_' + id) === 'done') { showModal('✅ Done', 'Ye task pehle kar chuke hain.'); return; }
     currentVerifyTask = { id, reward, xp };
     if (link) { if (tg) tg.openTelegramLink(link); else window.open(link, '_blank'); }
-    document.getElementById('taskVerifyTitle').textContent = 'Verify Task';
-    document.getElementById('taskVerifyText').innerText = 'Agar task complete hai to VERIFY NOW dabayein.';
     document.getElementById('taskVerifyModal').classList.add('show');
   }
   function closeTaskVerify() { document.getElementById('taskVerifyModal').classList.remove('show'); currentVerifyTask = null; }
   function confirmTaskVerify() {
     if (!currentVerifyTask) return;
-    const { id, reward, xp } = currentVerifyTask;
-    if (localStorage.getItem('task_' + id) === 'done') { closeTaskVerify(); return; }
-    const btn = document.querySelector('#taskVerifyModal .modal-btn');
-    btn.textContent = '⏳ Verifying...'; btn.disabled = true;
-    setTimeout(() => {
-      localStorage.setItem('task_' + id, 'done');
-      balance += reward; totalEarned += reward;
-      addXP(xp); addRP(50);
-      addMissionProgress('task', 1);
-      updateUI(); save(); drawTasksNew();
-      closeTaskVerify();
-      playSound('win'); vibrate('success');
-      showModal('🎉 Task Verified!', '+' + reward.toLocaleString() + ' TRAX\n+' + xp + ' XP\n+50 RP');
-      btn.textContent = '✓ VERIFY NOW'; btn.disabled = false;
-    }, 1500);
+    const { reward, xp } = currentVerifyTask;
+    balance += reward; totalEarned += reward;
+    addXP(xp); addRP(50);
+    updateUI(); save();
+    closeTaskVerify();
+    playSound('win'); vibrate('success');
+    showModal('🎉 Task Verified!', '+' + reward.toLocaleString() + ' TRAX\n+' + xp + ' XP\n+50 RP');
   }
 
-  const LEADERBOARD_RESET_MS = 30 * 60 * 1000;
-  function getLeaderboardData() {
-    const raw = localStorage.getItem('trax_leaderboard') || '{}';
-    const lastReset = parseInt(localStorage.getItem('trax_leaderboard_reset') || '0');
-    const now = Date.now();
-    if (now - lastReset >= LEADERBOARD_RESET_MS) {
-      localStorage.setItem('trax_leaderboard', '{}');
-      localStorage.setItem('trax_leaderboard_reset', now);
-      return {};
-    }
-    try { return JSON.parse(raw); } catch(e) { return {}; }
-  }
-  function recordLeaderboard(coins) {
-    const data = getLeaderboardData();
-    data[playerId] = { id: playerId, name: userName || 'Player', coins: Math.floor(coins) };
-    localStorage.setItem('trax_leaderboard', JSON.stringify(data));
-  }
+  // LEADERBOARD HOME
   function renderLeaderboardHome() {
-    const data = getLeaderboardData();
-    const entries = Object.values(data).sort((a, b) => b.coins - a.coins).slice(0, 10);
     const box = document.getElementById('homeRankList');
     if (!box) return;
-    if (entries.length === 0) {
-      box.innerHTML = '<div style="text-align:center;padding:20px;color:#7a8ba5;font-size:12px"><div style="font-size:32px;margin-bottom:8px">🏆</div><div style="font-weight:900;color:#00d4ff">No players yet</div></div>';
-      return;
-    }
-    box.innerHTML = '';
-    entries.forEach((e, i) => {
-      const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : '#' + (i + 1);
-      const row = document.createElement('div');
-      row.style.cssText = 'display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:rgba(0,0,0,0.3);border-radius:10px;margin-bottom:6px';
-      row.innerHTML = '<div style="display:flex;align-items:center;gap:8px"><span style="font-size:16px">' + medal + '</span><span style="font-size:12px;font-weight:900;color:white">' + e.name + '</span></div><span style="font-size:12px;font-weight:900;color:#00d4ff">' + e.coins.toLocaleString() + '</span>';
-      box.appendChild(row);
+    box.innerHTML = '<div style="text-align:center;padding:20px;color:#7a8ba5;font-size:12px"><div style="font-size:32px;margin-bottom:8px">🏆</div><div style="font-weight:900;color:#00d4ff">Loading...</div></div>';
+    database.ref('users').once('value').then((snap) => {
+      const data = snap.val() || {};
+      const entries = Object.values(data).map(u => ({
+        name: u.name || 'Player',
+        coins: u.totalEarned || 0
+      })).sort((a, b) => b.coins - a.coins).slice(0, 10);
+      if (entries.length === 0) {
+        box.innerHTML = '<div style="text-align:center;padding:20px;color:#7a8ba5;font-size:12px"><div style="font-size:32px;margin-bottom:8px">🏆</div><div style="font-weight:900;color:#00d4ff">No players yet</div></div>';
+        return;
+      }
+      box.innerHTML = '';
+      entries.forEach((e, i) => {
+        const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : '#' + (i + 1);
+        const row = document.createElement('div');
+        row.style.cssText = 'display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:rgba(0,0,0,0.3);border-radius:10px;margin-bottom:6px';
+        row.innerHTML = '<div style="display:flex;align-items:center;gap:8px"><span style="font-size:16px">' + medal + '</span><span style="font-size:12px;font-weight:900;color:white">' + e.name + '</span></div><span style="font-size:12px;font-weight:900;color:#00d4ff">' + e.coins.toLocaleString() + '</span>';
+        box.appendChild(row);
+      });
     });
   }
   function updateRankResetTimer() {
     const el = document.getElementById('rankResetTimer');
     if (!el) return;
-    const lastReset = parseInt(localStorage.getItem('trax_leaderboard_reset') || '0');
-    const remaining = Math.max(0, LEADERBOARD_RESET_MS - (Date.now() - lastReset));
-    const m = Math.floor(remaining / 60000);
-    const s = Math.floor((remaining % 60000) / 1000);
-    el.textContent = m + 'm ' + String(s).padStart(2, '0') + 's';
+    el.textContent = '30m 00s';
   }
 
   function shareRef() {
-    const link = 'https://t.me/TraxOfficial_bot?start=ref' + userId;
+    const link = 'https://t.me/TraxOfficial_bot?start=ref' + playerId;
     const text = 'Trax Coin khelo! 🎉';
     if (tg) tg.openTelegramLink('https://t.me/share/url?url=' + encodeURIComponent(link) + '&text=' + encodeURIComponent(text));
-    localStorage.setItem('task_share', 'done');
-    addMissionProgress('share', 1);
   }
 
+  // NAVIGATION
   const BOTTOM_NAV = ['home', 'games', 'rank', 'tasks', 'wallet'];
   function navClick(el, tab) {
     document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
@@ -2044,6 +1901,7 @@
     }
   }
 
+  // MODALS
   let modalStack = [];
   function showModal(title, text) {
     document.querySelectorAll('.modal.show').forEach(m => {
@@ -2062,54 +1920,27 @@
 
   function showGameInfo(game) {
     const info = {
-      spin: '🎰 LUCKY SPIN\n\n• 1 free spin rozana\n• 3 paid spins (10,000 TRAX)\n\nWIN RATES:\n⚪ 5,000 TRAX — 35%\n⚪ 10,000 TRAX — 28%\n🔵 50,000 TRAX — 20%\n⚪ 100 TRAX — 10%\n🟣 150,000 TRAX — 5%\n🟠 500,000 TRAX — 2%',
-      twist: '🌀 TWIST\n\n• Min bet: 1,000 TRAX\n\nWIN RATES:\n❌ LOSE — 75%\n⚪ 2x-5x — 15%\n🔵 7x-20x — 7%\n🟠 28x-200x — 3%',
-      crash: '🚀 CRASH\n\n• Min bet: 1,000 TRAX\n\n❌ Instant crash — 50%\n❌ 1.5x-1.9x — 25%\n❌ 2x-2.5x — 13%\n⚪ 2.5x-3.5x — 7%\n🔵 4x-6x — 3%\n🟣 8x-12x — 1.5%\n🟠 15x+ — 0.5%',
-      coinflip: '🪙 COIN FLIP\n\n• Min bet: 1,000 TRAX\n\n❌ LOSE — 80%\n⚪ 1.5x — 15%\n🔵 1.7x-2x — 8%\n🟣 3x — 2%\n🟠 5x — 1%',
-      puzzle: '🧩 PUZZLE\n\n• Hard: 10,000 TRAX\n• Medium: 30,000 TRAX\n• Easy: 50,000 TRAX'
+      spin: '🎰 LUCKY SPIN\n\n• 1 free spin rozana\n• 3 paid spins (10,000 TRAX)',
+      twist: '🌀 TWIST\n\n• Min bet: 1,000 TRAX',
+      crash: '🚀 CRASH\n\n• Min bet: 1,000 TRAX',
+      coinflip: '🪙 COIN FLIP\n\n• Min bet: 1,000 TRAX',
+      puzzle: '🧩 PUZZLE\n\n• Hard: 10,000 TRAX'
     };
     showModal('Game Info', info[game] || 'Info not available');
   }
 
+  // SPIN
   const SPIN_SLOTS = [
     { reward: 5000, label: '5K', weight: 35 }, { reward: 10000, label: '10K', weight: 28 },
     { reward: 50000, label: '50K', weight: 20 }, { reward: 100, label: '100', weight: 10 },
     { reward: 150000, label: '150K', weight: 5 }, { reward: 500000, label: '500K', weight: 2 }
   ];
   const PAID_SPIN_COST = 10000;
-  const MAX_PAID_SPINS_PER_DAY = 3;
   let spinCooldown = false;
-  function getToday() { return new Date().toDateString(); }
-  function getSpinState() {
-    const dailyDate = localStorage.getItem('trax_spin_dailyDate') || '';
-    const today = getToday();
-    if (dailyDate !== today) { localStorage.setItem('trax_spin_dailyDate', today); localStorage.setItem('trax_spin_dailyUsed', '0'); localStorage.setItem('trax_spin_paidUsed', '0'); }
-    const dailyUsed = parseInt(localStorage.getItem('trax_spin_dailyUsed') || '0');
-    const paidUsed = parseInt(localStorage.getItem('trax_spin_paidUsed') || '0');
-    return { freeLeft: dailyUsed === 0 ? 1 : 0, paidLeft: MAX_PAID_SPINS_PER_DAY - paidUsed, paidUsed };
-  }
   function updateSpinStatus() {
-    const state = getSpinState();
     const bar = document.getElementById('spinStatusBar');
-    const info = document.getElementById('spinInfoText');
-    const btn = document.getElementById('spinBtn');
-    if (!bar) return;
-    if (state.freeLeft > 0) {
-      bar.textContent = '🎁 1 FREE SPIN AVAILABLE TODAY';
-      bar.style.background = 'rgba(0,255,136,0.15)'; bar.style.borderColor = 'rgba(0,255,136,0.4)'; bar.style.color = '#00ff88';
-      info.textContent = 'Free use karein · Baad mein ' + state.paidLeft + '/3 paid spins';
-      btn.disabled = false; btn.style.opacity = '1';
-    } else if (state.paidLeft > 0) {
-      bar.textContent = '💰 PAID SPINS · ' + state.paidLeft + '/3 left';
-      bar.style.background = 'rgba(255,150,0,0.15)'; bar.style.borderColor = 'rgba(255,150,0,0.4)'; bar.style.color = '#ff9500';
-      info.textContent = 'Entry: ' + PAID_SPIN_COST.toLocaleString() + ' TRAX per spin';
-      btn.disabled = false; btn.style.opacity = '1';
-    } else {
-      bar.textContent = '❌ AAJ KE SPINS KHATAM';
-      bar.style.background = 'rgba(255,0,85,0.15)'; bar.style.borderColor = 'rgba(255,0,85,0.4)'; bar.style.color = '#ff0055';
-      info.textContent = 'Kal phir aayein';
-      btn.disabled = true; btn.style.opacity = '0.5';
-    }
+    if (bar) { bar.textContent = '🎁 1 FREE SPIN AVAILABLE'; bar.style.color = '#00ff88'; }
+    document.getElementById('spinInfoText').textContent = 'Entry: FREE';
   }
   function openSpin() {
     document.getElementById('spinModal').classList.add('show');
@@ -2142,14 +1973,6 @@
   }
   function spinWheel() {
     if (spinCooldown) return;
-    const state = getSpinState();
-    let usedPaid = false;
-    if (state.freeLeft > 0) localStorage.setItem('trax_spin_dailyUsed', '1');
-    else if (state.paidLeft > 0) {
-      if (balance < PAID_SPIN_COST) { playSound('error'); vibrate('error'); showModal('❌ Not Enough TRAX', 'Entry: ' + PAID_SPIN_COST.toLocaleString() + ' TRAX'); return; }
-      balance -= PAID_SPIN_COST; updateUI(); save(); usedPaid = true;
-      localStorage.setItem('trax_spin_paidUsed', (state.paidUsed + 1));
-    } else { showModal('❌ No Spins Left', 'Kal phir aayein.'); return; }
     spinCooldown = true;
     const wheel = document.getElementById('wheel');
     const btn = document.getElementById('spinBtn');
@@ -2164,16 +1987,16 @@
     setTimeout(() => {
       balance += slot.reward; totalEarned += slot.reward;
       addXP(30); addRP(20);
-      addMissionProgress('game', 1);
       updateUI(); save();
       document.getElementById('spinRewardAmount').textContent = '+' + slot.reward.toLocaleString();
       resultBox.classList.add('show');
       btn.textContent = 'SPIN AGAIN';
-      spinCooldown = false; updateSpinStatus();
+      spinCooldown = false;
       playSound('win'); vibrate('success');
     }, 5200);
   }
 
+  // CRASH
   const BET_OPTIONS = [1000, 5000, 10000, 50000, 100000, 500000];
   let crashState = { running: false, multiplier: 1, crashed: false, bet: 1000 };
   let crashInterval = null;
@@ -2187,7 +2010,7 @@
       box.appendChild(el);
     });
   }
-  function updateCrashButton() { document.getElementById('crashBetBtn').textContent = 'START (' + crashState.bet.toLocaleString() + ' TRAX)'; }
+  function updateCrashButton() { document.getElementById('crashBetBtn').textContent = 'START (' + crashState.bet.toLocaleString() + ')'; }
   function openCrash() {
     document.getElementById('crashModal').classList.add('show');
     if (crashInterval) { clearInterval(crashInterval); crashInterval = null; }
@@ -2202,7 +2025,7 @@
   function closeCrash() { if (crashInterval) clearInterval(crashInterval); crashState.running = false; document.getElementById('crashModal').classList.remove('show'); }
   function applyCustomBet() {
     const v = parseInt(document.getElementById('customBetInput').value);
-    if (!v || v < 1000) { showModal('⚠️ Minimum 1,000 TRAX', ''); return; }
+    if (!v || v < 1000) { showModal('⚠️ Min 1,000', ''); return; }
     if (v > balance) { showModal('❌ Not Enough', ''); return; }
     crashState.bet = v;
     document.querySelectorAll('.bet-option').forEach(el => el.classList.remove('selected'));
@@ -2215,8 +2038,7 @@
     if (r < 88) return 2.0 + Math.random() * 0.5;
     if (r < 95) return 2.5 + Math.random() * 1.0;
     if (r < 98) return 4.0 + Math.random() * 2.0;
-    if (r < 99.5) return 8.0 + Math.random() * 4.0;
-    return 15.0 + Math.random() * 20.0;
+    return 8.0 + Math.random() * 4.0;
   }
   function startCrash() {
     if (crashState.running) return;
@@ -2226,7 +2048,7 @@
     updateUI(); save();
     document.getElementById('crashBetBtn').style.display = 'none';
     document.getElementById('crashCashBtn').style.display = 'block';
-    document.getElementById('crashStatus').textContent = 'Multiplier barh raha hai...';
+    document.getElementById('crashStatus').textContent = 'Barh raha hai...';
     const crashPoint = getCrashPoint();
     crashInterval = setInterval(() => {
       if (crashState.crashed || !crashState.running) { clearInterval(crashInterval); return; }
@@ -2237,7 +2059,7 @@
         crashState.crashed = true; crashState.running = false; clearInterval(crashInterval);
         document.getElementById('crashMultiplier').classList.add('crashed');
         document.getElementById('crashMultiplier').textContent = 'CRASHED @ ' + crashState.multiplier.toFixed(2) + 'x';
-        document.getElementById('crashStatus').textContent = 'Lost ' + crashState.bet.toLocaleString() + ' TRAX';
+        document.getElementById('crashStatus').textContent = 'Lost ' + crashState.bet.toLocaleString();
         document.getElementById('crashCashBtn').style.display = 'none';
         document.getElementById('crashBetBtn').style.display = 'block';
         document.getElementById('crashBetBtn').textContent = 'PLAY AGAIN';
@@ -2252,28 +2074,22 @@
     const w = Math.floor(crashState.bet * crashState.multiplier);
     balance += w; totalEarned += w;
     addXP(20); addRP(15);
-    addMissionProgress('game', 1);
     updateUI(); save();
-    document.getElementById('crashStatus').textContent = 'Won ' + w.toLocaleString() + ' TRAX!';
+    document.getElementById('crashStatus').textContent = 'Won ' + w.toLocaleString() + '!';
     document.getElementById('crashCashBtn').style.display = 'none';
     document.getElementById('crashBetBtn').style.display = 'block';
     document.getElementById('crashBetBtn').textContent = 'PLAY AGAIN';
     playSound('win'); vibrate('success');
   }
 
-  const PUZZLE_MODES = { hard: { cost: 10000, label: 'Hard' }, medium: { cost: 30000, label: 'Medium' }, easy: { cost: 50000, label: 'Easy' } };
+  // PUZZLE
   let selectedPuzzleMode = 'hard';
   function openPuzzle() { document.getElementById('puzzleModal').classList.add('show'); }
   function closePuzzle() { document.getElementById('puzzleModal').classList.remove('show'); }
   function selectPuzzleMode(mode, el) { selectedPuzzleMode = mode; document.querySelectorAll('.puzzle-mode-card').forEach(c => c.classList.remove('selected')); if (el) el.classList.add('selected'); }
-  function startPuzzleGame() {
-    const m = PUZZLE_MODES[selectedPuzzleMode];
-    if (balance < m.cost) { playSound('error'); vibrate('error'); showModal('❌ Not Enough TRAX', 'Entry: ' + m.cost.toLocaleString() + ' TRAX'); return; }
-    balance -= m.cost; updateUI(); save();
-    addMissionProgress('game', 1);
-    showModal('🧩 Puzzle', 'Puzzle ' + m.label + ' shuru!');
-  }
+  function startPuzzleGame() { closePuzzle(); showModal('🧩 Puzzle', 'Puzzle shuru!'); }
 
+  // COIN FLIP
   const FLIP_POOL = [{ mult: 1.5, w: 15 }, { mult: 1.7, w: 5 }, { mult: 2, w: 3 }, { mult: 3, w: 2 }, { mult: 5, w: 1 }];
   function pickFlipMult() {
     const total = FLIP_POOL.reduce((s, x) => s + x.w, 0);
@@ -2288,7 +2104,7 @@
     const info = document.getElementById('flipBetInfo');
     if (bet < 1000) { info.textContent = '⚠️ Min 1,000'; info.style.color = '#ff0055'; }
     else if (bet > balance) { info.textContent = '⚠️ Not enough'; info.style.color = '#ff0055'; }
-    else { info.textContent = '✓ Bet: ' + bet.toLocaleString() + ' TRAX'; info.style.color = '#00ff88'; }
+    else { info.textContent = '✓ Bet: ' + bet.toLocaleString(); info.style.color = '#00ff88'; }
   }
   function openCoinFlip() {
     document.getElementById('flipSetup').style.display = flipState.active ? 'none' : 'block';
@@ -2317,14 +2133,14 @@
     flipState.choice = c;
     document.querySelectorAll('.flip-choice-btn').forEach(b => b.classList.remove('selected'));
     document.querySelector('.flip-choice-btn[data-choice="' + c + '"]').classList.add('selected');
-    document.getElementById('flipStatus').textContent = 'Choice: ' + c + ' — Flip dabayein';
+    document.getElementById('flipStatus').textContent = 'Choice: ' + c;
   }
   function updateFlipUI() {
     document.getElementById('flipCurrentMult').textContent = flipState.totalMult.toFixed(1) + 'x';
-    document.getElementById('flipWinnings').textContent = Math.floor(flipState.winnings).toLocaleString() + ' TRAX';
+    document.getElementById('flipWinnings').textContent = Math.floor(flipState.winnings).toLocaleString();
     if (flipState.totalMult > 1) {
       document.getElementById('flipCashBtn').style.display = 'block';
-      document.getElementById('flipCashBtn').textContent = '💸 CASHOUT ' + Math.floor(flipState.winnings).toLocaleString() + ' TRAX';
+      document.getElementById('flipCashBtn').textContent = '💸 CASHOUT ' + Math.floor(flipState.winnings).toLocaleString();
     } else document.getElementById('flipCashBtn').style.display = 'none';
   }
   function doFlip() {
@@ -2361,13 +2177,13 @@
     const amount = Math.floor(flipState.winnings);
     balance += amount; totalEarned += amount;
     addXP(20); addRP(15);
-    addMissionProgress('game', 1);
     updateUI(); save();
     showModal('🎉 Cashout!', '+' + amount.toLocaleString() + ' TRAX!');
     flipState.active = false;
     setTimeout(closeCoinFlip, 300);
   }
 
+  // TWIST
   const TWIST_BETS = [1000, 5000, 10000, 50000, 100000, 500000];
   let twistBetIndex = 0;
   let twistSpinning = false;
@@ -2464,7 +2280,7 @@
   function playTwist() {
     if (twistSpinning) return;
     const bet = getTwistBet();
-    if (balance < bet) { playSound('error'); vibrate('error'); showModal('❌ Not Enough TRAX', 'Bet: ' + bet.toLocaleString() + ' TRAX'); return; }
+    if (balance < bet) { showModal('❌ Not Enough', 'Bet: ' + bet.toLocaleString()); return; }
     balance -= bet; updateUI(); save();
     twistSpinning = true; updateTwistBetUI();
     const pointer = document.getElementById('twistPointer');
@@ -2482,18 +2298,17 @@
       if (ring === 'lose') {
         document.getElementById('twistResultLabel').textContent = '❌ YOU LOST';
         document.getElementById('twistResultMult').textContent = '0x';
-        document.getElementById('twistResultAmount').textContent = '-' + bet.toLocaleString() + ' TRAX';
+        document.getElementById('twistResultAmount').textContent = '-' + bet.toLocaleString();
         resultBox.classList.add('show', 'lose');
         playSound('error'); vibrate('error');
       } else {
         const winAmount = Math.floor(bet * mult);
         balance += winAmount; totalEarned += winAmount;
         addXP(15); addRP(10);
-        addMissionProgress('game', 1);
         updateUI(); save();
         document.getElementById('twistResultLabel').textContent = '🎉 YOU WON';
         document.getElementById('twistResultMult').textContent = mult + 'x';
-        document.getElementById('twistResultAmount').textContent = '+' + winAmount.toLocaleString() + ' TRAX';
+        document.getElementById('twistResultAmount').textContent = '+' + winAmount.toLocaleString();
         resultBox.classList.add('show');
         playSound('win'); vibrate('success');
       }
@@ -2503,37 +2318,30 @@
   }
 
   function resetData() {
-    if (confirm('⚠️ Reset ALL data?')) {
-      localStorage.clear();
-      location.reload();
+    if (confirm('⚠️ Reset ALL data from Firebase?')) {
+      dbRef.child(playerId).remove().then(() => location.reload());
     }
   }
 
+  // ATTENDANCE
   const ATTENDANCE_REWARDS = [
     { coins: 1000, xp: 50 }, { coins: 2000, xp: 75 }, { coins: 3000, xp: 100 },
     { coins: 5000, xp: 150 }, { coins: 8000, xp: 200 }, { coins: 15000, xp: 300 },
     { coins: 200000, xp: 500 }
   ];
-  function getAttendanceData() {
-    return { currentDay: parseInt(localStorage.getItem('trax_att_currentDay') || '0'), lastClaimDate: localStorage.getItem('trax_att_lastDate') || '', accumulated: parseInt(localStorage.getItem('trax_att_accumulated') || '0') };
-  }
-  function saveAttendanceData(data) {
-    localStorage.setItem('trax_att_currentDay', data.currentDay);
-    localStorage.setItem('trax_att_lastDate', data.lastClaimDate);
-    localStorage.setItem('trax_att_accumulated', data.accumulated);
-  }
+  let attCurrentDay = 0;
+  let attLastDate = '';
   function getTodayStr() { const d = new Date(); return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate(); }
   function getYesterdayStr() { const d = new Date(); d.setDate(d.getDate() - 1); return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate(); }
   function checkAttendanceReset() {
-    const data = getAttendanceData();
-    if (!data.lastClaimDate) return data;
+    if (!attLastDate) return;
     const today = getTodayStr(); const yesterday = getYesterdayStr();
-    if (data.lastClaimDate === today || data.lastClaimDate === yesterday) return data;
-    data.currentDay = 0; data.accumulated = 0; saveAttendanceData(data); return data;
+    if (attLastDate === today || attLastDate === yesterday) return;
+    attCurrentDay = 0;
   }
-  function canClaimToday() { const data = checkAttendanceReset(); return data.lastClaimDate !== getTodayStr(); }
+  function canClaimToday() { return attLastDate !== getTodayStr(); }
   function renderAttendance() {
-    const data = checkAttendanceReset();
+    checkAttendanceReset();
     const grid = document.getElementById('attendanceGrid');
     if (!grid) return;
     grid.innerHTML = '';
@@ -2542,65 +2350,60 @@
       const card = document.createElement('div');
       card.className = 'att-day-card';
       let state = 'locked';
-      if (dayNum <= data.currentDay) state = 'claimed';
-      else if (dayNum === data.currentDay + 1 && canClaimToday()) state = 'today';
+      if (dayNum <= attCurrentDay) state = 'claimed';
+      else if (dayNum === attCurrentDay + 1 && canClaimToday()) state = 'today';
       card.classList.add(state);
       const isDay7 = dayNum === 7;
       card.innerHTML = '<div class="att-day-label">' + dayNum + ' Day</div><div class="att-day-icon">' + (isDay7 ? '🎁' : '🪙') + '</div><div class="att-day-amount">+' + rew.coins.toLocaleString() + '</div>';
       grid.appendChild(card);
     });
-    document.getElementById('attCurrentDays').textContent = data.currentDay;
-    document.getElementById('attAccumulated').textContent = data.accumulated.toLocaleString();
+    document.getElementById('attCurrentDays').textContent = attCurrentDay;
     const btn = document.getElementById('attClaimBtn');
     if (canClaimToday()) {
-      if (data.currentDay >= 7) { btn.textContent = 'START NEW CYCLE (DAY 1)'; btn.disabled = false; btn.classList.remove('claimed'); }
-      else { btn.textContent = 'CLAIM DAY ' + (data.currentDay + 1) + ' · +' + ATTENDANCE_REWARDS[data.currentDay].coins.toLocaleString() + ' TRAX'; btn.disabled = false; btn.classList.remove('claimed'); }
-    } else { btn.textContent = '✓ CLAIMED TODAY · Kal aayein'; btn.disabled = true; btn.classList.add('claimed'); }
+      if (attCurrentDay >= 7) { btn.textContent = 'START NEW CYCLE'; btn.disabled = false; }
+      else { btn.textContent = 'CLAIM DAY ' + (attCurrentDay + 1); btn.disabled = false; }
+    } else { btn.textContent = '✓ CLAIMED TODAY'; btn.disabled = true; }
     renderStreakBar();
     updateSideCards();
   }
   function claimAttendance() {
-    const data = checkAttendanceReset();
-    if (!canClaimToday()) { showModal('✅ Already Claimed', 'Kal dobara aayein!'); return; }
-    if (data.currentDay >= 7) { data.currentDay = 0; data.accumulated = 0; }
-    const rew = ATTENDANCE_REWARDS[data.currentDay];
-    data.currentDay += 1; data.lastClaimDate = getTodayStr(); data.accumulated += rew.coins;
-    saveAttendanceData(data);
+    if (!canClaimToday()) { showModal('✅ Already Claimed', 'Kal aayein!'); return; }
+    if (attCurrentDay >= 7) attCurrentDay = 0;
+    const rew = ATTENDANCE_REWARDS[attCurrentDay];
+    attCurrentDay += 1; attLastDate = getTodayStr();
     balance += rew.coins; totalEarned += rew.coins;
     addXP(rew.xp); addRP(50);
-    addMissionProgress('daily', 1);
-    localStorage.setItem('task_daily', 'done');
     updateUI(); save();
     playSound('win'); vibrate('success');
-    showModal('🎁 Day ' + data.currentDay + ' Claimed!', '+' + rew.coins.toLocaleString() + ' TRAX\n+' + rew.xp + ' XP\n+50 RP');
+    showModal('🎁 Day ' + attCurrentDay + ' Claimed!', '+' + rew.coins.toLocaleString() + ' TRAX');
     renderAttendance();
   }
   function renderStreakBar() {
     const row = document.getElementById('streakRow');
     const countEl = document.getElementById('streakCount');
     if (!row) return;
-    const data = checkAttendanceReset();
-    countEl.textContent = data.currentDay;
+    countEl.textContent = attCurrentDay;
     row.innerHTML = '';
     for (let i = 1; i <= 7; i++) {
       const d = document.createElement('div');
       d.className = 'streak-day';
-      if (i <= data.currentDay) d.classList.add('done');
-      else if (i === data.currentDay + 1 && canClaimToday()) d.classList.add('today');
+      if (i <= attCurrentDay) d.classList.add('done');
+      else if (i === attCurrentDay + 1 && canClaimToday()) d.classList.add('today');
       if (i === 7) d.classList.add('gift');
-      d.textContent = i === 7 ? '🎁' : (i <= data.currentDay ? '✓' : i);
+      d.textContent = i === 7 ? '🎁' : (i <= attCurrentDay ? '✓' : i);
       row.appendChild(d);
     }
   }
 
+  // RED POCKET
   const REDPOCKET_COOLDOWN = 15 * 60 * 1000;
+  let rpLastOpen = 0;
   const REDPOCKET_REWARDS = [
     { amount: 50, weight: 35 }, { amount: 100, weight: 30 },
     { amount: 250, weight: 20 }, { amount: 500, weight: 10 }, { amount: 1000, weight: 5 }
   ];
   function getRedPocketState() {
-    const lastOpen = parseInt(localStorage.getItem('trax_rp_lastOpen') || '0');
-    const remaining = Math.max(0, REDPOCKET_COOLDOWN - (Date.now() - lastOpen));
+    const remaining = Math.max(0, REDPOCKET_COOLDOWN - (Date.now() - rpLastOpen));
     return { ready: remaining === 0, remaining };
   }
   function pickRedPocketReward() {
@@ -2636,18 +2439,18 @@
   }
   function openRedPocket() {
     const state = getRedPocketState();
-    if (!state.ready) { playSound('error'); vibrate('error'); showModal('⏰ Wait', 'Agla Red Pocket ' + formatRPTime(state.remaining) + ' baad.'); return; }
+    if (!state.ready) { showModal('⏰ Wait', 'Agla ' + formatRPTime(state.remaining) + ' baad.'); return; }
     const reward = pickRedPocketReward();
     balance += reward; totalEarned += reward;
-    localStorage.setItem('trax_rp_lastOpen', Date.now());
+    rpLastOpen = Date.now();
     addXP(10); addRP(5);
-    addMissionProgress('pocket', 1);
     updateUI(); save(); playSound('win'); vibrate('success');
     updateRedPocketUI();
     const isRare = reward >= 1000;
-    showModal(isRare ? '🌟 LUCKY! RARE POCKET!' : '🧧 Red Pocket!', 'Mubarak ho!\n\n+' + reward.toLocaleString() + ' TRAX mile!');
+    showModal(isRare ? '🌟 LUCKY! RARE POCKET!' : '🧧 Red Pocket!', '+' + reward.toLocaleString() + ' TRAX!');
   }
 
+  // INITIAL LOAD
   updateAvatarDisplays();
   buildAvatarGrid();
   updateSettingsUI();
@@ -2665,34 +2468,24 @@
   renderLeaderboard();
   renderHistory();
 
-  (function() {
-    const now = Date.now();
-    const atUntil = parseInt(localStorage.getItem('trax_booster_autoTap_activeUntil') || '0');
-    if (atUntil > now) boosterAutoTapBonus = 1;
-    else { localStorage.removeItem('trax_booster_autoTap_bonus'); localStorage.removeItem('trax_booster_autoTap_activeUntil'); boosterAutoTapBonus = 0; }
-    const dbUntil = parseInt(localStorage.getItem('trax_booster_double_activeUntil') || '0');
-    if (dbUntil > now) boosterDoubleBonus = 2;
-    else { localStorage.removeItem('trax_booster_double_bonus'); localStorage.removeItem('trax_booster_double_activeUntil'); boosterDoubleBonus = 0; }
-    updateUI(); updateBoosterUI();
-  })();
+  // 🔥 FIREBASE SE DATA LOAD
+  setTimeout(loadFromFirebase, 500);
 
-  setInterval(() => { recordLeaderboard(balance); renderLeaderboardHome(); updateRankResetTimer(); }, 30000);
-  recordLeaderboard(balance);
-  renderLeaderboardHome();
-  updateRankResetTimer();
-
+  // INTERVALS
+  setInterval(() => { renderLeaderboardHome(); updateRankResetTimer(); }, 30000);
   setInterval(() => { if (autoEarn > 0) { balance += autoEarn / 3600; totalEarned += autoEarn / 3600; updateUI(); save(); } }, 1000);
   setInterval(() => { if (energy < getEffectiveMaxEnergy()) { energy++; updateUI(); save(); } }, 2000);
   setInterval(updateBoosterUI, 1000);
   setInterval(checkBoosterExpiry, 5000);
   setInterval(updateRedPocketUI, 1000);
-  setInterval(() => { const modal = document.getElementById('spinModal'); if (modal && modal.classList.contains('show')) updateSpinStatus(); }, 1000);
-  setInterval(() => { if (document.getElementById('tab-attendance').classList.contains('active') || document.getElementById('tab-home').classList.contains('active')) renderAttendance(); }, 60 * 1000);
   setInterval(updateSideCards, 5000);
   setInterval(updateRankResetTimer, 1000);
 
-  // 🔥 App start hote hi Firebase se data load karo
-  setTimeout(loadFromFirebase, 1500);
+  // 🔥 HAR 30 SECOND FIREBASE PAR SAVE
+  setInterval(saveToFirebase, 30000);
+
+  // 🔥 APP CLOSE HONE PAR SAVE
+  window.addEventListener('beforeunload', saveToFirebase);
 </script>
 </body>
  </html>
