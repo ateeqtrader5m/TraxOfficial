@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>TraxOfficial - Admin Panel</title>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; -webkit-tap-highlight-color: transparent; }
+  body { background: #050a14; color: white; min-height: 100vh; padding: 15px; }
+  .container { max-width: 900px; margin: 0 auto; }
+  .header { text-align: center; margin-bottom: 20px; padding: 20px 0; border-bottom: 1px solid rgba(0,212,255,0.3); }
+  .header h1 { font-size: 28px; font-weight: 900; color: #00d4ff; text-shadow: 0 0 20px rgba(0,212,255,0.6); }
+  .header p { font-size: 12px; color: #7a8ba5; margin-top: 5px; letter-spacing: 2px; }
+  .login-box { max-width: 400px; margin: 60px auto; background: linear-gradient(135deg, rgba(0,180,255,0.1), rgba(150,0,255,0.05)); border: 2px solid rgba(0,212,255,0.5); border-radius: 20px; padding: 30px 25px; text-align: center; }
+  .login-box h2 { font-size: 22px; font-weight: 900; color: #00d4ff; margin-bottom: 20px; }
+  .login-box input { width: 100%; background: rgba(0,0,0,0.4); border: 1.5px solid rgba(0,212,255,0.4); border-radius: 12px; padding: 14px; color: white; font-size: 15px; font-weight: 900; text-align: center; outline: none; margin-bottom: 15px; letter-spacing: 3px; }
+  .login-box button { width: 100%; background: linear-gradient(135deg, #00ff88, #00aa55); border: none; border-radius: 12px; padding: 15px; color: white; font-size: 15px; font-weight: 900; cursor: pointer; letter-spacing: 2px; }
+  .login-box button:active { transform: scale(0.97); }
+  .login-error { color: #ff0055; font-size: 12px; font-weight: 900; margin-top: 10px; display: none; }
+  .dashboard { display: none; }
+  .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+  .stat-card { background: linear-gradient(135deg, rgba(0,180,255,0.15), rgba(0,80,180,0.08)); border: 1.5px solid rgba(0,180,255,0.3); border-radius: 16px; padding: 16px; text-align: center; }
+  .stat-card .icon { font-size: 28px; margin-bottom: 6px; }
+  .stat-card .label { font-size: 10px; color: #7a8ba5; font-weight: 900; letter-spacing: 1px; margin-bottom: 4px; }
+  .stat-card .value { font-size: 22px; font-weight: 900; color: #00d4ff; }
+  .search-box { background: rgba(0,0,0,0.4); border: 1.5px solid rgba(0,212,255,0.4); border-radius: 12px; padding: 14px; color: white; font-size: 14px; width: 100%; outline: none; margin-bottom: 15px; font-weight: 700; }
+  .user-card { background: linear-gradient(135deg, rgba(15,30,55,0.9), rgba(10,20,40,0.8)); border: 1.5px solid rgba(0,180,255,0.3); border-radius: 16px; padding: 14px; margin-bottom: 12px; }
+  .user-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .user-avatar { width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #00d4ff, #0066ff); display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; background-size: cover; background-position: center; border: 2px solid rgba(0,212,255,0.5); }
+  .user-info { flex: 1; min-width: 0; }
+  .user-name { font-size: 15px; font-weight: 900; color: white; margin-bottom: 3px; }
+  .user-id { font-size: 10px; color: #7a8ba5; font-weight: 700; }
+  .user-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-bottom: 12px; }
+  .user-stat { background: rgba(0,0,0,0.3); border-radius: 10px; padding: 8px 6px; text-align: center; }
+  .user-stat .lbl { font-size: 8px; color: #7a8ba5; font-weight: 900; margin-bottom: 2px; }
+  .user-stat .val { font-size: 12px; font-weight: 900; color: #00d4ff; }
+  .user-actions { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 6px; }
+  .btn { padding: 10px 6px; border-radius: 10px; font-size: 10px; font-weight: 900; border: none; cursor: pointer; color: white; letter-spacing: 0.5px; }
+  .btn:active { transform: scale(0.95); }
+  .btn.add { background: linear-gradient(135deg, #00ff88, #00aa55); }
+  .btn.remove { background: linear-gradient(135deg, #ff9500, #cc5500); }
+  .btn.ban { background: linear-gradient(135deg, #ff0055, #990033); }
+  .btn.info { background: linear-gradient(135deg, #00b4ff, #0066ff); }
+  .empty-msg { text-align: center; padding: 40px 20px; color: #7a8ba5; font-size: 14px; }
+  .toast { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #00ff88, #00aa55); color: white; padding: 12px 24px; border-radius: 30px; font-weight: 900; font-size: 13px; z-index: 9999; box-shadow: 0 5px 25px rgba(0,255,136,0.5); display: none; }
+  .toast.error { background: linear-gradient(135deg, #ff0055, #990033); box-shadow: 0 5px 25px rgba(255,0,85,0.5); }
+  .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 15px; }
+  .modal.show { display: flex; }
+  .modal-content { background: linear-gradient(135deg, #0f2137, #061224); border: 2px solid rgba(0,212,255,0.6); border-radius: 22px; padding: 24px 20px; max-width: 400px; width: 100%; }
+  .modal-content h3 { color: #00d4ff; font-size: 18px; font-weight: 900; margin-bottom: 15px; text-align: center; }
+  .modal-content input { width: 100%; background: rgba(0,0,0,0.4); border: 1.5px solid rgba(0,212,255,0.4); border-radius: 12px; padding: 12px; color: white; font-size: 14px; font-weight: 900; text-align: center; outline: none; margin-bottom: 15px; }
+  .modal-content .modal-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .modal-content .modal-actions button { padding: 12px; border-radius: 12px; font-weight: 900; font-size: 13px; border: none; cursor: pointer; color: white; }
+  .modal-content .cancel-btn { background: #4a5568; }
+  .modal-content .confirm-btn { background: linear-gradient(135deg, #00ff88, #00aa55); }
+  .modal-content .confirm-btn.remove { background: linear-gradient(135deg, #ff9500, #cc5500); }
+  .logout-btn { position: fixed; top: 15px; right: 15px; background: rgba(255,0,85,0.25); border: 1.5px solid rgba(255,0,85,0.6); border-radius: 12px; padding: 8px 14px; color: #ff5555; font-size: 12px; font-weight: 900; cursor: pointer; z-index: 100; }
+</style>
+</head>
+<body>
+
+<!-- LOGIN SCREEN -->
+<div class="login-box" id="loginScreen">
+  <h2>🔐 ADMIN LOGIN</h2>
+  <p style="font-size:11px;color:#7a8ba5;margin-bottom:20px">Enter admin password to continue</p>
+  <input type="password" id="passwordInput" placeholder="••••••••" onkeypress="if(event.key==='Enter')login()">
+  <button onclick="login()">LOGIN</button>
+  <div class="login-error" id="loginError">❌ Wrong password!</div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="dashboard" id="dashboard">
+  <button class="logout-btn" onclick="logout()">LOGOUT</button>
+  <div class="header">
+    <h1>⚡ ADMIN PANEL</h1>
+    <p>TRAX OFFICIAL</p>
+  </div>
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="icon">👥</div>
+        <div class="label">TOTAL USERS</div>
+        <div class="value" id="totalUsers">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="icon">💰</div>
+        <div class="label">TOTAL COINS</div>
+        <div class="value" id="totalCoins">0</div>
+      </div>
+    </div>
+    <input type="text" class="search-box" id="searchInput" placeholder="🔍 Search by name or ID..." oninput="renderUsers()">
+    <div id="usersList"></div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="actionModal">
+  <div class="modal-content">
+    <h3 id="modalTitle">Action</h3>
+    <input type="number" id="modalAmount" placeholder="Enter amount" min="1">
+    <div class="modal-actions">
+      <button class="cancel-btn" onclick="closeActionModal()">Cancel</button>
+      <button class="confirm-btn" id="modalConfirmBtn" onclick="confirmAction()">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  // 🔥 SAME FIREBASE CONFIG (JO AAPKE APP MEIN HAI)
+  const firebaseConfig = {
+    apiKey: "AIzaSyDaZzT1xw3KO-aKB2QbL_Yltdvm2dQ0",
+    authDomain: "traxofficial-6b4d8.firebaseapp.com",
+    databaseURL: "https://traxofficial-6b4d8-default-rtdb.firebaseio.com",
+    projectId: "traxofficial-6b4d8",
+    storageBucket: "traxofficial-6b4d8.firebasestorage.app",
+    messagingSenderId: "37313778052",
+    appId: "1:37313778052:web:5db5351e38bb057834dd1",
+    measurementId: "G-2XQS78XYWC"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const database = firebase.database();
+  const dbRef = database.ref('users');
+
+  // 🔐 ADMIN PASSWORD (isko aap badal sakte hain)
+  const ADMIN_PASSWORD = "traxadmin123";
+
+  let allUsers = {};
+  let currentAction = null;
+
+  // 🔐 LOGIN
+  function login() {
+    const pass = document.getElementById('passwordInput').value;
+    if (pass === ADMIN_PASSWORD) {
+      document.getElementById('loginScreen').style.display = 'none';
+      document.getElementById('dashboard').style.display = 'block';
+      sessionStorage.setItem('trax_admin_logged', '1');
+      loadUsers();
+    } else {
+      document.getElementById('loginError').style.display = 'block';
+      setTimeout(() => document.getElementById('loginError').style.display = 'none', 2000);
+    }
+  }
+
+  function logout() {
+    sessionStorage.removeItem('trax_admin_logged');
+    location.reload();
+  }
+
+  // Auto login if already logged in this session
+  if (sessionStorage.getItem('trax_admin_logged') === '1') {
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
+    loadUsers();
+  }
+
+  // 📊 LOAD USERS FROM FIREBASE
+  function loadUsers() {
+    dbRef.on('value', (snapshot) => {
+      allUsers = snapshot.val() || {};
+      renderStats();
+      renderUsers();
+    });
+  }
+
+  function renderStats() {
+    const users = Object.values(allUsers);
+    document.getElementById('totalUsers').textContent = users.length;
+    const totalCoins = users.reduce((sum, u) => sum + (u.balance || 0), 0);
+    document.getElementById('totalCoins').textContent = totalCoins.toLocaleString();
+  }
+
+  function renderUsers() {
+    const search = document.getElementById('searchInput').value.toLowerCase().trim();
+    const container = document.getElementById('usersList');
+    let users = Object.entries(allUsers).map(([id, u]) => ({ ...u, _id: id }));
+
+    if (search) {
+      users = users.filter(u => 
+        (u.name || '').toLowerCase().includes(search) || 
+        (u._id || '').includes(search)
+      );
+    }
+
+    users.sort((a, b) => (b.lastSeen || 0) - (a.lastSeen || 0));
+
+    if (users.length === 0) {
+      container.innerHTML = '<div class="empty-msg">😕 No users found</div>';
+      return;
+    }
+
+    container.innerHTML = '';
+    users.forEach(u => {
+      const card = document.createElement('div');
+      card.className = 'user-card';
+      
+      const avatar = u.avatarIsImage && u.avatar 
+        ? '<div class="user-avatar" style="background-image:url(' + u.avatar + ')"></div>'
+        : '<div class="user-avatar">' + (u.avatar || '👤') + '</div>';
+      
+      const isBanned = u.banned ? ' <span style="color:#ff0055;font-size:10px">🚫 BANNED</span>' : '';
+      
+      card.innerHTML = 
+        '<div class="user-header">' +
+          avatar +
+          '<div class="user-info">' +
+            '<div class="user-name">' + (u.name || 'Player') + isBanned + '</div>' +
+            '<div class="user-id">ID: ' + u._id + '</div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="user-stats">' +
+          '<div class="user-stat"><div class="lbl">BALANCE</div><div class="val">' + (u.balance || 0).toLocaleString() + '</div></div>' +
+          '<div class="user-stat"><div class="lbl">LEVEL</div><div class="val">' + (u.level || 1) + '</div></div>' +
+          '<div class="user-stat"><div class="lbl">RP</div><div class="val">' + (u.rp || 0) + '</div></div>' +
+        '</div>' +
+        '<div class="user-actions">' +
+          '<button class="btn add" onclick="openAction(\'add\',\'' + u._id + '\')">➕ ADD</button>' +
+          '<button class="btn remove" onclick="openAction(\'remove\',\'' + u._id + '\')">➖ CUT</button>' +
+          '<button class="btn ban" onclick="toggleBan(\'' + u._id + '\', ' + (u.banned ? 'true' : 'false') + ')">' + (u.banned ? '✅ UNBAN' : '🚫 BAN') + '</button>' +
+          '<button class="btn info" onclick="showInfo(\'' + u._id + '\')">ℹ️ INFO</button>' +
+        '</div>';
+      
+      container.appendChild(card);
+    });
+  }
+
+  // ➕➖ ACTION MODAL
+  function openAction(type, userId) {
+    currentAction = { type, userId };
+    document.getElementById('modalTitle').textContent = type === 'add' ? '➕ Add Coins' : '➖ Remove Coins';
+    document.getElementById('modalAmount').value = '';
+    document.getElementById('modalConfirmBtn').className = 'confirm-btn ' + (type === 'remove' ? 'remove' : '');
+    document.getElementById('actionModal').classList.add('show');
+  }
+
+  function closeActionModal() {
+    document.getElementById('actionModal').classList.remove('show');
+    currentAction = null;
+  }
+
+  function confirmAction() {
+    if (!currentAction) return;
+    const amount = parseInt(document.getElementById('modalAmount').value);
+    if (!amount || amount <= 0) { showToast('Enter valid amount', true); return; }
+
+    const user = allUsers[currentAction.userId];
+    if (!user) { showToast('User not found', true); return; }
+
+    let newBalance = user.balance || 0;
+    if (currentAction.type === 'add') newBalance += amount;
+    else newBalance = Math.max(0, newBalance - amount);
+
+    dbRef.child(currentAction.userId).update({ balance: newBalance })
+      .then(() => {
+        showToast((currentAction.type === 'add' ? '✅ Added ' : '✅ Removed ') + amount.toLocaleString() + ' TRAX');
+        closeActionModal();
+      })
+      .catch(err => showToast('❌ Error: ' + err.message, true));
+  }
+
+  // 🚫 BAN/UNBAN
+  function toggleBan(userId, isBanned) {
+    const user = allUsers[userId];
+    if (!user) return;
+    const action = isBanned ? 'unban' : 'ban';
+    if (!confirm('Are you sure you want to ' + action + ' this user?')) return;
+    dbRef.child(userId).update({ banned: !isBanned })
+      .then(() => showToast(isBanned ? '✅ User Unbanned' : '🚫 User Banned'))
+      .catch(err => showToast('❌ Error: ' + err.message, true));
+  }
+
+  // ℹ️ INFO
+  function showInfo(userId) {
+    const u = allUsers[userId];
+    if (!u) return;
+    const info = 
+      '📛 Name: ' + (u.name || 'Player') + '\n' +
+      '🆔 ID: ' + userId + '\n' +
+      '💰 Balance: ' + (u.balance || 0).toLocaleString() + '\n' +
+      '📈 Total Earned: ' + (u.totalEarned || 0).toLocaleString() + '\n' +
+      '⭐ Level: ' + (u.level || 1) + '\n' +
+      '💎 RP: ' + (u.rp || 0) + '\n' +
+      '👆 Taps: ' + (u.taps || 0) + '\n' +
+      '⚡ Energy: ' + (u.energy || 0) + '\n' +
+      '🚫 Banned: ' + (u.banned ? 'Yes' : 'No') + '\n' +
+      '📅 Last Seen: ' + (u.lastSeen ? new Date(u.lastSeen).toLocaleString() : 'Never');
+    alert(info);
+  }
+
+  // 🔔 TOAST
+  function showToast(msg, isError) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = 'toast' + (isError ? ' error' : '');
+    t.style.display = 'block';
+    setTimeout(() => t.style.display = 'none', 2500);
+  }
+</script>
+</body>
+  </html>
