@@ -100,11 +100,6 @@
   .page-title-text { font-size: 26px; font-weight: 900; color: #00d4ff; }
   .more-card { background: rgba(10,25,45,0.75); border: 1px solid rgba(0,150,255,0.2); border-radius: 16px; padding: 16px; margin-bottom: 10px; display: flex; align-items: center; gap: 14px; cursor: pointer; }
   .more-card-icon { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
-  .more-card-icon.boosters { background: linear-gradient(135deg, #a040ff, #6020a0); }
-  .more-card-icon.upgrades { background: linear-gradient(135deg, #00b4ff, #0066ff); }
-  .more-card-icon.sticker { background: linear-gradient(135deg, #ff9500, #ff5500); }
-  .more-card-icon.wallet { background: linear-gradient(135deg, #00ff88, #008844); }
-  .more-card-icon.settings { background: linear-gradient(135deg, #666, #333); }
   .more-card-info { flex: 1; }
   .more-card-info h4 { font-size: 14px; font-weight: 900; color: white; margin-bottom: 3px; }
   .more-card-info p { font-size: 11px; color: #7a8ba5; }
@@ -114,8 +109,7 @@
   .task-content { flex: 1; }
   .task-title { font-size: 13px; font-weight: 900; color: white; margin-bottom: 4px; }
   .task-reward-row { font-size: 11px; color: #a0aec0; font-weight: 700; }
-  .task-btn { padding: 8px 16px; border-radius: 10px; font-size: 11px; font-weight: 900; cursor: pointer; border: none; }
-  .task-btn.go { background: linear-gradient(135deg, #00b4ff, #0066ff); color: white; }
+  .task-btn { padding: 8px 16px; border-radius: 10px; font-size: 11px; font-weight: 900; cursor: pointer; border: none; background: linear-gradient(135deg, #00b4ff, #0066ff); color: white; }
   .booster-card { background: rgba(10,25,45,0.7); border: 1px solid rgba(0,150,255,0.2); border-radius: 18px; padding: 16px; }
   .booster-row { display: flex; align-items: center; gap: 10px; padding: 12px 0; border-bottom: 1px solid rgba(0,150,255,0.08); }
   .booster-row:last-child { border-bottom: none; padding-bottom: 0; }
@@ -124,7 +118,6 @@
   .booster-info { flex: 1; }
   .booster-info h4 { font-size: 13px; font-weight: 900; color: white; margin-bottom: 3px; }
   .booster-info p { font-size: 10px; color: #7a8ba5; }
-  .booster-timer { font-size: 11px; font-weight: 900; color: #00d4ff; min-width: 55px; text-align: center; }
   .booster-btn { padding: 9px 12px; border-radius: 10px; font-size: 11px; font-weight: 900; cursor: pointer; border: none; min-width: 75px; color: white; }
   .mini-games-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 15px; }
   .mini-game-card { background: linear-gradient(135deg, rgba(0,100,200,0.3), rgba(0,40,100,0.2)); border: 1.5px solid rgba(0,180,255,0.3); border-radius: 18px; padding: 20px 14px; text-align: center; cursor: pointer; position: relative; }
@@ -138,18 +131,15 @@
   .upgrade-info p { font-size: 10px; color: #7a8ba5; margin-bottom: 3px; }
   .upgrade-info .lvl { font-size: 10px; color: #00d4ff; font-weight: 900; }
   .upgrade-btn { background: linear-gradient(135deg, #00b4ff, #0066ff); border: none; border-radius: 10px; padding: 8px 14px; color: white; font-size: 11px; font-weight: 900; cursor: pointer; min-width: 70px; }
-  .upgrade-btn.max { background: linear-gradient(135deg, #666, #333); cursor: not-allowed; }
   .sticker-shop { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .sticker-card { background: rgba(15,30,55,0.8); border: 1px solid rgba(0,180,255,0.2); border-radius: 14px; padding: 12px 8px; text-align: center; cursor: pointer; position: relative; }
+  .sticker-card { background: rgba(15,30,55,0.8); border: 1px solid rgba(0,180,255,0.2); border-radius: 14px; padding: 12px 8px; text-align: center; position: relative; }
   .sticker-icon { font-size: 34px; margin-bottom: 4px; }
   .sticker-name { font-size: 11px; font-weight: 900; margin-bottom: 2px; }
-  .sticker-lvl { font-size: 8px; color: #ff9500; font-weight: 900; margin-bottom: 3px; }
-  .sticker-benefit { font-size: 9px; color: #00ff88; margin-bottom: 5px; min-height: 20px; }
   .sticker-price { font-size: 10px; color: #00d4ff; font-weight: 900; }
   .crash-game { text-align: center; padding: 10px 0; }
   .crash-multiplier { font-size: 54px; font-weight: 900; color: #00ff88; margin: 15px 0; }
   .crash-bar { height: 12px; background: rgba(0,0,0,0.3); border-radius: 6px; overflow: hidden; margin: 15px 0; }
-  .crash-bar-fill { height: 100%; background: linear-gradient(90deg, #00d4ff, #00ff88); border-radius: 6px; }
+  .crash-bar-fill { height: 100%; background: linear-gradient(90deg, #00d4ff, #00ff88); border-radius: 6px; transition: width 0.3s; }
   .bet-selector { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin: 15px 0 10px; }
   .bet-option { background: rgba(15,30,55,0.8); border: 1px solid rgba(0,180,255,0.3); border-radius: 10px; padding: 10px 5px; cursor: pointer; font-size: 11px; font-weight: 900; color: white; text-align: center; }
   .bet-option.selected { background: linear-gradient(135deg, #00d4ff, #0066ff); border-color: #00d4ff; }
@@ -181,17 +171,14 @@
   .float-text { position: fixed; font-size: 26px; font-weight: 900; color: #00d4ff; pointer-events: none; animation: floatUp 1s ease-out forwards; z-index: 999; }
   @keyframes floatUp { 0% { opacity: 1; transform: translateY(0) scale(1); } 100% { opacity: 0; transform: translateY(-130px) scale(1.4); } }
   
-  /* 🆕 LOGIN SCREEN STYLES */
+  /* AUTH SCREEN */
   .auth-screen { position: fixed; inset: 0; background: #050a14; z-index: 9999; display: none; align-items: center; justify-content: center; padding: 20px; overflow-y: auto; }
   .auth-screen.show { display: flex; }
   .auth-box { background: linear-gradient(135deg, rgba(0,180,255,0.15), rgba(150,0,255,0.08)); border: 2px solid rgba(0,212,255,0.5); border-radius: 24px; padding: 28px 22px; max-width: 400px; width: 100%; text-align: center; box-shadow: 0 0 40px rgba(0,212,255,0.3); }
   .auth-box h2 { font-size: 24px; font-weight: 900; color: #00d4ff; margin-bottom: 8px; }
   .auth-box .subtitle { font-size: 12px; color: #7a8ba5; margin-bottom: 20px; letter-spacing: 1px; }
   .auth-box input { width: 100%; background: rgba(0,0,0,0.4); border: 1.5px solid rgba(0,212,255,0.4); border-radius: 12px; padding: 14px; color: white; font-size: 14px; font-weight: 900; text-align: center; outline: none; margin-bottom: 12px; }
-  .auth-box input:focus { border-color: #00d4ff; box-shadow: 0 0 15px rgba(0,212,255,0.4); }
   .auth-box .auth-btn { width: 100%; background: linear-gradient(135deg, #00ff88, #00aa55); border: none; border-radius: 12px; padding: 15px; color: white; font-size: 15px; font-weight: 900; cursor: pointer; letter-spacing: 2px; margin-top: 5px; }
-  .auth-box .auth-btn:active { transform: scale(0.97); }
-  .auth-box .link-btn { background: none; border: none; color: #00d4ff; font-size: 12px; font-weight: 900; cursor: pointer; margin-top: 15px; text-decoration: underline; }
   .auth-error { color: #ff0055; font-size: 12px; font-weight: 900; margin-top: 10px; min-height: 18px; }
   .auth-success { color: #00ff88; font-size: 12px; font-weight: 900; margin-top: 10px; min-height: 18px; }
   .avatar-selector { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 15px 0; }
@@ -215,30 +202,28 @@
   <div class="loading-text">LOADING...</div>
 </div>
 
-<!-- AUTH SCREEN (Sign Up / Login) -->
+<!-- AUTH SCREEN -->
 <div class="auth-screen" id="authScreen">
   <div class="auth-box">
     <h2 id="authTitle">🎮 Welcome!</h2>
-    <div class="subtitle" id="authSubtitle">Create your account to start earning</div>
+    <div class="subtitle">Create your account to start earning</div>
     
-    <div class="auth-tabs" id="authTabs">
+    <div class="auth-tabs">
       <div class="auth-tab active" data-tab="signup" onclick="switchAuthTab('signup')">✨ SIGN UP</div>
       <div class="auth-tab" data-tab="login" onclick="switchAuthTab('login')">🔐 LOGIN</div>
     </div>
 
-    <!-- Sign Up Form -->
     <div id="signupForm">
-      <input type="text" id="signupUsername" placeholder="Choose Username (e.g. ali123)" maxlength="20" autocomplete="off">
-      <input type="password" id="signupPassword" placeholder="Create Password (min 4 chars)" maxlength="30">
+      <input type="text" id="signupUsername" placeholder="Username (e.g. ali123)" maxlength="20" autocomplete="off">
+      <input type="password" id="signupPassword" placeholder="Password (min 4 chars)" maxlength="30">
       <input type="password" id="signupPasswordConfirm" placeholder="Confirm Password" maxlength="30">
-      <div style="font-size:10px; color:#ff9500; margin-bottom:10px; text-align:left; padding-left:5px">⚠️ Password yaad rakhein! Isse account recover hoga.</div>
+      <div style="font-size:10px; color:#ff9500; margin-bottom:10px; text-align:left; padding-left:5px">⚠️ Password yaad rakhein!</div>
       <div class="avatar-selector" id="avatarSelector"></div>
       <button class="auth-btn" onclick="doSignup()">CREATE ACCOUNT</button>
       <div class="auth-error" id="signupError"></div>
       <div class="auth-success" id="signupSuccess"></div>
     </div>
 
-    <!-- Login Form -->
     <div id="loginForm" style="display:none">
       <input type="text" id="loginUsername" placeholder="Enter Username" maxlength="20" autocomplete="off">
       <input type="password" id="loginPassword" placeholder="Enter Password" maxlength="30">
@@ -246,8 +231,6 @@
       <div class="auth-error" id="loginError"></div>
       <div class="auth-success" id="loginSuccess"></div>
     </div>
-
-    <button class="link-btn" onclick="skipAuth()" id="skipBtn" style="display:none">Skip for now →</button>
   </div>
 </div>
 
@@ -286,9 +269,9 @@
       </div>
     </div>
     <div class="badge-row">
-      <div class="small-badge-card rank brown" id="rankBadgeCard" onclick="navTo('rank')">
-        <div class="small-badge-icon" id="rankBadgeIcon">🥉</div>
-        <div class="small-badge-name" id="rankBadgeName">BROWN</div>
+      <div class="small-badge-card rank" onclick="navTo('rank')">
+        <div class="small-badge-icon">🥉</div>
+        <div class="small-badge-name">BROWN</div>
         <div class="small-badge-sub" id="rankBadgeSub">#F · 0 RP</div>
       </div>
       <div class="small-badge-card vip">
@@ -385,12 +368,12 @@
 <div class="tab-content" id="tab-rank">
   <div class="page-title-bar"><div class="page-title-icon">🏆</div><div class="page-title-text">Rank</div></div>
   <div style="background:linear-gradient(135deg,rgba(0,180,255,0.2),rgba(150,0,255,0.1));border:2px solid rgba(0,212,255,0.6);border-radius:20px;padding:20px;margin-bottom:14px;text-align:center">
-    <div style="font-size:70px;margin-bottom:8px" id="rankBigIcon">🥉</div>
-    <div style="font-size:22px;font-weight:900;color:white" id="rankBigName">BROWN</div>
-    <div style="font-size:14px;color:#00d4ff;font-weight:900;letter-spacing:3px;margin-top:4px" id="rankBigSub">#F</div>
+    <div style="font-size:70px;margin-bottom:8px">🥉</div>
+    <div style="font-size:22px;font-weight:900;color:white">BROWN</div>
+    <div style="font-size:14px;color:#00d4ff;font-weight:900;letter-spacing:3px;margin-top:4px">#F</div>
     <div style="background:rgba(0,0,0,0.4);border-radius:10px;height:16px;overflow:hidden;margin:15px 0 6px"><div style="height:100%;background:linear-gradient(90deg,#ffd700,#ff9500);border-radius:10px" id="rankBigBar"></div></div>
     <div style="display:flex;justify-content:space-between;font-size:11px;font-weight:900;color:#a0aec0">
-      <span>RP Progress</span><span><b id="rankBigRP">0</b> / <span id="rankBigRPNext">500</span></span>
+      <span>RP Progress</span><span><b id="rankBigRP">0</b> / 500</span>
     </div>
   </div>
 </div>
@@ -433,9 +416,9 @@
 <div class="tab-content" id="tab-boosters">
   <div class="page-title-bar"><div class="page-title-icon">🚀</div><div class="page-title-text">Boosters</div></div>
   <div class="booster-card">
-    <div class="booster-row"><div class="booster-icon" style="background:radial-gradient(circle,#a040ff,#6020a0)">👆</div><div class="booster-info"><h4>Auto Tap</h4><p>+1 Tap Power (10 min)</p></div><button class="booster-btn" style="background:linear-gradient(135deg,#a040ff,#6020a0)" onclick="activateBooster('autoTap')">Activate</button></div>
+    <div class="booster-row"><div class="booster-icon" style="background:radial-gradient(circle,#a040ff,#6020a0)">👆</div><div class="booster-info"><h4>Auto Tap</h4><p>+1 Tap Power</p></div><button class="booster-btn" style="background:linear-gradient(135deg,#a040ff,#6020a0)" onclick="activateBooster('autoTap')">Activate</button></div>
     <div class="booster-row"><div class="booster-icon" style="background:radial-gradient(circle,#00b4ff,#0050a0)">⚡</div><div class="booster-info"><h4>Energy Refill</h4><p>+50 Energy</p></div><button class="booster-btn" style="background:linear-gradient(135deg,#00b4ff,#0066ff)" onclick="activateBooster('energy')">Activate</button></div>
-    <div class="booster-row"><div class="booster-icon" style="background:radial-gradient(circle,#cc00ff,#6600a0)">2x</div><div class="booster-info"><h4>2x Earnings</h4><p>+2 Tap (30 min)</p></div><button class="booster-btn" style="background:linear-gradient(135deg,#cc00ff,#6600a0)" onclick="activateBooster('double')">Activate</button></div>
+    <div class="booster-row"><div class="booster-icon" style="background:radial-gradient(circle,#cc00ff,#6600a0)">2x</div><div class="booster-info"><h4>2x Earnings</h4><p>+2 Tap</p></div><button class="booster-btn" style="background:linear-gradient(135deg,#cc00ff,#6600a0)" onclick="activateBooster('double')">Activate</button></div>
   </div>
 </div>
 
@@ -456,10 +439,10 @@
   <div class="page-title-bar"><div class="page-title-icon">🧧</div><div class="page-title-text">Red Pocket</div></div>
   <div style="text-align:center;padding:20px 0">
     <div style="width:200px;height:200px;margin:20px auto;cursor:pointer" id="redpocketBox" onclick="openRedPocket()">
-      <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:130px" id="redpocketIcon">🧧</div>
+      <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:130px">🧧</div>
     </div>
     <div style="font-size:32px;font-weight:900;color:#ff0055;margin:20px 0 8px" id="redpocketTimer">15:00</div>
-    <div style="font-size:11px;color:#7a8ba5;font-weight:900;letter-spacing:2px" id="redpocketLabel">NEXT POCKET IN</div>
+    <div style="font-size:11px;color:#7a8ba5;font-weight:900;letter-spacing:2px">NEXT POCKET IN</div>
     <button style="background:linear-gradient(135deg,#ff0055,#cc0044);border:none;border-radius:14px;padding:16px 40px;color:white;font-size:16px;font-weight:900;cursor:pointer;margin-top:10px" id="redpocketClaimBtn" onclick="openRedPocket()">WAIT...</button>
   </div>
 </div>
@@ -468,10 +451,9 @@
 <div class="tab-content" id="tab-settings-menu">
   <div class="page-title-bar"><div class="page-title-icon">☰</div><div class="page-title-text">Menu</div></div>
   <div class="more-card" onclick="navTo('profile')"><div class="more-card-icon" style="background:linear-gradient(135deg,#00b4ff,#0066ff)">👤</div><div class="more-card-info"><h4>Profile</h4><p>My account</p></div><div class="more-card-arrow">›</div></div>
-  <div class="more-card" onclick="navTo('boosters')"><div class="more-card-icon boosters">🚀</div><div class="more-card-info"><h4>Boosters</h4><p>Power ups</p></div><div class="more-card-arrow">›</div></div>
-  <div class="more-card" onclick="navTo('upgrades')"><div class="more-card-icon upgrades">⬆️</div><div class="more-card-info"><h4>Upgrades</h4><p>Tap power</p></div><div class="more-card-arrow">›</div></div>
-  <div class="more-card" onclick="navTo('sticker')"><div class="more-card-icon sticker">🎨</div><div class="more-card-info"><h4>Trax NFT</h4><p>Stickers</p></div><div class="more-card-arrow">›</div></div>
-  <div class="more-card" onclick="showModal('Settings','Coming soon')"><div class="more-card-icon settings">⚙️</div><div class="more-card-info"><h4>Settings</h4><p>App settings</p></div><div class="more-card-arrow">›</div></div>
+  <div class="more-card" onclick="navTo('boosters')"><div class="more-card-icon" style="background:linear-gradient(135deg,#a040ff,#6020a0)">🚀</div><div class="more-card-info"><h4>Boosters</h4><p>Power ups</p></div><div class="more-card-arrow">›</div></div>
+  <div class="more-card" onclick="navTo('upgrades')"><div class="more-card-icon" style="background:linear-gradient(135deg,#00b4ff,#0066ff)">⬆️</div><div class="more-card-info"><h4>Upgrades</h4><p>Tap power</p></div><div class="more-card-arrow">›</div></div>
+  <div class="more-card" onclick="navTo('sticker')"><div class="more-card-icon" style="background:linear-gradient(135deg,#ff9500,#ff5500)">🎨</div><div class="more-card-info"><h4>Trax NFT</h4><p>Stickers</p></div><div class="more-card-arrow">›</div></div>
 </div>
 
 <!-- BOTTOM NAV -->
@@ -522,14 +504,13 @@
     <button class="crash-bet-btn" onclick="startFlipGame()" style="width:100%">START</button>
   </div>
   <div id="flipGame" style="display:none">
-    <div style="font-size:80px;text-align:center;margin:20px 0" id="flipCoin">🪙</div>
-    <div class="flip-choice-row" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:15px 0">
+    <div style="font-size:80px;text-align:center;margin:20px 0">🪙</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:15px 0">
       <button class="crash-bet-btn" onclick="selectFlipChoice('T')" id="flipT">T</button>
       <button class="crash-bet-btn" onclick="selectFlipChoice('R')" id="flipR">R</button>
     </div>
     <div style="text-align:center;padding:12px;font-weight:900" id="flipStatus">Select T or R</div>
     <button class="crash-bet-btn" onclick="doFlip()" style="width:100%">FLIP COIN</button>
-    <button class="crash-cash-btn" onclick="cashOutFlip()" id="flipCashBtn" style="display:none">CASHOUT</button>
   </div>
   <button class="modal-btn" style="margin-top:8px;width:100%;background:#4a5568" onclick="closeCoinFlip()">CLOSE</button>
 </div></div>
@@ -549,6 +530,7 @@
   const database = firebase.database();
   const dbRef = database.ref('users');
   const usernamesRef = database.ref('usernames');
+  const broadcastRef = database.ref('broadcast');
 
   const tg = window.Telegram ? window.Telegram.WebApp : null;
   if (tg) { tg.ready(); tg.expand(); }
@@ -565,14 +547,13 @@
   }
 
   // ===== GLOBAL STATE =====
-  let playerId = null;       // Telegram ID
-  let currentUserKey = null; // Firebase key (username)
+  let playerId = null;
+  let currentUserKey = null;
   let userName = '';
-  let userPassword = '';     // Hashed
+  let userPassword = '';
   let userAvatar = '👤';
   let isLoggedIn = false;
 
-  // Game data
   let balance = 0;
   let energy = 500;
   let totalTaps = 0;
@@ -588,11 +569,11 @@
   let boosterAutoTapBonus = 0;
   let boosterDoubleBonus = 0;
 
-  let miningActive = false;
   let rpLastOpen = 0;
   let attCurrentDay = 0;
   let attLastDate = '';
 
+  let lastBroadcastShown = '';
   const PRESET_AVATARS = ['👤','😎','🤖','👽','🐱','🦊','🐼','🦁','🐯','🐸','🧑‍🚀','🥷','🧙','👑','💎','🔥'];
   let selectedAvatar = '👤';
 
@@ -604,27 +585,22 @@
     return null;
   }
 
-  // ===== AUTH SCREEN FUNCTIONS =====
+  // ===== AUTH FUNCTIONS =====
   function showAuthScreen() {
     document.getElementById('loadingScreen').classList.add('hide');
     document.getElementById('authScreen').classList.add('show');
     buildAvatarSelector();
   }
-
   function hideAuthScreen() {
     document.getElementById('authScreen').classList.remove('show');
     document.getElementById('loadingScreen').classList.add('hide');
   }
-
   function switchAuthTab(tab) {
     document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
     document.querySelector('.auth-tab[data-tab="' + tab + '"]').classList.add('active');
     document.getElementById('signupForm').style.display = tab === 'signup' ? 'block' : 'none';
     document.getElementById('loginForm').style.display = tab === 'login' ? 'block' : 'none';
-    document.getElementById('signupError').textContent = '';
-    document.getElementById('loginError').textContent = '';
   }
-
   function buildAvatarSelector() {
     const box = document.getElementById('avatarSelector');
     box.innerHTML = '';
@@ -637,117 +613,70 @@
     });
   }
 
-  // ===== SIGN UP =====
   function doSignup() {
     const username = document.getElementById('signupUsername').value.trim().toLowerCase();
     const password = document.getElementById('signupPassword').value;
     const passwordConfirm = document.getElementById('signupPasswordConfirm').value;
     const errEl = document.getElementById('signupError');
     const sucEl = document.getElementById('signupSuccess');
-    errEl.textContent = '';
-    sucEl.textContent = '';
+    errEl.textContent = ''; sucEl.textContent = '';
 
-    // Validation
-    if (username.length < 3) { errEl.textContent = '❌ Username min 3 characters'; return; }
-    if (!/^[a-z0-9_]+$/.test(username)) { errEl.textContent = '❌ Sirf a-z, 0-9, _ use karein'; return; }
-    if (password.length < 4) { errEl.textContent = '❌ Password min 4 characters'; return; }
-    if (password !== passwordConfirm) { errEl.textContent = '❌ Passwords match nahi kar rahe'; return; }
+    if (username.length < 3) { errEl.textContent = '❌ Username min 3 chars'; return; }
+    if (!/^[a-z0-9_]+$/.test(username)) { errEl.textContent = '❌ Sirf a-z, 0-9, _'; return; }
+    if (password.length < 4) { errEl.textContent = '❌ Password min 4 chars'; return; }
+    if (password !== passwordConfirm) { errEl.textContent = '❌ Passwords match nahi'; return; }
 
     sucEl.textContent = '⏳ Creating account...';
 
-    // Check if username exists
     usernamesRef.child(username).once('value').then((snap) => {
       if (snap.exists()) {
-        errEl.textContent = '❌ Yeh username already le liya gaya hai';
+        errEl.textContent = '❌ Username already taken';
         sucEl.textContent = '';
         return;
       }
 
-      // Create user account
       const userData = {
         telegramId: playerId,
         username: username,
         password: simpleHash(password),
         avatar: selectedAvatar,
-        balance: 0,
-        energy: 500,
-        taps: 0,
-        tapPower: 1,
-        maxEnergy: 500,
-        autoEarn: 0,
-        totalEarned: 0,
-        level: 1,
-        xp: 0,
-        rp: 0,
-        dailyRP: 0,
-        weeklyRP: 0,
-        seasonRP: 0,
-        miningTotal: 0,
-        stickers: {},
-        boosterAutoTap: 0,
-        boosterDouble: 0,
-        banned: false,
-        createdAt: Date.now(),
-        lastSeen: Date.now()
+        balance: 0, energy: 500, taps: 0, tapPower: 1, maxEnergy: 500,
+        autoEarn: 0, totalEarned: 0, level: 1, xp: 0, rp: 0,
+        miningTotal: 0, stickers: {}, boosterAutoTap: 0, boosterDouble: 0,
+        banned: false, createdAt: Date.now(), lastSeen: Date.now()
       };
 
-      // Save user with username as key
       dbRef.child(username).set(userData).then(() => {
-        // Save username -> telegramId mapping
         usernamesRef.child(username).set({ telegramId: playerId, createdAt: Date.now() });
-        sucEl.textContent = '✅ Account ban gaya! Login ho raha hai...';
-        
-        // Auto login
+        sucEl.textContent = '✅ Account created!';
         currentUserKey = username;
         userName = username;
         userPassword = simpleHash(password);
         userAvatar = selectedAvatar;
         isLoggedIn = true;
-        
-        setTimeout(() => {
-          loadUserData(userData);
-          hideAuthScreen();
-        }, 800);
-      }).catch(err => {
-        errEl.textContent = '❌ Error: ' + err.message;
-        sucEl.textContent = '';
-      });
-    }).catch(err => {
-      errEl.textContent = '❌ Error: ' + err.message;
-      sucEl.textContent = '';
+        setTimeout(() => { loadUserData(userData); hideAuthScreen(); }, 800);
+      }).catch(err => { errEl.textContent = '❌ ' + err.message; sucEl.textContent = ''; });
     });
   }
 
-  // ===== LOGIN =====
   function doLogin() {
     const username = document.getElementById('loginUsername').value.trim().toLowerCase();
     const password = document.getElementById('loginPassword').value;
     const errEl = document.getElementById('loginError');
     const sucEl = document.getElementById('loginSuccess');
-    errEl.textContent = '';
-    sucEl.textContent = '';
+    errEl.textContent = ''; sucEl.textContent = '';
 
-    if (!username || !password) { errEl.textContent = '❌ Username aur password dono daalein'; return; }
-
+    if (!username || !password) { errEl.textContent = '❌ Enter username & password'; return; }
     sucEl.textContent = '⏳ Logging in...';
 
     dbRef.child(username).once('value').then((snap) => {
-      if (!snap.exists()) {
-        errEl.textContent = '❌ Username nahi mila';
-        sucEl.textContent = '';
-        return;
-      }
-
+      if (!snap.exists()) { errEl.textContent = '❌ Username not found'; sucEl.textContent = ''; return; }
       const userData = snap.val();
       const hashedPass = simpleHash(password);
 
-      if (userData.password !== hashedPass) {
-        errEl.textContent = '❌ Galat password';
-        sucEl.textContent = '';
-        return;
-      }
+      if (userData.password !== hashedPass) { errEl.textContent = '❌ Wrong password'; sucEl.textContent = ''; return; }
 
-      // Update Telegram ID if changed (new Telegram account)
+      // Update Telegram ID if changed
       if (userData.telegramId !== playerId) {
         dbRef.child(username).update({ telegramId: playerId });
         usernamesRef.child(username).update({ telegramId: playerId });
@@ -761,33 +690,22 @@
       userAvatar = userData.avatar || '👤';
       isLoggedIn = true;
 
-      setTimeout(() => {
-        loadUserData(userData);
-        hideAuthScreen();
-      }, 800);
-    }).catch(err => {
-      errEl.textContent = '❌ Error: ' + err.message;
-      sucEl.textContent = '';
+      setTimeout(() => { loadUserData(userData); hideAuthScreen(); }, 800);
     });
   }
 
-  // ===== AUTO LOGIN (if Telegram ID already linked) =====
   function tryAutoLogin() {
     if (!playerId) {
-      // Telegram ID nahi mili - app band
-      document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;background:#050a14;color:#00d4ff;text-align:center;padding:30px;flex-direction:column;font-family:sans-serif"><div style="font-size:80px">📱</div><h1 style="color:#00d4ff;margin:20px 0">TELEGRAM REQUIRED</h1><p style="color:#a0aec0;font-size:14px;max-width:300px;line-height:1.6">Yeh app sirf Telegram ke andar chalti hai.</p></div>';
+      document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;background:#050a14;color:#00d4ff;text-align:center;padding:30px;flex-direction:column;font-family:sans-serif"><div style="font-size:80px">📱</div><h1 style="color:#00d4ff;margin:20px 0">TELEGRAM REQUIRED</h1><p style="color:#a0aec0;font-size:14px;max-width:300px">Yeh app sirf Telegram ke andar chalti hai.</p></div>';
       return;
     }
 
-    // Search for user with this Telegram ID
     dbRef.orderByChild('telegramId').equalTo(playerId).once('value').then((snap) => {
       if (snap.exists()) {
-        // Found user - auto login
         const users = snap.val();
         const userKey = Object.keys(users)[0];
         const userData = users[userKey];
 
-        // Check banned
         if (userData.banned) {
           document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;background:#050a14;color:#ff0055;text-align:center;padding:20px;flex-direction:column;font-family:sans-serif"><div style="font-size:80px">🚫</div><h1 style="color:#ff0055;margin:20px 0">ACCOUNT BANNED</h1><p style="color:#a0aec0">Contact: @TraxSupport</p></div>';
           return;
@@ -802,16 +720,12 @@
         loadUserData(userData);
         hideAuthScreen();
       } else {
-        // Naya user - Sign up dikhao
         showAuthScreen();
       }
-    }).catch(err => {
-      console.error('Auto-login error:', err);
-      showAuthScreen();
-    });
+    }).catch(err => { console.error(err); showAuthScreen(); });
   }
 
-  // ===== LOAD USER DATA INTO VARIABLES =====
+  // ===== LOAD USER DATA =====
   function loadUserData(data) {
     balance = data.balance || 0;
     energy = data.energy || 500;
@@ -831,22 +745,43 @@
     updateUI();
     updateProfilePage();
     updateAvatarDisplays();
-    renderRankPage();
     renderStreakBar();
     drawTasks();
     drawUpgrades();
     drawStickers();
     renderLeaderboardHome();
+
+    // 🔥 LOAD BROADCAST MESSAGE
+    loadBroadcastMessage();
   }
 
-  // ===== SAVE TO FIREBASE =====
+  // 🔥 BROADCAST MESSAGE FUNCTION
+  function loadBroadcastMessage() {
+    broadcastRef.on('value', (snap) => {
+      const data = snap.val();
+      if (data && data.message && data.sentAt) {
+        // Agar naya message hai (jo pehle nahi dikhaya)
+        const msgId = data.sentAt + '_' + data.message.substring(0, 20);
+        if (lastBroadcastShown !== msgId) {
+          // Sirf 10 minute ke andar ka message dikhao
+          if (Date.now() - data.sentAt < 10 * 60 * 1000) {
+            lastBroadcastShown = msgId;
+            setTimeout(() => {
+              showModal('📢 Announcement', data.message);
+            }, 1500);
+          }
+        }
+      }
+    });
+  }
+
+  // ===== SAVE =====
   let saveTimeout = null;
   function save() {
     if (!isLoggedIn || !currentUserKey) return;
     if (saveTimeout) clearTimeout(saveTimeout);
     saveTimeout = setTimeout(saveNow, 800);
   }
-
   function saveNow() {
     if (!isLoggedIn || !currentUserKey) return;
     const userData = {
@@ -870,23 +805,16 @@
       boosterDouble: boosterDoubleBonus,
       lastSeen: Date.now()
     };
-    dbRef.child(currentUserKey).update(userData)
-      .then(() => console.log('✅ Saved'))
-      .catch(err => console.error('❌ Save error:', err));
+    dbRef.child(currentUserKey).update(userData).catch(err => console.error(err));
   }
 
-  // ===== LOGOUT =====
   function logout() {
-    if (!confirm('Logout karna chahte hain? Aapko wapas login karna padega.')) return;
+    if (!confirm('Logout?')) return;
     saveNow();
-    setTimeout(() => {
-      isLoggedIn = false;
-      currentUserKey = null;
-      location.reload();
-    }, 500);
+    setTimeout(() => { isLoggedIn = false; location.reload(); }, 500);
   }
 
-  // ===== UI FUNCTIONS =====
+  // ===== UI =====
   function updateUI() {
     document.getElementById('balance').textContent = Math.floor(balance).toLocaleString();
     document.getElementById('energyText').textContent = energy;
@@ -916,40 +844,18 @@
     if (el('profileInfoTgId')) el('profileInfoTgId').textContent = playerId || '-';
     if (el('profileStatBalance')) el('profileStatBalance').textContent = Math.floor(balance).toLocaleString();
     if (el('profileInfoLevel')) el('profileInfoLevel').textContent = currentLevel;
+    if (el('rankBadgeSub')) el('rankBadgeSub').textContent = '#F · ' + currentRP + ' RP';
+    if (el('rankBigRP')) el('rankBigRP').textContent = currentRP;
   }
 
   function getXPForLevel(level) {
     const arr = [100, 250, 500, 900, 1500, 2300, 3400, 4800, 6500, 8500];
     return level <= arr.length ? arr[level - 1] : 8500 + (level - 10) * 3000;
   }
-
   function getEffectiveTapPower() {
-    return baseTapPower + getStickerBonus('Tap') + boosterAutoTapBonus + boosterDoubleBonus;
+    return baseTapPower + boosterAutoTapBonus + boosterDoubleBonus;
   }
-
-  function getEffectiveMaxEnergy() {
-    return maxEnergy + getStickerBonus('MaxEnergy');
-  }
-
-  function getStickerBonus(keyword) {
-    const stickers = [
-      { id: 'c1', bonus: lvl => 1*lvl, key: 'Tap' },
-      { id: 'c2', bonus: lvl => 2*lvl, key: 'Tap' },
-      { id: 'c3', bonus: lvl => 3*lvl, key: 'Tap' },
-      { id: 'c4', bonus: lvl => 4*lvl, key: 'Tap' },
-      { id: 'c5', bonus: lvl => 5*lvl, key: 'Tap' },
-      { id: 'c6', bonus: lvl => 2*lvl, key: 'Energy' },
-      { id: 'c7', bonus: lvl => 25*lvl, key: 'MaxEnergy' }
-    ];
-    let total = 0;
-    stickers.forEach(s => {
-      if (s.key === keyword) {
-        const lvl = stickerLevels[s.id] || 0;
-        if (lvl) total += s.bonus(lvl);
-      }
-    });
-    return total;
-  }
+  function getEffectiveMaxEnergy() { return maxEnergy; }
 
   function addXP(amount) {
     currentXP += amount;
@@ -962,20 +868,9 @@
     }
     updateUI();
   }
-
   function addRP(amount) {
     currentRP += amount;
-    updateRankBadge();
-  }
-
-  function updateRankBadge() {
-    // Simple rank badge update
-    const card = document.getElementById('rankBadgeCard');
-    if (card) card.querySelector('#rankBadgeSub').textContent = '#F · ' + currentRP + ' RP';
-  }
-
-  function renderRankPage() {
-    document.getElementById('rankBigRP').textContent = currentRP;
+    updateProfilePage();
   }
 
   function renderStreakBar() {
@@ -1006,11 +901,10 @@
     tasks.forEach(t => {
       const el = document.createElement('div');
       el.className = 'task-row';
-      el.innerHTML = '<div class="task-icon-wrap" style="background:linear-gradient(135deg,#00b4ff,#0066ff)">' + t.icon + '</div><div class="task-content"><div class="task-title">' + t.name + '</div><div class="task-reward-row">+' + t.reward.toLocaleString() + ' TRAX · +' + t.xp + ' XP</div></div><button class="task-btn go" onclick="completeTask(\'' + t.id + '\',' + t.reward + ',' + t.xp + ')">GO</button>';
+      el.innerHTML = '<div class="task-icon-wrap" style="background:linear-gradient(135deg,#00b4ff,#0066ff)">' + t.icon + '</div><div class="task-content"><div class="task-title">' + t.name + '</div><div class="task-reward-row">+' + t.reward.toLocaleString() + ' TRAX · +' + t.xp + ' XP</div></div><button class="task-btn" onclick="completeTask(\'' + t.id + '\',' + t.reward + ',' + t.xp + ')">GO</button>';
       box.appendChild(el);
     });
   }
-
   function completeTask(id, reward, xp) {
     balance += reward; totalEarned += reward;
     addXP(xp); addRP(50);
@@ -1035,16 +929,17 @@
       box.appendChild(el);
     });
   }
-
   function buyUpgrade(id, cost) {
     if (balance < cost) { showModal('❌ Not Enough', 'Need: ' + cost.toLocaleString()); return; }
     balance -= cost;
+    let lvl = parseInt(localStorage.getItem('upg_' + id) || '0') + 1;
+    localStorage.setItem('upg_' + id, lvl);
     if (id === 'tapPower') baseTapPower += 1;
     if (id === 'maxEnergy') maxEnergy += 50;
     if (id === 'autoEarn') autoEarn += 5;
     addXP(15); addRP(25);
     updateUI(); save(); drawUpgrades();
-    showModal('✅ Upgraded!', 'Level badh gaya!');
+    showModal('✅ Upgraded!', 'Level ' + lvl);
   }
 
   function drawStickers() {
@@ -1083,11 +978,9 @@
     const tabEl = document.getElementById('tab-' + tab);
     if (tabEl) tabEl.classList.add('active');
     window.scrollTo(0, 0);
-    if (tab === 'rank') renderRankPage();
     if (tab === 'tasks') drawTasks();
     if (tab === 'profile') updateProfilePage();
   }
-
   function navTo(tab) {
     if (BOTTOM_NAV.includes(tab)) navClick(document.querySelector('.nav-item[data-tab="' + tab + '"]'), tab);
     else {
@@ -1096,14 +989,12 @@
       if (tabEl) tabEl.classList.add('active');
       window.scrollTo(0, 0);
       if (tab === 'profile') updateProfilePage();
-      if (tab === 'boosters') {}
       if (tab === 'upgrades') drawUpgrades();
       if (tab === 'sticker') drawStickers();
       if (tab === 'redpocket') updateRedPocketUI();
     }
   }
 
-  // ===== MODAL =====
   function showModal(title, text) {
     document.getElementById('modalTitle').textContent = title;
     document.getElementById('modalText').innerText = text;
@@ -1114,25 +1005,20 @@
   }
 
   // ===== TAP =====
-  document.addEventListener('DOMContentLoaded', () => {
-    const coinBtn = document.getElementById('coinBtn');
-    if (coinBtn) {
-      coinBtn.addEventListener('click', (e) => {
-        if (!isLoggedIn) return;
-        if (energy <= 0) { showModal('⚡ Energy Empty', 'Energy khatam.'); return; }
-        const gain = getEffectiveTapPower();
-        balance += gain; energy--; totalTaps++; totalEarned += gain;
-        addXP(1); addRP(1);
-        updateUI(); save();
-        const el = document.createElement('div');
-        el.className = 'float-text';
-        el.textContent = '+' + gain;
-        el.style.left = (e.clientX - 20) + 'px';
-        el.style.top = (e.clientY - 40) + 'px';
-        document.body.appendChild(el);
-        setTimeout(() => el.remove(), 1000);
-      });
-    }
+  document.getElementById('coinBtn').addEventListener('click', (e) => {
+    if (!isLoggedIn) return;
+    if (energy <= 0) { showModal('⚡ Energy Empty', 'Energy khatam.'); return; }
+    const gain = getEffectiveTapPower();
+    balance += gain; energy--; totalTaps++; totalEarned += gain;
+    addXP(1); addRP(1);
+    updateUI(); save();
+    const el = document.createElement('div');
+    el.className = 'float-text';
+    el.textContent = '+' + gain;
+    el.style.left = (e.clientX - 20) + 'px';
+    el.style.top = (e.clientY - 40) + 'px';
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 1000);
   });
 
   // ===== BOOSTERS =====
@@ -1158,7 +1044,6 @@
       timerEl.textContent = 'READY!';
       timerEl.style.color = '#00ff88';
       btnEl.textContent = 'OPEN NOW 🧧';
-      btnEl.disabled = false;
     } else {
       const s = Math.floor(state.remaining / 1000);
       const m = Math.floor(s / 60);
@@ -1166,7 +1051,6 @@
       timerEl.textContent = String(m).padStart(2, '0') + ':' + String(sec).padStart(2, '0');
       timerEl.style.color = '#ff0055';
       btnEl.textContent = 'WAIT...';
-      btnEl.disabled = true;
     }
   }
   function openRedPocket() {
@@ -1186,7 +1070,7 @@
     showModal('🧧 Red Pocket!', '+' + reward.toLocaleString() + ' TRAX!');
   }
 
-  // ===== GAMES (Simplified) =====
+  // ===== GAMES =====
   let spinCooldown = false;
   function openSpin() { document.getElementById('spinModal').classList.add('show'); updateWheelLabels(); }
   function closeSpin() { document.getElementById('spinModal').classList.remove('show'); }
@@ -1223,7 +1107,6 @@
     }, 5200);
   }
 
-  // CRASH
   let crashState = { running: false, multiplier: 1, bet: 1000 };
   let crashInterval = null;
   function openCrash() {
@@ -1255,6 +1138,7 @@
     crashInterval = setInterval(() => {
       crashState.multiplier += 0.05 + crashState.multiplier * 0.01;
       document.getElementById('crashMultiplier').textContent = crashState.multiplier.toFixed(2) + 'x';
+      document.getElementById('crashBar').style.width = Math.min(100, crashState.multiplier * 30) + '%';
       if (crashState.multiplier >= crashPoint) {
         clearInterval(crashInterval);
         crashState.running = false;
@@ -1277,7 +1161,6 @@
     document.getElementById('crashCashBtn').style.display = 'none';
   }
 
-  // COIN FLIP
   let flipState = { bet: 1000, choice: null };
   function openCoinFlip() {
     document.getElementById('coinFlipModal').classList.add('show');
@@ -1316,24 +1199,21 @@
       closeCoinFlip();
     }, 1500);
   }
-  function cashOutFlip() { closeCoinFlip(); }
 
   // ===== INIT =====
   window.addEventListener('load', () => {
     playerId = getTelegramId();
     if (!playerId) {
-      document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;background:#050a14;color:#00d4ff;text-align:center;padding:30px;flex-direction:column;font-family:sans-serif"><div style="font-size:80px">📱</div><h1 style="color:#00d4ff;margin:20px 0">TELEGRAM REQUIRED</h1><p style="color:#a0aec0;font-size:14px;max-width:300px">Yeh app sirf Telegram ke andar chalti hai. Kripya bot se kholein.</p></div>';
+      document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;background:#050a14;color:#00d4ff;text-align:center;padding:30px;flex-direction:column;font-family:sans-serif"><div style="font-size:80px">📱</div><h1 style="color:#00d4ff;margin:20px 0">TELEGRAM REQUIRED</h1><p style="color:#a0aec0;font-size:14px;max-width:300px">Yeh app sirf Telegram ke andar chalti hai.</p></div>';
       return;
     }
-    // Try auto-login
     tryAutoLogin();
   });
 
-  // Save on exit
   window.addEventListener('beforeunload', () => { if (isLoggedIn) saveNow(); });
-
-  // Auto-save every 30 sec
   setInterval(() => { if (isLoggedIn) saveNow(); }, 30000);
+  setInterval(updateRedPocketUI, 1000);
+  setInterval(() => { if (energy < getEffectiveMaxEnergy() && isLoggedIn) { energy++; updateUI(); save(); } }, 2000);
 </script>
 </body>
- </html>
+                 </html>
