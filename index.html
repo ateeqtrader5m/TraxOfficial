@@ -478,10 +478,6 @@
   .lb-period-tabs { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-bottom: 14px; }
   .lb-period-tab { padding: 8px; text-align: center; font-size: 10px; font-weight: 900; border-radius: 10px; background: rgba(15,30,55,0.8); border: 1px solid rgba(0,180,255,0.25); color: #a0aec0; cursor: pointer; }
   .lb-period-tab.active { background: linear-gradient(135deg, #a040ff, #6020a0); color: white; border-color: #a040ff; }
-  .wallet-order-1 { order: 1; }
-  .wallet-order-2 { order: 2; }
-  .wallet-order-3 { order: 3; }
-  .wallet-order-4 { order: 4; }
   .vip-soon-badge { position: absolute; top: 4px; right: 4px; background: rgba(160,64,255,0.3); color: #cc88ff; font-size: 7px; font-weight: 900; padding: 2px 5px; border-radius: 5px; }
 </style>
 </head>
@@ -1079,12 +1075,10 @@
     }
   }
 
-  // 🔥 SETTINGS (sirf runtime — Firebase mein save nahi)
   let settings = { sound: true, vibration: true };
   function toggleSetting(key) { settings[key] = !settings[key]; updateSettingsUI(); }
   function updateSettingsUI() { document.getElementById('soundToggle').classList.toggle('on', settings.sound); document.getElementById('vibrationToggle').classList.toggle('on', settings.vibration); }
 
-  // 🔥 SAB KUCH FIREBASE SE AAYEGA
   let userName = '';
   let userAvatar = '👤';
   let avatarIsImage = false;
@@ -1141,7 +1135,6 @@
     showModal('🎉 Name Set!', 'Welcome ' + userName + '!');
   }
 
-  // 🔥 SAARE GAME VARIABLES (Firebase se load honge)
   let balance = 0;
   let energy = 500;
   let totalTaps = 0;
@@ -1161,11 +1154,9 @@
   let weeklyRP = 0;
   let seasonRP = 0;
 
-  // 🔥 TELEGRAM ID = UNIQUE PLAYER ID
   const userId = tg && tg.initDataUnsafe && tg.initDataUnsafe.user ? tg.initDataUnsafe.user.id : Math.floor(Math.random() * 900000000) + 100000000;
   let playerId = String(userId);
 
-  // Telegram username auto-set
   if (tg && tg.initDataUnsafe && tg.initDataUnsafe.user && tg.initDataUnsafe.user.first_name) {
     if (!userName) userName = tg.initDataUnsafe.user.first_name;
   }
@@ -1189,12 +1180,8 @@
   }
 
   function addRP(amount) {
-    currentRP += amount;
-    dailyRP += amount;
-    weeklyRP += amount;
-    seasonRP += amount;
-    updateRankBadge();
-    updateUI();
+    currentRP += amount; dailyRP += amount; weeklyRP += amount; seasonRP += amount;
+    updateRankBadge(); updateUI();
   }
 
   function updateRankBadge() {
@@ -1281,11 +1268,6 @@
     { id: 'w10', name: 'Spend 1M TRAX', target: 1000000, reward: 500, xp: 100, type: 'spend' }
   ];
 
-  function getMissionProgress(id) { return 0; }
-  function getMissionClaimed(id) { return false; }
-  function getDailyReset() {}
-  function getWeeklyReset() {}
-
   let currentMissionTab = 'daily';
   function switchMissionTab(tab) {
     currentMissionTab = tab;
@@ -1318,8 +1300,6 @@
     card.innerHTML = '<div class="mission-info"><div class="mission-name">' + m.name + '</div><div class="mission-progress">0 / ' + m.target + '</div><div class="mission-reward">+' + m.reward + ' RP · +' + m.xp + ' XP</div></div><button class="mission-btn verify" onclick="showToast(\'Complete the task first\')">Pending</button>';
     container.appendChild(card);
   }
-  function claimMission(id, reward, xp) { addRP(reward); addXP(xp); renderMissions(); }
-  function addMissionProgress(type, amount) {}
 
   function switchRankTop(tab) {
     document.querySelectorAll('.rank-top-tab').forEach(t => t.classList.remove('active'));
@@ -1351,7 +1331,6 @@
     database.ref('users').once('value').then((snap) => {
       const data = snap.val() || {};
       const entries = Object.values(data).map(u => ({
-        id: u.id || 'unknown',
         name: u.name || 'Player',
         value: currentLB === 'rp' ? (u.rp || 0) : (u.totalEarned || 0)
       })).sort((a, b) => b.value - a.value).slice(0, 20);
@@ -1369,7 +1348,6 @@
       });
     });
   }
-  function recordLeaderboardEntry() {}
 
   function renderHistory() {
     const container = document.getElementById('historyContent');
@@ -1507,7 +1485,6 @@
     if (el('profileInfoEnergy')) el('profileInfoEnergy').textContent = getEffectiveMaxEnergy();
   }
 
-  // 🔥 SAVE TO FIREBASE
   let saveTimeout = null;
   function save() {
     if (saveTimeout) clearTimeout(saveTimeout);
@@ -1545,10 +1522,18 @@
       .catch(err => console.error('❌ Firebase error:', err));
   }
 
+  // 🔥 LOAD FROM FIREBASE (with BAN CHECK)
   function loadFromFirebase() {
     if (!playerId) return;
     dbRef.child(playerId).once('value').then((snapshot) => {
       const data = snapshot.val();
+      
+      // 🚫 BAN CHECK - AGAR USER BANNED HAI TOH APP BAND
+      if (data && data.banned) {
+        document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;background:#050a14;color:#ff0055;text-align:center;padding:20px;flex-direction:column;font-family:sans-serif"><div style="font-size:80px">🚫</div><h1 style="color:#ff0055;margin:20px 0;font-size:24px">ACCOUNT BANNED</h1><p style="color:#a0aec0;font-size:14px">Aapka account ban kar diya gaya hai.</p><p style="color:#a0aec0;font-size:12px;margin-top:15px">Contact: @TraxSupport</p><p style="color:#7a8ba5;font-size:11px;margin-top:30px">Player ID: ' + playerId + '</p></div>';
+        return;
+      }
+      
       if (data) {
         userName = data.name || userName || '';
         balance = data.balance || 0;
@@ -1584,7 +1569,6 @@
     });
   }
 
-  // TAP
   document.getElementById('coinBtn').addEventListener('click', (e) => {
     if (energy <= 0) { playSound('error'); vibrate('error'); showModal('⚡ Energy Empty', 'Energy khatam.'); return; }
     const gain = getEffectiveTapPower();
@@ -1601,7 +1585,6 @@
     document.body.appendChild(el); setTimeout(() => el.remove(), 1000);
   }
 
-  // MINING
   const MINING_RATES = [5, 10, 20, 35, 50];
   let miningTimerInterval = null;
   let miningElapsed = 0;
@@ -1637,7 +1620,6 @@
     }, 1000);
   }
 
-  // BOOSTERS
   const BOOSTER_DURATIONS = { autoTap: 10 * 60 * 1000, energy: 0, double: 30 * 60 * 1000, offline: 0 };
   const BOOSTER_COOLDOWNS = { autoTap: 30 * 60 * 1000, energy: 30 * 60 * 1000, double: 60 * 60 * 1000, offline: 12 * 60 * 60 * 1000 };
   let boosterLastUsed = {};
@@ -1713,7 +1695,6 @@
     document.body.appendChild(t); setTimeout(() => t.remove(), 3000);
   }
 
-  // UPGRADES
   function drawUpgrades() {
     const upgrades = [
       { id: 'tapPower', icon: '⚡', iconClass: 'tap', name: 'Tap Power', desc: '+1 per tap', baseCost: 5000, multiplier: 1.5, level: 0, max: 999 },
@@ -1745,7 +1726,6 @@
     showModal('✅ Upgraded!', 'Level badh gaya!');
   }
 
-  // STICKERS
   function drawStickers() {
     const container = document.getElementById('stickerShopContainer');
     container.innerHTML = '';
@@ -1784,7 +1764,6 @@
     showModal('🎉 Upgraded!', s.name + ' Level ' + stickerLevels[s.id]);
   }
 
-  // TASKS
   function drawTasksNew() {
     const box = document.getElementById('fullTasksListNew');
     box.innerHTML = '';
@@ -1826,7 +1805,6 @@
     showModal('🎉 Task Verified!', '+' + reward.toLocaleString() + ' TRAX\n+' + xp + ' XP\n+50 RP');
   }
 
-  // LEADERBOARD HOME
   function renderLeaderboardHome() {
     const box = document.getElementById('homeRankList');
     if (!box) return;
@@ -1863,7 +1841,6 @@
     if (tg) tg.openTelegramLink('https://t.me/share/url?url=' + encodeURIComponent(link) + '&text=' + encodeURIComponent(text));
   }
 
-  // NAVIGATION
   const BOTTOM_NAV = ['home', 'games', 'rank', 'tasks', 'wallet'];
   function navClick(el, tab) {
     document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
@@ -1901,7 +1878,6 @@
     }
   }
 
-  // MODALS
   let modalStack = [];
   function showModal(title, text) {
     document.querySelectorAll('.modal.show').forEach(m => {
@@ -1920,7 +1896,7 @@
 
   function showGameInfo(game) {
     const info = {
-      spin: '🎰 LUCKY SPIN\n\n• 1 free spin rozana\n• 3 paid spins (10,000 TRAX)',
+      spin: '🎰 LUCKY SPIN\n\n• 1 free spin rozana',
       twist: '🌀 TWIST\n\n• Min bet: 1,000 TRAX',
       crash: '🚀 CRASH\n\n• Min bet: 1,000 TRAX',
       coinflip: '🪙 COIN FLIP\n\n• Min bet: 1,000 TRAX',
@@ -1929,13 +1905,11 @@
     showModal('Game Info', info[game] || 'Info not available');
   }
 
-  // SPIN
   const SPIN_SLOTS = [
     { reward: 5000, label: '5K', weight: 35 }, { reward: 10000, label: '10K', weight: 28 },
     { reward: 50000, label: '50K', weight: 20 }, { reward: 100, label: '100', weight: 10 },
     { reward: 150000, label: '150K', weight: 5 }, { reward: 500000, label: '500K', weight: 2 }
   ];
-  const PAID_SPIN_COST = 10000;
   let spinCooldown = false;
   function updateSpinStatus() {
     const bar = document.getElementById('spinStatusBar');
@@ -1996,7 +1970,6 @@
     }, 5200);
   }
 
-  // CRASH
   const BET_OPTIONS = [1000, 5000, 10000, 50000, 100000, 500000];
   let crashState = { running: false, multiplier: 1, crashed: false, bet: 1000 };
   let crashInterval = null;
@@ -2082,14 +2055,12 @@
     playSound('win'); vibrate('success');
   }
 
-  // PUZZLE
   let selectedPuzzleMode = 'hard';
   function openPuzzle() { document.getElementById('puzzleModal').classList.add('show'); }
   function closePuzzle() { document.getElementById('puzzleModal').classList.remove('show'); }
   function selectPuzzleMode(mode, el) { selectedPuzzleMode = mode; document.querySelectorAll('.puzzle-mode-card').forEach(c => c.classList.remove('selected')); if (el) el.classList.add('selected'); }
   function startPuzzleGame() { closePuzzle(); showModal('🧩 Puzzle', 'Puzzle shuru!'); }
 
-  // COIN FLIP
   const FLIP_POOL = [{ mult: 1.5, w: 15 }, { mult: 1.7, w: 5 }, { mult: 2, w: 3 }, { mult: 3, w: 2 }, { mult: 5, w: 1 }];
   function pickFlipMult() {
     const total = FLIP_POOL.reduce((s, x) => s + x.w, 0);
@@ -2183,7 +2154,6 @@
     setTimeout(closeCoinFlip, 300);
   }
 
-  // TWIST
   const TWIST_BETS = [1000, 5000, 10000, 50000, 100000, 500000];
   let twistBetIndex = 0;
   let twistSpinning = false;
@@ -2323,7 +2293,6 @@
     }
   }
 
-  // ATTENDANCE
   const ATTENDANCE_REWARDS = [
     { coins: 1000, xp: 50 }, { coins: 2000, xp: 75 }, { coins: 3000, xp: 100 },
     { coins: 5000, xp: 150 }, { coins: 8000, xp: 200 }, { coins: 15000, xp: 300 },
@@ -2395,7 +2364,6 @@
     }
   }
 
-  // RED POCKET
   const REDPOCKET_COOLDOWN = 15 * 60 * 1000;
   let rpLastOpen = 0;
   const REDPOCKET_REWARDS = [
@@ -2450,7 +2418,6 @@
     showModal(isRare ? '🌟 LUCKY! RARE POCKET!' : '🧧 Red Pocket!', '+' + reward.toLocaleString() + ' TRAX!');
   }
 
-  // INITIAL LOAD
   updateAvatarDisplays();
   buildAvatarGrid();
   updateSettingsUI();
@@ -2468,10 +2435,8 @@
   renderLeaderboard();
   renderHistory();
 
-  // 🔥 FIREBASE SE DATA LOAD
   setTimeout(loadFromFirebase, 500);
 
-  // INTERVALS
   setInterval(() => { renderLeaderboardHome(); updateRankResetTimer(); }, 30000);
   setInterval(() => { if (autoEarn > 0) { balance += autoEarn / 3600; totalEarned += autoEarn / 3600; updateUI(); save(); } }, 1000);
   setInterval(() => { if (energy < getEffectiveMaxEnergy()) { energy++; updateUI(); save(); } }, 2000);
@@ -2480,12 +2445,9 @@
   setInterval(updateRedPocketUI, 1000);
   setInterval(updateSideCards, 5000);
   setInterval(updateRankResetTimer, 1000);
-
-  // 🔥 HAR 30 SECOND FIREBASE PAR SAVE
   setInterval(saveToFirebase, 30000);
 
-  // 🔥 APP CLOSE HONE PAR SAVE
   window.addEventListener('beforeunload', saveToFirebase);
 </script>
 </body>
- </html>
+     </html>
